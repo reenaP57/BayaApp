@@ -9,15 +9,11 @@
 /* Begin PBXBuildFile section */
 		486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486FDCEE2119ADBC00EA0188 /* Main.storyboard */; };
 		486FDCF82119ADBD00EA0188 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486FDCF62119ADBD00EA0188 /* LaunchScreen.storyboard */; };
-		486FDD422119AEF500EA0188 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD002119AEF300EA0188 /* ViewController.swift */; };
 		486FDD432119AEF500EA0188 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD022119AEF300EA0188 /* TableViewCell.swift */; };
-		486FDD442119AEF500EA0188 /* MIGenericTextFiled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD042119AEF300EA0188 /* MIGenericTextFiled.swift */; };
-		486FDD452119AEF500EA0188 /* 1index 2.49.36 PM.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD062119AEF300EA0188 /* 1index 2.49.36 PM.jpg */; };
 		486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD082119AEF400EA0188 /* APIRequest.swift */; };
 		486FDD472119AEF500EA0188 /* ApplicationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD092119AEF400EA0188 /* ApplicationConfig.swift */; };
 		486FDD482119AEF500EA0188 /* ApplicationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD0A2119AEF400EA0188 /* ApplicationConstants.swift */; };
 		486FDD492119AEF500EA0188 /* ApplicationMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD0B2119AEF400EA0188 /* ApplicationMessages.swift */; };
-		486FDD4A2119AEF500EA0188 /* Social.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD0D2119AEF400EA0188 /* Social.swift */; };
 		486FDD4B2119AEF500EA0188 /* MILoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD102119AEF400EA0188 /* MILoader.swift */; };
 		486FDD4C2119AEF500EA0188 /* MIPopUpOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD112119AEF400EA0188 /* MIPopUpOverlay.swift */; };
 		486FDD4D2119AEF500EA0188 /* MIPopUpOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD122119AEF400EA0188 /* MIPopUpOverlay.xib */; };
@@ -58,6 +54,34 @@
 		486FDD702119AEF500EA0188 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD3E2119AEF400EA0188 /* Info.plist */; };
 		486FDD712119AEF500EA0188 /* AdvertiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD402119AEF400EA0188 /* AdvertiseView.swift */; };
 		486FDD722119AEF500EA0188 /* AdvertiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD412119AEF400EA0188 /* AdvertiseView.xib */; };
+		5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */; };
+		5C42C8CA211AC1AC00907DBB /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C8211AC1AB00907DBB /* login_bg_ipad.jpg */; };
+		5C42C8CB211AC1AC00907DBB /* bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C9211AC1AB00907DBB /* bg_ipad.jpg */; };
+		5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CD211AC53500907DBB /* ParentViewController.swift */; };
+		5C42C8D0211ACD6E00907DBB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */; };
+		5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C73A13E211B26320056FC65 /* VerificationViewController.swift */; };
+		5CDE13F02119B67E00B11AA5 /* LRF.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE13EF2119B67E00B11AA5 /* LRF.storyboard */; };
+		5CDE13F62119B7BE00B11AA5 /* MIGenericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F12119B7BD00B11AA5 /* MIGenericButton.swift */; };
+		5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */; };
+		5CDE13F82119B7BE00B11AA5 /* MIGenericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F32119B7BD00B11AA5 /* MIGenericTextField.swift */; };
+		5CDE13F92119B7BE00B11AA5 /* MIGenericLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F42119B7BE00B11AA5 /* MIGenericLabel.swift */; };
+		5CDE13FA2119B7BE00B11AA5 /* MIGenericTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F52119B7BE00B11AA5 /* MIGenericTextView.swift */; };
+		5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */; };
+		5CDE14092119BC4700B11AA5 /* AvenirLTStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE13FE2119BC4700B11AA5 /* AvenirLTStd-Black.otf */; };
+		5CDE140A2119BC4700B11AA5 /* AvenirLTStd-BlackOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE13FF2119BC4700B11AA5 /* AvenirLTStd-BlackOblique.otf */; };
+		5CDE140B2119BC4700B11AA5 /* AvenirLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14002119BC4700B11AA5 /* AvenirLTStd-Book.otf */; };
+		5CDE140C2119BC4700B11AA5 /* AvenirLTStd-BookOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14012119BC4700B11AA5 /* AvenirLTStd-BookOblique.otf */; };
+		5CDE140D2119BC4700B11AA5 /* AvenirLTStd-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14022119BC4700B11AA5 /* AvenirLTStd-Heavy.otf */; };
+		5CDE140E2119BC4700B11AA5 /* AvenirLTStd-HeavyOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14032119BC4700B11AA5 /* AvenirLTStd-HeavyOblique.otf */; };
+		5CDE140F2119BC4700B11AA5 /* AvenirLTStd-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14042119BC4700B11AA5 /* AvenirLTStd-Light.otf */; };
+		5CDE14102119BC4700B11AA5 /* AvenirLTStd-LightOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14052119BC4700B11AA5 /* AvenirLTStd-LightOblique.otf */; };
+		5CDE14112119BC4700B11AA5 /* AvenirLTStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14062119BC4700B11AA5 /* AvenirLTStd-Medium.otf */; };
+		5CDE14122119BC4700B11AA5 /* AvenirLTStd-MediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14072119BC4700B11AA5 /* AvenirLTStd-MediumOblique.otf */; };
+		5CDE14132119BC4700B11AA5 /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14082119BC4700B11AA5 /* AvenirLTStd-Roman.otf */; };
+		5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */; };
+		5CDE14182119C0E400B11AA5 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14172119C0E400B11AA5 /* bg.jpg */; };
+		5CDE141A2119C21B00B11AA5 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE14192119C21A00B11AA5 /* login_bg.jpg */; };
+		5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */; };
 		E45FB1563DC0DB8A3F96B701 /* Pods_TheBayaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C24B430F439213956B3D8 /* Pods_TheBayaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -66,15 +90,11 @@
 		486FDCE72119ADBC00EA0188 /* TheBayaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBayaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		486FDCEF2119ADBC00EA0188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		486FDCF72119ADBD00EA0188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		486FDD002119AEF300EA0188 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		486FDD022119AEF300EA0188 /* TableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
-		486FDD042119AEF300EA0188 /* MIGenericTextFiled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericTextFiled.swift; sourceTree = "<group>"; };
-		486FDD062119AEF300EA0188 /* 1index 2.49.36 PM.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "1index 2.49.36 PM.jpg"; sourceTree = "<group>"; };
 		486FDD082119AEF400EA0188 /* APIRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		486FDD092119AEF400EA0188 /* ApplicationConfig.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConfig.swift; sourceTree = "<group>"; };
 		486FDD0A2119AEF400EA0188 /* ApplicationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationConstants.swift; sourceTree = "<group>"; };
 		486FDD0B2119AEF400EA0188 /* ApplicationMessages.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationMessages.swift; sourceTree = "<group>"; };
-		486FDD0D2119AEF400EA0188 /* Social.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Social.swift; sourceTree = "<group>"; };
 		486FDD102119AEF400EA0188 /* MILoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MILoader.swift; sourceTree = "<group>"; };
 		486FDD112119AEF400EA0188 /* MIPopUpOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIPopUpOverlay.swift; sourceTree = "<group>"; };
 		486FDD122119AEF400EA0188 /* MIPopUpOverlay.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MIPopUpOverlay.xib; sourceTree = "<group>"; };
@@ -115,6 +135,34 @@
 		486FDD3E2119AEF400EA0188 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		486FDD402119AEF400EA0188 /* AdvertiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertiseView.swift; sourceTree = "<group>"; };
 		486FDD412119AEF400EA0188 /* AdvertiseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvertiseView.xib; sourceTree = "<group>"; };
+		5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LRF_ipad.storyboard; sourceTree = "<group>"; };
+		5C42C8C8211AC1AB00907DBB /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
+		5C42C8C9211AC1AB00907DBB /* bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_ipad.jpg; sourceTree = "<group>"; };
+		5C42C8CD211AC53500907DBB /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
+		5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		5C73A13E211B26320056FC65 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		5CDE13EF2119B67E00B11AA5 /* LRF.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LRF.storyboard; sourceTree = "<group>"; };
+		5CDE13F12119B7BD00B11AA5 /* MIGenericButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericButton.swift; sourceTree = "<group>"; };
+		5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericView.swift; sourceTree = "<group>"; };
+		5CDE13F32119B7BD00B11AA5 /* MIGenericTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericTextField.swift; sourceTree = "<group>"; };
+		5CDE13F42119B7BE00B11AA5 /* MIGenericLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericLabel.swift; sourceTree = "<group>"; };
+		5CDE13F52119B7BE00B11AA5 /* MIGenericTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericTextView.swift; sourceTree = "<group>"; };
+		5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIFont.swift; sourceTree = "<group>"; };
+		5CDE13FE2119BC4700B11AA5 /* AvenirLTStd-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Black.otf"; sourceTree = "<group>"; };
+		5CDE13FF2119BC4700B11AA5 /* AvenirLTStd-BlackOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-BlackOblique.otf"; sourceTree = "<group>"; };
+		5CDE14002119BC4700B11AA5 /* AvenirLTStd-Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Book.otf"; sourceTree = "<group>"; };
+		5CDE14012119BC4700B11AA5 /* AvenirLTStd-BookOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-BookOblique.otf"; sourceTree = "<group>"; };
+		5CDE14022119BC4700B11AA5 /* AvenirLTStd-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Heavy.otf"; sourceTree = "<group>"; };
+		5CDE14032119BC4700B11AA5 /* AvenirLTStd-HeavyOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-HeavyOblique.otf"; sourceTree = "<group>"; };
+		5CDE14042119BC4700B11AA5 /* AvenirLTStd-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Light.otf"; sourceTree = "<group>"; };
+		5CDE14052119BC4700B11AA5 /* AvenirLTStd-LightOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-LightOblique.otf"; sourceTree = "<group>"; };
+		5CDE14062119BC4700B11AA5 /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
+		5CDE14072119BC4700B11AA5 /* AvenirLTStd-MediumOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-MediumOblique.otf"; sourceTree = "<group>"; };
+		5CDE14082119BC4700B11AA5 /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
+		5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5CDE14172119C0E400B11AA5 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
+		5CDE14192119C21A00B11AA5 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
+		5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIInputControllerValidation.swift; sourceTree = "<group>"; };
 		775C24B430F439213956B3D8 /* Pods_TheBayaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBayaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBayaApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -161,6 +209,7 @@
 		486FDCE92119ADBC00EA0188 /* TheBayaApp */ = {
 			isa = PBXGroup;
 			children = (
+				5CDE13FD2119BC4700B11AA5 /* Fonts */,
 				486FDD052119AEF300EA0188 /* Resources */,
 				486FDD3B2119AEF400EA0188 /* AppGeneralFiles */,
 				486FDD0E2119AEF400EA0188 /* Master */,
@@ -180,7 +229,8 @@
 		486FDCFF2119AEF300EA0188 /* Project Classes */ = {
 			isa = PBXGroup;
 			children = (
-				486FDD002119AEF300EA0188 /* ViewController.swift */,
+				5C42C8CC211AC50D00907DBB /* Parent */,
+				5CDE14142119BFA000B11AA5 /* LRF */,
 			);
 			path = "Project Classes";
 			sourceTree = "<group>";
@@ -196,7 +246,11 @@
 		486FDD032119AEF300EA0188 /* Generic Classes */ = {
 			isa = PBXGroup;
 			children = (
-				486FDD042119AEF300EA0188 /* MIGenericTextFiled.swift */,
+				5CDE13F12119B7BD00B11AA5 /* MIGenericButton.swift */,
+				5CDE13F42119B7BE00B11AA5 /* MIGenericLabel.swift */,
+				5CDE13F32119B7BD00B11AA5 /* MIGenericTextField.swift */,
+				5CDE13F52119B7BE00B11AA5 /* MIGenericTextView.swift */,
+				5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */,
 			);
 			path = "Generic Classes";
 			sourceTree = "<group>";
@@ -204,7 +258,10 @@
 		486FDD052119AEF300EA0188 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				486FDD062119AEF300EA0188 /* 1index 2.49.36 PM.jpg */,
+				5CDE14192119C21A00B11AA5 /* login_bg.jpg */,
+				5C42C8C9211AC1AB00907DBB /* bg_ipad.jpg */,
+				5C42C8C8211AC1AB00907DBB /* login_bg_ipad.jpg */,
+				5CDE14172119C0E400B11AA5 /* bg.jpg */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -223,7 +280,7 @@
 		486FDD0C2119AEF400EA0188 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
-				486FDD0D2119AEF400EA0188 /* Social.swift */,
+				5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */,
 			);
 			path = "Custom Classes";
 			sourceTree = "<group>";
@@ -274,6 +331,7 @@
 		486FDD1B2119AEF400EA0188 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */,
 				486FDD1C2119AEF400EA0188 /* ExetensionFloat.swift */,
 				486FDD1D2119AEF400EA0188 /* ExtensionArray.swift */,
 				486FDD1E2119AEF400EA0188 /* ExtensionDate.swift */,
@@ -321,6 +379,8 @@
 			children = (
 				486FDCEE2119ADBC00EA0188 /* Main.storyboard */,
 				486FDCF62119ADBD00EA0188 /* LaunchScreen.storyboard */,
+				5CDE13EF2119B67E00B11AA5 /* LRF.storyboard */,
+				5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -350,6 +410,42 @@
 				486FDD412119AEF400EA0188 /* AdvertiseView.xib */,
 			);
 			path = "Custom View";
+			sourceTree = "<group>";
+		};
+		5C42C8CC211AC50D00907DBB /* Parent */ = {
+			isa = PBXGroup;
+			children = (
+				5C42C8CD211AC53500907DBB /* ParentViewController.swift */,
+			);
+			path = Parent;
+			sourceTree = "<group>";
+		};
+		5CDE13FD2119BC4700B11AA5 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				5CDE13FE2119BC4700B11AA5 /* AvenirLTStd-Black.otf */,
+				5CDE13FF2119BC4700B11AA5 /* AvenirLTStd-BlackOblique.otf */,
+				5CDE14002119BC4700B11AA5 /* AvenirLTStd-Book.otf */,
+				5CDE14012119BC4700B11AA5 /* AvenirLTStd-BookOblique.otf */,
+				5CDE14022119BC4700B11AA5 /* AvenirLTStd-Heavy.otf */,
+				5CDE14032119BC4700B11AA5 /* AvenirLTStd-HeavyOblique.otf */,
+				5CDE14042119BC4700B11AA5 /* AvenirLTStd-Light.otf */,
+				5CDE14052119BC4700B11AA5 /* AvenirLTStd-LightOblique.otf */,
+				5CDE14062119BC4700B11AA5 /* AvenirLTStd-Medium.otf */,
+				5CDE14072119BC4700B11AA5 /* AvenirLTStd-MediumOblique.otf */,
+				5CDE14082119BC4700B11AA5 /* AvenirLTStd-Roman.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		5CDE14142119BFA000B11AA5 /* LRF */ = {
+			isa = PBXGroup;
+			children = (
+				5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */,
+				5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */,
+				5C73A13E211B26320056FC65 /* VerificationViewController.swift */,
+			);
+			path = LRF;
 			sourceTree = "<group>";
 		};
 		C360606CACEC8EFD9DD62C26 /* Frameworks */ = {
@@ -420,12 +516,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5CDE140E2119BC4700B11AA5 /* AvenirLTStd-HeavyOblique.otf in Resources */,
+				5CDE14112119BC4700B11AA5 /* AvenirLTStd-Medium.otf in Resources */,
+				5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */,
 				486FDD4D2119AEF500EA0188 /* MIPopUpOverlay.xib in Resources */,
+				5CDE14122119BC4700B11AA5 /* AvenirLTStd-MediumOblique.otf in Resources */,
+				5CDE14092119BC4700B11AA5 /* AvenirLTStd-Black.otf in Resources */,
+				5CDE13F02119B67E00B11AA5 /* LRF.storyboard in Resources */,
+				5CDE140B2119BC4700B11AA5 /* AvenirLTStd-Book.otf in Resources */,
+				5CDE14132119BC4700B11AA5 /* AvenirLTStd-Roman.otf in Resources */,
 				486FDCF82119ADBD00EA0188 /* LaunchScreen.storyboard in Resources */,
-				486FDD452119AEF500EA0188 /* 1index 2.49.36 PM.jpg in Resources */,
+				5CDE140D2119BC4700B11AA5 /* AvenirLTStd-Heavy.otf in Resources */,
+				5CDE14182119C0E400B11AA5 /* bg.jpg in Resources */,
+				5CDE140F2119BC4700B11AA5 /* AvenirLTStd-Light.otf in Resources */,
+				5CDE14102119BC4700B11AA5 /* AvenirLTStd-LightOblique.otf in Resources */,
 				486FDD722119AEF500EA0188 /* AdvertiseView.xib in Resources */,
+				5CDE140C2119BC4700B11AA5 /* AvenirLTStd-BookOblique.otf in Resources */,
 				486FDD6F2119AEF500EA0188 /* Assets.xcassets in Resources */,
+				5C42C8CB211AC1AC00907DBB /* bg_ipad.jpg in Resources */,
+				5CDE141A2119C21B00B11AA5 /* login_bg.jpg in Resources */,
 				486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */,
+				5CDE140A2119BC4700B11AA5 /* AvenirLTStd-BlackOblique.otf in Resources */,
+				5C42C8CA211AC1AC00907DBB /* login_bg_ipad.jpg in Resources */,
 				486FDD702119AEF500EA0188 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,32 +593,38 @@
 			buildActionMask = 2147483647;
 			files = (
 				486FDD672119AEF500EA0188 /* ExtensionUIViewController.swift in Sources */,
+				5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */,
 				486FDD582119AEF500EA0188 /* ExtensionDouble.swift in Sources */,
 				486FDD6A2119AEF500EA0188 /* Localization.swift in Sources */,
 				486FDD542119AEF500EA0188 /* ExetensionFloat.swift in Sources */,
 				486FDD562119AEF500EA0188 /* ExtensionDate.swift in Sources */,
 				486FDD432119AEF500EA0188 /* TableViewCell.swift in Sources */,
+				5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */,
 				486FDD4C2119AEF500EA0188 /* MIPopUpOverlay.swift in Sources */,
 				486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */,
 				486FDD4F2119AEF500EA0188 /* AutoLayout.swift in Sources */,
 				486FDD612119AEF500EA0188 /* ExtensionUIImageView.swift in Sources */,
 				486FDD552119AEF500EA0188 /* ExtensionArray.swift in Sources */,
 				486FDD692119AEF500EA0188 /* MIKeyboardManager.swift in Sources */,
+				5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */,
 				486FDD4B2119AEF500EA0188 /* MILoader.swift in Sources */,
 				486FDD5A2119AEF500EA0188 /* ExtensionNSObject.swift in Sources */,
 				486FDD5C2119AEF500EA0188 /* ExtensionUIApplication.swift in Sources */,
 				486FDD5E2119AEF500EA0188 /* ExtensionUIButton.swift in Sources */,
 				486FDD482119AEF500EA0188 /* ApplicationConstants.swift in Sources */,
+				5CDE13FA2119B7BE00B11AA5 /* MIGenericTextView.swift in Sources */,
 				486FDD4E2119AEF500EA0188 /* MIToastAlert.swift in Sources */,
 				486FDD602119AEF500EA0188 /* ExtensionUIImage.swift in Sources */,
 				486FDD492119AEF500EA0188 /* ApplicationMessages.swift in Sources */,
 				486FDD592119AEF500EA0188 /* ExtensionInt.swift in Sources */,
 				486FDD6E2119AEF500EA0188 /* AppDelegate.swift in Sources */,
-				486FDD4A2119AEF500EA0188 /* Social.swift in Sources */,
+				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
+				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
 				486FDD6C2119AEF500EA0188 /* TheBayaApp.xcdatamodeld in Sources */,
 				486FDD622119AEF500EA0188 /* ExtensionUINavigationController.swift in Sources */,
+				5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */,
 				486FDD472119AEF500EA0188 /* ApplicationConfig.swift in Sources */,
 				486FDD502119AEF500EA0188 /* CoreData.swift in Sources */,
 				486FDD5F2119AEF500EA0188 /* ExtensionUIColor.swift in Sources */,
@@ -514,15 +632,17 @@
 				486FDD682119AEF500EA0188 /* ExtensionURL.swift in Sources */,
 				486FDD6D2119AEF500EA0188 /* SwiftyJSON.swift in Sources */,
 				486FDD522119AEF500EA0188 /* CoreDataObject+Extension.swift in Sources */,
+				5C42C8D0211ACD6E00907DBB /* SignUpViewController.swift in Sources */,
 				486FDD512119AEF500EA0188 /* CoreDataContext+Extension.swift in Sources */,
 				486FDD5D2119AEF500EA0188 /* ExtensionUIBarButtonItem.swift in Sources */,
+				5CDE13F82119B7BE00B11AA5 /* MIGenericTextField.swift in Sources */,
 				486FDD712119AEF500EA0188 /* AdvertiseView.swift in Sources */,
 				486FDD572119AEF500EA0188 /* ExtensionDictionary.swift in Sources */,
 				486FDD5B2119AEF500EA0188 /* ExtensionString.swift in Sources */,
+				5CDE13F62119B7BE00B11AA5 /* MIGenericButton.swift in Sources */,
+				5CDE13F92119B7BE00B11AA5 /* MIGenericLabel.swift in Sources */,
 				486FDD6B2119AEF500EA0188 /* MasterConstant.swift in Sources */,
 				486FDD632119AEF500EA0188 /* ExtensionUIResponder.swift in Sources */,
-				486FDD442119AEF500EA0188 /* MIGenericTextFiled.swift in Sources */,
-				486FDD422119AEF500EA0188 /* ViewController.swift in Sources */,
 				486FDD652119AEF500EA0188 /* ExtensionUITextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

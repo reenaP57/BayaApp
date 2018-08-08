@@ -80,13 +80,15 @@ extension String {
  
     static func dateStringFrom(timestamp: String, withFormate:String) -> String {
         let fromDate:Date = Date(timeIntervalSince1970: Double(timestamp)!)
-        
+        DateFormatter.shared().locale = NSLocale.current
+       
+        /*
         if Localization.sharedInstance.getLanguage() == CLanguageArabic {
             DateFormatter.shared().locale = Locale(identifier: "ar_DZ")
         } else {
             DateFormatter.shared().locale = NSLocale.current
         }
-        
+        */
         return DateFormatter.shared().string(fromDate: fromDate, dateFormat: withFormate)
     }
     

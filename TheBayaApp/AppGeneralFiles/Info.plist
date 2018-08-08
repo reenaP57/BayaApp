@@ -22,6 +22,20 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>AvenirLTStd-Black.otf</string>
+		<string>AvenirLTStd-BlackOblique.otf</string>
+		<string>AvenirLTStd-Book.otf</string>
+		<string>AvenirLTStd-BookOblique.otf</string>
+		<string>AvenirLTStd-Heavy.otf</string>
+		<string>AvenirLTStd-HeavyOblique.otf</string>
+		<string>AvenirLTStd-Light.otf</string>
+		<string>AvenirLTStd-LightOblique.otf</string>
+		<string>AvenirLTStd-Medium.otf</string>
+		<string>AvenirLTStd-MediumOblique.otf</string>
+		<string>AvenirLTStd-Roman.otf</string>
+	</array>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>

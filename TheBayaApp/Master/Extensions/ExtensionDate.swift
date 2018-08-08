@@ -216,9 +216,9 @@ extension DateFormatter {
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = NSTimeZone.system
         
-        if Localization.sharedInstance.getLanguage() == CLanguageArabic {
-            dateFormatter.locale = Locale(identifier: "ar_DZ")
-        }
+//        if Localization.sharedInstance.getLanguage() == CLanguageArabic {
+//            dateFormatter.locale = Locale(identifier: "ar_DZ")
+//        }
 //        else {
 //            dateFormatter.locale = NSLocale.current
 //        }
