@@ -14,24 +14,24 @@ import Foundation
 //Invalid verification code: “Please enter valid verification code.”
 //Incorrect verification code: “Entered verification code is incorrect.”
 
-var CBtnYes:        String{ return CLocalize(text: "Yes") }
-var CBtnNo:         String{ return CLocalize(text: "No") }
-var CBtnOk:         String{ return CLocalize(text: "OK") }
-var CBtnCancel:     String{ return CLocalize(text: "Cancel") }
-var CBtnRetry:      String{ return CLocalize(text: "Retry") }
-var CBtnSkip:       String{ return CLocalize(text: "Skip") }
-var CBtnTryAgain:      String{ return CLocalize(text: "Try again") }
-var CError: String{ return CLocalize(text: "ERROR!") }
+var CBtnYes         : String{ return CLocalize(text: "Yes") }
+var CBtnNo          : String{ return CLocalize(text: "No") }
+var CBtnOk          : String{ return CLocalize(text: "OK") }
+var CBtnCancel      : String{ return CLocalize(text: "Cancel") }
+var CBtnRetry       : String{ return CLocalize(text: "Retry") }
+var CBtnSkip        : String{ return CLocalize(text: "Skip") }
+var CBtnTryAgain    : String{ return CLocalize(text: "Try again") }
+var CError          : String{ return CLocalize(text: "ERROR!") }
 
 var CMessageDelete: String{ return CLocalize(text: "Are you sure want to delete?") }
 var CMessageLogout: String{ return CLocalize(text: "Are you sure want to logout?") }
 
 
 
-let CBlankEmailOrMobileMessage          = "Email / mobile number can’t be blank."
-let CBlankPasswordMessage               = "Password can’t be blank."
-let CInvalidEmailMessage                = "Email is invalid."
-let CInvalidMobileMessage               = "Mobile Number is invalid."
+var CBlankEmailOrMobileMessage          = "Email / mobile number can’t be blank."
+var CBlankPasswordMessage               = "Password can’t be blank."
+var CInvalidEmailMessage                = "Email is invalid."
+var CInvalidMobileMessage               = "Mobile Number is invalid."
 let CBlankFirstNameMessage              = "First Name can’t be blank."
 let CBlankLastNameMessage               = "Last Name can’t be blank."
 let CBlankEmailMessage                  = "Email can’t be blank."
