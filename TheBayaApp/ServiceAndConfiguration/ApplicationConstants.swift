@@ -88,6 +88,7 @@ let ColorAppDefault     = CRGB(r: 138, g: 181, b: 136)
 let ColorGreen          = CRGB(r: 132, g: 154, b: 164)
 let ColorLightBlack     = CRGB(r: 51, g: 51, b: 51)
 let ColorBGColor        = CRGB(r: 242, g: 248, b: 252)
+let ColorGray           = CRGB(r: 170, g: 170, b: 170)
 
 
 

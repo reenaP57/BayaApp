@@ -54,6 +54,9 @@
 		486FDD702119AEF500EA0188 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD3E2119AEF400EA0188 /* Info.plist */; };
 		486FDD712119AEF500EA0188 /* AdvertiseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD402119AEF400EA0188 /* AdvertiseView.swift */; };
 		486FDD722119AEF500EA0188 /* AdvertiseView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD412119AEF400EA0188 /* AdvertiseView.xib */; };
+		5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */; };
+		5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */; };
+		5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C14CA82211C48D300B06E29 /* Setting.storyboard */; };
 		5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */; };
 		5C42C8CA211AC1AC00907DBB /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C8211AC1AB00907DBB /* login_bg_ipad.jpg */; };
 		5C42C8CB211AC1AC00907DBB /* bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C9211AC1AB00907DBB /* bg_ipad.jpg */; };
@@ -135,6 +138,9 @@
 		486FDD3E2119AEF400EA0188 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		486FDD402119AEF400EA0188 /* AdvertiseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdvertiseView.swift; sourceTree = "<group>"; };
 		486FDD412119AEF400EA0188 /* AdvertiseView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AdvertiseView.xib; sourceTree = "<group>"; };
+		5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPwdViewController.swift; sourceTree = "<group>"; };
+		5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPwdViewController.swift; sourceTree = "<group>"; };
+		5C14CA82211C48D300B06E29 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
 		5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LRF_ipad.storyboard; sourceTree = "<group>"; };
 		5C42C8C8211AC1AB00907DBB /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
 		5C42C8C9211AC1AB00907DBB /* bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_ipad.jpg; sourceTree = "<group>"; };
@@ -381,6 +387,7 @@
 				486FDCF62119ADBD00EA0188 /* LaunchScreen.storyboard */,
 				5CDE13EF2119B67E00B11AA5 /* LRF.storyboard */,
 				5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */,
+				5C14CA82211C48D300B06E29 /* Setting.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -444,6 +451,8 @@
 				5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */,
 				5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */,
 				5C73A13E211B26320056FC65 /* VerificationViewController.swift */,
+				5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */,
+				5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */,
 			);
 			path = LRF;
 			sourceTree = "<group>";
@@ -539,6 +548,7 @@
 				5CDE140A2119BC4700B11AA5 /* AvenirLTStd-BlackOblique.otf in Resources */,
 				5C42C8CA211AC1AC00907DBB /* login_bg_ipad.jpg in Resources */,
 				486FDD702119AEF500EA0188 /* Info.plist in Resources */,
+				5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -596,6 +606,7 @@
 				5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */,
 				486FDD582119AEF500EA0188 /* ExtensionDouble.swift in Sources */,
 				486FDD6A2119AEF500EA0188 /* Localization.swift in Sources */,
+				5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */,
 				486FDD542119AEF500EA0188 /* ExetensionFloat.swift in Sources */,
 				486FDD562119AEF500EA0188 /* ExtensionDate.swift in Sources */,
 				486FDD432119AEF500EA0188 /* TableViewCell.swift in Sources */,
@@ -622,6 +633,7 @@
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
+				5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */,
 				486FDD6C2119AEF500EA0188 /* TheBayaApp.xcdatamodeld in Sources */,
 				486FDD622119AEF500EA0188 /* ExtensionUINavigationController.swift in Sources */,
 				5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */,

@@ -41,9 +41,18 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnForgotPasswordClicked (sender : UIButton) {
         
+        if let forgotPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ForgotPwdViewController") as? ForgotPwdViewController {
+            self.navigationController?.pushViewController(forgotPwdVC, animated: true)
+        }
     }
 
     @IBAction fileprivate func btnSignUpClicked (sender : UIButton) {
+        
+//        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+//            self.navigationController?.pushViewController(signupVC, animated: true)
+//        }
+//
+//        return
         
         for objView in vwContent.subviews{
             if  objView.isKind(of: UITextField.classForCoder()){
@@ -68,7 +77,7 @@ extension LoginViewController {
     }
     
     @IBAction fileprivate func btnRememberMeClicked (sender : UIButton) {
-        
+        btnRememberMe.isSelected = !btnRememberMe.isSelected
     }
 
 }

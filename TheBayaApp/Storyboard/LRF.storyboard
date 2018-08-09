@@ -41,47 +41,47 @@
                                 <rect key="frame" x="15" y="92" width="114" height="67"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Baya Company" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F7u-gy-F0t" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="167" width="162" height="18"/>
-                                <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="18"/>
+                                <rect key="frame" x="15" y="167" width="144" height="16"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="16"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-MC-Q4A" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="214" width="345" height="50"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email / Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-MC-Q4A" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="212" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="XKS-MC-Q4A" secondAttribute="height" multiplier="69:10" id="fnl-cd-OUf"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
                                     <outlet property="delegate" destination="GZ2-G3-woT" id="Pw9-4H-4op"/>
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgd-mG-i6T" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="279" width="345" height="50"/>
+                                <rect key="frame" x="15" y="277" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="GZ2-G3-woT" id="nYi-ju-2bG"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTN-jp-0vs">
-                                <rect key="frame" x="15" y="353" width="22" height="22"/>
+                                <rect key="frame" x="15" y="351" width="22" height="22"/>
                                 <state key="normal" image="remember"/>
                                 <state key="selected" image="select_remember"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quI-8K-81s" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="45" y="357.5" width="87.5" height="13"/>
+                                <rect key="frame" x="45" y="355.5" width="87.5" height="13"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="13"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOE-vC-9aX">
-                                <rect key="frame" x="15" y="349" width="164" height="30"/>
+                                <rect key="frame" x="15" y="347" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="7AZ-x7-KXO"/>
                                 </constraints>
@@ -90,7 +90,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYU-dU-c06">
-                                <rect key="frame" x="196" y="351.5" width="164" height="25"/>
+                                <rect key="frame" x="196" y="349.5" width="164" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="cnR-uw-oWw"/>
                                 </constraints>
@@ -103,7 +103,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PK-Yv-mVS" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="417" width="345" height="50"/>
+                                <rect key="frame" x="15" y="415" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3PK-Yv-mVS" secondAttribute="height" multiplier="69:10" id="9Lw-Ao-SF8"/>
@@ -117,7 +117,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWF-wv-Hsh">
-                                <rect key="frame" x="133.5" y="521.5" width="108.5" height="13"/>
+                                <rect key="frame" x="133.5" y="519.5" width="108.5" height="13"/>
                                 <attributedString key="attributedText">
                                     <fragment content="New user?">
                                         <attributes>
@@ -146,7 +146,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-gz-wkL">
-                                <rect key="frame" x="105" y="513" width="164" height="30"/>
+                                <rect key="frame" x="105" y="511" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9Qu-eO-aE3"/>
                                     <constraint firstAttribute="width" constant="164" id="Yg1-ff-dzL"/>
@@ -201,7 +201,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vv8-WQ-R1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-167.19999999999999" y="137.18140929535232"/>
+            <point key="canvasLocation" x="-1081" y="60"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="ncU-hm-vl4">
@@ -227,21 +227,21 @@
                                                     <constraint firstAttribute="width" secondItem="yNp-Vq-P4L" secondAttribute="height" multiplier="69:10" id="4xn-mL-ky2"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="blm-CD-2cz" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="125" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1h-N4-SKn" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="190" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="+91" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-8V-D3C" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
@@ -251,28 +251,28 @@
                                                     <constraint firstAttribute="width" constant="76" id="4tz-wT-XCL"/>
                                                 </constraints>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-fT-mPa" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="101" y="255" width="259" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OKF-Mo-Le4" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="320" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r5W-hA-cdl" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="385" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NC7-RY-XgJ">
@@ -280,7 +280,7 @@
                                                 <state key="normal" image="remember"/>
                                                 <state key="selected" image="select_remember"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taw-wD-QSb" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taw-wD-QSb">
                                                 <rect key="frame" x="45" y="460" width="88" height="13"/>
                                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="13"/>
                                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -300,8 +300,8 @@
                                                 <state key="normal" image="remember"/>
                                                 <state key="selected" image="select_remember"/>
                                             </button>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENA-FZ-0lv" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="45" y="502" width="319.5" height="13"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ENA-FZ-0lv">
+                                                <rect key="frame" x="40.5" y="501.5" width="319.5" height="13"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="I Agree with the ">
                                                         <attributes>
@@ -366,13 +366,13 @@
                                         <constraints>
                                             <constraint firstItem="OKF-Mo-Le4" firstAttribute="height" secondItem="G1h-N4-SKn" secondAttribute="height" id="0Hj-E7-Gb6"/>
                                             <constraint firstItem="yNp-Vq-P4L" firstAttribute="top" secondItem="j9i-g4-ytc" secondAttribute="top" constant="60" id="0dP-gv-cii"/>
-                                            <constraint firstItem="ENA-FZ-0lv" firstAttribute="leading" secondItem="Lm7-9E-cFi" secondAttribute="trailing" constant="8" id="4oJ-UJ-Y0Z"/>
+                                            <constraint firstItem="ENA-FZ-0lv" firstAttribute="leading" secondItem="Lm7-9E-cFi" secondAttribute="trailing" constant="3.5" id="4oJ-UJ-Y0Z"/>
+                                            <constraint firstItem="Lm7-9E-cFi" firstAttribute="leading" secondItem="NC7-RY-XgJ" secondAttribute="leading" id="5X6-us-mt0"/>
                                             <constraint firstItem="yNp-Vq-P4L" firstAttribute="centerX" secondItem="j9i-g4-ytc" secondAttribute="centerX" id="5sr-IA-kuV"/>
                                             <constraint firstItem="G1h-N4-SKn" firstAttribute="centerX" secondItem="blm-CD-2cz" secondAttribute="centerX" id="7iK-Vh-ehm"/>
                                             <constraint firstItem="Jip-nH-Mny" firstAttribute="top" secondItem="Pys-El-ZEr" secondAttribute="bottom" constant="30" id="8LD-pg-Y58"/>
                                             <constraint firstItem="Oyd-sW-7xt" firstAttribute="centerX" secondItem="j9i-g4-ytc" secondAttribute="centerX" id="Au9-kk-JWf"/>
                                             <constraint firstItem="G1h-N4-SKn" firstAttribute="width" secondItem="blm-CD-2cz" secondAttribute="width" id="B4V-Mg-gGm"/>
-                                            <constraint firstItem="Lm7-9E-cFi" firstAttribute="leading" secondItem="4HX-nk-864" secondAttribute="leading" id="Crk-sK-4QS"/>
                                             <constraint firstItem="XBk-fT-mPa" firstAttribute="trailing" secondItem="G1h-N4-SKn" secondAttribute="trailing" id="FNT-tY-BPf"/>
                                             <constraint firstItem="OKF-Mo-Le4" firstAttribute="width" secondItem="G1h-N4-SKn" secondAttribute="width" id="HEd-Td-YLL"/>
                                             <constraint firstItem="4HX-nk-864" firstAttribute="top" secondItem="r5W-hA-cdl" secondAttribute="bottom" constant="15" id="I23-ML-OgK"/>
@@ -380,6 +380,7 @@
                                             <constraint firstItem="OKF-Mo-Le4" firstAttribute="top" secondItem="hr8-8V-D3C" secondAttribute="bottom" constant="15" id="JrC-Uk-rD5"/>
                                             <constraint firstItem="XBk-fT-mPa" firstAttribute="height" secondItem="hr8-8V-D3C" secondAttribute="height" id="Mc9-5O-803"/>
                                             <constraint firstItem="Taw-wD-QSb" firstAttribute="centerY" secondItem="NC7-RY-XgJ" secondAttribute="centerY" id="ObH-jp-0C0"/>
+                                            <constraint firstItem="Pys-El-ZEr" firstAttribute="leading" secondItem="Lm7-9E-cFi" secondAttribute="leading" id="P1b-wE-vsb"/>
                                             <constraint firstItem="r5W-hA-cdl" firstAttribute="width" secondItem="OKF-Mo-Le4" secondAttribute="width" id="P9j-ml-uxN"/>
                                             <constraint firstItem="G1h-N4-SKn" firstAttribute="height" secondItem="blm-CD-2cz" secondAttribute="height" id="RA3-uf-t62"/>
                                             <constraint firstItem="r5W-hA-cdl" firstAttribute="centerX" secondItem="OKF-Mo-Le4" secondAttribute="centerX" id="TgX-vT-jdu"/>
@@ -396,6 +397,7 @@
                                             <constraint firstItem="XBk-fT-mPa" firstAttribute="leading" secondItem="hr8-8V-D3C" secondAttribute="trailing" constant="10" id="bMf-Vl-zNU"/>
                                             <constraint firstItem="NC7-RY-XgJ" firstAttribute="top" secondItem="r5W-hA-cdl" secondAttribute="bottom" constant="20" id="c7L-TN-A5D"/>
                                             <constraint firstItem="Jip-nH-Mny" firstAttribute="height" secondItem="r5W-hA-cdl" secondAttribute="height" id="cDB-Vq-dMS"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ENA-FZ-0lv" secondAttribute="trailing" constant="15" id="cEE-0v-PUE"/>
                                             <constraint firstItem="blm-CD-2cz" firstAttribute="centerX" secondItem="yNp-Vq-P4L" secondAttribute="centerX" id="es4-zR-iOC"/>
                                             <constraint firstItem="Lm7-9E-cFi" firstAttribute="top" secondItem="4HX-nk-864" secondAttribute="bottom" constant="17" id="g6J-WK-GGo"/>
                                             <constraint firstItem="Taw-wD-QSb" firstAttribute="leading" secondItem="NC7-RY-XgJ" secondAttribute="trailing" constant="8" id="gtO-BY-PKk"/>
@@ -408,7 +410,6 @@
                                             <constraint firstItem="hr8-8V-D3C" firstAttribute="leading" secondItem="G1h-N4-SKn" secondAttribute="leading" id="nsC-vo-9FL"/>
                                             <constraint firstItem="OKF-Mo-Le4" firstAttribute="centerX" secondItem="G1h-N4-SKn" secondAttribute="centerX" id="vxz-U9-HeD"/>
                                             <constraint firstItem="blm-CD-2cz" firstAttribute="height" secondItem="yNp-Vq-P4L" secondAttribute="height" id="xPR-dD-1Ps"/>
-                                            <constraint firstItem="Pys-El-ZEr" firstAttribute="leading" secondItem="Lm7-9E-cFi" secondAttribute="leading" id="xc1-dj-j3m"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -450,7 +451,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SY3-xF-7k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="485.60000000000002" y="279.31034482758622"/>
+            <point key="canvasLocation" x="-346.39999999999998" y="76.911544227886068"/>
         </scene>
         <!--Verification View Controller-->
         <scene sceneID="i1R-Y5-pML">
@@ -464,23 +465,23 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter verification code that we have sent you on your mobile number [+1234567890]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bl6-36-iU6" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="115" width="345" height="26"/>
+                                <rect key="frame" x="15" y="150" width="345" height="26"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Roman" family="Avenir LT Std" pointSize="13"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="DJX-7e-5Os" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="161" width="345" height="50"/>
+                                <rect key="frame" x="15" y="196" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="DJX-7e-5Os" secondAttribute="height" multiplier="69:10" id="LXY-nZ-fE0"/>
                                 </constraints>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MO7-Qw-cK0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="236" width="345" height="50"/>
+                                <rect key="frame" x="15" y="271" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="16"/>
                                 <state key="normal" title="Submit">
@@ -491,7 +492,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuL-OV-9gO">
-                                <rect key="frame" x="89" y="309" width="197" height="48"/>
+                                <rect key="frame" x="89" y="344" width="197" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="8BE-Xf-gxr"/>
                                     <constraint firstAttribute="height" constant="48" id="HbP-eB-8lh"/>
@@ -518,7 +519,7 @@
                             <constraint firstItem="HvJ-Dn-XbS" firstAttribute="top" secondItem="avT-32-Vqs" secondAttribute="top" id="XxL-r8-VGZ"/>
                             <constraint firstItem="jNE-HN-sXt" firstAttribute="trailing" secondItem="bl6-36-iU6" secondAttribute="trailing" constant="15" id="cGS-f1-yyU"/>
                             <constraint firstItem="HvJ-Dn-XbS" firstAttribute="leading" secondItem="jNE-HN-sXt" secondAttribute="leading" id="hwE-5x-6hc"/>
-                            <constraint firstItem="bl6-36-iU6" firstAttribute="top" secondItem="jNE-HN-sXt" secondAttribute="top" constant="95" id="mFR-dr-JZM"/>
+                            <constraint firstItem="bl6-36-iU6" firstAttribute="top" secondItem="jNE-HN-sXt" secondAttribute="top" constant="130" id="o46-XX-5ga"/>
                             <constraint firstItem="wuL-OV-9gO" firstAttribute="top" secondItem="MO7-Qw-cK0" secondAttribute="bottom" constant="23" id="pBp-gA-uYM"/>
                             <constraint firstItem="DJX-7e-5Os" firstAttribute="width" secondItem="avT-32-Vqs" secondAttribute="width" multiplier="0.92" id="quR-2Y-qxU"/>
                             <constraint firstItem="MO7-Qw-cK0" firstAttribute="height" secondItem="DJX-7e-5Os" secondAttribute="height" id="qwv-Gw-1Gs"/>
@@ -533,7 +534,163 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mjq-DO-vij" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1284" y="231.63418290854574"/>
+            <point key="canvasLocation" x="361" y="20"/>
+        </scene>
+        <!--Forgot Pwd View Controller-->
+        <scene sceneID="J9n-tK-Oq0">
+            <objects>
+                <viewController storyboardIdentifier="ForgotPwdViewController" id="nZI-QC-JGF" customClass="ForgotPwdViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="HGm-av-htu">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="cTy-ev-B4j">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your email/mobile number to recover your password." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="513-4S-sKY" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="150" width="345" height="26"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Roman" family="Avenir LT Std" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email / Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-4z-Lrr" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="196" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1IL-4z-Lrr" secondAttribute="height" multiplier="69:10" id="Enj-gt-vED"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGq-IN-NHO" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="271" width="345" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="16"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSubmitClickedWithSender:" destination="nZI-QC-JGF" eventType="touchUpInside" id="ok8-LB-Qr0"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="centerX" secondItem="1IL-4z-Lrr" secondAttribute="centerX" id="59s-pq-xsk"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="width" secondItem="1IL-4z-Lrr" secondAttribute="width" id="5R3-ow-GUi"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="top" secondItem="1IL-4z-Lrr" secondAttribute="bottom" constant="25" id="K3T-B3-SNc"/>
+                            <constraint firstItem="cTy-ev-B4j" firstAttribute="bottom" secondItem="znH-KF-d7g" secondAttribute="bottom" id="Pgx-aq-nH0"/>
+                            <constraint firstItem="513-4S-sKY" firstAttribute="top" secondItem="znH-KF-d7g" secondAttribute="top" constant="130" id="QlX-5S-mVC"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="centerX" secondItem="HGm-av-htu" secondAttribute="centerX" id="T1Z-bY-Ldc"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="top" secondItem="513-4S-sKY" secondAttribute="bottom" constant="20" id="WWA-57-frd"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="width" secondItem="HGm-av-htu" secondAttribute="width" multiplier="0.92" id="XpI-go-ul9"/>
+                            <constraint firstItem="cTy-ev-B4j" firstAttribute="top" secondItem="HGm-av-htu" secondAttribute="top" id="d7a-uP-rio"/>
+                            <constraint firstItem="cTy-ev-B4j" firstAttribute="trailing" secondItem="znH-KF-d7g" secondAttribute="trailing" id="f9P-PD-uWi"/>
+                            <constraint firstItem="znH-KF-d7g" firstAttribute="trailing" secondItem="513-4S-sKY" secondAttribute="trailing" constant="15" id="ga8-FI-WzX"/>
+                            <constraint firstItem="cTy-ev-B4j" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" id="iuC-S2-TyG"/>
+                            <constraint firstItem="513-4S-sKY" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" constant="15" id="miN-X4-gAc"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="height" secondItem="1IL-4z-Lrr" secondAttribute="height" id="vlY-dr-9zU"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="znH-KF-d7g"/>
+                    </view>
+                    <connections>
+                        <outlet property="txtEmail" destination="1IL-4z-Lrr" id="Xdg-5n-tcB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rpH-io-JqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1180" y="161"/>
+        </scene>
+        <!--Reset Pwd View Controller-->
+        <scene sceneID="mhf-uB-xBM">
+            <objects>
+                <viewController storyboardIdentifier="ResetPwdViewController" id="OIR-NS-Hwf" customClass="ResetPwdViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7Sm-P6-u4g">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SXO-Lz-PBm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You might have got OTP on entered email address/mobile number. Enter OTP in below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqd-CP-i1L" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="150" width="345" height="26"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Roman" family="Avenir LT Std" pointSize="13"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvK-1N-nXm" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="196" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bvK-1N-nXm" secondAttribute="height" multiplier="69:10" id="xEJ-Sc-aKS"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rM9-Fi-Lgd" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="261" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nZn-LH-ItY" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="326" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUA-gO-1Le" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="401" width="345" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="16"/>
+                                <state key="normal" title="Submit">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSubmitClickedWithSender:" destination="OIR-NS-Hwf" eventType="touchUpInside" id="Pg2-Jo-TWe"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rM9-Fi-Lgd" firstAttribute="top" secondItem="bvK-1N-nXm" secondAttribute="bottom" constant="15" id="0HX-ya-0Bd"/>
+                            <constraint firstItem="nZn-LH-ItY" firstAttribute="width" secondItem="rM9-Fi-Lgd" secondAttribute="width" id="2dv-lB-qcm"/>
+                            <constraint firstItem="ZUA-gO-1Le" firstAttribute="centerX" secondItem="bvK-1N-nXm" secondAttribute="centerX" id="3Pt-lC-nmi"/>
+                            <constraint firstItem="bvK-1N-nXm" firstAttribute="centerX" secondItem="7Sm-P6-u4g" secondAttribute="centerX" id="4N6-Kv-IzD"/>
+                            <constraint firstItem="ZUA-gO-1Le" firstAttribute="top" secondItem="nZn-LH-ItY" secondAttribute="bottom" constant="25" id="6of-RK-rpB"/>
+                            <constraint firstItem="V6o-D2-DAD" firstAttribute="trailing" secondItem="Nqd-CP-i1L" secondAttribute="trailing" constant="15" id="Ccm-vV-v3j"/>
+                            <constraint firstItem="SXO-Lz-PBm" firstAttribute="top" secondItem="7Sm-P6-u4g" secondAttribute="top" id="DWS-pb-sbw"/>
+                            <constraint firstItem="SXO-Lz-PBm" firstAttribute="trailing" secondItem="V6o-D2-DAD" secondAttribute="trailing" id="NO8-un-197"/>
+                            <constraint firstItem="SXO-Lz-PBm" firstAttribute="bottom" secondItem="V6o-D2-DAD" secondAttribute="bottom" id="NqW-Mj-qxa"/>
+                            <constraint firstItem="nZn-LH-ItY" firstAttribute="top" secondItem="rM9-Fi-Lgd" secondAttribute="bottom" constant="15" id="QOj-0t-hSA"/>
+                            <constraint firstItem="nZn-LH-ItY" firstAttribute="centerX" secondItem="rM9-Fi-Lgd" secondAttribute="centerX" id="TaK-5Q-GFD"/>
+                            <constraint firstItem="Nqd-CP-i1L" firstAttribute="leading" secondItem="V6o-D2-DAD" secondAttribute="leading" constant="15" id="Ya6-Gx-YFy"/>
+                            <constraint firstItem="rM9-Fi-Lgd" firstAttribute="centerX" secondItem="bvK-1N-nXm" secondAttribute="centerX" id="eVv-dX-NWS"/>
+                            <constraint firstItem="Nqd-CP-i1L" firstAttribute="top" secondItem="V6o-D2-DAD" secondAttribute="top" constant="130" id="h8E-hb-0fB"/>
+                            <constraint firstItem="bvK-1N-nXm" firstAttribute="top" secondItem="Nqd-CP-i1L" secondAttribute="bottom" constant="20" id="k8P-xj-rc2"/>
+                            <constraint firstItem="SXO-Lz-PBm" firstAttribute="leading" secondItem="V6o-D2-DAD" secondAttribute="leading" id="kWZ-Rc-9xu"/>
+                            <constraint firstItem="rM9-Fi-Lgd" firstAttribute="width" secondItem="bvK-1N-nXm" secondAttribute="width" id="o4E-LV-T1a"/>
+                            <constraint firstItem="bvK-1N-nXm" firstAttribute="width" secondItem="7Sm-P6-u4g" secondAttribute="width" multiplier="0.92" id="otz-wt-f3I"/>
+                            <constraint firstItem="ZUA-gO-1Le" firstAttribute="width" secondItem="bvK-1N-nXm" secondAttribute="width" id="qPb-9b-M4j"/>
+                            <constraint firstItem="rM9-Fi-Lgd" firstAttribute="height" secondItem="bvK-1N-nXm" secondAttribute="height" id="vnK-oQ-r14"/>
+                            <constraint firstItem="ZUA-gO-1Le" firstAttribute="height" secondItem="bvK-1N-nXm" secondAttribute="height" id="yXc-3V-A6j"/>
+                            <constraint firstItem="nZn-LH-ItY" firstAttribute="height" secondItem="rM9-Fi-Lgd" secondAttribute="height" id="zda-wR-VLM"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="V6o-D2-DAD"/>
+                    </view>
+                    <connections>
+                        <outlet property="txtCode" destination="bvK-1N-nXm" id="30Q-eT-W0y"/>
+                        <outlet property="txtConfirmPwd" destination="nZn-LH-ItY" id="pqD-Rt-69D"/>
+                        <outlet property="txtNewPwd" destination="rM9-Fi-Lgd" id="Hl5-0y-el4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HQ7-Dz-AYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1180" y="161"/>
         </scene>
     </scenes>
     <resources>

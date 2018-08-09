@@ -13,6 +13,8 @@ class MIGenericTextField: UITextField {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.font = self.font?.setUpAppropriateFont()
+        self.placeholderColor = ColorGray
         self.borderStyle = .none
         self.layer.cornerRadius = 5.0
         self.backgroundColor = UIColor.white

@@ -36,6 +36,9 @@ class SignUpViewController: ParentViewController {
     
     func initialize() {
          self.title = "Sign up"
+        
+        txtCountryCode.setPickerData(arrPickerData: ["+91","+79","+63"], selectedPickerDataHandler: { (string, row, index) in
+        }, defaultPlaceholder: "")
     }
     
 }
@@ -54,15 +57,15 @@ extension SignUpViewController {
     }
 
     @IBAction fileprivate func btnTermsAndConditionClicked (sender : UIButton) {
-        
+
     }
     
     @IBAction fileprivate func btnRememberMeClicked (sender : UIButton) {
-        
+        btnRememberMe.isSelected = !btnRememberMe.isSelected
     }
     
     @IBAction fileprivate func btnAcceptConditionClicked (sender : UIButton) {
-        
+        btnTerms.isSelected = !btnTerms.isSelected
     }
 
 }
