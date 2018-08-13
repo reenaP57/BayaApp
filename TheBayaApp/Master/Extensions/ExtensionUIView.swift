@@ -76,19 +76,32 @@ extension UIView {
     ///   - color: Pass the UIColor that you want to see as shadowColor.
     ///   - shadowOffset: Pass the CGSize value for how much far you want shadowView from parentView.
     ///   - shadowRadius: Pass the CGFloat value for how much length(Blur Spreadness) you want in shadowView.
-    func shadow(color:UIColor , shadowOffset:CGSize , shadowRadius:CGFloat) {
+    func shadow(color:UIColor , shadowOffset:CGSize , shadowRadius:CGFloat , shadowOpacity:Float) {
         
         self.layer.masksToBounds = false
         self.layer.shadowColor = color.cgColor
         self.layer.shadowOffset = shadowOffset
         self.layer.shadowRadius = shadowRadius
-        self.layer.shadowOpacity = 0.5
-        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+        self.layer.shadowOpacity = shadowOpacity
+        //        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = CMainScreen.scale
     }
 }
+
+// MARK: - Extension of UIView For adding corner radius for particular side
+extension UIView {
+    
+    func roundCorners(_ corners: UIRectCorner, radius: CGFloat) {
+        
+        let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        self.layer.mask = mask
+    }
+}
+
 
 // MARK: - Extension of UIView For adding the border to UIView at any position.
 extension UIView {

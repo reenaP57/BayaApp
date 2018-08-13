@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirLTStd-Black.otf">
+            <string>AvenirLTStd-Black</string>
+        </array>
+        <array key="AvenirLTStd-Medium.otf">
+            <string>AvenirLTStd-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FilterView" customModule="TheBayaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-1P-lcu">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="339"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvQ-2S-g1c">
+                            <rect key="frame" x="166" y="26.5" width="43" height="17"/>
+                            <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="17"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sd-3E-SLG">
+                            <rect key="frame" x="10" y="10" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="86q-5M-wEa"/>
+                                <constraint firstAttribute="width" constant="50" id="Nt7-hc-tHt"/>
+                            </constraints>
+                            <state key="normal" image="close"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xel-Zw-3P3">
+                            <rect key="frame" x="315" y="10" width="50" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="50" id="cRY-dl-wOA"/>
+                                <constraint firstAttribute="height" constant="50" id="xwG-ZE-7lm"/>
+                            </constraints>
+                            <state key="normal" image="ok"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select dates within which you would like to see the updates of the project." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lvv-36-ot3">
+                            <rect key="frame" x="20" y="71" width="335" height="30"/>
+                            <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Start Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iGC-PI-kPM" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <rect key="frame" x="15" y="121" width="345" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="iGC-PI-kPM" secondAttribute="height" multiplier="69:10" id="45E-3O-CPJ"/>
+                            </constraints>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="End Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gph-nR-ATI" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <rect key="frame" x="15" y="181" width="345" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MPy-RO-IZK" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                            <rect key="frame" x="137" y="276" width="100" height="33"/>
+                            <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="MPy-RO-IZK" secondAttribute="height" multiplier="100:33" id="5G2-7S-KPd"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="16"/>
+                            <state key="normal" title="Clear Filter">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="Lvv-36-ot3" firstAttribute="top" secondItem="6sd-3E-SLG" secondAttribute="bottom" constant="11" id="0Jm-8U-siD"/>
+                        <constraint firstItem="Gph-nR-ATI" firstAttribute="height" secondItem="iGC-PI-kPM" secondAttribute="height" id="0hb-9f-9e1"/>
+                        <constraint firstItem="MPy-RO-IZK" firstAttribute="top" secondItem="Gph-nR-ATI" secondAttribute="bottom" constant="45" id="4Sb-15-kq3"/>
+                        <constraint firstAttribute="trailing" secondItem="iGC-PI-kPM" secondAttribute="trailing" constant="15" id="9Nu-m0-2La"/>
+                        <constraint firstItem="Gph-nR-ATI" firstAttribute="width" secondItem="iGC-PI-kPM" secondAttribute="width" id="DN9-6f-VDi"/>
+                        <constraint firstItem="Lvv-36-ot3" firstAttribute="leading" secondItem="zBP-1P-lcu" secondAttribute="leading" constant="20" id="G5Y-JZ-noI"/>
+                        <constraint firstItem="Gph-nR-ATI" firstAttribute="centerX" secondItem="iGC-PI-kPM" secondAttribute="centerX" id="IIM-Pn-www"/>
+                        <constraint firstAttribute="trailing" secondItem="Lvv-36-ot3" secondAttribute="trailing" constant="20" id="Jbk-BO-nGQ"/>
+                        <constraint firstItem="6sd-3E-SLG" firstAttribute="leading" secondItem="zBP-1P-lcu" secondAttribute="leading" constant="10" id="WiM-38-3zj"/>
+                        <constraint firstItem="bvQ-2S-g1c" firstAttribute="centerX" secondItem="zBP-1P-lcu" secondAttribute="centerX" id="YBD-eS-1tY"/>
+                        <constraint firstItem="Gph-nR-ATI" firstAttribute="top" secondItem="iGC-PI-kPM" secondAttribute="bottom" constant="10" id="c7h-gH-b9O"/>
+                        <constraint firstItem="bvQ-2S-g1c" firstAttribute="centerY" secondItem="6sd-3E-SLG" secondAttribute="centerY" id="crM-a7-JbF"/>
+                        <constraint firstItem="MPy-RO-IZK" firstAttribute="centerX" secondItem="zBP-1P-lcu" secondAttribute="centerX" id="fMQ-Zq-j2I"/>
+                        <constraint firstItem="iGC-PI-kPM" firstAttribute="top" secondItem="Lvv-36-ot3" secondAttribute="bottom" constant="20" id="oo2-In-Zhy"/>
+                        <constraint firstItem="6sd-3E-SLG" firstAttribute="top" secondItem="zBP-1P-lcu" secondAttribute="top" constant="10" id="pbh-2M-tt4"/>
+                        <constraint firstItem="xel-Zw-3P3" firstAttribute="top" secondItem="zBP-1P-lcu" secondAttribute="top" constant="10" id="q8g-sf-08S"/>
+                        <constraint firstAttribute="trailing" secondItem="xel-Zw-3P3" secondAttribute="trailing" constant="10" id="sW1-mB-emh"/>
+                        <constraint firstItem="MPy-RO-IZK" firstAttribute="width" secondItem="zBP-1P-lcu" secondAttribute="width" multiplier="0.266667" id="vSp-hP-YUX"/>
+                        <constraint firstItem="iGC-PI-kPM" firstAttribute="leading" secondItem="zBP-1P-lcu" secondAttribute="leading" constant="15" id="xu0-dg-BMA"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="30"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="zBP-1P-lcu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4EW-6d-ydq"/>
+                <constraint firstItem="zBP-1P-lcu" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="M0a-k5-n8P"/>
+                <constraint firstItem="zBP-1P-lcu" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="jPs-l3-Drs"/>
+                <constraint firstItem="zBP-1P-lcu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="vjG-tN-olv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnClear" destination="MPy-RO-IZK" id="AVo-Bj-krp"/>
+                <outlet property="btnClose" destination="6sd-3E-SLG" id="tL5-lv-TcT"/>
+                <outlet property="btnDone" destination="xel-Zw-3P3" id="ElI-oe-KwI"/>
+                <outlet property="txtEndDate" destination="Gph-nR-ATI" id="YnO-qg-iOs"/>
+                <outlet property="txtStartDate" destination="iGC-PI-kPM" id="sNO-HZ-XxB"/>
+            </connections>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="close" width="22" height="22"/>
+        <image name="ok" width="22" height="22"/>
+    </resources>
+</document>

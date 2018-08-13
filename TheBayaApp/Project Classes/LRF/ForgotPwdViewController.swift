@@ -11,6 +11,7 @@ import UIKit
 class ForgotPwdViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtEmail : UITextField!
+    @IBOutlet fileprivate weak var vwContent : UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,9 +35,27 @@ extension ForgotPwdViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-        if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
-            self.navigationController?.pushViewController(resetPwdVC, animated: true)
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
+            }
+        }
+        self.view.layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            
+            if (self.txtEmail.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailMessage))
+            } else if !(self.txtEmail.text?.isValidEmail)! {
+                self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
+            } else {
+                
+                if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
+                    self.navigationController?.pushViewController(resetPwdVC, animated: true)
+                }
+            }
         }
     }
-    
 }

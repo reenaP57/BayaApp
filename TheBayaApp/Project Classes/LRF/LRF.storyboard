@@ -112,6 +112,11 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnLoginClickedWithSender:" destination="GZ2-G3-woT" eventType="touchUpInside" id="Xr1-wA-nkI"/>
                                 </connections>
@@ -357,6 +362,11 @@
                                                 <state key="normal" title="Sign Up">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <action selector="btnSignUpClickedWithSender:" destination="hX5-V8-8ke" eventType="touchUpInside" id="qj8-qy-oMr"/>
                                                 </connections>
@@ -373,11 +383,11 @@
                                             <constraint firstItem="Jip-nH-Mny" firstAttribute="top" secondItem="Pys-El-ZEr" secondAttribute="bottom" constant="30" id="8LD-pg-Y58"/>
                                             <constraint firstItem="Oyd-sW-7xt" firstAttribute="centerX" secondItem="j9i-g4-ytc" secondAttribute="centerX" id="Au9-kk-JWf"/>
                                             <constraint firstItem="G1h-N4-SKn" firstAttribute="width" secondItem="blm-CD-2cz" secondAttribute="width" id="B4V-Mg-gGm"/>
+                                            <constraint firstItem="OKF-Mo-Le4" firstAttribute="top" secondItem="XBk-fT-mPa" secondAttribute="bottom" constant="15" id="FDB-bc-BAw"/>
                                             <constraint firstItem="XBk-fT-mPa" firstAttribute="trailing" secondItem="G1h-N4-SKn" secondAttribute="trailing" id="FNT-tY-BPf"/>
                                             <constraint firstItem="OKF-Mo-Le4" firstAttribute="width" secondItem="G1h-N4-SKn" secondAttribute="width" id="HEd-Td-YLL"/>
                                             <constraint firstItem="4HX-nk-864" firstAttribute="top" secondItem="r5W-hA-cdl" secondAttribute="bottom" constant="15" id="I23-ML-OgK"/>
                                             <constraint firstItem="r5W-hA-cdl" firstAttribute="top" secondItem="OKF-Mo-Le4" secondAttribute="bottom" constant="15" id="Irh-QQ-sEn"/>
-                                            <constraint firstItem="OKF-Mo-Le4" firstAttribute="top" secondItem="hr8-8V-D3C" secondAttribute="bottom" constant="15" id="JrC-Uk-rD5"/>
                                             <constraint firstItem="XBk-fT-mPa" firstAttribute="height" secondItem="hr8-8V-D3C" secondAttribute="height" id="Mc9-5O-803"/>
                                             <constraint firstItem="Taw-wD-QSb" firstAttribute="centerY" secondItem="NC7-RY-XgJ" secondAttribute="centerY" id="ObH-jp-0C0"/>
                                             <constraint firstItem="Pys-El-ZEr" firstAttribute="leading" secondItem="Lm7-9E-cFi" secondAttribute="leading" id="P1b-wE-vsb"/>
@@ -389,6 +399,7 @@
                                             <constraint firstItem="NC7-RY-XgJ" firstAttribute="leading" secondItem="r5W-hA-cdl" secondAttribute="leading" id="VS5-sa-oiT"/>
                                             <constraint firstItem="blm-CD-2cz" firstAttribute="top" secondItem="yNp-Vq-P4L" secondAttribute="bottom" constant="15" id="Vln-77-3r2"/>
                                             <constraint firstItem="blm-CD-2cz" firstAttribute="width" secondItem="yNp-Vq-P4L" secondAttribute="width" id="WQQ-EO-pyj"/>
+                                            <constraint firstItem="OKF-Mo-Le4" firstAttribute="top" secondItem="hr8-8V-D3C" secondAttribute="bottom" constant="15" id="Wjc-6I-VvX"/>
                                             <constraint firstItem="r5W-hA-cdl" firstAttribute="height" secondItem="OKF-Mo-Le4" secondAttribute="height" id="WuP-NZ-H5e"/>
                                             <constraint firstItem="Jip-nH-Mny" firstAttribute="centerX" secondItem="r5W-hA-cdl" secondAttribute="centerX" id="YSW-th-B9l"/>
                                             <constraint firstItem="4HX-nk-864" firstAttribute="leading" secondItem="NC7-RY-XgJ" secondAttribute="leading" id="ZEY-1O-zq3"/>
@@ -447,6 +458,7 @@
                         <outlet property="txtLName" destination="blm-CD-2cz" id="p0K-Jg-bbM"/>
                         <outlet property="txtMobile" destination="XBk-fT-mPa" id="Y4c-ml-cJI"/>
                         <outlet property="txtPwd" destination="OKF-Mo-Le4" id="bl9-iq-fdK"/>
+                        <outlet property="vwContent" destination="j9i-g4-ytc" id="mW3-FY-A3p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SY3-xF-7k5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -487,6 +499,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSubmitClickedWithSender:" destination="Yzs-hC-h68" eventType="touchUpInside" id="StG-cy-qJm"/>
                                 </connections>
@@ -530,6 +547,7 @@
                     <connections>
                         <outlet property="lblNote" destination="bl6-36-iU6" id="Aeq-gh-dpP"/>
                         <outlet property="txtCode" destination="DJX-7e-5Os" id="v8Q-9i-QV2"/>
+                        <outlet property="vwContent" destination="avT-32-Vqs" id="h3d-KX-8K5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mjq-DO-vij" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -570,6 +588,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSubmitClickedWithSender:" destination="nZI-QC-JGF" eventType="touchUpInside" id="ok8-LB-Qr0"/>
                                 </connections>
@@ -596,6 +619,7 @@
                     </view>
                     <connections>
                         <outlet property="txtEmail" destination="1IL-4z-Lrr" id="Xdg-5n-tcB"/>
+                        <outlet property="vwContent" destination="HGm-av-htu" id="yaa-Ik-Sgv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpH-io-JqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -650,6 +674,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSubmitClickedWithSender:" destination="OIR-NS-Hwf" eventType="touchUpInside" id="Pg2-Jo-TWe"/>
                                 </connections>
@@ -686,6 +715,7 @@
                         <outlet property="txtCode" destination="bvK-1N-nXm" id="30Q-eT-W0y"/>
                         <outlet property="txtConfirmPwd" destination="nZn-LH-ItY" id="pqD-Rt-69D"/>
                         <outlet property="txtNewPwd" destination="rM9-Fi-Lgd" id="Hl5-0y-el4"/>
+                        <outlet property="vwContent" destination="7Sm-P6-u4g" id="QMe-4Y-zkn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HQ7-Dz-AYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

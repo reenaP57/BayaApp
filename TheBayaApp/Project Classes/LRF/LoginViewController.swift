@@ -37,6 +37,59 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
+        appDelegate.tabbarViewcontroller = TabbarViewController.initWithNibName() as? TabbarViewController
+        appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
+        
+        
+        return
+        
+        
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
+            }
+        }
+        
+        self.view.layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            
+            if (self.txtEmail.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
+                
+            } else if !(self.txtEmail.text?.isBlank)! {
+                
+                if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
+                    
+                    if !(self.txtEmail.text?.isValidEmail)! {
+                        self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
+                        
+                    } else if (self.txtPassword.text?.isBlank)! {
+                        self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
+                        
+                    } else {
+                        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+                            self.navigationController?.pushViewController(signupVC, animated: true)
+                        }
+                    }
+                    
+                } else {
+                    
+                    if (self.txtEmail.text?.isValidPhoneNo)! {
+                        self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
+                    } else if (self.txtPassword.text?.isBlank)! {
+                        self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
+                        
+                    } else {
+                        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+                            self.navigationController?.pushViewController(signupVC, animated: true)
+                        }
+                    }
+                }
+            }
+        }
     }
     
     @IBAction fileprivate func btnForgotPasswordClicked (sender : UIButton) {
@@ -48,31 +101,8 @@ extension LoginViewController {
 
     @IBAction fileprivate func btnSignUpClicked (sender : UIButton) {
         
-//        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-//            self.navigationController?.pushViewController(signupVC, animated: true)
-//        }
-//
-//        return
-        
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
-        
-        DispatchQueue.main.async {
-            if self.txtEmail.text == "" {
-                self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0,"Please enter first name."))
-            } else if self.txtPassword.text == "" {
-                self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,"Please enter last name"))
-            } else {
-                if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-                    self.navigationController?.pushViewController(signupVC, animated: true)
-                }
-            }
+        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
+            self.navigationController?.pushViewController(signupVC, animated: true)
         }
     }
     

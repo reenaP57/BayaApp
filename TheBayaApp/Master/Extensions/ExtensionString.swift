@@ -55,6 +55,13 @@ extension String {
         return predicate.evaluate(with:self)
     }
     
+    var isValidPassword:Bool {
+        
+        let passwordRegEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"
+        let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
+        return predicate.evaluate(with:self)
+    }
+    
     var isValidPhoneNo:Bool {
         
         let phoneCharacters = CharacterSet(charactersIn: "+0123456789").inverted

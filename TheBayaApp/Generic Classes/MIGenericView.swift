@@ -23,11 +23,12 @@ class MIGenericView: UIView {
             
             ///... A View that will in CornerRadius shape AND in shadow shape.
             
-//            self.shadow(color: CColorShadow, shadowOffset: CGSize(width: 0, height: 10), shadowRadius: 5.0, shadowOpacity: 0.9)
-//            self.layer.cornerRadius = cornerRadius
+            self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 5, height: 5), shadowRadius: 5.0, shadowOpacity: 0.5)
+            self.layer.cornerRadius = cornerRadius
             
         } else {
             self.layer.cornerRadius = cornerRadius
         }
     }
+
 }

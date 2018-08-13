@@ -89,7 +89,12 @@ let ColorGreen          = CRGB(r: 132, g: 154, b: 164)
 let ColorLightBlack     = CRGB(r: 51, g: 51, b: 51)
 let ColorBGColor        = CRGB(r: 242, g: 248, b: 252)
 let ColorGray           = CRGB(r: 170, g: 170, b: 170)
-
+let ColorValidation     = CRGB(r: 255, g: 39, b: 54)
+let ColorShadow         = CRGBA(r: 0, g: 0, b: 0, a: 0.1) //(r: 240.0, g: 240.0, b: 240.0)
+let ColorGradient1Background =  CRGB(r: 255, g: 203, b: 82)
+let ColorGradient2Background =  CRGB(r: 255, g: 123, b: 2)
+let ColorProgressGradient1 =  CRGB(r: 75, g: 183, b: 71)
+let ColorProgressGradient2 =  CRGB(r: 170, g: 211, b: 94)
 
 
 //MARK:- UIStoryboard

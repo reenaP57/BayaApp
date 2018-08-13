@@ -8,11 +8,10 @@
 
 import Foundation
 
-//MARK:- GENERAL
 
-//Blank verification code: Verification code can’t be blank.”
-//Invalid verification code: “Please enter valid verification code.”
-//Incorrect verification code: “Entered verification code is incorrect.”
+//MARK:-================== GENERAL =========================
+//MARK:-
+
 
 var CBtnYes         : String{ return CLocalize(text: "Yes") }
 var CBtnNo          : String{ return CLocalize(text: "No") }
@@ -28,20 +27,27 @@ var CMessageLogout: String{ return CLocalize(text: "Are you sure want to logout?
 
 
 
-var CBlankEmailOrMobileMessage          = "Email / mobile number can’t be blank."
-var CBlankPasswordMessage               = "Password can’t be blank."
-var CInvalidEmailMessage                = "Email is invalid."
-var CInvalidMobileMessage               = "Mobile Number is invalid."
-let CBlankFirstNameMessage              = "First Name can’t be blank."
-let CBlankLastNameMessage               = "Last Name can’t be blank."
-let CBlankEmailMessage                  = "Email can’t be blank."
-let CBlankConfirmPasswordMessage        = "Confirm Password can’t be blank."
-let CInvalidPasswordMessage             = "Password must be minimum 6 character alphanumeric."
-let CMisMatchPasswordMessage            = "Password and Confirm Password doesn’t match."
-let CTermsConditionNotAcceptedMessage   = "Please accept Terms & Conditions."
-let CBlankOTPMessage                    = "OTP can’t be blank."
-let CBlankNewPasswordMessage            = "New Password can’t be blank."
-let CBlankVerificationCodeMessage        = "OTP can’t be blank."
+//MARK:-================== LRF =========================
+//MARK:-
+
+
+var CBlankEmailOrMobileMessage  : String{ return CLocalize(text: "Email / mobile number can’t be blank.") }
+var CBlankPasswordMessage       : String{ return CLocalize(text: "Password can’t be blank.") }
+var CInvalidEmailMessage        : String{ return CLocalize(text: "Email is invalid.") }
+var CInvalidMobileMessage       : String{ return CLocalize(text: "Mobile Number is invalid.") }
+var CBlankMobileMessage         : String{ return CLocalize(text: "Mobile Number can’t be blank.") }
+var CBlankFirstNameMessage      : String{ return CLocalize(text: "First Name can’t be blank.") }
+var CBlankLastNameMessage       : String{ return CLocalize(text: "Last Name can’t be blank.") }
+var CBlankEmailMessage          : String{ return CLocalize(text: "Email can’t be blank.") }
+var CBlankConfirmPasswordMessage: String{ return CLocalize(text: "Confirm Password can’t be blank.") }
+var CInvalidPasswordMessage     : String{ return CLocalize(text: "Password must be minimum 6 character alphanumeric.") }
+var CMisMatchPasswordMessage        : String{ return CLocalize(text: "Password and Confirm Password doesn’t match.") }
+var CTermsConditionNotAcceptedMessage: String{ return CLocalize(text: "Please accept Terms & Conditions.") }
+var CBlankOTPMessage                : String{ return CLocalize(text: "OTP can’t be blank.") }
+var CBlankNewPasswordMessage        : String{ return CLocalize(text: "New Password can’t be blank.") }
+var CBlankVerificationCodeMessage   : String{ return CLocalize(text: "Verification code can’t be blank.") }
+var CInvalidVerificationCodeMessage : String{ return CLocalize(text: "Verification code is invalid.") }
+
 
 
 

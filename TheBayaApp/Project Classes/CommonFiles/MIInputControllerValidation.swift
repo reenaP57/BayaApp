@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-let messageColor = UIColor(red: 247/255.0, green: 51/255.0, blue: 52/255.0, alpha: 1.0)
-
 var lblMessage = UILabel()
 
 extension UITextField  {
@@ -76,9 +74,9 @@ extension UITextField  {
             lblMessage.text = message
             lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
-            lblMessage.textColor = messageColor
+            lblMessage.textColor = ColorValidation
             
-            lblMessage.font = UIFont(name: "Helvetica", size: 10)
+            lblMessage.font = CFontAvenirLTStd(size: 14, type: .roman)
             lblMessage.sizeToFit()
             self.updateTextFiledBottomSpace((space/2) + space + lblMessage.frame.size.height)
         }

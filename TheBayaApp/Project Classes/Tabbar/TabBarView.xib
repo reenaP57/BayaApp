@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirLTStd-Medium.otf">
+            <string>AvenirLTStd-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TabBarView" customModule="TheBayaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1wd-D2-hUs">
+                    <rect key="frame" x="0.0" y="0.0" width="94" height="49"/>
+                    <state key="normal" image="home"/>
+                    <state key="selected" image="home_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="JyK-ma-6VQ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSw-RP-VVd">
+                    <rect key="frame" x="94" y="0.0" width="93.5" height="49"/>
+                    <state key="normal" image="notification"/>
+                    <state key="selected" image="notification_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="jp8-p3-wNy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBO-Ta-i3j">
+                    <rect key="frame" x="187.5" y="0.0" width="94" height="49"/>
+                    <state key="normal" image="setting"/>
+                    <state key="selected" image="setting_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="sdl-8B-PJT"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E39-v8-lKo">
+                    <rect key="frame" x="281.5" y="0.0" width="93.5" height="49"/>
+                    <state key="normal" image="profile"/>
+                    <state key="selected" image="profile_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="plM-Ut-pLi"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkZ-UA-Rc8">
+                    <rect key="frame" x="145" y="10" width="15" height="15"/>
+                    <color key="backgroundColor" red="1" green="0.27058823529411763" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="dKG-j5-BFP"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="kFg-LX-ZaJ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="KBO-Ta-i3j" firstAttribute="width" secondItem="1wd-D2-hUs" secondAttribute="width" id="09u-ps-UDQ"/>
+                <constraint firstItem="KBO-Ta-i3j" firstAttribute="leading" secondItem="gkZ-UA-Rc8" secondAttribute="trailing" constant="27.5" id="46d-JF-rbr"/>
+                <constraint firstItem="KBO-Ta-i3j" firstAttribute="leading" secondItem="JSw-RP-VVd" secondAttribute="trailing" id="4Cz-y2-jwu"/>
+                <constraint firstItem="KBO-Ta-i3j" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="66p-x8-3yj"/>
+                <constraint firstItem="E39-v8-lKo" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="9f2-tT-eiE"/>
+                <constraint firstItem="gkZ-UA-Rc8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="10" id="9g3-xP-C0H"/>
+                <constraint firstItem="JSw-RP-VVd" firstAttribute="leading" secondItem="1wd-D2-hUs" secondAttribute="trailing" id="Jtv-TQ-6AT"/>
+                <constraint firstItem="E39-v8-lKo" firstAttribute="leading" secondItem="KBO-Ta-i3j" secondAttribute="trailing" id="YJa-Ru-Ew1"/>
+                <constraint firstItem="JSw-RP-VVd" firstAttribute="width" secondItem="1wd-D2-hUs" secondAttribute="width" id="YSg-Fd-pDY"/>
+                <constraint firstItem="JSw-RP-VVd" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Z3M-ER-oSC"/>
+                <constraint firstItem="E39-v8-lKo" firstAttribute="width" secondItem="1wd-D2-hUs" secondAttribute="width" id="jAH-rE-6As"/>
+                <constraint firstItem="E39-v8-lKo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="lzy-xB-NTG"/>
+                <constraint firstItem="E39-v8-lKo" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="mIP-cK-OrO"/>
+                <constraint firstItem="JSw-RP-VVd" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="md3-PV-qno"/>
+                <constraint firstItem="1wd-D2-hUs" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="nzt-lF-K7w"/>
+                <constraint firstItem="KBO-Ta-i3j" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qNt-yu-8Th"/>
+                <constraint firstItem="1wd-D2-hUs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="uyj-Zw-pQl"/>
+                <constraint firstItem="1wd-D2-hUs" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="x17-xu-7IT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnHome" destination="1wd-D2-hUs" id="fjE-Dp-X0c"/>
+                <outlet property="btnNotification" destination="JSw-RP-VVd" id="l5t-ee-irt"/>
+                <outlet property="btnProfile" destination="E39-v8-lKo" id="wDE-36-XMN"/>
+                <outlet property="btnSetting" destination="KBO-Ta-i3j" id="ocw-17-7DG"/>
+                <outlet property="lblCount" destination="gkZ-UA-Rc8" id="6L8-rd-xmw"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="home" width="22" height="22"/>
+        <image name="home_selected" width="22" height="22"/>
+        <image name="notification" width="20" height="22"/>
+        <image name="notification_selected" width="20" height="22"/>
+        <image name="profile" width="22" height="22"/>
+        <image name="profile_selected" width="22" height="22"/>
+        <image name="setting" width="22" height="22"/>
+        <image name="setting_selected" width="22" height="22"/>
+    </resources>
+</document>

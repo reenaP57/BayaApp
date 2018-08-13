@@ -103,6 +103,11 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnLoginClickedWithSender:" destination="wTx-gL-6La" eventType="touchUpInside" id="P1d-hC-0U9"/>
                                 </connections>
@@ -224,17 +229,17 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="+91" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWg-Tk-5vB" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="176" y="285" width="76" height="50"/>
+                                <rect key="frame" x="176" y="285" width="86" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" priority="750" constant="76" id="6BC-yg-yLz"/>
+                                    <constraint firstAttribute="width" priority="750" constant="86" id="6BC-yg-yLz"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XFf-dh-X36" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="262" y="285" width="330" height="50"/>
+                                <rect key="frame" x="282" y="285" width="310" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
@@ -260,13 +265,13 @@
                                 <state key="selected" image="select_remember"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuA-P9-O2h">
-                                <rect key="frame" x="207" y="485" width="126" height="22.5"/>
+                                <rect key="frame" x="207" y="487" width="127.5" height="19"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="19"/>
                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FFB-iu-WMD">
-                                <rect key="frame" x="176" y="481" width="157" height="30"/>
+                                <rect key="frame" x="176" y="481" width="158.5" height="30"/>
                                 <connections>
                                     <action selector="btnRememberMeClickedWithSender:" destination="Km9-Df-CNr" eventType="touchUpInside" id="hzH-sC-dH0"/>
                                 </connections>
@@ -350,6 +355,11 @@
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSignUpClickedWithSender:" destination="Km9-Df-CNr" eventType="touchUpInside" id="hVg-eV-IKj"/>
                                 </connections>
@@ -365,7 +375,7 @@
                             <constraint firstItem="SED-28-baf" firstAttribute="centerX" secondItem="XzY-gd-Ubp" secondAttribute="centerX" id="6Q7-lV-DXF"/>
                             <constraint firstItem="MWg-Tk-5vB" firstAttribute="top" secondItem="NyQ-Uk-qsU" secondAttribute="bottom" constant="15" id="7JM-DP-091"/>
                             <constraint firstItem="7zp-fj-aE6" firstAttribute="height" secondItem="SED-28-baf" secondAttribute="height" id="8YS-2Y-ZQC"/>
-                            <constraint firstItem="XFf-dh-X36" firstAttribute="leading" secondItem="MWg-Tk-5vB" secondAttribute="trailing" constant="10" id="9GB-eS-VNe"/>
+                            <constraint firstItem="XFf-dh-X36" firstAttribute="leading" secondItem="MWg-Tk-5vB" secondAttribute="trailing" constant="20" id="9GB-eS-VNe"/>
                             <constraint firstItem="llV-62-rWG" firstAttribute="top" secondItem="tpU-F4-xHs" secondAttribute="top" id="B1W-Dl-LSc"/>
                             <constraint firstItem="iuA-P9-O2h" firstAttribute="centerY" secondItem="ClK-i9-hOL" secondAttribute="centerY" id="Bgr-ai-EOc"/>
                             <constraint firstItem="clY-Al-cfL" firstAttribute="height" secondItem="l2B-DG-Ib7" secondAttribute="height" id="C4z-sH-e5x"/>
@@ -383,6 +393,7 @@
                             <constraint firstItem="FFB-iu-WMD" firstAttribute="trailing" secondItem="iuA-P9-O2h" secondAttribute="trailing" id="RLR-1C-Zpr"/>
                             <constraint firstItem="c5J-LW-fqm" firstAttribute="top" secondItem="OYE-aH-dbx" secondAttribute="top" id="Rqy-qT-p0z"/>
                             <constraint firstItem="7zp-fj-aE6" firstAttribute="width" secondItem="SED-28-baf" secondAttribute="width" id="Uu9-Dk-CkD"/>
+                            <constraint firstItem="XzY-gd-Ubp" firstAttribute="top" secondItem="XFf-dh-X36" secondAttribute="bottom" constant="15" id="VC2-o5-TAl"/>
                             <constraint firstItem="FFB-iu-WMD" firstAttribute="top" secondItem="SED-28-baf" secondAttribute="bottom" constant="16" id="WdB-Em-6rC"/>
                             <constraint firstItem="AB8-Vw-Sqe" firstAttribute="top" secondItem="FFB-iu-WMD" secondAttribute="bottom" constant="16" id="XPy-ih-H2L"/>
                             <constraint firstItem="NyQ-Uk-qsU" firstAttribute="top" secondItem="clY-Al-cfL" secondAttribute="bottom" constant="15" id="d91-JV-CRZ"/>
@@ -394,7 +405,6 @@
                             <constraint firstItem="NyQ-Uk-qsU" firstAttribute="height" secondItem="clY-Al-cfL" secondAttribute="height" id="ieE-C1-TKC"/>
                             <constraint firstItem="ZVf-uO-J8n" firstAttribute="bottom" secondItem="c5J-LW-fqm" secondAttribute="bottom" id="kLm-z3-3KO"/>
                             <constraint firstItem="ZVf-uO-J8n" firstAttribute="leading" secondItem="AB8-Vw-Sqe" secondAttribute="leading" id="lHm-T2-EXv"/>
-                            <constraint firstItem="XzY-gd-Ubp" firstAttribute="top" secondItem="MWg-Tk-5vB" secondAttribute="bottom" constant="15" id="lmc-Qc-TlT"/>
                             <constraint firstItem="ClK-i9-hOL" firstAttribute="leading" secondItem="SED-28-baf" secondAttribute="leading" id="nCb-im-Ukz"/>
                             <constraint firstItem="XFf-dh-X36" firstAttribute="trailing" secondItem="NyQ-Uk-qsU" secondAttribute="trailing" id="nuZ-cg-pMP"/>
                             <constraint firstItem="ZVf-uO-J8n" firstAttribute="top" secondItem="c5J-LW-fqm" secondAttribute="top" id="oHz-fd-fME"/>
@@ -423,6 +433,7 @@
                         <outlet property="txtLName" destination="clY-Al-cfL" id="Fjh-pW-6nf"/>
                         <outlet property="txtMobile" destination="XFf-dh-X36" id="XCr-yW-wX8"/>
                         <outlet property="txtPwd" destination="XzY-gd-Ubp" id="xmd-lx-nDU"/>
+                        <outlet property="vwContent" destination="tpU-F4-xHs" id="QxJ-fi-sAJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5wJ-QI-VzS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -463,6 +474,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSubmitClickedWithSender:" destination="eMf-xy-jOa" eventType="touchUpInside" id="fRO-1r-Hfb"/>
                                 </connections>
@@ -507,6 +523,7 @@
                     <connections>
                         <outlet property="lblNote" destination="hmp-Pa-mPx" id="jou-e2-uee"/>
                         <outlet property="txtCode" destination="ILE-fo-2mu" id="GuY-wj-etZ"/>
+                        <outlet property="vwContent" destination="JsS-9z-3oR" id="bHF-qJ-NyD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E8e-cR-lFb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -548,6 +565,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSubmitClickedWithSender:" destination="1jN-Tx-5KK" eventType="touchUpInside" id="kdg-rp-DjN"/>
                                 </connections>
@@ -571,6 +593,7 @@
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="txtEmail" destination="nYJ-rb-kyJ" id="3jo-Ip-ca9"/>
+                        <outlet property="vwContent" destination="ep1-eE-TtN" id="m9L-ZJ-HKM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pS1-mG-Q9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -626,6 +649,11 @@
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnSubmitClickedWithSender:" destination="fAd-nW-j2A" eventType="touchUpInside" id="BLV-oq-eIk"/>
                                 </connections>
@@ -659,6 +687,7 @@
                         <outlet property="txtCode" destination="Cx4-Gn-y5a" id="usL-dr-MTU"/>
                         <outlet property="txtConfirmPwd" destination="6Ch-2z-CIp" id="odu-sJ-xQS"/>
                         <outlet property="txtNewPwd" destination="8Tc-gx-HEQ" id="Dts-Ge-fIr"/>
+                        <outlet property="vwContent" destination="p9p-rS-nP5" id="RBO-0K-PeT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvU-ls-VSr" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,6 +13,9 @@ import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var tabbarViewcontroller : TabbarViewController?
+    var tabbarView : TabBarView?
+    
     let window = UIWindow.init(frame: UIScreen.main.bounds)
     
 
@@ -34,6 +37,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window.makeKeyAndVisible()
     }
     
+    func hideTabBar() {
+        appDelegate.tabbarView?.CViewSetY(y: CScreenHeight)
+    }
+    
+    func showTabBar() {
+        appDelegate.tabbarView?.CViewSetY(y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0))
+    }
     
     
     // MARK:-
