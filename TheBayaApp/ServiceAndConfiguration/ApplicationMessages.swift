@@ -47,8 +47,10 @@ var CBlankOTPMessage                : String{ return CLocalize(text: "OTP can’
 var CBlankNewPasswordMessage        : String{ return CLocalize(text: "New Password can’t be blank.") }
 var CBlankVerificationCodeMessage   : String{ return CLocalize(text: "Verification code can’t be blank.") }
 var CInvalidVerificationCodeMessage : String{ return CLocalize(text: "Verification code is invalid.") }
+var CBlankOldPasswordMessage        : String{ return CLocalize(text: "Old Password can’t be blank.") }
 
+var CLogOutMessage : String{ return CLocalize(text: "Are you sure you want to Logout?") }
 
-
+var CUnsubscribeMessage : String{ return CLocalize(text: "Are you sure you want to unsubscribe this project? You will not get any updates from this project on unsubscribing.") }
 
 

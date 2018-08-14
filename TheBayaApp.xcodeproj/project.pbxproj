@@ -72,6 +72,24 @@
 		5C14CA86211C7A7700B06E29 /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA85211C7A7700B06E29 /* TabBarView.swift */; };
 		5C14CA88211C7A8000B06E29 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C14CA87211C7A8000B06E29 /* TabBarView.xib */; };
 		5C14CA8A211C7A9B00B06E29 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA89211C7A9B00B06E29 /* TabbarViewController.swift */; };
+		5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E614621229D210090308D /* ScheduleVisitViewController.swift */; };
+		5C1E61492122BBD00090308D /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61482122BBD00090308D /* NotificationViewController.swift */; };
+		5C1E614C2122BCFE0090308D /* MIGenericPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E614B2122BCFE0090308D /* MIGenericPageControlView.swift */; };
+		5C1E614E2122C22C0090308D /* NotificationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E614D2122C22C0090308D /* NotificationTblCell.swift */; };
+		5C1E61512122D7A80090308D /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61502122D7A70090308D /* SettingViewController.swift */; };
+		5C1E61532122D9D50090308D /* SettingTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61522122D9D40090308D /* SettingTblCell.swift */; };
+		5C1E61552122DCAA0090308D /* Setting_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1E61542122DCAA0090308D /* Setting_ipad.storyboard */; };
+		5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61562122DED10090308D /* ChangePasswordViewController.swift */; };
+		5C1E61592122E59F0090308D /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61582122E59F0090308D /* EditProfileViewController.swift */; };
+		5C1E615B2122EC8B0090308D /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E615A2122EC8B0090308D /* SupportViewController.swift */; };
+		5C1E615D2122EE6C0090308D /* CMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E615C2122EE6C0090308D /* CMSViewController.swift */; };
+		5C1E61602122F3400090308D /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1E615F2122F3400090308D /* Profile.storyboard */; };
+		5C1E61622122F3C10090308D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61612122F3C10090308D /* ProfileViewController.swift */; };
+		5C1E61642122F7C40090308D /* ProfileTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61632122F7C40090308D /* ProfileTblCell.swift */; };
+		5C1E61662123054C0090308D /* SubscribedProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61652123054C0090308D /* SubscribedProjectViewController.swift */; };
+		5C1E61682123068B0090308D /* SubscribedTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61672123068B0090308D /* SubscribedTblCell.swift */; };
+		5C1E616A21230EEC0090308D /* VisitDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E616921230EEC0090308D /* VisitDetailsViewController.swift */; };
+		5C1E616C212312920090308D /* VisitDetailTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E616B212312920090308D /* VisitDetailTblCell.swift */; };
 		5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */; };
 		5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CD211AC53500907DBB /* ParentViewController.swift */; };
 		5C42C8D0211ACD6E00907DBB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */; };
@@ -171,6 +189,24 @@
 		5C14CA85211C7A7700B06E29 /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		5C14CA87211C7A8000B06E29 /* TabBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
 		5C14CA89211C7A9B00B06E29 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
+		5C1E614621229D210090308D /* ScheduleVisitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVisitViewController.swift; sourceTree = "<group>"; };
+		5C1E61482122BBD00090308D /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		5C1E614B2122BCFE0090308D /* MIGenericPageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIGenericPageControlView.swift; sourceTree = "<group>"; };
+		5C1E614D2122C22C0090308D /* NotificationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTblCell.swift; sourceTree = "<group>"; };
+		5C1E61502122D7A70090308D /* SettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5C1E61522122D9D40090308D /* SettingTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTblCell.swift; sourceTree = "<group>"; };
+		5C1E61542122DCAA0090308D /* Setting_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting_ipad.storyboard; sourceTree = "<group>"; };
+		5C1E61562122DED10090308D /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		5C1E61582122E59F0090308D /* EditProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		5C1E615A2122EC8B0090308D /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		5C1E615C2122EE6C0090308D /* CMSViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CMSViewController.swift; sourceTree = "<group>"; };
+		5C1E615F2122F3400090308D /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		5C1E61612122F3C10090308D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		5C1E61632122F7C40090308D /* ProfileTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTblCell.swift; sourceTree = "<group>"; };
+		5C1E61652123054C0090308D /* SubscribedProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedProjectViewController.swift; sourceTree = "<group>"; };
+		5C1E61672123068B0090308D /* SubscribedTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedTblCell.swift; sourceTree = "<group>"; };
+		5C1E616921230EEC0090308D /* VisitDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailsViewController.swift; sourceTree = "<group>"; };
+		5C1E616B212312920090308D /* VisitDetailTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitDetailTblCell.swift; sourceTree = "<group>"; };
 		5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LRF_ipad.storyboard; sourceTree = "<group>"; };
 		5C42C8CD211AC53500907DBB /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -261,10 +297,12 @@
 		486FDCFF2119AEF300EA0188 /* Project Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5C1E615E2122F3330090308D /* Profile */,
 				5CF50BAE2121AF32002FDAB8 /* CommonFiles */,
 				5C14CA84211C7A5100B06E29 /* Tabbar */,
 				5C42C8CC211AC50D00907DBB /* Parent */,
 				5CDE14142119BFA000B11AA5 /* LRF */,
+				5C1E614F2122D7650090308D /* Setting */,
 				5CD763F7211D519100C267AB /* Home */,
 			);
 			path = "Project Classes";
@@ -279,6 +317,7 @@
 				5CDE13F52119B7BE00B11AA5 /* MIGenericTextView.swift */,
 				5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */,
 				5CD763FC211DB8F700C267AB /* MIGenericProgressView.swift */,
+				5C1E614B2122BCFE0090308D /* MIGenericPageControlView.swift */,
 			);
 			path = "Generic Classes";
 			sourceTree = "<group>";
@@ -396,9 +435,7 @@
 		486FDD382119AEF400EA0188 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				486FDCEE2119ADBC00EA0188 /* Main.storyboard */,
 				486FDCF62119ADBD00EA0188 /* LaunchScreen.storyboard */,
-				5C14CA82211C48D300B06E29 /* Setting.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -460,6 +497,35 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		5C1E614F2122D7650090308D /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5C14CA82211C48D300B06E29 /* Setting.storyboard */,
+				5C1E61542122DCAA0090308D /* Setting_ipad.storyboard */,
+				5C1E61502122D7A70090308D /* SettingViewController.swift */,
+				5C1E61582122E59F0090308D /* EditProfileViewController.swift */,
+				5C1E61562122DED10090308D /* ChangePasswordViewController.swift */,
+				5C1E615A2122EC8B0090308D /* SupportViewController.swift */,
+				5C1E615C2122EE6C0090308D /* CMSViewController.swift */,
+				5C1E61522122D9D40090308D /* SettingTblCell.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5C1E615E2122F3330090308D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5C1E615F2122F3400090308D /* Profile.storyboard */,
+				5C1E61612122F3C10090308D /* ProfileViewController.swift */,
+				5C1E61652123054C0090308D /* SubscribedProjectViewController.swift */,
+				5C1E616921230EEC0090308D /* VisitDetailsViewController.swift */,
+				5C1E61632122F7C40090308D /* ProfileTblCell.swift */,
+				5C1E61672123068B0090308D /* SubscribedTblCell.swift */,
+				5C1E616B212312920090308D /* VisitDetailTblCell.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
 		5C42C8CC211AC50D00907DBB /* Parent */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,14 +537,18 @@
 		5CD763F7211D519100C267AB /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				486FDCEE2119ADBC00EA0188 /* Main.storyboard */,
 				5CD763F8211D51EA00C267AB /* HomeViewController.swift */,
 				5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */,
-				5CD763FA211D62B200C267AB /* HomeCollCell.swift */,
 				5CD76400211DC07E00C267AB /* ProjectViewController.swift */,
+				5C1E614621229D210090308D /* ScheduleVisitViewController.swift */,
+				5C1E61482122BBD00090308D /* NotificationViewController.swift */,
+				5CD763FA211D62B200C267AB /* HomeCollCell.swift */,
 				5CD76414211DC6F900C267AB /* ProjectTblCell.swift */,
 				5CF50BA721215EEB002FDAB8 /* SubscribedProjectCollCell.swift */,
 				5CF50BA921218244002FDAB8 /* TimeLineUpdateTblCell.swift */,
 				5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */,
+				5C1E614D2122C22C0090308D /* NotificationTblCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -589,6 +659,7 @@
 				489A5F6C212293AA00080739 /* bg.jpg in Resources */,
 				487E4E6C211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf in Resources */,
 				5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */,
+				5C1E61602122F3400090308D /* Profile.storyboard in Resources */,
 				489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */,
 				486FDD4D2119AEF500EA0188 /* MIPopUpOverlay.xib in Resources */,
 				487E4E66211C4CD8000CB32F /* AvenirLTStd-BookOblique.otf in Resources */,
@@ -599,6 +670,7 @@
 				487E4E67211C4CD8000CB32F /* AvenirLTStd-Heavy.otf in Resources */,
 				5CD76410211DC33D00C267AB /* img1.jpeg in Resources */,
 				487E4E6A211C4CD8000CB32F /* AvenirLTStd-LightOblique.otf in Resources */,
+				5C1E61552122DCAA0090308D /* Setting_ipad.storyboard in Resources */,
 				5C14CA88211C7A8000B06E29 /* TabBarView.xib in Resources */,
 				5CD76413211DC33D00C267AB /* img2.jpeg in Resources */,
 				486FDD6F2119AEF500EA0188 /* Assets.xcassets in Resources */,
@@ -676,24 +748,31 @@
 				5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */,
 				486FDD542119AEF500EA0188 /* ExetensionFloat.swift in Sources */,
 				486FDD562119AEF500EA0188 /* ExtensionDate.swift in Sources */,
+				5C1E61592122E59F0090308D /* EditProfileViewController.swift in Sources */,
 				5CF50BAC212182AC002FDAB8 /* TimeLineImgCollCell.swift in Sources */,
 				5CD763FD211DB8F700C267AB /* MIGenericProgressView.swift in Sources */,
 				5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */,
 				5CD76401211DC07E00C267AB /* ProjectViewController.swift in Sources */,
 				486FDD4C2119AEF500EA0188 /* MIPopUpOverlay.swift in Sources */,
+				5C1E614E2122C22C0090308D /* NotificationTblCell.swift in Sources */,
 				5CF50BB02121B019002FDAB8 /* FilterView.swift in Sources */,
 				486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */,
 				486FDD4F2119AEF500EA0188 /* AutoLayout.swift in Sources */,
+				5C1E61642122F7C40090308D /* ProfileTblCell.swift in Sources */,
 				486FDD612119AEF500EA0188 /* ExtensionUIImageView.swift in Sources */,
 				486FDD552119AEF500EA0188 /* ExtensionArray.swift in Sources */,
 				486FDD692119AEF500EA0188 /* MIKeyboardManager.swift in Sources */,
 				5CF50BAA21218244002FDAB8 /* TimeLineUpdateTblCell.swift in Sources */,
+				5C1E616C212312920090308D /* VisitDetailTblCell.swift in Sources */,
 				5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */,
 				5C14CA8A211C7A9B00B06E29 /* TabbarViewController.swift in Sources */,
+				5C1E616A21230EEC0090308D /* VisitDetailsViewController.swift in Sources */,
 				486FDD4B2119AEF500EA0188 /* MILoader.swift in Sources */,
 				486FDD5A2119AEF500EA0188 /* ExtensionNSObject.swift in Sources */,
+				5C1E615D2122EE6C0090308D /* CMSViewController.swift in Sources */,
 				486FDD5C2119AEF500EA0188 /* ExtensionUIApplication.swift in Sources */,
 				486FDD5E2119AEF500EA0188 /* ExtensionUIButton.swift in Sources */,
+				5C1E615B2122EC8B0090308D /* SupportViewController.swift in Sources */,
 				486FDD482119AEF500EA0188 /* ApplicationConstants.swift in Sources */,
 				5CDE13FA2119B7BE00B11AA5 /* MIGenericTextView.swift in Sources */,
 				486FDD4E2119AEF500EA0188 /* MIToastAlert.swift in Sources */,
@@ -704,10 +783,14 @@
 				486FDD6E2119AEF500EA0188 /* AppDelegate.swift in Sources */,
 				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
+				5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
 				5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */,
 				486FDD6C2119AEF500EA0188 /* TheBayaApp.xcdatamodeld in Sources */,
+				5C1E61682123068B0090308D /* SubscribedTblCell.swift in Sources */,
+				5C1E61512122D7A80090308D /* SettingViewController.swift in Sources */,
+				5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */,
 				486FDD622119AEF500EA0188 /* ExtensionUINavigationController.swift in Sources */,
 				5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */,
 				486FDD472119AEF500EA0188 /* ApplicationConfig.swift in Sources */,
@@ -720,16 +803,21 @@
 				5CD763FF211DBF5700C267AB /* TimelineDetailViewController.swift in Sources */,
 				486FDD522119AEF500EA0188 /* CoreDataObject+Extension.swift in Sources */,
 				5C42C8D0211ACD6E00907DBB /* SignUpViewController.swift in Sources */,
+				5C1E614C2122BCFE0090308D /* MIGenericPageControlView.swift in Sources */,
+				5C1E61662123054C0090308D /* SubscribedProjectViewController.swift in Sources */,
 				486FDD512119AEF500EA0188 /* CoreDataContext+Extension.swift in Sources */,
 				486FDD5D2119AEF500EA0188 /* ExtensionUIBarButtonItem.swift in Sources */,
 				5CD76415211DC6F900C267AB /* ProjectTblCell.swift in Sources */,
+				5C1E61492122BBD00090308D /* NotificationViewController.swift in Sources */,
 				5CDE13F82119B7BE00B11AA5 /* MIGenericTextField.swift in Sources */,
 				486FDD572119AEF500EA0188 /* ExtensionDictionary.swift in Sources */,
 				486FDD5B2119AEF500EA0188 /* ExtensionString.swift in Sources */,
 				5CDE13F62119B7BE00B11AA5 /* MIGenericButton.swift in Sources */,
 				5CDE13F92119B7BE00B11AA5 /* MIGenericLabel.swift in Sources */,
+				5C1E61532122D9D50090308D /* SettingTblCell.swift in Sources */,
 				486FDD6B2119AEF500EA0188 /* MasterConstant.swift in Sources */,
 				5CF50BA821215EEB002FDAB8 /* SubscribedProjectCollCell.swift in Sources */,
+				5C1E61622122F3C10090308D /* ProfileViewController.swift in Sources */,
 				486FDD632119AEF500EA0188 /* ExtensionUIResponder.swift in Sources */,
 				486FDD652119AEF500EA0188 /* ExtensionUITextView.swift in Sources */,
 			);

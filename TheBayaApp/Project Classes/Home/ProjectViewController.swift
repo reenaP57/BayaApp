@@ -29,6 +29,11 @@ class ProjectViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
 
+    
+    //MARK:-
+    //MARK:- General Methods
+    
+    
     func initialize() {
         self.title = "The Baya Projects"
         
@@ -36,6 +41,10 @@ class ProjectViewController: ParentViewController {
                       ["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img2.jpeg"],["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img3.jpeg"]] as [[String : AnyObject]]
     }
 }
+
+
+//MARK:-
+//MARK:- UITableView Delegate and Datasource
 
 
 extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {

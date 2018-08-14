@@ -95,11 +95,15 @@ let ColorGradient1Background =  CRGB(r: 255, g: 203, b: 82)
 let ColorGradient2Background =  CRGB(r: 255, g: 123, b: 2)
 let ColorProgressGradient1 =  CRGB(r: 75, g: 183, b: 71)
 let ColorProgressGradient2 =  CRGB(r: 170, g: 211, b: 94)
+let ColorUnreadNotification =  CRGB(r: 222, g: 255, b: 220)
+let ColorDisableTextField =  CRGB(r: 220, g: 220, b: 220)
 
 
 //MARK:- UIStoryboard
 let CStoryboardMain = UIStoryboard(name: "Main", bundle: nil)
 let CStoryboardLRF  = UIStoryboard(name: IS_iPad ? "LRF_ipad" : "LRF", bundle: nil)
+let CStoryboardSetting  = UIStoryboard(name: IS_iPad ? "Setting_ipad" : "Setting", bundle: nil)
+let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
 
 
 

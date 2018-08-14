@@ -13,12 +13,7 @@ class SignUpViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtFName : UITextField!
     @IBOutlet fileprivate weak var txtLName : UITextField!
     @IBOutlet fileprivate weak var txtEmail : UITextField!
-    @IBOutlet fileprivate weak var txtCountryCode : UITextField!{
-        didSet {
-            txtCountryCode.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15)
-        }
-    }
-    
+    @IBOutlet fileprivate weak var txtCountryCode : UITextField!
     @IBOutlet fileprivate weak var txtMobile : UITextField!
     @IBOutlet fileprivate weak var txtPwd : UITextField!
     @IBOutlet fileprivate weak var txtConfirmPwd : UITextField!
@@ -34,6 +29,9 @@ class SignUpViewController: ParentViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    //MARK:-
+    //MARK:- General Methods
     
     func initialize() {
          self.title = "Sign up"

@@ -24,6 +24,10 @@ class MIGenericLabel: UILabel {
             self.setGradientBackground()
         }
     }
+}
+
+
+extension MIGenericLabel {
     
     fileprivate func setupGenericLabel() {
         
@@ -31,11 +35,6 @@ class MIGenericLabel: UILabel {
         self.font = self.font.setUpAppropriateFont()
         self.text = CLocalize(text: self.text ?? "")
     }
-  
-}
-
-
-extension MIGenericLabel {
     
     func setGradientBackground() {
         

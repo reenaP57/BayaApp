@@ -17,10 +17,14 @@ class ForgotPwdViewController: ParentViewController {
         super.viewDidLoad()
         self.initialize()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-     }
+    }
+    
+    
+    //MARK:-
+    //MARK:- General Methods
     
     func initialize() {
         self.title = "Forgot Password"

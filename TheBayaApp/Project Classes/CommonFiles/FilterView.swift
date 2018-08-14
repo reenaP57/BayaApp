@@ -19,9 +19,6 @@ class FilterView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        txtStartDate.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
-        txtEndDate.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
-        
         txtStartDate.setDatePickerWithDateFormate(dateFormate: "DD/MM/YYYY", defaultDate: Date(), isPrefilledDate: false) { (date) in
         }
         

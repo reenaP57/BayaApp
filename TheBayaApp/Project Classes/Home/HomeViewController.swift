@@ -29,6 +29,11 @@ class HomeViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    //MARK:-
+    //MARK:- General Methods
+    
+    
     func initialize() {
         
         arrHome = [["title": "Timeline", "subtitle": "THE BAYA VICTORIA", "img": "timeline"],["title": "Projects", "subtitle": "5 PROJECTS", "img": "projects"],["title": "Schedule a Visit", "subtitle": "CHOOSE TIME OF VISIT", "img": "schedule_visit"]] as [[String : AnyObject]]
@@ -88,8 +93,8 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             }
             
         default:
-            if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
-                self.navigationController?.pushViewController(projectVC, animated: true)
+            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
             }
         }
     }

@@ -20,6 +20,10 @@ class MIGenericTextField: UITextField {
         self.backgroundColor = UIColor.white
         
         self.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+        
+        if self.tag == 101 {
+            self.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+        }
     }
     
     override func layoutSubviews() {

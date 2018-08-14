@@ -30,6 +30,11 @@ class TimelineDetailViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    //MARK:-
+    //MARK:- General Methods
+    
+    
     func initialize() {
     
         self.title = "the baya company"
@@ -67,6 +72,24 @@ class TimelineDetailViewController: ParentViewController {
         }
     }
     
+}
+
+
+//MARK:-
+//MARK:- Action
+
+extension TimelineDetailViewController {
+    
+    @IBAction func btnScheduleVisitClicked (sender : UIButton) {
+     
+        if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+            self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+        }
+    }
+
+    @IBAction func btnProjectDetailClicked (sender : UIButton) {
+        
+    }
 }
 
 

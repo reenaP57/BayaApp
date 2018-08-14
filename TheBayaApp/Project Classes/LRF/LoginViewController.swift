@@ -23,6 +23,9 @@ class LoginViewController: ParentViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK:-
+    //MARK:- General Methods
+    
     func initialize() {
         
     }

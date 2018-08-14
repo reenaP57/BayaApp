@@ -24,6 +24,9 @@ class VerificationViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
     
+    //MARK:-
+    //MARK:- General Methods
+    
     func initialize() {
         self.title = "Verity Mobile Number"
     }

@@ -13,6 +13,8 @@ class MIGenericButton: UIButton {
     let gradientLayer = CAGradientLayer()
     
     @IBInspectable var cornerRadius : CGFloat = 0.0
+    @IBInspectable var gradientColor1 : UIColor = ColorWhite
+    @IBInspectable var gradientColor2 : UIColor = ColorWhite
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +24,7 @@ class MIGenericButton: UIButton {
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = cornerRadius
+        self.layer.masksToBounds = true
         
         if self.tag == 101 {
             self.setGradientBackground()
@@ -42,7 +45,7 @@ extension MIGenericButton {
     
     func setGradientBackground() {
         
-        gradientLayer.colors = [ColorGradient1Background.cgColor, ColorGradient2Background.cgColor]
+        gradientLayer.colors = [gradientColor1.cgColor, gradientColor2.cgColor]
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)

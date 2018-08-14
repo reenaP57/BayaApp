@@ -45,6 +45,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appDelegate.tabbarView?.CViewSetY(y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0))
     }
     
+    func logout()
+    {
+        tabbarViewcontroller = nil
+        tabbarView = nil
+
+        guard let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else{
+            return
+        }
+        
+        self.setWindowRootViewController(rootVC: UINavigationController.rootViewController(viewController: loginVC), animated: true, completion: nil)
+    }
+    
     
     // MARK:-
     // MARK:- Root update
