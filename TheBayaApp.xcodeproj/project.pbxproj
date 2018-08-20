@@ -62,6 +62,7 @@
 		487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E60211C4CD8000CB32F /* AvenirLTStd-Medium.otf */; };
 		487E4E6C211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E61211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf */; };
 		487E4E6D211C4CD8000CB32F /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E62211C4CD8000CB32F /* AvenirLTStd-Roman.otf */; };
+		489773D2212AFCF8009EFEEB /* CTPanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489773D0212AFCF8009EFEEB /* CTPanoramaView.swift */; };
 		489A5F6C212293AA00080739 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F68212293AA00080739 /* bg.jpg */; };
 		489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F69212293AA00080739 /* bg_ipad.jpg */; };
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
@@ -95,7 +96,6 @@
 		5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CD211AC53500907DBB /* ParentViewController.swift */; };
 		5C42C8D0211ACD6E00907DBB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */; };
 		5C475D72212AD6CC00125A19 /* spherical.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C475D71212AD6C900125A19 /* spherical.jpg */; };
-		5C475D77212AD91A00125A19 /* CTPanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C475D75212AD91A00125A19 /* CTPanoramaView.swift */; };
 		5C475D7A212ADFA800125A19 /* Zoom3DImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */; };
 		5C48FB63212851B000B0D6CB /* SeeAllAmenitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */; };
 		5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */; };
@@ -205,6 +205,8 @@
 		487E4E60211C4CD8000CB32F /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
 		487E4E61211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-MediumOblique.otf"; sourceTree = "<group>"; };
 		487E4E62211C4CD8000CB32F /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
+		489773D0212AFCF8009EFEEB /* CTPanoramaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTPanoramaView.swift; sourceTree = "<group>"; };
+		489773D1212AFCF8009EFEEB /* CTPanoramaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTPanoramaView.h; sourceTree = "<group>"; };
 		489A5F68212293AA00080739 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		489A5F69212293AA00080739 /* bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_ipad.jpg; sourceTree = "<group>"; };
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
@@ -238,8 +240,6 @@
 		5C42C8CD211AC53500907DBB /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		5C475D71212AD6C900125A19 /* spherical.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spherical.jpg; sourceTree = "<group>"; };
-		5C475D74212AD91A00125A19 /* CTPanoramaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTPanoramaView.h; sourceTree = "<group>"; };
-		5C475D75212AD91A00125A19 /* CTPanoramaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTPanoramaView.swift; sourceTree = "<group>"; };
 		5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zoom3DImageViewController.swift; sourceTree = "<group>"; };
 		5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllAmenitiesViewController.swift; sourceTree = "<group>"; };
 		5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellAllLocationTblCell.swift; sourceTree = "<group>"; };
@@ -610,8 +610,8 @@
 		5C475D73212AD91A00125A19 /* 3D Images Class */ = {
 			isa = PBXGroup;
 			children = (
-				5C475D74212AD91A00125A19 /* CTPanoramaView.h */,
-				5C475D75212AD91A00125A19 /* CTPanoramaView.swift */,
+				489773D1212AFCF8009EFEEB /* CTPanoramaView.h */,
+				489773D0212AFCF8009EFEEB /* CTPanoramaView.swift */,
 			);
 			path = "3D Images Class";
 			sourceTree = "<group>";
@@ -887,7 +887,6 @@
 				486FDD5E2119AEF500EA0188 /* ExtensionUIButton.swift in Sources */,
 				5C8D5B8C21258AA90080193A /* PlanTypeCollCell.swift in Sources */,
 				5C4DC5392127EC1F00C69ACF /* TutorialCollCell.swift in Sources */,
-				5C475D77212AD91A00125A19 /* CTPanoramaView.swift in Sources */,
 				5C1E615B2122EC8B0090308D /* SupportViewController.swift in Sources */,
 				486FDD482119AEF500EA0188 /* ApplicationConstants.swift in Sources */,
 				5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */,
@@ -902,6 +901,7 @@
 				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
 				5C8D5B9021258ADC0080193A /* OverViewCollCell.swift in Sources */,
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
+				489773D2212AFCF8009EFEEB /* CTPanoramaView.swift in Sources */,
 				5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
