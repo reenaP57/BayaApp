@@ -18,6 +18,11 @@ class NotificationViewController: ParentViewController {
         super.viewDidLoad()
         self.initialize()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.showTabBar()
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

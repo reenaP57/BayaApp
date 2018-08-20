@@ -41,7 +41,7 @@ class TimelineDetailViewController: ParentViewController {
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
         
-        arrProject = [["project_name": "The Baya Victoria Chembur", "percentage": "50"],["project_name": "The Baya Victoria Chembur", "percentage": "50"],["project_name": "The Baya Victoria Chembur", "percentage": "50"]] as [[String : AnyObject]]
+        arrProject = [["project_name": "The Baya Victoria Chembur", "percentage": 50],["project_name": "The Baya Victoria Chembur", "percentage": 70],["project_name": "The Baya Victoria Chembur", "percentage": 35]] as [[String : AnyObject]]
         
         arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : "image"],
                          ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : "url"],
@@ -70,6 +70,23 @@ class TimelineDetailViewController: ParentViewController {
                 }
             }
         }
+    }
+    
+    
+    func CropImage(image:UIImage , cropRect:CGRect) -> UIImage
+    {
+        UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
+        let context = UIGraphicsGetCurrentContext();
+        
+        context?.translateBy(x: 0.0, y: image.size.height);
+        context?.scaleBy(x: 1.0, y: -1.0);
+        context?.draw(image.cgImage!, in: CGRect(x:0, y:0, width:image.size.width, height:image.size.height), byTiling: false);
+        context?.clip(to: [cropRect]);
+        
+        let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+
+        return croppedImage!
     }
     
 }
@@ -129,6 +146,13 @@ extension TimelineDetailViewController : UICollectionViewDelegateFlowLayout, UIC
             cell.btnCall.touchUpInside { (sender) in
                 self.dialPhoneNumber(phoneNumber: "123456789")
             }
+            
+            cell.imgVProgress.transform = cell.imgVProgress.transform.rotated(by: CGFloat.init(Double.pi))
+
+            
+            let percentage = cell.imgVProgress.CViewHeight * CGFloat((dict.valueForInt(key: "percentage"))!)/100
+            
+            _ = self.CropImage(image: cell.imgVProgress.image!, cropRect: CGRect(x: 0, y: 50, width: cell.imgVProgress.CViewWidth, height: percentage))
             
             return cell
         }

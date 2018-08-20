@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CTPanoramaView
 
 class ProjectDetailViewController: ParentViewController {
 
@@ -32,8 +33,14 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var collOverView : UICollectionView!
 
     @IBOutlet fileprivate weak var vw3DTour : UIView!
-    @IBOutlet fileprivate weak var imgv3D : UIImageView!
-    
+    @IBOutlet fileprivate weak var vw3DTitle : UIView!{
+        didSet{
+            vw3DTitle.layer.borderWidth = 1
+            vw3DTitle.layer.borderColor = ColorLightBlack.cgColor
+        }
+    }
+    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
     @IBOutlet fileprivate weak var tblSpecification : UITableView!
@@ -75,7 +82,6 @@ class ProjectDetailViewController: ParentViewController {
     
     func initialize() {
         
-        
         btnTypicalPlan.layer.borderWidth = 1
         btnTypicalPlan.layer.borderColor = ColorGray.cgColor
         
@@ -115,6 +121,12 @@ class ProjectDetailViewController: ParentViewController {
         
         self.loadProjectDetail()
         
+        //...Load 3D image
+        vwPanorama.image = UIImage(named: "spherical.jpg")
+    }
+    
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .all
     }
     
     func loadProjectDetail () {
@@ -132,6 +144,7 @@ class ProjectDetailViewController: ParentViewController {
             self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height
         }
     }
+
 }
 
 
@@ -190,6 +203,13 @@ extension ProjectDetailViewController {
         
         if let seeAllLocVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllLocationAdvantagesViewController") as? SeeAllLocationAdvantagesViewController {
             self.navigationController?.pushViewController(seeAllLocVC, animated: true)
+        }
+    }
+    
+    @IBAction func btn3DZoomClicked (sender : UIButton) {
+        
+        if let zoom3DVC = CStoryboardMain.instantiateViewController(withIdentifier: "Zoom3DImageViewController") as? Zoom3DImageViewController {
+            self.navigationController?.present(zoom3DVC, animated: true, completion: nil)
         }
     }
 }

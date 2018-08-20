@@ -35,7 +35,7 @@ class SeeAllLocationAdvantagesViewController: ParentViewController {
                        ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
                        ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
         
-        DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
             self.tblLocation.reloadData()
         }
     }

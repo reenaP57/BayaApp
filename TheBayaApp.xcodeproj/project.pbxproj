@@ -94,6 +94,9 @@
 		5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */; };
 		5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CD211AC53500907DBB /* ParentViewController.swift */; };
 		5C42C8D0211ACD6E00907DBB /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */; };
+		5C475D72212AD6CC00125A19 /* spherical.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5C475D71212AD6C900125A19 /* spherical.jpg */; };
+		5C475D77212AD91A00125A19 /* CTPanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C475D75212AD91A00125A19 /* CTPanoramaView.swift */; };
+		5C475D7A212ADFA800125A19 /* Zoom3DImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */; };
 		5C48FB63212851B000B0D6CB /* SeeAllAmenitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */; };
 		5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */; };
 		5C48FB672128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB662128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift */; };
@@ -234,6 +237,10 @@
 		5C42C8C6211AB5AC00907DBB /* LRF_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LRF_ipad.storyboard; sourceTree = "<group>"; };
 		5C42C8CD211AC53500907DBB /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		5C42C8CF211ACD6E00907DBB /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		5C475D71212AD6C900125A19 /* spherical.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = spherical.jpg; sourceTree = "<group>"; };
+		5C475D74212AD91A00125A19 /* CTPanoramaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTPanoramaView.h; sourceTree = "<group>"; };
+		5C475D75212AD91A00125A19 /* CTPanoramaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTPanoramaView.swift; sourceTree = "<group>"; };
+		5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Zoom3DImageViewController.swift; sourceTree = "<group>"; };
 		5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllAmenitiesViewController.swift; sourceTree = "<group>"; };
 		5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellAllLocationTblCell.swift; sourceTree = "<group>"; };
 		5C48FB662128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllLocationAdvantagesViewController.swift; sourceTree = "<group>"; };
@@ -548,6 +555,7 @@
 		5C189C09212538F5001B72C5 /* Custom class */ = {
 			isa = PBXGroup;
 			children = (
+				5C475D73212AD91A00125A19 /* 3D Images Class */,
 				5C189C0A21253911001B72C5 /* FloatRatingView */,
 			);
 			path = "Custom class";
@@ -599,6 +607,15 @@
 			path = Parent;
 			sourceTree = "<group>";
 		};
+		5C475D73212AD91A00125A19 /* 3D Images Class */ = {
+			isa = PBXGroup;
+			children = (
+				5C475D74212AD91A00125A19 /* CTPanoramaView.h */,
+				5C475D75212AD91A00125A19 /* CTPanoramaView.swift */,
+			);
+			path = "3D Images Class";
+			sourceTree = "<group>";
+		};
 		5CD763F7211D519100C267AB /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -607,6 +624,7 @@
 				5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */,
 				5CD76400211DC07E00C267AB /* ProjectViewController.swift */,
 				5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */,
+				5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */,
 				5C1E614621229D210090308D /* ScheduleVisitViewController.swift */,
 				5C1E61482122BBD00090308D /* NotificationViewController.swift */,
 				5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */,
@@ -633,6 +651,7 @@
 		5CD7640B211DC2C500C267AB /* Temp_img */ = {
 			isa = PBXGroup;
 			children = (
+				5C475D71212AD6C900125A19 /* spherical.jpg */,
 				5C8D5B7E212586AF0080193A /* img5.jpeg */,
 				5C8D5B7D212586AF0080193A /* img6.jpeg */,
 				5C8D5B82212586B00080193A /* img7.jpeg */,
@@ -758,6 +777,7 @@
 				487E4E67211C4CD8000CB32F /* AvenirLTStd-Heavy.otf in Resources */,
 				5CD76410211DC33D00C267AB /* img1.jpeg in Resources */,
 				487E4E6A211C4CD8000CB32F /* AvenirLTStd-LightOblique.otf in Resources */,
+				5C475D72212AD6CC00125A19 /* spherical.jpg in Resources */,
 				5C1E61552122DCAA0090308D /* Setting_ipad.storyboard in Resources */,
 				5C14CA88211C7A8000B06E29 /* TabBarView.xib in Resources */,
 				5C8D5B83212586B00080193A /* img6.jpeg in Resources */,
@@ -867,6 +887,7 @@
 				486FDD5E2119AEF500EA0188 /* ExtensionUIButton.swift in Sources */,
 				5C8D5B8C21258AA90080193A /* PlanTypeCollCell.swift in Sources */,
 				5C4DC5392127EC1F00C69ACF /* TutorialCollCell.swift in Sources */,
+				5C475D77212AD91A00125A19 /* CTPanoramaView.swift in Sources */,
 				5C1E615B2122EC8B0090308D /* SupportViewController.swift in Sources */,
 				486FDD482119AEF500EA0188 /* ApplicationConstants.swift in Sources */,
 				5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */,
@@ -890,6 +911,7 @@
 				5C1E61682123068B0090308D /* SubscribedTblCell.swift in Sources */,
 				5C1E61512122D7A80090308D /* SettingViewController.swift in Sources */,
 				5C4DC53B2127EC3500C69ACF /* TutorialViewController.swift in Sources */,
+				5C475D7A212ADFA800125A19 /* Zoom3DImageViewController.swift in Sources */,
 				5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */,
 				5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */,
 				5C8D5B9421258B190080193A /* SpecificationTblCell.swift in Sources */,
