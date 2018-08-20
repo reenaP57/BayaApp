@@ -14,7 +14,8 @@ class VerificationViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblNote : UILabel!
     @IBOutlet fileprivate weak var vwContent : UIView!
 
-    
+    var isFromSignUp : Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -28,7 +29,20 @@ class VerificationViewController: ParentViewController {
     //MARK:- General Methods
     
     func initialize() {
-        self.title = "Verity Mobile Number"
+        
+        
+        if isFromSignUp {
+            //...Verify Email
+            
+            self.title = "Verity Email"
+            self.lblNote.text = "\(CVerifyNoteMessage) email address [abc@gmail.com]"
+            
+        } else {
+            //...Verify Mobile Number
+            
+            self.title = "Verity Mobile Number"
+            self.lblNote.text = "\(CVerifyNoteMessage) mobile number [+1234567890]"
+        }
     }
 
 }
@@ -55,7 +69,15 @@ extension VerificationViewController {
             if (self.txtCode.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankVerificationCodeMessage))
             } else {
-                
+                if self.isFromSignUp {
+                    
+                    if let verifyMobileVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+                        self.navigationController?.pushViewController(verifyMobileVC, animated: true)
+                    }
+                    
+                } else {
+                    appDelegate.initHomeViewController()
+                }
             }
         }
     }

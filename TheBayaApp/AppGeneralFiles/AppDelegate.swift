@@ -31,10 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   
     func initRootViewController() {
         
-        let rootVC = UINavigationController.init(rootViewController: CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController"))
+        let rootVC = UINavigationController.init(rootViewController: CStoryboardLRF.instantiateViewController(withIdentifier: "TutorialViewController"))
         self.setWindowRootViewController(rootVC: rootVC, animated: false, completion: nil)
         
         self.window.makeKeyAndVisible()
+    }
+    
+    func initHomeViewController() {
+        appDelegate.tabbarViewcontroller = TabbarViewController.initWithNibName() as? TabbarViewController
+        appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
     }
     
     func hideTabBar() {
@@ -55,6 +60,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         self.setWindowRootViewController(rootVC: UINavigationController.rootViewController(viewController: loginVC), animated: true, completion: nil)
+    }
+    
+    func setProgressGradient(frame : CGRect) -> UIImage {
+       
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ColorProgressGradient1.cgColor,ColorProgressGradient2.cgColor]
+        gradientLayer.frame = frame
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)
+        
+        UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, false, 0.0)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
     }
     
     

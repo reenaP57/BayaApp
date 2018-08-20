@@ -17,6 +17,7 @@ class LoginViewController: ParentViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       // self.initialize()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +29,16 @@ class LoginViewController: ParentViewController, UITextFieldDelegate {
     
     func initialize() {
         
+        var rotationAndPerspectiveTransform = CATransform3D()
+        rotationAndPerspectiveTransform.m34 = 1.0 / -1000.0
+        rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, CGFloat(Double.pi * 0.6), 1.0, 0.0, 0.0)
+        
+        UIView.animate(withDuration: 1.0, animations: {
+            
+            self.txtEmail.layer.anchorPoint = CGPoint(x: 0.5, y: 0.0)
+            self.txtEmail.layer.transform = rotationAndPerspectiveTransform
+        }) { (finished) in
+        }
     }
 }
 
@@ -40,8 +51,7 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
-        appDelegate.tabbarViewcontroller = TabbarViewController.initWithNibName() as? TabbarViewController
-        appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
+       appDelegate.initHomeViewController()
         
         
         return

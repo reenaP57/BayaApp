@@ -85,6 +85,7 @@ extension SignUpViewController {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CTermsConditionNotAcceptedMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
             } else {
                 if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+                    verifyVC.isFromSignUp = true
                     self.navigationController?.pushViewController(verifyVC, animated: true)
                 }
             }
@@ -96,6 +97,10 @@ extension SignUpViewController {
 
     @IBAction fileprivate func btnTermsAndConditionClicked (sender : UIButton) {
 
+        if let termsConditionVC = CStoryboardSetting.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
+            termsConditionVC.cmsEnum = .TermsCondition
+            self.navigationController?.pushViewController(termsConditionVC, animated: true)
+        }
     }
     
     @IBAction fileprivate func btnRememberMeClicked (sender : UIButton) {

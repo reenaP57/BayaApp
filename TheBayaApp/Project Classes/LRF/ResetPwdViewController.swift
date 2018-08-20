@@ -15,7 +15,6 @@ class ResetPwdViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtConfirmPwd : UITextField!
     @IBOutlet fileprivate weak var vwContent : UIView!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -65,6 +64,8 @@ extension ResetPwdViewController {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CBlankConfirmPasswordMessage))
             } else if self.txtConfirmPwd.text != self.txtNewPwd.text {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
+            } else {
+                self.navigationController?.popViewController(animated: true)
             }
         }
         

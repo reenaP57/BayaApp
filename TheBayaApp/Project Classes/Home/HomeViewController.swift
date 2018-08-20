@@ -70,8 +70,9 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
             cell.lblTitle.text = dict.valueForString(key: "title")
             cell.lblPrjctName.text = dict.valueForString(key: "subtitle")
+            cell.lblBadge.text = "5"
             
-            cell.lblBadge.isHidden = indexPath.row != 0
+            cell.vwCount.isHidden = indexPath.row != 0
             cell.vwProgress.isHidden = indexPath.row != 0
             
             return cell

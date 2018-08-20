@@ -88,9 +88,27 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 cell.vwContent.backgroundColor = ColorUnreadNotification
             }
             
+            
+            cell.btnRateVisit.touchUpInside { (sender) in
+                
+                if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                    self.navigationController?.pushViewController(rateVisitVC, animated: true)
+                }
+            }
             return cell
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.row == 4 {
+            //...New Project
+            
+            if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                self.navigationController?.pushViewController(projectDetailVC, animated: true)
+            }
+        }
     }
 }

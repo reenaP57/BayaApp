@@ -146,6 +146,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
         case 8:
             //...Rate App
+            self.openInSafari(strUrl: "www.google.com")
             break
             
         default:

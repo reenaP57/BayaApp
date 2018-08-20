@@ -147,7 +147,7 @@ extension UITextView{
             lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
             lblMessage.textColor = CRGB(r: 247, g: 51, b: 52)
-            lblMessage.font = UIFont(name: "Helvetica", size: 10)
+            lblMessage.font = CFontAvenirLTStd(size: 14, type: .roman)
             lblMessage.sizeToFit()
             self.updateTextFiledBottomSpace((space/2) + space + lblMessage.frame.size.height)
         }

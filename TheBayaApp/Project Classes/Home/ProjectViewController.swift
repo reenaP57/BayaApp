@@ -65,9 +65,20 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             cell.lblReraNo.text = dict.valueForString(key: "rera_no")
             cell.imgVPrjct.image = UIImage(named: dict.valueForString(key: "img"))
             
+            cell.btnSubscribe.touchUpInside { (sender) in
+                cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
+            }
+            
             return cell
         }
         
         return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+            self.navigationController?.pushViewController(projectDetailVC, animated: true)
+        }
     }
 }

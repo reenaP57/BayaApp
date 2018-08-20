@@ -10,6 +10,8 @@ import UIKit
 
 class MIGenericView: UIView {
     
+    let gradientLayer = CAGradientLayer()
+
     @IBInspectable var cornerRadius : CGFloat = 0.0
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +28,7 @@ class MIGenericView: UIView {
             self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 5, height: 5), shadowRadius: 5.0, shadowOpacity: 0.5)
             self.layer.cornerRadius = cornerRadius
             
-        } else {
+        }  else {
             self.layer.cornerRadius = cornerRadius
         }
     }

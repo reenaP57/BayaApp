@@ -22,7 +22,5 @@ class SubscribedProjectCollCell: UICollectionViewCell {
         
         lblPercentage.layer.cornerRadius = 5
         lblPercentage.layer.masksToBounds = true
-        
-        lblPercentage.textColor = UIColor.black
     }
 }

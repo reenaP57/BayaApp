@@ -418,8 +418,7 @@ extension NSManagedObject
         self.fetch(predicate: predicate, sortDescriptors: nil, block: block)
     }
     
-    class func fetch(predicate:NSPredicate?, orderBy:String?, ascending:Bool) -> NSArray?
-    {
+    class func fetch(predicate:NSPredicate?, orderBy:String?, ascending:Bool) -> NSArray? {
         var sortDescriptors:[NSSortDescriptor]?
         
         if (orderBy != nil && !(orderBy?.isBlank)!) {
@@ -429,8 +428,7 @@ extension NSManagedObject
         return self.fetch(predicate: predicate, sortDescriptors: sortDescriptors, context: nil, fetchLimit: 0)
     }
     
-    class func fetch(predicate:NSPredicate?, orderBy:String?, ascending:Bool, block:BlockArrayResult?) -> Void
-    {
+    class func fetch(predicate:NSPredicate?, orderBy:String?, ascending:Bool, block:BlockArrayResult?) -> Void {
         var sortDescriptors:[NSSortDescriptor]?
         
         if (orderBy != nil && !(orderBy?.isBlank)!) {
@@ -439,6 +437,28 @@ extension NSManagedObject
         
         self.fetch(predicate: predicate, sortDescriptors: sortDescriptors, context: nil, fetchLimit: 0, block: block)
     }
+    
+//    class func fetch(predicate:NSPredicate?, orderBy:String?, ascending:Bool) -> NSArray?
+//    {
+//        var sortDescriptors:[NSSortDescriptor]?
+//
+//        if (orderBy != nil && !(orderBy?.isBlank)!) {
+//            sortDescriptors = [NSSortDescriptor(key: orderBy, ascending: ascending)]
+//        }
+//
+//        return self.fetch(predicate: predicate, sortDescriptors: sortDescriptors, context: nil, fetchLimit: 0)
+//    }
+//
+//    class func fetch(predicate:NSPredicate?, orderBy:String?, ascending:Bool, block:BlockArrayResult?) -> Void
+//    {
+//        var sortDescriptors:[NSSortDescriptor]?
+//
+//        if (orderBy != nil && !(orderBy?.isBlank)!) {
+//            sortDescriptors = [NSSortDescriptor(key: orderBy, ascending: ascending)]
+//        }
+//
+//        self.fetch(predicate: predicate, sortDescriptors: sortDescriptors, context: nil, fetchLimit: 0, block: block)
+//    }
     
     class func fetch(predicate:NSPredicate?, sortDescriptors:[NSSortDescriptor]?) -> NSArray?
     {

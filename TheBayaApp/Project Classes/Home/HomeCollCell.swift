@@ -17,29 +17,15 @@ class HomeCollCell: UICollectionViewCell {
     @IBOutlet weak var progressVCom : UIProgressView!
     @IBOutlet weak var lblPercentage : UILabel!
     @IBOutlet weak var vwProgress : UIView!
+    @IBOutlet weak var vwCount : UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+ 
         lblBadge.layer.cornerRadius = lblBadge.CViewHeight/2
         lblBadge.layer.masksToBounds = true
         
-        self.setupProgressView()
-    }
-    
-    func setupProgressView() {
-        
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [ColorProgressGradient1.cgColor,ColorProgressGradient2.cgColor]
-        gradientLayer.frame = progressVCom.bounds
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)
-        
-        UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, false, 0.0)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        progressVCom.progressImage = image?.resizableImage(withCapInsets: .zero)
+        progressVCom.layer.cornerRadius = progressVCom.CViewHeight/2
+        progressVCom.layer.masksToBounds = true
     }
 }

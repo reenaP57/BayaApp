@@ -79,7 +79,7 @@ extension Date {
     }
     
     var noon: Date {
-        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+        return Calendar.current.date(bySettingHour: hour, minute: minute, second: second, of: self)!
     }
     
     //MARK:-
@@ -219,6 +219,28 @@ extension Date {
     }
 }
 
+
+extension Date {
+    
+    func dateAt(hours: Int, minutes: Int) -> Date
+    {
+        let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)!
+     
+        var date_components = calendar.components(
+            [NSCalendar.Unit.year,
+             NSCalendar.Unit.month,
+             NSCalendar.Unit.day],
+            from: self)
+        
+        //Create an NSDate for the specified time today.
+        date_components.hour = hours
+        date_components.minute = minutes
+        date_components.second = 0
+        
+        let newDate = calendar.date(from: date_components)!
+        return newDate
+    }
+}
 
 
 //MARK:-

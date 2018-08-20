@@ -12,6 +12,7 @@ let CharacterLimit = 500
 
 class ScheduleVisitViewController: ParentViewController {
 
+    @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var txtSlot1 : UITextField!
     @IBOutlet fileprivate weak var txtSlot2 : UITextField!
     @IBOutlet fileprivate weak var txtSlot3 : UITextField!
@@ -23,6 +24,11 @@ class ScheduleVisitViewController: ParentViewController {
         }
     }
 
+    var dateSlot1 = Date()
+    var dateSlot2 = Date()
+    var dateSlot3 = Date()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -41,18 +47,20 @@ class ScheduleVisitViewController: ParentViewController {
     //MARK:-
     //MARK:- General Methods
     
-    
     func initialize() {
         
         self.title = "Schedule a Visit"
         
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd-MM-yyyy hh:mm", defaultDate: Date().tomorrow , isPrefilledDate: false) { (date) in
+            dateSlot1 = date
         }
         
         txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd-MM-yyyy hh:mm", defaultDate: Date().tomorrow, isPrefilledDate: false) { (date) in
+            dateSlot2 = date
         }
         
         txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd-MM-yyyy hh:mm", defaultDate: Date().tomorrow, isPrefilledDate: false) { (date) in
+            dateSlot3 = date
         }
         
         txtNoOfGuest.setPickerData(arrPickerData: ["1","2","3","4","5","6","7","8","9","10"], selectedPickerDataHandler: { (string, row, index) in
@@ -64,6 +72,27 @@ class ScheduleVisitViewController: ParentViewController {
         txtSlot1.setMinimumDate(minDate: Date().tomorrow)
         txtSlot2.setMinimumDate(minDate: Date().tomorrow)
         txtSlot3.setMinimumDate(minDate: Date().tomorrow)
+        
+    }
+    
+    func checkSlotTime(date : Date) -> Bool {
+        
+        //date formatter
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        
+        // Get current time and format it to compare
+        let currentTimeStr = dateFormatter.string(from: date)
+        let currentTime = dateFormatter.date(from: currentTimeStr)
+        
+        let startTime = dateFormatter.date(from: "10:00 AM")
+        let endTime = dateFormatter.date(from: "6:30 PM")
+        
+        if currentTime! > startTime! && currentTime! < endTime!  {
+            return false
+        }
+        
+        return true
     }
 }
 
@@ -75,6 +104,57 @@ extension ScheduleVisitViewController {
     
     @IBAction func btnSubmitClicked (sender : UIButton) {
         
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
+            }
+            
+            if  objView.isKind(of: UITextView.classForCoder()){
+                let txView = objView as? UITextView
+                txView?.hideValidationMessage(15.0)
+                txView?.resignFirstResponder()
+            }
+        }
+        
+        self.view.layoutIfNeeded()
+        
+        DispatchQueue.main.async {
+            
+            if (self.txtSlot1.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CBlankTimeSlot1Message))
+                
+            } else if (self.txtSlot2.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CBlankTimeSlot2Message))
+                
+            } else if (self.txtSlot3.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CBlankTimeSlot3Message))
+                
+            } else if (self.txtVPurpose.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0,CBlankPurposeOfVisitMessage))
+                
+            } else if (self.txtNoOfGuest.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtNoOfGuest.showValidationMessage(15.0,CBlankNoOfGuestMessage))
+                
+            } else if (self.txtSelectProject.text?.isBlank)! {
+                self.vwContent.addSubview(self.txtSelectProject.showValidationMessage(15.0,CSelectProjectMessage))
+                
+            } else if (self.txtSlot1.text == self.txtSlot2.text) ||  (self.txtSlot2.text == self.txtSlot3.text) || (self.txtSlot1.text == self.txtSlot3.text) {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                
+            } else if self.checkSlotTime(date: self.dateSlot1) ||
+                self.checkSlotTime(date: self.dateSlot2) ||
+                self.checkSlotTime(date: self.dateSlot3) {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CInvalidTimeRangeMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+            } else {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                
+            }
+        }
     }
 }
 

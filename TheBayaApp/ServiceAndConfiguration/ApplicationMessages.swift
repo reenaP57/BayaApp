@@ -49,8 +49,41 @@ var CBlankVerificationCodeMessage   : String{ return CLocalize(text: "Verificati
 var CInvalidVerificationCodeMessage : String{ return CLocalize(text: "Verification code is invalid.") }
 var CBlankOldPasswordMessage        : String{ return CLocalize(text: "Old Password can’t be blank.") }
 
+
+//MARK:-================== Schedule Visit =========================
+//MARK:-
+
+
+var CBlankTimeSlot1Message        : String{ return CLocalize(text: "Time Slot 1 can’t be blank.") }
+var CBlankTimeSlot2Message        : String{ return CLocalize(text: "Time Slot 2 can’t be blank.") }
+var CBlankTimeSlot3Message        : String{ return CLocalize(text: "Time Slot 3 can’t be blank.") }
+var CBlankPurposeOfVisitMessage   : String{ return CLocalize(text: "Purpose of visit can’t be blank.") }
+var CBlankNoOfGuestMessage        : String{ return CLocalize(text: "Please select number of guests to expect.") }
+var CSelectProjectMessage        : String{ return CLocalize(text: "Please select the project you would like to visit.") }
+var CDuplicateTimeSlotMessage        : String{ return CLocalize(text: "This time slot has already been added, please select different time slot.") }
+var CInvalidTimeRangeMessage        : String{ return CLocalize(text: "Time slot should be between 10 am to 6:30 pm.") }
+var CInvalidGapBetweenTimeSlotMessage        : String{ return CLocalize(text: "Time slot should be 24 hours from current time.") }
+
+
+var CBlankFeedbackSupport        : String { return CLocalize(text:"Feedback can’t be blank.")} 
+var CSelectRating                : String { return CLocalize(text:"Please select ratings.")}
+var CBlankFeedbackVisit          : String { return CLocalize(text:"Please enter feedback on your visit.")}
+
+
 var CLogOutMessage : String{ return CLocalize(text: "Are you sure you want to Logout?") }
 
 var CUnsubscribeMessage : String{ return CLocalize(text: "Are you sure you want to unsubscribe this project? You will not get any updates from this project on unsubscribing.") }
+
+var CSuccessRateVisitMessage : String { return CLocalize(text: "Thank you for the review. Your review is valuable to us.")}
+
+var CSuccessScheduleVisitMessage : String { return CLocalize(text: "The schedule visit request has been sent and you will get the update soon.")}
+
+var CVerifyNoteMessage : String { return CLocalize(text: "Please enter verification code that we have sent you on your")}
+
+var CProjectBrochureMessage : String { return CLocalize(text: "Your request is on the way and you will get the brochure in your inbox soon.")}
+
+var CSuccessSupportMessage : String { return CLocalize(text: "Support request has been sent successfully.")}
+
+
 
 

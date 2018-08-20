@@ -89,6 +89,9 @@ extension TimelineDetailViewController {
 
     @IBAction func btnProjectDetailClicked (sender : UIButton) {
         
+        if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+            self.navigationController?.pushViewController(projectDetailVC, animated: true)
+        }
     }
 }
 
@@ -124,6 +127,7 @@ extension TimelineDetailViewController : UICollectionViewDelegateFlowLayout, UIC
             }
             
             cell.btnCall.touchUpInside { (sender) in
+                self.dialPhoneNumber(phoneNumber: "123456789")
             }
             
             return cell
