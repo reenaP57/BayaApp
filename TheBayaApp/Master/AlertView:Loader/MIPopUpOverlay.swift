@@ -15,8 +15,10 @@ class MIPopUpOverlay: UIView {
     
     private static let popUpOverlay:MIPopUpOverlay? = {
         
-        guard let popUpOverlay = MIPopUpOverlay.viewFromXib as? MIPopUpOverlay else { return nil}
+//        guard let popUpOverlay = MIPopUpOverlay.viewFromXib as? MIPopUpOverlay else { return nil}
         
+        guard let popUpOverlay = MIPopUpOverlay.viewFromNib(is_ipad: false) as? MIPopUpOverlay else { return nil}
+
         popUpOverlay.frame = CBounds
         
         return popUpOverlay

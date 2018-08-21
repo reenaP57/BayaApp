@@ -144,6 +144,10 @@
 		5CF50BAC212182AC002FDAB8 /* TimeLineImgCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */; };
 		5CF50BB02121B019002FDAB8 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50BAF2121B019002FDAB8 /* FilterView.swift */; };
 		5CF50BB22121B024002FDAB8 /* FilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF50BB12121B024002FDAB8 /* FilterView.xib */; };
+		5CFCAAA7212BF00B00717C10 /* TimeLineSubscribeTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFCAAA6212BF00B00717C10 /* TimeLineSubscribeTblCell.swift */; };
+		5CFCAAA9212C145500717C10 /* ProjectImageCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CFCAAA8212C145500717C10 /* ProjectImageCollCell.swift */; };
+		5CFCAAAD212C1DC900717C10 /* TabBarView_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CFCAAAC212C1DC900717C10 /* TabBarView_ipad.xib */; };
+		5CFCAAAF212C24C500717C10 /* Main_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CFCAAAE212C24C500717C10 /* Main_ipad.storyboard */; };
 		E45FB1563DC0DB8A3F96B701 /* Pods_TheBayaApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 775C24B430F439213956B3D8 /* Pods_TheBayaApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -288,6 +292,10 @@
 		5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineImgCollCell.swift; sourceTree = "<group>"; };
 		5CF50BAF2121B019002FDAB8 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		5CF50BB12121B024002FDAB8 /* FilterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FilterView.xib; sourceTree = "<group>"; };
+		5CFCAAA6212BF00B00717C10 /* TimeLineSubscribeTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineSubscribeTblCell.swift; sourceTree = "<group>"; };
+		5CFCAAA8212C145500717C10 /* ProjectImageCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectImageCollCell.swift; sourceTree = "<group>"; };
+		5CFCAAAC212C1DC900717C10 /* TabBarView_ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarView_ipad.xib; sourceTree = "<group>"; };
+		5CFCAAAE212C24C500717C10 /* Main_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main_ipad.storyboard; sourceTree = "<group>"; };
 		775C24B430F439213956B3D8 /* Pods_TheBayaApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TheBayaApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBayaApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -547,6 +555,7 @@
 			children = (
 				5C14CA85211C7A7700B06E29 /* TabBarView.swift */,
 				5C14CA87211C7A8000B06E29 /* TabBarView.xib */,
+				5CFCAAAC212C1DC900717C10 /* TabBarView_ipad.xib */,
 				5C14CA89211C7A9B00B06E29 /* TabbarViewController.swift */,
 			);
 			path = Tabbar;
@@ -620,6 +629,7 @@
 			isa = PBXGroup;
 			children = (
 				486FDCEE2119ADBC00EA0188 /* Main.storyboard */,
+				5CFCAAAE212C24C500717C10 /* Main_ipad.storyboard */,
 				5CD763F8211D51EA00C267AB /* HomeViewController.swift */,
 				5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */,
 				5CD76400211DC07E00C267AB /* ProjectViewController.swift */,
@@ -632,6 +642,7 @@
 				5CD763FA211D62B200C267AB /* HomeCollCell.swift */,
 				5CD76414211DC6F900C267AB /* ProjectTblCell.swift */,
 				5CF50BA721215EEB002FDAB8 /* SubscribedProjectCollCell.swift */,
+				5CFCAAA6212BF00B00717C10 /* TimeLineSubscribeTblCell.swift */,
 				5CF50BA921218244002FDAB8 /* TimeLineUpdateTblCell.swift */,
 				5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */,
 				5C1E614D2122C22C0090308D /* NotificationTblCell.swift */,
@@ -644,6 +655,7 @@
 				5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */,
 				5C8D5B972125941C0080193A /* LocationDescTblCell.swift */,
 				5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */,
+				5CFCAAA8212C145500717C10 /* ProjectImageCollCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -765,6 +777,7 @@
 				5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */,
 				5C8D5B88212586B00080193A /* img7.jpeg in Resources */,
 				5C1E61602122F3400090308D /* Profile.storyboard in Resources */,
+				5CFCAAAF212C24C500717C10 /* Main_ipad.storyboard in Resources */,
 				489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */,
 				486FDD4D2119AEF500EA0188 /* MIPopUpOverlay.xib in Resources */,
 				487E4E66211C4CD8000CB32F /* AvenirLTStd-BookOblique.otf in Resources */,
@@ -779,6 +792,7 @@
 				487E4E6A211C4CD8000CB32F /* AvenirLTStd-LightOblique.otf in Resources */,
 				5C475D72212AD6CC00125A19 /* spherical.jpg in Resources */,
 				5C1E61552122DCAA0090308D /* Setting_ipad.storyboard in Resources */,
+				5CFCAAAD212C1DC900717C10 /* TabBarView_ipad.xib in Resources */,
 				5C14CA88211C7A8000B06E29 /* TabBarView.xib in Resources */,
 				5C8D5B83212586B00080193A /* img6.jpeg in Resources */,
 				5CD76413211DC33D00C267AB /* img2.jpeg in Resources */,
@@ -830,13 +844,25 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BFRImageViewer/BFRImageViewer.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
+				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
+				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
+				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BFRImageViewer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -907,6 +933,7 @@
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
 				5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */,
 				5C8D5B8E21258AC60080193A /* FloorPlansImgCollCell.swift in Sources */,
+				5CFCAAA9212C145500717C10 /* ProjectImageCollCell.swift in Sources */,
 				486FDD6C2119AEF500EA0188 /* TheBayaApp.xcdatamodeld in Sources */,
 				5C1E61682123068B0090308D /* SubscribedTblCell.swift in Sources */,
 				5C1E61512122D7A80090308D /* SettingViewController.swift in Sources */,
@@ -915,6 +942,7 @@
 				5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */,
 				5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */,
 				5C8D5B9421258B190080193A /* SpecificationTblCell.swift in Sources */,
+				5CFCAAA7212BF00B00717C10 /* TimeLineSubscribeTblCell.swift in Sources */,
 				5C48FB672128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift in Sources */,
 				5C4DC53D2127F79200C69ACF /* ExtensionUITableView.swift in Sources */,
 				486FDD622119AEF500EA0188 /* ExtensionUINavigationController.swift in Sources */,
@@ -1097,11 +1125,8 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mind.TheBayaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c74b054-5eb5-497a-af17-7381ee416537";
@@ -1119,11 +1144,8 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mind.TheBayaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c74b054-5eb5-497a-af17-7381ee416537";

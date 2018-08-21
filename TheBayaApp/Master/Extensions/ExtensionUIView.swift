@@ -24,7 +24,16 @@ extension UIView {
 extension UIView {
     
     /// This static Computed property is used to getting any UIView from XIB. This Computed property returns UIView? , it means this method return nil value also , while using this method please use if let. If you are not using if let and if this method returns nil and when you are trying to unwrapped this value("UIView!") then application will crash.
-    static var viewFromXib:UIView? {
+//    static var viewFromXib:UIView? {
+//        return self.viewWithNibName(strViewName: "\(self)")
+//    }
+    
+    static func viewFromNib (is_ipad : Bool) -> UIView? {
+        
+        if IS_iPad {
+            return self.viewWithNibName(strViewName: "\(self)_ipad")
+        }
+        
         return self.viewWithNibName(strViewName: "\(self)")
     }
     

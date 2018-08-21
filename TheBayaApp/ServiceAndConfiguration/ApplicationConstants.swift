@@ -100,10 +100,10 @@ let ColorDisableTextField    =  CRGB(r: 220, g: 220, b: 220)
 let ColorGreenSelected       =  CRGB(r: 66, g: 173, b: 62)
 
 //MARK:- UIStoryboard
-let CStoryboardMain = UIStoryboard(name: "Main", bundle: nil)
+let CStoryboardMain = UIStoryboard(name: IS_iPad ? "Main_ipad" : "Main", bundle: nil)
 let CStoryboardLRF  = UIStoryboard(name: IS_iPad ? "LRF_ipad" : "LRF", bundle: nil)
-let CStoryboardSetting  = UIStoryboard(name: IS_iPad ? "Setting_ipad" : "Setting", bundle: nil)
-let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
+let CStoryboardSetting  = UIStoryboard(name: "Main", bundle: nil) //UIStoryboard(name: IS_iPad ? "Setting_ipad" : "Setting", bundle: nil)
+let CStoryboardProfile  = UIStoryboard(name: "Main", bundle: nil) //UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
 
 
 

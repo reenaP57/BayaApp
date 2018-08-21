@@ -41,14 +41,14 @@ class TimeLineUpdateTblCell: UITableViewCell {
 extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrImg.count
+        return IS_iPad ? arrImg.count > 5 ? 5 : arrImg.count : arrImg.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
         
-        return CGSize(width: arrImg.count > 1 ? (CScreenWidth - 70) : (CScreenWidth - 30), height: collectionView.CViewHeight)
+        return  IS_iPad ? CGSize(width: 40, height: 40) : CGSize(width: arrImg.count > 1 ? (CScreenWidth - space) : (CScreenWidth - 30), height: collectionView.CViewHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

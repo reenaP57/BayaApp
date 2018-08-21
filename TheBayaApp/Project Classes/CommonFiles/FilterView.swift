@@ -15,7 +15,8 @@ class FilterView: UIView {
     @IBOutlet weak var btnClear : UIButton!
     @IBOutlet weak var txtStartDate : UITextField!
     @IBOutlet weak var txtEndDate : UITextField!
-    
+    @IBOutlet weak var vwContent : UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -24,7 +25,5 @@ class FilterView: UIView {
         
         txtEndDate.setDatePickerWithDateFormate(dateFormate: "DD/MM/YYYY", defaultDate: Date(), isPrefilledDate: false) { (date) in
         }
-        
-        self.roundCorners([.topLeft, .topRight], radius: 30)
     }
 }

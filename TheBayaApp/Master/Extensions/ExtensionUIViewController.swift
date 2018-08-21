@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import IQKeyboardManagerSwift
 
 import ObjectiveC
 
@@ -289,6 +290,7 @@ extension UIViewController {
     }
     
 }
+
 
 typealias imagePickerControllerCompletionHandler = ((_ image:UIImage? , _ info:[String : Any]?) -> ())
 

@@ -51,11 +51,11 @@
                                     <size key="itemSize" width="179" height="198"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="HomeCollCell" id="Tp6-i8-0Qv" customClass="HomeCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
+                                        <rect key="frame" x="97.5" y="0.0" width="180" height="200"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                             <rect key="frame" x="0.0" y="0.0" width="180" height="200"/>
@@ -65,14 +65,13 @@
                                                     <rect key="frame" x="10" y="10" width="160" height="180"/>
                                                     <subviews>
                                                         <view tag="102" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yY1-OE-gKg" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="129" y="10" width="21" height="21"/>
+                                                            <rect key="frame" x="128" y="10" width="22" height="22"/>
                                                             <subviews>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="round" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-qa-DXi">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="round" translatesAutoresizingMaskIntoConstraints="NO" id="vTT-qa-DXi">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
                                                                 </imageView>
                                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IYt-PX-8eI" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                    <rect key="frame" x="3" y="3" width="15" height="15"/>
+                                                                    <rect key="frame" x="3" y="3" width="16" height="16"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="15" id="Rgc-vc-8Z8"/>
@@ -84,7 +83,11 @@
                                                             </subviews>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
+                                                                <constraint firstItem="vTT-qa-DXi" firstAttribute="top" secondItem="yY1-OE-gKg" secondAttribute="top" id="Cag-4D-4wu"/>
+                                                                <constraint firstItem="vTT-qa-DXi" firstAttribute="leading" secondItem="yY1-OE-gKg" secondAttribute="leading" id="KVD-aq-3CX"/>
+                                                                <constraint firstAttribute="bottom" secondItem="vTT-qa-DXi" secondAttribute="bottom" id="Kbu-GE-oBs"/>
                                                                 <constraint firstItem="IYt-PX-8eI" firstAttribute="leading" secondItem="yY1-OE-gKg" secondAttribute="leading" constant="3" id="R6j-uK-WeF"/>
+                                                                <constraint firstAttribute="trailing" secondItem="vTT-qa-DXi" secondAttribute="trailing" id="VgB-no-Gy1"/>
                                                                 <constraint firstAttribute="trailing" secondItem="IYt-PX-8eI" secondAttribute="trailing" constant="3" id="cGe-Mp-Uph"/>
                                                                 <constraint firstAttribute="bottom" secondItem="IYt-PX-8eI" secondAttribute="bottom" constant="3" id="dsV-P8-XT5"/>
                                                                 <constraint firstItem="IYt-PX-8eI" firstAttribute="top" secondItem="yY1-OE-gKg" secondAttribute="top" constant="3" id="jal-ZG-NRx"/>
@@ -215,141 +218,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="f3O-iV-3Vx">
-                                <rect key="frame" x="0.0" y="20" width="375" height="175"/>
-                                <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="f3O-iV-3Vx" secondAttribute="height" multiplier="15:7" id="Ki0-B3-clj"/>
-                                </constraints>
-                                <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i8E-Vc-Aat">
-                                    <size key="itemSize" width="345" height="145"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="11" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscribedProjectCollCell" id="plN-JB-Hqt" customClass="SubscribedProjectCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="0.0" width="345" height="175"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="175"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyu-GC-tOw" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="10" width="341" height="155"/>
-                                                    <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AB6-S5-hnV">
-                                                            <rect key="frame" x="308" y="10" width="23" height="23"/>
-                                                            <state key="normal" image="non_select_"/>
-                                                            <state key="selected" image="select"/>
-                                                        </button>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Baya Victoria Chembur" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiZ-OQ-lha" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="26" width="210" height="15"/>
-                                                            <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="15"/>
-                                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL5-7M-r2c" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="54" width="30" height="14"/>
-                                                            <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="14"/>
-                                                            <color key="textColor" red="0.29411764705882354" green="0.71764705882352942" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project complete" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLO-7G-j7X" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="48" y="54" width="177" height="14"/>
-                                                            <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="14"/>
-                                                            <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="Muf-6S-XK9">
-                                                            <rect key="frame" x="185" y="88" width="33" height="20"/>
-                                                        </imageView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeV-Lf-qSA" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="185" y="88" width="33" height="20"/>
-                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="EzW-f5-4zv"/>
-                                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="xdj-Lo-a0A"/>
-                                                            </constraints>
-                                                            <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="13"/>
-                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6r-nh-ebs" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="96" width="32" height="25"/>
-                                                            <color key="backgroundColor" red="0.29411764705882354" green="0.71764705882352942" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" secondItem="y6r-nh-ebs" secondAttribute="height" multiplier="32:25" id="MnC-uK-j37"/>
-                                                            </constraints>
-                                                            <state key="normal" image="call"/>
-                                                            <state key="selected" image="call"/>
-                                                            <userDefinedRuntimeAttributes>
-                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                    <real key="value" value="5"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                            </userDefinedRuntimeAttributes>
-                                                        </button>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="project_completion" translatesAutoresizingMaskIntoConstraints="NO" id="mEf-El-bae">
-                                                            <rect key="frame" x="240" y="30" width="86" height="115"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="mEf-El-bae" secondAttribute="bottom" constant="10" id="0I8-Pr-osA"/>
-                                                        <constraint firstItem="mEf-El-bae" firstAttribute="leading" secondItem="DiZ-OQ-lha" secondAttribute="trailing" constant="15" id="9n7-CZ-TaY"/>
-                                                        <constraint firstItem="y6r-nh-ebs" firstAttribute="top" secondItem="CL5-7M-r2c" secondAttribute="bottom" constant="13" id="Ac8-W0-zie"/>
-                                                        <constraint firstItem="y6r-nh-ebs" firstAttribute="leading" secondItem="CL5-7M-r2c" secondAttribute="leading" id="DH1-QK-6X2"/>
-                                                        <constraint firstItem="AB6-S5-hnV" firstAttribute="top" secondItem="fyu-GC-tOw" secondAttribute="top" constant="10" id="JnR-Rz-jM6"/>
-                                                        <constraint firstItem="wLO-7G-j7X" firstAttribute="centerY" secondItem="CL5-7M-r2c" secondAttribute="centerY" id="Kct-yJ-IS6"/>
-                                                        <constraint firstItem="Muf-6S-XK9" firstAttribute="top" secondItem="DeV-Lf-qSA" secondAttribute="top" id="MvU-6N-jkt"/>
-                                                        <constraint firstItem="Muf-6S-XK9" firstAttribute="trailing" secondItem="DeV-Lf-qSA" secondAttribute="trailing" id="cYd-G2-d1K"/>
-                                                        <constraint firstAttribute="trailing" secondItem="mEf-El-bae" secondAttribute="trailing" constant="15" id="dCA-dy-8WB"/>
-                                                        <constraint firstItem="Muf-6S-XK9" firstAttribute="bottom" secondItem="DeV-Lf-qSA" secondAttribute="bottom" id="dvp-BZ-d8C"/>
-                                                        <constraint firstItem="mEf-El-bae" firstAttribute="leading" secondItem="DeV-Lf-qSA" secondAttribute="trailing" id="f2g-Z3-Pgi"/>
-                                                        <constraint firstItem="Muf-6S-XK9" firstAttribute="leading" secondItem="DeV-Lf-qSA" secondAttribute="leading" id="gVf-FB-3bZ"/>
-                                                        <constraint firstItem="wLO-7G-j7X" firstAttribute="leading" secondItem="CL5-7M-r2c" secondAttribute="trailing" constant="3" id="h53-ld-GMq"/>
-                                                        <constraint firstItem="CL5-7M-r2c" firstAttribute="leading" secondItem="DiZ-OQ-lha" secondAttribute="leading" id="lkb-xx-aOo"/>
-                                                        <constraint firstItem="DeV-Lf-qSA" firstAttribute="top" secondItem="wLO-7G-j7X" secondAttribute="bottom" constant="5" id="oiM-F3-5CO"/>
-                                                        <constraint firstItem="DiZ-OQ-lha" firstAttribute="leading" secondItem="fyu-GC-tOw" secondAttribute="leading" constant="15" id="t3h-Fh-gIp"/>
-                                                        <constraint firstItem="DiZ-OQ-lha" firstAttribute="top" secondItem="fyu-GC-tOw" secondAttribute="top" constant="26" id="t47-LG-0ml"/>
-                                                        <constraint firstItem="wLO-7G-j7X" firstAttribute="trailing" secondItem="DiZ-OQ-lha" secondAttribute="trailing" id="tFe-R4-bUE"/>
-                                                        <constraint firstAttribute="trailing" secondItem="AB6-S5-hnV" secondAttribute="trailing" constant="10" id="xy6-fZ-j1C"/>
-                                                        <constraint firstItem="CL5-7M-r2c" firstAttribute="top" secondItem="DiZ-OQ-lha" secondAttribute="bottom" constant="13" id="zVO-Aq-QKA"/>
-                                                    </constraints>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                            <real key="value" value="5"/>
-                                                        </userDefinedRuntimeAttribute>
-                                                    </userDefinedRuntimeAttributes>
-                                                </view>
-                                            </subviews>
-                                        </view>
-                                        <constraints>
-                                            <constraint firstItem="fyu-GC-tOw" firstAttribute="top" secondItem="plN-JB-Hqt" secondAttribute="top" constant="10" id="H2V-NW-1pY"/>
-                                            <constraint firstItem="fyu-GC-tOw" firstAttribute="leading" secondItem="plN-JB-Hqt" secondAttribute="leading" id="YU3-A6-eeu"/>
-                                            <constraint firstAttribute="trailing" secondItem="fyu-GC-tOw" secondAttribute="trailing" constant="4" id="hYd-Bw-H8H"/>
-                                            <constraint firstAttribute="bottom" secondItem="fyu-GC-tOw" secondAttribute="bottom" constant="10" id="mbn-bj-Mg7"/>
-                                        </constraints>
-                                        <size key="customSize" width="345" height="175"/>
-                                        <connections>
-                                            <outlet property="btnCall" destination="y6r-nh-ebs" id="Of8-gv-eGB"/>
-                                            <outlet property="btnSubscribe" destination="AB6-S5-hnV" id="hZX-SR-LXk"/>
-                                            <outlet property="imgVProgress" destination="mEf-El-bae" id="UeC-IX-iWy"/>
-                                            <outlet property="lblCompleted" destination="CL5-7M-r2c" id="5NI-hc-M2Q"/>
-                                            <outlet property="lblPercentage" destination="DeV-Lf-qSA" id="VMf-i6-YT5"/>
-                                            <outlet property="lblProjectName" destination="DiZ-OQ-lha" id="jFo-r5-vxp"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
-                                <connections>
-                                    <outlet property="dataSource" destination="uL6-w3-mAz" id="yVk-o0-RrP"/>
-                                    <outlet property="delegate" destination="uL6-w3-mAz" id="kWk-2v-P0e"/>
-                                </connections>
-                            </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="298" estimatedRowHeight="298" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-fn-5OQ">
-                                <rect key="frame" x="0.0" y="195" width="375" height="397"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="572"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeLineUpdateTblCell" rowHeight="301" id="B9X-8c-cjv" customClass="TimeLineUpdateTblCell" customModule="TheBayaApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="1" width="375" height="301"/>
@@ -362,7 +233,7 @@
                                                     <rect key="frame" x="0.0" y="5" width="375" height="185"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="tEt-BV-xb2" secondAttribute="height" multiplier="75:37" id="HEe-DB-9Ud"/>
+                                                        <constraint firstAttribute="width" secondItem="tEt-BV-xb2" secondAttribute="height" multiplier="75:37" id="iRg-e9-VlR"/>
                                                     </constraints>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nGE-Zj-UUe">
                                                         <size key="itemSize" width="301" height="181"/>
@@ -487,6 +358,181 @@
                                             <outlet property="pageControlSlider" destination="HLB-Ct-uBG" id="yKN-F4-BAX"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="TimeLineSubscribeTblCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="TimeLineSubscribeTblCell" rowHeight="175" id="Frl-K3-eRI" customClass="TimeLineSubscribeTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="302" width="375" height="175"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Frl-K3-eRI" id="r0Q-Fc-f7B">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="f3O-iV-3Vx">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                                    <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="175" id="9EG-8O-RL7"/>
+                                                    </constraints>
+                                                    <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
+                                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i8E-Vc-Aat">
+                                                        <size key="itemSize" width="345" height="145"/>
+                                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                        <inset key="sectionInset" minX="15" minY="0.0" maxX="11" maxY="0.0"/>
+                                                    </collectionViewFlowLayout>
+                                                    <cells>
+                                                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SubscribedProjectCollCell" id="plN-JB-Hqt" customClass="SubscribedProjectCollCell" customModule="TheBayaApp" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="0.0" width="345" height="175"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="175"/>
+                                                                <autoresizingMask key="autoresizingMask"/>
+                                                                <subviews>
+                                                                    <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyu-GC-tOw" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="10" width="341" height="155"/>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AB6-S5-hnV">
+                                                                                <rect key="frame" x="308" y="10" width="23" height="23"/>
+                                                                                <state key="normal" image="non_select_"/>
+                                                                                <state key="selected" image="select"/>
+                                                                            </button>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Baya Victoria Chembur" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DiZ-OQ-lha" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                                                <rect key="frame" x="15" y="26" width="193.5" height="15"/>
+                                                                                <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="15"/>
+                                                                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="50%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CL5-7M-r2c" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                                                <rect key="frame" x="15" y="54" width="30" height="14"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="30" id="LNF-Wa-D7H"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="14"/>
+                                                                                <color key="textColor" red="0.29411764705882354" green="0.71764705882352942" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project complete" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLO-7G-j7X" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                                                <rect key="frame" x="48" y="54" width="108.5" height="14"/>
+                                                                                <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="14"/>
+                                                                                <color key="textColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.53333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rectangle" translatesAutoresizingMaskIntoConstraints="NO" id="Muf-6S-XK9">
+                                                                                <rect key="frame" x="189" y="76" width="36" height="20"/>
+                                                                            </imageView>
+                                                                            <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeV-Lf-qSA" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                                                <rect key="frame" x="189" y="76" width="33" height="20"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="EzW-f5-4zv"/>
+                                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="xdj-Lo-a0A"/>
+                                                                                </constraints>
+                                                                                <fontDescription key="fontDescription" name="AvenirLTStd-Black" family="Avenir LT Std" pointSize="13"/>
+                                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <nil key="highlightedColor"/>
+                                                                            </label>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y6r-nh-ebs" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                                                                <rect key="frame" x="15" y="96" width="32" height="25"/>
+                                                                                <color key="backgroundColor" red="0.29411764705882354" green="0.71764705882352942" blue="0.27843137254901962" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="AsM-mv-C6d"/>
+                                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="qr9-pc-PLr"/>
+                                                                                </constraints>
+                                                                                <state key="normal" image="call"/>
+                                                                                <state key="selected" image="call"/>
+                                                                                <userDefinedRuntimeAttributes>
+                                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                        <real key="value" value="5"/>
+                                                                                    </userDefinedRuntimeAttribute>
+                                                                                </userDefinedRuntimeAttributes>
+                                                                            </button>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="project_progress" translatesAutoresizingMaskIntoConstraints="NO" id="mEf-El-bae">
+                                                                                <rect key="frame" x="240" y="30" width="86" height="115"/>
+                                                                            </imageView>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="project_completion" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-WE-hCm">
+                                                                                <rect key="frame" x="240" y="30" width="86" height="115"/>
+                                                                            </imageView>
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedline" translatesAutoresizingMaskIntoConstraints="NO" id="OM6-9Z-gT6">
+                                                                                <rect key="frame" x="226" y="83" width="100" height="5"/>
+                                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="width" constant="100" id="hTE-7t-Glt"/>
+                                                                                    <constraint firstAttribute="height" constant="5" id="qfo-xO-VPd"/>
+                                                                                </constraints>
+                                                                            </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="bottom" secondItem="mEf-El-bae" secondAttribute="bottom" constant="10" id="0I8-Pr-osA"/>
+                                                                            <constraint firstItem="DeV-Lf-qSA" firstAttribute="centerY" secondItem="OM6-9Z-gT6" secondAttribute="centerY" id="2fg-vZ-uUy"/>
+                                                                            <constraint firstItem="OM6-9Z-gT6" firstAttribute="bottom" secondItem="5Um-WE-hCm" secondAttribute="bottom" constant="-57" id="3Ks-5e-cMk"/>
+                                                                            <constraint firstItem="wLO-7G-j7X" firstAttribute="top" secondItem="CL5-7M-r2c" secondAttribute="top" id="7JW-iG-7Y2"/>
+                                                                            <constraint firstItem="5Um-WE-hCm" firstAttribute="leading" secondItem="mEf-El-bae" secondAttribute="leading" id="7fS-3K-7pZ"/>
+                                                                            <constraint firstItem="y6r-nh-ebs" firstAttribute="top" secondItem="CL5-7M-r2c" secondAttribute="bottom" constant="28" id="Ac8-W0-zie"/>
+                                                                            <constraint firstItem="y6r-nh-ebs" firstAttribute="leading" secondItem="CL5-7M-r2c" secondAttribute="leading" id="DH1-QK-6X2"/>
+                                                                            <constraint firstItem="DeV-Lf-qSA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wLO-7G-j7X" secondAttribute="trailing" constant="5" id="Fmq-IK-cKp"/>
+                                                                            <constraint firstItem="AB6-S5-hnV" firstAttribute="top" secondItem="fyu-GC-tOw" secondAttribute="top" constant="10" id="JnR-Rz-jM6"/>
+                                                                            <constraint firstItem="5Um-WE-hCm" firstAttribute="top" secondItem="mEf-El-bae" secondAttribute="top" id="K4b-HK-2JH"/>
+                                                                            <constraint firstItem="Muf-6S-XK9" firstAttribute="top" secondItem="DeV-Lf-qSA" secondAttribute="top" id="MvU-6N-jkt"/>
+                                                                            <constraint firstItem="5Um-WE-hCm" firstAttribute="bottom" secondItem="mEf-El-bae" secondAttribute="bottom" id="Nof-4z-00n"/>
+                                                                            <constraint firstItem="OM6-9Z-gT6" firstAttribute="leading" secondItem="Muf-6S-XK9" secondAttribute="trailing" constant="1" id="XWd-4Z-4qU"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="mEf-El-bae" secondAttribute="trailing" constant="15" id="dCA-dy-8WB"/>
+                                                                            <constraint firstItem="Muf-6S-XK9" firstAttribute="bottom" secondItem="DeV-Lf-qSA" secondAttribute="bottom" id="dvp-BZ-d8C"/>
+                                                                            <constraint firstItem="mEf-El-bae" firstAttribute="leading" secondItem="DeV-Lf-qSA" secondAttribute="trailing" constant="18" id="f2g-Z3-Pgi"/>
+                                                                            <constraint firstItem="Muf-6S-XK9" firstAttribute="leading" secondItem="DeV-Lf-qSA" secondAttribute="leading" id="gVf-FB-3bZ"/>
+                                                                            <constraint firstItem="5Um-WE-hCm" firstAttribute="trailing" secondItem="mEf-El-bae" secondAttribute="trailing" id="gtx-vn-qgh"/>
+                                                                            <constraint firstItem="wLO-7G-j7X" firstAttribute="leading" secondItem="CL5-7M-r2c" secondAttribute="trailing" constant="3" id="h53-ld-GMq"/>
+                                                                            <constraint firstItem="OM6-9Z-gT6" firstAttribute="trailing" secondItem="mEf-El-bae" secondAttribute="trailing" id="khj-vG-Xhq"/>
+                                                                            <constraint firstItem="CL5-7M-r2c" firstAttribute="leading" secondItem="DiZ-OQ-lha" secondAttribute="leading" id="lkb-xx-aOo"/>
+                                                                            <constraint firstItem="DiZ-OQ-lha" firstAttribute="leading" secondItem="fyu-GC-tOw" secondAttribute="leading" constant="15" id="t3h-Fh-gIp"/>
+                                                                            <constraint firstItem="DiZ-OQ-lha" firstAttribute="top" secondItem="fyu-GC-tOw" secondAttribute="top" constant="26" id="t47-LG-0ml"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="AB6-S5-hnV" secondAttribute="trailing" constant="10" id="xy6-fZ-j1C"/>
+                                                                            <constraint firstItem="CL5-7M-r2c" firstAttribute="top" secondItem="DiZ-OQ-lha" secondAttribute="bottom" constant="13" id="zVO-Aq-QKA"/>
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                                <real key="value" value="5"/>
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                            </view>
+                                                            <constraints>
+                                                                <constraint firstItem="fyu-GC-tOw" firstAttribute="top" secondItem="plN-JB-Hqt" secondAttribute="top" constant="10" id="H2V-NW-1pY"/>
+                                                                <constraint firstItem="fyu-GC-tOw" firstAttribute="leading" secondItem="plN-JB-Hqt" secondAttribute="leading" id="YU3-A6-eeu"/>
+                                                                <constraint firstAttribute="trailing" secondItem="fyu-GC-tOw" secondAttribute="trailing" constant="4" id="hYd-Bw-H8H"/>
+                                                                <constraint firstAttribute="bottom" secondItem="fyu-GC-tOw" secondAttribute="bottom" constant="10" id="mbn-bj-Mg7"/>
+                                                            </constraints>
+                                                            <size key="customSize" width="345" height="175"/>
+                                                            <connections>
+                                                                <outlet property="btnCall" destination="y6r-nh-ebs" id="Of8-gv-eGB"/>
+                                                                <outlet property="btnSubscribe" destination="AB6-S5-hnV" id="hZX-SR-LXk"/>
+                                                                <outlet property="cnstImgvDottedBottom" destination="3Ks-5e-cMk" id="eJW-iA-o2F"/>
+                                                                <outlet property="cnstlblPercentageCenter" destination="2fg-vZ-uUy" id="xHa-wX-Sb7"/>
+                                                                <outlet property="imgVDottedLine" destination="OM6-9Z-gT6" id="Qoa-2D-ypa"/>
+                                                                <outlet property="imgVPjctCompletion" destination="5Um-WE-hCm" id="bxU-4P-FlS"/>
+                                                                <outlet property="imgVProgress" destination="mEf-El-bae" id="UeC-IX-iWy"/>
+                                                                <outlet property="lblCompleted" destination="CL5-7M-r2c" id="5NI-hc-M2Q"/>
+                                                                <outlet property="lblPercentage" destination="DeV-Lf-qSA" id="VMf-i6-YT5"/>
+                                                                <outlet property="lblProjectName" destination="DiZ-OQ-lha" id="jFo-r5-vxp"/>
+                                                            </connections>
+                                                        </collectionViewCell>
+                                                    </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="Frl-K3-eRI" id="8p5-pw-0Qa"/>
+                                                        <outlet property="delegate" destination="Frl-K3-eRI" id="ZPb-yS-pd7"/>
+                                                    </connections>
+                                                </collectionView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="f3O-iV-3Vx" firstAttribute="top" secondItem="r0Q-Fc-f7B" secondAttribute="top" id="WCR-Ak-0pv"/>
+                                                <constraint firstAttribute="bottom" secondItem="f3O-iV-3Vx" secondAttribute="bottom" id="YgY-rC-lEx"/>
+                                                <constraint firstItem="f3O-iV-3Vx" firstAttribute="leading" secondItem="r0Q-Fc-f7B" secondAttribute="leading" id="ijz-lr-bY3"/>
+                                                <constraint firstAttribute="trailing" secondItem="f3O-iV-3Vx" secondAttribute="trailing" id="sML-Iv-Zt2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="collSubscribe" destination="f3O-iV-3Vx" id="pNU-Jk-9n3"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="uL6-w3-mAz" id="e9T-8K-Bcd"/>
@@ -496,6 +542,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-iU-CJJ" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="602" width="162" height="50"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vtH-iU-CJJ" secondAttribute="height" multiplier="81:25" id="epq-iB-4Tm"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Schedule Visit" image="schedule">
@@ -531,17 +580,13 @@
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="vtH-iU-CJJ" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" constant="20" id="49X-uY-pgE"/>
-                            <constraint firstItem="vtH-iU-CJJ" firstAttribute="top" secondItem="gVF-fn-5OQ" secondAttribute="bottom" constant="10" id="5pj-Kv-IAQ"/>
-                            <constraint firstItem="gVF-fn-5OQ" firstAttribute="top" secondItem="f3O-iV-3Vx" secondAttribute="bottom" id="8aM-iH-VTS"/>
+                            <constraint firstItem="gVF-fn-5OQ" firstAttribute="top" secondItem="MAJ-h1-BhF" secondAttribute="top" id="5xc-DV-JO7"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="centerY" secondItem="vtH-iU-CJJ" secondAttribute="centerY" id="8aZ-lO-l2m"/>
-                            <constraint firstItem="f3O-iV-3Vx" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="Asq-yI-M4w"/>
-                            <constraint firstItem="f3O-iV-3Vx" firstAttribute="top" secondItem="MAJ-h1-BhF" secondAttribute="top" id="Hce-9s-BkN"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="width" secondItem="vtH-iU-CJJ" secondAttribute="width" id="IRF-yU-4cJ"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="height" secondItem="vtH-iU-CJJ" secondAttribute="height" id="Ls0-XP-tiS"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="MpB-LY-hRw"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="bottom" secondItem="gVF-fn-5OQ" secondAttribute="bottom" constant="75" id="OtT-IC-aqF"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="bottom" secondItem="vtH-iU-CJJ" secondAttribute="bottom" constant="15" id="d5e-lO-mky"/>
-                            <constraint firstItem="f3O-iV-3Vx" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="huy-9r-yHC"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="trailing" secondItem="y7L-Zi-OZ0" secondAttribute="trailing" constant="20" id="ibK-Is-C5c"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="leading" secondItem="vtH-iU-CJJ" secondAttribute="trailing" constant="11" id="if2-om-YjI"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="l5T-1J-tq9"/>
@@ -549,7 +594,6 @@
                         <viewLayoutGuide key="safeArea" id="MAJ-h1-BhF"/>
                     </view>
                     <connections>
-                        <outlet property="collProject" destination="f3O-iV-3Vx" id="N7k-BS-l0v"/>
                         <outlet property="tblUpdates" destination="gVF-fn-5OQ" id="7eu-aG-W1u"/>
                     </connections>
                 </viewController>
@@ -598,10 +642,10 @@
                                                             </constraints>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow" translatesAutoresizingMaskIntoConstraints="NO" id="bTF-6H-Cqy">
-                                                            <rect key="frame" x="0.0" y="73" width="345" height="82"/>
+                                                            <rect key="frame" x="0.0" y="56" width="345" height="100"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" secondItem="bTF-6H-Cqy" secondAttribute="height" multiplier="345:82" id="DrZ-HS-rzX"/>
+                                                                <constraint firstAttribute="width" secondItem="bTF-6H-Cqy" secondAttribute="height" multiplier="345:82" constant="-75.731707317073131" id="DrZ-HS-rzX"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Baya Victoria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmG-og-1gc" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
@@ -669,7 +713,7 @@
                                                         <constraint firstItem="Los-lw-SsB" firstAttribute="leading" secondItem="bRj-yR-e2B" secondAttribute="leading" id="Bls-Y4-rUa"/>
                                                         <constraint firstItem="bTF-6H-Cqy" firstAttribute="trailing" secondItem="Los-lw-SsB" secondAttribute="trailing" id="Kdh-l9-krr"/>
                                                         <constraint firstAttribute="trailing" secondItem="gdx-eI-kPh" secondAttribute="trailing" constant="15" id="Nl7-mD-wzb"/>
-                                                        <constraint firstItem="bTF-6H-Cqy" firstAttribute="bottom" secondItem="Los-lw-SsB" secondAttribute="bottom" id="NwM-Zy-BVT"/>
+                                                        <constraint firstItem="bTF-6H-Cqy" firstAttribute="bottom" secondItem="Los-lw-SsB" secondAttribute="bottom" constant="1" id="NwM-Zy-BVT"/>
                                                         <constraint firstItem="gdx-eI-kPh" firstAttribute="bottom" secondItem="Los-lw-SsB" secondAttribute="bottom" constant="-10" id="OVH-KI-uHl"/>
                                                         <constraint firstItem="r3Z-5W-0e9" firstAttribute="leading" secondItem="bRj-yR-e2B" secondAttribute="leading" constant="15" id="Piq-GG-Kvw"/>
                                                         <constraint firstItem="gdx-eI-kPh" firstAttribute="top" secondItem="UmG-og-1gc" secondAttribute="bottom" constant="10" id="Tlj-Uk-tKK"/>
@@ -1104,12 +1148,57 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epk-dE-nsY">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="2096"/>
                                         <subviews>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img3.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="lyH-YA-Do4">
+                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="7eA-RI-v3n">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="lyH-YA-Do4" secondAttribute="height" multiplier="75:52" id="cdf-Rf-oPM"/>
+                                                    <constraint firstAttribute="width" secondItem="7eA-RI-v3n" secondAttribute="height" multiplier="75:52" id="uob-Da-bU4"/>
                                                 </constraints>
-                                            </imageView>
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="RN4-M0-wKl">
+                                                    <size key="itemSize" width="375" height="260"/>
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                </collectionViewFlowLayout>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ProjectImageCollCell" id="8KH-Kp-fET" customClass="ProjectImageCollCell" customModule="TheBayaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                                            <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                                            <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img7.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="Inb-2j-7iD">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="260"/>
+                                                                </imageView>
+                                                            </subviews>
+                                                        </view>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="Inb-2j-7iD" secondAttribute="trailing" id="TmV-jh-AOQ"/>
+                                                            <constraint firstItem="Inb-2j-7iD" firstAttribute="top" secondItem="8KH-Kp-fET" secondAttribute="top" id="fDi-J7-QMX"/>
+                                                            <constraint firstAttribute="bottom" secondItem="Inb-2j-7iD" secondAttribute="bottom" id="hOO-e8-KSO"/>
+                                                            <constraint firstItem="Inb-2j-7iD" firstAttribute="leading" secondItem="8KH-Kp-fET" secondAttribute="leading" id="ofS-xt-qxt"/>
+                                                        </constraints>
+                                                        <size key="customSize" width="375" height="260"/>
+                                                        <connections>
+                                                            <outlet property="imgVProject" destination="Inb-2j-7iD" id="FQx-gF-3d2"/>
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="yEF-Az-t2f" id="75q-DB-sCX"/>
+                                                    <outlet property="delegate" destination="yEF-Az-t2f" id="kG9-2M-36E"/>
+                                                </connections>
+                                            </collectionView>
+                                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="rxp-zV-zXM" customClass="MIGenericPageControlView" customModule="TheBayaApp" customModuleProvider="target">
+                                                <rect key="frame" x="168" y="223" width="39" height="37"/>
+                                                <color key="pageIndicatorTintColor" red="0.85098039219999999" green="0.94509803920000002" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="currentPageIndicatorTintColor" red="0.29411764709999999" green="0.71764705880000002" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="currentPageImage" value="white_select_line"/>
+                                                    <userDefinedRuntimeAttribute type="image" keyPath="otherPagesImage" value="white_unselect_line"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </pageControl>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shadow1" translatesAutoresizingMaskIntoConstraints="NO" id="Tas-LU-FZF">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="110"/>
                                                 <constraints>
@@ -1202,7 +1291,8 @@ reach for you.</string>
                                                 <rect key="frame" x="332" y="409" width="28" height="22"/>
                                                 <color key="backgroundColor" red="0.29411764709999999" green="0.71764705880000002" blue="0.2784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" secondItem="Jow-uF-17W" secondAttribute="height" multiplier="32:25" id="YVT-Gm-nqI"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="28" id="DSV-0t-zEx"/>
+                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="cgd-cP-ZXy"/>
                                                 </constraints>
                                                 <state key="normal" image="call"/>
                                                 <state key="selected" image="call"/>
@@ -1215,7 +1305,7 @@ reach for you.</string>
                                                     <action selector="btnCallClickedWithSender:" destination="yEF-Az-t2f" eventType="touchUpInside" id="Q6W-Vg-OPR"/>
                                                 </connections>
                                             </button>
-                                            <slider opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="75" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-ap-ThJ">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="-15" maxValue="115" translatesAutoresizingMaskIntoConstraints="NO" id="GfX-ap-ThJ">
                                                 <rect key="frame" x="15" y="435.5" width="345" height="31"/>
                                                 <color key="minimumTrackTintColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="maximumTrackTintColor" red="0.87058823529411766" green="1" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1291,11 +1381,11 @@ reach for you.</string>
                                                     <size key="itemSize" width="116" height="115"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LocationAdvantagesCollCell" id="Yya-23-P1N" customClass="LocationAdvantagesCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="7.5" width="116" height="105"/>
+                                                        <rect key="frame" x="15" y="7.5" width="116" height="105"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="116" height="105"/>
@@ -1430,11 +1520,11 @@ reach for you.</string>
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlanTypeCollCell" id="fZj-Kl-07i" customClass="PlanTypeCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
+                                                        <rect key="frame" x="15" y="0.0" width="100" height="40"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="40"/>
@@ -1486,18 +1576,18 @@ reach for you.</string>
                                                     <size key="itemSize" width="183" height="193"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FloorPlansImgCollCell" id="wzn-ed-zIv" customClass="FloorPlansImgCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="-1.5" width="183" height="193"/>
+                                                        <rect key="frame" x="15" y="0.0" width="183" height="190"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                            <rect key="frame" x="0.0" y="0.0" width="183" height="193"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="183" height="190"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img1.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="dCi-Zn-pY7">
-                                                                    <rect key="frame" x="10" y="10" width="163" height="173"/>
+                                                                    <rect key="frame" x="10" y="10" width="163" height="170"/>
                                                                 </imageView>
                                                             </subviews>
                                                         </view>
@@ -1507,7 +1597,7 @@ reach for you.</string>
                                                             <constraint firstAttribute="bottom" secondItem="dCi-Zn-pY7" secondAttribute="bottom" constant="10" id="Poy-Wm-crI"/>
                                                             <constraint firstAttribute="trailing" secondItem="dCi-Zn-pY7" secondAttribute="trailing" constant="10" id="aO9-AP-sTX"/>
                                                         </constraints>
-                                                        <size key="customSize" width="183" height="193"/>
+                                                        <size key="customSize" width="183" height="190"/>
                                                         <connections>
                                                             <outlet property="imgVPlan" destination="dCi-Zn-pY7" id="wkh-Fm-Tm8"/>
                                                         </connections>
@@ -1541,11 +1631,11 @@ reach for you.</string>
                                                     <size key="itemSize" width="183" height="80"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="OverViewCollCell" id="ZRY-hZ-j6w" customClass="OverViewCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="60"/>
+                                                        <rect key="frame" x="94" y="0.0" width="187" height="60"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="187" height="60"/>
@@ -1772,11 +1862,11 @@ reach for you.</string>
                                                     <size key="itemSize" width="50" height="50"/>
                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                                 </collectionViewFlowLayout>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="AmmenitiesCollCell" id="HNq-Sr-1fU" customClass="AmmenitiesCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="10" width="100" height="80"/>
+                                                        <rect key="frame" x="15" y="10" width="100" height="80"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                                                             <rect key="frame" x="0.0" y="0.0" width="100" height="80"/>
@@ -1953,23 +2043,22 @@ reach for you.</string>
                                             <constraint firstItem="Ss9-Hd-pds" firstAttribute="top" secondItem="0jd-OQ-tyb" secondAttribute="bottom" constant="17" id="1in-1J-UDz"/>
                                             <constraint firstAttribute="trailing" secondItem="yWP-mV-xNg" secondAttribute="trailing" constant="15" id="1kq-XF-lqq"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ckX-VM-skJ" secondAttribute="trailing" constant="15" id="2S5-3f-SW0"/>
-                                            <constraint firstItem="lyH-YA-Do4" firstAttribute="top" secondItem="epk-dE-nsY" secondAttribute="top" id="36X-Bd-55e"/>
                                             <constraint firstItem="4Yz-G1-Tlo" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="3QX-VF-93J"/>
                                             <constraint firstItem="v4n-RR-INM" firstAttribute="top" secondItem="qiN-Pf-CnU" secondAttribute="bottom" constant="15" id="3QY-3x-qh5"/>
                                             <constraint firstItem="wi8-nG-8DM" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="4Pd-cS-gWj"/>
                                             <constraint firstItem="wMH-Ke-vef" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" constant="15" id="4X2-kS-Vdc"/>
-                                            <constraint firstItem="lyH-YA-Do4" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="532-0y-DXM"/>
                                             <constraint firstItem="47Q-K0-mL5" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="6Xq-Vw-i1c"/>
                                             <constraint firstItem="Ssb-3I-HUj" firstAttribute="top" secondItem="qTe-p4-9hj" secondAttribute="bottom" id="6Y3-XK-Bve"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="x5l-9w-2dD" secondAttribute="trailing" constant="15" id="952-sx-RuQ"/>
                                             <constraint firstAttribute="trailing" secondItem="lOm-hB-ZZZ" secondAttribute="trailing" id="97X-Hr-Eth"/>
+                                            <constraint firstAttribute="trailing" secondItem="7eA-RI-v3n" secondAttribute="trailing" id="9mb-7p-wP6"/>
                                             <constraint firstItem="Jow-uF-17W" firstAttribute="trailing" secondItem="0jd-OQ-tyb" secondAttribute="trailing" id="BL8-B0-JeM"/>
                                             <constraint firstAttribute="trailing" secondItem="QGw-aK-VSF" secondAttribute="trailing" id="Br7-dW-eua"/>
                                             <constraint firstItem="09M-gL-Ti0" firstAttribute="width" secondItem="epk-dE-nsY" secondAttribute="width" multiplier="0.333333" id="C1U-I2-Jg7"/>
                                             <constraint firstItem="wi8-nG-8DM" firstAttribute="top" secondItem="JTK-Ru-JRM" secondAttribute="bottom" constant="15" id="CEj-7J-fcE"/>
                                             <constraint firstItem="Ivw-8J-WIA" firstAttribute="top" secondItem="xNN-wK-maR" secondAttribute="bottom" constant="15" id="Caf-Zv-Sz6"/>
                                             <constraint firstAttribute="trailing" secondItem="mbX-Qn-kYW" secondAttribute="trailing" id="DAF-AN-ofs"/>
-                                            <constraint firstItem="grZ-mk-O9k" firstAttribute="top" secondItem="lyH-YA-Do4" secondAttribute="bottom" constant="20" id="DNi-cs-opa"/>
+                                            <constraint firstItem="7eA-RI-v3n" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="EAd-mp-Oy3"/>
                                             <constraint firstItem="yWP-mV-xNg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="grZ-mk-O9k" secondAttribute="trailing" constant="15" id="Ebu-cj-tBI"/>
                                             <constraint firstItem="h9G-Wc-JcK" firstAttribute="top" secondItem="4Yz-G1-Tlo" secondAttribute="bottom" constant="15" id="Eoi-i7-plj"/>
                                             <constraint firstItem="6JP-vZ-reE" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="F1a-fq-xo9"/>
@@ -1980,6 +2069,7 @@ reach for you.</string>
                                             <constraint firstItem="lOm-hB-ZZZ" firstAttribute="top" secondItem="h9G-Wc-JcK" secondAttribute="bottom" constant="15" id="GyO-2M-37B"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WP6-fl-LPA" secondAttribute="trailing" constant="15" id="HRk-3F-U9B"/>
                                             <constraint firstItem="yWP-mV-xNg" firstAttribute="centerY" secondItem="grZ-mk-O9k" secondAttribute="centerY" id="Ht1-0N-qc7"/>
+                                            <constraint firstItem="yWP-mV-xNg" firstAttribute="top" secondItem="7eA-RI-v3n" secondAttribute="bottom" constant="17.5" id="IMx-yl-tzd"/>
                                             <constraint firstItem="v4n-RR-INM" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="IzO-Kq-3OE"/>
                                             <constraint firstItem="7BG-VZ-2EZ" firstAttribute="top" secondItem="QGw-aK-VSF" secondAttribute="bottom" id="JRR-fi-l8n"/>
                                             <constraint firstItem="Y8i-cB-U0W" firstAttribute="top" secondItem="WP6-fl-LPA" secondAttribute="bottom" constant="15" id="Jz2-mU-uPV"/>
@@ -1989,6 +2079,7 @@ reach for you.</string>
                                             <constraint firstAttribute="trailing" secondItem="lpp-lF-SfQ" secondAttribute="trailing" id="LKS-18-WrR"/>
                                             <constraint firstItem="Tas-LU-FZF" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="LOy-97-fjk"/>
                                             <constraint firstAttribute="trailing" secondItem="GfX-ap-ThJ" secondAttribute="trailing" constant="17" id="LcR-nm-hwA"/>
+                                            <constraint firstItem="rxp-zV-zXM" firstAttribute="bottom" secondItem="7eA-RI-v3n" secondAttribute="bottom" id="LlW-3m-av2"/>
                                             <constraint firstAttribute="trailing" secondItem="v4n-RR-INM" secondAttribute="trailing" id="MJA-fx-vFc"/>
                                             <constraint firstItem="4Yz-G1-Tlo" firstAttribute="top" secondItem="tiC-nG-L7a" secondAttribute="bottom" constant="15" id="MRc-CN-2V0"/>
                                             <constraint firstAttribute="trailing" secondItem="v2N-ph-lCC" secondAttribute="trailing" constant="15" id="MZZ-BA-gj4"/>
@@ -2045,13 +2136,13 @@ reach for you.</string>
                                             <constraint firstItem="v2N-ph-lCC" firstAttribute="top" secondItem="FaA-KO-Gqs" secondAttribute="bottom" constant="11" id="izq-dC-oMi"/>
                                             <constraint firstItem="l0G-9o-N1D" firstAttribute="leading" secondItem="Ss9-Hd-pds" secondAttribute="trailing" constant="3" id="jsS-4D-Sp4"/>
                                             <constraint firstAttribute="trailing" secondItem="q8q-Nr-beV" secondAttribute="trailing" id="jt1-lA-RCU"/>
-                                            <constraint firstAttribute="trailing" secondItem="lyH-YA-Do4" secondAttribute="trailing" id="jxx-Zs-hPy"/>
                                             <constraint firstItem="JDW-nR-eOw" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" constant="15" id="kLb-Id-eHk"/>
                                             <constraint firstItem="SQL-Og-wg5" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="kPX-Iw-nCT"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wMH-Ke-vef" secondAttribute="trailing" constant="15" id="kbI-lI-99C"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FaA-KO-Gqs" secondAttribute="trailing" constant="15" id="kcF-bX-iXu"/>
                                             <constraint firstAttribute="trailing" secondItem="47Q-K0-mL5" secondAttribute="trailing" id="l3p-pg-HTp"/>
                                             <constraint firstAttribute="trailing" secondItem="Cmq-By-naQ" secondAttribute="trailing" id="lGE-ov-tOG"/>
+                                            <constraint firstItem="rxp-zV-zXM" firstAttribute="centerX" secondItem="7eA-RI-v3n" secondAttribute="centerX" id="ljw-IM-JE1"/>
                                             <constraint firstItem="FaA-KO-Gqs" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" constant="15" id="mo4-2q-20L"/>
                                             <constraint firstItem="8dv-yJ-0oc" firstAttribute="centerY" secondItem="Ivw-8J-WIA" secondAttribute="centerY" id="oPR-eC-cos"/>
                                             <constraint firstAttribute="trailing" secondItem="qTe-p4-9hj" secondAttribute="trailing" id="p7Q-Yp-EOy"/>
@@ -2068,6 +2159,7 @@ reach for you.</string>
                                             <constraint firstItem="47Q-K0-mL5" firstAttribute="top" secondItem="6V3-00-yOS" secondAttribute="bottom" id="t0P-Eg-w38"/>
                                             <constraint firstAttribute="trailing" secondItem="7BG-VZ-2EZ" secondAttribute="trailing" id="t8A-vp-wjM"/>
                                             <constraint firstItem="fiF-C2-cka" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="tTL-VM-eJ5"/>
+                                            <constraint firstItem="7eA-RI-v3n" firstAttribute="top" secondItem="epk-dE-nsY" secondAttribute="top" id="u8d-G1-Sjy"/>
                                             <constraint firstItem="xNN-wK-maR" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="uOl-eY-Jat"/>
                                             <constraint firstAttribute="trailing" secondItem="Ssb-3I-HUj" secondAttribute="trailing" id="uge-Og-XTz"/>
                                             <constraint firstItem="lpp-lF-SfQ" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="uqH-ey-wxc"/>
@@ -2113,8 +2205,8 @@ reach for you.</string>
                         <outlet property="collLocation" destination="lpp-lF-SfQ" id="yEV-Ap-F0n"/>
                         <outlet property="collOverView" destination="lOm-hB-ZZZ" id="JND-P3-J3B"/>
                         <outlet property="collPlansType" destination="mbX-Qn-kYW" id="9K9-oX-8oD"/>
+                        <outlet property="collProject" destination="7eA-RI-v3n" id="IYR-xv-p5i"/>
                         <outlet property="imgVLocation" destination="wi8-nG-8DM" id="xG6-dn-7ZS"/>
-                        <outlet property="imgVProject" destination="lyH-YA-Do4" id="DQc-5R-m4m"/>
                         <outlet property="lblDisclaimer" destination="Y8i-cB-U0W" id="v6G-5m-cop"/>
                         <outlet property="lblEmail" destination="0jd-OQ-tyb" id="EEg-Qc-Lr3"/>
                         <outlet property="lblLocation" destination="v2N-ph-lCC" id="Tkt-Ow-V92"/>
@@ -2122,6 +2214,7 @@ reach for you.</string>
                         <outlet property="lblProjectDesc" destination="gxv-AB-gdj" id="2jz-cz-3zX"/>
                         <outlet property="lblProjectName" destination="grZ-mk-O9k" id="gkl-Cb-12k"/>
                         <outlet property="lblReraNo" destination="l0G-9o-N1D" id="k9A-kY-DPw"/>
+                        <outlet property="pageVProject" destination="rxp-zV-zXM" id="rLM-kU-oPM"/>
                         <outlet property="sliderPercentage" destination="GfX-ap-ThJ" id="yAe-wS-iyv"/>
                         <outlet property="tblConfigure" destination="6V3-00-yOS" id="bZb-z3-AgO"/>
                         <outlet property="tblSpecification" destination="qTe-p4-9hj" id="9kg-iR-EGy"/>
@@ -2382,9 +2475,10 @@ reach for you.</string>
         <image name="bg.jpg" width="1242" height="2208"/>
         <image name="black_close" width="26" height="26"/>
         <image name="call" width="15" height="16"/>
+        <image name="dottedline" width="158" height="1"/>
         <image name="img1.jpeg" width="285" height="177"/>
-        <image name="img3.jpeg" width="289" height="174"/>
         <image name="img4.jpeg" width="318" height="159"/>
+        <image name="img7.jpeg" width="280" height="180"/>
         <image name="location_projects" width="9" height="13"/>
         <image name="map" width="414" height="149"/>
         <image name="metro" width="22" height="28"/>
@@ -2394,6 +2488,7 @@ reach for you.</string>
         <image name="page_unselect" width="11" height="2"/>
         <image name="project_completion" width="86" height="115"/>
         <image name="project_details" width="27" height="22"/>
+        <image name="project_progress" width="86" height="115"/>
         <image name="rectangle" width="36" height="20"/>
         <image name="round" width="22" height="22"/>
         <image name="schedule" width="22" height="22"/>
@@ -2404,6 +2499,8 @@ reach for you.</string>
         <image name="share_white" width="20" height="22"/>
         <image name="time" width="10" height="10"/>
         <image name="timeline" width="38" height="50"/>
+        <image name="white_select_line" width="11" height="2"/>
+        <image name="white_unselect_line" width="11" height="2"/>
         <image name="zoom" width="26" height="26"/>
     </resources>
 </document>

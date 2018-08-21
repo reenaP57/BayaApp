@@ -18,7 +18,7 @@ class TabBarView: UIView {
 
     private static var tabbar : TabBarView? = {
         
-        guard let tabbar = TabBarView.viewFromXib as? TabBarView else{
+        guard let tabbar = TabBarView.viewFromNib(is_ipad: true) as? TabBarView else{
             return nil
         }
         

@@ -7,12 +7,14 @@
 //
 
 import UIKit
-import CTPanoramaView
+//import CTPanoramaView
+import BFRImageViewer
 
 class ProjectDetailViewController: ParentViewController {
 
+    @IBOutlet fileprivate weak var collProject : UICollectionView!
+    @IBOutlet fileprivate weak var pageVProject : UIPageControl!
 
-    @IBOutlet fileprivate weak var imgVProject : UIImageView!
     @IBOutlet fileprivate weak var lblProjectName : UILabel!
     @IBOutlet fileprivate weak var lblProjectDesc : UILabel!
     @IBOutlet fileprivate weak var lblEmail : UILabel!
@@ -36,10 +38,11 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var vw3DTitle : UIView!{
         didSet{
             vw3DTitle.layer.borderWidth = 1
-            vw3DTitle.layer.borderColor = ColorLightBlack.cgColor
+            vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    //@IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -59,6 +62,7 @@ class ProjectDetailViewController: ParentViewController {
     var arrConfigure = [[String : AnyObject]]()
     var arrSpecification = [String]()
     var arrAmmenities = [[String : AnyObject]]()
+    var arrImg = [String]()
 
     
     override func viewDidLoad() {
@@ -85,6 +89,7 @@ class ProjectDetailViewController: ParentViewController {
         btnTypicalPlan.layer.borderWidth = 1
         btnTypicalPlan.layer.borderColor = ColorGray.cgColor
         
+        arrImg = ["img1.jpeg","img2.jpeg","img3.jpeg"]
         
         arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
         ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
@@ -122,7 +127,7 @@ class ProjectDetailViewController: ParentViewController {
         self.loadProjectDetail()
         
         //...Load 3D image
-        vwPanorama.image = UIImage(named: "spherical.jpg")
+       // vwPanorama.image = UIImage(named: "spherical.jpg")
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -141,10 +146,21 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
-            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height
+            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height - 38
         }
     }
 
+    func zoomImage(_ image : UIImage?)
+    {
+        if image != nil
+        {
+            DispatchQueue.main.async {
+                let imageVC = BFRImageViewController(imageSource: [image!])
+                imageVC?.isUsingTransparentBackground = false
+                self.present(imageVC!, animated: true, completion: nil)
+            }
+        }
+    }
 }
 
 
@@ -272,6 +288,8 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             return arrAmmenities.count
         case collOverView:
             return arrOverView.count
+        case collProject:
+            return arrImg.count
         default:
             return arrLocation.count
         }
@@ -294,19 +312,27 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
         case collOverView:
             return CGSize(width: (CScreenWidth/2 - 20), height: (CScreenWidth * (60/375)))
+          
+        case collProject:
+            return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
             
         default:
             return CGSize(width: (CScreenWidth/2 - 20), height: collectionView.contentSize.height)
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0.0, left: 15.0, bottom: 0.0, right: 15.0)
-    }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch collectionView {
+        case collProject:
+            
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectImageCollCell", for: indexPath) as? ProjectImageCollCell {
+                cell.imgVProject.image = UIImage(named: arrImg[indexPath.row])
+            
+                return cell
+            }
+            return UICollectionViewCell()
+            
         case collLocation:
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LocationAdvantagesCollCell", for: indexPath) as? LocationAdvantagesCollCell {
@@ -353,6 +379,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FloorPlansImgCollCell", for: indexPath) as? FloorPlansImgCollCell {
                 
                 cell.imgVPlan.image = UIImage(named: arrFloorImg[indexPath.row])
+                
                 return cell
             }
             
@@ -392,14 +419,22 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if collectionView.isEqual(collPlansType){
-            
+        switch collectionView {
+        case collPlansType:
             if let cell = collectionView.cellForItem(at: indexPath) as? PlanTypeCollCell {
                 
                 cell.isSelected = true
                 cell.vwLine.isHidden = false
                 cell.lblPlanType.textColor = ColorGreenSelected
             }
+            
+        case collFloorImg:
+            if let cell = collectionView.cellForItem(at: indexPath) as? FloorPlansImgCollCell {
+                 self.zoomImage(cell.imgVPlan.image)
+            }
+            
+        default:
+            break
         }
     }
     
@@ -416,4 +451,10 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         }
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        
+        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
+        pageVProject.currentPage = Int(page)
+ 
+    }
 }

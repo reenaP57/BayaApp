@@ -28,8 +28,7 @@ extension TabbarViewController {
         self.tabBar.isHidden = true
         
         guard let tabbar = TabBarView.shared else { return }
-        tabbar.frame = tabbar.frame
-        tabbar.CViewSetY(y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0))
+        tabbar.frame = CGRect(x: 0, y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0), width: CScreenWidth, height: 49.0)
         
         tabbar.btnHome.isSelected = true
         tabbar.btnNotification.isSelected = false
@@ -46,17 +45,23 @@ extension TabbarViewController {
         guard let homeVC = CStoryboardMain.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         let homeNav = UINavigationController.rootViewController(viewController: homeVC)
         
-        
-        guard let notificationVC = CStoryboardMain.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController else { return }
+        guard let notificationVC = CStoryboardMain.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         let notificationNav = UINavigationController.rootViewController(viewController: notificationVC)
         
+      /*  guard let notificationVC = CStoryboardMain.instantiateViewController(withIdentifier: "NotificationViewController") as? NotificationViewController else { return }
+        let notificationNav = UINavigationController.rootViewController(viewController: notificationVC) */
         
-        guard let settingVC = CStoryboardSetting.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController else { return }
+        guard let settingVC = CStoryboardMain.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         let settingNav = UINavigationController.rootViewController(viewController: settingVC)
         
-        
-        guard let profileVC = CStoryboardProfile.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+        guard let profileVC = CStoryboardMain.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController else { return }
         let profileNav = UINavigationController.rootViewController(viewController: profileVC)
+//        guard let settingVC = CStoryboardSetting.instantiateViewController(withIdentifier: "SettingViewController") as? SettingViewController else { return }
+//        let settingNav = UINavigationController.rootViewController(viewController: settingVC)
+//
+//
+//        guard let profileVC = CStoryboardProfile.instantiateViewController(withIdentifier: "ProfileViewController") as? ProfileViewController else { return }
+//        let profileNav = UINavigationController.rootViewController(viewController: profileVC)
         
         self.setViewControllers([homeNav, notificationNav, settingNav, profileNav], animated: true)
     }

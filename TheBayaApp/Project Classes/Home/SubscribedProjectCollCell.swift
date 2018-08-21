@@ -16,6 +16,10 @@ class SubscribedProjectCollCell: UICollectionViewCell {
     @IBOutlet weak var btnCall : UIButton!
     @IBOutlet weak var btnSubscribe : UIButton!
     @IBOutlet weak var imgVProgress : UIImageView!
+    @IBOutlet weak var imgVPjctCompletion : UIImageView!
+    @IBOutlet weak var imgVDottedLine : UIImageView!
+    @IBOutlet weak var cnstlblPercentageCenter : NSLayoutConstraint!
+    @IBOutlet weak var cnstImgvDottedBottom : NSLayoutConstraint!
 
     
     override func awakeFromNib() {

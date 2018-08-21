@@ -8,12 +8,12 @@
 
 import UIKit
 
+let space = CScreenWidth * 70/375
+
 class TimelineDetailViewController: ParentViewController {
 
-    @IBOutlet fileprivate weak var collProject : UICollectionView!
     @IBOutlet fileprivate weak var tblUpdates : UITableView!
 
-    var arrProject = [[String : AnyObject]]()
     var arrUpdateList = [[String : AnyObject]]()
     
     override func viewDidLoad() {
@@ -40,9 +40,7 @@ class TimelineDetailViewController: ParentViewController {
         self.title = "the baya company"
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
-        
-        arrProject = [["project_name": "The Baya Victoria Chembur", "percentage": 50],["project_name": "The Baya Victoria Chembur", "percentage": 70],["project_name": "The Baya Victoria Chembur", "percentage": 35]] as [[String : AnyObject]]
-        
+
         arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : "image"],
                          ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : "url"],
                          ["image": ["img4.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : "text"]] as [[String : AnyObject]]
@@ -50,45 +48,31 @@ class TimelineDetailViewController: ParentViewController {
     
     @objc func btnFilterClicked() {
         
-        if let vwFilter = FilterView.viewFromXib as? FilterView {
+        if let vwFilter = FilterView.viewFromNib(is_ipad: false) as? FilterView {
             
-            vwFilter.CViewSetHeight(height:  CScreenWidth * (vwFilter.CViewHeight / 375))
+            vwFilter.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
+            vwFilter.vwContent.frame = CGRect(x: 0, y: CScreenHeight - (CScreenWidth * (vwFilter.CViewHeight / 375)) , width: CScreenWidth, height: CScreenWidth * (vwFilter.CViewHeight / 375))
+          
+            vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
 
-            self.presentPopUp(view: vwFilter, shouldOutSideClick: false, type: MIPopUpOverlay.MIPopUpPresentType.bottom) {
-                
-                vwFilter.btnDone.touchUpInside { (sender) in
-                    self.dismissPopUp(view: vwFilter, completionHandler: nil)
-                }
-                
-                vwFilter.btnClose.touchUpInside { (sender) in
-                    self.dismissPopUp(view: vwFilter, completionHandler: nil)
-                }
-                
-                vwFilter.btnClear.touchUpInside { (sender) in
-                    vwFilter.txtStartDate.text = ""
-                    vwFilter.txtEndDate.text = ""
-                }
+            UIView.animate(withDuration: 1.0) {
+                appDelegate.window.addSubview(vwFilter)
+            }
+            
+            vwFilter.btnDone.touchUpInside { (sender) in
+               vwFilter.removeFromSuperview()
+            }
+            
+            vwFilter.btnClose.touchUpInside { (sender) in
+                vwFilter.removeFromSuperview()
+            }
+            
+            vwFilter.btnClear.touchUpInside { (sender) in
+                vwFilter.txtStartDate.text = ""
+                vwFilter.txtEndDate.text = ""
             }
         }
     }
-    
-    
-    func CropImage(image:UIImage , cropRect:CGRect) -> UIImage
-    {
-        UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
-        let context = UIGraphicsGetCurrentContext();
-        
-        context?.translateBy(x: 0.0, y: image.size.height);
-        context?.scaleBy(x: 1.0, y: -1.0);
-        context?.draw(image.cgImage!, in: CGRect(x:0, y:0, width:image.size.width, height:image.size.height), byTiling: false);
-        context?.clip(to: [cropRect]);
-        
-        let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-
-        return croppedImage!
-    }
-    
 }
 
 
@@ -114,61 +98,12 @@ extension TimelineDetailViewController {
 
 
 //MARK:-
-//MARK:- UICollectionView Delegate and Datasource
-
-extension TimelineDetailViewController : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrProject.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize  {
-        
-        return CGSize(width: (CScreenWidth - 70), height: collectionView.CViewHeight )
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscribedProjectCollCell", for: indexPath) as? SubscribedProjectCollCell {
-            
-            let dict = arrProject[indexPath.row]
-            
-            cell.lblProjectName.text = dict.valueForString(key: "project_name")
-            cell.lblCompleted.text = "\(dict.valueForString(key: "percentage"))%"
-            cell.lblPercentage.text = "\(dict.valueForString(key: "percentage"))%"
-            
-            cell.btnSubscribe.touchUpInside { (sender) in
-                cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
-            }
-            
-            cell.btnCall.touchUpInside { (sender) in
-                self.dialPhoneNumber(phoneNumber: "123456789")
-            }
-            
-            cell.imgVProgress.transform = cell.imgVProgress.transform.rotated(by: CGFloat.init(Double.pi))
-
-            
-            let percentage = cell.imgVProgress.CViewHeight * CGFloat((dict.valueForInt(key: "percentage"))!)/100
-            
-            _ = self.CropImage(image: cell.imgVProgress.image!, cropRect: CGRect(x: 0, y: 50, width: cell.imgVProgress.CViewWidth, height: percentage))
-            
-            return cell
-        }
-        
-        return UICollectionViewCell()
-    }
-}
-
-
-//MARK:-
 //MARK:- UITableView Delegate and Datasource
 
 extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrUpdateList.count
+        return arrUpdateList.count + 1
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -181,51 +116,66 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+        if indexPath.row == 0 {
             
-            let dict = arrUpdateList[indexPath.row]
-
-            if dict.valueForString(key: "type") == "image" {
-                cell.lblUrl.hide(byHeight: true)
-                cell.collImg.hide(byHeight: false)
-               _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
-                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-
-            } else if dict.valueForString(key: "type") == "text" {
-                cell.lblUrl.hide(byHeight: true)
-                cell.collImg.hide(byHeight: true)
-                cell.pageControlSlider.hide(byHeight: true)
-                _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
-
-            } else {
-                cell.lblUrl.hide(byHeight: false)
-                cell.collImg.hide(byHeight: false)
-                 _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
-                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineSubscribeTblCell") as? TimeLineSubscribeTblCell {
+                return cell
             }
             
-            if let arr = dict.valueForJSON(key: "image") as? [String] {
-                cell.pageControlSlider.numberOfPages = arr.count
-            }
+            return UITableViewCell()
             
-            cell.lblDesc.text = dict.valueForString(key: "desc")
-            cell.lblDateTime.text = dict.valueForString(key: "time")
-
+        } else {
             
-            cell.btnShare.touchUpInside { (sender) in
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                 
-                let text = "This is the text...."
-                //let image = UIImage(named: "Product")
-               // let myWebsite = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
-                let shareAll = [text]
-                let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-                activityViewController.popoverPresentationController?.sourceView = self.view
-                self.present(activityViewController, animated: true, completion: nil)
+                let dict = arrUpdateList[indexPath.row - 1]
+                
+                if dict.valueForString(key: "type") == "image" {
+                    cell.lblUrl.hide(byHeight: true)
+                    cell.collImg.hide(byHeight: false)
+                    cell.pageControlSlider.hide(byHeight: false)
+                    
+                    _ = cell.lblDesc.setConstraintConstant(IS_iPad ? 7 : 0, edge: .top, ancestor: true)
+                    cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                    
+                } else if dict.valueForString(key: "type") == "text" {
+                    cell.lblUrl.hide(byHeight: true)
+                    cell.collImg.hide(byHeight: true)
+                    cell.pageControlSlider.hide(byHeight: true)
+                    _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                    
+                } else {
+                    cell.lblUrl.hide(byHeight: false)
+                    cell.collImg.hide(byHeight: false)
+                    cell.pageControlSlider.hide(byHeight: true)
+                    
+                    _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
+                    cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                }
+                
+                if let arr = dict.valueForJSON(key: "image") as? [String] {
+                    cell.pageControlSlider.numberOfPages = arr.count
+                }
+                
+                cell.lblDesc.text = dict.valueForString(key: "desc")
+                cell.lblDateTime.text = dict.valueForString(key: "time")
+                
+                
+                cell.btnShare.touchUpInside { (sender) in
+                    
+                    let text = "This is the text...."
+                    //let image = UIImage(named: "Product")
+                    // let myWebsite = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
+                    let shareAll = [text]
+                    let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+                    activityViewController.popoverPresentationController?.sourceView = self.view
+                    self.present(activityViewController, animated: true, completion: nil)
+                }
+                
+                
+                return cell
             }
-            
-            
-            return cell
+            return UITableViewCell()
         }
-        return UITableViewCell()
     }
 }

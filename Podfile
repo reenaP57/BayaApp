@@ -9,6 +9,7 @@ target 'TheBayaApp' do
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage'
+  pod 'BFRImageViewer'
 
 
 end

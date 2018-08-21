@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="AvenirLTStd-Medium.otf">
+            <string>AvenirLTStd-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="x30-3p-dVA" customClass="TabBarView" customModule="TheBayaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="49"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EwR-Ep-lNN">
+                    <rect key="frame" x="183" y="0.0" width="100" height="49"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="xTL-Yc-9lx"/>
+                    </constraints>
+                    <state key="normal" image="home"/>
+                    <state key="selected" image="home_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="d96-RT-zpl"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-Ze-U2K">
+                    <rect key="frame" x="283.5" y="0.0" width="100" height="49"/>
+                    <state key="normal" image="notification"/>
+                    <state key="selected" image="notification_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="IDL-Ft-0Wy"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-ay-WSu">
+                    <rect key="frame" x="384" y="0.0" width="100" height="49"/>
+                    <state key="normal" image="setting"/>
+                    <state key="selected" image="setting_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="p6N-eY-XAq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHu-vL-y8o">
+                    <rect key="frame" x="484.5" y="0.0" width="100" height="49"/>
+                    <state key="normal" image="profile"/>
+                    <state key="selected" image="profile_selected"/>
+                    <connections>
+                        <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="Unu-g6-LfO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Mg-XBL">
+                    <rect key="frame" x="341.5" y="10" width="15" height="15"/>
+                    <color key="backgroundColor" red="1" green="0.27058823529999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="15" id="95A-eD-53Q"/>
+                        <constraint firstAttribute="width" constant="15" id="hYp-73-GtF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="EwR-Ep-lNN" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" id="18k-j6-bu7"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="bottom" secondItem="DV3-bl-Xqm" secondAttribute="bottom" id="26w-RD-zeE"/>
+                <constraint firstItem="wGs-Ze-U2K" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" id="2q6-pN-hnf"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="leading" secondItem="GfU-Mg-XBL" secondAttribute="trailing" constant="27.5" id="K1h-Mc-Lrx"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="leading" secondItem="wGs-Ze-U2K" secondAttribute="trailing" constant="0.5" id="N3n-gE-UM8"/>
+                <constraint firstItem="wHu-vL-y8o" firstAttribute="width" secondItem="EwR-Ep-lNN" secondAttribute="width" id="N87-cD-rf4"/>
+                <constraint firstItem="wHu-vL-y8o" firstAttribute="bottom" secondItem="DV3-bl-Xqm" secondAttribute="bottom" id="Ped-dc-IY0"/>
+                <constraint firstItem="GfU-Mg-XBL" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" constant="10" id="Q9a-4o-pXF"/>
+                <constraint firstItem="wHu-vL-y8o" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" id="SbP-bo-BGe"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="width" secondItem="EwR-Ep-lNN" secondAttribute="width" id="TDr-dx-5Tr"/>
+                <constraint firstItem="EwR-Ep-lNN" firstAttribute="bottom" secondItem="DV3-bl-Xqm" secondAttribute="bottom" id="VSZ-ij-wZl"/>
+                <constraint firstItem="wHu-vL-y8o" firstAttribute="leading" secondItem="1UX-ay-WSu" secondAttribute="trailing" constant="0.5" id="WAp-Vb-nMo"/>
+                <constraint firstItem="EwR-Ep-lNN" firstAttribute="leading" secondItem="DV3-bl-Xqm" secondAttribute="leading" constant="183" id="ZKG-sZ-ZlT"/>
+                <constraint firstItem="wHu-vL-y8o" firstAttribute="height" secondItem="EwR-Ep-lNN" secondAttribute="height" id="bke-gg-9nY"/>
+                <constraint firstItem="wGs-Ze-U2K" firstAttribute="height" secondItem="EwR-Ep-lNN" secondAttribute="height" id="idP-xv-UOu"/>
+                <constraint firstItem="wGs-Ze-U2K" firstAttribute="width" secondItem="EwR-Ep-lNN" secondAttribute="width" id="lvj-Kx-DRa"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="height" secondItem="EwR-Ep-lNN" secondAttribute="height" id="naT-Go-4fb"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" id="tYQ-Un-cRe"/>
+                <constraint firstItem="wGs-Ze-U2K" firstAttribute="leading" secondItem="EwR-Ep-lNN" secondAttribute="trailing" constant="0.5" id="xAe-Xh-yLG"/>
+                <constraint firstItem="wGs-Ze-U2K" firstAttribute="bottom" secondItem="DV3-bl-Xqm" secondAttribute="bottom" id="xUT-i6-1Sy"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="DV3-bl-Xqm"/>
+            <connections>
+                <outlet property="btnHome" destination="EwR-Ep-lNN" id="tQX-gb-xKa"/>
+                <outlet property="btnNotification" destination="wGs-Ze-U2K" id="c10-oA-QYz"/>
+                <outlet property="btnProfile" destination="wHu-vL-y8o" id="Ocw-ad-eaP"/>
+                <outlet property="btnSetting" destination="1UX-ay-WSu" id="RZM-gv-isv"/>
+                <outlet property="lblCount" destination="GfU-Mg-XBL" id="pIl-px-RJU"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="home" width="22" height="22"/>
+        <image name="home_selected" width="22" height="22"/>
+        <image name="notification" width="20" height="22"/>
+        <image name="notification_selected" width="20" height="22"/>
+        <image name="profile" width="22" height="22"/>
+        <image name="profile_selected" width="22" height="22"/>
+        <image name="setting" width="22" height="22"/>
+        <image name="setting_selected" width="22" height="22"/>
+    </resources>
+</document>

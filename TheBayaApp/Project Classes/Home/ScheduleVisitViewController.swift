@@ -20,7 +20,7 @@ class ScheduleVisitViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtSelectProject : UITextField!
     @IBOutlet fileprivate weak var txtVPurpose : UITextView! {
         didSet {
-            txtVPurpose.placeholderFont = CFontAvenirLTStd(size: 15.0, type: .medium)
+            txtVPurpose.placeholderFont = CFontAvenirLTStd(size: 15.0, type: .medium).setUpAppropriateFont()
         }
     }
 

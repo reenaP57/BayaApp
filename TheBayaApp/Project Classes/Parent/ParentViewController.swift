@@ -15,7 +15,6 @@ class ParentViewController: UIViewController {
     //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.preferredStatusBarStyle
         MIKeyboardManager.shared.delegate = self
     }
     
@@ -32,32 +31,13 @@ class ParentViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(false)
-        
-        //Important!
-      //  if #available(iOS 11.0, *) {
-            
-            //Default NavigationBar Height is 44. Custom NavigationBar Height is 66. So We should set additionalSafeAreaInsets to 66-44 = 22
-           // self.additionalSafeAreaInsets.top = 22
-            
-       // }
-        
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
     
-//    override var prefersStatusBarHidden: Bool {
-//        
-//        return false
-//    }
-    
-    
-//        override var preferredStatusBarStyle : UIStatusBarStyle {
-//            return UIStatusBarStyle.lightContent
-//        }
     
     // MARK: -
     // MARK: - Keyboard Appear/Disappear Methods , Just override it.
@@ -82,7 +62,7 @@ class ParentViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back_white")
-        self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "back_white")
+        self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "nav_back")
      
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
         

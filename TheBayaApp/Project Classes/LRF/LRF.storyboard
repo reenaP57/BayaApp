@@ -52,16 +52,16 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1" translatesAutoresizingMaskIntoConstraints="NO" id="ub6-wF-aKQ">
-                                                    <rect key="frame" x="45.5" y="80" width="284" height="225"/>
+                                                    <rect key="frame" x="62.5" y="80" width="250" height="198"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ck-U9-g8j" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="355" width="345" height="20"/>
+                                                    <rect key="frame" x="15" y="318" width="345" height="20"/>
                                                     <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="20"/>
                                                     <color key="textColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter verification code that we have sent you on your mobile number [+1234567890]" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yb2-Oz-ltH" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="400" width="345" height="26"/>
+                                                    <rect key="frame" x="15" y="358" width="345" height="26"/>
                                                     <fontDescription key="fontDescription" name="AvenirLTStd-Roman" family="Avenir LT Std" pointSize="13"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -75,8 +75,8 @@
                                             <constraint firstItem="9Ck-U9-g8j" firstAttribute="leading" secondItem="RNR-Ic-nDx" secondAttribute="leading" constant="15" id="FGg-Lg-ioL"/>
                                             <constraint firstItem="ub6-wF-aKQ" firstAttribute="top" secondItem="RNR-Ic-nDx" secondAttribute="top" constant="80" id="M5v-VT-AyG"/>
                                             <constraint firstItem="Yb2-Oz-ltH" firstAttribute="trailing" secondItem="9Ck-U9-g8j" secondAttribute="trailing" id="PzR-QD-dov"/>
-                                            <constraint firstItem="9Ck-U9-g8j" firstAttribute="top" secondItem="ub6-wF-aKQ" secondAttribute="bottom" constant="50" id="aQN-xS-haE"/>
-                                            <constraint firstItem="Yb2-Oz-ltH" firstAttribute="top" secondItem="9Ck-U9-g8j" secondAttribute="bottom" constant="25" id="bMf-Iq-m41"/>
+                                            <constraint firstItem="9Ck-U9-g8j" firstAttribute="top" secondItem="ub6-wF-aKQ" secondAttribute="bottom" constant="40" id="aQN-xS-haE"/>
+                                            <constraint firstItem="Yb2-Oz-ltH" firstAttribute="top" secondItem="9Ck-U9-g8j" secondAttribute="bottom" constant="20" id="bMf-Iq-m41"/>
                                             <constraint firstItem="Yb2-Oz-ltH" firstAttribute="leading" secondItem="9Ck-U9-g8j" secondAttribute="leading" id="ggs-vb-ihY"/>
                                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Yb2-Oz-ltH" secondAttribute="bottom" constant="10" id="zdv-qM-n8c"/>
                                         </constraints>
@@ -855,6 +855,6 @@
         <image name="page_unselect" width="11" height="2"/>
         <image name="remember" width="22" height="22"/>
         <image name="select_remember" width="22" height="22"/>
-        <image name="tutorial1" width="284" height="225"/>
+        <image name="tutorial1" width="250" height="198"/>
     </resources>
 </document>

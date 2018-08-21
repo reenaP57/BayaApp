@@ -53,6 +53,10 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
         return arrProject.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CScreenWidth * 250/375
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectTblCell") as? ProjectTblCell {
