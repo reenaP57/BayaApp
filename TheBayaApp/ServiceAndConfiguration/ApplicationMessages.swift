@@ -45,9 +45,10 @@ var CMisMatchPasswordMessage        : String{ return CLocalize(text: "Password a
 var CTermsConditionNotAcceptedMessage: String{ return CLocalize(text: "Please accept Terms & Conditions.") }
 var CBlankOTPMessage                : String{ return CLocalize(text: "OTP can’t be blank.") }
 var CBlankNewPasswordMessage        : String{ return CLocalize(text: "New Password can’t be blank.") }
-var CBlankVerificationCodeMessage   : String{ return CLocalize(text: "Verification code can’t be blank.") }
-var CInvalidVerificationCodeMessage : String{ return CLocalize(text: "Verification code is invalid.") }
+var CBlankVerificationCodeMessage   : String{ return CLocalize(text: "Verification Code can’t be blank.") }
+var CInvalidVerificationCodeMessage : String{ return CLocalize(text: "Verification Code is invalid.") }
 var CBlankOldPasswordMessage        : String{ return CLocalize(text: "Old Password can’t be blank.") }
+
 
 
 //MARK:-================== Schedule Visit =========================

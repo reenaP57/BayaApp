@@ -56,7 +56,9 @@ extension SupportViewController {
             if (self.txtVMsg.text?.isBlank)! {
                 self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport))
             } else {
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
         }
     }

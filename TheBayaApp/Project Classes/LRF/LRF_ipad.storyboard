@@ -37,7 +37,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baya_logo" translatesAutoresizingMaskIntoConstraints="NO" id="JMq-Rk-oc2">
                                 <rect key="frame" x="301" y="150" width="166" height="103"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email / Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pj-0y-pSz" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email / Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Pj-0y-pSz" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="176.5" y="323" width="416" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -104,7 +104,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zyk-an-X4M">
-                                <rect key="frame" x="305" y="638" width="158" height="23"/>
+                                <rect key="frame" x="301.5" y="638" width="165.5" height="23"/>
                                 <attributedString key="attributedText">
                                     <fragment content="New user? ">
                                         <attributes>
@@ -114,7 +114,22 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="Signup">
+                                    <fragment content="Sign">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25882352941176467" green="0.66666666666666663" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="19" name="AvenirLTStd-Heavy"/>
+                                            <font key="NSOriginalFont" size="18" name="AvenirLTStd-Black"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" U">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25882352941176467" green="0.66666666666666663" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="18" name="AvenirLTStd-Black"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="p">
                                         <attributes>
                                             <color key="NSColor" red="0.25882352941176467" green="0.66666666666666663" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="19" name="AvenirLTStd-Heavy"/>
@@ -182,7 +197,7 @@
         <scene sceneID="Diy-Tg-vFp">
             <objects>
                 <viewController storyboardIdentifier="SignUpViewController" id="Km9-Df-CNr" customClass="SignUpViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="tpU-F4-xHs">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="tpU-F4-xHs">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -197,14 +212,14 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="clY-Al-cfL" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="176" y="155" width="416" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NyQ-Uk-qsU" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="176" y="220" width="416" height="50"/>
@@ -213,7 +228,7 @@
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
-                            <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="+91" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWg-Tk-5vB" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MWg-Tk-5vB" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="176" y="285" width="86" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -261,8 +276,8 @@
                                     <action selector="btnRememberMeClickedWithSender:" destination="Km9-Df-CNr" eventType="touchUpInside" id="hzH-sC-dH0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AB8-Vw-Sqe">
-                                <rect key="frame" x="176" y="527" width="22" height="22"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AB8-Vw-Sqe">
+                                <rect key="frame" x="176" y="527" width="35.5" height="22"/>
                                 <state key="normal" image="remember"/>
                                 <state key="selected" image="select_remember"/>
                             </button>
@@ -285,11 +300,11 @@
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                         </attributes>
                                     </fragment>
-                                    <fragment content="Terms &amp; Condition">
+                                    <fragment content="Terms &amp;">
                                         <attributes>
                                             <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="19" name="AvenirLTStd-Heavy"/>
-                                            <font key="NSOriginalFont" size="13" name="AvenirLTStd-Heavy"/>
+                                            <font key="NSOriginalFont" size="11" name="AvenirLTStd-Roman"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </attributes>
@@ -297,8 +312,26 @@
                                     <fragment content=" ">
                                         <attributes>
                                             <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="18" name="AvenirLTStd-Heavy"/>
-                                            <font key="NSOriginalFont" size="13" name="AvenirLTStd-Heavy"/>
+                                            <font key="NSFont" size="11" name="AvenirLTStd-Roman"/>
+                                            <font key="NSOriginalFont" size="11" name="AvenirLTStd-Roman"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="Conditions">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="19" name="AvenirLTStd-Heavy"/>
+                                            <font key="NSOriginalFont" size="11" name="AvenirLTStd-Roman"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="11" name="AvenirLTStd-Roman"/>
+                                            <font key="NSOriginalFont" size="11" name="AvenirLTStd-Roman"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
                                             <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </attributes>
@@ -429,7 +462,7 @@
         <scene sceneID="B4K-gM-lzo">
             <objects>
                 <viewController storyboardIdentifier="VerificationViewController" id="eMf-xy-jOa" customClass="VerificationViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="JsS-9z-3oR">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="JsS-9z-3oR">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -442,7 +475,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ILE-fo-2mu" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ILE-fo-2mu" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="176" y="226" width="416" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -519,7 +552,7 @@
         <scene sceneID="g8n-59-s9Z">
             <objects>
                 <viewController storyboardIdentifier="ForgotPwdViewController" id="1jN-Tx-5KK" customClass="ForgotPwdViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ep1-eE-TtN">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="ep1-eE-TtN">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -589,7 +622,7 @@
         <scene sceneID="vgu-Qm-U2t">
             <objects>
                 <viewController storyboardIdentifier="ResetPwdViewController" id="fAd-nW-j2A" customClass="ResetPwdViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="p9p-rS-nP5">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="p9p-rS-nP5">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

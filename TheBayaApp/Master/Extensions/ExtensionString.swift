@@ -55,11 +55,18 @@ extension String {
         return predicate.evaluate(with:self)
     }
     
+//    var isValidPassword:Bool {
+//
+//        let passwordRegEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"
+//        let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
+//        return predicate.evaluate(with:self)
+//    }
+    
     var isValidPassword:Bool {
         
-        let passwordRegEx = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{6,}$"
-        let predicate = NSPredicate(format:"SELF MATCHES %@", passwordRegEx)
-        return predicate.evaluate(with:self)
+        let passwordCharacters = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%").inverted
+        let arrCharacters = self.components(separatedBy: passwordCharacters)
+        return self == arrCharacters.joined(separator: "")
     }
     
     var isValidPhoneNo:Bool {

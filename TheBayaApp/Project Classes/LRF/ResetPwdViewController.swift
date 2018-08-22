@@ -14,6 +14,7 @@ class ResetPwdViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtNewPwd : UITextField!
     @IBOutlet fileprivate weak var txtConfirmPwd : UITextField!
     @IBOutlet fileprivate weak var vwContent : UIView!
+    @IBOutlet fileprivate weak var lblNote : UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,10 @@ class ResetPwdViewController: ParentViewController {
     
     func initialize() {
         self.title = "Reset Password"
+        
+        if IS_iPhone_6_Plus {
+            _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
+        }
     }
 }
 
@@ -57,7 +62,7 @@ extension ResetPwdViewController {
             if (self.txtCode.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankOTPMessage))
             } else if (self.txtNewPwd.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankPasswordMessage))
+                self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankNewPasswordMessage))
             } else if !(self.txtNewPwd.text?.isValidPassword)! {
                 self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CInvalidPasswordMessage))
             } else if (self.txtConfirmPwd.text?.isBlank)! {
@@ -65,7 +70,10 @@ extension ResetPwdViewController {
             } else if self.txtConfirmPwd.text != self.txtNewPwd.text {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
             } else {
-                self.navigationController?.popViewController(animated: true)
+                
+                if let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
+                    self.navigationController?.pushViewController(loginVC, animated: true)
+                }
             }
         }
         

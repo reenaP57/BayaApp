@@ -20,8 +20,8 @@ class TutorialViewController: ParentViewController {
     }
     @IBOutlet fileprivate weak var btnNext : UIButton!
 
-    let arrTutorial = [["img" : "tutorial1", "title" :"Timeline", "desc" : "See the updates for all our projects with construction photos \n\n View the percentage completion of each project \n\n Easy one tap contact to get in touch with the sales team \n\n Subcribe to projects to receive update notifications"],
-                       ["img" : "tutorial2", "title" :"Project Details", "desc" : "View all The Baya Company projects and the details \n\n Project overviews, amenities, specifications,location advantage and more \n\n Easy one tap contact to get in touch with the sales team \n\n SubScribe to specific projects to receive update notifications"],
+    let arrTutorial = [["img" : "tutorial1", "title" :"Timeline", "desc" : "See the updates for all our projects with construction photos \n\n View the percentage completion of each project \n\n Easy one tap contact to get in touch with the sales team \n\n Subscribe to projects to receive update notifications"],
+                       ["img" : "tutorial2", "title" :"Project Details", "desc" : "View all The Baya Company projects and the details \n\n Project overviews, amenities, specifications,location advantage and more \n\n Easy one tap contact to get in touch with the sales team \n\n Subscribe to specific projects to receive update notifications"],
                        ["img" : "tutorial3", "title" :"Schedule A Visit", "desc" : "Schedule a site visit for our projects \n\n Select up to 3 preferred date & time slots \n\n Rate your site visits to improve the overall experience"]]
     
     

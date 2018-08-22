@@ -25,7 +25,7 @@ class MIGenericView: UIView {
             
             ///... A View that will in CornerRadius shape AND in shadow shape.
             
-            self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 5, height: 5), shadowRadius: 5.0, shadowOpacity: 0.5)
+            self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 7, height: 5), shadowRadius: 5.0, shadowOpacity: 0.7)
             self.layer.cornerRadius = cornerRadius
             
         }  else {

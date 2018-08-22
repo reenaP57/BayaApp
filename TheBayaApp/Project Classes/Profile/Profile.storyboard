@@ -27,7 +27,7 @@
         <scene sceneID="rrD-9K-CSk">
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="ZLT-AE-tEO" customClass="ProfileViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="fiI-Hb-Lsh">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="fiI-Hb-Lsh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -178,7 +178,7 @@
         <scene sceneID="QXz-vs-K2c">
             <objects>
                 <viewController storyboardIdentifier="SubscribedProjectViewController" id="Fq8-XF-rK5" customClass="SubscribedProjectViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="uYH-hi-htJ">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="uYH-hi-htJ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -186,7 +186,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mzF-uQ-c39">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SubscribedTblCell" rowHeight="108" id="fl3-gx-6Oc" customClass="SubscribedTblCell" customModule="TheBayaApp" customModuleProvider="target">
@@ -288,7 +288,7 @@
                             <constraint firstItem="mzF-uQ-c39" firstAttribute="trailing" secondItem="PP5-AM-YF7" secondAttribute="trailing" id="iWh-5y-9Ne"/>
                             <constraint firstItem="zHL-O6-j5c" firstAttribute="bottom" secondItem="PP5-AM-YF7" secondAttribute="bottom" id="m16-Tv-Qjk"/>
                             <constraint firstItem="mzF-uQ-c39" firstAttribute="bottom" secondItem="PP5-AM-YF7" secondAttribute="bottom" id="wDt-aI-IKN"/>
-                            <constraint firstItem="mzF-uQ-c39" firstAttribute="top" secondItem="uYH-hi-htJ" secondAttribute="top" id="yJy-Vg-VUQ"/>
+                            <constraint firstItem="mzF-uQ-c39" firstAttribute="top" secondItem="PP5-AM-YF7" secondAttribute="top" id="yJy-Vg-VUQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PP5-AM-YF7"/>
                     </view>
@@ -304,7 +304,7 @@
         <scene sceneID="qU2-Dj-Ydd">
             <objects>
                 <viewController storyboardIdentifier="VisitDetailsViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zgT-cU-YFP" customClass="VisitDetailsViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Lzn-yt-ZdI">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="Lzn-yt-ZdI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

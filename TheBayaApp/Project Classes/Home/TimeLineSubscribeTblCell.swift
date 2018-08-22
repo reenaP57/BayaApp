@@ -55,7 +55,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
         
-        return IS_iPad ? CGSize(width: CScreenWidth * 345/768 , height: collectionView.CViewHeight + 20) : CGSize(width: CScreenWidth - space , height: collectionView.CViewHeight)
+        return IS_iPad ? CGSize(width: CScreenWidth * 345/768 , height: collectionView.CViewHeight) : CGSize(width: CScreenWidth - space , height: collectionView.CViewHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -85,7 +85,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             }
             
             
-            cell.cnstImgvDottedBottom.constant = -percentage
+            cell.cnstImgvDottedBottom.constant = -percentage+2
             cell.cnstlblPercentageCenter.constant = cell.imgVDottedLine.CViewCenterY
             
             return cell

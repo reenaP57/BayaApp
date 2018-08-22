@@ -62,7 +62,6 @@
 		487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E60211C4CD8000CB32F /* AvenirLTStd-Medium.otf */; };
 		487E4E6C211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E61211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf */; };
 		487E4E6D211C4CD8000CB32F /* AvenirLTStd-Roman.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E62211C4CD8000CB32F /* AvenirLTStd-Roman.otf */; };
-		489773D2212AFCF8009EFEEB /* CTPanoramaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 489773D0212AFCF8009EFEEB /* CTPanoramaView.swift */; };
 		489A5F6C212293AA00080739 /* bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F68212293AA00080739 /* bg.jpg */; };
 		489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F69212293AA00080739 /* bg_ipad.jpg */; };
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
@@ -139,6 +138,11 @@
 		5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */; };
 		5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */; };
 		5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */; };
+		5CEE6A4B212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE6A4A212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift */; };
+		5CEE6A4D212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */; };
+		5CF34B9F212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF34B9E212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift */; };
+		5CF34BA3212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF34BA2212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift */; };
+		5CF34BA5212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF34BA4212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift */; };
 		5CF50BA821215EEB002FDAB8 /* SubscribedProjectCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50BA721215EEB002FDAB8 /* SubscribedProjectCollCell.swift */; };
 		5CF50BAA21218244002FDAB8 /* TimeLineUpdateTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50BA921218244002FDAB8 /* TimeLineUpdateTblCell.swift */; };
 		5CF50BAC212182AC002FDAB8 /* TimeLineImgCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */; };
@@ -209,8 +213,6 @@
 		487E4E60211C4CD8000CB32F /* AvenirLTStd-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Medium.otf"; sourceTree = "<group>"; };
 		487E4E61211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-MediumOblique.otf"; sourceTree = "<group>"; };
 		487E4E62211C4CD8000CB32F /* AvenirLTStd-Roman.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "AvenirLTStd-Roman.otf"; sourceTree = "<group>"; };
-		489773D0212AFCF8009EFEEB /* CTPanoramaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CTPanoramaView.swift; sourceTree = "<group>"; };
-		489773D1212AFCF8009EFEEB /* CTPanoramaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CTPanoramaView.h; sourceTree = "<group>"; };
 		489A5F68212293AA00080739 /* bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg.jpg; sourceTree = "<group>"; };
 		489A5F69212293AA00080739 /* bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_ipad.jpg; sourceTree = "<group>"; };
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
@@ -287,6 +289,11 @@
 		5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIFont.swift; sourceTree = "<group>"; };
 		5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIInputControllerValidation.swift; sourceTree = "<group>"; };
+		5CEE6A4A212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineImgZoomViewController_ipad.swift; sourceTree = "<group>"; };
+		5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineZoomImgCollCell_ipad.swift; sourceTree = "<group>"; };
+		5CF34B9E212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTblCell_ipad.swift; sourceTree = "<group>"; };
+		5CF34BA2212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTextTblCell_ipad.swift; sourceTree = "<group>"; };
+		5CF34BA4212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlTblCell_ipad.swift; sourceTree = "<group>"; };
 		5CF50BA721215EEB002FDAB8 /* SubscribedProjectCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscribedProjectCollCell.swift; sourceTree = "<group>"; };
 		5CF50BA921218244002FDAB8 /* TimeLineUpdateTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTblCell.swift; sourceTree = "<group>"; };
 		5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineImgCollCell.swift; sourceTree = "<group>"; };
@@ -564,7 +571,6 @@
 		5C189C09212538F5001B72C5 /* Custom class */ = {
 			isa = PBXGroup;
 			children = (
-				5C475D73212AD91A00125A19 /* 3D Images Class */,
 				5C189C0A21253911001B72C5 /* FloatRatingView */,
 			);
 			path = "Custom class";
@@ -616,15 +622,6 @@
 			path = Parent;
 			sourceTree = "<group>";
 		};
-		5C475D73212AD91A00125A19 /* 3D Images Class */ = {
-			isa = PBXGroup;
-			children = (
-				489773D1212AFCF8009EFEEB /* CTPanoramaView.h */,
-				489773D0212AFCF8009EFEEB /* CTPanoramaView.swift */,
-			);
-			path = "3D Images Class";
-			sourceTree = "<group>";
-		};
 		5CD763F7211D519100C267AB /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +629,7 @@
 				5CFCAAAE212C24C500717C10 /* Main_ipad.storyboard */,
 				5CD763F8211D51EA00C267AB /* HomeViewController.swift */,
 				5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */,
+				5CEE6A4A212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift */,
 				5CD76400211DC07E00C267AB /* ProjectViewController.swift */,
 				5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */,
 				5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */,
@@ -656,6 +654,10 @@
 				5C8D5B972125941C0080193A /* LocationDescTblCell.swift */,
 				5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */,
 				5CFCAAA8212C145500717C10 /* ProjectImageCollCell.swift */,
+				5CF34B9E212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift */,
+				5CF34BA2212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift */,
+				5CF34BA4212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift */,
+				5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -845,6 +847,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BFRImageViewer/BFRImageViewer.framework",
+				"${BUILT_PRODUCTS_DIR}/CTPanoramaView/CTPanoramaView.framework",
 				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -857,6 +860,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BFRImageViewer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTPanoramaView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -890,8 +894,10 @@
 				5CD763FD211DB8F700C267AB /* MIGenericProgressView.swift in Sources */,
 				5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */,
 				5CD76401211DC07E00C267AB /* ProjectViewController.swift in Sources */,
+				5CF34B9F212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift in Sources */,
 				5C8D5B9221258AFA0080193A /* AmmenitiesCollCell.swift in Sources */,
 				486FDD4C2119AEF500EA0188 /* MIPopUpOverlay.swift in Sources */,
+				5CEE6A4B212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift in Sources */,
 				5C1E614E2122C22C0090308D /* NotificationTblCell.swift in Sources */,
 				5CF50BB02121B019002FDAB8 /* FilterView.swift in Sources */,
 				486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */,
@@ -910,6 +916,7 @@
 				486FDD5A2119AEF500EA0188 /* ExtensionNSObject.swift in Sources */,
 				5C1E615D2122EE6C0090308D /* CMSViewController.swift in Sources */,
 				486FDD5C2119AEF500EA0188 /* ExtensionUIApplication.swift in Sources */,
+				5CEE6A4D212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift in Sources */,
 				486FDD5E2119AEF500EA0188 /* ExtensionUIButton.swift in Sources */,
 				5C8D5B8C21258AA90080193A /* PlanTypeCollCell.swift in Sources */,
 				5C4DC5392127EC1F00C69ACF /* TutorialCollCell.swift in Sources */,
@@ -927,7 +934,7 @@
 				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
 				5C8D5B9021258ADC0080193A /* OverViewCollCell.swift in Sources */,
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
-				489773D2212AFCF8009EFEEB /* CTPanoramaView.swift in Sources */,
+				5CF34BA3212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift in Sources */,
 				5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
@@ -951,6 +958,7 @@
 				486FDD502119AEF500EA0188 /* CoreData.swift in Sources */,
 				486FDD5F2119AEF500EA0188 /* ExtensionUIColor.swift in Sources */,
 				486FDD532119AEF500EA0188 /* FetchResultController+Extension.swift in Sources */,
+				5CF34BA5212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift in Sources */,
 				5CD763FB211D62B200C267AB /* HomeCollCell.swift in Sources */,
 				5C8D5B9621258B380080193A /* ConfigurationTblCell.swift in Sources */,
 				486FDD682119AEF500EA0188 /* ExtensionURL.swift in Sources */,
@@ -1054,7 +1062,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -1108,7 +1116,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -1122,11 +1130,15 @@
 			baseConfigurationReference = 45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mind.TheBayaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c74b054-5eb5-497a-af17-7381ee416537";
@@ -1141,11 +1153,15 @@
 			baseConfigurationReference = 8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mind.TheBayaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "1c74b054-5eb5-497a-af17-7381ee416537";

@@ -41,9 +41,10 @@ class TimelineDetailViewController: ParentViewController {
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
 
-        arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : "image"],
-                         ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : "url"],
-                         ["image": ["img4.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : "text"]] as [[String : AnyObject]]
+        arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg","img6.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 0],
+                         ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1],
+                         ["image": ["img4.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : 2],
+                         ["image": ["img1.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1]] as [[String : AnyObject]]
     }
     
     @objc func btnFilterClicked() {
@@ -72,6 +73,15 @@ class TimelineDetailViewController: ParentViewController {
                 vwFilter.txtEndDate.text = ""
             }
         }
+    }
+    
+    func shareContent() {
+       
+        let text = "This is the text...."
+        let shareAll = [text]
+        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 
@@ -107,11 +117,11 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 298
+        return IS_iPad ? indexPath.row == 0 ? 200 : 190 : 298
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return IS_iPad ? indexPath.row == 0 ? 200 : UITableViewAutomaticDimension : UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,55 +136,106 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             
         } else {
             
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+            if IS_iPad {
                 
                 let dict = arrUpdateList[indexPath.row - 1]
                 
-                if dict.valueForString(key: "type") == "image" {
-                    cell.lblUrl.hide(byHeight: true)
-                    cell.collImg.hide(byHeight: false)
-                    cell.pageControlSlider.hide(byHeight: false)
+                switch dict.valueForInt(key: "type") {
+                case 0: // Image
+               
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
+                        
+                        let arrImg = dict.valueForJSON(key: "image") as!
+                            [String]
+                        cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                        
+                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                        cell.lblDesc.text = dict.valueForString(key: "desc")
+                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        
+                        cell.btnShare.touchUpInside { (sender) in
+                           self.shareContent()
+                        }
+                        
+                        return cell
+                    }
                     
-                    _ = cell.lblDesc.setConstraintConstant(IS_iPad ? 7 : 0, edge: .top, ancestor: true)
-                    cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                case 1: // URL
                     
-                } else if dict.valueForString(key: "type") == "text" {
-                    cell.lblUrl.hide(byHeight: true)
-                    cell.collImg.hide(byHeight: true)
-                    cell.pageControlSlider.hide(byHeight: true)
-                    _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
+                        
+                        let arrImg = dict.valueForJSON(key: "image") as! [String]
+                        cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                        cell.lblDesc.text = dict.valueForString(key: "desc")
+                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        
+                        cell.btnShare.touchUpInside { (sender) in
+                            self.shareContent()
+                        }
+                        
+                        return cell
+                    }
                     
-                } else {
-                    cell.lblUrl.hide(byHeight: false)
-                    cell.collImg.hide(byHeight: false)
-                    cell.pageControlSlider.hide(byHeight: true)
+                default:
                     
-                    _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
-                    cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
+                        
+                        cell.lblDesc.text = dict.valueForString(key: "desc")
+                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        
+                        cell.btnShare.touchUpInside { (sender) in
+                            self.shareContent()
+                        }
+                        
+                        return cell
+                    }
                 }
+               
                 
-                if let arr = dict.valueForJSON(key: "image") as? [String] {
-                    cell.pageControlSlider.numberOfPages = arr.count
-                }
+            } else {
                 
-                cell.lblDesc.text = dict.valueForString(key: "desc")
-                cell.lblDateTime.text = dict.valueForString(key: "time")
-                
-                
-                cell.btnShare.touchUpInside { (sender) in
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                     
-                    let text = "This is the text...."
-                    //let image = UIImage(named: "Product")
-                    // let myWebsite = NSURL(string:"https://stackoverflow.com/users/4600136/mr-javed-multani?tab=profile")
-                    let shareAll = [text]
-                    let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-                    activityViewController.popoverPresentationController?.sourceView = self.view
-                    self.present(activityViewController, animated: true, completion: nil)
+                    let dict = arrUpdateList[indexPath.row - 1]
+                    
+                    switch dict.valueForInt(key: "type") {
+                    case 0:  //Image
+                        cell.lblUrl.hide(byHeight: true)
+                        cell.collImg.hide(byHeight: false)
+                        
+                        _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
+                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                        
+                    case 1:  // Url
+                        cell.lblUrl.hide(byHeight: false)
+                        cell.collImg.hide(byHeight: false)
+                        cell.pageControlSlider.hide(byHeight: true)
+                        _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
+                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                        
+                    default: // Text
+                        cell.lblUrl.hide(byHeight: true)
+                        cell.collImg.hide(byHeight: true)
+                        cell.pageControlSlider.hide(byHeight: true)
+                        _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                    }
+                    
+                    if let arr = dict.valueForJSON(key: "image") as? [String] {
+                        cell.pageControlSlider.numberOfPages = arr.count
+                    }
+                    
+                    cell.lblDesc.text = dict.valueForString(key: "desc")
+                    cell.lblDateTime.text = dict.valueForString(key: "time")
+                    
+                    
+                    cell.btnShare.touchUpInside { (sender) in
+                        self.shareContent()
+                    }
+                    
+                    return cell
                 }
-                
-                
-                return cell
             }
+
             return UITableViewCell()
         }
     }

@@ -10,6 +10,7 @@ target 'TheBayaApp' do
   pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage'
   pod 'BFRImageViewer'
+  pod 'CTPanoramaView', '1.0'
 
 
 end

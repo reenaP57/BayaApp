@@ -14,4 +14,13 @@ class TutorialCollCell: UICollectionViewCell {
     @IBOutlet weak var lblTitle : UILabel!
     @IBOutlet weak var lblDesc : UILabel!
 
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        if IS_iPhone_6_Plus {
+           _ = imgVTutorial.setConstraintConstant(imgVTutorial.CViewY + 75, edge: .top, ancestor: true)
+        }
+    }
+    
 }

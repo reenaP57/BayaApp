@@ -126,7 +126,7 @@
         <scene sceneID="gaM-tN-oJQ">
             <objects>
                 <viewController storyboardIdentifier="ChangePasswordViewController" id="1UB-bu-aX9" customClass="ChangePasswordViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="nwK-92-XTx" customClass="MIInputControllerValidation">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="nwK-92-XTx" customClass="MIInputControllerValidation">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -225,7 +225,7 @@
         <scene sceneID="jkY-Vx-wLP">
             <objects>
                 <viewController storyboardIdentifier="EditProfileViewController" id="SIH-EC-qNJ" customClass="EditProfileViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="G9q-GF-CUh">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="G9q-GF-CUh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -241,14 +241,14 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Doe" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EEk-OU-s7M" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="120" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="AvenirLTStd-Medium" family="Avenir LT Std" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                             </textField>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Johndoe@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ne1-aV-5yo" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="180" width="345" height="50"/>
@@ -335,13 +335,12 @@
         <scene sceneID="7Yi-KS-7gt">
             <objects>
                 <viewController storyboardIdentifier="SupportViewController" id="Izy-td-8V8" customClass="SupportViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="FJ2-FN-HvI">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="FJ2-FN-HvI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oZg-Xz-c79">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="664"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oZg-Xz-c79">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-IZ-dBk" customClass="MIGenericTextView" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="40" width="345" height="125"/>
@@ -417,16 +416,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="oZg-Xz-c79" firstAttribute="bottom" secondItem="yRJ-y8-viq" secondAttribute="bottom" id="1T8-Ob-8EU"/>
                             <constraint firstItem="JEK-du-xOk" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="34R-t1-BY3"/>
                             <constraint firstItem="ci6-IZ-dBk" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="9pB-d7-IrB"/>
                             <constraint firstItem="ci6-IZ-dBk" firstAttribute="top" secondItem="yRJ-y8-viq" secondAttribute="top" constant="20" id="Azr-6U-M9X"/>
+                            <constraint firstItem="oZg-Xz-c79" firstAttribute="top" secondItem="FJ2-FN-HvI" secondAttribute="top" id="K4C-FL-zP3"/>
                             <constraint firstItem="yRJ-y8-viq" firstAttribute="trailing" secondItem="ci6-IZ-dBk" secondAttribute="trailing" constant="15" id="Kar-K8-RHD"/>
                             <constraint firstItem="i8g-Fz-eXb" firstAttribute="leading" secondItem="tdr-ld-wbi" secondAttribute="leading" id="PBM-h7-60J"/>
                             <constraint firstItem="i8g-Fz-eXb" firstAttribute="trailing" secondItem="tdr-ld-wbi" secondAttribute="trailing" id="XGW-2V-GIv"/>
                             <constraint firstItem="JEK-du-xOk" firstAttribute="top" secondItem="iGK-Vu-7tp" secondAttribute="bottom" constant="10" id="agR-xh-acN"/>
                             <constraint firstItem="yRJ-y8-viq" firstAttribute="trailing" secondItem="JEK-du-xOk" secondAttribute="trailing" constant="15" id="cO7-ld-Iyc"/>
+                            <constraint firstItem="oZg-Xz-c79" firstAttribute="trailing" secondItem="yRJ-y8-viq" secondAttribute="trailing" id="cdG-V5-9sz"/>
                             <constraint firstItem="i8g-Fz-eXb" firstAttribute="top" secondItem="tdr-ld-wbi" secondAttribute="bottom" constant="45" id="gPb-sY-atk"/>
                             <constraint firstItem="iGK-Vu-7tp" firstAttribute="top" secondItem="ci6-IZ-dBk" secondAttribute="bottom" constant="20" id="kdB-RH-Pko"/>
+                            <constraint firstItem="oZg-Xz-c79" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" id="lKw-kZ-2cN"/>
                             <constraint firstItem="iGK-Vu-7tp" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="yUr-tt-LIa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yRJ-y8-viq"/>

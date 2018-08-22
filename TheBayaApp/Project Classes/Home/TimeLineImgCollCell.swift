@@ -11,7 +11,9 @@ import UIKit
 class TimeLineImgCollCell: UICollectionViewCell {
     
     @IBOutlet weak var imgVSlider : UIImageView!
-    
+    @IBOutlet weak var vwCount : UIView!
+    @IBOutlet weak var lblCount : UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         

@@ -52,15 +52,12 @@ class ParentViewController: UIViewController {
         
         //....Generic Navigation Setup
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font:CFontAvenirLTStd(size: IS_iPad ? 22 : 17, type: .heavy), NSAttributedStringKey.foregroundColor:ColorLightBlack]
-        self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font:CFontAvenirLTStd(size: IS_iPad ? 22 : 17, type: .heavy).setUpAppropriateFont()!, NSAttributedStringKey.foregroundColor:ColorLightBlack]
         
-        //self.navigationController?.navigationBar.barTintColor = ColorLightBlack
         self.navigationController?.navigationBar.tintColor = ColorLightBlack
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "back_white")
         self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "nav_back")
      
@@ -72,6 +69,21 @@ class ParentViewController: UIViewController {
             self.navigationController?.isNavigationBarHidden = true
             
         } else {
+            //self.navigationController?.navigationBar.backgroundColor = ColorGreen
+
+            if self.view.tag == 101 {
+                //...Transparent
+                 self.navigationController?.navigationBar.isTranslucent = true
+                 self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+
+            } else {
+                 self.navigationController?.navigationBar.isTranslucent = false
+                 self.navigationController?.navigationBar.backgroundColor = ColorBGColor
+                
+               // self.navigationController?.navigationBar.backgroundColor = ColorBGColor
+                
+                self.navigationController?.navigationBar.barTintColor = ColorBGColor
+            }
             
             self.navigationItem.hidesBackButton = false
             self.navigationController?.isNavigationBarHidden = false

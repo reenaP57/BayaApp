@@ -51,9 +51,7 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
-       appDelegate.initHomeViewController()
-        
-        
+        appDelegate.initHomeViewController()
         return
         
         
@@ -82,23 +80,24 @@ extension LoginViewController {
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
                         
-                    } else {
-                        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-                            self.navigationController?.pushViewController(signupVC, animated: true)
-                        }
+                    } else if !(self.txtPassword.text?.isValidPassword)! {
+                        self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0, CInvalidPasswordMessage))
+                    }
+                    else {
+                        appDelegate.initHomeViewController()
                     }
                     
                 } else {
                     
-                    if (self.txtEmail.text?.isValidPhoneNo)! {
+                    if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
                         self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
                         
+                    } else if !(self.txtPassword.text?.isValidPassword)! {
+                        self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0, CInvalidPasswordMessage))
                     } else {
-                        if let signupVC = CStoryboardLRF.instantiateViewController(withIdentifier: "SignUpViewController") as? SignUpViewController {
-                            self.navigationController?.pushViewController(signupVC, animated: true)
-                        }
+                        appDelegate.initHomeViewController()
                     }
                 }
             }

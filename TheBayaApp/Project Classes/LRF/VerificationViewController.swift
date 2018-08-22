@@ -30,6 +30,10 @@ class VerificationViewController: ParentViewController {
     
     func initialize() {
         
+        if IS_iPhone_6_Plus {
+          _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
+        }
+        
         
         if isFromSignUp {
             //...Verify Email
@@ -68,6 +72,8 @@ extension VerificationViewController {
             
             if (self.txtCode.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankVerificationCodeMessage))
+            } else if (self.txtCode.text?.count)! > 6 || (self.txtCode.text?.count)! < 6 {
+                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CInvalidVerificationCodeMessage))
             } else {
                 if self.isFromSignUp {
                     

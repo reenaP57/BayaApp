@@ -34,10 +34,10 @@ class SignUpViewController: ParentViewController {
     //MARK:- General Methods
     
     func initialize() {
-         self.title = "Sign up"
+         self.title = "Sign Up"
         
         txtCountryCode.setPickerData(arrPickerData: ["+91","+79","+63"], selectedPickerDataHandler: { (string, row, index) in
-        }, defaultPlaceholder: "")
+        }, defaultPlaceholder: "+91")
     }
     
 }
@@ -71,7 +71,7 @@ extension SignUpViewController {
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
             } else if (self.txtMobile.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtMobile.showValidationMessage(15.0, CBlankMobileMessage))
-            } else if !(self.txtMobile.text?.isValidPhoneNo)! {
+            } else if !(self.txtMobile.text?.isValidPhoneNo)! || ((self.txtMobile.text?.count)! > 10 || (self.txtMobile.text?.count)! < 10) {
                 self.vwContent.addSubview(self.txtMobile.showValidationMessage(15.0, CInvalidMobileMessage))
             } else if (self.txtPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtPwd.showValidationMessage(15.0, CBlankPasswordMessage))
