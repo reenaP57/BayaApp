@@ -50,16 +50,16 @@ extension SignUpViewController {
     
     @IBAction fileprivate func btnSignUpClicked (sender : UIButton) {
         
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.vwContent.layoutIfNeeded()
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
+            }
+        }
+        self.vwContent.layoutIfNeeded()
         
-       // DispatchQueue.main.async {
+        DispatchQueue.main.async {
             
             if (self.txtFName.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtFName.showValidationMessage(15.0, CBlankFirstNameMessage))
@@ -90,7 +90,7 @@ extension SignUpViewController {
                 }
             }
             
-       // }
+        }
         
       
     }

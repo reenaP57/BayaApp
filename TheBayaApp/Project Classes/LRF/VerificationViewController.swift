@@ -59,16 +59,16 @@ extension VerificationViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
+            }
+        }
+        self.view.layoutIfNeeded()
+
+        DispatchQueue.main.async {
         
             if (self.txtCode.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankVerificationCodeMessage))
@@ -85,7 +85,7 @@ extension VerificationViewController {
                     appDelegate.initHomeViewController()
                 }
             }
-       // }
+        }
     }
     
     @IBAction fileprivate func btnResendVerificationCodeClicked (sender : UIButton) {

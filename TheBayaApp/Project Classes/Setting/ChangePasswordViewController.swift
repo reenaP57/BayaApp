@@ -46,16 +46,16 @@ extension ChangePasswordViewController {
     
     @IBAction func btnSubmitClicked(_ sender: UIButton) {
         
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
+            }
+        }
+        self.view.layoutIfNeeded()
+
+        DispatchQueue.main.async {
         
             if (self.txtCurrentPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtCurrentPwd.showValidationMessage(15.0, CBlankOldPasswordMessage))
@@ -75,6 +75,6 @@ extension ChangePasswordViewController {
             } else {
                 self.navigationController?.popViewController(animated: true)
             }
-        //}
+        }
     }
 }

@@ -77,7 +77,7 @@ extension UITextField {
     func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
     {
         self.textfiledAddRemoveShadow(false)
-        self.delegate = self
+       // self.delegate = self
         
         DispatchQueue.main.async {
             lblMessage.tag = 1001
