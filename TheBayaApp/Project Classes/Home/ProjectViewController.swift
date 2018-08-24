@@ -39,6 +39,9 @@ class ProjectViewController: ParentViewController {
         
         arrProject = [["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img1.jpeg"],
                       ["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img2.jpeg"],["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img3.jpeg"]] as [[String : AnyObject]]
+        
+        tblProject.estimatedRowHeight = 170
+        tblProject.rowHeight = UITableViewAutomaticDimension
     }
 }
 
@@ -53,13 +56,13 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
         return arrProject.count
     }
     
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? 170 : CScreenWidth * 260/375
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? UITableViewAutomaticDimension : CScreenWidth * 250/375
-    }
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return IS_iPad ? 170 : CScreenWidth * 260/375
+//    }
+//    
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return IS_iPad ? UITableViewAutomaticDimension : CScreenWidth * 250/375
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
