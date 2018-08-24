@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8e-d4-dSo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8e-d4-dSo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -114,8 +114,11 @@
                                     <action selector="btnNextClickedWithSender:" destination="U8e-d4-dSo" eventType="touchUpInside" id="zwh-lp-Db7"/>
                                 </connections>
                             </button>
-                            <pageControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="yUt-t5-9fL" customClass="MIGenericPageControlView" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="168" y="596" width="39" height="37"/>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="yUt-t5-9fL" customClass="MIGenericPageControlView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="110" y="598.5" width="155" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="37" id="yae-V9-Iig"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="image" keyPath="currentPageImage" value="page_select"/>
                                     <userDefinedRuntimeAttribute type="image" keyPath="otherPagesImage" value="page_unselect"/>
@@ -129,11 +132,13 @@
                             <constraint firstItem="N3z-n4-KKa" firstAttribute="centerY" secondItem="kyW-BE-PrN" secondAttribute="centerY" id="OFf-lo-eJo"/>
                             <constraint firstItem="N3z-n4-KKa" firstAttribute="height" secondItem="kyW-BE-PrN" secondAttribute="height" id="TK8-EY-3Ah"/>
                             <constraint firstItem="Xk5-4y-hOD" firstAttribute="bottom" secondItem="kyW-BE-PrN" secondAttribute="bottom" constant="35" id="Trc-gO-Fw1"/>
-                            <constraint firstItem="yUt-t5-9fL" firstAttribute="centerX" secondItem="4me-A2-IJd" secondAttribute="centerX" id="UAD-CX-3v7"/>
                             <constraint firstItem="kyW-BE-PrN" firstAttribute="leading" secondItem="Xk5-4y-hOD" secondAttribute="leading" constant="20" id="br2-W0-N1P"/>
                             <constraint firstItem="kyW-BE-PrN" firstAttribute="width" secondItem="4me-A2-IJd" secondAttribute="width" multiplier="0.2" id="c6R-9l-hDi"/>
                             <constraint firstItem="mIe-VL-4Yu" firstAttribute="leading" secondItem="Xk5-4y-hOD" secondAttribute="leading" id="i6E-Gr-Wjs"/>
                             <constraint firstItem="mIe-VL-4Yu" firstAttribute="top" secondItem="4me-A2-IJd" secondAttribute="top" id="mvL-CQ-0Jm"/>
+                            <constraint firstItem="yUt-t5-9fL" firstAttribute="leading" secondItem="kyW-BE-PrN" secondAttribute="trailing" constant="15" id="n0r-li-GIw"/>
+                            <constraint firstItem="N3z-n4-KKa" firstAttribute="leading" secondItem="yUt-t5-9fL" secondAttribute="trailing" constant="15" id="ptw-nY-8Gi"/>
+                            <constraint firstItem="yUt-t5-9fL" firstAttribute="centerY" secondItem="kyW-BE-PrN" secondAttribute="centerY" id="qFw-yo-Jce"/>
                             <constraint firstItem="Xk5-4y-hOD" firstAttribute="trailing" secondItem="N3z-n4-KKa" secondAttribute="trailing" constant="20" id="sKn-4A-MTS"/>
                             <constraint firstItem="mIe-VL-4Yu" firstAttribute="trailing" secondItem="Xk5-4y-hOD" secondAttribute="trailing" id="xwE-Wf-8m0"/>
                         </constraints>
