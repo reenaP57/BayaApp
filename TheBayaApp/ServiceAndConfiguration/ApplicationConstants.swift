@@ -27,40 +27,40 @@ enum CFontType:Int {
 }
 
 
-func CFontAvenirLTStd(size: CGFloat, type: CFontType) -> UIFont {
+func CFontAvenir(size: CGFloat, type: CFontType) -> UIFont {
     switch type {
     case .black:
-        return UIFont.init(name: "AvenirLTStd-Black", size: size)!
+        return UIFont.init(name: "Avenir-Black", size: size)!
         
     case .blackOblique:
-        return UIFont.init(name: "AvenirLTStd-BlackOblique.otf", size: size)!
+        return UIFont.init(name: "Avenir-BlackOblique", size: size)!
     
     case .book:
-        return UIFont.init(name: "AvenirLTStd-Book", size: size)!
+        return UIFont.init(name: "Avenir-Book", size: size)!
         
     case .bookOblique:
-        return UIFont.init(name: "AvenirLTStd-BookOblique", size: size)!
+        return UIFont.init(name: "Avenir-BookOblique", size: size)!
     
     case .heavy:
-        return UIFont.init(name: "AvenirLTStd-Heavy", size: size)!
+        return UIFont.init(name: "Avenir-Heavy", size: size)!
         
     case .heavyOblique:
-        return UIFont.init(name: "AvenirLTStd-HeavyOblique", size: size)!
+        return UIFont.init(name: "Avenir-HeavyOblique", size: size)!
         
     case .light:
-        return UIFont.init(name: "AvenirLTStd-Light", size: size)!
+        return UIFont.init(name: "Avenir-Light", size: size)!
 
     case .lightOblique:
-        return UIFont.init(name: "AvenirLTStd-LightOblique", size: size)!
+        return UIFont.init(name: "Avenir-LightOblique", size: size)!
 
     case .medium:
-        return UIFont.init(name: "AvenirLTStd-Medium", size: size)!
+        return UIFont.init(name: "Avenir-Medium", size: size)!
         
     case .mediumOblique:
-        return UIFont.init(name: "AvenirLTStd-MediumOblique", size: size)!
+        return UIFont.init(name: "Avenir-MediumOblique", size: size)!
 
     case .roman:
-        return UIFont.init(name: "AvenirLTStd-Roman", size: size)!
+        return UIFont.init(name: "Avenir-Roman", size: size)!
 
     }
 }
@@ -102,8 +102,9 @@ let ColorGreenSelected       =  CRGB(r: 66, g: 173, b: 62)
 //MARK:- UIStoryboard
 let CStoryboardMain = UIStoryboard(name: IS_iPad ? "Main_ipad" : "Main", bundle: nil)
 let CStoryboardLRF  = UIStoryboard(name: IS_iPad ? "LRF_ipad" : "LRF", bundle: nil)
-let CStoryboardSetting  = UIStoryboard(name: IS_iPad ? "Main_ipad" : "Main", bundle: nil) //UIStoryboard(name: IS_iPad ? "Setting_ipad" : "Setting", bundle: nil)
-let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Main_ipad" : "Main", bundle: nil) //UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
+let CStoryboardSetting  = UIStoryboard(name: IS_iPad ? "Setting_ipad" : "Setting", bundle: nil)
+let CStoryboardSettingIphone  = UIStoryboard(name:"Setting", bundle: nil)
+let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
 
 
 

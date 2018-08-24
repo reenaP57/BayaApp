@@ -20,7 +20,7 @@ class ScheduleVisitViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtSelectProject : UITextField!
     @IBOutlet fileprivate weak var txtVPurpose : UITextView! {
         didSet {
-            txtVPurpose.placeholderFont = CFontAvenirLTStd(size: 15.0, type: .medium).setUpAppropriateFont()
+            txtVPurpose.placeholderFont = CFontAvenir(size: 14.0, type: .medium).setUpAppropriateFont()
         }
     }
 
@@ -47,20 +47,75 @@ class ScheduleVisitViewController: ParentViewController {
     //MARK:-
     //MARK:- General Methods
     
+    func checkValidation(txtField : UITextField) {
+        
+        //        for objView in vwContent.subviews{
+        //            if  objView.isKind(of: UITextField.classForCoder()){
+        //                let txField = objView as? UITextField
+        //                txField?.hideValidationMessage(15.0)
+        //                txField?.resignFirstResponder()
+        //            }
+        //
+        //            if  objView.isKind(of: UITextView.classForCoder()){
+        //                let txView = objView as? UITextView
+        //                txView?.hideValidationMessage(15.0)
+        //                txView?.resignFirstResponder()
+        //            }
+        //        }
+        if self.checkSlotTime(date:dateSlot1) {
+            txtSlot2.hideValidationMessage(15.0)
+            txtSlot3.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+            
+        } else if self.checkSlotTime(date:dateSlot2) {
+            txtSlot1.hideValidationMessage(15.0)
+            txtSlot3.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+            
+        } else if self.checkSlotTime(date:dateSlot3) {
+            txtSlot2.hideValidationMessage(15.0)
+            txtSlot1.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+
+        } else {
+           
+            if txtField == txtSlot1 {
+                txtField.hideValidationMessage(15.0)
+            } else if txtField == txtSlot2 {
+                txtSlot1.hideValidationMessage(15.0)
+                txtField.hideValidationMessage(15.0)
+                txtSlot3.hideValidationMessage(15.0)
+            } else  if txtField == txtSlot3 {
+                txtSlot1.hideValidationMessage(15.0)
+                txtSlot2.hideValidationMessage(15.0)
+                txtField.hideValidationMessage(15.0)
+            }
+            
+            txtVPurpose.hideValidationMessage(15.0)
+            txtNoOfGuest.hideValidationMessage(15.0)
+            txtSelectProject.hideValidationMessage(15.0)
+        }
+    }
+    
     func initialize() {
         
         self.title = "Schedule a Visit"
         
-        txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd-MM-yyyy hh:mm", defaultDate: Date().tomorrow , isPrefilledDate: false) { (date) in
+        txtVPurpose.contentInset = UIEdgeInsetsMake(0, 10, 0, 10)
+        
+        txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
             dateSlot1 = date
+            self.checkValidation(txtField: txtSlot1)
         }
         
-        txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd-MM-yyyy hh:mm", defaultDate: Date().tomorrow, isPrefilledDate: false) { (date) in
+        txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
             dateSlot2 = date
+            self.checkValidation(txtField: txtSlot2)
         }
         
-        txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd-MM-yyyy hh:mm", defaultDate: Date().tomorrow, isPrefilledDate: false) { (date) in
+        txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
             dateSlot3 = date
+            self.checkValidation(txtField: txtSlot3)
         }
         
         txtNoOfGuest.setPickerData(arrPickerData: ["1","2","3","4","5","6","7","8","9","10"], selectedPickerDataHandler: { (string, row, index) in
@@ -104,33 +159,39 @@ extension ScheduleVisitViewController {
     
     @IBAction func btnSubmitClicked (sender : UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-            
-            if  objView.isKind(of: UITextView.classForCoder()){
-                let txView = objView as? UITextView
-                txView?.hideValidationMessage(15.0)
-                txView?.resignFirstResponder()
-            }
-        }
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//
+//            if  objView.isKind(of: UITextView.classForCoder()){
+//                let txView = objView as? UITextView
+//                txView?.hideValidationMessage(15.0)
+//                txView?.resignFirstResponder()
+//            }
+//        }
+//
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
         
-        self.view.layoutIfNeeded()
-        
-        DispatchQueue.main.async {
-            
             if (self.txtSlot1.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CBlankTimeSlot1Message))
                 
+            } else if self.checkSlotTime(date: self.dateSlot1) {
+                self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CInvalidTimeRangeMessage))
             } else if (self.txtSlot2.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CBlankTimeSlot2Message))
                 
+            } else if self.checkSlotTime(date: self.dateSlot2) {
+                self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CInvalidTimeRangeMessage))
             } else if (self.txtSlot3.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CBlankTimeSlot3Message))
                 
+            } else if self.checkSlotTime(date: self.dateSlot3) {
+                self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CInvalidTimeRangeMessage))
             } else if (self.txtVPurpose.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0,CBlankPurposeOfVisitMessage))
                 
@@ -144,17 +205,13 @@ extension ScheduleVisitViewController {
                 
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 
-            } else if self.checkSlotTime(date: self.dateSlot1) ||
-                self.checkSlotTime(date: self.dateSlot2) ||
-                self.checkSlotTime(date: self.dateSlot3) {
+            }  else {
                 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CInvalidTimeRangeMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
-            } else {
-                
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
-                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
-        }
+       // }
     }
 }
 
@@ -165,6 +222,8 @@ extension ScheduleVisitViewController {
 extension ScheduleVisitViewController : UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
+        
+        textView.hideValidationMessage(15.0)
         
         if textView.text.count > 0 {
             textView.placeholderColor = UIColor.clear

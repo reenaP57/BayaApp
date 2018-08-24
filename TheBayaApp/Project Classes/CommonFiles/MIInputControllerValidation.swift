@@ -11,7 +11,15 @@ import UIKit
 
 var lblMessage = UILabel()
 
-extension UITextField  {
+extension UITextField {
+    
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if self == textField {
+            self.hideValidationMessage(15.0)
+        }
+        
+        return true
+    }
     
     func textfiledAddRemoveShadow(_ isAdd : Bool)
     {
@@ -69,14 +77,16 @@ extension UITextField  {
     func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
     {
         self.textfiledAddRemoveShadow(false)
+        self.delegate = self
         
         DispatchQueue.main.async {
+            lblMessage.tag = 1001
             lblMessage.text = message
             lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
             lblMessage.textColor = ColorValidation
             
-            lblMessage.font = CFontAvenirLTStd(size: 14, type: .roman)
+            lblMessage.font = CFontAvenir(size: 14, type: .roman)
             lblMessage.sizeToFit()
             self.updateTextFiledBottomSpace((space/2) + space + lblMessage.frame.size.height)
         }
@@ -85,6 +95,7 @@ extension UITextField  {
 }
 
 extension UITextView{
+  
     func textfiledAddRemoveShadow(_ isAdd : Bool)
     {
         if isAdd{
@@ -141,13 +152,14 @@ extension UITextView{
     func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
     {
         self.textfiledAddRemoveShadow(false)
+        //self.delegate = self
         
         DispatchQueue.main.async {
             lblMessage.text = message
             lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
             lblMessage.textColor = CRGB(r: 247, g: 51, b: 52)
-            lblMessage.font = CFontAvenirLTStd(size: 14, type: .roman)
+            lblMessage.font = CFontAvenir(size: 14, type: .roman)
             lblMessage.sizeToFit()
             self.updateTextFiledBottomSpace((space/2) + space + lblMessage.frame.size.height)
         }

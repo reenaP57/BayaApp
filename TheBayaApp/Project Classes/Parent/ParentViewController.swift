@@ -52,7 +52,7 @@ class ParentViewController: UIViewController {
         
         //....Generic Navigation Setup
         self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font:CFontAvenirLTStd(size: IS_iPad ? 22 : 17, type: .heavy).setUpAppropriateFont()!, NSAttributedStringKey.foregroundColor:ColorLightBlack]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font:CFontAvenir(size: 17, type: .heavy).setUpAppropriateFont()!, NSAttributedStringKey.foregroundColor:ColorLightBlack]
         
         self.navigationController?.navigationBar.tintColor = ColorLightBlack
         self.navigationController?.navigationBar.barStyle = .default

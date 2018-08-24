@@ -36,6 +36,11 @@ class SettingViewController: ParentViewController {
 
     func initialize() {
         self.title = "Settings"
+        
+        if IS_iPad {
+            tblSettings.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
+            tblSettings.isScrollEnabled = false
+        }
     }
 
 }
@@ -83,7 +88,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CScreenWidth * (60 / 375)
+        return IS_iPad ? CScreenWidth * (60 / 768) : CScreenWidth * (60 / 375)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -101,6 +106,9 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             }
 
             cell.switchNotify.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+            
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
             
             return cell
         }
@@ -125,7 +133,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
      
         case 4,5,7:
             //...Terms & Conditions
-            if let cmsVC = CStoryboardSetting.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
+            if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
                
                 if indexPath.row == 4 {
                     cmsVC.cmsEnum = .TermsCondition

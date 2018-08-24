@@ -11,7 +11,10 @@ import UIKit
 class MIGenericView: UIView {
     
     let gradientLayer = CAGradientLayer()
-
+    @IBInspectable var gradientColor1 : UIColor = ColorWhite
+    @IBInspectable var gradientColor2 : UIColor = ColorWhite
+    
+    
     @IBInspectable var cornerRadius : CGFloat = 0.0
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,9 +31,25 @@ class MIGenericView: UIView {
             self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 7, height: 5), shadowRadius: 5.0, shadowOpacity: 0.7)
             self.layer.cornerRadius = cornerRadius
             
+        } else if self.tag == 102 {
+            
+            ///... Set gradient
+            self.setGradientBackground()
+            
         }  else {
             self.layer.cornerRadius = cornerRadius
         }
     }
 
+    
+    func setGradientBackground() {
+        
+        gradientLayer.colors = [gradientColor1.cgColor, gradientColor2.cgColor]
+        gradientLayer.frame = self.bounds
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)
+        self.layer.insertSublayer(gradientLayer, below: self.layer)
+        
+    }
+    
 }

@@ -36,9 +36,9 @@ class SubscribedProjectViewController: ParentViewController {
         self.title = "Subscribed Projects"
         
         arrSubscribeList = [["project_name" : "The Baya Victoria", "location" :"203 Orbital Plaza, Prabhadevi Road,Mumbai 400 025"],
-        ["project_name" : "The Baya Junction", "location" :"203 Orbital Plaza, Prabhadevi Road,Mumbai 400 025"],
-        ["project_name" : "TDR Kanjurmarg", "location" :"203 Orbital Plaza, Prabhadevi Road,Mumbai 400 025"],
-        ["project_name" : "The Baya Victoria", "location" :"203 Orbital Plaza, Prabhadevi Road,Mumbai 400 025"]] as [[String : AnyObject]]
+        ["project_name" : "The Baya Junction", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
+        ["project_name" : "TDR Kanjurmarg", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
+        ["project_name" : "The Baya Victoria", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"]] as [[String : AnyObject]]
     }
 }
 
@@ -53,7 +53,7 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CScreenWidth * (108 / 375)
+        return IS_iPad ? CScreenWidth * (115 / 768) : CScreenWidth * (108 / 375)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,6 +63,9 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
             let dict = arrSubscribeList[indexPath.row]
             cell.lblProjectName.text = dict.valueForString(key: "project_name")
             cell.lblAddress.text = dict.valueForString(key: "location")
+            
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
             
             cell.btnUnsubscribe.touchUpInside { (sender) in
                 

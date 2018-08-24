@@ -66,7 +66,7 @@ extension UITextField {
         
         rightView.frame = CGRect(x: 0.0, y: 0.0, width: (((rightView.image?.size.width) ?? 0.0) + (rightPadding ?? 0.0)), height: ((rightView.image?.size.height ?? 0.0)))
         
-        rightView.contentMode = .center
+        rightView.contentMode = .left
         
         self.rightViewMode = .always
         self.rightView = rightView

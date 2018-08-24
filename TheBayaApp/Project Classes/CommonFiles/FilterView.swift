@@ -20,10 +20,10 @@ class FilterView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        txtStartDate.setDatePickerWithDateFormate(dateFormate: "dd/MM/YYYY", defaultDate: Date(), isPrefilledDate: false) { (date) in
+        txtStartDate.setDatePickerWithDateFormate(dateFormate: "dd MMMM YYYY", defaultDate: Date(), isPrefilledDate: true) { (date) in
         }
         
-        txtEndDate.setDatePickerWithDateFormate(dateFormate: "dd/MM/YYYY", defaultDate: Date(), isPrefilledDate: false) { (date) in
+        txtEndDate.setDatePickerWithDateFormate(dateFormate: "dd MMMM YYYY", defaultDate: Date(), isPrefilledDate: true) { (date) in
         }
     }
 }

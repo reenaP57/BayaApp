@@ -53,8 +53,12 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
         return arrProject.count
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return IS_iPad ? 170 : CScreenWidth * 260/375
+    }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CScreenWidth * 250/375
+        return IS_iPad ? UITableViewAutomaticDimension : CScreenWidth * 250/375
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -68,6 +72,9 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             cell.lblDesc.text = dict.valueForString(key: "desc")
             cell.lblReraNo.text = dict.valueForString(key: "rera_no")
             cell.imgVPrjct.image = UIImage(named: dict.valueForString(key: "img"))
+            
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
             
             cell.btnSubscribe.touchUpInside { (sender) in
                 cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected

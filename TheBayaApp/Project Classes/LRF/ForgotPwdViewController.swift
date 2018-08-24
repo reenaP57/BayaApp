@@ -44,17 +44,17 @@ extension ForgotPwdViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
         
-        DispatchQueue.main.async {
-            
             if (self.txtEmail.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
                 
@@ -83,6 +83,6 @@ extension ForgotPwdViewController {
                     }
                 }
             }
-        }
+       // }
     }
 }

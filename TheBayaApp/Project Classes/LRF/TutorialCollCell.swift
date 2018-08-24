@@ -19,7 +19,7 @@ class TutorialCollCell: UICollectionViewCell {
         super.awakeFromNib()
         
         if IS_iPhone_6_Plus {
-           _ = imgVTutorial.setConstraintConstant(imgVTutorial.CViewY + 75, edge: .top, ancestor: true)
+           _ = imgVTutorial.setConstraintConstant(imgVTutorial.CViewY + 40, edge: .top, ancestor: true)
         }
     }
     

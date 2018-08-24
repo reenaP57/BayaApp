@@ -41,18 +41,18 @@ extension SupportViewController {
     
     @IBAction func btnSendClicked (sender : UIButton) {
         
-        for objView in self.view.subviews{
-            if  objView.isKind(of: UITextView.classForCoder()){
-                let txView = objView as? UITextView
-                txView?.hideValidationMessage(15.0)
-                txView?.resignFirstResponder()
-            }
-        }
-        
-        self.view.layoutIfNeeded()
-        
-        DispatchQueue.main.async {
-            
+//        for objView in self.view.subviews{
+//            if  objView.isKind(of: UITextView.classForCoder()){
+//                let txView = objView as? UITextView
+//                txView?.hideValidationMessage(15.0)
+//                txView?.resignFirstResponder()
+//            }
+//        }
+//
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
+//
             if (self.txtVMsg.text?.isBlank)! {
                 self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport))
             } else {
@@ -60,7 +60,7 @@ extension SupportViewController {
                     self.navigationController?.popViewController(animated: true)
                 })
             }
-        }
+       // }
     }
     
     @IBAction func btnUploadImage (sender : UIButton) {

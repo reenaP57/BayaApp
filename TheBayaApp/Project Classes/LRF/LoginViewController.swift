@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LoginViewController: ParentViewController, UITextFieldDelegate {
+class LoginViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtEmail : UITextField!
     @IBOutlet fileprivate weak var txtPassword : UITextField!
@@ -43,30 +43,32 @@ class LoginViewController: ParentViewController, UITextFieldDelegate {
 }
 
 
-
 //MARK:-
 //MARK:- Action
 
 extension LoginViewController {
     
+    func checkValidation (view : UIView,txtField : UITextField) {
+        
+    }
+    
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
-        appDelegate.initHomeViewController()
-        return
+//        appDelegate.initHomeViewController()
+//        return
         
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        
-        self.view.layoutIfNeeded()
-        
-        DispatchQueue.main.async {
-            
             if (self.txtEmail.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
                 
@@ -80,7 +82,7 @@ extension LoginViewController {
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
                         
-                    } else if !(self.txtPassword.text?.isValidPassword)! {
+                    } else if !(self.txtPassword.text?.isValidPassword)! || (self.txtPassword.text?.count)! < 6 {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0, CInvalidPasswordMessage))
                     }
                     else {
@@ -94,14 +96,14 @@ extension LoginViewController {
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
                         
-                    } else if !(self.txtPassword.text?.isValidPassword)! {
+                    } else if !(self.txtPassword.text?.isValidPassword)! || (self.txtPassword.text?.count)! < 6  {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0, CInvalidPasswordMessage))
                     } else {
                         appDelegate.initHomeViewController()
                     }
                 }
             }
-        }
+        //}
     }
     
     @IBAction fileprivate func btnForgotPasswordClicked (sender : UIButton) {

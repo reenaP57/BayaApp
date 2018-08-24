@@ -67,7 +67,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return CScreenWidth * (74 / 375)
+        return IS_iPad ? CScreenWidth * (74 / 768) : CScreenWidth * (74 / 375)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -77,6 +77,9 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
             let dict = arrList[indexPath.row]
             cell.lblTitle.text = dict.valueForString(key: "title")
             cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
+            
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
             
             return cell
         }

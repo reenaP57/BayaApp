@@ -48,22 +48,22 @@ extension ResetPwdViewController {
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
         
-        DispatchQueue.main.async {
-            
             if (self.txtCode.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankOTPMessage))
             } else if (self.txtNewPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankNewPasswordMessage))
-            } else if !(self.txtNewPwd.text?.isValidPassword)! {
+            } else if !(self.txtNewPwd.text?.isValidPassword)! || (self.txtNewPwd.text?.count)! < 6  {
                 self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CInvalidPasswordMessage))
             } else if (self.txtConfirmPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CBlankConfirmPasswordMessage))
@@ -75,7 +75,7 @@ extension ResetPwdViewController {
                     self.navigationController?.pushViewController(loginVC, animated: true)
                 }
             }
-        }
+       // }
         
     }
     

@@ -66,6 +66,7 @@
 		489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F69212293AA00080739 /* bg_ipad.jpg */; };
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
 		489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6B212293AA00080739 /* login_bg_ipad.jpg */; };
+		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
 		5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */; };
 		5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */; };
 		5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C14CA82211C48D300B06E29 /* Setting.storyboard */; };
@@ -217,6 +218,7 @@
 		489A5F69212293AA00080739 /* bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_ipad.jpg; sourceTree = "<group>"; };
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
+		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
 		5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPwdViewController.swift; sourceTree = "<group>"; };
 		5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPwdViewController.swift; sourceTree = "<group>"; };
 		5C14CA82211C48D300B06E29 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -603,6 +605,7 @@
 			isa = PBXGroup;
 			children = (
 				5C1E615F2122F3400090308D /* Profile.storyboard */,
+				5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */,
 				5C1E61612122F3C10090308D /* ProfileViewController.swift */,
 				5C1E61652123054C0090308D /* SubscribedProjectViewController.swift */,
 				5C1E616921230EEC0090308D /* VisitDetailsViewController.swift */,
@@ -814,6 +817,7 @@
 				487E4E69211C4CD8000CB32F /* AvenirLTStd-Light.otf in Resources */,
 				486FDD702119AEF500EA0188 /* Info.plist in Resources */,
 				5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */,
+				5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1141,8 +1145,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mind.TheBayaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1c74b054-5eb5-497a-af17-7381ee416537";
-				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 2 Feb 2018";
+				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
+				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1164,8 +1168,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mind.TheBayaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1c74b054-5eb5-497a-af17-7381ee416537";
-				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 2 Feb 2018";
+				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
+				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

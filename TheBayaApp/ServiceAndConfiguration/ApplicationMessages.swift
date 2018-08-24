@@ -67,7 +67,7 @@ var CInvalidGapBetweenTimeSlotMessage        : String{ return CLocalize(text: "T
 
 
 var CBlankFeedbackSupport        : String { return CLocalize(text:"Feedback can’t be blank.")} 
-var CSelectRating                : String { return CLocalize(text:"Please select ratings.")}
+var CSelectRating                : String { return CLocalize(text:"Please add ratings.")}
 var CBlankFeedbackVisit          : String { return CLocalize(text:"Please enter feedback on your visit.")}
 
 

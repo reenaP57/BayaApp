@@ -12,7 +12,7 @@ class RateYoorVisitViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtVFeedback : UITextView!{
         didSet {
-            txtVFeedback.placeholderFont = CFontAvenirLTStd(size: 15.0, type: .medium)
+            txtVFeedback.placeholderFont = CFontAvenir(size: 15.0, type: .medium)
         }
     }
     
@@ -71,9 +71,6 @@ extension RateYoorVisitViewController {
            
             if self.vwRating.rating < 1.0 {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSelectRating, btnOneTitle: CBtnOk, btnOneTapped: nil)
-                
-            } else if self.txtVFeedback.text.isBlank {
-              self.vwContent.addSubview(self.txtVFeedback.showValidationMessage(15.0, CBlankFeedbackVisit))
                 
             } else {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessRateVisitMessage, btnOneTitle: CBtnOk) { (action) in

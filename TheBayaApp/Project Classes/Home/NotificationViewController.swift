@@ -81,6 +81,8 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 cell.btnRateVisit.hide(byWidth: true)
             }
             
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
             
             cell.vwContent.layer.borderWidth = 1
             
@@ -89,7 +91,7 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 cell.vwContent.backgroundColor = ColorWhite
                 
             } else {
-                cell.vwContent.layer.borderColor = ColorGreen.cgColor
+                cell.vwContent.layer.borderColor = ColorGreenSelected.cgColor
                 cell.vwContent.backgroundColor = ColorUnreadNotification
             }
             

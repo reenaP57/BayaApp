@@ -23,6 +23,8 @@ class ProjectTblCell: UITableViewCell {
         
         btnSubscribe.layer.cornerRadius = 5
         btnSubscribe.layer.masksToBounds = true
+        
+        self.contentView.backgroundColor = UIColor.clear
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

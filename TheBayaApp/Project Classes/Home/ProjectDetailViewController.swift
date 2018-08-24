@@ -53,6 +53,8 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var cnstHeightCollOverView : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightTblConfigure : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightTblSpecification : NSLayoutConstraint!
+    @IBOutlet fileprivate weak var cnstHeightCollLocation : NSLayoutConstraint!
+
 
     
     var arrLocation = [[String : AnyObject]]()
@@ -64,6 +66,7 @@ class ProjectDetailViewController: ParentViewController {
     var arrAmmenities = [[String : AnyObject]]()
     var arrImg = [String]()
 
+    var planIndexPath : IndexPath = IndexPath(item: 0, section: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,12 +89,11 @@ class ProjectDetailViewController: ParentViewController {
     
     func initialize() {
         
-        btnTypicalPlan.layer.borderWidth = 1
-        btnTypicalPlan.layer.borderColor = ColorGray.cgColor
+       self.btnFloorPlansClicked(sender: btnUnitPlans)
         
         arrImg = ["img1.jpeg","img2.jpeg","img3.jpeg"]
         
-        arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+        arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km"]],
         ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
         ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
         ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
@@ -99,7 +101,7 @@ class ProjectDetailViewController: ParentViewController {
         
         arrPlanType = ["TYPE A - 1 BHK", "TYPE B - 1 BHK", "TYPE d - 2 BHK", "TYPE e - 2 BHK", "TYPE c - 2 BHK", "TYPE f - 2 BHK"]
         
-        arrFloorImg = ["img5.jpeg", "img6.jpeg", "img7.jpeg","img8.jpeg"]
+        arrFloorImg = ["img1.jpeg", "img6.jpeg", "img7.jpeg","img8.jpeg","img1.jpeg", "img6.jpeg"]
         
         arrOverView = [["img" : "my_projects_profile", "title": "Project Details", "subtitle" : "3 Towers, 213 Units"],
         ["img" : "Forma_1_2", "title": "Possessions", "subtitle" : "Ready to move"],
@@ -111,7 +113,7 @@ class ProjectDetailViewController: ParentViewController {
         arrConfigure = [["type" : "TYPE A - 1 BHK", "sq.ft" : "1350 sq.ft.", "price" : "4,50,000"],
         ["type" : "TYPE A - 2 BHK", "sq.ft" : "2350 sq.ft.", "price" : "7,00,000"],
         ["type" : "TYPE B - 2 BHK", "sq.ft" : "1000 sq.ft.", "price" : "7,00,000"],
-        ["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"],] as [[String : AnyObject]]
+        ["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"],["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"]] as [[String : AnyObject]]
         
         arrAmmenities = [["img" : "Layer_7", "title" : "Lift"],
         ["img" : "Group_11", "title" : "Gym"],
@@ -120,9 +122,8 @@ class ProjectDetailViewController: ParentViewController {
         
         arrSpecification = ["Drapes/Curtains/Window Cover", "Fire/Smoke Alarm", "Italian Kitchen", "Vitrified Tiles"]
         
-
         sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
-        sliderPercentage.setThumbImage(UIImage(named: "baya_slider"), for: .normal)
+        sliderPercentage.setThumbImage(UIImage(named: "baya_slider_shadow"), for: .normal)
         
         self.loadProjectDetail()
         
@@ -146,7 +147,8 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
-            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height - 38
+            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height - 25
+            self.cnstHeightCollLocation.constant = self.collLocation.contentSize.height
         }
     }
 
@@ -205,6 +207,24 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnFloorPlansClicked (sender : UIButton) {
+        
+        btnUnitPlans.isSelected = false
+        btnTypicalPlan.isSelected = false
+        btnUnitPlans.backgroundColor = UIColor.clear
+        btnTypicalPlan.backgroundColor = UIColor.clear
+        btnTypicalPlan.layer.borderWidth = 1
+        btnUnitPlans.layer.borderWidth = 1
+        btnTypicalPlan.layer.borderColor = ColorGray.cgColor
+        btnUnitPlans.layer.borderColor = ColorGray.cgColor
+        
+        if sender.isSelected {
+            return
+        }
+        
+        sender.isSelected = true
+        sender.backgroundColor = ColorGreenSelected
+        sender.layer.borderColor = ColorGreenSelected.cgColor
+
         
     }
     
@@ -301,10 +321,10 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         
         switch collectionView {
         case collFloorImg:
-            return CGSize(width: (CScreenWidth/2 - 20), height: (CScreenWidth * (190 / 375)))
+            return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
             
         case collPlansType:
-            let fontToResize = CFontAvenirLTStd(size: 12, type: .heavy).setUpAppropriateFont()
+            let fontToResize = CFontAvenir(size: 12, type: .heavy).setUpAppropriateFont()
             return CGSize(width: arrPlanType[indexPath.row].size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: collectionView.CViewHeight)
             
         case collAmmenities:
@@ -342,12 +362,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 cell.lblLocation.text = dict.valueForString(key: "title")
                 cell.imgVLocation.image = UIImage(named: dict.valueForString(key: "img"))
                 cell.loadLocationDesc(arrDesc: dict.valueForJSON(key: "desc") as! [String])
-                
-                
-                DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
-                    self.collLocation.reloadData()
-                }
-                
+
                 return cell
             }
             
@@ -359,7 +374,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
          
                 cell.lblPlanType.text = arrPlanType[indexPath.row]
                 
-                if cell.isSelected {
+                if self.planIndexPath == indexPath {
                     cell.vwLine.isHidden = false
                     cell.lblPlanType.textColor = ColorGreenSelected
                     
@@ -421,13 +436,10 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         
         switch collectionView {
         case collPlansType:
-            if let cell = collectionView.cellForItem(at: indexPath) as? PlanTypeCollCell {
-                
-                cell.isSelected = true
-                cell.vwLine.isHidden = false
-                cell.lblPlanType.textColor = ColorGreenSelected
-            }
-            
+            self.planIndexPath = indexPath
+            self.collFloorImg.scrollToItem(at: indexPath, at: .left, animated: true)
+            self.collPlansType.reloadData()
+
         case collFloorImg:
             if let cell = collectionView.cellForItem(at: indexPath) as? FloorPlansImgCollCell {
                  self.zoomImage(cell.imgVPlan.image)
@@ -437,24 +449,20 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             break
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        
-        if collectionView.isEqual(collPlansType){
-            
-            if let cell = collectionView.cellForItem(at: indexPath) as? PlanTypeCollCell {
-                
-                cell.isSelected = false
-                cell.vwLine.isHidden = true
-                cell.lblPlanType.textColor = ColorLightBlack
-            }
-        }
-    }
-    
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-        pageVProject.currentPage = Int(page)
- 
+        let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
+        
+        if scrollView == collFloorImg {
+            
+            collPlansType.scrollToItem(at: IndexPath(item: Int(index), section: 0), at: UICollectionViewScrollPosition.left, animated: true)
+            self.planIndexPath = IndexPath(item: Int(index), section: 0)
+            collPlansType.reloadData()
+            
+        } else {
+          
+            pageVProject.currentPage = Int(index)
+        }
     }
 }

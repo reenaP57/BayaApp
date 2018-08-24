@@ -54,7 +54,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
 
-        return IS_iPad ? CGSize(width: (CScreenWidth/2 - 40), height: 240): CGSize(width: (CScreenWidth/2 - 20), height: 190) //(CScreenWidth * (180 / 375))
+        return IS_iPad ? CGSize(width: (CScreenWidth/2 - 40), height: 240): CGSize(width: (CScreenWidth/2 - 20), height: 200) //(CScreenWidth * (180 / 375))
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -66,7 +66,6 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
             cell.lblTitle.text = dict.valueForString(key: "title")
             cell.lblPrjctName.text = dict.valueForString(key: "subtitle")
-            cell.lblBadge.text = "5"
             
             cell.vwCount.isHidden = indexPath.row != 0
             cell.vwProgress.isHidden = indexPath.row != 0

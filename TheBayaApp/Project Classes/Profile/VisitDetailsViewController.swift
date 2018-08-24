@@ -60,6 +60,9 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
             
             cell.lblProjectName.text = dict.valueForString(key: "project_name")
             
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
+            
             if dict.valueForString(key: "visit_type") == "past" {
                cell.lblTimeMsg.text = "You have visited this project on \(dict.valueForString(key: "time"))"
                 

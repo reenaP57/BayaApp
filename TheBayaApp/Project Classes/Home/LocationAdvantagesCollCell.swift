@@ -13,6 +13,7 @@ class LocationAdvantagesCollCell: UICollectionViewCell {
     @IBOutlet weak var imgVLocation : UIImageView!
     @IBOutlet weak var lblLocation : UILabel!
     @IBOutlet weak var tblLocDesc : UITableView!
+    @IBOutlet weak var cnstTblHeight : NSLayoutConstraint!
 
     var arrLocDesc = [String]()
     
@@ -26,6 +27,20 @@ class LocationAdvantagesCollCell: UICollectionViewCell {
         if arrDesc.count > 0{
             arrLocDesc = arrDesc
             tblLocDesc.reloadData()
+            
+            
+            if #available(iOS 11.0, *) {
+                tblLocDesc.performBatchUpdates({
+                    self.cnstTblHeight.constant = self.tblLocDesc.contentSize.height
+                }) { (completed) in
+                    self.cnstTblHeight.constant = self.tblLocDesc.contentSize.height
+                }
+            } else {
+                // Fallback on earlier versions
+                self.cnstTblHeight.constant = self.tblLocDesc.contentSize.height
+            }
+
+            
             
 //            cnstHeightTbl.constant = tblLocDesc.contentSize.height
 //
