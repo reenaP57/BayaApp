@@ -64,11 +64,11 @@ extension ResetPwdViewController {
             } else if (self.txtNewPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankNewPasswordMessage))
             } else if !(self.txtNewPwd.text?.isValidPassword)! || (self.txtNewPwd.text?.count)! < 6  {
-                self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CInvalidPasswordMessage))
+                self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CInvalidNewPasswordMessage))
             } else if (self.txtConfirmPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CBlankConfirmPasswordMessage))
             } else if self.txtConfirmPwd.text != self.txtNewPwd.text {
-                self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
+                self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchNewPasswordMessage))
             } else {
                 
                 if let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {

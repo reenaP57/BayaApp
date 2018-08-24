@@ -58,7 +58,7 @@ extension ChangePasswordViewController {
         DispatchQueue.main.async {
         
             if (self.txtCurrentPwd.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtCurrentPwd.showValidationMessage(15.0, CBlankOldPasswordMessage))
+                self.vwContent.addSubview(self.txtCurrentPwd.showValidationMessage(15.0, CBlankCurrentPasswordMessage))
                 
             } else if (self.txtNewPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankNewPasswordMessage))

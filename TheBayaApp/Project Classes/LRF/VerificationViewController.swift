@@ -39,13 +39,13 @@ class VerificationViewController: ParentViewController {
             //...Verify Email
             
             self.title = "Verity Email"
-            self.lblNote.text = "\(CVerifyNoteMessage) email address [abc@gmail.com]"
+            self.lblNote.text = "\(CVerifyNoteMessage) email address [abc@gmail.com]."
             
         } else {
             //...Verify Mobile Number
             
             self.title = "Verity Mobile Number"
-            self.lblNote.text = "\(CVerifyNoteMessage) mobile number [+1234567890]"
+            self.lblNote.text = "\(CVerifyNoteMessage) mobile number [+1234567890]."
         }
     }
 

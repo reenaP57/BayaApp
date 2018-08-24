@@ -13,13 +13,12 @@ var lblMessage = UILabel()
 
 extension UITextField {
     
-    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if self == textField {
-            self.hideValidationMessage(15.0)
-        }
-        
-        return true
-    }
+//    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+//        if self == textField {
+//            self.hideValidationMessage(15.0)
+//        }
+//        return true
+//    }
     
     func textfiledAddRemoveShadow(_ isAdd : Bool)
     {

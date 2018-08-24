@@ -41,6 +41,13 @@ class LoginViewController: ParentViewController{
             self.txtEmail.layer.transform = rotationAndPerspectiveTransform
         }) { (finished) in
         }
+        
+        GCDMainThread.asyncAfter(deadline: .now() + 2) {
+            if IS_SIMULATOR{
+                self.txtEmail.text = "krishna@gmail.com"
+                self.txtPassword.text = "123456"
+            }
+        }
     }
 }
 

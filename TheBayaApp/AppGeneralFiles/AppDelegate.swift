@@ -45,6 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window.makeKeyAndVisible()
     }
     
+    func initLoginViewController() {
+        let rootVC = UINavigationController.init(rootViewController: CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController"))
+        self.setWindowRootViewController(rootVC: rootVC, animated: false, completion: nil)
+    }
+    
     func initHomeViewController() {
         appDelegate.tabbarViewcontroller = TabbarViewController.initWithNibName() as? TabbarViewController
         appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
