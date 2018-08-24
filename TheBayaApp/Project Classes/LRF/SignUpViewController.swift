@@ -42,6 +42,20 @@ class SignUpViewController: ParentViewController {
     
 }
 
+// MARK:- -------- UITextFieldDelegate
+extension SignUpViewController: UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txtPwd || textField == txtConfirmPwd{
+            let cs = NSCharacterSet(charactersIn: PASSWORDALLOWCHAR).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            
+            return (string == filtered)
+        }
+        return true
+    }
+}
+
 
 //MARK:-
 //MARK:- Action

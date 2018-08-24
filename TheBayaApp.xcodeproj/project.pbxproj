@@ -1134,7 +1134,7 @@
 			baseConfigurationReference = 45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1157,7 +1157,7 @@
 			baseConfigurationReference = 8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;

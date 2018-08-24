@@ -107,6 +107,7 @@ let CStoryboardSettingIphone  = UIStoryboard(name:"Setting", bundle: nil)
 let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
 
 
+let PASSWORDALLOWCHAR = "!@#$%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
 
 func CLocalize(text: String) -> String {
     return Localization.sharedInstance.localizedString(forKey: text , value: text)

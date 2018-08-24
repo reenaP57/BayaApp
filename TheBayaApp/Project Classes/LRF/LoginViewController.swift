@@ -8,7 +8,9 @@
 
 import UIKit
 
-class LoginViewController: ParentViewController {
+
+
+class LoginViewController: ParentViewController{
 
     @IBOutlet fileprivate weak var txtEmail : UITextField!
     @IBOutlet fileprivate weak var txtPassword : UITextField!
@@ -39,6 +41,20 @@ class LoginViewController: ParentViewController {
             self.txtEmail.layer.transform = rotationAndPerspectiveTransform
         }) { (finished) in
         }
+    }
+}
+
+// MARK:- -------- UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate{
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txtPassword{
+            let cs = NSCharacterSet(charactersIn: PASSWORDALLOWCHAR).inverted
+            let filtered = string.components(separatedBy: cs).joined(separator: "")
+            
+            return (string == filtered)
+        }
+        return true
     }
 }
 
