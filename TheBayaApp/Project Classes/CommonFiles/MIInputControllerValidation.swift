@@ -13,12 +13,12 @@ var lblMessage = UILabel()
 
 extension UITextField {
     
-//    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-//        if self == textField {
-//            self.hideValidationMessage(15.0)
-//        }
-//        return true
-//    }
+    public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if self == textField {
+            self.hideValidationMessage(15.0)
+        }
+        return true
+    }
     
     func textfiledAddRemoveShadow(_ isAdd : Bool)
     {
@@ -68,9 +68,11 @@ extension UITextField {
     
     func hideValidationMessage(_ space : CGFloat)
     {
-        lblMessage.removeFromSuperview()
-        updateTextFiledBottomSpace(space)
-        self.textfiledAddRemoveShadow(true)
+        if self.tag == lblMessage.tag {
+            lblMessage.removeFromSuperview()
+            updateTextFiledBottomSpace(space)
+            self.textfiledAddRemoveShadow(true)
+        }
     }
     
     func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
@@ -79,7 +81,7 @@ extension UITextField {
        // self.delegate = self
         
         DispatchQueue.main.async {
-            lblMessage.tag = 1001
+            lblMessage.tag = self.tag
             lblMessage.text = message
             lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
@@ -143,9 +145,11 @@ extension UITextView{
     
     func hideValidationMessage(_ space : CGFloat)
     {
-        lblMessage.removeFromSuperview()
-        updateTextFiledBottomSpace(space)
-        self.textfiledAddRemoveShadow(true)
+        if self.tag == lblMessage.tag {
+            lblMessage.removeFromSuperview()
+            updateTextFiledBottomSpace(space)
+            self.textfiledAddRemoveShadow(true)
+        }
     }
     
     func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
@@ -154,6 +158,7 @@ extension UITextView{
         //self.delegate = self
         
         DispatchQueue.main.async {
+            lblMessage.tag = self.tag
             lblMessage.text = message
             lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0

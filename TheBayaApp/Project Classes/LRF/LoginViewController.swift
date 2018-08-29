@@ -10,7 +10,7 @@ import UIKit
 
 
 
-class LoginViewController: ParentViewController{
+class LoginViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtEmail : UITextField!
     @IBOutlet fileprivate weak var txtPassword : UITextField!
@@ -52,15 +52,21 @@ class LoginViewController: ParentViewController{
 }
 
 // MARK:- -------- UITextFieldDelegate
-extension LoginViewController: UITextFieldDelegate{
+extension LoginViewController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if textField == txtPassword{
+        switch textField {
+        case txtEmail:
+            txtEmail.hideValidationMessage(15.0)
+        default:
+            txtPassword.hideValidationMessage(15.0)
             let cs = NSCharacterSet(charactersIn: PASSWORDALLOWCHAR).inverted
             let filtered = string.components(separatedBy: cs).joined(separator: "")
             
             return (string == filtered)
         }
+
         return true
     }
 }
@@ -77,29 +83,31 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
-//        appDelegate.initHomeViewController()
-//        return
+        appDelegate.initHomeViewController()
+        return
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-
-        self.view.layoutIfNeeded()
-
-        DispatchQueue.main.async {
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
         
             if (self.txtEmail.text?.isBlank)! {
+                self.txtPassword.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
                 
             } else if !(self.txtEmail.text?.isBlank)! {
-                
+
                 if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
                     
                     if !(self.txtEmail.text?.isValidEmail)! {
+                        self.txtPassword.hideValidationMessage(15.0)
                         self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
                         
                     } else if (self.txtPassword.text?.isBlank)! {
@@ -115,6 +123,7 @@ extension LoginViewController {
                 } else {
                     
                     if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
+                       self.txtPassword.hideValidationMessage(15.0)
                         self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
@@ -125,7 +134,7 @@ extension LoginViewController {
                         appDelegate.initHomeViewController()
                     }
                 }
-            }
+           // }
         }
     }
     

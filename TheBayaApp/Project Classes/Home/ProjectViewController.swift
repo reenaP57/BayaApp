@@ -55,15 +55,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrProject.count
     }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return IS_iPad ? 170 : CScreenWidth * 260/375
-//    }
-//    
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return IS_iPad ? UITableViewAutomaticDimension : CScreenWidth * 250/375
-//    }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ProjectTblCell") as? ProjectTblCell {
@@ -80,7 +72,23 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             cell.backgroundColor = UIColor.clear
             
             cell.btnSubscribe.touchUpInside { (sender) in
-                cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
+                
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CSubscribeMessage : CUnsubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
+                    
+                    if cell.btnSubscribe.isSelected {
+                        cell.btnSubscribe.setGradientBackground(color1: ColorGradient1Background, color2: ColorGradient2Background)
+                    } else {
+                        cell.btnSubscribe.setGradientBackground(color1: ColorProgressGradient1, color2: ColorProgressGradient2)
+                    }
+                    
+                    
+//                    cell.btnSubscribe.isSelected ? cell.btnSubscribe.setGradientBackground(color1: ColorGradient1Background, color2: ColorGradient2Background) : cell.btnSubscribe.setGradientBackground(color1: ColorProgressGradient1, color2: ColorProgressGradient2)
+                    
+//                    cell.btnSubscribe.isSelected ? cell.btnSubscribe
+                    
+                }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
+                })
             }
             
             return cell

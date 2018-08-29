@@ -15,7 +15,7 @@ class ProjectTblCell: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblReraNo : UILabel!
     @IBOutlet weak var imgVPrjct : UIImageView!
-    @IBOutlet weak var btnSubscribe : UIButton!
+    @IBOutlet weak var btnSubscribe : MIGenericButton!
     
     
     override func awakeFromNib() {
@@ -23,6 +23,8 @@ class ProjectTblCell: UITableViewCell {
         
         btnSubscribe.layer.cornerRadius = 5
         btnSubscribe.layer.masksToBounds = true
+        
+        
         
         self.contentView.backgroundColor = UIColor.clear
     }

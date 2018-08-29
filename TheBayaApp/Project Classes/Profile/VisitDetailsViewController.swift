@@ -38,6 +38,9 @@ class VisitDetailsViewController: ParentViewController {
         arrVisitList = [["project_name":"Baya Victoria", "time":"25 July 2018 at 5:00 PM.", "visit_type":"recently", "rated": true],
                         ["project_name":"Baya Victoria", "time":"25 July 2018 at 5:00 PM.", "visit_type":"past", "rated": true],
                         ["project_name":"Baya Victoria", "time":"25 July 2018 at 5:00 PM.", "visit_type":"past", "rated": false]] as [[String : AnyObject]]
+        
+        tblVVisitDetails.estimatedRowHeight = 125
+        tblVVisitDetails.rowHeight = UITableViewAutomaticDimension
     }
 
 }

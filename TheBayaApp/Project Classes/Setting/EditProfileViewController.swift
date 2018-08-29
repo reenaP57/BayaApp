@@ -46,24 +46,52 @@ class EditProfileViewController: ParentViewController {
 }
 
 //MARK:-
+//MARK:- UITextField Delegate
+
+extension EditProfileViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField {
+        case txtFName:
+            txtFName.hideValidationMessage(15.0)
+        default:
+            txtLName.hideValidationMessage(15.0)
+        }
+        
+        return true
+    }
+}
+
+
+
+//MARK:-
 //MARK:- Action Methods
 
 extension EditProfileViewController {
     
+    @IBAction func btnSupportRequestCilcked(_ sender: UIButton) {
+        if let supportVC = CStoryboardSetting.instantiateViewController(withIdentifier: "SupportViewController") as? SupportViewController {
+            self.navigationController?.pushViewController(supportVC, animated: true)
+        }
+    }
+    
     @IBAction func btnUpdateCilcked(_ sender: UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
-
-        DispatchQueue.main.async {
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
 //
             if (self.txtFName.text?.isBlank)! {
+                
+                self.txtLName.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtFName.showValidationMessage(15.0, CBlankFirstNameMessage))
                 
             } else if (self.txtLName.text?.isBlank)! {
@@ -73,6 +101,6 @@ extension EditProfileViewController {
                 self.navigationController?.popViewController(animated: true)
             }
         }
-    }
+    //}
 
 }

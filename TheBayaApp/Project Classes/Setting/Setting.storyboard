@@ -142,8 +142,11 @@
                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="1UB-bu-aX9" id="p1G-TS-eVI"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mow-u1-Awc" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mow-u1-Awc" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="120" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -154,8 +157,11 @@
                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="1UB-bu-aX9" id="jRj-jO-aQa"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25a-Rg-zcQ" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="25a-Rg-zcQ" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="180" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -166,6 +172,9 @@
                                         <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="1UB-bu-aX9" id="A4j-F0-URe"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S00-ya-YRt" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="270" width="345" height="50"/>
@@ -233,21 +242,27 @@
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="tjb-ey-Uvg" secondAttribute="height" multiplier="69:10" id="JKm-RM-VXp"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <outlet property="delegate" destination="SIH-EC-qNJ" id="gl9-Ge-7QC"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Doe" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EEk-OU-s7M" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Doe" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EEk-OU-s7M" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="120" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
+                                <connections>
+                                    <outlet property="delegate" destination="SIH-EC-qNJ" id="ax3-GX-qpc"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Johndoe@gmail.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ne1-aV-5yo" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="180" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -257,7 +272,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="WOP-8I-WIQ"/>
                                 </constraints>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -284,22 +299,65 @@
                                     <action selector="btnUpdateCilcked:" destination="SIH-EC-qNJ" eventType="touchUpInside" id="HcH-9W-32x"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4YP-gn-BEG">
+                                <rect key="frame" x="15" y="410" width="345" height="36"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="If you want to change your email ID or phone number, create a">
+                                        <attributes>
+                                            <color key="NSColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="Avenir-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content=" ">
+                                        <attributes>
+                                            <color key="NSColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="Avenir-Medium"/>
+                                            <font key="NSOriginalFont" metaFont="system"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="support request.">
+                                        <attributes>
+                                            <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="13" name="Avenir-Heavy"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO"/>
+                                            <color key="NSUnderlineColor" red="0.050979999999999998" green="0.81176000000000004" blue="0.85489999999999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1IO-IL-tiF">
+                                <rect key="frame" x="139" y="416" width="150" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="A1D-Wj-D5O"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="btnSupportRequestCilcked:" destination="SIH-EC-qNJ" eventType="touchUpInside" id="SRA-sK-Upb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Ne1-aV-5yo" firstAttribute="height" secondItem="EEk-OU-s7M" secondAttribute="height" id="3IW-Gd-MXG"/>
+                            <constraint firstItem="1IO-IL-tiF" firstAttribute="trailing" secondItem="4YP-gn-BEG" secondAttribute="trailing" constant="-71" id="56V-R6-elp"/>
                             <constraint firstItem="M6K-aR-qGY" firstAttribute="top" secondItem="Ne1-aV-5yo" secondAttribute="bottom" constant="10" id="6g8-06-h9t"/>
                             <constraint firstItem="M6K-aR-qGY" firstAttribute="leading" secondItem="Ne1-aV-5yo" secondAttribute="leading" id="94H-mA-Pzh"/>
                             <constraint firstItem="tjb-ey-Uvg" firstAttribute="leading" secondItem="2No-TK-qyC" secondAttribute="leading" constant="15" id="BEB-ex-NK7"/>
+                            <constraint firstItem="2No-TK-qyC" firstAttribute="trailing" secondItem="4YP-gn-BEG" secondAttribute="trailing" constant="15" id="BQ9-L4-dyv"/>
                             <constraint firstItem="EEk-OU-s7M" firstAttribute="width" secondItem="tjb-ey-Uvg" secondAttribute="width" id="FBO-iY-h6o"/>
                             <constraint firstItem="NSa-aa-ahJ" firstAttribute="height" secondItem="M6K-aR-qGY" secondAttribute="height" id="HE8-Uq-XMZ"/>
                             <constraint firstItem="NSa-aa-ahJ" firstAttribute="trailing" secondItem="Ne1-aV-5yo" secondAttribute="trailing" id="IO1-22-53f"/>
+                            <constraint firstItem="4YP-gn-BEG" firstAttribute="top" secondItem="wNc-cj-0WJ" secondAttribute="bottom" constant="30" id="IfI-Je-lYk"/>
                             <constraint firstItem="EEk-OU-s7M" firstAttribute="centerX" secondItem="tjb-ey-Uvg" secondAttribute="centerX" id="Jvj-5g-Kdt"/>
+                            <constraint firstItem="4YP-gn-BEG" firstAttribute="leading" secondItem="2No-TK-qyC" secondAttribute="leading" constant="15" id="Ro2-9X-Vgn"/>
                             <constraint firstItem="Ne1-aV-5yo" firstAttribute="centerX" secondItem="EEk-OU-s7M" secondAttribute="centerX" id="Sez-Xj-ZDv"/>
                             <constraint firstItem="wNc-cj-0WJ" firstAttribute="height" secondItem="Ne1-aV-5yo" secondAttribute="height" id="TaU-0w-85G"/>
                             <constraint firstItem="wNc-cj-0WJ" firstAttribute="top" secondItem="M6K-aR-qGY" secondAttribute="bottom" constant="40" id="Vzl-Ot-LPR"/>
                             <constraint firstItem="wNc-cj-0WJ" firstAttribute="centerX" secondItem="Ne1-aV-5yo" secondAttribute="centerX" id="WmT-H5-QpN"/>
                             <constraint firstItem="NSa-aa-ahJ" firstAttribute="leading" secondItem="M6K-aR-qGY" secondAttribute="trailing" constant="10" id="Wz1-Hn-wN3"/>
+                            <constraint firstItem="1IO-IL-tiF" firstAttribute="bottom" secondItem="4YP-gn-BEG" secondAttribute="bottom" id="asK-o9-3oQ"/>
                             <constraint firstItem="wNc-cj-0WJ" firstAttribute="width" secondItem="Ne1-aV-5yo" secondAttribute="width" id="bHV-SA-May"/>
                             <constraint firstItem="2No-TK-qyC" firstAttribute="trailing" secondItem="tjb-ey-Uvg" secondAttribute="trailing" constant="15" id="cvi-4k-m6I"/>
                             <constraint firstItem="EEk-OU-s7M" firstAttribute="top" secondItem="tjb-ey-Uvg" secondAttribute="bottom" constant="10" id="g4q-rL-qje"/>
@@ -323,7 +381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3c7-yd-LVd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="908" y="36"/>
+            <point key="canvasLocation" x="908" y="35.532233883058474"/>
         </scene>
         <!--Support View Controller-->
         <scene sceneID="7Yi-KS-7gt">
@@ -350,6 +408,9 @@
                                         <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="Izy-td-8V8" id="2Hb-of-Oq9"/>
+                                </connections>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload image (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGK-Vu-7tp" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="185" width="142" height="18"/>

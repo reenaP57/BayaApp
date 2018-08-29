@@ -12,7 +12,7 @@ class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
     
-    let arrSetting = ["Edit Profile", "Change Password", "Notification", "Email Notification","Terms & Conditions", "Privacy Policy", "Support", "About Us", "Rate App", "Logout"]
+    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notification","Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
     
     //MARK:-
     //MARK:- LyfeCycle Methods
@@ -60,8 +60,22 @@ extension SettingViewController {
             
             if sender.isOn {
                 //...swicth is in on
+                
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    sender.isOn = true
+                }, btnTwoTitle: CBtnNo) { (action) in
+                    sender.isOn = false
+                }
+                
+                
             } else {
                 //...swicth is in off
+               
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    sender.isOn = false
+                }, btnTwoTitle: CBtnNo) { (action) in
+                    sender.isOn = true
+                }
             }
         }
         
@@ -70,8 +84,19 @@ extension SettingViewController {
             
             if sender.isOn {
                 //...swicth is in on
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    sender.isOn = true
+                }, btnTwoTitle: CBtnNo) { (action) in
+                    sender.isOn = false
+                }
+                
             } else {
                 //...swicth is in off
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    sender.isOn = false
+                }, btnTwoTitle: CBtnNo) { (action) in
+                    sender.isOn = true
+                }
             }
         }
     }
@@ -88,7 +113,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? CScreenWidth * (60 / 768) : CScreenWidth * (60 / 375)
+        return IS_iPad ? CScreenWidth * (80 / 768) : CScreenWidth * (60 / 375)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

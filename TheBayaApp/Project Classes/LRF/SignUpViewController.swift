@@ -43,16 +43,35 @@ class SignUpViewController: ParentViewController {
 }
 
 // MARK:- -------- UITextFieldDelegate
-extension SignUpViewController: UITextFieldDelegate{
+extension SignUpViewController: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if textField == txtPwd || textField == txtConfirmPwd{
-            let cs = NSCharacterSet(charactersIn: PASSWORDALLOWCHAR).inverted
-            let filtered = string.components(separatedBy: cs).joined(separator: "")
-            
-            return (string == filtered)
+        switch textField {
+        case txtFName:
+            txtFName.hideValidationMessage(15.0)
+        case txtLName:
+            txtLName.hideValidationMessage(15.0)
+        case txtEmail:
+            txtEmail.hideValidationMessage(15.0)
+        case txtMobile:
+            txtMobile.hideValidationMessage(15.0)
+        case txtPwd:
+            txtPwd.hideValidationMessage(15.0)
+            return self.checkPasswordValidation(string: string)
+        default:
+            txtConfirmPwd.hideValidationMessage(15.0)
+            return checkPasswordValidation(string: string)
         }
+     
         return true
+    }
+    
+    func checkPasswordValidation(string : String) -> Bool {
+        let cs = NSCharacterSet(charactersIn: PASSWORDALLOWCHAR).inverted
+        let filtered = string.components(separatedBy: cs).joined(separator: "")
+        
+        return (string == filtered)
     }
 }
 
@@ -63,34 +82,77 @@ extension SignUpViewController: UITextFieldDelegate{
 extension SignUpViewController {
     
     @IBAction fileprivate func btnSignUpClicked (sender : UIButton) {
-        
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.vwContent.layoutIfNeeded()
-        
+
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UILabel.classForCoder()){
+//                _ = objView as? UILabel
+//
+//                return
+//
+////                txField?.hideValidationMessage(15.0)
+////                txField?.resignFirstResponder()
+//            }
+//        }
+//        self.vwContent.layoutIfNeeded()
+//
+ 
         DispatchQueue.main.async {
-            
+        
             if (self.txtFName.text?.isBlank)! {
+                
+                self.txtLName.hideValidationMessage(15.0)
+                self.txtEmail.hideValidationMessage(15.0)
+                self.txtMobile.hideValidationMessage(15.0)
+                self.txtPwd.hideValidationMessage(15.0)
+                self.txtConfirmPwd.hideValidationMessage(15.0)
+
                 self.vwContent.addSubview(self.txtFName.showValidationMessage(15.0, CBlankFirstNameMessage))
             } else if (self.txtLName.text?.isBlank)! {
+                
+                self.txtEmail.hideValidationMessage(15.0)
+                self.txtMobile.hideValidationMessage(15.0)
+                self.txtPwd.hideValidationMessage(15.0)
+                self.txtConfirmPwd.hideValidationMessage(15.0)
+                
                 self.vwContent.addSubview(self.txtLName.showValidationMessage(15.0, CBlankLastNameMessage))
+                
             } else if (self.txtEmail.text?.isBlank)! {
+                
+                self.txtMobile.hideValidationMessage(15.0)
+                self.txtPwd.hideValidationMessage(15.0)
+                self.txtConfirmPwd.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailMessage))
+                
             } else if !(self.txtEmail.text?.isValidEmail)! {
+                
+                self.txtMobile.hideValidationMessage(15.0)
+                self.txtPwd.hideValidationMessage(15.0)
+                self.txtConfirmPwd.hideValidationMessage(15.0)
+                
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
+                
             } else if (self.txtMobile.text?.isBlank)! {
+                
+                self.txtPwd.hideValidationMessage(15.0)
+                self.txtConfirmPwd.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtMobile.showValidationMessage(15.0, CBlankMobileMessage))
+                
             } else if !(self.txtMobile.text?.isValidPhoneNo)! || ((self.txtMobile.text?.count)! > 10 || (self.txtMobile.text?.count)! < 10) {
+                
+                self.txtPwd.hideValidationMessage(15.0)
+                self.txtConfirmPwd.hideValidationMessage(15.0)
+                
                 self.vwContent.addSubview(self.txtMobile.showValidationMessage(15.0, CInvalidMobileMessage))
             } else if (self.txtPwd.text?.isBlank)! {
+                
+                self.txtConfirmPwd.hideValidationMessage(15.0)
+                
                 self.vwContent.addSubview(self.txtPwd.showValidationMessage(15.0, CBlankPasswordMessage))
             } else if !(self.txtPwd.text?.isValidPassword)! || (self.txtPwd.text?.count)! < 6 {
+                
+                self.txtConfirmPwd.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtPwd.showValidationMessage(15.0, CInvalidPasswordMessage))
+                
             } else if (self.txtConfirmPwd.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CBlankConfirmPasswordMessage))
             } else if self.txtConfirmPwd.text != self.txtPwd.text {
@@ -103,17 +165,22 @@ extension SignUpViewController {
                     self.navigationController?.pushViewController(verifyVC, animated: true)
                 }
             }
-            
         }
-        
-      
     }
 
     @IBAction fileprivate func btnTermsAndConditionClicked (sender : UIButton) {
 
-        if let termsConditionVC = CStoryboardSetting.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
-            termsConditionVC.cmsEnum = .TermsCondition
-            self.navigationController?.pushViewController(termsConditionVC, animated: true)
+        if IS_iPad {
+            if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
+                cmsVC.cmsEnum = .TermsCondition
+                self.navigationController?.pushViewController(cmsVC, animated: true)
+            }
+            
+        } else {
+            if let termsConditionVC = CStoryboardSetting.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
+                termsConditionVC.cmsEnum = .TermsCondition
+                self.navigationController?.pushViewController(termsConditionVC, animated: true)
+            }
         }
     }
     

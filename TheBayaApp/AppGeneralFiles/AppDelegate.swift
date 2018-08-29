@@ -24,15 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         
         self.initRootViewController()
-        
-        
-        for familyName in UIFont.familyNames {
-            
-            for fontName in UIFont.fontNames(forFamilyName: familyName ) {
-                print("\(familyName) : \(fontName)")
-            }
-        }
-        
+  
         return true
     }
 

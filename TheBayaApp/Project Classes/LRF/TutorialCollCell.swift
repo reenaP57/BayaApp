@@ -20,6 +20,9 @@ class TutorialCollCell: UICollectionViewCell {
         
         if IS_iPhone_6_Plus {
            _ = imgVTutorial.setConstraintConstant(imgVTutorial.CViewY + 40, edge: .top, ancestor: true)
+            
+        } else if IS_iPhone_5 {
+            _ = imgVTutorial.setConstraintConstant(40, edge: .top, ancestor: true)
         }
     }
     

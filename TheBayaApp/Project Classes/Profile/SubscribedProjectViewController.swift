@@ -39,6 +39,8 @@ class SubscribedProjectViewController: ParentViewController {
         ["project_name" : "The Baya Junction", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
         ["project_name" : "TDR Kanjurmarg", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
         ["project_name" : "The Baya Victoria", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"]] as [[String : AnyObject]]
+        
+   
     }
 }
 
