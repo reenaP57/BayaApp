@@ -38,17 +38,32 @@ class VerificationViewController: ParentViewController {
         if isFromSignUp {
             //...Verify Email
             
-            self.title = "Verity Email"
+            self.title = "Verify Email"
             self.lblNote.text = "\(CVerifyNoteMessage) email address [abc@gmail.com]."
             
         } else {
             //...Verify Mobile Number
             
-            self.title = "Verity Mobile Number"
+            self.title = "Verify Mobile Number"
             self.lblNote.text = "\(CVerifyNoteMessage) mobile number [+1234567890]."
         }
     }
 
+}
+
+
+//MARK:-
+//MARK:- UITextField Delegate
+
+extension VerificationViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txtCode {
+            txtCode.hideValidationMessage(15.0)
+        }
+        return true
+    }
 }
 
 

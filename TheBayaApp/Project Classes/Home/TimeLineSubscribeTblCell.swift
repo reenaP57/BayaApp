@@ -55,7 +55,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
         
-        return IS_iPad ? CGSize(width: CScreenWidth * 345/768 , height: collectionView.CViewHeight) : CGSize(width: CScreenWidth - space , height: collectionView.CViewHeight)
+        return IS_iPad ? CGSize(width: CScreenWidth * 450/768 , height: collectionView.CViewHeight) : CGSize(width: CScreenWidth - space , height: collectionView.CViewHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -75,6 +75,23 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             cell.btnCall.touchUpInside { (sender) in
                 self.viewController?.dialPhoneNumber(phoneNumber: "123456789")
             }
+            
+            if IS_iPad {
+                
+                cell.btnScheduleVisit.touchUpInside { (sender) in
+                    if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                        self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+                    }
+                }
+                
+                cell.btnProjectDetail.touchUpInside { (sender) in
+                    
+                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                        self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                    }
+                }
+            }
+            
             
             let imgVHeight = cell.imgVPjctCompletion.CViewHeight - 30
             

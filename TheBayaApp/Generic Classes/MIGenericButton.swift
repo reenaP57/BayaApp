@@ -27,7 +27,7 @@ class MIGenericButton: UIButton {
         self.layer.masksToBounds = true
         
         if self.tag == 101 {
-            self.setGradientBackground()
+            self.setGradientBackground(color1: gradientColor1, color2: gradientColor2)
         }
     }
 }
@@ -43,9 +43,9 @@ extension MIGenericButton {
         self.titleLabel?.font = self.titleLabel?.font.setUpAppropriateFont()
     }
     
-    func setGradientBackground() {
+    func setGradientBackground(color1 : UIColor, color2 : UIColor) {
         
-        gradientLayer.colors = [gradientColor1.cgColor, gradientColor2.cgColor]
+        gradientLayer.colors = [color1.cgColor, color2.cgColor]
         gradientLayer.frame = self.bounds
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)

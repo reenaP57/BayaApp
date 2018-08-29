@@ -51,7 +51,8 @@ var CBlankNewPasswordMessage        : String{ return CLocalize(text: "New Passwo
 var CBlankVerificationCodeMessage   : String{ return CLocalize(text: "Verification Code can’t be blank.") }
 var CInvalidVerificationCodeMessage : String{ return CLocalize(text: "Please enter valid verification code.") }
 var CBlankOldPasswordMessage        : String{ return CLocalize(text: "Old Password can’t be blank.") }
-var CBlankCurrentPasswordMessage        : String{ return CLocalize(text: "Current Password can’t be blank.") }
+var CBlankCurrentPasswordMessage    : String{ return CLocalize(text: "Current Password can’t be blank.") }
+var CInvalidOTPMessage              : String{ return CLocalize(text: "OTP is invalid.") }
 
 
 
@@ -77,7 +78,7 @@ var CBlankFeedbackVisit          : String { return CLocalize(text:"Please enter 
 
 var CLogOutMessage : String{ return CLocalize(text: "Are you sure you want to Logout?") }
 
-var CUnsubscribeMessage : String{ return CLocalize(text: "Are you sure you want to unsubscribe this project? You will not get any updates from this project on unsubscribing.") }
+//var CUnsubscribeMessage : String{ return CLocalize(text: "Are you sure you want to unsubscribe this project? You will not get any updates from this project on unsubscribing.") }
 
 var CSuccessRateVisitMessage : String { return CLocalize(text: "Thank you for the review. Your review is valuable to us.")}
 
@@ -89,6 +90,17 @@ var CProjectBrochureMessage : String { return CLocalize(text: "Your request is o
 
 var CSuccessSupportMessage : String { return CLocalize(text: "Support request has been sent successfully.")}
 
+var CSubscribeMessage  : String { return CLocalize(text: "You will now receive notifications for updates about this project.")}
 
+var CUnsubscribeMessage  : String { return CLocalize(text: "You will no longer receive notifications for project updates.")}
 
+var CEnablePushNotificationMessage  : String { return CLocalize(text: "Are you sure want to enable Push Notifications?")}
+var CDisablePushNotificationMessage  : String { return CLocalize(text: "Are you sure want to disable Push Notifications?")}
+var CEnableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure want to enable Email Notifications?")}
+var CDisableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure want to disable Email Notifications?")}
+
+var CResetMessage  : String { return CLocalize(text: "You might have got verification code on entered")}
+
+var CResetCodeEmailMessage  : String { return CLocalize(text: "Verification code has been resent on your email address")}
+var CResetCodeMobileMessage  : String { return CLocalize(text: "Verification code has been resent on your mobile number")}
 

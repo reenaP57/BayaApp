@@ -54,7 +54,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
 
-        return IS_iPad ? CGSize(width: (CScreenWidth/2 - 40), height: 240): CGSize(width: (CScreenWidth/2 - 20), height: 200) //(CScreenWidth * (180 / 375))
+        return IS_iPad ? CGSize(width: (CScreenWidth/2 - 40), height: 250): CGSize(width: (CScreenWidth/2 - 20), height: (CScreenWidth * (220 / 375)))
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

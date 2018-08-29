@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 let space = CScreenWidth * 70/375
 
@@ -37,25 +38,32 @@ class TimelineDetailViewController: ParentViewController {
     
     func initialize() {
     
-        self.title = "the baya company"
+        self.title = "Timeline"
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
 
         arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg","img6.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 0],
                          ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1],
                          ["image": ["img4.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : 2],
-                         ["image": ["img1.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1]] as [[String : AnyObject]]
+                         ["image": ["img1.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 3]] as [[String : AnyObject]]
     }
     
     @objc func btnFilterClicked() {
         
-        if let vwFilter = FilterView.viewFromNib(is_ipad: false) as? FilterView {
+        if let vwFilter = FilterView.viewFromNib(is_ipad: true) as? FilterView {
             
             vwFilter.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
-            vwFilter.vwContent.frame = CGRect(x: 0, y: CScreenHeight - (CScreenWidth * (vwFilter.CViewHeight / 375)) , width: CScreenWidth, height: CScreenWidth * (vwFilter.CViewHeight / 375))
-          
-            vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
+            
+            if IS_iPad {
+                vwFilter.vwContent.frame = CGRect(x: CScreenCenter.x, y: CScreenCenter.y , width: vwFilter.vwContent.CViewWidth, height: vwFilter.vwContent.CViewHeight)
+                vwFilter.vwContent.layer.cornerRadius = 30
 
+            } else {
+                vwFilter.vwContent.frame = CGRect(x: 0, y: CScreenHeight - (CScreenWidth * (vwFilter.CViewHeight / 375)) , width: CScreenWidth, height: CScreenWidth * (vwFilter.CViewHeight / 375))
+                vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
+            }
+          
+            
             UIView.animate(withDuration: 1.0) {
                 appDelegate.window.addSubview(vwFilter)
             }
@@ -117,11 +125,11 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? 200 : 190 : 298
+        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (270/768) : 190 : CScreenWidth * (200/375)
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? 200 : UITableViewAutomaticDimension : UITableViewAutomaticDimension
+        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (270/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -136,10 +144,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             
         } else {
             
+            let dict = arrUpdateList[indexPath.row - 1]
+            
             if IS_iPad {
-                
-                let dict = arrUpdateList[indexPath.row - 1]
-                
+
                 switch dict.valueForInt(key: "type") {
                 case 0: // Image
                
@@ -194,45 +202,81 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                 
             } else {
                 
-                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
-                    
-                    let dict = arrUpdateList[indexPath.row - 1]
-                    
-                    switch dict.valueForInt(key: "type") {
-                    case 0:  //Image
-                        cell.lblUrl.hide(byHeight: true)
-                        cell.collImg.hide(byHeight: false)
+                if dict.valueForInt(key: "type") == 3 {
+                    //...Video
+                   
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                         
-                        _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
-                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                        cell.lblDesc.text = dict.valueForString(key: "desc")
+                        cell.lblDateTime.text = dict.valueForString(key: "time")
                         
-                    case 1:  // Url
-                        cell.lblUrl.hide(byHeight: false)
-                        cell.collImg.hide(byHeight: false)
-                        cell.pageControlSlider.hide(byHeight: true)
-                        _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
-                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                        cell.btnShare.touchUpInside { (sender) in
+                            self.shareContent()
+                        }
                         
-                    default: // Text
-                        cell.lblUrl.hide(byHeight: true)
-                        cell.collImg.hide(byHeight: true)
-                        cell.pageControlSlider.hide(byHeight: true)
-                        _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                        cell.btnPlay.touchUpInside { (action) in
+                            
+                            cell.imgVThumbNail.isHidden = true
+                            cell.btnPlay.isSelected = !cell.btnPlay.isSelected
+                            
+                            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                            let player = AVPlayer(url: videoURL!)
+                            let playerLayer = AVPlayerLayer(player: player)
+                            playerLayer.frame = cell.vwVideoPlayer.bounds
+                            cell.vwVideoPlayer.layer.addSublayer(playerLayer)
+                            
+                            if cell.btnPlay.isSelected {
+                                player.play()
+                            } else {
+                                player.pause()
+                            }
+                        }
+                        
+                        return cell
                     }
                     
-                    if let arr = dict.valueForJSON(key: "image") as? [String] {
-                        cell.pageControlSlider.numberOfPages = arr.count
+                } else {
+                    
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+                        
+                        let dict = arrUpdateList[indexPath.row - 1]
+                        
+                        switch dict.valueForInt(key: "type") {
+                        case 0:  //Image
+                            cell.lblUrl.hide(byHeight: true)
+                            cell.collImg.hide(byHeight: false)
+                            
+                            _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            
+                        case 1:  // Url
+                            cell.lblUrl.hide(byHeight: false)
+                            cell.collImg.hide(byHeight: false)
+                            cell.pageControlSlider.hide(byHeight: true)
+                            _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            
+                        default: // Text
+                            cell.lblUrl.hide(byHeight: true)
+                            cell.collImg.hide(byHeight: true)
+                            cell.pageControlSlider.hide(byHeight: true)
+                            _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                        }
+                        
+                        if let arr = dict.valueForJSON(key: "image") as? [String] {
+                            cell.pageControlSlider.numberOfPages = arr.count
+                        }
+                        
+                        cell.lblDesc.text = dict.valueForString(key: "desc")
+                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        
+                        
+                        cell.btnShare.touchUpInside { (sender) in
+                            self.shareContent()
+                        }
+                        
+                        return cell
                     }
-                    
-                    cell.lblDesc.text = dict.valueForString(key: "desc")
-                    cell.lblDateTime.text = dict.valueForString(key: "time")
-                    
-                    
-                    cell.btnShare.touchUpInside { (sender) in
-                        self.shareContent()
-                    }
-                    
-                    return cell
                 }
             }
 

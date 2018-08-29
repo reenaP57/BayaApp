@@ -29,11 +29,21 @@ class SeeAllLocationAdvantagesViewController: ParentViewController {
     func initialize() {
         self.title = "Location Advantages"
         
-        arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                       ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km"]],
-                       ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km"]],
-                       ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                       ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
+        if IS_iPad {
+            arrLocation = [["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "malls_ipad", "title" : "Malls", "desc" : ["Alfa One 2.0 km"]],
+                           ["img" : "Hospital_ipad", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km"]],
+                           ["img" : "schools_ipad", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
+        } else {
+            arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km"]],
+                           ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km"]],
+                           ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
+        }
+        
+
         
         DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
             self.tblLocation.reloadData()
@@ -69,6 +79,9 @@ extension SeeAllLocationAdvantagesViewController : UITableViewDelegate, UITableV
             cell.imgVLocation.image = UIImage(named: dict.valueForString(key: "img"))
             cell.loadLocationDesc(arrDesc: dict.valueForJSON(key: "desc") as! [String])
 
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
+            
             return cell
         }
         

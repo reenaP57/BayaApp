@@ -54,6 +54,7 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var cnstHeightTblConfigure : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightTblSpecification : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightCollLocation : NSLayoutConstraint!
+    @IBOutlet fileprivate weak var cnstHeightCollPlanType : NSLayoutConstraint!
 
 
     
@@ -93,39 +94,69 @@ class ProjectDetailViewController: ParentViewController {
         
         arrImg = ["img1.jpeg","img2.jpeg","img3.jpeg"]
         
-        arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km"]],
-        ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-        ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-        ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-        ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
-        
         arrPlanType = ["TYPE A - 1 BHK", "TYPE B - 1 BHK", "TYPE d - 2 BHK", "TYPE e - 2 BHK", "TYPE c - 2 BHK", "TYPE f - 2 BHK"]
         
         arrFloorImg = ["img1.jpeg", "img6.jpeg", "img7.jpeg","img8.jpeg","img1.jpeg", "img6.jpeg"]
         
-        arrOverView = [["img" : "my_projects_profile", "title": "Project Details", "subtitle" : "3 Towers, 213 Units"],
-        ["img" : "Forma_1_2", "title": "Possessions", "subtitle" : "Ready to move"],
-        ["img" : "Forma_1", "title": "Launch Date", "subtitle" : "August 2015"],
-        ["img" : "Forma_1_1", "title": "Parking", "subtitle" : "1 Parking available"],
-        ["img" : "Layer_13", "title": "Plot Area", "subtitle" : "2500 sq.ft."],
-        ["img" : "line", "title": "Number Of Storeys", "subtitle" : "22 Storeys Tower"]] as [[String : AnyObject]]
-        
         arrConfigure = [["type" : "TYPE A - 1 BHK", "sq.ft" : "1350 sq.ft.", "price" : "4,50,000"],
-        ["type" : "TYPE A - 2 BHK", "sq.ft" : "2350 sq.ft.", "price" : "7,00,000"],
-        ["type" : "TYPE B - 2 BHK", "sq.ft" : "1000 sq.ft.", "price" : "7,00,000"],
-        ["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"],["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"]] as [[String : AnyObject]]
-        
-        arrAmmenities = [["img" : "Layer_7", "title" : "Lift"],
-        ["img" : "Group_11", "title" : "Gym"],
-        ["img" : "Group_12", "title" : "Swimming Pool"],
-        ["img" : "Group_1", "title" : "Power Backup"]] as [[String : AnyObject]]
+                        ["type" : "TYPE A - 2 BHK", "sq.ft" : "2350 sq.ft.", "price" : "7,00,000"],
+                        ["type" : "TYPE B - 2 BHK", "sq.ft" : "1000 sq.ft.", "price" : "7,00,000"],
+                        ["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"],["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"]] as [[String : AnyObject]]
         
         arrSpecification = ["Drapes/Curtains/Window Cover", "Fire/Smoke Alarm", "Italian Kitchen", "Vitrified Tiles"]
         
-        sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
+        
+        if IS_iPad {
+            
+            arrOverView = [["img" : "overview1_ipad", "title": "Project Details", "subtitle" : "3 Towers, 213 Units"],
+                           ["img" : "overview2_ipad", "title": "Possessions", "subtitle" : "Ready to move"],
+                           ["img" : "overview3_ipad", "title": "Launch Date", "subtitle" : "August 2015"],
+                           ["img" : "overview4_ipad", "title": "Parking", "subtitle" : "1 Parking available"],
+                           ["img" : "overview5_ipad", "title": "Plot Area", "subtitle" : "2500 sq.ft."],
+                           ["img" : "overview6_ipad", "title": "Number Of Storeys", "subtitle" : "22 Storeys Tower"]] as [[String : AnyObject]]
+            
+            
+            arrLocation = [["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km","Dadar Station 1.0 km"]],
+                           ["img" : "malls_ipad", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "Hospital_ipad", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "schools_ipad", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
+            
+            arrAmmenities = [["img" : "ammenitie1_ipad", "title" : "Lift"],
+                             ["img" : "ammenitie2_ipad", "title" : "Gym"],
+                             ["img" : "ammenitie3_ipad", "title" : "Swimming Pool"],
+                             ["img" : "ammenitie4_ipad", "title" : "Power Backup"],
+                             ["img" : "ammenitie1_ipad", "title" : "Lift"],
+                             ["img" : "ammenitie2_ipad", "title" : "Gym"],
+                             ["img" : "ammenitie3_ipad", "title" : "Swimming Pool"]] as [[String : AnyObject]]
+            
+        } else {
+            arrOverView = [["img" : "my_projects_profile", "title": "Project Details", "subtitle" : "3 Towers, 213 Units"],
+                           ["img" : "Forma_1_2", "title": "Possessions", "subtitle" : "Ready to move"],
+                           ["img" : "Forma_1", "title": "Launch Date", "subtitle" : "August 2015"],
+                           ["img" : "Forma_1_1", "title": "Parking", "subtitle" : "1 Parking available"],
+                           ["img" : "Layer_13", "title": "Plot Area", "subtitle" : "2500 sq.ft."],
+                           ["img" : "line", "title": "Number Of Storeys", "subtitle" : "22 Storeys Tower"]] as [[String : AnyObject]]
+            
+            arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km","Dadar Station 1.0 km"]],
+                           ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
+                           ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
+            
+            arrAmmenities = [["img" : "Layer_7", "title" : "Lift"],
+                             ["img" : "Group_11", "title" : "Gym"],
+                             ["img" : "Group_12", "title" : "Swimming Pool"],
+                             ["img" : "Group_1", "title" : "Power Backup"],
+                             ["img" : "Layer_7", "title" : "Lift"],
+                             ["img" : "Group_11", "title" : "Gym"],
+                             ["img" : "Group_12", "title" : "Swimming Pool"]] as [[String : AnyObject]]
+        }
+        
+    sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
         sliderPercentage.setThumbImage(UIImage(named: "baya_slider_shadow"), for: .normal)
         
-        self.loadProjectDetail()
+    self.loadProjectDetail()
         
         //...Load 3D image
        // vwPanorama.image = UIImage(named: "spherical.jpg")
@@ -147,8 +178,12 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
-            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height - 25
+            self.cnstHeightTblSpecification.constant =  IS_iPad ? self.tblSpecification.contentSize.height : self.tblSpecification.contentSize.height - 25
             self.cnstHeightCollLocation.constant = self.collLocation.contentSize.height
+      
+            if IS_iPad {
+                self.cnstHeightCollPlanType.constant = self.collPlansType.contentSize.height
+            }
         }
     }
 
@@ -175,6 +210,10 @@ extension ProjectDetailViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func btnLocatioImgClicked (sender : UIButton) {
+        self.zoomImage(imgVLocation.image)
+    }
+    
     @IBAction func btnShareClicked (sender : UIButton) {
         
         let text = "This is the text...."
@@ -199,6 +238,11 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSubscribeClicked (sender : UIButton) {
         sender.isSelected = !sender.isSelected
+        
+        self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CSubscribeMessage : CUnsubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+            sender.isSelected = !sender.isSelected
+        }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
+        })
     }
     
     @IBAction func btnCallClicked (sender : UIButton) {
@@ -325,19 +369,19 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
         case collPlansType:
             let fontToResize = CFontAvenir(size: 12, type: .heavy).setUpAppropriateFont()
-            return CGSize(width: arrPlanType[indexPath.row].size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: collectionView.CViewHeight)
+            return CGSize(width: arrPlanType[indexPath.row].size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? 50 : collectionView.CViewHeight)
             
         case collAmmenities:
-            return CGSize(width: (CScreenWidth/4 - 20), height: collectionView.CViewHeight)
+            return CGSize(width: IS_iPad ? (CScreenWidth/4 - 50) : (CScreenWidth/4 - 20), height: collectionView.CViewHeight)
             
         case collOverView:
-            return CGSize(width: (CScreenWidth/2 - 20), height: (CScreenWidth * (60/375)))
+            return CGSize(width: IS_iPad ? (CScreenWidth/2 - 50):(CScreenWidth/2 - 20), height: IS_iPad ? 90 : (CScreenWidth * (60/375)))
           
         case collProject:
             return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
             
         default:
-            return CGSize(width: (CScreenWidth/2 - 20), height: collectionView.contentSize.height)
+            return IS_iPad ? CGSize(width: (CScreenWidth/3 - 20), height: collectionView.contentSize.height) : CGSize(width: (CScreenWidth/2 - 20), height: collectionView.contentSize.height)
         }
     }
 
@@ -437,7 +481,8 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         switch collectionView {
         case collPlansType:
             self.planIndexPath = indexPath
-            self.collFloorImg.scrollToItem(at: indexPath, at: .left, animated: true)
+            
+            self.collFloorImg.scrollToItem(at: indexPath, at: IS_iPad ? .top : .left, animated: true)
             self.collPlansType.reloadData()
 
         case collFloorImg:
@@ -452,16 +497,18 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
+        let index = IS_iPad ? round(scrollView.contentOffset.y/scrollView.bounds.size.height) : round(scrollView.contentOffset.x/scrollView.bounds.size.width)
         
         if scrollView == collFloorImg {
             
-            collPlansType.scrollToItem(at: IndexPath(item: Int(index), section: 0), at: UICollectionViewScrollPosition.left, animated: true)
-            self.planIndexPath = IndexPath(item: Int(index), section: 0)
-            collPlansType.reloadData()
+            if Int(index) <= arrPlanType.count - 1 {
+                collPlansType.scrollToItem(at: IndexPath(item: Int(index), section: 0), at: IS_iPad ? .top : .left, animated: true)
+                self.planIndexPath = IndexPath(item: Int(index), section: 0)
+                collPlansType.reloadData()
+            }
             
         } else {
-          
+            
             pageVProject.currentPage = Int(index)
         }
     }

@@ -57,7 +57,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Mg-XBL">
-                    <rect key="frame" x="341.5" y="10" width="15" height="15"/>
+                    <rect key="frame" x="339" y="10" width="15" height="15"/>
                     <color key="backgroundColor" red="1" green="0.27058823529999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="15" id="95A-eD-53Q"/>
@@ -73,7 +73,7 @@
                 <constraint firstItem="EwR-Ep-lNN" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" id="18k-j6-bu7"/>
                 <constraint firstItem="1UX-ay-WSu" firstAttribute="bottom" secondItem="DV3-bl-Xqm" secondAttribute="bottom" id="26w-RD-zeE"/>
                 <constraint firstItem="wGs-Ze-U2K" firstAttribute="top" secondItem="DV3-bl-Xqm" secondAttribute="top" id="2q6-pN-hnf"/>
-                <constraint firstItem="1UX-ay-WSu" firstAttribute="leading" secondItem="GfU-Mg-XBL" secondAttribute="trailing" constant="27.5" id="K1h-Mc-Lrx"/>
+                <constraint firstItem="1UX-ay-WSu" firstAttribute="leading" secondItem="GfU-Mg-XBL" secondAttribute="trailing" constant="30" id="K1h-Mc-Lrx"/>
                 <constraint firstItem="1UX-ay-WSu" firstAttribute="leading" secondItem="wGs-Ze-U2K" secondAttribute="trailing" constant="0.5" id="N3n-gE-UM8"/>
                 <constraint firstItem="wHu-vL-y8o" firstAttribute="width" secondItem="EwR-Ep-lNN" secondAttribute="width" id="N87-cD-rf4"/>
                 <constraint firstItem="wHu-vL-y8o" firstAttribute="bottom" secondItem="DV3-bl-Xqm" secondAttribute="bottom" id="Ped-dc-IY0"/>

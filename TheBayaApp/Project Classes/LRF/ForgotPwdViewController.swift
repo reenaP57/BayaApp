@@ -36,6 +36,20 @@ class ForgotPwdViewController: ParentViewController {
     }
 }
 
+//MARK:-
+//MARK:- UITextField Delegate
+
+extension ForgotPwdViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txtEmail {
+            txtEmail.hideValidationMessage(15.0)
+        }
+        return true
+    }
+}
+
 
 //MARK:-
 //MARK:- Action
@@ -44,16 +58,16 @@ extension ForgotPwdViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
-
-        DispatchQueue.main.async {
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//        self.view.layoutIfNeeded()
+//
+//        DispatchQueue.main.async {
         
             if (self.txtEmail.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
@@ -67,6 +81,9 @@ extension ForgotPwdViewController {
                         
                     } else {
                         if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
+                            
+                            resetPwdVC.isEmail = true
+                            resetPwdVC.strEmailMobile = self.txtEmail.text!
                             self.navigationController?.pushViewController(resetPwdVC, animated: true)
                         }
                     }
@@ -78,11 +95,14 @@ extension ForgotPwdViewController {
                     } else {
                        
                         if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
+                           
+                           resetPwdVC.isEmail = false
+                            resetPwdVC.strEmailMobile = self.txtEmail.text!
                             self.navigationController?.pushViewController(resetPwdVC, animated: true)
                         }
                     }
                 }
             }
-       }
+      // }
     }
 }

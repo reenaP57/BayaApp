@@ -28,7 +28,6 @@ class LocationAdvantagesCollCell: UICollectionViewCell {
             arrLocDesc = arrDesc
             tblLocDesc.reloadData()
             
-            
             if #available(iOS 11.0, *) {
                 tblLocDesc.performBatchUpdates({
                     self.cnstTblHeight.constant = self.tblLocDesc.contentSize.height
@@ -39,12 +38,6 @@ class LocationAdvantagesCollCell: UICollectionViewCell {
                 // Fallback on earlier versions
                 self.cnstTblHeight.constant = self.tblLocDesc.contentSize.height
             }
-
-            
-            
-//            cnstHeightTbl.constant = tblLocDesc.contentSize.height
-//
-//            print("Height :", cnstHeightTbl)
         }
     }
 }

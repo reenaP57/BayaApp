@@ -38,6 +38,26 @@ class ChangePasswordViewController: ParentViewController {
     }
 }
 
+//MARK:-
+//MARK:- UITextField Delegate
+
+extension ChangePasswordViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        switch textField {
+        case txtCurrentPwd:
+            txtCurrentPwd.hideValidationMessage(15.0)
+        case txtNewPwd:
+            txtNewPwd.hideValidationMessage(15.0)
+        default:
+            txtConfirmPwd.hideValidationMessage(15.0)
+        }
+        
+        return true
+    }
+}
+
 
 //MARK:-
 //MARK:- Action Methods
@@ -46,35 +66,42 @@ extension ChangePasswordViewController {
     
     @IBAction func btnSubmitClicked(_ sender: UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
-
-        DispatchQueue.main.async {
+//        for objView in vwContent.subviews{
+//            if  objView.isKind(of: UITextField.classForCoder()){
+//                let txField = objView as? UITextField
+//                txField?.hideValidationMessage(15.0)
+//                txField?.resignFirstResponder()
+//            }
+//        }
+//        self.view.layoutIfNeeded()
+//
+        //        DispatchQueue.main.async {
         
-            if (self.txtCurrentPwd.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtCurrentPwd.showValidationMessage(15.0, CBlankCurrentPasswordMessage))
-                
-            } else if (self.txtNewPwd.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankNewPasswordMessage))
-                
-            } else if !(self.txtNewPwd.text?.isValidPassword)! || (self.txtNewPwd.text?.count)! < 6  {
-                self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CInvalidPasswordMessage))
-                
-            } else if (self.txtConfirmPwd.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CBlankConfirmPasswordMessage))
-                
-            } else if self.txtConfirmPwd.text != self.txtNewPwd.text {
-                self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
-                
-            } else {
-                self.navigationController?.popViewController(animated: true)
-            }
+        if (self.txtCurrentPwd.text?.isBlank)! {
+            
+            self.txtNewPwd.hideValidationMessage(15.0)
+            self.txtConfirmPwd.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtCurrentPwd.showValidationMessage(15.0, CBlankCurrentPasswordMessage))
+            
+        } else if (self.txtNewPwd.text?.isBlank)! {
+            
+            self.txtConfirmPwd.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CBlankNewPasswordMessage))
+            
+        } else if !(self.txtNewPwd.text?.isValidPassword)! || (self.txtNewPwd.text?.count)! < 6  {
+            
+            self.txtConfirmPwd.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtNewPwd.showValidationMessage(15.0, CInvalidPasswordMessage))
+            
+        } else if (self.txtConfirmPwd.text?.isBlank)! {
+            self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CBlankConfirmPasswordMessage))
+            
+        } else if self.txtConfirmPwd.text != self.txtNewPwd.text {
+            self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
+            
+        } else {
+            self.navigationController?.popViewController(animated: true)
         }
+        //  }
     }
 }

@@ -67,7 +67,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? CScreenWidth * (74 / 768) : CScreenWidth * (74 / 375)
+        return IS_iPad ? CScreenWidth * (84 / 768) : CScreenWidth * (74 / 375)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

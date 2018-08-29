@@ -57,7 +57,10 @@ class CMSViewController: ParentViewController {
     {
         let content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." as String
         
-        self.webContent.loadHTMLString(content, baseURL: nil)
+        let font = UIFont.init(name: "Avenir-Medium", size: IS_iPad ? 20.0 : 13.0)
+        self.webContent.loadHTMLString("<span style=\"font-family: \(font!.fontName); font-size: \(font!.pointSize); color: #333333\">\(content)</span>", baseURL: nil)
+
+        
         self.webContent.isOpaque = false;
         self.webContent.backgroundColor = UIColor.clear
 
@@ -66,9 +69,6 @@ class CMSViewController: ParentViewController {
 //        let myRequest = URLRequest(url: myURL!)
 //        self.webVw.loadRequest(myRequest)
     }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        webContent.stringByEvaluatingJavaScript(from: "document.getElementsByTagName('body')[0].style.fontFamily =\"Avenir-Roman\"")
-    }
+
 }
 

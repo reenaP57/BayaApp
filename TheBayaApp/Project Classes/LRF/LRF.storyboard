@@ -180,7 +180,7 @@
                                     <outlet property="delegate" destination="GZ2-G3-woT" id="Pw9-4H-4op"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgd-mG-i6T" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgd-mG-i6T" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="308" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -364,20 +364,29 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hX5-V8-8ke" id="l3c-LR-mgz"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="blm-CD-2cz" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="blm-CD-2cz" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="125" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hX5-V8-8ke" id="0WW-kx-uON"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1h-N4-SKn" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="G1h-N4-SKn" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="190" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hX5-V8-8ke" id="trN-ZI-P8z"/>
+                                                </connections>
                                             </textField>
                                             <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hr8-8V-D3C" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="255" width="85" height="50"/>
@@ -389,14 +398,17 @@
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-fT-mPa" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                            <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XBk-fT-mPa" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="110" y="255" width="250" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="hX5-V8-8ke" id="Adj-Nh-v7R"/>
+                                                </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OKF-Mo-Le4" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                            <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OKF-Mo-Le4" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="320" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
@@ -406,7 +418,7 @@
                                                     <outlet property="delegate" destination="hX5-V8-8ke" id="hPZ-w1-2NU"/>
                                                 </connections>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r5W-hA-cdl" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="r5W-hA-cdl" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="385" width="345" height="50"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="textColor"/>
@@ -643,6 +655,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="Yzs-hC-h68" id="334-7p-8oA"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MO7-Qw-cK0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="281" width="345" height="50"/>
@@ -732,6 +747,9 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="nZI-QC-JGF" id="xDn-ah-r4U"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGq-IN-NHO" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="281" width="345" height="50"/>
@@ -790,13 +808,13 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="SXO-Lz-PBm">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You might have got OTP on entered email address/mobile number. Enter OTP in below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqd-CP-i1L" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You might have got verification code on entered email address/mobile number. Enter verification code in below." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nqd-CP-i1L" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="150" width="345" height="36"/>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="13"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvK-1N-nXm" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Verification Code" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bvK-1N-nXm" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="206" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -805,20 +823,29 @@
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="numberPad"/>
+                                <connections>
+                                    <outlet property="delegate" destination="OIR-NS-Hwf" id="2Rj-It-fph"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rM9-Fi-Lgd" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="New Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rM9-Fi-Lgd" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="271" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="OIR-NS-Hwf" id="Pg2-cg-Dmx"/>
+                                </connections>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nZn-LH-ItY" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nZn-LH-ItY" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="336" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="OIR-NS-Hwf" id="a8b-cV-UsO"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUA-gO-1Le" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="411" width="345" height="50"/>
@@ -836,6 +863,20 @@
                                     <action selector="btnSubmitClickedWithSender:" destination="OIR-NS-Hwf" eventType="touchUpInside" id="Pg2-Jo-TWe"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-o7-Gx0">
+                                <rect key="frame" x="89" y="486" width="197" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="197" id="HKD-MW-fxV"/>
+                                    <constraint firstAttribute="height" constant="48" id="vaP-Dp-Y8u"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
+                                <state key="normal" title="Resend Verification Code">
+                                    <color key="titleColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnResendCodeClickedWithSender:" destination="OIR-NS-Hwf" eventType="touchUpInside" id="Dkx-tB-fZh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -851,6 +892,7 @@
                             <constraint firstItem="nZn-LH-ItY" firstAttribute="top" secondItem="rM9-Fi-Lgd" secondAttribute="bottom" constant="15" id="QOj-0t-hSA"/>
                             <constraint firstItem="nZn-LH-ItY" firstAttribute="centerX" secondItem="rM9-Fi-Lgd" secondAttribute="centerX" id="TaK-5Q-GFD"/>
                             <constraint firstItem="Nqd-CP-i1L" firstAttribute="leading" secondItem="V6o-D2-DAD" secondAttribute="leading" constant="15" id="Ya6-Gx-YFy"/>
+                            <constraint firstItem="Y0a-o7-Gx0" firstAttribute="top" secondItem="ZUA-gO-1Le" secondAttribute="bottom" constant="25" id="YfF-7s-tys"/>
                             <constraint firstItem="rM9-Fi-Lgd" firstAttribute="centerX" secondItem="bvK-1N-nXm" secondAttribute="centerX" id="eVv-dX-NWS"/>
                             <constraint firstItem="Nqd-CP-i1L" firstAttribute="top" secondItem="V6o-D2-DAD" secondAttribute="top" constant="130" id="h8E-hb-0fB"/>
                             <constraint firstItem="bvK-1N-nXm" firstAttribute="top" secondItem="Nqd-CP-i1L" secondAttribute="bottom" constant="20" id="k8P-xj-rc2"/>
@@ -858,6 +900,7 @@
                             <constraint firstItem="rM9-Fi-Lgd" firstAttribute="width" secondItem="bvK-1N-nXm" secondAttribute="width" id="o4E-LV-T1a"/>
                             <constraint firstItem="bvK-1N-nXm" firstAttribute="width" secondItem="7Sm-P6-u4g" secondAttribute="width" multiplier="0.92" id="otz-wt-f3I"/>
                             <constraint firstItem="ZUA-gO-1Le" firstAttribute="width" secondItem="bvK-1N-nXm" secondAttribute="width" id="qPb-9b-M4j"/>
+                            <constraint firstItem="Y0a-o7-Gx0" firstAttribute="centerX" secondItem="7Sm-P6-u4g" secondAttribute="centerX" id="sN1-SS-h1t"/>
                             <constraint firstItem="rM9-Fi-Lgd" firstAttribute="height" secondItem="bvK-1N-nXm" secondAttribute="height" id="vnK-oQ-r14"/>
                             <constraint firstItem="ZUA-gO-1Le" firstAttribute="height" secondItem="bvK-1N-nXm" secondAttribute="height" id="yXc-3V-A6j"/>
                             <constraint firstItem="nZn-LH-ItY" firstAttribute="height" secondItem="rM9-Fi-Lgd" secondAttribute="height" id="zda-wR-VLM"/>

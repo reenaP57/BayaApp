@@ -63,6 +63,10 @@ extension SellAllLocationTblCell : UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LocationDescTblCell") as? LocationDescTblCell {
             
             cell.lblLocation.text = arrLocDesc[indexPath.row]
+            
+            cell.contentView.backgroundColor = UIColor.clear
+            cell.backgroundColor = UIColor.clear
+            
             return cell
         }
         
