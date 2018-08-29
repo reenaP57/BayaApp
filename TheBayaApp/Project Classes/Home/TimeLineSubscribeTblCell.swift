@@ -16,7 +16,7 @@ class TimeLineSubscribeTblCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-             arrProject = [["project_name": "The Baya Victoria Chembur", "percentage": 100],["project_name": "The Baya Victoria Chembur", "percentage": 70],["project_name": "The Baya Victoria Chembur", "percentage": 35]] as [[String : AnyObject]]
+             arrProject = [["project_name": "The Baya Victoria", "percentage": 100],["project_name": "The Baya Victoria", "percentage": 70],["project_name": "The Baya Victoria", "percentage": 35]] as [[String : AnyObject]]
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -65,7 +65,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             let dict = arrProject[indexPath.row]
             
             cell.lblProjectName.text = dict.valueForString(key: "project_name")
-            cell.lblCompleted.text = "\(dict.valueForString(key: "percentage"))%"
             cell.lblPercentage.text = "\(dict.valueForString(key: "percentage"))%"
             
             cell.btnSubscribe.touchUpInside { (sender) in

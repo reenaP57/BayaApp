@@ -379,13 +379,14 @@
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
                                                         <constraint firstItem="jhb-yy-Psx" firstAttribute="leading" secondItem="QiQ-5d-Bbl" secondAttribute="leading" id="46z-gO-ToW"/>
+                                                        <constraint firstAttribute="bottom" secondItem="hHo-TL-hac" secondAttribute="bottom" constant="11.5" id="AAj-u2-U9X"/>
                                                         <constraint firstItem="p8j-Wx-v0A" firstAttribute="top" secondItem="Jru-5Y-elN" secondAttribute="top" constant="10" id="CWA-UN-Qel"/>
                                                         <constraint firstItem="p8j-Wx-v0A" firstAttribute="leading" secondItem="Jru-5Y-elN" secondAttribute="leading" constant="10" id="DbP-kL-K0n"/>
-                                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="p8j-Wx-v0A" secondAttribute="bottom" constant="10" id="Ds2-ck-eLw"/>
                                                         <constraint firstItem="Z6T-Pg-WUP" firstAttribute="leading" secondItem="p8j-Wx-v0A" secondAttribute="trailing" constant="15" id="JpP-FA-D6n"/>
                                                         <constraint firstItem="hHo-TL-hac" firstAttribute="top" secondItem="QiQ-5d-Bbl" secondAttribute="bottom" constant="2.5" id="PvK-WF-fUg"/>
                                                         <constraint firstAttribute="trailing" secondItem="QiQ-5d-Bbl" secondAttribute="trailing" constant="15" id="RD2-Ef-AkM"/>
                                                         <constraint firstItem="QiQ-5d-Bbl" firstAttribute="centerY" secondItem="p8j-Wx-v0A" secondAttribute="centerY" id="fad-f4-pUa"/>
+                                                        <constraint firstAttribute="bottom" secondItem="jhb-yy-Psx" secondAttribute="bottom" constant="10" id="gAJ-2X-4El"/>
                                                         <constraint firstItem="QiQ-5d-Bbl" firstAttribute="top" secondItem="Z6T-Pg-WUP" secondAttribute="bottom" constant="5" id="q7V-7D-Cz0"/>
                                                         <constraint firstItem="QiQ-5d-Bbl" firstAttribute="leading" secondItem="Z6T-Pg-WUP" secondAttribute="leading" id="tiS-fd-8Dz"/>
                                                         <constraint firstItem="hHo-TL-hac" firstAttribute="leading" secondItem="QiQ-5d-Bbl" secondAttribute="leading" id="uej-Po-R9u"/>
@@ -400,6 +401,7 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="p8j-Wx-v0A" firstAttribute="width" secondItem="Lo4-yJ-Yli" secondAttribute="width" multiplier="0.226667" id="1Kk-jD-klN"/>
                                                 <constraint firstItem="Jru-5Y-elN" firstAttribute="top" secondItem="Lo4-yJ-Yli" secondAttribute="top" constant="5" id="3sT-4h-j67"/>
                                                 <constraint firstAttribute="bottom" secondItem="Jru-5Y-elN" secondAttribute="bottom" constant="5" id="6gv-iw-P1T"/>
                                                 <constraint firstAttribute="trailing" secondItem="Jru-5Y-elN" secondAttribute="trailing" constant="10" id="jZl-34-nPh"/>

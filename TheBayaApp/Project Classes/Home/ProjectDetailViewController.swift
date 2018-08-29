@@ -21,7 +21,8 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblReraNo : UILabel!
     @IBOutlet fileprivate weak var lblPercentage : UILabel!
     @IBOutlet fileprivate weak var sliderPercentage : UISlider!
-    
+    @IBOutlet fileprivate weak var btnSubscribe : UIButton!
+
     @IBOutlet fileprivate weak var lblLocation : UILabel!
     @IBOutlet fileprivate weak var imgVLocation : UIImageView!
     
@@ -237,10 +238,12 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnSubscribeClicked (sender : UIButton) {
-        sender.isSelected = !sender.isSelected
         
         self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CSubscribeMessage : CUnsubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-            sender.isSelected = !sender.isSelected
+           
+            self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
+            self.btnSubscribe.isSelected = !sender.isSelected
+            
         }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
         })
     }

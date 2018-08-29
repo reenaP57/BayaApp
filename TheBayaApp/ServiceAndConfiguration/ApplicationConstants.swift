@@ -76,6 +76,7 @@ let NotificationDidUpdateUserDetail     = "NotificationDidUpdateUserDetail"
 //MARK:- UserDefaults
 let UserDefaultiPadAuthCode               = "UserDefaultiPadAuthCode"
 let UserDefaultGeneralDataLoaded          = "UserDefaultGeneralDataLoaded"
+let UserDefaultOpenedTimeLine             = "UserDefaultOpenedTimeLine"
 
 
 

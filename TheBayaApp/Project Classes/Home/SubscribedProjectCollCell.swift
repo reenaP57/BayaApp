@@ -12,7 +12,8 @@ class SubscribedProjectCollCell: UICollectionViewCell {
     
     @IBOutlet weak var lblProjectName : UILabel!
     @IBOutlet weak var lblPercentage : UILabel!
-    @IBOutlet weak var lblCompleted : UILabel!
+    @IBOutlet weak var lblLocation : UILabel!
+    @IBOutlet weak var lblReraNo: UILabel!
     @IBOutlet weak var btnCall : UIButton!
     @IBOutlet weak var btnSubscribe : MIGenericButton!
     @IBOutlet weak var imgVProgress : UIImageView!

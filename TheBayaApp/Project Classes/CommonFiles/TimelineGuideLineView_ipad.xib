@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="cZQ-8p-VDl" customClass="TimelineGuideLineView" customModule="TheBayaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="select_circle_ipad" translatesAutoresizingMaskIntoConstraints="NO" id="KRY-hd-8F1">
+                    <rect key="frame" x="426" y="43" width="27" height="27"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guideline_arrow_ipad" translatesAutoresizingMaskIntoConstraints="NO" id="Gc3-VM-Egx">
+                    <rect key="frame" x="407" y="75" width="40" height="30"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select this checkbox and you will see quick progress of this project on home screen" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmn-hg-0db" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                    <rect key="frame" x="17.5" y="107" width="435.5" height="36"/>
+                    <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="13"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RXw-HT-rfT" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                    <rect key="frame" x="17.5" y="164" width="140" height="45"/>
+                    <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="RXw-HT-rfT" secondAttribute="height" multiplier="5:2" constant="27.5" id="6CG-M8-YwZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                    <state key="normal" title="Got it!">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="KRY-hd-8F1" firstAttribute="top" secondItem="cZQ-8p-VDl" secondAttribute="top" constant="43" id="0kk-TP-SN9"/>
+                <constraint firstItem="Gc3-VM-Egx" firstAttribute="trailing" secondItem="KRY-hd-8F1" secondAttribute="trailing" constant="-6" id="9iB-yN-CKe"/>
+                <constraint firstItem="RXw-HT-rfT" firstAttribute="leading" secondItem="Zmn-hg-0db" secondAttribute="leading" id="HrF-wJ-xoz"/>
+                <constraint firstItem="Gc3-VM-Egx" firstAttribute="top" secondItem="KRY-hd-8F1" secondAttribute="bottom" constant="5" id="Khi-Rq-iAt"/>
+                <constraint firstItem="RXw-HT-rfT" firstAttribute="top" secondItem="Zmn-hg-0db" secondAttribute="bottom" constant="25" id="YqL-QI-zLo"/>
+                <constraint firstItem="Zmn-hg-0db" firstAttribute="top" secondItem="Gc3-VM-Egx" secondAttribute="bottom" constant="2" id="Zh4-WQ-kZQ"/>
+                <constraint firstItem="Zmn-hg-0db" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cZQ-8p-VDl" secondAttribute="leading" constant="10" id="eHD-xj-92p"/>
+                <constraint firstItem="Zmn-hg-0db" firstAttribute="trailing" secondItem="KRY-hd-8F1" secondAttribute="trailing" id="fgY-4c-GRe"/>
+                <constraint firstAttribute="trailing" secondItem="KRY-hd-8F1" secondAttribute="trailing" constant="315" id="jYS-6D-8WF"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="1sg-vd-LFL"/>
+            <connections>
+                <outlet property="btnGotIt" destination="RXw-HT-rfT" id="pRw-ut-5KC"/>
+                <outlet property="cnstImgvArrowTrailing" destination="9iB-yN-CKe" id="Lf6-5M-ajB"/>
+                <outlet property="cnstImgvCheckmarkTrailing" destination="jYS-6D-8WF" id="fa6-KB-Xl2"/>
+                <outlet property="cnstImgvCheckmarkY" destination="0kk-TP-SN9" id="ltM-s8-U4z"/>
+                <outlet property="imgVArrow" destination="Gc3-VM-Egx" id="Jmd-YE-glS"/>
+                <outlet property="imgVCheckMark" destination="KRY-hd-8F1" id="hna-ke-Y0z"/>
+                <outlet property="lblGuideLine" destination="Zmn-hg-0db" id="eGe-2h-4Gd"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="guideline_arrow_ipad" width="40" height="30"/>
+        <image name="select_circle_ipad" width="27" height="27"/>
+    </resources>
+</document>

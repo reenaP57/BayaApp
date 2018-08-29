@@ -10,6 +10,8 @@ import UIKit
 import AVKit
 
 let space = CScreenWidth * 70/375
+let IpadSpace = CScreenWidth - (CScreenWidth * 450/768)
+let NavigationBarHeight = 64
 
 class TimelineDetailViewController: ParentViewController {
 
@@ -46,6 +48,44 @@ class TimelineDetailViewController: ParentViewController {
                          ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1],
                          ["image": ["img4.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : 2],
                          ["image": ["img1.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 3]] as [[String : AnyObject]]
+        
+        
+        if CUserDefaults.string(forKey: UserDefaultOpenedTimeLine) != "true"  //bool(forKey: UserDefaultOpenedTimeLine)
+        {
+        
+            if let vwTimlineGuideline = TimelineGuideLineView.viewFromNib(is_ipad: true) as? TimelineGuideLineView {
+                
+                vwTimlineGuideline.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
+           
+                vwTimlineGuideline.cnstImgvCheckmarkY.constant = 80
+                vwTimlineGuideline.cnstImgvCheckmarkTrailing.constant = IS_iPad ?  CGFloat(IpadSpace) : space-3
+                
+                if !IS_iPad {
+                    if IS_iPhone_5 {
+                        vwTimlineGuideline.cnstImgvArrowTrailing.constant = -space + vwTimlineGuideline.imgVArrow.CViewWidth-7
+                    } else if IS_iPhone_6 {
+                        vwTimlineGuideline.cnstImgvArrowTrailing.constant = -space + vwTimlineGuideline.imgVArrow.CViewWidth
+                    } else if IS_iPhone_6_Plus{
+                        vwTimlineGuideline.cnstImgvArrowTrailing.constant = -space + vwTimlineGuideline.imgVArrow.CViewWidth+7
+                    } else {
+                        vwTimlineGuideline.cnstImgvArrowTrailing.constant = -space + vwTimlineGuideline.imgVArrow.CViewWidth+3
+                    }
+                }
+                
+          
+                UIView.animate(withDuration: 1.0) {
+                    appDelegate.window.addSubview(vwTimlineGuideline)
+                }
+                
+                vwTimlineGuideline.btnGotIt.touchUpInside { (sender) in
+                    vwTimlineGuideline.removeFromSuperview()
+                    CUserDefaults.set("true", forKey: UserDefaultOpenedTimeLine)
+                    CUserDefaults.synchronize()
+                }
+      
+            }
+        }
+        
     }
     
     @objc func btnFilterClicked() {
@@ -98,6 +138,7 @@ class TimelineDetailViewController: ParentViewController {
 //MARK:- Action
 
 extension TimelineDetailViewController {
+
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
      
@@ -125,7 +166,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (270/768) : 190 : CScreenWidth * (200/375)
+        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (270/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -184,6 +225,31 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         return cell
                     }
                     
+                case 3: // Video
+                    
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
+                        
+                        cell.lblDesc.text = dict.valueForString(key: "desc")
+                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        
+                        cell.btnShare.touchUpInside { (sender) in
+                            self.shareContent()
+                        }
+                        
+                        cell.btnPlay.touchUpInside { (action) in
+                            
+                            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                            let player = AVPlayer(url: videoURL!)
+                            let playerViewController = AVPlayerViewController()
+                            playerViewController.player = player
+                            self.present(playerViewController, animated: true) {
+                                playerViewController.player!.play()
+                            }
+                        }
+                        
+                        return cell
+                    }
+                    
                 default:
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
@@ -216,19 +282,15 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         cell.btnPlay.touchUpInside { (action) in
                             
-                            cell.imgVThumbNail.isHidden = true
-                            cell.btnPlay.isSelected = !cell.btnPlay.isSelected
-                            
+                           // cell.imgVThumbNail.isHidden = true
+                           // cell.btnPlay.isSelected = !cell.btnPlay.isSelected
+                           
                             let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
                             let player = AVPlayer(url: videoURL!)
-                            let playerLayer = AVPlayerLayer(player: player)
-                            playerLayer.frame = cell.vwVideoPlayer.bounds
-                            cell.vwVideoPlayer.layer.addSublayer(playerLayer)
-                            
-                            if cell.btnPlay.isSelected {
-                                player.play()
-                            } else {
-                                player.pause()
+                            let playerViewController = AVPlayerViewController()
+                            playerViewController.player = player
+                            self.present(playerViewController, animated: true) {
+                                playerViewController.player!.play()
                             }
                         }
                         

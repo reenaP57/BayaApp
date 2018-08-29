@@ -74,19 +74,11 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             cell.btnSubscribe.touchUpInside { (sender) in
                 
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CSubscribeMessage : CUnsubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
+                  
+                 cell.btnSubscribe.isSelected ? cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal) : cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
                     
-                    if cell.btnSubscribe.isSelected {
-                        cell.btnSubscribe.setGradientBackground(color1: ColorGradient1Background, color2: ColorGradient2Background)
-                    } else {
-                        cell.btnSubscribe.setGradientBackground(color1: ColorProgressGradient1, color2: ColorProgressGradient2)
-                    }
-                    
-                    
-//                    cell.btnSubscribe.isSelected ? cell.btnSubscribe.setGradientBackground(color1: ColorGradient1Background, color2: ColorGradient2Background) : cell.btnSubscribe.setGradientBackground(color1: ColorProgressGradient1, color2: ColorProgressGradient2)
-                    
-//                    cell.btnSubscribe.isSelected ? cell.btnSubscribe
-                    
+                 cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
+                  
                 }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
                 })
             }

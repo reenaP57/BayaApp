@@ -204,7 +204,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_projects_ipad" translatesAutoresizingMaskIntoConstraints="NO" id="Tq5-k1-fhd">
-                                                            <rect key="frame" x="15" y="52.5" width="9" height="13"/>
+                                                            <rect key="frame" x="15" y="55" width="9" height="13"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" verticalHuggingPriority="251" text="203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pkI-LV-ZQh" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="34" y="52.5" width="483" height="18"/>
@@ -240,8 +240,8 @@
                                                     <constraints>
                                                         <constraint firstItem="cRw-Hd-IVl" firstAttribute="leading" secondItem="pkI-LV-ZQh" secondAttribute="trailing" constant="-4.5" id="24T-es-9td"/>
                                                         <constraint firstItem="pkI-LV-ZQh" firstAttribute="leading" secondItem="Tq5-k1-fhd" secondAttribute="trailing" constant="10" id="6DB-8P-Jya"/>
-                                                        <constraint firstItem="Tq5-k1-fhd" firstAttribute="top" secondItem="pkI-LV-ZQh" secondAttribute="top" id="8i8-L1-hho"/>
                                                         <constraint firstItem="Tq5-k1-fhd" firstAttribute="leading" secondItem="kP0-fR-4Bf" secondAttribute="leading" id="GK6-uN-Pru"/>
+                                                        <constraint firstItem="Tq5-k1-fhd" firstAttribute="centerY" secondItem="pkI-LV-ZQh" secondAttribute="centerY" id="RzP-C6-bZC"/>
                                                         <constraint firstItem="cRw-Hd-IVl" firstAttribute="centerY" secondItem="9Jy-Q3-mq2" secondAttribute="centerY" id="Z8i-MX-UkK"/>
                                                         <constraint firstItem="pkI-LV-ZQh" firstAttribute="top" secondItem="kP0-fR-4Bf" secondAttribute="bottom" constant="10" id="aSN-ZA-tbG"/>
                                                         <constraint firstItem="kP0-fR-4Bf" firstAttribute="leading" secondItem="9Jy-Q3-mq2" secondAttribute="leading" constant="15" id="cA5-Mm-LBg"/>

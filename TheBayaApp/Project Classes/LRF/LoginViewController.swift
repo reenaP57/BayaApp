@@ -83,8 +83,8 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
-        appDelegate.initHomeViewController()
-        return
+//        appDelegate.initHomeViewController()
+//        return
         
 //        for objView in vwContent.subviews{
 //            if  objView.isKind(of: UITextField.classForCoder()){

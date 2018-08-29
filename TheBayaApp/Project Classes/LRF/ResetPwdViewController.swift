@@ -99,14 +99,14 @@ extension ResetPwdViewController {
                 self.txtNewPwd.hideValidationMessage(15.0)
                 self.txtConfirmPwd.hideValidationMessage(15.0)
 
-                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankOTPMessage))
+                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankVerificationCodeMessage))
                 
             } else if (self.txtCode.text?.count)! > 6 || (self.txtCode.text?.count)! < 6 {
                 
                 self.txtNewPwd.hideValidationMessage(15.0)
                 self.txtConfirmPwd.hideValidationMessage(15.0)
                 
-                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CInvalidOTPMessage))
+                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CInvalidVerificationCodeMessage))
                 
             } else if (self.txtNewPwd.text?.isBlank)! {
                 
