@@ -50,6 +50,12 @@ class TimelineDetailViewController: ParentViewController {
                          ["image": ["img1.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 3]] as [[String : AnyObject]]
         
         
+        if IS_iPad {
+            tblUpdates.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
+        }
+        
+        
+        
         if CUserDefaults.string(forKey: UserDefaultOpenedTimeLine) != "true"  //bool(forKey: UserDefaultOpenedTimeLine)
         {
         
@@ -166,11 +172,11 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (270/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
+        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (340/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (270/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
+        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (300/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

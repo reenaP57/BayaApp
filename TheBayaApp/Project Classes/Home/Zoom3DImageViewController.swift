@@ -11,7 +11,7 @@ import UIKit
 
 class Zoom3DImageViewController: ParentViewController {
 
-    //@IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+  //  @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
     @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     override func viewDidLoad() {

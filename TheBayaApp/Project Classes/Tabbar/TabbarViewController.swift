@@ -27,6 +27,8 @@ extension TabbarViewController {
         
         self.tabBar.isHidden = true
         
+        let height = IS_iPad ? CGFloat(60.0) : CGFloat(49.0)
+        
         guard let tabbar = TabBarView.shared else { return }
         tabbar.frame = CGRect(x: 0, y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0), width: CScreenWidth, height: 49.0)
         

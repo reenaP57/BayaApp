@@ -60,7 +60,7 @@ extension VerificationViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         if textField == txtCode {
-            txtCode.hideValidationMessage(15.0)
+            txtCode.hideValidationMessage(80.0)
         }
         return true
     }

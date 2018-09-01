@@ -3,8 +3,11 @@ PODS:
   - BFRImageViewer (1.0.32):
     - DACircularProgress
     - PINRemoteImage (~> 3.0.0-beta.7)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
   - CTPanoramaView (1.0)
   - DACircularProgress (2.3.1)
+  - Fabric (1.7.11)
   - FLAnimatedImage (1.0.12)
   - IQKeyboardManagerSwift (6.1.1)
   - PINCache (3.0.1-beta.6):
@@ -33,7 +36,9 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - BFRImageViewer
+  - Crashlytics
   - CTPanoramaView (= 1.0)
+  - Fabric
   - IQKeyboardManagerSwift
   - SDWebImage
 
@@ -41,8 +46,10 @@ SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - BFRImageViewer
+    - Crashlytics
     - CTPanoramaView
     - DACircularProgress
+    - Fabric
     - FLAnimatedImage
     - IQKeyboardManagerSwift
     - PINCache
@@ -53,8 +60,10 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   BFRImageViewer: 941dfb08cbf5b05c13e3baeab3e168383f0c64a5
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   CTPanoramaView: 26a11a330ff606ea5d059ffe86b7e34eb902023e
   DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
@@ -62,6 +71,6 @@ SPEC CHECKSUMS:
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
 
-PODFILE CHECKSUM: a9bf6f23c969fd836c947af81e2f852bbdc6d758
+PODFILE CHECKSUM: 2f3dfdf51ea54878d8d7d0fb0ebf0f0fa0f6ce70
 
 COCOAPODS: 1.5.0

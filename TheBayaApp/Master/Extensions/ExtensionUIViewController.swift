@@ -393,6 +393,22 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
         } else {}
     }
     
+    // Open picker in gallery mode
+    func presentImagePickerControllerWithGallery(allowEditing:Bool , imagePickerControllerCompletionHandler:imagePickerControllerCompletionHandler) {
+        
+        self.chooseFromPhone(allowEditing:allowEditing)
+        
+        objc_setAssociatedObject(self, &AssociatedObjectKey.imagePickerControllerCompletionHandler, imagePickerControllerCompletionHandler, .OBJC_ASSOCIATION_RETAIN)
+    }
+    
+    // Open picker in Camera mode
+    func presentImagePickerControllerWithCamera(allowEditing:Bool , imagePickerControllerCompletionHandler:imagePickerControllerCompletionHandler) {
+        
+        self.takeAPhoto()
+        
+        objc_setAssociatedObject(self, &AssociatedObjectKey.imagePickerControllerCompletionHandler, imagePickerControllerCompletionHandler, .OBJC_ASSOCIATION_RETAIN)
+    }
+    
     /// A Delegate method of UIImagePickerControllerDelegate.
     public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         

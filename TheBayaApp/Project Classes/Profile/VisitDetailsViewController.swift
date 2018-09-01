@@ -39,10 +39,13 @@ class VisitDetailsViewController: ParentViewController {
                         ["project_name":"Baya Victoria", "time":"25 July 2018 at 5:00 PM.", "visit_type":"past", "rated": true],
                         ["project_name":"Baya Victoria", "time":"25 July 2018 at 5:00 PM.", "visit_type":"past", "rated": false]] as [[String : AnyObject]]
         
-        tblVVisitDetails.estimatedRowHeight = 125
-        tblVVisitDetails.rowHeight = UITableViewAutomaticDimension
+        if IS_iPhone {
+            tblVVisitDetails.estimatedRowHeight = 125
+            tblVVisitDetails.rowHeight = UITableViewAutomaticDimension
+        } else {
+             tblVVisitDetails.rowHeight = CScreenWidth * 155/768
+        }
     }
-
 }
 
 

@@ -12,7 +12,7 @@ class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
     
-    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notification","Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
+    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications","Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
     
     //MARK:-
     //MARK:- LyfeCycle Methods
@@ -181,13 +181,16 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             //...Rate App
             self.openInSafari(strUrl: "www.google.com")
             break
-            
-        default:
+           
+        case 9:
             //...Logout
             self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CLogOutMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                 appDelegate.logout()
             }, btnTwoTitle: CBtnNo) { (action) in
             }
+            
+        default:
+           print("")
         }
     }
 }

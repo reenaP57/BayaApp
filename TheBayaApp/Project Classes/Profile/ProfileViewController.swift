@@ -15,11 +15,8 @@ class ProfileViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblMobileNo : UILabel!
     @IBOutlet fileprivate weak var tblList : UITableView!
 
-    let arrList = [["img" : "schedule_profile", "title": "Schedule a Visit"],
-                   ["img" : "my_projects_profile", "title": "My Subscribed Projects"],
-                   ["img" : "visit_details_profile", "title": "Visit Details"]]
+    var arrList = [[String : AnyObject]]()
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -40,6 +37,16 @@ class ProfileViewController: ParentViewController {
     
     func initialize() {
         self.title = "My Profile"
+        
+        if IS_iPhone{
+           arrList =  [["img" : "schedule_profile", "title": "Schedule a Visit"],
+             ["img" : "my_projects_profile", "title": "My Subscribed Projects"],
+             ["img" : "visit_details_profile", "title": "Visit Details"]] as [[String : AnyObject]]
+        } else {
+           arrList =  [["img" : "schedule_profile_ipad", "title": "Schedule a Visit"],
+             ["img" : "my_projects_profile_ipad", "title": "My Subscribed Projects"],
+             ["img" : "visit_details_profile_ipad", "title": "Visit Details"]] as [[String : AnyObject]]
+        }
     }
 }
 

@@ -9,6 +9,9 @@
 import UIKit
 import CoreData
 import IQKeyboardManagerSwift
+import Fabric
+import Crashlytics
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,10 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let window = UIWindow.init(frame: UIScreen.main.bounds)
     
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         IQKeyboardManager.shared.enable = true
+        Fabric.with([Crashlytics.self])
         
         self.initRootViewController()
   

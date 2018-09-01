@@ -39,12 +39,25 @@ class ScheduleVisitViewController: ParentViewController {
             txtSelectProject.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
         }
     }
-    @IBOutlet fileprivate weak var txtVPurpose : UITextView! {
+    @IBOutlet fileprivate weak var txtVPurpose : UITextView!
+        {
         didSet {
-            txtVPurpose.placeholderFont = CFontAvenir(size: 14.0, type: .medium).setUpAppropriateFont()
+            txtVPurpose.placeholderFont = CFontAvenir(size: IS_iPhone ? 14.0 : 18.0, type: .medium).setUpAppropriateFont()
         }
     }
-
+    @IBOutlet fileprivate weak var vwPurpose : UIView!{
+        didSet {
+            vwPurpose.layer.masksToBounds = true
+            vwPurpose.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
+            vwPurpose.layer.shadowOpacity = 5
+            vwPurpose.layer.shadowOffset = CGSize(width: 0, height: 3)
+            vwPurpose.layer.shadowRadius = 7
+            vwPurpose.layer.cornerRadius = 3
+        }
+    }
+    
+    
+    
     var dateSlot1 = Date()
     var dateSlot2 = Date()
     var dateSlot3 = Date()
@@ -117,12 +130,10 @@ class ScheduleVisitViewController: ParentViewController {
         
         self.title = "Schedule a Visit"
         
-        txtVPurpose.contentInset = UIEdgeInsetsMake(0, 10, 0, 10)
         
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
             dateSlot1 = date
             self.checkValidation(txtField: txtSlot1)
-
         }
         
         txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
@@ -259,12 +270,12 @@ extension ScheduleVisitViewController : UITextViewDelegate {
         }
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if text == "\n" {
-            return false
-        }
-        
-        return true
-    }
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//
+//        if text == "\n" {
+//            return false
+//        }
+//        
+//        return true
+//    }
 }

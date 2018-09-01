@@ -58,6 +58,12 @@ let IS_iPhone_6 = CScreenHeight == 667
 let IS_iPhone_6_Plus = CScreenHeight == 736
 let IS_iPhone_X = CScreenHeight == 812
 
+let IS_Ipad_Mini = CScreenHeight == 1024/2
+let IS_Ipad_Air = CScreenHeight == 2048/2
+let IS_Ipad_Pro1 = CScreenHeight == 2224/2
+let IS_Ipad_Pro2 = CScreenHeight == 2732/2
+
+
 let CMainBundle = Bundle.main
 let CBundleIdentifier = CMainBundle.bundleIdentifier
 let CBundleInfoDictionary = CMainBundle.infoDictionary

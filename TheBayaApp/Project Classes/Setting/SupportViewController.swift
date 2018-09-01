@@ -12,12 +12,23 @@ class SupportViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtVMsg : UITextView!{
         didSet {
-            txtVMsg.placeholderFont = CFontAvenir(size: 14.0, type: .medium).setUpAppropriateFont()
+            txtVMsg.placeholderFont = CFontAvenir(size: IS_iPhone ? 14.0 : 18.0, type: .medium).setUpAppropriateFont()
         }
     }
     
     @IBOutlet fileprivate weak var imgVUpload : UIImageView!
 
+    @IBOutlet fileprivate weak var vwMsg : UIView! {
+        didSet {
+            vwMsg.layer.masksToBounds = true
+            vwMsg.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
+            vwMsg.layer.shadowOpacity = 5
+            vwMsg.layer.shadowOffset = CGSize(width: 0, height: 3)
+            vwMsg.layer.shadowRadius = 7
+            vwMsg.layer.cornerRadius = 3
+        }
+    }
+    
     var imgData = Data()
     
     override func viewDidLoad() {
@@ -34,8 +45,7 @@ class SupportViewController: ParentViewController {
     //MARK:- General Methods
     
     func initialize() {
-        self.title = "Support"
-        txtVMsg.contentInset = UIEdgeInsetsMake(0, 10, 0, 10)
+        self.title = "App Support"
     }
 }
 
@@ -70,14 +80,46 @@ extension SupportViewController {
     
     @IBAction func btnUploadImage (sender : UIButton) {
         
-        self.presentImagePickerController(allowEditing: true) { (image, info) in
+        if IS_iPad {
             
-            if let selectedImage = image {
-                imgVUpload.contentMode = .scaleToFill
-                imgVUpload.image = selectedImage
-                self.imgData = UIImageJPEGRepresentation(selectedImage, 0.5)!
+            let actionSheet = UIAlertController(title: "Please Select Camera or Photo Library", message: "", preferredStyle: .alert)
+          
+            actionSheet.addAction(UIAlertAction(title: "Take A Photo", style: .default, handler: { (UIAlertAction) in
+                self.presentImagePickerControllerWithCamera(allowEditing: false) { (image, data) in
+                    
+                    if let selectedImage = image {
+                       self.setUploadedImg(img : selectedImage)
+                    }
+                }
+            }))
+            
+            actionSheet.addAction(UIAlertAction(title: "Choose From Phone", style: .default, handler: { (UIAlertAction) in
+                self.presentImagePickerControllerWithGallery(allowEditing: false) { (image, data) in
+                    
+                    if let selectedImage = image {
+                         self.setUploadedImg(img : selectedImage)
+                    }
+                }
+            }))
+            actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(actionSheet, animated: true, completion: nil)
+            
+            
+        } else {
+            
+            self.presentImagePickerController(allowEditing: true) { (image, info) in
+                
+                if let selectedImage = image {
+                    self.setUploadedImg(img : selectedImage)
+                }
             }
         }
+    }
+    
+    func setUploadedImg(img : UIImage) {
+        imgVUpload.contentMode = .scaleToFill
+        imgVUpload.image = img
+        self.imgData = UIImageJPEGRepresentation(img, 0.5)!
     }
 }
 
@@ -103,12 +145,12 @@ extension SupportViewController : UITextViewDelegate {
         }
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if text == "\n" {
-            return false
-        }
-        
-        return true
-    }
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//
+//        if text == "\n" {
+//            return false
+//        }
+//
+//        return true
+//    }
 }

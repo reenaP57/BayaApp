@@ -107,6 +107,8 @@ extension UIView {
         let path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
+        mask.borderWidth = 2
+        mask.borderColor = CRGB(r: 185, g: 200, b: 207).cgColor
         self.layer.mask = mask
     }
 }

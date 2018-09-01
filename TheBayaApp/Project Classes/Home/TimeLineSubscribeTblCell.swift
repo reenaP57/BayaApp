@@ -55,7 +55,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
         
-        return IS_iPad ? CGSize(width: CScreenWidth * 450/768 , height: collectionView.CViewHeight) : CGSize(width: CScreenWidth - space , height: collectionView.CViewHeight)
+        return IS_iPad ? CGSize(width: CScreenWidth * 500/768 , height: CScreenWidth * 290/768) : CGSize(width: CScreenWidth - space , height: collectionView.CViewHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -65,7 +65,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             let dict = arrProject[indexPath.row]
             
             cell.lblProjectName.text = dict.valueForString(key: "project_name")
-            cell.lblPercentage.text = "\(dict.valueForString(key: "percentage"))%"
+            cell.lblPercentage.text = " \(dict.valueForString(key: "percentage"))% "
             
             cell.btnSubscribe.touchUpInside { (sender) in
                 cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
@@ -91,8 +91,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
             }
             
+            let space = IS_iPad ? 37 :30
             
-            let imgVHeight = cell.imgVPjctCompletion.CViewHeight - 30
+            let imgVHeight = cell.imgVPjctCompletion.CViewHeight - CGFloat(space)
             
             let percentage = imgVHeight * CGFloat((dict.valueForInt(key: "percentage"))!)/100
             

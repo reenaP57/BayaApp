@@ -35,6 +35,8 @@ class ProjectDetailViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var collOverView : UICollectionView!
 
+    @IBOutlet fileprivate weak var vwProjectDetail : UIView!
+
     @IBOutlet fileprivate weak var vw3DTour : UIView!
     @IBOutlet fileprivate weak var vw3DTitle : UIView!{
         didSet{
@@ -154,13 +156,13 @@ class ProjectDetailViewController: ParentViewController {
                              ["img" : "Group_12", "title" : "Swimming Pool"]] as [[String : AnyObject]]
         }
         
-    sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
+        sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
         sliderPercentage.setThumbImage(UIImage(named: "baya_slider_shadow"), for: .normal)
         
-    self.loadProjectDetail()
-        
+        self.loadProjectDetail()
+
         //...Load 3D image
-       // vwPanorama.image = UIImage(named: "spherical.jpg")
+        // vwPanorama.image = UIImage(named: "spherical.jpg")
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -238,10 +240,10 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnSubscribeClicked (sender : UIButton) {
-        
-        self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CSubscribeMessage : CUnsubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+  
+        self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
            
-            self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
+            self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
             self.btnSubscribe.isSelected = !sender.isSelected
             
         }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
@@ -371,20 +373,20 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
             
         case collPlansType:
-            let fontToResize = CFontAvenir(size: 12, type: .heavy).setUpAppropriateFont()
-            return CGSize(width: arrPlanType[indexPath.row].size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? 50 : collectionView.CViewHeight)
+            let fontToResize = CFontAvenir(size: IS_iPad ? 14 : 12, type: .heavy).setUpAppropriateFont()
+            return CGSize(width: arrPlanType[indexPath.row].size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? CScreenWidth * 60/768 : collectionView.CViewHeight)
             
         case collAmmenities:
-            return CGSize(width: IS_iPad ? (CScreenWidth/4 - 50) : (CScreenWidth/4 - 20), height: collectionView.CViewHeight)
+            return IS_iPad ? CGSize(width:(collProject.CViewWidth/4 - 45), height: CScreenWidth * 120/768) : CGSize(width: (CScreenWidth/4 - 20), height: collectionView.CViewHeight)
             
         case collOverView:
-            return CGSize(width: IS_iPad ? (CScreenWidth/2 - 50):(CScreenWidth/2 - 20), height: IS_iPad ? 90 : (CScreenWidth * (60/375)))
+            return CGSize(width: IS_iPad ? (collProject.CViewWidth/2 - 50):(CScreenWidth/2 - 20), height: IS_iPad ? (CScreenWidth * (90/768)) : (CScreenWidth * (60/375)))
           
         case collProject:
             return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
             
         default:
-            return IS_iPad ? CGSize(width: (CScreenWidth/3 - 20), height: collectionView.contentSize.height) : CGSize(width: (CScreenWidth/2 - 20), height: collectionView.contentSize.height)
+            return IS_iPad ? CGSize(width: (collProject.CViewWidth/3 - 20), height: collectionView.contentSize.height) : CGSize(width: (CScreenWidth/2 - 20), height: collectionView.contentSize.height)
         }
     }
 

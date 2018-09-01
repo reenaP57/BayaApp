@@ -16,10 +16,11 @@ class LoginViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtPassword : UITextField!
     @IBOutlet fileprivate weak var btnRememberMe : UIButton!
     @IBOutlet fileprivate weak var vwContent : UIView!
-    
+    @IBOutlet fileprivate weak var lblSignUp : UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
-       // self.initialize()
+        self.initialize()
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,25 +32,28 @@ class LoginViewController: ParentViewController {
     
     func initialize() {
         
-        var rotationAndPerspectiveTransform = CATransform3D()
-        rotationAndPerspectiveTransform.m34 = 1.0 / -1000.0
-        rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, CGFloat(Double.pi * 0.6), 1.0, 0.0, 0.0)
-        
-        UIView.animate(withDuration: 1.0, animations: {
-            
-            self.txtEmail.layer.anchorPoint = CGPoint(x: 0.5, y: 0.0)
-            self.txtEmail.layer.transform = rotationAndPerspectiveTransform
-        }) { (finished) in
-        }
-        
         GCDMainThread.asyncAfter(deadline: .now() + 2) {
             if IS_SIMULATOR{
                 self.txtEmail.text = "krishna@gmail.com"
                 self.txtPassword.text = "123456"
             }
         }
+        
+        self.setAtttibuteString()
+    }
+    
+    func setAtttibuteString() {
+        
+        let attributedString = NSMutableAttributedString(string: "New user? Sign Up")
+        attributedString.addAttributes([
+            .font: CFontAvenir(size:IS_iPhone ? 13.0 : 18.0, type: .heavy).setUpAppropriateFont()!,
+            .foregroundColor: ColorGreenSelected
+            ], range: NSRange(location: 10, length: 7))
+        
+        lblSignUp.attributedText = attributedString
     }
 }
+
 
 // MARK:- -------- UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
@@ -83,8 +87,8 @@ extension LoginViewController {
     
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
-//        appDelegate.initHomeViewController()
-//        return
+       appDelegate.initHomeViewController()
+        return
         
 //        for objView in vwContent.subviews{
 //            if  objView.isKind(of: UITextField.classForCoder()){

@@ -36,7 +36,14 @@ class HomeViewController: ParentViewController {
     
     func initialize() {
         
-        arrHome = [["title": "Timeline", "subtitle": "THE BAYA VICTORIA", "img": "timeline"],["title": "Projects", "subtitle": "5 PROJECTS", "img": "projects"],["title": "Schedule a Visit", "subtitle": "CHOOSE TIME OF VISIT", "img": "schedule_visit"]] as [[String : AnyObject]]
+        if IS_iPad {
+            arrHome = [["title": "Timeline", "subtitle": "THE BAYA VICTORIA", "img": "timeline_ipad"],["title": "Projects", "subtitle": "5 PROJECTS", "img": "projects_ipad"],["title": "Schedule a Visit", "subtitle": "CHOOSE TIME OF VISIT", "img": "schedule_visit_ipad"]] as [[String : AnyObject]]
+
+        } else {
+            arrHome = [["title": "Timeline", "subtitle": "THE BAYA VICTORIA", "img": "timeline"],["title": "Projects", "subtitle": "5 PROJECTS", "img": "projects"],["title": "Schedule a Visit", "subtitle": "CHOOSE TIME OF VISIT", "img": "schedule_visit"]] as [[String : AnyObject]]
+
+        }
+        
     }
 }
 
@@ -54,7 +61,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
 
-        return IS_iPad ? CGSize(width: (CScreenWidth/2 - 40), height: 250): CGSize(width: (CScreenWidth/2 - 20), height: (CScreenWidth * (220 / 375)))
+        return IS_iPad ? CGSize(width: (CScreenWidth/2 - 40), height: (CScreenWidth * (300/768))): CGSize(width: (CScreenWidth/2 - 20), height:(CScreenWidth * (220 / 375)))
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,8 +74,17 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.lblTitle.text = dict.valueForString(key: "title")
             cell.lblPrjctName.text = dict.valueForString(key: "subtitle")
             
-            cell.vwCount.isHidden = indexPath.row != 0
-            cell.vwProgress.isHidden = indexPath.row != 0
+            
+            if indexPath.row != 0 {
+               cell.vwProgress.hide(byHeight: true)
+                
+                if IS_iPad {
+                    _ = cell.lblPrjctName.setConstraintConstant(30, edge: .bottom, ancestor: true)
+                }
+            }
+            
+            // cell.vwCount.isHidden = indexPath.row != 0
+            //cell.vwProgress.isHidden = indexPath.row != 0
             
             return cell
         }

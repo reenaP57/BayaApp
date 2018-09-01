@@ -16,6 +16,7 @@ class EditProfileViewController: ParentViewController {
     @IBOutlet weak var txtState: UITextField!
     @IBOutlet weak var txtMobileNumber: UITextField!
     @IBOutlet weak var vwContent: UIView!
+    @IBOutlet weak var lblSupport: UILabel!
 
 
     override func viewDidLoad() {
@@ -41,9 +42,23 @@ class EditProfileViewController: ParentViewController {
         txtMail.backgroundColor = ColorDisableTextField
         txtState.backgroundColor = ColorDisableTextField
         txtMobileNumber.backgroundColor = ColorDisableTextField
+        
+        self.setAtttibuteString()
+    }
+    
+    func setAtttibuteString() {
+        
+        let attributedString = NSMutableAttributedString(string: "If you want to change your email ID or phone number, create a support request.")
+        attributedString.addAttributes([
+            .font: CFontAvenir(size:IS_iPhone ? 13.0 : 19.0, type: .heavy).setUpAppropriateFont()!,
+            .foregroundColor: ColorGreenSelected
+            ], range: NSRange(location: 62, length: 15))
+        
+        lblSupport.attributedText = attributedString
     }
     
 }
+
 
 //MARK:-
 //MARK:- UITextField Delegate

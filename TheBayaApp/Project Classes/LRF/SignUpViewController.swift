@@ -20,6 +20,7 @@ class SignUpViewController: ParentViewController {
     @IBOutlet fileprivate weak var btnRememberMe : UIButton!
     @IBOutlet fileprivate weak var btnTerms : UIButton!
     @IBOutlet fileprivate weak var vwContent : UIView!
+    @IBOutlet fileprivate weak var lblTerms : UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,19 @@ class SignUpViewController: ParentViewController {
         
         txtCountryCode.setPickerData(arrPickerData: ["+91","+79","+63"], selectedPickerDataHandler: { (string, row, index) in
         }, defaultPlaceholder: "+91")
+        
+        self.setAttributeString()
+    }
+    
+    func setAttributeString(){
+        
+        let attributedString = NSMutableAttributedString(string: "I Agree with the Terms & Conditions for the Baya App.")
+        attributedString.addAttributes([
+            .font: CFontAvenir(size: IS_iPhone ? 13.0 : 17.0, type: .heavy).setUpAppropriateFont()!,
+            .foregroundColor: ColorGreenSelected
+            ], range: NSRange(location: 17, length: 18))
+        
+        lblTerms.attributedText = attributedString
     }
     
 }

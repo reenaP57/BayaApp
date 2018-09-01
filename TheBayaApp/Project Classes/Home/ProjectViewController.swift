@@ -40,8 +40,13 @@ class ProjectViewController: ParentViewController {
         arrProject = [["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img1.jpeg"],
                       ["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img2.jpeg"],["project_name": "The Baya Victoria", "location" : "203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025", "desc" : "The Baya Victoria is a perfect blend of convenient location and modern amenities", "rera_no" :"P51900013240","img" : "img3.jpeg"]] as [[String : AnyObject]]
         
-        tblProject.estimatedRowHeight = 170
-        tblProject.rowHeight = UITableViewAutomaticDimension
+        if IS_iPhone {
+            tblProject.estimatedRowHeight = 170
+            tblProject.rowHeight = UITableViewAutomaticDimension
+        } else {
+            tblProject.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
+        }
+     
     }
 }
 
@@ -73,9 +78,9 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             
             cell.btnSubscribe.touchUpInside { (sender) in
                 
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CSubscribeMessage : CUnsubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
                   
-                 cell.btnSubscribe.isSelected ? cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal) : cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
+                 cell.btnSubscribe.isSelected ? cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
                     
                  cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                   

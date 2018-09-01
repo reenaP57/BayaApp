@@ -394,24 +394,34 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oZg-Xz-c79">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ci6-IZ-dBk" customClass="MIGenericTextView" customModule="TheBayaApp" customModuleProvider="target">
+                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYT-yV-CLM">
                                 <rect key="frame" x="15" y="40" width="345" height="125"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cGs-w5-vFE" customClass="MIGenericTextView" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="10" y="0.0" width="325" height="125"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write your message"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="delegate" destination="Izy-td-8V8" id="Q6O-kO-p1m"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="ci6-IZ-dBk" secondAttribute="height" multiplier="69:25" id="mR0-jO-4fL"/>
+                                    <constraint firstItem="cGs-w5-vFE" firstAttribute="leading" secondItem="eYT-yV-CLM" secondAttribute="leading" constant="10" id="AVT-1e-xPD"/>
+                                    <constraint firstAttribute="bottom" secondItem="cGs-w5-vFE" secondAttribute="bottom" id="StP-9u-3OB"/>
+                                    <constraint firstAttribute="trailing" secondItem="cGs-w5-vFE" secondAttribute="trailing" constant="10" id="Wh4-kt-ypS"/>
+                                    <constraint firstItem="cGs-w5-vFE" firstAttribute="top" secondItem="eYT-yV-CLM" secondAttribute="top" id="pHk-Wp-yLP"/>
+                                    <constraint firstAttribute="width" secondItem="eYT-yV-CLM" secondAttribute="height" multiplier="69:25" id="rt5-r5-gab"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write your message"/>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <outlet property="delegate" destination="Izy-td-8V8" id="2Hb-of-Oq9"/>
-                                </connections>
-                            </textView>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload image (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGK-Vu-7tp" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="185" width="142" height="18"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
@@ -473,17 +483,17 @@
                         <constraints>
                             <constraint firstItem="oZg-Xz-c79" firstAttribute="bottom" secondItem="yRJ-y8-viq" secondAttribute="bottom" id="1T8-Ob-8EU"/>
                             <constraint firstItem="JEK-du-xOk" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="34R-t1-BY3"/>
-                            <constraint firstItem="ci6-IZ-dBk" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="9pB-d7-IrB"/>
-                            <constraint firstItem="ci6-IZ-dBk" firstAttribute="top" secondItem="yRJ-y8-viq" secondAttribute="top" constant="20" id="Azr-6U-M9X"/>
+                            <constraint firstItem="eYT-yV-CLM" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="6eB-rh-waR"/>
                             <constraint firstItem="oZg-Xz-c79" firstAttribute="top" secondItem="FJ2-FN-HvI" secondAttribute="top" id="K4C-FL-zP3"/>
-                            <constraint firstItem="yRJ-y8-viq" firstAttribute="trailing" secondItem="ci6-IZ-dBk" secondAttribute="trailing" constant="15" id="Kar-K8-RHD"/>
+                            <constraint firstItem="eYT-yV-CLM" firstAttribute="top" secondItem="yRJ-y8-viq" secondAttribute="top" constant="20" id="KjZ-uB-gaW"/>
                             <constraint firstItem="i8g-Fz-eXb" firstAttribute="leading" secondItem="tdr-ld-wbi" secondAttribute="leading" id="PBM-h7-60J"/>
                             <constraint firstItem="i8g-Fz-eXb" firstAttribute="trailing" secondItem="tdr-ld-wbi" secondAttribute="trailing" id="XGW-2V-GIv"/>
+                            <constraint firstItem="yRJ-y8-viq" firstAttribute="trailing" secondItem="eYT-yV-CLM" secondAttribute="trailing" constant="15" id="XqM-rN-k4L"/>
                             <constraint firstItem="JEK-du-xOk" firstAttribute="top" secondItem="iGK-Vu-7tp" secondAttribute="bottom" constant="10" id="agR-xh-acN"/>
                             <constraint firstItem="yRJ-y8-viq" firstAttribute="trailing" secondItem="JEK-du-xOk" secondAttribute="trailing" constant="15" id="cO7-ld-Iyc"/>
                             <constraint firstItem="oZg-Xz-c79" firstAttribute="trailing" secondItem="yRJ-y8-viq" secondAttribute="trailing" id="cdG-V5-9sz"/>
                             <constraint firstItem="i8g-Fz-eXb" firstAttribute="top" secondItem="tdr-ld-wbi" secondAttribute="bottom" constant="45" id="gPb-sY-atk"/>
-                            <constraint firstItem="iGK-Vu-7tp" firstAttribute="top" secondItem="ci6-IZ-dBk" secondAttribute="bottom" constant="20" id="kdB-RH-Pko"/>
+                            <constraint firstItem="iGK-Vu-7tp" firstAttribute="top" secondItem="eYT-yV-CLM" secondAttribute="bottom" constant="20" id="hUD-8Z-eNZ"/>
                             <constraint firstItem="oZg-Xz-c79" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" id="lKw-kZ-2cN"/>
                             <constraint firstItem="iGK-Vu-7tp" firstAttribute="leading" secondItem="yRJ-y8-viq" secondAttribute="leading" constant="15" id="yUr-tt-LIa"/>
                         </constraints>
@@ -491,7 +501,8 @@
                     </view>
                     <connections>
                         <outlet property="imgVUpload" destination="j5j-Ka-K9Y" id="Le4-BW-BH0"/>
-                        <outlet property="txtVMsg" destination="ci6-IZ-dBk" id="QeF-0w-5AK"/>
+                        <outlet property="txtVMsg" destination="cGs-w5-vFE" id="Uz1-C4-WOJ"/>
+                        <outlet property="vwMsg" destination="eYT-yV-CLM" id="qF8-L6-gEX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lqG-cZ-fA4" userLabel="First Responder" sceneMemberID="firstResponder"/>

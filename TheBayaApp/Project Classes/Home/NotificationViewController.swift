@@ -43,6 +43,11 @@ class NotificationViewController: ParentViewController {
         ["project_name" : "Baya Victoria", "message" : "New project from the Baya group.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false],
         ["project_name" : "The Baya Group", "message" : "Happy New Year... Best wishes to you on this new year.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false],
         ["project_name" : "Baya GoldSpot", "message" : "Your visit at 5:00 PM has been confirmed.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false]] as [[String : AnyObject]]
+        
+        if IS_iPhone {
+            tblNotification.estimatedRowHeight = 105
+            tblNotification.rowHeight = UITableViewAutomaticDimension
+        }
     }
     
 }
@@ -55,14 +60,6 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrNotification.count
-    }
-    
-    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 105
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

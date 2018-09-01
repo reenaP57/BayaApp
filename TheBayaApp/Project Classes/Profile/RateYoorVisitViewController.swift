@@ -12,7 +12,7 @@ class RateYoorVisitViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtVFeedback : UITextView!{
         didSet {
-            txtVFeedback.placeholderFont = CFontAvenir(size: 15.0, type: .medium)
+            txtVFeedback.placeholderFont = CFontAvenir(size: IS_iPhone ? 14.0 : 18.0, type: .medium).setUpAppropriateFont()
         }
     }
     
@@ -24,7 +24,16 @@ class RateYoorVisitViewController: ParentViewController {
     }
     
     @IBOutlet fileprivate weak var vwContent : UIView!
-    
+    @IBOutlet fileprivate weak var vwReview : UIView! {
+        didSet {
+            vwReview.layer.masksToBounds = true
+            vwReview.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
+            vwReview.layer.shadowOpacity = 5
+            vwReview.layer.shadowOffset = CGSize(width: 0, height: 3)
+            vwReview.layer.shadowRadius = 7
+            vwReview.layer.cornerRadius = 3
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,14 +110,14 @@ extension RateYoorVisitViewController : UITextViewDelegate {
         }
     }
     
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        if text == "\n" {
-            return false
-        }
-        
-        return true
-    }
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//
+//        if text == "\n" {
+//            return false
+//        }
+//
+//        return true
+//    }
 }
 
 

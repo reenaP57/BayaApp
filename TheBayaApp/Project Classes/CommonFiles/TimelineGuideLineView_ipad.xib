@@ -36,7 +36,7 @@
                         <constraint firstAttribute="width" secondItem="RXw-HT-rfT" secondAttribute="height" multiplier="5:2" constant="27.5" id="6CG-M8-YwZ"/>
                     </constraints>
                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
-                    <state key="normal" title="Got it!">
+                    <state key="normal" title="Got It!">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                     <userDefinedRuntimeAttributes>

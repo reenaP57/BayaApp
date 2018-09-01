@@ -36,7 +36,13 @@ class MIGenericView: UIView {
             ///... Set gradient
             self.setGradientBackground()
             
-        }  else {
+        } else if self.tag == 103 {
+            
+            self.layer.borderWidth = 2
+            self.layer.borderColor = CRGB(r: 185, g: 200, b: 207).cgColor
+            self.layer.cornerRadius = cornerRadius
+            
+        } else {
             self.layer.cornerRadius = cornerRadius
         }
     }

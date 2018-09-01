@@ -2,7 +2,6 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Rounded_Rectangle_15_copy_3@2x-2.png",
       "scale" : "1x"
     },
     {
@@ -12,7 +11,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Rounded_Rectangle_15_copy_3@2x.png",
       "scale" : "3x"
     }
   ],

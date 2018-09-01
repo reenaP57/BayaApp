@@ -43,9 +43,7 @@ extension ForgotPwdViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if textField == txtEmail {
-            txtEmail.hideValidationMessage(15.0)
-        }
+        txtEmail.hideValidationMessage(80.0)
         return true
     }
 }
