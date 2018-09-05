@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import CTPanoramaView
+import CTPanoramaView
 import BFRImageViewer
 
 class ProjectDetailViewController: ParentViewController {
@@ -44,8 +44,8 @@ class ProjectDetailViewController: ParentViewController {
             vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-   // @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-    @IBOutlet fileprivate weak var vwPanorama: UIView!
+    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+   // @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -162,7 +162,7 @@ class ProjectDetailViewController: ParentViewController {
         self.loadProjectDetail()
 
         //...Load 3D image
-        // vwPanorama.image = UIImage(named: "spherical.jpg")
+         vwPanorama.image = UIImage(named: "spherical.jpg")
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {

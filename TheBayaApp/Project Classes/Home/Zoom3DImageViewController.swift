@@ -7,12 +7,12 @@
 //
 
 import UIKit
-//import CTPanoramaView
+import CTPanoramaView
 
 class Zoom3DImageViewController: ParentViewController {
 
-  //  @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-    @IBOutlet fileprivate weak var vwPanorama: UIView!
+    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+   // @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class Zoom3DImageViewController: ParentViewController {
     func initialize() {
         
         //...Load 3D image
-      // vwPanorama.image = UIImage(named: "spherical.jpg")
+       vwPanorama.image = UIImage(named: "spherical.jpg")
     }
 }
 

@@ -16,7 +16,8 @@ class ProjectTblCell: UITableViewCell {
     @IBOutlet weak var lblReraNo : UILabel!
     @IBOutlet weak var imgVPrjct : UIImageView!
     @IBOutlet weak var btnSubscribe : MIGenericButton!
-    
+    @IBOutlet weak var viewMainContainer : UIView!
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,8 +25,8 @@ class ProjectTblCell: UITableViewCell {
         btnSubscribe.layer.cornerRadius = 5
         btnSubscribe.layer.masksToBounds = true
         
-        
-        
+        self.viewMainContainer.shadow(color: UIColor.black, shadowOffset: CGSize(width: 0, height: 2), shadowRadius: 3.0, shadowOpacity: 0.5)
+
         self.contentView.backgroundColor = UIColor.clear
     }
 

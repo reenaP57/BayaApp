@@ -40,7 +40,11 @@ class SellAllLocationTblCell: UITableViewCell {
                 }
             } else {
                 // Fallback on earlier versions
-                self.cnstHeightTbl.constant = self.tblLocDesc.contentSize.height
+                
+                GCDMainThread.async {
+                    self.cnstHeightTbl.constant = self.tblLocDesc.contentSize.height
+                }
+           
             }
 
         }

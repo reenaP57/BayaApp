@@ -76,11 +76,14 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             
             
             if indexPath.row != 0 {
-               cell.vwProgress.hide(byHeight: true)
                 
-                if IS_iPad {
-                    _ = cell.lblPrjctName.setConstraintConstant(30, edge: .bottom, ancestor: true)
+                if IS_iPhone {
+                    cell.vwProgress.isHidden = indexPath.row != 0
+                } else {
+                    cell.vwProgress.hide(byHeight: true)
+                    _ = cell.lblPrjctName.setConstraintConstant(30.0, edge: .bottom, ancestor: true)
                 }
+             
             }
             
             // cell.vwCount.isHidden = indexPath.row != 0
