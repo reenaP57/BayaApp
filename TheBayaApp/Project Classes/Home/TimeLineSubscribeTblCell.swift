@@ -8,21 +8,36 @@
 
 import UIKit
 
+let TRANSFORM_CELL_VALUE = CGAffineTransform(scaleX: 0.9, y: 0.9)
+let ANIMATION_SPEED = 0.2
+
+@objc protocol subscribeProjectListDelegate : class {
+    func reloadTimelineList(index : Int)
+}
+
 class TimeLineSubscribeTblCell: UITableViewCell {
 
     @IBOutlet weak var collSubscribe : UICollectionView!
     var arrProject = [[String : AnyObject]]()
-
+    var delegate : subscribeProjectListDelegate?
+    var currentIndex = 0
+    var selectedIndexPath = IndexPath(item: 0, section: 0)
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
-             arrProject = [["project_name": "The Baya Victoria", "percentage": 100],["project_name": "The Baya Victoria", "percentage": 70],["project_name": "The Baya Victoria", "percentage": 35]] as [[String : AnyObject]]
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
 
+    func loadProjectList(arr : [[String : AnyObject]], selectedIndex : Int){
+        arrProject = arr
+        currentIndex = selectedIndex
+        collSubscribe.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
+    }
+    
     func CropImage(image:UIImage , cropRect:CGRect) -> UIImage
     {
         UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
@@ -109,5 +124,45 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         }
         
         return UICollectionViewCell()
+    }
+    
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
+        if currentIndex != Int(index) || currentIndex == 0 {
+            currentIndex = Int(index)
+            delegate?.reloadTimelineList(index: Int(index))
+        }
+        
+        print("Index : ",Int(index))
+    }
+    
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        
+        let pageWidth = IS_iPad ? CScreenWidth * 500/768 : CScreenWidth - space
+        
+        let currentOffset = Float(scrollView.contentOffset.x)
+        let targetOffset = Float(targetContentOffset.pointee.x)
+        var newTargetOffset = Float(0)
+        
+        if targetOffset > currentOffset {
+            newTargetOffset = ceilf(currentOffset / Float(pageWidth)) * Float(pageWidth)
+        } else {
+            newTargetOffset = floorf(currentOffset / Float(pageWidth)) * Float(pageWidth)
+        }
+        
+        if newTargetOffset < 0 {
+            newTargetOffset = 0
+        } else if newTargetOffset > Float(scrollView.contentSize.width) {
+            newTargetOffset = Float(scrollView.contentSize.width)
+        }
+        
+        _ = Float(targetContentOffset.pointee.x) == currentOffset
+        let index : Int = Int(newTargetOffset / Float(pageWidth))
+        scrollView.setContentOffset(CGPoint(x: (CScreenWidth - pageWidth) +  CGFloat(index) * CScreenWidth, y: 0), animated: true)
+
+        selectedIndexPath = IndexPath(item: index, section: 0)
+        collSubscribe.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
+        
     }
 }

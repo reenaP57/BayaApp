@@ -18,7 +18,9 @@ class TimelineDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblUpdates : UITableView!
 
     var arrUpdateList = [[String : AnyObject]]()
-    
+    var arrProject = [[String : AnyObject]]()
+    var currentIndex = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -44,9 +46,11 @@ class TimelineDetailViewController: ParentViewController {
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
 
+        arrProject = [["project_name": "The Baya Victoria", "percentage": 100],["project_name": "The Baya Victoria", "percentage": 70],["project_name": "The Baya Victoria", "percentage": 35]] as [[String : AnyObject]]
+        
         arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg","img6.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 0],
                          ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1],
-                         ["image": ["img4.jpeg","img2.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : 2],
+                         ["image": ["img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM", "type" : 2],
                          ["image": ["img1.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 3]] as [[String : AnyObject]]
         
         
@@ -161,6 +165,22 @@ extension TimelineDetailViewController {
     }
 }
 
+//MARK:-
+//MARK:-
+
+extension TimelineDetailViewController : subscribeProjectListDelegate {
+   
+    func reloadTimelineList(index: Int) {
+        
+        currentIndex = index
+        
+        GCDMainThread.asyncAfter(deadline: .now()+1.0) {
+              self.tblUpdates.reloadData()
+        }
+   
+    }
+}
+
 
 //MARK:-
 //MARK:- UITableView Delegate and Datasource
@@ -168,186 +188,402 @@ extension TimelineDetailViewController {
 extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSource {
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrUpdateList.count + 1
+        
+        let dict = arrProject[currentIndex]
+        return dict.valueForInt(key: "percentage") == 100 ?   arrUpdateList.count + 2 : arrUpdateList.count + 1
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (340/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
+        
+        let dict = arrProject[currentIndex]
+        if dict.valueForInt(key: "percentage") == 100 {
+            
+            switch indexPath.row {
+            case 0 :
+                return IS_iPad ? CScreenWidth * (340/768) : CScreenWidth * (200/375)
+            case 1:
+                return 100
+            default:
+                return IS_iPad ?
+                    CScreenWidth * (200/768) : CScreenWidth * (200/375)
+            }
+        } else {
+            return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (340/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
+        }
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (300/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
+        
+        let dict = arrProject[currentIndex]
+        if dict.valueForInt(key: "percentage") == 100 {
+            
+            switch indexPath.row {
+            case 0 :
+                return IS_iPad ? CScreenWidth * (300/768) : CScreenWidth * (200/375)
+            case 1:
+                return 100
+            default:
+                return UITableViewAutomaticDimension
+            }
+        } else {
+            return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (300/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if indexPath.row == 0 {
+         let dict = arrProject[currentIndex]
+         if dict.valueForInt(key: "percentage") == 100 {
             
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineSubscribeTblCell") as? TimeLineSubscribeTblCell {
-                return cell
-            }
-            
-            return UITableViewCell()
-            
-        } else {
-            
-            let dict = arrUpdateList[indexPath.row - 1]
-            
-            if IS_iPad {
-
-                switch dict.valueForInt(key: "type") {
-                case 0: // Image
-               
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
-                        
-                        let arrImg = dict.valueForJSON(key: "image") as!
-                            [String]
-                        cell.imgVUpdate.image = UIImage(named: arrImg.first!)
-                        
-                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                           self.shareContent()
-                        }
-                        
-                        return cell
-                    }
-                    
-                case 1: // URL
-                    
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
-                        
-                        let arrImg = dict.valueForJSON(key: "image") as! [String]
-                        cell.imgVUpdate.image = UIImage(named: arrImg.first!)
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
-                        return cell
-                    }
-                    
-                case 3: // Video
-                    
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
-                        
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
-                        cell.btnPlay.touchUpInside { (action) in
-                            
-                            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
-                            let player = AVPlayer(url: videoURL!)
-                            let playerViewController = AVPlayerViewController()
-                            playerViewController.player = player
-                            self.present(playerViewController, animated: true) {
-                                playerViewController.player!.play()
-                            }
-                        }
-                        
-                        return cell
-                    }
-                    
-                default:
-                    
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
-                        
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
-                        return cell
-                    }
+            if indexPath.row == 0 {
+                
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineSubscribeTblCell") as? TimeLineSubscribeTblCell {
+                    cell.loadProjectList(arr: arrProject, selectedIndex: currentIndex)
+                    cell.delegate = self
+                    return cell
                 }
-               
+                
+            } else if indexPath.row == 1 {
+                
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineCompletedProjectTblCell") as? TimelineCompletedProjectTblCell {
+                    return cell
+                }
                 
             } else {
                 
-                if dict.valueForInt(key: "type") == 3 {
-                    //...Video
-                   
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
+                let dict = arrUpdateList[indexPath.row - 2]
+                
+                if IS_iPad {
+                    
+                    switch dict.valueForInt(key: "type") {
+                    case 0: // Image
                         
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
-                        cell.btnPlay.touchUpInside { (action) in
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
                             
-                           // cell.imgVThumbNail.isHidden = true
-                           // cell.btnPlay.isSelected = !cell.btnPlay.isSelected
-                           
-                            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
-                            let player = AVPlayer(url: videoURL!)
-                            let playerViewController = AVPlayerViewController()
-                            playerViewController.player = player
-                            self.present(playerViewController, animated: true) {
-                                playerViewController.player!.play()
+                            let arrImg = dict.valueForJSON(key: "image") as!
+                                [String]
+                            cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                            
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
                             }
+                            
+                            return cell
                         }
                         
-                        return cell
+                    case 1: // URL
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
+                            
+                            let arrImg = dict.valueForJSON(key: "image") as! [String]
+                            cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 3: // Video
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            cell.btnPlay.touchUpInside { (action) in
+                                
+                                let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                                let player = AVPlayer(url: videoURL!)
+                                let playerViewController = AVPlayerViewController()
+                                playerViewController.player = player
+                                self.present(playerViewController, animated: true) {
+                                    playerViewController.player!.play()
+                                }
+                            }
+                            
+                            return cell
+                        }
+                        
+                    default:
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
                     }
+                    
                     
                 } else {
                     
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+                    if dict.valueForInt(key: "type") == 3 {
+                        //...Video
                         
-                        let dict = arrUpdateList[indexPath.row - 1]
-                        
-                        switch dict.valueForInt(key: "type") {
-                        case 0:  //Image
-                            cell.lblUrl.hide(byHeight: true)
-                            cell.collImg.hide(byHeight: false)
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                             
-                            _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
-                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
                             
-                        case 1:  // Url
-                            cell.lblUrl.hide(byHeight: false)
-                            cell.collImg.hide(byHeight: false)
-                            cell.pageControlSlider.hide(byHeight: true)
-                            _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
-                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
                             
-                        default: // Text
-                            cell.lblUrl.hide(byHeight: true)
-                            cell.collImg.hide(byHeight: true)
-                            cell.pageControlSlider.hide(byHeight: true)
-                            _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                            cell.btnPlay.touchUpInside { (action) in
+                                
+                                // cell.imgVThumbNail.isHidden = true
+                                // cell.btnPlay.isSelected = !cell.btnPlay.isSelected
+                                
+                                let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                                let player = AVPlayer(url: videoURL!)
+                                let playerViewController = AVPlayerViewController()
+                                playerViewController.player = player
+                                self.present(playerViewController, animated: true) {
+                                    playerViewController.player!.play()
+                                }
+                            }
+                            
+                            return cell
                         }
                         
-                        if let arr = dict.valueForJSON(key: "image") as? [String] {
-                            cell.pageControlSlider.numberOfPages = arr.count
+                    } else {
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+                            
+                            let dict = arrUpdateList[indexPath.row - 1]
+                            
+                            switch dict.valueForInt(key: "type") {
+                            case 0:  //Image
+                                cell.lblUrl.hide(byHeight: true)
+                                cell.collImg.hide(byHeight: false)
+                                
+                                _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
+                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                                
+                            case 1:  // Url
+                                cell.lblUrl.hide(byHeight: false)
+                                cell.collImg.hide(byHeight: false)
+                                cell.pageControlSlider.hide(byHeight: true)
+                                _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
+                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                                
+                            default: // Text
+                                cell.lblUrl.hide(byHeight: true)
+                                cell.collImg.hide(byHeight: true)
+                                cell.pageControlSlider.hide(byHeight: true)
+                                _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                            }
+                            
+                            if let arr = dict.valueForJSON(key: "image") as? [String] {
+                                cell.pageControlSlider.numberOfPages = arr.count
+                            }
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
                         }
-                        
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
-                        return cell
                     }
                 }
             }
+            
+            return UITableViewCell()
 
+        } else {
+            
+            if indexPath.row == 0 {
+                
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineSubscribeTblCell") as? TimeLineSubscribeTblCell {
+                    cell.loadProjectList(arr: arrProject, selectedIndex: currentIndex)
+                    cell.delegate = self
+                    return cell
+                }
+                
+            } else {
+                
+                let dict = arrUpdateList[indexPath.row - 1]
+                
+                if IS_iPad {
+                    
+                    switch dict.valueForInt(key: "type") {
+                    case 0: // Image
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
+                            
+                            let arrImg = dict.valueForJSON(key: "image") as!
+                                [String]
+                            cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                            
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 1: // URL
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
+                            
+                            let arrImg = dict.valueForJSON(key: "image") as! [String]
+                            cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 3: // Video
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            cell.btnPlay.touchUpInside { (action) in
+                                
+                                let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                                let player = AVPlayer(url: videoURL!)
+                                let playerViewController = AVPlayerViewController()
+                                playerViewController.player = player
+                                self.present(playerViewController, animated: true) {
+                                    playerViewController.player!.play()
+                                }
+                            }
+                            
+                            return cell
+                        }
+                        
+                    default:
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                    }
+                    
+                    
+                } else {
+                    
+                    if dict.valueForInt(key: "type") == 3 {
+                        //...Video
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            cell.btnPlay.touchUpInside { (action) in
+                                
+                                // cell.imgVThumbNail.isHidden = true
+                                // cell.btnPlay.isSelected = !cell.btnPlay.isSelected
+                                
+                                let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
+                                let player = AVPlayer(url: videoURL!)
+                                let playerViewController = AVPlayerViewController()
+                                playerViewController.player = player
+                                self.present(playerViewController, animated: true) {
+                                    playerViewController.player!.play()
+                                }
+                            }
+                            
+                            return cell
+                        }
+                        
+                    } else {
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+                            
+                            let dict = arrUpdateList[indexPath.row - 1]
+                            
+                            switch dict.valueForInt(key: "type") {
+                            case 0:  //Image
+                                cell.lblUrl.hide(byHeight: true)
+                                cell.collImg.hide(byHeight: false)
+                                
+                                _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
+                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                                
+                            case 1:  // Url
+                            
+                                cell.lblUrl.hide(byHeight: false)
+                                cell.collImg.hide(byHeight: false)
+                                cell.pageControlSlider.hide(byHeight: true)
+                               _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
+                               _ = cell.lblUrl.setConstraintConstant(7, edge: .bottom, ancestor: true)
+                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                                
+                            default: // Text
+                                cell.lblUrl.hide(byHeight: true)
+                                cell.collImg.hide(byHeight: true)
+                                cell.pageControlSlider.hide(byHeight: true)
+                                _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
+                            }
+                            
+                            if let arr = dict.valueForJSON(key: "image") as? [String] {
+                                cell.pageControlSlider.numberOfPages = arr.count
+                            }
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                    }
+                }
+                
+            }
+            
             return UITableViewCell()
         }
     }

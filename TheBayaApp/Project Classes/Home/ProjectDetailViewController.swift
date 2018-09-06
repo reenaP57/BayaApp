@@ -14,6 +14,7 @@ class ProjectDetailViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var collProject : UICollectionView!
     @IBOutlet fileprivate weak var pageVProject : UIPageControl!
+    @IBOutlet fileprivate weak var vwSoldOut : UIView!
 
     @IBOutlet fileprivate weak var lblProjectName : UILabel!
     @IBOutlet fileprivate weak var lblProjectDesc : UILabel!
@@ -93,7 +94,10 @@ class ProjectDetailViewController: ParentViewController {
     
     func initialize() {
         
-       self.btnFloorPlansClicked(sender: btnUnitPlans)
+        self.btnFloorPlansClicked(sender: btnUnitPlans)
+        
+        vwSoldOut.layer.borderWidth = 1
+        vwSoldOut.layer.borderColor = CRGB(r: 255, g: 0, b: 0).cgColor
         
         arrImg = ["img1.jpeg","img2.jpeg","img3.jpeg"]
         

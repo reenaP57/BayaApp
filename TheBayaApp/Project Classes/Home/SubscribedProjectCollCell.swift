@@ -23,6 +23,8 @@ class SubscribedProjectCollCell: UICollectionViewCell {
     @IBOutlet weak var cnstImgvDottedBottom : NSLayoutConstraint!
     @IBOutlet weak var btnProjectDetail : UIButton!
     @IBOutlet weak var btnScheduleVisit : UIButton!
+    @IBOutlet weak var vwSoldOut : UIView!
+    @IBOutlet weak var vwContainer : UIView!
 
     
     override func awakeFromNib() {
@@ -30,5 +32,10 @@ class SubscribedProjectCollCell: UICollectionViewCell {
         
         lblPercentage.layer.cornerRadius = 5
         lblPercentage.layer.masksToBounds = true
+        
+        self.vwContainer.shadow(color: UIColor.black, shadowOffset: CGSize(width: 0, height: 2), shadowRadius: 3.0, shadowOpacity: 0.5)
+
+        vwSoldOut.layer.borderWidth = 1
+        vwSoldOut.layer.borderColor = CRGB(r: 255, g: 0, b: 0).cgColor
     }
 }

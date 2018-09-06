@@ -30,7 +30,6 @@ class TimeLineUpdateTblCell: UITableViewCell {
     func loadSliderImages(images : [String]) {
         
         arrImg = images
-
         collImg.reloadData()
     }
 }
@@ -63,9 +62,16 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         return UICollectionViewCell()
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        
-        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-        pageControlSlider.currentPage = Int(page)
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
+    {
+        let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
+        pageControlSlider.currentPage = Int(index)
+
     }
+    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
+//        pageControlSlider.currentPage = Int(page)
+//    }
 }
