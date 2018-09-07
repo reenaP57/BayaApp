@@ -21,7 +21,6 @@ class TimeLineSubscribeTblCell: UITableViewCell {
     var arrProject = [[String : AnyObject]]()
     var delegate : subscribeProjectListDelegate?
     var currentIndex = 0
-    var selectedIndexPath = IndexPath(item: 0, section: 0)
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +34,20 @@ class TimeLineSubscribeTblCell: UITableViewCell {
     func loadProjectList(arr : [[String : AnyObject]], selectedIndex : Int){
         arrProject = arr
         currentIndex = selectedIndex
-        collSubscribe.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
+        
+        GCDMainThread.async {
+            if self.currentIndex == 0{
+                self.collSubscribe.setContentOffset(.zero, animated: false)
+                self.collSubscribe.scrollToItem(at: IndexPath(item: self.currentIndex, section: 0), at: .right, animated: false)
+            }else {
+                self.collSubscribe.setContentOffset(CGPoint(x:CGFloat(self.currentIndex) * CScreenWidth, y: 0), animated: false)
+                self.collSubscribe.scrollToItem(at: IndexPath(item: self.currentIndex, section: 0), at: .left, animated: false)
+            }
+        }
+        
+
+        
+//        collSubscribe.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
     }
     
     func CropImage(image:UIImage , cropRect:CGRect) -> UIImage
@@ -126,17 +138,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         return UICollectionViewCell()
     }
     
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
-    {
-        let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-        if currentIndex != Int(index) || currentIndex == 0 {
-            currentIndex = Int(index)
-            delegate?.reloadTimelineList(index: Int(index))
-        }
-        
-        print("Index : ",Int(index))
-    }
-    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let pageWidth = IS_iPad ? CScreenWidth * 500/768 : CScreenWidth - space
@@ -159,10 +160,28 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         
         _ = Float(targetContentOffset.pointee.x) == currentOffset
         let index : Int = Int(newTargetOffset / Float(pageWidth))
-        scrollView.setContentOffset(CGPoint(x: (CScreenWidth - pageWidth) +  CGFloat(index) * CScreenWidth, y: 0), animated: true)
-
-        selectedIndexPath = IndexPath(item: index, section: 0)
-        collSubscribe.scrollToItem(at: selectedIndexPath, at: .centeredHorizontally, animated: true)
         
+        if index == 0{
+            
+            UIView.animate(withDuration: 0.3) {
+                scrollView.setContentOffset(.zero, animated: true)
+                self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
+            }
+            
+        }else {
+            UIView.animate(withDuration: 0.3) {
+                scrollView.setContentOffset(CGPoint(x:CGFloat(index) * CScreenWidth, y: 0), animated: true)
+                self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .left, animated: true)
+            }
+            
+        }
+
+        GCDMainThread.asyncAfter(deadline: .now() + 1) {
+            if self.currentIndex != Int(index) && Int(index) >= 0 {
+                self.currentIndex = Int(index)
+                self.delegate?.reloadTimelineList(index: Int(index))
+            }
+        }
+        print("Index : ",Int(index))
     }
 }
