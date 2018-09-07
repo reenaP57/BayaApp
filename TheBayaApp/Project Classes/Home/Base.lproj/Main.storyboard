@@ -226,7 +226,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="314"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2et-2K-fKG" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                                <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2et-2K-fKG" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="7" width="375" height="300"/>
                                                     <subviews>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tEt-BV-xb2">
@@ -249,12 +249,12 @@
                                                                         <rect key="frame" x="0.0" y="0.0" width="301" height="170"/>
                                                                         <autoresizingMask key="autoresizingMask"/>
                                                                         <subviews>
-                                                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img4.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="y8D-dz-Hji">
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img4.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="y8D-dz-Hji">
                                                                                 <rect key="frame" x="0.0" y="5" width="301" height="160"/>
                                                                             </imageView>
                                                                         </subviews>
                                                                     </view>
-                                                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="y8D-dz-Hji" secondAttribute="trailing" id="CiF-32-fco"/>
                                                                         <constraint firstItem="y8D-dz-Hji" firstAttribute="leading" secondItem="iKt-x2-7As" secondAttribute="leading" id="WX0-85-5N4"/>
@@ -372,7 +372,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-g2-8vG" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                                <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-g2-8vG" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                     <rect key="frame" x="0.0" y="7" width="375" height="287"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-B8-ZEM" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -543,7 +543,7 @@
                                                                                 <rect key="frame" x="185" y="76" width="36" height="20"/>
                                                                             </imageView>
                                                                             <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeV-Lf-qSA" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                                <rect key="frame" x="185" y="76" width="36" height="20"/>
+                                                                                <rect key="frame" x="185" y="76" width="34" height="20"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="EzW-f5-4zv"/>
@@ -562,6 +562,7 @@
                                                                                 </constraints>
                                                                                 <state key="normal" image="call"/>
                                                                                 <state key="selected" image="call"/>
+                                                                                <state key="highlighted" image="call"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                         <real key="value" value="5"/>
@@ -569,10 +570,10 @@
                                                                                 </userDefinedRuntimeAttributes>
                                                                             </button>
                                                                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="project_progress" translatesAutoresizingMaskIntoConstraints="NO" id="mEf-El-bae">
-                                                                                <rect key="frame" x="239" y="30" width="83" height="115"/>
+                                                                                <rect key="frame" x="237" y="30" width="85" height="115"/>
                                                                             </imageView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="bottom" horizontalHuggingPriority="252" verticalHuggingPriority="251" image="project_completion" translatesAutoresizingMaskIntoConstraints="NO" id="5Um-WE-hCm">
-                                                                                <rect key="frame" x="239" y="30" width="83" height="115"/>
+                                                                                <rect key="frame" x="237" y="30" width="85" height="115"/>
                                                                             </imageView>
                                                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedline" translatesAutoresizingMaskIntoConstraints="NO" id="OM6-9Z-gT6">
                                                                                 <rect key="frame" x="222" y="83" width="100" height="5"/>
@@ -701,23 +702,13 @@
                                                     <color key="textColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WAS-TL-b9W">
-                                                    <rect key="frame" x="0.0" y="110" width="375" height="5"/>
-                                                    <color key="backgroundColor" red="0.86666666670000003" green="0.91372549020000005" blue="0.94509803920000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="5" id="16Z-Z1-Sv4"/>
-                                                    </constraints>
-                                                </view>
                                             </subviews>
                                             <color key="backgroundColor" red="0.86274509803921573" green="1" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstItem="UPk-1F-G7g" firstAttribute="top" secondItem="J3w-We-uVe" secondAttribute="top" id="7U1-4b-X88"/>
                                                 <constraint firstAttribute="trailing" secondItem="UPk-1F-G7g" secondAttribute="trailing" constant="10" id="91R-YC-ueK"/>
-                                                <constraint firstItem="WAS-TL-b9W" firstAttribute="leading" secondItem="J3w-We-uVe" secondAttribute="leading" id="9S1-cU-8nR"/>
                                                 <constraint firstAttribute="bottom" secondItem="UPk-1F-G7g" secondAttribute="bottom" id="KYk-3c-LB2"/>
-                                                <constraint firstAttribute="bottom" secondItem="WAS-TL-b9W" secondAttribute="bottom" id="QIG-Eu-KTo"/>
                                                 <constraint firstItem="UPk-1F-G7g" firstAttribute="leading" secondItem="J3w-We-uVe" secondAttribute="leading" constant="10" id="bhw-Hp-2uS"/>
-                                                <constraint firstAttribute="trailing" secondItem="WAS-TL-b9W" secondAttribute="trailing" id="yFs-xl-T67"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -756,6 +747,8 @@
                                 <state key="normal" title="Project Details" image="project_details">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <state key="selected" image="project_details"/>
+                                <state key="highlighted" image="project_details"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="5"/>
@@ -1448,6 +1441,7 @@ reach for you.</string>
                                                         </constraints>
                                                         <state key="normal" image="call"/>
                                                         <state key="selected" image="call"/>
+                                                        <state key="highlighted" image="call"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="5"/>
@@ -2474,6 +2468,8 @@ reach for you.</string>
                                         <state key="normal" title="Schedule Visit" image="schedule">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <state key="selected" image="schedule"/>
+                                        <state key="highlighted" image="schedule"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="5"/>
@@ -2492,6 +2488,8 @@ reach for you.</string>
                                         <state key="normal" title="Project Brochure" image="project_details">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <state key="selected" image="project_details"/>
+                                        <state key="highlighted" image="project_details"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="5"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -34,6 +34,8 @@
                                 <constraint firstAttribute="width" constant="50" id="q8D-a9-v5H"/>
                             </constraints>
                             <state key="normal" image="close"/>
+                            <state key="selected" image="close"/>
+                            <state key="highlighted" image="close"/>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ILI-Jb-Qkm">
                             <rect key="frame" x="430" y="10" width="50" height="50"/>
@@ -42,6 +44,8 @@
                                 <constraint firstAttribute="width" constant="50" id="npI-v0-IhX"/>
                             </constraints>
                             <state key="normal" image="ic_refresh"/>
+                            <state key="selected" image="ic_refresh"/>
+                            <state key="highlighted" image="ic_refresh"/>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select dates within which you would like to see the updates of the project." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N5L-rT-bXM">
                             <rect key="frame" x="40" y="71" width="410" height="41"/>
@@ -67,7 +71,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gzO-6T-Wef" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                            <rect key="frame" x="165.5" y="266.5" width="160" height="50"/>
+                            <rect key="frame" x="165.5" y="266" width="160" height="50.5"/>
                             <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="gzO-6T-Wef" secondAttribute="height" multiplier="79:25" id="ZgX-KJ-UVv"/>

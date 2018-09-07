@@ -43,7 +43,12 @@ class MIGenericView: UIView {
             self.layer.borderColor = CRGB(r: 185, g: 200, b: 207).cgColor
             self.layer.cornerRadius = cornerRadius
             
-        } else {
+        } else if self.tag == 104 {
+            
+            self.shadow(color: UIColor.black, shadowOffset: CGSize(width: 0, height: 2), shadowRadius: 3.0, shadowOpacity: 0.5)
+            self.layer.cornerRadius = cornerRadius
+        }
+        else {
             self.layer.cornerRadius = cornerRadius
         }
     }

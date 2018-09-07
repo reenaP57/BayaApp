@@ -173,11 +173,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
     func reloadTimelineList(index: Int) {
         
         currentIndex = index
-        
-        GCDMainThread.asyncAfter(deadline: .now()+1.0) {
-              self.tblUpdates.reloadData()
-        }
-   
+        self.tblUpdates.reloadData()
     }
 }
 

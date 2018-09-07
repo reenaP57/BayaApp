@@ -30,7 +30,10 @@ class TimeLineUpdateTblCell: UITableViewCell {
     func loadSliderImages(images : [String]) {
         
         arrImg = images
-        collImg.reloadData()
+        
+        GCDMainThread.async {
+            self.collImg.reloadData()
+        }
     }
 }
 
