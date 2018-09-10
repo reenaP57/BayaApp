@@ -1,31 +1,31 @@
 //
-//  TimeLineUpdateTblCell.swift
+//  TimeLineUpdateUrlTblCell.swift
 //  TheBayaApp
 //
-//  Created by mac-00017 on 13/08/18.
+//  Created by mac-00017 on 07/09/18.
 //  Copyright © 2018 mac-0005. All rights reserved.
 //
 
 import UIKit
 
-class TimeLineUpdateTblCell: UITableViewCell {
-
+class TimeLineUpdateUrlTblCell: UITableViewCell {
+    
     @IBOutlet weak var collImg : UICollectionView!
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
+    @IBOutlet weak var lblUrl : UILabel!
     @IBOutlet weak var btnShare : UIButton!
-    @IBOutlet weak var pageControlSlider : UIPageControl!
-
+    
     var arrImg = [String]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
     func loadSliderImages(images : [String]) {
         
         arrImg = images
@@ -40,7 +40,7 @@ class TimeLineUpdateTblCell: UITableViewCell {
 //MARK:-
 //MARK:- UICollectionView Delegate and Datasource
 
-extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
+extension TimeLineUpdateUrlTblCell : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return arrImg.count
@@ -63,17 +63,5 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         
         return UICollectionViewCell()
     }
-    
-    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
-    {
-        let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-        pageControlSlider.currentPage = Int(index)
 
-    }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-//        pageControlSlider.currentPage = Int(page)
-//    }
 }

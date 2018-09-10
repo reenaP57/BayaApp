@@ -176,7 +176,7 @@ extension MILoader {
         
         let firstLayer = CAShapeLayer()
         firstLayer.frame = CBounds
-        firstLayer.strokeColor = UIColor.orange.cgColor
+        firstLayer.strokeColor = ColorGreenSelected.cgColor
         firstLayer.fillColor = nil
         firstLayer.lineWidth = CGFloat(MILoader.circularLineWidth)
         return firstLayer
@@ -186,7 +186,7 @@ extension MILoader {
         
         let secondLayer = CAShapeLayer()
         secondLayer.frame = CBounds
-        secondLayer.strokeColor = UIColor.orange.cgColor
+        secondLayer.strokeColor = ColorGreenSelected.cgColor
         secondLayer.fillColor = nil
         secondLayer.lineWidth = CGFloat(MILoader.circularLineWidth)
         return secondLayer

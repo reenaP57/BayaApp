@@ -330,8 +330,58 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                 } else {
                     
-                    if dict.valueForInt(key: "type") == 3 {
-                        //...Video
+                    switch dict.valueForInt(key: "type") {
+                    case 0: // Image
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            
+                            if let arr = dict.valueForJSON(key: "image") as? [String] {
+                                cell.pageControlSlider.numberOfPages = arr.count
+                            }
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 1: // URL
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 2: // Text
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell") as? TimeLineUpdateTextTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    default: //Video
                         
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                             
@@ -354,49 +404,6 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                 self.present(playerViewController, animated: true) {
                                     playerViewController.player!.play()
                                 }
-                            }
-                            
-                            return cell
-                        }
-                        
-                    } else {
-                        
-                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
-                            
-                            let dict = arrUpdateList[indexPath.row - 1]
-                            
-                            switch dict.valueForInt(key: "type") {
-                            case 0:  //Image
-                                cell.lblUrl.hide(byHeight: true)
-                                cell.collImg.hide(byHeight: false)
-                                
-                                _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
-                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-                                
-                            case 1:  // Url
-                                cell.lblUrl.hide(byHeight: false)
-                                cell.collImg.hide(byHeight: false)
-                                cell.pageControlSlider.hide(byHeight: true)
-                                _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
-                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-                                
-                            default: // Text
-                                cell.lblUrl.hide(byHeight: true)
-                                cell.collImg.hide(byHeight: true)
-                                cell.pageControlSlider.hide(byHeight: true)
-                                _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
-                            }
-                            
-                            if let arr = dict.valueForJSON(key: "image") as? [String] {
-                                cell.pageControlSlider.numberOfPages = arr.count
-                            }
-                            
-                            cell.lblDesc.text = dict.valueForString(key: "desc")
-                            cell.lblDateTime.text = dict.valueForString(key: "time")
-                            
-                            
-                            cell.btnShare.touchUpInside { (sender) in
-                                self.shareContent()
                             }
                             
                             return cell
@@ -502,8 +509,58 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                 } else {
                     
-                    if dict.valueForInt(key: "type") == 3 {
-                        //...Video
+                    switch dict.valueForInt(key: "type") {
+                    case 0: // Image
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            
+                            if let arr = dict.valueForJSON(key: "image") as? [String] {
+                                cell.pageControlSlider.numberOfPages = arr.count
+                            }
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 1: // URL
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    case 2: // Text
+                        
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell") as? TimeLineUpdateTextTblCell {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "desc")
+                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                        
+                    default: //Video
                         
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                             
@@ -530,54 +587,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             
                             return cell
                         }
-                        
-                    } else {
-                        
-                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
-                            
-                            let dict = arrUpdateList[indexPath.row - 1]
-                            
-                            switch dict.valueForInt(key: "type") {
-                            case 0:  //Image
-                                cell.lblUrl.hide(byHeight: true)
-                                cell.collImg.hide(byHeight: false)
-                                
-                                _ = cell.lblDesc.setConstraintConstant(0, edge: .top, ancestor: true)
-                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-                                
-                            case 1:  // Url
-                            
-                                cell.lblUrl.hide(byHeight: false)
-                                cell.collImg.hide(byHeight: false)
-                                cell.pageControlSlider.hide(byHeight: true)
-                               _ = cell.lblUrl.setConstraintConstant(10, edge: .top, ancestor: true)
-                               _ = cell.lblUrl.setConstraintConstant(7, edge: .bottom, ancestor: true)
-                                cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-                                
-                            default: // Text
-                                cell.lblUrl.hide(byHeight: true)
-                                cell.collImg.hide(byHeight: true)
-                                cell.pageControlSlider.hide(byHeight: true)
-                                _ = cell.lblDesc.setConstraintConstant(-10, edge: .top, ancestor: true)
-                            }
-                            
-                            if let arr = dict.valueForJSON(key: "image") as? [String] {
-                                cell.pageControlSlider.numberOfPages = arr.count
-                            }
-                            
-                            cell.lblDesc.text = dict.valueForString(key: "desc")
-                            cell.lblDateTime.text = dict.valueForString(key: "time")
-                            
-                            
-                            cell.btnShare.touchUpInside { (sender) in
-                                self.shareContent()
-                            }
-                            
-                            return cell
-                        }
                     }
                 }
-                
             }
             
             return UITableViewCell()

@@ -22,6 +22,8 @@ class SignUpViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var lblTerms : UILabel!
 
+    var countryID = Int()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -35,12 +37,26 @@ class SignUpViewController: ParentViewController {
     //MARK:- General Methods
     
     func initialize() {
-         self.title = "Sign Up"
+        self.title = "Sign Up"
         
-        txtCountryCode.setPickerData(arrPickerData: ["+91","+79","+63"], selectedPickerDataHandler: { (string, row, index) in
-        }, defaultPlaceholder: "+91")
-        
+        self.setCountryList()
         self.setAttributeString()
+    }
+    
+    func setCountryList(){
+        
+        let arrCountry = TblCountryList.fetch(predicate: nil, orderBy: "country_name", ascending: true)
+        let arrCountryCode = arrCountry?.value(forKeyPath: "country_with_code") as? [Any]
+        
+        if (arrCountryCode?.count)! > 0 {
+            
+            txtCountryCode.setPickerData(arrPickerData: arrCountryCode!, selectedPickerDataHandler: { (select, index, component) in
+                
+                let dict = arrCountry![index] as AnyObject
+                countryID = dict.value(forKey: "country_id") as! Int
+                txtCountryCode.text = "+\(dict.value(forKey: "country_code") ?? "")"
+            }, defaultPlaceholder: "+91")
+        }
     }
     
     func setAttributeString(){
@@ -97,19 +113,6 @@ extension SignUpViewController {
     
     @IBAction fileprivate func btnSignUpClicked (sender : UIButton) {
 
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UILabel.classForCoder()){
-//                _ = objView as? UILabel
-//
-//                return
-//
-////                txField?.hideValidationMessage(15.0)
-////                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.vwContent.layoutIfNeeded()
-//
- 
         DispatchQueue.main.async {
         
             if (self.txtFName.text?.isBlank)! {
@@ -174,10 +177,7 @@ extension SignUpViewController {
             } else if !self.btnTerms.isSelected {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CTermsConditionNotAcceptedMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
             } else {
-                if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
-                    verifyVC.isFromSignUp = true
-                    self.navigationController?.pushViewController(verifyVC, animated: true)
-                }
+                self.signup()
             }
         }
     }
@@ -200,10 +200,64 @@ extension SignUpViewController {
     
     @IBAction fileprivate func btnRememberMeClicked (sender : UIButton) {
         btnRememberMe.isSelected = !btnRememberMe.isSelected
+        
+        if btnRememberMe.isSelected {
+            CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+        } else {
+            CUserDefaults.set(false, forKey: UserDefaultRememberMe)
+        }
+        
+        CUserDefaults.synchronize()
     }
     
     @IBAction fileprivate func btnAcceptConditionClicked (sender : UIButton) {
         btnTerms.isSelected = !btnTerms.isSelected
     }
 
+}
+
+//MARK:-
+//MARK:- API
+
+extension SignUpViewController {
+    
+    func signup() {
+        
+        let dict = [CFirstName : txtFName.text as Any,
+                    CLastName : txtLName.text as Any,
+                    CEmail : txtEmail.text as Any,
+                    CMobileNo : txtMobile.text as Any,
+                    CPassword : txtPwd.text as Any,
+                    CCountryId : countryID] as [String : AnyObject]
+        
+        APIRequest.shared().signUpUser(_dict: dict) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
+                let message  = metaData.valueForString(key: CJsonMessage)
+                let status = metaData.valueForInt(key: CJsonStatus)
+                
+                if status == CStatusFour {
+                    
+                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                       self.navigateToVerification()
+                    })
+                    
+                } else {
+                    self.navigateToVerification()
+                }
+                
+                print("Response :",response as Any)
+            }
+        }
+    }
+    
+    func navigateToVerification() {
+        
+        if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+            verifyVC.isEmailVerify = true
+            self.navigationController?.pushViewController(verifyVC, animated: true)
+        }
+    }
 }

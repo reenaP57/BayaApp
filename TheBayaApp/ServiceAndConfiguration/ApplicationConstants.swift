@@ -74,9 +74,10 @@ let NotificationDidUpdateUserDetail     = "NotificationDidUpdateUserDetail"
 
 
 //MARK:- UserDefaults
-let UserDefaultiPadAuthCode               = "UserDefaultiPadAuthCode"
-let UserDefaultGeneralDataLoaded          = "UserDefaultGeneralDataLoaded"
 let UserDefaultOpenedTimeLine             = "UserDefaultOpenedTimeLine"
+let UserDefaultRememberMe                 = "UserDefaultRememberMe"
+let UserDefaultTimestamp                  = "UserDefaultTimestamp"
+
 
 
 
@@ -114,5 +115,26 @@ func CLocalize(text: String) -> String {
     return Localization.sharedInstance.localizedString(forKey: text , value: text)
 }
 
+let CEmailType  =  1
+let CMobileType =  2
 
 
+//MARK:- API Parameter
+
+let CFirstName           = "firstName"
+let CLastName            = "lastName"
+let CEmail               = "email"
+let CCountryId           = "countryId"
+let CMobileNo            = "mobileNo"
+let CPassword            = "password"
+let CTimestamp           = "timestamp"
+let CCountry_id          = "country_id"
+let CCountry_code        = "countryCode"
+let CCountry_name        = "countryName"
+let CStatus_id           = "statusId"
+let CId                  = "id"
+let CEmailNotify         = "emailNotify"
+let CEmailVerify         = "emailVerify"
+let CMobileVerify        = "mobileVerify"
+let CPushNotify          = "pushNotify"
+let CUserType            = "userType"

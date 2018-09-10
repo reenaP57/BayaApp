@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var tabbarViewcontroller : TabbarViewController?
     var tabbarView : TabBarView?
     
+    var loginUser : TblUser?
+    
     let window = UIWindow.init(frame: UIScreen.main.bounds)
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -27,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Crashlytics.self])
         
         self.initRootViewController()
-  
+        self.loadCountryList()
+        
         return true
     }
 
@@ -108,6 +111,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 handler(true)
             }
         }
+    }
+    
+    
+    // MARK:-
+    // MARK:- API
+    
+    func loadCountryList(){
+        
+        var timestamp : TimeInterval = 0
+        
+        if CUserDefaults.value(forKey: UserDefaultTimestamp) != nil {
+            timestamp = CUserDefaults.value(forKey: UserDefaultTimestamp) as! TimeInterval
+        }
+        
+        APIRequest.shared().getCountryList(_timestamp: timestamp as AnyObject, completion: { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject]
+                
+                CUserDefaults.setValue(metaData?["new_timestamp"], forKey: UserDefaultTimestamp)
+                CUserDefaults.synchronize()
+            }
+        })
     }
 }
 

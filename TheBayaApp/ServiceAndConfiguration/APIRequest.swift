@@ -12,14 +12,14 @@ import Alamofire
 import SDWebImage
 
 //MARK:- ---------BASEURL __ TAG
-//var BASEURL:String        =   "http://180.211.104.102/PangeaPod/api/v1/"    //...Local
-var BASEURL:String        =   "https://d1.pangeapod.com/PangeaPod/api/v1/"    //...Live
 
+var BASEURL:String        =   "http://192.168.1.59/baya-app/api/v1/"
 
-let CAPITagCheckUser                        = "CheckUser"
-
-
-
+let CAPITagCountry             =   "country"
+let CAPITagSignUp              =   "signup"
+let CAPITagLogin               =   "login"
+let CAPITagVerifyUser          =   "verifyuser"
+let CAPITagResendVerification  =   "resend-verification"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -61,7 +61,7 @@ class Networking: NSObject
     
     var headers:[String: String]
     {
-        var headersData = ["Authorization":"", "Accept":"application/json", "Accept-Language":"en"]
+        let headersData = ["Accept":"application/json", "Accept-Language":"en"]
         return headersData
     }
     
@@ -206,9 +206,9 @@ class Networking: NSObject
         return uRequest.task
     }
     
-    func POST(apiTag tag:String, param parameters:[String: AnyObject]?, successBlock success:ClosureSuccess?, failureBlock failure:ClosureError?, internalheaders: HTTPHeaders? = nil) -> URLSessionTask?
+    func POST(apiTag tag:String, param parameters:[String: AnyObject]?, successBlock success:ClosureSuccess?,   failureBlock failure:ClosureError?) -> URLSessionTask?
     {
-        let uRequest = SessionManager.default.request((BASEURL! + tag), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: internalheaders ?? headers)
+        let uRequest = SessionManager.default.request((BASEURL! + tag), method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: headers)
         self.logging(request: uRequest)
         
         uRequest.responseJSON { (response) in
@@ -246,8 +246,6 @@ class Networking: NSObject
         
         return uRequest.task
     }
-    
-    
     
     func POST(param parameters:[String: AnyObject]?, multipartFormData: @escaping (MultipartFormData) -> Void, success:ClosureSuccess?,  failure:ClosureError?) -> Void
     {
@@ -533,26 +531,35 @@ class APIRequest: NSObject {
         
         if let meta = responseobject?.value(forKey: CJsonMeta) as? [String : Any] {
             
-            switch meta.valueForInt(key: CStatusCode) {
-            case CStatus200:
+            switch meta.valueForInt(key: CJsonStatus) {
+            case CStatusZero:
                 return true
+                
+            case CStatusFour:
+                return true
+                
+            case CStatusTen :
+                appDelegate.logout()
+                
             default:
                 if showAlert {
                     let message = meta.valueForString(key: CJsonMessage)
-//                    MIAlertController().present(CTopMostViewController, title: CMessageTitleAlert, message: message)
+                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk) { (action) in
+                    }
                 }
             }
         }
-        
+
         return false
     }
     
     
     func actionOnAPIFailure(errorMessage:String?, showAlert:Bool, strApiTag:String,error:NSError?) -> Void
     {
-        if showAlert && errorMessage != nil
-        {
-//            MIAlertController().present(CTopMostViewController, title: "", message: appDelegate.fetchAppropriateMessage(key: errorMessage!))
+        MILoader.shared.hideLoader()
+        if showAlert && errorMessage != nil {
+            CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: errorMessage, btnOneTitle: CBtnOk) { (action) in
+            }
         }
         
         print("API Error =" + "\(strApiTag )" + "\(String(describing: error?.localizedDescription))" )
@@ -569,17 +576,152 @@ extension APIRequest {
     //TODO: --------------GENERAL API--------------
     //TODO:
     
-//    func generalSettings(completion: @escaping ClosureCompletion)
-//    {
-//        MIPangeaLoader.shared().showLoaderWithText(strTitle: CMessageGeneralSettings)
-//        _ = Networking.sharedInstance.POST(apiTag: CAPITagGeneralSettings, param: nil, successBlock: { (task, response) in
-//            MIPangeaLoader.shared().hideLoader()
-//            completion(response, nil)
-//            self.saveGeneralSettingsToLocal(dictSettings: response as! Dictionary<String, Any>)
-//        }, failureBlock: { (task, message, error) in
-//            MIPangeaLoader.shared().hideLoader()
-//            completion(nil, error)
-//        })
-//    }
+    func getCountryList(_timestamp : AnyObject, completion: @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.GET(apiTag: CAPITagCountry, param: [CTimestamp :_timestamp], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: false, responseobject: response, strApiTag: CAPITagCountry) {
+                
+                self.saveCountryList(response: response as! [String : AnyObject])
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCountry, error: error)
+        })
+        
+    }
+    
+    
+    //TODO:
+    //TODO: --------------LRF API--------------
+    //TODO:
+    
+    func signUpUser (_dict: [String : AnyObject], completion: @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagSignUp, param: _dict, successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSignUp){
+                
+                self.saveLoginUserDetail(response : response as! [String : AnyObject])
+                completion(response, nil)
+            }
+            
+        }) { (task, message, error) in
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSignUp, error: error)
+        }
+  
+    }
+
+    func loginUser (_ email: String?, _ password: String?, _ type:Int?, completion: @escaping ClosureCompletion)
+    {
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagLogin, param: ["userName" : email as AnyObject, "password": password as AnyObject, "type": type as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagLogin) {
+                self.saveLoginUserDetail(response : response as! [String : AnyObject])
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLogin, error: error)
+        })
+    }
+    
+    func verifyUser(_ dict : [String : AnyObject], completion: @escaping ClosureCompletion) {
+       
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagVerifyUser, param: dict, successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagVerifyUser){
+                
+                self.saveLoginUserDetail(response : response as! [String : AnyObject])
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagVerifyUser, error: error)
+        })
+    }
+    
+    func resendVerificationCode(_ dict : [String : AnyObject], completion : @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagResendVerification, param: dict, successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagResendVerification) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResendVerification, error: error)
+        })
+    }
+    
+    
+    
+    //TODO:
+    //TODO: -------------- Store in local --------------
+    //TODO:
+    
+    
+    func saveLoginUserDetail(response : [String : AnyObject]) {
+        
+        let dict = response.valueForJSON(key: CJsonData) as? [String : AnyObject]
+
+        let tblUser = TblUser.findOrCreate(dictionary: ["user_id": Int64(dict!.valueForInt(key: "userId")!)]) as! TblUser
+
+        tblUser.firstName = dict!.valueForString(key: CFirstName)
+        tblUser.lastName = dict!.valueForString(key: CLastName)
+        tblUser.email = dict!.valueForString(key: CEmail)
+        tblUser.mobileNo = dict!.valueForString(key: CMobileNo)
+        tblUser.pushNotify = dict!.valueForBool(key: CPushNotify)
+        tblUser.countryId = Int16(dict!.valueForInt(key: CCountryId)!)
+        tblUser.emailNotify = dict!.valueForBool(key: CEmailNotify)
+        tblUser.emailVerify = dict!.valueForBool(key: CEmailVerify)
+        tblUser.mobileVerify = dict!.valueForBool(key: CMobileVerify)
+        tblUser.pushNotify = dict!.valueForBool(key: CPushNotify)
+        tblUser.userType = Int16(dict!.valueForInt(key: CUserType)!)
+
+        appDelegate.loginUser = tblUser
+        
+        CoreData.saveContext()
+    }
+    
+    func saveCountryList(response : [String : AnyObject]) {
+        
+        let data = response.valueForJSON(key: CJsonData) as? [[String : AnyObject]]
+        
+        for item in data! {
+            
+            let tblCountry = TblCountryList.findOrCreate(dictionary: ["country_id":Int16(item.valueForInt(key: CId)!)]) as! TblCountryList
+            
+            tblCountry.country_code = item.valueForString(key: CCountry_code)
+            tblCountry.country_name = item.valueForString(key: CCountry_name)
+            tblCountry.status_id = Int16(item.valueForInt(key: CStatus_id)!)
+            tblCountry.country_with_code = "\(item.valueForString(key: CCountry_name)) - \(item.valueForString(key: CCountry_code))"
+        }
+        
+        CoreData.saveContext()
+    }
     
 }
+
+
+
+

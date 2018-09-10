@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8e-d4-dSo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8e-d4-dSo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -581,7 +581,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MO7-Qw-cK0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="281" width="345" height="50"/>
+                                <rect key="frame" x="15" y="306" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Submit">
@@ -597,7 +597,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wuL-OV-9gO">
-                                <rect key="frame" x="89" y="354" width="197" height="48"/>
+                                <rect key="frame" x="89" y="379" width="197" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="8BE-Xf-gxr"/>
                                     <constraint firstAttribute="height" constant="48" id="HbP-eB-8lh"/>
@@ -619,7 +619,7 @@
                             <constraint firstItem="wuL-OV-9gO" firstAttribute="centerX" secondItem="MO7-Qw-cK0" secondAttribute="centerX" id="IbX-L5-Fva"/>
                             <constraint firstItem="MO7-Qw-cK0" firstAttribute="width" secondItem="DJX-7e-5Os" secondAttribute="width" id="Juq-uO-pwn"/>
                             <constraint firstItem="HvJ-Dn-XbS" firstAttribute="trailing" secondItem="jNE-HN-sXt" secondAttribute="trailing" id="KrZ-gp-8kT"/>
-                            <constraint firstItem="MO7-Qw-cK0" firstAttribute="top" secondItem="DJX-7e-5Os" secondAttribute="bottom" constant="25" id="P8g-hi-XBC"/>
+                            <constraint firstItem="MO7-Qw-cK0" firstAttribute="top" secondItem="DJX-7e-5Os" secondAttribute="bottom" constant="50" id="P8g-hi-XBC"/>
                             <constraint firstItem="DJX-7e-5Os" firstAttribute="top" secondItem="bl6-36-iU6" secondAttribute="bottom" constant="20" id="XtW-94-syj"/>
                             <constraint firstItem="HvJ-Dn-XbS" firstAttribute="top" secondItem="avT-32-Vqs" secondAttribute="top" id="XxL-r8-VGZ"/>
                             <constraint firstItem="jNE-HN-sXt" firstAttribute="trailing" secondItem="bl6-36-iU6" secondAttribute="trailing" constant="15" id="cGS-f1-yyU"/>
@@ -673,7 +673,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGq-IN-NHO" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="281" width="345" height="50"/>
+                                <rect key="frame" x="15" y="306" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Submit">
@@ -693,7 +693,7 @@
                         <constraints>
                             <constraint firstItem="uGq-IN-NHO" firstAttribute="centerX" secondItem="1IL-4z-Lrr" secondAttribute="centerX" id="59s-pq-xsk"/>
                             <constraint firstItem="uGq-IN-NHO" firstAttribute="width" secondItem="1IL-4z-Lrr" secondAttribute="width" id="5R3-ow-GUi"/>
-                            <constraint firstItem="uGq-IN-NHO" firstAttribute="top" secondItem="1IL-4z-Lrr" secondAttribute="bottom" constant="25" id="K3T-B3-SNc"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="top" secondItem="1IL-4z-Lrr" secondAttribute="bottom" constant="50" id="K3T-B3-SNc"/>
                             <constraint firstItem="cTy-ev-B4j" firstAttribute="bottom" secondItem="znH-KF-d7g" secondAttribute="bottom" id="Pgx-aq-nH0"/>
                             <constraint firstItem="513-4S-sKY" firstAttribute="top" secondItem="znH-KF-d7g" secondAttribute="top" constant="130" id="QlX-5S-mVC"/>
                             <constraint firstItem="1IL-4z-Lrr" firstAttribute="centerX" secondItem="HGm-av-htu" secondAttribute="centerX" id="T1Z-bY-Ldc"/>
@@ -769,7 +769,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZUA-gO-1Le" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="411" width="345" height="50"/>
+                                <rect key="frame" x="15" y="436" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                                 <state key="normal" title="Submit">
@@ -785,7 +785,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0a-o7-Gx0">
-                                <rect key="frame" x="89" y="486" width="197" height="48"/>
+                                <rect key="frame" x="89" y="511" width="197" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="197" id="HKD-MW-fxV"/>
                                     <constraint firstAttribute="height" constant="48" id="vaP-Dp-Y8u"/>
@@ -805,7 +805,7 @@
                             <constraint firstItem="nZn-LH-ItY" firstAttribute="width" secondItem="rM9-Fi-Lgd" secondAttribute="width" id="2dv-lB-qcm"/>
                             <constraint firstItem="ZUA-gO-1Le" firstAttribute="centerX" secondItem="bvK-1N-nXm" secondAttribute="centerX" id="3Pt-lC-nmi"/>
                             <constraint firstItem="bvK-1N-nXm" firstAttribute="centerX" secondItem="7Sm-P6-u4g" secondAttribute="centerX" id="4N6-Kv-IzD"/>
-                            <constraint firstItem="ZUA-gO-1Le" firstAttribute="top" secondItem="nZn-LH-ItY" secondAttribute="bottom" constant="25" id="6of-RK-rpB"/>
+                            <constraint firstItem="ZUA-gO-1Le" firstAttribute="top" secondItem="nZn-LH-ItY" secondAttribute="bottom" constant="50" id="6of-RK-rpB"/>
                             <constraint firstItem="V6o-D2-DAD" firstAttribute="trailing" secondItem="Nqd-CP-i1L" secondAttribute="trailing" constant="15" id="Ccm-vV-v3j"/>
                             <constraint firstItem="SXO-Lz-PBm" firstAttribute="top" secondItem="7Sm-P6-u4g" secondAttribute="top" id="DWS-pb-sbw"/>
                             <constraint firstItem="SXO-Lz-PBm" firstAttribute="trailing" secondItem="V6o-D2-DAD" secondAttribute="trailing" id="NO8-un-197"/>

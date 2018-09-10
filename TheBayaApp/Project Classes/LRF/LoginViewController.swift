@@ -32,13 +32,6 @@ class LoginViewController: ParentViewController {
     
     func initialize() {
         
-        GCDMainThread.asyncAfter(deadline: .now() + 2) {
-            if IS_SIMULATOR{
-                self.txtEmail.text = "krishna@gmail.com"
-                self.txtPassword.text = "123456"
-            }
-        }
-        
         self.setAtttibuteString()
     }
     
@@ -81,33 +74,15 @@ extension LoginViewController: UITextFieldDelegate {
 
 extension LoginViewController {
     
-    func checkValidation (view : UIView,txtField : UITextField) {
-        
-    }
-    
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
-        
-//       appDelegate.initHomeViewController()
-//        return
-        
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
         
             if (self.txtEmail.text?.isBlank)! {
                 self.txtPassword.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
                 
             } else if !(self.txtEmail.text?.isBlank)! {
-
+                
+                //...Email
                 if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
                     
                     if !(self.txtEmail.text?.isValidEmail)! {
@@ -121,10 +96,11 @@ extension LoginViewController {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0, CInvalidPasswordMessage))
                     }
                     else {
-                        appDelegate.initHomeViewController()
+                        self.login(type: CEmailType)
                     }
                     
                 } else {
+                    //...Mobile Number
                     
                     if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
                        self.txtPassword.hideValidationMessage(15.0)
@@ -135,10 +111,9 @@ extension LoginViewController {
                     } else if !(self.txtPassword.text?.isValidPassword)! || (self.txtPassword.text?.count)! < 6  {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0, CInvalidPasswordMessage))
                     } else {
-                        appDelegate.initHomeViewController()
+                       self.login(type: CMobileType)
                     }
                 }
-           // }
         }
     }
     
@@ -160,4 +135,45 @@ extension LoginViewController {
         btnRememberMe.isSelected = !btnRememberMe.isSelected
     }
 
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension LoginViewController {
+    
+    func login(type : Int) {
+        
+        APIRequest.shared().loginUser(txtEmail.text, txtPassword.text, type) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                print("Response : ",response as Any)
+                
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
+                let message  = metaData.valueForString(key: CJsonMessage)
+                let status = metaData.valueForInt(key: CJsonStatus)
+                
+                if status == CStatusFour {
+                    
+                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                        
+                        if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+                            
+                            if dataResponse.valueForInt(key: "emailVerify") == 0 {
+                                verifyVC.isEmailVerify = true
+                            }
+                            self.navigationController?.pushViewController(verifyVC, animated: true)
+                        }
+                    })
+                    
+                } else {
+                   appDelegate.initHomeViewController()
+                }
+            }
+        }
+    }
+    
 }

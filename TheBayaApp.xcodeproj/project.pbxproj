@@ -124,6 +124,8 @@
 		5C8D5B9421258B190080193A /* SpecificationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B9321258B190080193A /* SpecificationTblCell.swift */; };
 		5C8D5B9621258B380080193A /* ConfigurationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */; };
 		5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B972125941C0080193A /* LocationDescTblCell.swift */; };
+		5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */; };
+		5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */; };
 		5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */; };
 		5CC46D8221366DFD00A4A0B7 /* TimelineGuideLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */; };
 		5CC46D842136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */; };
@@ -283,6 +285,8 @@
 		5C8D5B9321258B190080193A /* SpecificationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationTblCell.swift; sourceTree = "<group>"; };
 		5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTblCell.swift; sourceTree = "<group>"; };
 		5C8D5B972125941C0080193A /* LocationDescTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDescTblCell.swift; sourceTree = "<group>"; };
+		5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlTblCell.swift; sourceTree = "<group>"; };
+		5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTextTblCell.swift; sourceTree = "<group>"; };
 		5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView.xib; sourceTree = "<group>"; };
 		5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineGuideLineView.swift; sourceTree = "<group>"; };
 		5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView_ipad.xib; sourceTree = "<group>"; };
@@ -678,6 +682,8 @@
 				5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */,
 				5C51A95A2133E40800998135 /* TimelineUpdateVideoTblCell.swift */,
 				5C51A95E2133F9F800998135 /* TimelineCompletedProjectTblCell.swift */,
+				5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */,
+				5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -971,6 +977,8 @@
 				5CDE13FA2119B7BE00B11AA5 /* MIGenericTextView.swift in Sources */,
 				486FDD4E2119AEF500EA0188 /* MIToastAlert.swift in Sources */,
 				5C14CA86211C7A7700B06E29 /* TabBarView.swift in Sources */,
+				5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */,
+				5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */,
 				486FDD602119AEF500EA0188 /* ExtensionUIImage.swift in Sources */,
 				486FDD492119AEF500EA0188 /* ApplicationMessages.swift in Sources */,
 				486FDD592119AEF500EA0188 /* ExtensionInt.swift in Sources */,
