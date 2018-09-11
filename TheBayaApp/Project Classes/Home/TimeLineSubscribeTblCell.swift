@@ -44,13 +44,10 @@ class TimeLineSubscribeTblCell: UITableViewCell {
                 self.collSubscribe.scrollToItem(at: IndexPath(item: self.currentIndex, section: 0), at: .left, animated: false)
             }
         }
-        
 
-        
-//        collSubscribe.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: true)
     }
     
-    func CropImage(image:UIImage , cropRect:CGRect) -> UIImage
+    func CropImage(image:UIImage , cropRect:CGRect) -> UIImage?
     {
         UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
         let context = UIGraphicsGetCurrentContext();
@@ -63,7 +60,7 @@ class TimeLineSubscribeTblCell: UITableViewCell {
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
         
-        return croppedImage!
+        return croppedImage
     }
 }
 
@@ -89,20 +86,55 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SubscribedProjectCollCell", for: indexPath) as? SubscribedProjectCollCell {
             
-            let dict = arrProject[indexPath.row]
+            var dict = arrProject[indexPath.row]
             
-            cell.lblProjectName.text = dict.valueForString(key: "project_name")
-            cell.lblPercentage.text = " \(dict.valueForString(key: "percentage"))% "
+            cell.lblProjectName.text = dict.valueForString(key: CProjectName)
+            cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
+            cell.lblPercentage.text = " \(dict.valueForInt(key: CProjectProgress) ?? 0)% "
+            
+            
+            cell.btnSubscribe.isSelected = dict.valueForInt(key: CIsFavorite) == 0 ? false : true
+            cell.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ?  true : false
+            
             
             cell.btnSubscribe.touchUpInside { (sender) in
                 cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
+                APIRequest.shared().favouriteSubcribedProject(dict.valueForInt(key: CProjectId), type: sender.isSelected ? 1 : 0, completion: { (response, error) in
+                    
+                    if response != nil && error == nil {
+                        
+                        let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
+                        
+                        dict[CIsFavorite] = data.valueForInt(key: CIsFavorite) as AnyObject
+                        self.arrProject[indexPath.row] = dict
+                        self.collSubscribe.reloadItems(at: [indexPath])
+                    }
+                })
             }
             
             cell.btnCall.touchUpInside { (sender) in
-                self.viewController?.dialPhoneNumber(phoneNumber: "123456789")
+               
+                let arrMobileNo = dict.valueForJSON(key: CMobileNo) as! [[String : AnyObject]]
+                
+                if arrMobileNo.count > 0 {
+                    self.viewController?.dialPhoneNumber(phoneNumber: arrMobileNo[0].valueForString(key: "mobile_no"))
+                }
             }
             
             if IS_iPad {
+                
+                if indexPath.item == 0 {
+                    //...Hide call button
+                    cell.btnCall.isHidden = true
+                    _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
+                    
+                } else if indexPath.item == 1 {
+                    //...Hide call and schedule button
+                    cell.btnCall.isHidden = true
+                    cell.btnScheduleVisit.isHidden = true
+//                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
+
+                }
                 
                 cell.btnScheduleVisit.touchUpInside { (sender) in
                     if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
@@ -122,9 +154,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
             let imgVHeight = cell.imgVPjctCompletion.CViewHeight - CGFloat(space)
             
-            let percentage = imgVHeight * CGFloat((dict.valueForInt(key: "percentage"))!)/100
+            let percentage = imgVHeight * CGFloat((dict.valueForInt(key: CProjectProgress))!)/100
             
-            if (dict.valueForInt(key: "percentage")) != 100 {
+            if (dict.valueForInt(key: CProjectProgress)) != 100 || (dict.valueForInt(key: CProjectProgress)) != 0 {
                 cell.imgVPjctCompletion.image = self.CropImage(image: cell.imgVPjctCompletion.image!, cropRect: CGRect(x: 0, y: imgVHeight - percentage , width: cell.imgVPjctCompletion.CViewWidth, height: percentage))
             }
             
@@ -182,6 +214,5 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 self.delegate?.reloadTimelineList(index: Int(index))
             }
         }
-        print("Index : ",Int(index))
     }
 }

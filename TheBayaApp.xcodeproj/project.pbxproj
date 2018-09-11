@@ -67,6 +67,8 @@
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
 		489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6B212293AA00080739 /* login_bg_ipad.jpg */; };
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
+		5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4221479AEC00658633 /* NoInternetView.swift */; };
+		5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4521479B2000658633 /* NoInternetView.xib */; };
 		5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */; };
 		5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */; };
 		5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C14CA82211C48D300B06E29 /* Setting.storyboard */; };
@@ -228,6 +230,8 @@
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
+		5C0CBF4221479AEC00658633 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
+		5C0CBF4521479B2000658633 /* NoInternetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
 		5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPwdViewController.swift; sourceTree = "<group>"; };
 		5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPwdViewController.swift; sourceTree = "<group>"; };
 		5C14CA82211C48D300B06E29 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -732,6 +736,8 @@
 				5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */,
 				5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */,
 				5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */,
+				5C0CBF4221479AEC00658633 /* NoInternetView.swift */,
+				5C0CBF4521479B2000658633 /* NoInternetView.xib */,
 			);
 			path = CommonFiles;
 			sourceTree = "<group>";
@@ -824,6 +830,7 @@
 				5C8D5B84212586B00080193A /* img5.jpeg in Resources */,
 				487E4E67211C4CD8000CB32F /* AvenirLTStd-Heavy.otf in Resources */,
 				5CD76410211DC33D00C267AB /* img1.jpeg in Resources */,
+				5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */,
 				487E4E6A211C4CD8000CB32F /* AvenirLTStd-LightOblique.otf in Resources */,
 				5C475D72212AD6CC00125A19 /* spherical.jpg in Resources */,
 				5C1E61552122DCAA0090308D /* Setting_ipad.storyboard in Resources */,
@@ -983,6 +990,7 @@
 				486FDD492119AEF500EA0188 /* ApplicationMessages.swift in Sources */,
 				486FDD592119AEF500EA0188 /* ExtensionInt.swift in Sources */,
 				486FDD6E2119AEF500EA0188 /* AppDelegate.swift in Sources */,
+				5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */,
 				5C8D5B8A21258A8D0080193A /* LocationAdvantagesCollCell.swift in Sources */,
 				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
 				5C8D5B9021258ADC0080193A /* OverViewCollCell.swift in Sources */,

@@ -11,7 +11,7 @@ import CoreData
 import IQKeyboardManagerSwift
 import Fabric
 import Crashlytics
-
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,29 +28,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         Fabric.with([Crashlytics.self])
         
+        self.checkInternetConnection()
         self.initRootViewController()
         self.loadCountryList()
-        
+    
         return true
     }
 
   
     func initRootViewController() {
         
-        let rootVC = UINavigationController.init(rootViewController: CStoryboardLRF.instantiateViewController(withIdentifier: "TutorialViewController"))
-        self.setWindowRootViewController(rootVC: rootVC, animated: false, completion: nil)
+        if (CUserDefaults.value(forKey: UserDefaultFirstTimeLaunch)) != nil {
+            
+            if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil && (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) != "" && (CUserDefaults.value(forKey: UserDefaultRememberMe)) != nil {
+                
+                 loginUser =  TblUser.findOrCreate(dictionary: ["user_id" : CUserDefaults.object(forKey: UserDefaultLoginUserID) as Any]) as? TblUser
+                
+                 self.initHomeViewController()
+            } else {
+                self.initLoginViewController()
+            }
+    
+        } else {
+            self.initTutorailViewController()
+        }
         
         self.window.makeKeyAndVisible()
     }
     
+    func initTutorailViewController() {
+        let rootVC = UINavigationController.init(rootViewController: CStoryboardLRF.instantiateViewController(withIdentifier: "TutorialViewController"))
+        self.setWindowRootViewController(rootVC: rootVC, animated: false, completion: nil)
+    }
+    
     func initLoginViewController() {
         let rootVC = UINavigationController.init(rootViewController: CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController"))
+        CUserDefaults.set(true, forKey: UserDefaultFirstTimeLaunch)
+
         self.setWindowRootViewController(rootVC: rootVC, animated: false, completion: nil)
     }
     
     func initHomeViewController() {
         appDelegate.tabbarViewcontroller = TabbarViewController.initWithNibName() as? TabbarViewController
         appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
+    }
+    
+    func checkInternetConnection() {
+        
+        let noInternetVW = NoInternetView.viewFromNib(is_ipad: false) as? NoInternetView
+        noInternetVW?.frame = CGRect(x: 0, y: 0, width: CScreenWidth, height: CScreenHeight)
+        
+        let net = NetworkReachabilityManager()
+        
+        net?.startListening()
+        
+        net?.listener = { status in
+
+            if (net?.isReachable)! {
+                //...Network Available
+                print("Network Available")
+                noInternetVW?.removeFromSuperview()
+            } else {
+                //...Not Available Network
+                print("Not Network Available")
+
+                noInternetVW?.removeFromSuperview()
+                appDelegate.window.addSubview(noInternetVW!)
+            }
+        }
     }
     
     func hideTabBar() {
@@ -66,11 +111,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         tabbarViewcontroller = nil
         tabbarView = nil
 
-        guard let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController else{
-            return
-        }
+        appDelegate.loginUser = nil
+        CUserDefaults.removeObject(forKey: UserDefaultLoginUserToken)
+        CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
+        CUserDefaults.synchronize()
         
-        self.setWindowRootViewController(rootVC: UINavigationController.rootViewController(viewController: loginVC), animated: true, completion: nil)
+        self.initLoginViewController()
     }
     
     func setProgressGradient(frame : CGRect) -> UIImage {

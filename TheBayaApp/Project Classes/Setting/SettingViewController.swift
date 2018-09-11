@@ -55,45 +55,59 @@ extension SettingViewController {
         let point = sender.convert(sender.bounds.origin, to: tblSettings)
         let indexPath = tblSettings.indexPathForRow(at: point)
         
-        //...Notification Swicth
+        //...Push Notification switch
         if indexPath?.row == 2 {
             
+            var email = 0
+            if (appDelegate.loginUser?.emailNotify)! {
+                email = 1
+            }
+            
             if sender.isOn {
-                //...swicth is in on
+                //...switch is in on
                 
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = true
+                    self.changeNotificationStatus(email: email, push: 1)
+                    
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = false
                 }
                 
-                
             } else {
-                //...swicth is in off
+                //...switch is in off
                
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = false
+                    self.changeNotificationStatus(email: email, push: 0)
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = true
                 }
             }
         }
         
-        //...Email Notification Swicth
+        //...Email Notification switch
         if indexPath?.row == 3 {
             
+            var push = 0
+            if (appDelegate.loginUser?.pushNotify)! {
+                push = 1
+            }
+            
             if sender.isOn {
-                //...swicth is in on
+                //...switch is in on
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = true
+                    self.changeNotificationStatus(email: 1, push: push)
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = false
                 }
                 
             } else {
-                //...swicth is in off
+                //...switch is in off
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = false
+                    self.changeNotificationStatus(email: 0, push: push)
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = true
                 }
@@ -125,6 +139,13 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             if indexPath.row == 2 || indexPath.row == 3 {
                 cell.imgVArrow.isHidden = true
                 cell.switchNotify.isHidden = false
+                
+                if indexPath.row == 2 {
+                    cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
+                } else{
+                    cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
+                }
+                
             } else {
                 cell.imgVArrow.isHidden = false
                 cell.switchNotify.isHidden = true
@@ -191,6 +212,22 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
         default:
            print("")
+        }
+    }
+}
+
+//MARK:-
+//MARK:- API
+
+extension SettingViewController {
+    
+    func changeNotificationStatus(email : Int, push : Int) {
+        
+        APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push) { (response, error) in
+            
+            if response != nil && error == nil {
+
+            }
         }
     }
 }

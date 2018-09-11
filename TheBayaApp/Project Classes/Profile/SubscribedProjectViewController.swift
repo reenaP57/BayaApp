@@ -11,8 +11,13 @@ import UIKit
 class SubscribedProjectViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var tblSubscribedList : UITableView!
-    
+    @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var lblNoData : UILabel!
+
+    var refreshControl = UIRefreshControl()
+    var apiTask : URLSessionTask?
     var arrSubscribeList = [[String : AnyObject]]()
+ 
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +40,10 @@ class SubscribedProjectViewController: ParentViewController {
     func initialize() {
         self.title = "Subscribed Projects"
         
-        arrSubscribeList = [["project_name" : "The Baya Victoria", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
-        ["project_name" : "The Baya Junction", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
-        ["project_name" : "TDR Kanjurmarg", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"],
-        ["project_name" : "The Baya Victoria", "location" :"203 Orbital Plaza, Prabhadevi Road, Mumbai 400 025"]] as [[String : AnyObject]]
-        
-   
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        tblSubscribedList.pullToRefreshControl = refreshControl
+        self.loadSubscribedProject(isRefresh: false)
     }
 }
 
@@ -63,8 +66,8 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SubscribedTblCell") as? SubscribedTblCell {
             
             let dict = arrSubscribeList[indexPath.row]
-            cell.lblProjectName.text = dict.valueForString(key: "project_name")
-            cell.lblAddress.text = dict.valueForString(key: "location")
+            cell.lblProjectName.text = dict.valueForString(key: CProjectName)
+            cell.lblAddress.text = dict.valueForString(key: CAddress)
             
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear
@@ -72,6 +75,17 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
             cell.btnUnsubscribe.touchUpInside { (sender) in
                 
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CUnsubscribeMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    
+                    APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0, completion: { (response, error) in
+                        
+                        if response != nil && error == nil {
+                            
+                            self.arrSubscribeList.remove(at: indexPath.row)
+                            self.lblNoData.isHidden = self.arrSubscribeList.count != 0
+                            self.tblSubscribedList.reloadData()
+                        }
+                    })
+                    
                 }, btnTwoTitle: CBtnNo) { (action) in
                 }
             }
@@ -82,4 +96,48 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
         return UITableViewCell()
     }
 
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension SubscribedProjectViewController {
+    
+    @objc func pullToRefresh(){
+        refreshControl.beginRefreshing()
+        self.loadSubscribedProject(isRefresh: true)
+    }
+    
+    func loadSubscribedProject(isRefresh : Bool) {
+        
+        if apiTask?.state == URLSessionTask.State.running {
+            return
+        }
+        
+        if !isRefresh {
+            activityLoader.startAnimating()
+        }
+        
+        apiTask = APIRequest.shared().getSubscribedProjectList(completion: { (response, error) in
+            
+            self.apiTask?.cancel()
+            self.activityLoader.stopAnimating()
+            self.refreshControl.endRefreshing()
+            
+            if response != nil && error == nil {
+                
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                
+                if arrData.count > 0 {
+                    for item in arrData {
+                        self.arrSubscribeList.append(item)
+                    }
+                }
+                
+                self.lblNoData.isHidden = self.arrSubscribeList.count != 0
+                self.tblSubscribedList.reloadData()
+            }
+        })
+    }
 }

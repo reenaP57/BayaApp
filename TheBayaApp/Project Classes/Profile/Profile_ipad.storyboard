@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -272,15 +272,30 @@
                                     <outlet property="delegate" destination="kL2-vb-yzg" id="lIk-J7-d9Q"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="upP-hD-pDe">
+                                <rect key="frame" x="365.5" y="493" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have not subscribe any project yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvN-En-p0y">
+                                <rect key="frame" x="150" y="498.5" width="468" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jSH-vi-0HP" firstAttribute="bottom" secondItem="MVz-tD-TLR" secondAttribute="bottom" id="3CC-XC-ExQ"/>
                             <constraint firstItem="jSH-vi-0HP" firstAttribute="leading" secondItem="MVz-tD-TLR" secondAttribute="leading" id="6z0-y0-zzz"/>
+                            <constraint firstItem="MVz-tD-TLR" firstAttribute="trailing" secondItem="bvN-En-p0y" secondAttribute="trailing" constant="150" id="AEx-wp-kFy"/>
                             <constraint firstItem="afM-Mp-jdm" firstAttribute="leading" secondItem="MVz-tD-TLR" secondAttribute="leading" id="D03-7O-9gw"/>
+                            <constraint firstItem="bvN-En-p0y" firstAttribute="leading" secondItem="MVz-tD-TLR" secondAttribute="leading" constant="150" id="Hzf-uy-HR2"/>
                             <constraint firstItem="afM-Mp-jdm" firstAttribute="bottom" secondItem="MVz-tD-TLR" secondAttribute="bottom" id="IfU-cY-t8Y"/>
+                            <constraint firstItem="upP-hD-pDe" firstAttribute="centerX" secondItem="2g4-jC-dfK" secondAttribute="centerX" id="K5c-UC-jOn"/>
                             <constraint firstItem="jSH-vi-0HP" firstAttribute="trailing" secondItem="MVz-tD-TLR" secondAttribute="trailing" id="QcG-G2-wF2"/>
                             <constraint firstItem="afM-Mp-jdm" firstAttribute="top" secondItem="MVz-tD-TLR" secondAttribute="top" id="Sbd-lP-bz4"/>
+                            <constraint firstItem="upP-hD-pDe" firstAttribute="centerY" secondItem="2g4-jC-dfK" secondAttribute="centerY" id="Ui1-Io-47X"/>
+                            <constraint firstItem="bvN-En-p0y" firstAttribute="centerY" secondItem="2g4-jC-dfK" secondAttribute="centerY" id="hNP-Ud-A8b"/>
                             <constraint firstItem="afM-Mp-jdm" firstAttribute="trailing" secondItem="MVz-tD-TLR" secondAttribute="trailing" id="leB-rY-j1a"/>
                             <constraint firstItem="jSH-vi-0HP" firstAttribute="top" secondItem="2g4-jC-dfK" secondAttribute="top" id="nOZ-bB-aA7"/>
                         </constraints>
@@ -288,12 +303,14 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="activityLoader" destination="upP-hD-pDe" id="x64-Sv-HX4"/>
+                        <outlet property="lblNoData" destination="bvN-En-p0y" id="FFu-SO-Wo7"/>
                         <outlet property="tblSubscribedList" destination="afM-Mp-jdm" id="muz-aG-aol"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZbB-KJ-y8t" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1371" y="69"/>
+            <point key="canvasLocation" x="1369.5999999999999" y="68.365817091454275"/>
         </scene>
         <!--Visit Details View Controller-->
         <scene sceneID="C7p-21-q5r">
@@ -429,17 +446,32 @@
                                     <outlet property="delegate" destination="0k9-kQ-zy8" id="ms7-Fp-jiv"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jD7-Si-avd">
+                                <rect key="frame" x="365" y="493" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have not subscribe any project yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FLC-c3-xFE">
+                                <rect key="frame" x="150" y="498" width="468" height="27.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="20"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jD7-Si-avd" firstAttribute="centerY" secondItem="cdm-iB-n3Y" secondAttribute="centerY" id="1gr-9o-AWl"/>
                             <constraint firstItem="rD9-GQ-ndw" firstAttribute="bottom" secondItem="RYw-xk-Fw9" secondAttribute="bottom" id="5si-3e-NRs"/>
+                            <constraint firstItem="jD7-Si-avd" firstAttribute="centerX" secondItem="cdm-iB-n3Y" secondAttribute="centerX" id="8Fq-2y-Fms"/>
                             <constraint firstItem="roR-uv-xAf" firstAttribute="leading" secondItem="RYw-xk-Fw9" secondAttribute="leading" id="FrH-Ey-9JO"/>
+                            <constraint firstItem="FLC-c3-xFE" firstAttribute="leading" secondItem="RYw-xk-Fw9" secondAttribute="leading" constant="150" id="Koh-lq-FAQ"/>
                             <constraint firstItem="rD9-GQ-ndw" firstAttribute="top" secondItem="RYw-xk-Fw9" secondAttribute="top" id="U8u-Nb-9E5"/>
                             <constraint firstItem="rD9-GQ-ndw" firstAttribute="leading" secondItem="RYw-xk-Fw9" secondAttribute="leading" id="cjS-Ej-J0t"/>
                             <constraint firstItem="roR-uv-xAf" firstAttribute="top" secondItem="cdm-iB-n3Y" secondAttribute="top" id="dF0-vm-aLT"/>
+                            <constraint firstItem="FLC-c3-xFE" firstAttribute="centerY" secondItem="cdm-iB-n3Y" secondAttribute="centerY" id="ewx-gL-hQV"/>
                             <constraint firstItem="roR-uv-xAf" firstAttribute="trailing" secondItem="RYw-xk-Fw9" secondAttribute="trailing" id="mdF-0j-cyt"/>
                             <constraint firstItem="roR-uv-xAf" firstAttribute="bottom" secondItem="RYw-xk-Fw9" secondAttribute="bottom" id="qY7-Ov-nO3"/>
                             <constraint firstItem="rD9-GQ-ndw" firstAttribute="trailing" secondItem="RYw-xk-Fw9" secondAttribute="trailing" id="rzP-th-aX9"/>
+                            <constraint firstItem="RYw-xk-Fw9" firstAttribute="trailing" secondItem="FLC-c3-xFE" secondAttribute="trailing" constant="150" id="yJi-BP-4Ea"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="RYw-xk-Fw9"/>
                     </view>

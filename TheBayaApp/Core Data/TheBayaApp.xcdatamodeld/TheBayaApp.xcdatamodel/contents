@@ -8,6 +8,7 @@
         <attribute name="status_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="TblUser" representedClassName="TblUser" syncable="YES" codeGenerationType="class">
+        <attribute name="country_code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="countryId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="emailNotify" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -25,6 +26,6 @@
     </entity>
     <elements>
         <element name="TblCountryList" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="TblUser" positionX="-54" positionY="27" width="128" height="255"/>
+        <element name="TblUser" positionX="-54" positionY="27" width="128" height="270"/>
     </elements>
 </model>

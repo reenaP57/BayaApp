@@ -145,6 +145,8 @@ extension LoginViewController {
     
     func login(type : Int) {
         
+        self.resignKeyboard()
+        
         APIRequest.shared().loginUser(txtEmail.text, txtPassword.text, type) { (response, error) in
             
             if response != nil && error == nil {
@@ -170,6 +172,10 @@ extension LoginViewController {
                     })
                     
                 } else {
+                    if self.btnRememberMe.isSelected && (appDelegate.loginUser?.mobileVerify)! && (appDelegate.loginUser?.emailVerify)! {
+                         CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+                    }
+                    
                    appDelegate.initHomeViewController()
                 }
             }

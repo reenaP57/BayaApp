@@ -43,7 +43,7 @@ extension ForgotPwdViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        txtEmail.hideValidationMessage(80.0)
+        txtEmail.hideValidationMessage(50.0)
         return true
     }
 }
@@ -56,51 +56,60 @@ extension ForgotPwdViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
-        
-            if (self.txtEmail.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
+        if (self.txtEmail.text?.isBlank)! {
+            self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
+            
+        } else if !(self.txtEmail.text?.isBlank)! {
+            
+            //...Email
+            if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
                 
-            } else if !(self.txtEmail.text?.isBlank)! {
-                
-                if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
-                    
-                    if !(self.txtEmail.text?.isValidEmail)! {
-                        self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
-                        
-                    } else {
-                        if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
-                            
-                            resetPwdVC.isEmail = true
-                            resetPwdVC.strEmailMobile = self.txtEmail.text!
-                            self.navigationController?.pushViewController(resetPwdVC, animated: true)
-                        }
-                    }
+                if !(self.txtEmail.text?.isValidEmail)! {
+                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
                     
                 } else {
-                    
-                    if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
-                        self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
-                    } else {
-                       
-                        if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
-                           
-                           resetPwdVC.isEmail = false
-                            resetPwdVC.strEmailMobile = self.txtEmail.text!
-                            self.navigationController?.pushViewController(resetPwdVC, animated: true)
-                        }
-                    }
+                    self.forgotPassword(type: CEmailType)
+                }
+                
+            } else {
+                
+                //...Mobile
+                if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
+                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
+                } else {
+                    self.forgotPassword(type: CMobileType)
                 }
             }
-      // }
+        }
+    }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension ForgotPwdViewController {
+    
+    func forgotPassword(type : Int) {
+        self.resignKeyboard()
+        
+        APIRequest.shared().forgotPassword(txtEmail.text, type: type) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
+                    
+                    if type == CEmailType {
+                        resetPwdVC.isEmail = true
+                    } else {
+                        resetPwdVC.isEmail = false
+                    }
+                    
+                    resetPwdVC.strEmailMobile = self.txtEmail.text!
+                    self.navigationController?.pushViewController(resetPwdVC, animated: true)
+                }
+                
+            }
+        }
     }
 }

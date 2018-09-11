@@ -42,10 +42,7 @@ extension TutorialViewController {
     
     @IBAction fileprivate func btnSkipClicked (sender : UIButton) {
         
-        if let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-            self.navigationController?.pushViewController(loginVC, animated: true)
-        }
-        
+        appDelegate.initLoginViewController()
     }
     
     @IBAction fileprivate func btnNextClicked (sender : UIButton) {
@@ -54,10 +51,8 @@ extension TutorialViewController {
         let indexPath = IndexPath(item: Int(index)+1, section: 0)
         
         if Int(index) == 2 {
-            
-            if let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                self.navigationController?.pushViewController(loginVC, animated: true)
-            }
+            appDelegate.initLoginViewController()
+    
         } else {
             collTutorial.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
 

@@ -74,38 +74,26 @@ extension VerificationViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
-            }
-        }
-        self.view.layoutIfNeeded()
-
-        DispatchQueue.main.async {
-        
-            if (self.txtCode.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankVerificationCodeMessage))
-            } else if (self.txtCode.text?.count)! > 6 || (self.txtCode.text?.count)! < 6 {
-                self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CInvalidVerificationCodeMessage))
+        if (self.txtCode.text?.isBlank)! {
+            self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CBlankVerificationCodeMessage))
+        } else if (self.txtCode.text?.count)! > 6 || (self.txtCode.text?.count)! < 6 {
+            self.vwContent.addSubview(self.txtCode.showValidationMessage(15.0, CInvalidVerificationCodeMessage))
+        } else {
+            
+            var dict = [String : AnyObject]()
+            
+            if self.isEmailVerify {
+                dict = [CEmail : (appDelegate.loginUser?.email)!,
+                        "code" : self.txtCode.text as Any,
+                        "type" : CEmailType] as [String : AnyObject]
             } else {
-                
-                var dict = [String : AnyObject]()
-                
-                if self.isEmailVerify {
-                    dict = [CEmail : (appDelegate.loginUser?.email)!,
-                            "code" : self.txtCode.text as Any,
-                            "type" : CEmailType] as [String : AnyObject]
-                } else {
-                    dict = [CEmail : (appDelegate.loginUser?.email)!,
-                            CMobileNo : (appDelegate.loginUser?.mobileNo)!,
-                            "code" : self.txtCode.text as Any,
-                            "type" : CMobileType] as [String : AnyObject]
-                }
-                
-                self.verifyUser(param: dict)
+                dict = [CEmail : (appDelegate.loginUser?.email)!,
+                        CMobileNo : (appDelegate.loginUser?.mobileNo)!,
+                        "code" : self.txtCode.text as Any,
+                        "type" : CMobileType] as [String : AnyObject]
             }
+            self.resignKeyboard()
+            self.verifyUser(param: dict)
         }
     }
     

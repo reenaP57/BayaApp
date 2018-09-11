@@ -74,9 +74,10 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.lblTitle.text = dict.valueForString(key: "title")
             cell.lblPrjctName.text = dict.valueForString(key: "subtitle")
             
-            
+            cell.vwCount.isHidden = indexPath.row != 0
+
             if indexPath.row != 0 {
-                
+
                 if IS_iPhone {
                     cell.vwProgress.isHidden = indexPath.row != 0
                 } else {
@@ -85,9 +86,6 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                 }
              
             }
-            
-            // cell.vwCount.isHidden = indexPath.row != 0
-            //cell.vwProgress.isHidden = indexPath.row != 0
             
             return cell
         }

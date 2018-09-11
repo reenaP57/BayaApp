@@ -74,26 +74,16 @@ extension ResetPwdViewController: UITextFieldDelegate {
 extension ResetPwdViewController {
     
     @IBAction fileprivate func btnResendCodeClicked (sender : UIButton) {
-        
-        self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: isEmail ? "\(CResetCodeEmailMessage) \([strEmailMobile])." :"\(CResetCodeMobileMessage) \([strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
+   
+        if isEmail {
+            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject,"type" : CEmailType as AnyObject])
+        } else {
+            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject, CMobileNo : (appDelegate.loginUser?.mobileNo)! as AnyObject,"type" : CMobileType as AnyObject])
         }
     }
     
-    
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
-        
-        
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
-        
+
             if (self.txtCode.text?.isBlank)! {
                 
                 self.txtNewPwd.hideValidationMessage(15.0)
@@ -125,13 +115,45 @@ extension ResetPwdViewController {
             } else if self.txtConfirmPwd.text != self.txtNewPwd.text {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchNewPasswordMessage))
             } else {
+                self.resignKeyboard()
+                self.resetPassword()
+            }
+      }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension ResetPwdViewController {
+    
+    func resetPassword() {
+        
+        let dict = ["userName": strEmailMobile as AnyObject, "type": isEmail ? CEmailType : CMobileType, "password": txtConfirmPwd.text as AnyObject, "code":txtCode.text as AnyObject] as [String : AnyObject]
+        
+        APIRequest.shared().resetPassword(dict) { (response, error) in
+            
+            if response != nil && error == nil {
                 
-                if let loginVC = CStoryboardLRF.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController {
-                    self.navigationController?.pushViewController(loginVC, animated: true)
+                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
+                let message  = metaData.valueForString(key: CJsonMessage)
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popToRootViewController(animated: true)
+                })
+            }
+        }
+    }
+    
+    func resendVerificationCode(dict : [String : AnyObject]) {
+        
+        APIRequest.shared().resendVerificationCode(dict) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
                 }
             }
         }
-        
-   // }
-    
+    }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -286,7 +286,7 @@
                             <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="9904746013" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="GHS-er-U66" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="286" y="285" width="306" height="60"/>
                                 <color key="backgroundColor" red="0.86274509799999999" green="0.86274509799999999" blue="0.86274509799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -363,11 +363,11 @@
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
                         <outlet property="lblSupport" destination="1d9-cJ-CDH" id="8Rl-pc-E0j"/>
+                        <outlet property="txtCountryCode" destination="A17-jj-N9V" id="ErN-Gg-ChW"/>
+                        <outlet property="txtEmail" destination="2pB-bL-wZB" id="4BT-jD-oam"/>
                         <outlet property="txtFName" destination="tsi-9k-cwc" id="SaD-pZ-DPE"/>
                         <outlet property="txtLName" destination="0gE-fr-a4l" id="nD4-mk-ycP"/>
-                        <outlet property="txtMail" destination="2pB-bL-wZB" id="wmL-pi-Uci"/>
                         <outlet property="txtMobileNumber" destination="GHS-er-U66" id="h1f-Yk-ZWr"/>
-                        <outlet property="txtState" destination="A17-jj-N9V" id="uqq-zr-VMx"/>
                         <outlet property="vwContent" destination="ipt-kE-tCw" id="TQW-tl-0Xa"/>
                     </connections>
                 </viewController>

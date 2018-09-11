@@ -38,6 +38,12 @@ class ProfileViewController: ParentViewController {
     func initialize() {
         self.title = "My Profile"
         
+        //...Prefilled user detail
+        
+        lblName.text = "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"
+        lblEmail.text = appDelegate.loginUser?.email
+        lblMobileNo.text = "\(appDelegate.loginUser?.country_code ?? "")-\(appDelegate.loginUser?.mobileNo ?? "")"
+        
         if IS_iPhone{
            arrList =  [["img" : "schedule_profile", "title": "Schedule a Visit"],
              ["img" : "my_projects_profile", "title": "My Subscribed Projects"],

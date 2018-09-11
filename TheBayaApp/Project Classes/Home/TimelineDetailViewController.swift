@@ -16,11 +16,16 @@ let NavigationBarHeight = 64
 class TimelineDetailViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var tblUpdates : UITableView!
+    @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var btnProjectDetail : UIButton!
 
     var arrUpdateList = [[String : AnyObject]]()
     var arrProject = [[String : AnyObject]]()
     var currentIndex = 0
 
+    var apiTask : URLSessionTask?
+    var refreshControl : UIRefreshControl?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -46,7 +51,14 @@ class TimelineDetailViewController: ParentViewController {
        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
 
-        arrProject = [["project_name": "The Baya Victoria", "percentage": 100],["project_name": "The Baya Victoria", "percentage": 70],["project_name": "The Baya Victoria", "percentage": 35]] as [[String : AnyObject]]
+        
+        refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        refreshControl?.tintColor = ColorGreenSelected
+        tblUpdates.pullToRefreshControl = refreshControl
+        
+        self.loadSubscribedProjectList(isRefresh: false)
+        
+//        arrProject = [["project_name": "The Baya Victoria", "percentage": 100],["project_name": "The Baya Victoria", "percentage": 70],["project_name": "The Baya Victoria", "percentage": 35]] as [[String : AnyObject]]
         
         arrUpdateList = [["image": ["img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg","img6.jpeg","img3.jpeg","img4.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here. Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 0],
                          ["image": ["img3.jpeg"], "desc": "Construction of 5 the floor is done, check the progress here through the image here.", "time" : "Yesterday at 12:00 PM","type" : 1],
@@ -59,10 +71,10 @@ class TimelineDetailViewController: ParentViewController {
         }
         
         
-        
-        if CUserDefaults.string(forKey: UserDefaultOpenedTimeLine) != "true"  //bool(forKey: UserDefaultOpenedTimeLine)
+        if CUserDefaults.string(forKey: UserDefaultOpenedTimeLine) != "true"
         {
-        
+            //... For TimeLine Guide Screen
+            
             if let vwTimlineGuideline = TimelineGuideLineView.viewFromNib(is_ipad: true) as? TimelineGuideLineView {
                 
                 vwTimlineGuideline.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
@@ -185,51 +197,64 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let dict = arrProject[currentIndex]
-        return dict.valueForInt(key: "percentage") == 100 ?   arrUpdateList.count + 2 : arrUpdateList.count + 1
+        if arrProject.count > 0 {
+            let dict = arrProject[currentIndex]
+            return dict.valueForInt(key: CProjectProgress) == 100 ?   arrUpdateList.count + 2 : arrUpdateList.count + 1
+        }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let dict = arrProject[currentIndex]
-        if dict.valueForInt(key: "percentage") == 100 {
+        if arrProject.count > 0 {
             
-            switch indexPath.row {
-            case 0 :
-                return IS_iPad ? CScreenWidth * (340/768) : CScreenWidth * (200/375)
-            case 1:
-                return 100
-            default:
-                return IS_iPad ?
-                    CScreenWidth * (200/768) : CScreenWidth * (200/375)
+            let dict = arrProject[currentIndex]
+            if dict.valueForInt(key: CProjectProgress) == 100 {
+                
+                switch indexPath.row {
+                case 0 :
+                    return IS_iPad ? CScreenWidth * (340/768) : CScreenWidth * (200/375)
+                case 1:
+                    return 100
+                default:
+                    return IS_iPad ?
+                        CScreenWidth * (200/768) : CScreenWidth * (200/375)
+                }
+            } else {
+                return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (340/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
             }
-        } else {
-            return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (340/768) : CScreenWidth * (200/768) : CScreenWidth * (200/375)
         }
+        
+        return 0
     }
  
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let dict = arrProject[currentIndex]
-        if dict.valueForInt(key: "percentage") == 100 {
-            
-            switch indexPath.row {
-            case 0 :
-                return IS_iPad ? CScreenWidth * (300/768) : CScreenWidth * (200/375)
-            case 1:
-                return 100
-            default:
-                return UITableViewAutomaticDimension
+        if arrProject.count > 0 {
+            let dict = arrProject[currentIndex]
+            if dict.valueForInt(key: CProjectProgress) == 100 {
+                
+                switch indexPath.row {
+                case 0 :
+                    return IS_iPad ? CScreenWidth * (300/768) : CScreenWidth * (200/375)
+                case 1:
+                    return 100
+                default:
+                    return UITableViewAutomaticDimension
+                }
+            } else {
+                return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (300/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
             }
-        } else {
-            return IS_iPad ? indexPath.row == 0 ? CScreenWidth * (300/768) : UITableViewAutomaticDimension : indexPath.row == 0 ? CScreenWidth * (200/375) : UITableViewAutomaticDimension
         }
+        
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
          let dict = arrProject[currentIndex]
-         if dict.valueForInt(key: "percentage") == 100 {
+         if dict.valueForInt(key: CProjectProgress) == 100 {
             
             if indexPath.row == 0 {
                 
@@ -592,6 +617,51 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             }
             
             return UITableViewCell()
+        }
+    }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension TimelineDetailViewController {
+    
+    @objc func pullToRefresh() {
+        refreshControl?.beginRefreshing()
+        self.loadSubscribedProjectList(isRefresh: true)
+    }
+    
+    func loadSubscribedProjectList(isRefresh : Bool) {
+        
+        if self.apiTask?.state == URLSessionTask.State.running {
+            return
+        }
+        
+        if !isRefresh {
+            self.activityLoader.startAnimating()
+            self.btnProjectDetail.isHidden = true
+        }
+        
+        apiTask =  APIRequest.shared().getSubscribedProjectList { (response, error) in
+            
+            self.apiTask?.cancel()
+            self.refreshControl?.endRefreshing()
+            self.activityLoader.stopAnimating()
+            
+            if  response != nil && error == nil {
+                
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                
+                if arrData.count > 0 {
+                    for item in arrData {
+                        self.arrProject.append(item)
+                    }
+                }
+                
+                self.btnProjectDetail.isHidden = false
+                self.tblUpdates.reloadData()
+            }
         }
     }
 }

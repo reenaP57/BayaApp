@@ -65,18 +65,7 @@ extension ChangePasswordViewController: UITextFieldDelegate {
 extension ChangePasswordViewController {
     
     @IBAction func btnSubmitClicked(_ sender: UIButton) {
-        
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.view.layoutIfNeeded()
-//
-        //        DispatchQueue.main.async {
-        
+
         if (self.txtCurrentPwd.text?.isBlank)! {
             
             self.txtNewPwd.hideValidationMessage(15.0)
@@ -100,8 +89,31 @@ extension ChangePasswordViewController {
             self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
             
         } else {
-            self.navigationController?.popViewController(animated: true)
+            self.resignKeyboard()
+            self.changePassword()
         }
-        //  }
+    }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension ChangePasswordViewController {
+    
+    func changePassword() {
+        
+        APIRequest.shared().changePassword(txtCurrentPwd.text, txtConfirmPwd.text) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
+                let message  = metaData.valueForString(key: CJsonMessage)
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+        }
     }
 }

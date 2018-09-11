@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -267,11 +267,26 @@
                                     <outlet property="delegate" destination="Fq8-XF-rK5" id="WDV-u2-35g"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="YID-Yy-MPI">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have not subscribe any project yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E9a-OM-hJZ">
+                                <rect key="frame" x="10" y="321" width="355" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="YID-Yy-MPI" firstAttribute="centerY" secondItem="uYH-hi-htJ" secondAttribute="centerY" id="7CN-Qa-5xO"/>
+                            <constraint firstItem="YID-Yy-MPI" firstAttribute="centerX" secondItem="uYH-hi-htJ" secondAttribute="centerX" id="8o7-Wd-jJM"/>
                             <constraint firstItem="zHL-O6-j5c" firstAttribute="leading" secondItem="PP5-AM-YF7" secondAttribute="leading" id="FJe-v4-TXm"/>
+                            <constraint firstItem="E9a-OM-hJZ" firstAttribute="leading" secondItem="PP5-AM-YF7" secondAttribute="leading" constant="10" id="I6f-J4-jav"/>
+                            <constraint firstItem="PP5-AM-YF7" firstAttribute="trailing" secondItem="E9a-OM-hJZ" secondAttribute="trailing" constant="10" id="JsO-sk-hWa"/>
                             <constraint firstItem="mzF-uQ-c39" firstAttribute="leading" secondItem="PP5-AM-YF7" secondAttribute="leading" id="RCg-IU-leb"/>
+                            <constraint firstItem="E9a-OM-hJZ" firstAttribute="centerY" secondItem="uYH-hi-htJ" secondAttribute="centerY" id="VCM-5W-yGn"/>
                             <constraint firstItem="zHL-O6-j5c" firstAttribute="trailing" secondItem="PP5-AM-YF7" secondAttribute="trailing" id="a5a-f1-Hqc"/>
                             <constraint firstItem="zHL-O6-j5c" firstAttribute="top" secondItem="uYH-hi-htJ" secondAttribute="top" id="cJu-NR-yOr"/>
                             <constraint firstItem="mzF-uQ-c39" firstAttribute="trailing" secondItem="PP5-AM-YF7" secondAttribute="trailing" id="iWh-5y-9Ne"/>
@@ -282,6 +297,8 @@
                         <viewLayoutGuide key="safeArea" id="PP5-AM-YF7"/>
                     </view>
                     <connections>
+                        <outlet property="activityLoader" destination="YID-Yy-MPI" id="DRW-fn-loC"/>
+                        <outlet property="lblNoData" destination="E9a-OM-hJZ" id="ryJ-5o-LpZ"/>
                         <outlet property="tblSubscribedList" destination="mzF-uQ-c39" id="10h-aJ-lbf"/>
                     </connections>
                 </viewController>
@@ -423,6 +440,16 @@
                                     <outlet property="delegate" destination="zgT-cU-YFP" id="kkK-eH-6cc"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="LsI-Nv-y2E">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit detail list not found." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D8s-4b-ytR">
+                                <rect key="frame" x="10" y="321.5" width="355" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -433,7 +460,12 @@
                             <constraint firstItem="myi-3F-x44" firstAttribute="bottom" secondItem="hHv-WM-69g" secondAttribute="bottom" id="FPb-8q-30S"/>
                             <constraint firstItem="ph9-KH-O6p" firstAttribute="top" secondItem="myi-3F-x44" secondAttribute="top" id="IOW-pf-04F"/>
                             <constraint firstItem="ph9-KH-O6p" firstAttribute="trailing" secondItem="myi-3F-x44" secondAttribute="trailing" id="J5q-QH-eEl"/>
+                            <constraint firstItem="LsI-Nv-y2E" firstAttribute="centerY" secondItem="Lzn-yt-ZdI" secondAttribute="centerY" id="Kpj-yA-vP1"/>
                             <constraint firstItem="ph9-KH-O6p" firstAttribute="leading" secondItem="myi-3F-x44" secondAttribute="leading" id="WLR-sY-DzD"/>
+                            <constraint firstItem="LsI-Nv-y2E" firstAttribute="centerX" secondItem="Lzn-yt-ZdI" secondAttribute="centerX" id="a8P-Xh-E00"/>
+                            <constraint firstItem="D8s-4b-ytR" firstAttribute="leading" secondItem="myi-3F-x44" secondAttribute="leading" constant="10" id="ahU-Dr-6hm"/>
+                            <constraint firstItem="D8s-4b-ytR" firstAttribute="centerY" secondItem="Lzn-yt-ZdI" secondAttribute="centerY" id="flG-Ws-M1C"/>
+                            <constraint firstItem="myi-3F-x44" firstAttribute="trailing" secondItem="D8s-4b-ytR" secondAttribute="trailing" constant="10" id="tJI-PG-Rj7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="myi-3F-x44"/>
                     </view>

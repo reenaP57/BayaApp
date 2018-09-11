@@ -22,7 +22,7 @@ class SignUpViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var lblTerms : UILabel!
 
-    var countryID = Int()
+    var countryID : Int = 356 //India country ID
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -177,6 +177,7 @@ extension SignUpViewController {
             } else if !self.btnTerms.isSelected {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CTermsConditionNotAcceptedMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
             } else {
+                self.resignKeyboard()
                 self.signup()
             }
         }
@@ -201,13 +202,13 @@ extension SignUpViewController {
     @IBAction fileprivate func btnRememberMeClicked (sender : UIButton) {
         btnRememberMe.isSelected = !btnRememberMe.isSelected
         
-        if btnRememberMe.isSelected {
-            CUserDefaults.set(true, forKey: UserDefaultRememberMe)
-        } else {
-            CUserDefaults.set(false, forKey: UserDefaultRememberMe)
-        }
-        
-        CUserDefaults.synchronize()
+//        if btnRememberMe.isSelected {
+//            CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+//        } else {
+//            CUserDefaults.set(nil, forKey: UserDefaultRememberMe)
+//        }
+//
+//        CUserDefaults.synchronize()
     }
     
     @IBAction fileprivate func btnAcceptConditionClicked (sender : UIButton) {

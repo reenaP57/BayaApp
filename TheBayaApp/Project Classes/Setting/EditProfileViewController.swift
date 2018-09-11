@@ -12,8 +12,8 @@ class EditProfileViewController: ParentViewController {
 
     @IBOutlet weak var txtFName: UITextField!
     @IBOutlet weak var txtLName: UITextField!
-    @IBOutlet weak var txtMail: UITextField!
-    @IBOutlet weak var txtState: UITextField!
+    @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet weak var txtCountryCode: UITextField!
     @IBOutlet weak var txtMobileNumber: UITextField!
     @IBOutlet weak var vwContent: UIView!
     @IBOutlet weak var lblSupport: UILabel!
@@ -39,8 +39,14 @@ class EditProfileViewController: ParentViewController {
     func initialize() {
         self.title = "Edit Profile"
         
-        txtMail.backgroundColor = ColorDisableTextField
-        txtState.backgroundColor = ColorDisableTextField
+        txtFName.text = appDelegate.loginUser?.firstName
+        txtLName.text = appDelegate.loginUser?.lastName
+        txtEmail.text = appDelegate.loginUser?.email
+        txtMobileNumber.text = appDelegate.loginUser?.mobileNo
+        txtCountryCode.text = appDelegate.loginUser?.country_code
+
+        txtEmail.backgroundColor = ColorDisableTextField
+        txtCountryCode.backgroundColor = ColorDisableTextField
         txtMobileNumber.backgroundColor = ColorDisableTextField
         
         self.setAtttibuteString()
@@ -93,29 +99,40 @@ extension EditProfileViewController {
     
     @IBAction func btnUpdateCilcked(_ sender: UIButton) {
         
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//        }
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
-//
-            if (self.txtFName.text?.isBlank)! {
+        if (self.txtFName.text?.isBlank)! {
+            
+            self.txtLName.hideValidationMessage(15.0)
+            self.vwContent.addSubview(self.txtFName.showValidationMessage(15.0, CBlankFirstNameMessage))
+            
+        } else if (self.txtLName.text?.isBlank)! {
+            self.vwContent.addSubview(self.txtLName.showValidationMessage(15.0, CBlankLastNameMessage))
+            
+        } else {
+            self.resignKeyboard()
+            self.editProfile()
+        }
+    }
+}
+
+
+//MARK:-
+//MARK:- Action Methods
+
+extension EditProfileViewController {
+    
+    func editProfile() {
+        
+        APIRequest.shared().editProfile(txtFName.text, txtLName.text) { (response, error) in
+            
+            if response != nil && error == nil {
                 
-                self.txtLName.hideValidationMessage(15.0)
-                self.vwContent.addSubview(self.txtFName.showValidationMessage(15.0, CBlankFirstNameMessage))
+                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
+                let message  = metaData.valueForString(key: CJsonMessage)
                 
-            } else if (self.txtLName.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtLName.showValidationMessage(15.0, CBlankLastNameMessage))
-                
-            } else {
-                self.navigationController?.popViewController(animated: true)
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
             }
         }
-    //}
-
+    }
 }

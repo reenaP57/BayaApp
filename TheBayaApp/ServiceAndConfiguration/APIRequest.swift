@@ -20,6 +20,18 @@ let CAPITagSignUp              =   "signup"
 let CAPITagLogin               =   "login"
 let CAPITagVerifyUser          =   "verifyuser"
 let CAPITagResendVerification  =   "resend-verification"
+let CAPITagForgotPassword      =   "forgot-password"
+let CAPITagResetPassword       =   "reset-password"
+let CAPITagEditProfile         =   "editprofile"
+let CAPITagNotifyStatus        =   "notifystatus"
+let CAPITagChangePassword      =   "changepassword"
+let CAPITagCMS                 =   "cms"
+let CAPITagProjectList         =   "projectlist"
+let CAPITagProjectSubscribe    =   "project-subscribe"
+let CAPITagSubscribedProject   =   "subscribed-project"
+let CAPITagProjectDetails      =   "project-details"
+let CAPITagFavorite            =   "favorite"
+
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -29,7 +41,7 @@ let CJsonTitle              = "title"
 let CJsonData               = "data"
 let CJsonMeta               = "meta"
 
-let CLimit                  = 20
+let CLimit                  = 7
 
 let CStatusZero             = 0
 let CStatusOne              = 1
@@ -59,11 +71,14 @@ class Networking: NSObject
 {
     var BASEURL:String?
     
-    var headers:[String: String]
-    {
-        let headersData = ["Accept":"application/json", "Accept-Language":"en"]
-        return headersData
+    var headers:[String: String] {
+        if UserDefaults.standard.value(forKey: UserDefaultLoginUserToken) != nil {
+            return ["Authorization" : "Bearer \((CUserDefaults.value(forKey: UserDefaultLoginUserToken)) as? String ?? "")","Accept-Language" : "en","Accept" : "application/json"]
+        } else {
+            return ["Accept" : "application/json","Accept-Language" : "en"]
+        }
     }
+
     
     var loggingEnabled = true
     var activityCount = 0
@@ -592,6 +607,18 @@ extension APIRequest {
         
     }
     
+    func cms(completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.GET(apiTag: CAPITagCMS, param: [:], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagCMS) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCMS, error: error)
+        })
+    }
+    
     
     //TODO:
     //TODO: --------------LRF API--------------
@@ -673,6 +700,158 @@ extension APIRequest {
         })
     }
     
+    func forgotPassword(_ userName: String?, type: Int?, completion: @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagForgotPassword, param: ["type" : type as AnyObject, "userName" : userName as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagForgotPassword) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagForgotPassword, error: error)
+        })
+    }
+    
+    func resetPassword(_ dict : [String : AnyObject], completion : @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagResetPassword, param: dict, successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagResetPassword) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResetPassword, error: error)
+        })
+    }
+    
+    
+    //TODO:
+    //TODO: --------------PROFILE API--------------
+    //TODO:
+    
+
+    func editProfile(_ firstName : String?, _ lastName : String?, completion : @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagEditProfile, param: [CFirstName : firstName as AnyObject, CLastName : lastName as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagEditProfile) {
+                self.saveLoginUserDetail(response : response as! [String : AnyObject])
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagEditProfile, error: error)
+        })
+    }
+    
+    func changeNotificationStatus(emailNotify: Int?, pushNotify: Int?, completion: @escaping ClosureCompletion) {
+    
+        _  = Networking.sharedInstance.POST(apiTag: CAPITagNotifyStatus, param: ["emailNotify" : emailNotify as AnyObject, "pushNotify": pushNotify as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagNotifyStatus) {
+                self.saveLoginUserDetail(response : response as! [String : AnyObject])
+
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotifyStatus, error: error)
+        })
+        
+    }
+    
+    func changePassword (_ oldPwd : String?, _ newPwd : String?, completion : @escaping ClosureCompletion){
+    
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagChangePassword, param: ["oldPassword" : oldPwd as AnyObject, "password" : newPwd as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagChangePassword){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagChangePassword, error: error)
+        })
+    }
+    
+    
+    //TODO:
+    //TODO: --------------PROJECT RELATED API--------------
+    //TODO:
+    
+   
+    func getProjectList (_ page : Int?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagProjectList, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectList) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectList, error: error)
+        })!
+    }
+    
+    func subcribedProject (_ projectId : Int?, type: Int?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagProjectSubscribe, param: [CProjectId : projectId as AnyObject, "type" : type as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectSubscribe) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
+        })
+        
+    }
+    
+    func getSubscribedProjectList(completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagSubscribedProject, param: [:], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectSubscribe) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
+        })!
+    }
+    
+    func favouriteSubcribedProject(_ projectId : Int?, type : Int?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagFavorite, param: [CProjectId : projectId as AnyObject, "type" : type as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagFavorite){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagFavorite, error: error)
+        })
+    }
+    
     
     
     //TODO:
@@ -683,6 +862,7 @@ extension APIRequest {
     func saveLoginUserDetail(response : [String : AnyObject]) {
         
         let dict = response.valueForJSON(key: CJsonData) as? [String : AnyObject]
+        let metaData = response.valueForJSON(key: CJsonMeta) as? [String : AnyObject]
 
         let tblUser = TblUser.findOrCreate(dictionary: ["user_id": Int64(dict!.valueForInt(key: "userId")!)]) as! TblUser
 
@@ -698,7 +878,21 @@ extension APIRequest {
         tblUser.pushNotify = dict!.valueForBool(key: CPushNotify)
         tblUser.userType = Int16(dict!.valueForInt(key: CUserType)!)
 
+        let arrCountry = TblCountryList.fetch(predicate: NSPredicate(format:"%K == %d", CCountry_id, Int16(dict!.valueForInt(key: CCountryId)!)))
+        
+        tblUser.country_code = "+\(((arrCountry![0] as! TblCountryList).country_code) ?? "")"
+        
         appDelegate.loginUser = tblUser
+        
+        if (CUserDefaults.object(forKey: UserDefaultLoginUserToken) == nil) || (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) == ""{
+            if let token = metaData?.valueForString(key: "token") {
+                CUserDefaults.setValue(token, forKey: UserDefaultLoginUserToken)
+            }
+            
+            CUserDefaults.setValue(dict!.valueForInt(key: "userId"), forKey: UserDefaultLoginUserID)
+            CUserDefaults.synchronize()
+        }
+
         
         CoreData.saveContext()
     }

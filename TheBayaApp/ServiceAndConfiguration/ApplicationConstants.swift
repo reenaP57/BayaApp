@@ -77,8 +77,9 @@ let NotificationDidUpdateUserDetail     = "NotificationDidUpdateUserDetail"
 let UserDefaultOpenedTimeLine             = "UserDefaultOpenedTimeLine"
 let UserDefaultRememberMe                 = "UserDefaultRememberMe"
 let UserDefaultTimestamp                  = "UserDefaultTimestamp"
-
-
+let UserDefaultFirstTimeLaunch            = "UserDefaultFirstTimeLaunch"
+let UserDefaultLoginUserID                = "UserDefaultLoginUserID"
+let UserDefaultLoginUserToken             = "UserDefaultLoginUserToken"
 
 
 
@@ -121,6 +122,10 @@ let CMobileType =  2
 
 //MARK:- API Parameter
 
+let CPage                = "page"
+let CPerPage             = "per_page"
+let CLastPage            = "last_page"
+let CCurrentPage         = "current_page"
 let CFirstName           = "firstName"
 let CLastName            = "lastName"
 let CEmail               = "email"
@@ -138,3 +143,14 @@ let CEmailVerify         = "emailVerify"
 let CMobileVerify        = "mobileVerify"
 let CPushNotify          = "pushNotify"
 let CUserType            = "userType"
+let CAddress             = "address"
+let CDesciption          = "description"
+let CIsFavorite          = "isFavorite"
+let CIsSubscribe         = "isSubscribe"
+let CProjectId           = "projectId"
+let CProjectImage        = "projectImage"
+let CProjectName         = "projectName"
+let CReraNumber          = "reraNumber"
+let CStatusId            = "statusId"
+let CProjectProgress     = "projectProgress"
+let CIsSoldOut           = "isSoldOut"

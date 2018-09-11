@@ -50,25 +50,36 @@ class CMSViewController: ParentViewController {
             self.title = "Privacy Policy"
         }
         
-        self.cms()
-    }
-
-    func cms()
-    {
-        let content = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum." as String
-        
-        let font = UIFont.init(name: "Avenir-Medium", size: IS_iPad ? 20.0 : 13.0)
-        self.webContent.loadHTMLString("<span style=\"font-family: \(font!.fontName); font-size: \(font!.pointSize); color: #333333\">\(content)</span>", baseURL: nil)
-
-        
         self.webContent.isOpaque = false;
         self.webContent.backgroundColor = UIColor.clear
-
         
-//        let myURL = URL(string: "https://www.apple.com")
-//        let myRequest = URLRequest(url: myURL!)
-//        self.webVw.loadRequest(myRequest)
+        self.getCMSData()
     }
-
+    
+    func getCMSData() {
+        
+        APIRequest.shared().cms { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let data = response?.value(forKey: CJsonData) as? [[String : AnyObject]]
+                var content = ""
+                
+                switch self.cmsEnum {
+                case .AboutUs :
+                    content = data![0]["cmsDesc"] as! String
+                case .TermsCondition :
+                    content = data![1]["cmsDesc"] as! String
+                case .PrivacyPolicy :
+                    content = data![2]["cmsDesc"] as! String
+                }
+                
+                let font = UIFont.init(name: "Avenir-Medium", size: IS_iPad ? 20.0 : 13.0)
+                self.webContent.loadHTMLString("<span style=\"font-family: \(font!.fontName); font-size: \(font!.pointSize); color: #333333\">\(content)</span>", baseURL: nil)
+                
+            }
+        }
+    }
+    
 }
 
