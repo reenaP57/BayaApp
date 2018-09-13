@@ -117,8 +117,8 @@ extension LoginViewController: UITextFieldDelegate {
             txtEmail.hideValidationMessage(15.0)
             self.showValidation(isAdd: false)
             
-            if (txtEmail.text?.isValidPhoneNo)!{
-                txtEmail.tag = 101
+            if (txtEmail.text?.isValidPhoneNo)! && !(txtEmail.text?.isBlank)! {
+                txtEmail.tag = 102
                 txtCountryCode.hide(byWidth: false)
                 vwSeprater.isHidden = false
             } else {
@@ -189,7 +189,7 @@ extension LoginViewController {
                 } else {
                     //...Mobile Number
                     
-                    self.txtEmail.tag = 101
+                    self.txtEmail.tag = 102
                     
                     if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
                         self.txtPassword.hideValidationMessage(15.0)

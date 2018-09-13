@@ -176,7 +176,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-MC-Q4A">
+                            <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-MC-Q4A">
                                 <rect key="frame" x="80" y="241" width="278" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
@@ -194,7 +194,7 @@
                                     <constraint firstAttribute="width" constant="1" id="9rA-9e-BAy"/>
                                 </constraints>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3K-sF-8m1">
+                            <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3K-sF-8m1">
                                 <rect key="frame" x="16" y="241.5" width="64" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -700,7 +700,7 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYG-qc-ekd" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYG-qc-ekd" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="206" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -712,8 +712,8 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-4z-Lrr">
-                                <rect key="frame" x="80" y="206" width="280" height="50"/>
+                            <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-4z-Lrr">
+                                <rect key="frame" x="80" y="207" width="279" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
@@ -723,7 +723,7 @@
                                 </connections>
                             </textField>
                             <view clipsSubviews="YES" tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3K-gY-ZjA">
-                                <rect key="frame" x="80" y="218" width="1" height="25"/>
+                                <rect key="frame" x="80" y="218.5" width="1" height="25"/>
                                 <color key="backgroundColor" red="0.62352941179999999" green="0.59607843140000005" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="fmr-7Z-Z6A"/>
@@ -735,11 +735,11 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="emY-gZ-82i">
-                                <rect key="frame" x="15" y="206" width="65" height="50"/>
+                            <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="emY-gZ-82i">
+                                <rect key="frame" x="16" y="207" width="64" height="48"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="65" id="PPu-B2-5yN"/>
+                                    <constraint firstAttribute="width" constant="64" id="PPu-B2-5yN"/>
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
@@ -767,9 +767,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="trailing" secondItem="AYG-qc-ekd" secondAttribute="trailing" id="9Qp-Un-LbD"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="trailing" secondItem="AYG-qc-ekd" secondAttribute="trailing" constant="-1" id="9Qp-Un-LbD"/>
                             <constraint firstItem="1IL-4z-Lrr" firstAttribute="centerY" secondItem="AYG-qc-ekd" secondAttribute="centerY" id="EVv-qw-u3U"/>
-                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" id="L1p-nh-Flj"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" constant="-2" id="L1p-nh-Flj"/>
                             <constraint firstItem="cTy-ev-B4j" firstAttribute="bottom" secondItem="znH-KF-d7g" secondAttribute="bottom" id="Pgx-aq-nH0"/>
                             <constraint firstItem="513-4S-sKY" firstAttribute="top" secondItem="znH-KF-d7g" secondAttribute="top" constant="130" id="QlX-5S-mVC"/>
                             <constraint firstItem="AYG-qc-ekd" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" constant="15" id="SGC-QM-679"/>
@@ -787,9 +787,9 @@
                             <constraint firstItem="emY-gZ-82i" firstAttribute="centerY" secondItem="1IL-4z-Lrr" secondAttribute="centerY" id="luZ-nh-DMx"/>
                             <constraint firstItem="513-4S-sKY" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" constant="15" id="miN-X4-gAc"/>
                             <constraint firstItem="AYG-qc-ekd" firstAttribute="top" secondItem="513-4S-sKY" secondAttribute="bottom" constant="20" id="oyI-ER-9Uq"/>
-                            <constraint firstItem="emY-gZ-82i" firstAttribute="leading" secondItem="AYG-qc-ekd" secondAttribute="leading" id="r0u-Z6-WtA"/>
+                            <constraint firstItem="emY-gZ-82i" firstAttribute="leading" secondItem="AYG-qc-ekd" secondAttribute="leading" constant="1" id="r0u-Z6-WtA"/>
                             <constraint firstItem="1IL-4z-Lrr" firstAttribute="leading" secondItem="emY-gZ-82i" secondAttribute="trailing" id="wlM-bO-JDE"/>
-                            <constraint firstItem="emY-gZ-82i" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" id="zxE-Lw-N0y"/>
+                            <constraint firstItem="emY-gZ-82i" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" constant="-2" id="zxE-Lw-N0y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="znH-KF-d7g"/>
                     </view>

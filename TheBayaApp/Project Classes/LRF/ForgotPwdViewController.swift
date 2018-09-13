@@ -45,6 +45,9 @@ class ForgotPwdViewController: ParentViewController {
     func initialize() {
         self.title = "Forgot Password"
         
+        txtEmail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+
+        self.showValidation(isAdd: false)
         txtCountryCode.hide(byWidth: true)
         vwSeprater.isHidden = true
         
@@ -56,6 +59,11 @@ class ForgotPwdViewController: ParentViewController {
     }
     
     func showValidation(isAdd : Bool){
+        
+        self.txtEmail.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+        self.txtEmail.layer.masksToBounds = true
+        txtEmail.layer.cornerRadius = 5
+        txtCountryCode.layer.cornerRadius = 5
         
         if isAdd {
             txtCountryCode.backgroundColor = CRGB(r: 254, g: 242, b: 242)
@@ -99,11 +107,11 @@ extension ForgotPwdViewController: UITextFieldDelegate {
         
         if textField == txtEmail {
             
-            txtEmail.hideValidationMessage(15.0)
+            txtEmail.hideValidationMessage(50.0)
             self.showValidation(isAdd: false)
             
-            if (txtEmail.text?.isValidPhoneNo)!{
-                txtEmail.tag = 101
+            if (txtEmail.text?.isValidPhoneNo)! && !(self.txtEmail.text?.isBlank)!{
+                txtEmail.tag = 102
                 txtCountryCode.hide(byWidth: false)
                 vwSeprater.isHidden = false
             } else {
@@ -119,14 +127,6 @@ extension ForgotPwdViewController: UITextFieldDelegate {
         txtEmail.hideValidationMessage(50.0)
         self.showValidation(isAdd: false)
 
-        if (txtEmail.text?.isValidPhoneNo)! && string.isValidPhoneNo {
-            txtCountryCode.hide(byWidth: false)
-            vwSeprater.isHidden = false
-        } else {
-            txtCountryCode.hide(byWidth: true)
-            vwSeprater.isHidden = true
-        }
-        
         return true
     }
 }
@@ -140,25 +140,37 @@ extension ForgotPwdViewController {
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
         if (self.txtEmail.text?.isBlank)! {
-            self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
+            self.txtEmail.tag = 100
+          
+            self.vwContent.addSubview(self.txtEmail.showValidationMessage(50.0, CBlankEmailOrMobileMessage))
+            self.txtEmail.textfiledAddRemoveShadow(true)
+            self.showValidation(isAdd: true)
             
         } else if !(self.txtEmail.text?.isBlank)! {
+            
+            self.txtEmail.tag = 100
             
             //...Email
             if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
                 
                 if !(self.txtEmail.text?.isValidEmail)! {
-                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
+                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(50.0, CInvalidEmailMessage))
+                    self.txtEmail.textfiledAddRemoveShadow(true)
+                    self.showValidation(isAdd: true)
                     
                 } else {
                     self.forgotPassword(type: CEmailType)
                 }
                 
             } else {
+               
+                self.txtEmail.tag = 102
                 
                 //...Mobile
                 if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
-                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
+                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(50.0, CInvalidMobileMessage))
+                    self.txtEmail.textfiledAddRemoveShadow(true)
+                    self.showValidation(isAdd: true)
                 } else {
                     self.forgotPassword(type: CMobileType)
                 }
