@@ -31,6 +31,7 @@ let CAPITagProjectSubscribe    =   "project-subscribe"
 let CAPITagSubscribedProject   =   "subscribed-project"
 let CAPITagProjectDetails      =   "project-details"
 let CAPITagFavorite            =   "favorite"
+let CAPITagTimeline            =   "timelinelist"
 
 
 let CJsonResponse           = "response"
@@ -833,6 +834,7 @@ extension APIRequest {
     }
     
     
+    
     //TODO:
     //TODO: --------------PROJECT RELATED API--------------
     //TODO:
@@ -904,6 +906,34 @@ extension APIRequest {
         })
     }
     
+    //TODO:
+    //TODO: --------------TIMELINE RELATED API--------------
+    //TODO:
+    
+    func fetchTimelineList(_ projectId : Int?, startDate:String?, endDate:String?, page : Int?, completion : @escaping ClosureCompletion) {
+        
+        var para = [String : Any]()
+        para[CProjectId] = projectId
+        para[CPage] = page
+        if startDate != nil{
+            para[CIStartDate] = startDate
+        }
+        if endDate != nil{
+            para[CIEndDate] = endDate
+        }
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagTimeline){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
+        })
+    }
     
     
     //TODO:

@@ -154,3 +154,8 @@ let CReraNumber          = "reraNumber"
 let CStatusId            = "statusId"
 let CProjectProgress     = "projectProgress"
 let CIsSoldOut           = "isSoldOut"
+let CIStartDate           = "startDate"
+let CIEndDate           = "endDate"
+
+
+
