@@ -164,7 +164,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         
         arrUpdateList.removeAll()
         self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-        self.loadTimeLineListFromServer()
+        self.loadTimeLineListFromServer(true)
     }
     
 }
@@ -214,7 +214,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                 if self.apiTask != nil{
                     if self.apiTask?.state != .running{
                         print("Load more data ====== ")
-                        self.loadTimeLineListFromServer()
+                        self.loadTimeLineListFromServer(false)
                     }
                 }
             }
@@ -321,7 +321,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             cell.pageControlSlider.numberOfPages = arrImages.count
-                            cell.loadSliderImages(images: arrImages)
+                            cell.loadSliderImages(images: arrImages, isGif: dict.valueForInt(key: "mediaType") == 3)
                         }
                         
                         cell.btnShare.touchUpInside { (sender) in
@@ -439,17 +439,19 @@ extension TimelineDetailViewController {
                 
                 if !IS_iPad
                 {
-                    self.btnProjectDetail.isHidden = true
+                    self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
                 }
+                
+                
                 self.tblUpdates.reloadData()
                 
                 self.pageIndexForApi = 1
-                self.loadTimeLineListFromServer()
+                self.loadTimeLineListFromServer(true)
             }
         }
     }
     
-    func loadTimeLineListFromServer(){
+    func loadTimeLineListFromServer(_ shouldShowLoader : Bool?){
         
         if self.apiTask?.state == URLSessionTask.State.running {
             apiTask?.cancel()
@@ -459,7 +461,7 @@ extension TimelineDetailViewController {
         
         if arrProject.count - 1 >= currentIndex{
             let dic = arrProject[currentIndex]
-            apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: nil, endDate: nil, page : pageIndexForApi) { (response, error) in
+            apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: nil, endDate: nil, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
                 self.apiTask?.cancel()
                 
                 if response != nil{

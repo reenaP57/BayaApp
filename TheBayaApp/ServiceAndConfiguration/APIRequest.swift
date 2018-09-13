@@ -1038,7 +1038,7 @@ extension APIRequest {
     //TODO: --------------TIMELINE RELATED API--------------
     //TODO:
     
-    func fetchTimelineList(_ projectId : Int?, startDate:String?, endDate:String?, page : Int?, completion : @escaping ClosureCompletion)  -> URLSessionTask {
+    func fetchTimelineList(_ projectId : Int?, startDate:String?, endDate:String?, page : Int?, shouldShowLoader : Bool?, completion : @escaping ClosureCompletion)  -> URLSessionTask {
         
         var para = [String : Any]()
         para[CProjectId] = projectId
@@ -1050,7 +1050,10 @@ extension APIRequest {
             para[CIEndDate] = endDate
         }
         
+        if shouldShowLoader!{
         MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
+        
         return Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
             MILoader.shared.hideLoader()
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagTimeline){
@@ -1062,7 +1065,7 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.fetchTimelineList(projectId, startDate: startDate, endDate: endDate, page: page, completion: completion)
+                _ = self.fetchTimelineList(projectId, startDate: startDate, endDate: endDate, page: page, shouldShowLoader : shouldShowLoader, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
             }
