@@ -157,7 +157,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             let percentage = imgVHeight * CGFloat((dict.valueForInt(key: CProjectProgress))!)/100
             
             if (dict.valueForInt(key: CProjectProgress)) != 100 || (dict.valueForInt(key: CProjectProgress)) != 0 {
+                if cell.imgVPjctCompletion.image != nil{
                 cell.imgVPjctCompletion.image = self.CropImage(image: cell.imgVPjctCompletion.image!, cropRect: CGRect(x: 0, y: imgVHeight - percentage , width: cell.imgVPjctCompletion.CViewWidth, height: percentage))
+                }
             }
             
             
