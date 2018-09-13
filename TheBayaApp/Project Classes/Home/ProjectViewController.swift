@@ -141,7 +141,10 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        var dict = arrProject[indexPath.row]
+        
         if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+            projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
             self.navigationController?.pushViewController(projectDetailVC, animated: true)
         }
     }

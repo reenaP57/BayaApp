@@ -32,7 +32,7 @@ let CAPITagSubscribedProject   =   "subscribed-project"
 let CAPITagProjectDetails      =   "project-details"
 let CAPITagFavorite            =   "favorite"
 let CAPITagTimeline            =   "timelinelist"
-
+let CAPITagScheduleVisit       =   "schedule-visit"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -63,7 +63,7 @@ let CStatus550              = 550 // Inactive/Delete user
 let CStatus555              = 555 // Invalid request
 let CStatus556              = 556 // Invalid request
 let CStatus1009             = -1009 // No Internet
-
+let CStatus1005             = -1005 //Network connection lost
 
 //MARK:- ---------Networking
 typealias ClosureSuccess = (_ task:URLSessionTask, _ response:AnyObject?) -> Void
@@ -641,7 +641,16 @@ extension APIRequest {
             }
             
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCountry, error: error)
+            
+            completion(nil, error)
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.getCountryList(_timestamp: _timestamp, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCountry, error: error)
+            }
+            
         })
         
     }
@@ -654,7 +663,16 @@ extension APIRequest {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCMS, error: error)
+            
+            completion(nil, error)
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.cms(completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCMS, error: error)
+            }
+            
         })
     }
     
@@ -678,7 +696,15 @@ extension APIRequest {
             
         }) { (task, message, error) in
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSignUp, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.signUpUser(_dict: _dict, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSignUp, error: error)
+            }
         }
   
     }
@@ -698,7 +724,15 @@ extension APIRequest {
             
         }, failureBlock: { (task, message, error) in
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLogin, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.loginUser(email, password, type, countryId, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLogin, error: error)
+            }
         })
     }
     
@@ -718,7 +752,16 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagVerifyUser, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.verifyUser(dict, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagVerifyUser, error: error)
+            }
+            
         })
     }
     
@@ -735,7 +778,13 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResendVerification, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.resendVerificationCode(dict, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResendVerification, error: error)
+            }
         })
     }
     
@@ -754,7 +803,14 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagForgotPassword, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.forgotPassword(dict: dict, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagForgotPassword, error: error)
+            }
+            
         })
     }
     
@@ -771,7 +827,14 @@ extension APIRequest {
             
         }, failureBlock: { (task, message, error) in
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResetPassword, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.resetPassword(dict, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResetPassword, error: error)
+            }
+            
         })
     }
     
@@ -796,7 +859,13 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagEditProfile, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.editProfile(firstName, lastName, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagEditProfile, error: error)
+            }
         })
     }
     
@@ -811,7 +880,15 @@ extension APIRequest {
             }
             
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotifyStatus, error: error)
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotifyStatus, error: error)
+            }
+            
         })
         
     }
@@ -830,7 +907,14 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagChangePassword, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.changePassword(oldPwd, newPwd, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagChangePassword, error: error)
+            }
+            
         })
     }
     
@@ -852,7 +936,7 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             
             completion(nil, error)
-            if error?.code == CStatus1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005  {
                 self.checkInternetConnection {
                     _ = self.getProjectList(page, completion: completion)
                 }
@@ -860,6 +944,26 @@ extension APIRequest {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectList, error: error)
             }
         })!
+    }
+    
+    func getProjectDetail(projectId : Int?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagProjectDetails, param: [CProjectId : projectId as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectDetails) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            if error?.code == CStatus1009  || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.getProjectDetail(projectId: projectId, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectDetails, error: error)
+            }
+        })
     }
     
     func subcribedProject (_ projectId : Int?, type: Int?, completion : @escaping ClosureCompletion) {
@@ -870,7 +974,16 @@ extension APIRequest {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
+            
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.subcribedProject(projectId, type: type, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
+            }
+            
         })
         
     }
@@ -884,7 +997,7 @@ extension APIRequest {
             }
         }, failureBlock: { (task, message, error) in
             completion(nil, error)
-            if error?.code == CStatus1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection {
                     _ = self.getSubscribedProjectList(completion: completion)
                 }
@@ -903,9 +1016,23 @@ extension APIRequest {
             }
             
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagFavorite, error: error)
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.favouriteSubcribedProject(projectId, type: type, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagFavorite, error: error)
+            }
+            
         })
     }
+    
+    
+    func scheduleVisit(dict : [String : AnyObject], completion : @escaping ClosureCompletion) {
+        
+    }
+    
     
     //TODO:
     //TODO: --------------TIMELINE RELATED API--------------
@@ -932,7 +1059,14 @@ extension APIRequest {
             
         }, failureBlock: { (task, message, error) in
             MILoader.shared.hideLoader()
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.fetchTimelineList(projectId, startDate: startDate, endDate: endDate, page: page, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
+            }
+            
         })!
     }
     
