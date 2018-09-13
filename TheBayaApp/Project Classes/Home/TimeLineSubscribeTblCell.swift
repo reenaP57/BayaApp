@@ -210,7 +210,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
         }
 
-        GCDMainThread.asyncAfter(deadline: .now() + 1) {
+        GCDMainThread.asyncAfter(deadline: .now() + 0.3) {
             if self.currentIndex != Int(index) && Int(index) >= 0 {
                 self.currentIndex = Int(index)
                 self.delegate?.reloadTimelineList(index: Int(index))

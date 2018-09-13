@@ -163,7 +163,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         pageIndexForApi = 1
         
         arrUpdateList.removeAll()
-        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: UITableViewRowAnimation.none)
+        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
         self.loadTimeLineListFromServer()
     }
     
@@ -224,16 +224,21 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             if IS_iPad {
                 
                 switch dict.valueForInt(key: "type") {
-                case 0: // Image
+                case 1,3: // Image
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
                         
-                        let arrImg = dict.valueForJSON(key: "image") as! [String]
-                        cell.imgVUpdate.image = UIImage(named: arrImg.first!)
+                        cell.lblDesc.text = dict.valueForString(key: "description")
+                        cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
+
+                        if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                            if arrImages.count > 0{
+                                cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
+                                cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
+                                cell.loadSliderImages(images: arrImages)
+                            }
+                        }
                         
-                        cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
                         
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
@@ -242,53 +247,58 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         return cell
                     }
                     
-                case 1: // URL
-                    
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
-                        
-                        let arrImg = dict.valueForJSON(key: "image") as! [String]
-                        cell.imgVUpdate.image = UIImage(named: arrImg.first!)
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
-                        return cell
-                    }
-                    
-                case 3: // Video
-                    
+                case 2: // ViDEO
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                         
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
-                        
+                        cell.lblDesc.text = dict.valueForString(key: "description")
+                        cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
+
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
                         }
                         
                         cell.btnPlay.touchUpInside { (action) in
-                            
-                            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
-                            let player = AVPlayer(url: videoURL!)
-                            let playerViewController = AVPlayerViewController()
-                            playerViewController.player = player
-                            self.present(playerViewController, animated: true) {
-                                playerViewController.player!.play()
+                            if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
+                                if arrVideos.count > 0{
+                                    let videoURL = URL(string: arrVideos.first!)
+                                    let player = AVPlayer(url: videoURL!)
+                                    let playerViewController = AVPlayerViewController()
+                                    playerViewController.player = player
+                                    self.present(playerViewController, animated: true) {
+                                        playerViewController.player!.play()
+                                    }
+                                }
                             }
                         }
                         
                         return cell
                     }
-                    
-                default:
+                
+                    case 4: // URL
+                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
+                            
+                            cell.lblDesc.text = dict.valueForString(key: "description")
+                            cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
+                            cell.lblUrl.text = dict.valueForString(key: "link")
+                            
+                            if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
+                                cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
+                            }
+                            
+                            cell.btnShare.touchUpInside { (sender) in
+                                self.shareContent()
+                            }
+                            
+                            return cell
+                        }
+                    break
+                
+                default: //TEXT
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
-                        
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        cell.lblDesc.text = dict.valueForString(key: "description")
+                        cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
                         
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
@@ -302,7 +312,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             } else {
                 
                 switch dict.valueForInt(key: "mediaType") {
-                case 1: // Image
+                case 1,3: // Image
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                         
@@ -343,35 +353,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                         playerViewController.player!.play()
                                     }
                                 }
-                                
                             }
-                            
                         }
-                        
-                        return cell
-                    }
-                    
-
-                    
-                case 3: // GIF
-                    
-                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
-                        
-                        cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
-                        
-                        if let arrImages = dict.valueForJSON(key: "media") as? [String] {
-                            cell.loadSliderImages(images: arrImages)
-                        }
-                        
-                        if let arr = dict.valueForJSON(key: "media") as? [String] {
-                            cell.pageControlSlider.numberOfPages = arr.count
-                        }
-                        
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
-                        
                         return cell
                     }
                     
@@ -380,11 +363,11 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
                             cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
+                            cell.lblUrl.text = dict.valueForString(key: "link")
                             
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                                 cell.loadSliderImages(images: arrImages)
                             }
-                            
                             
                             cell.btnShare.touchUpInside { (sender) in
                                 self.shareContent()
@@ -392,7 +375,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             
                             return cell
                     }
-                default: //URL
+                default: //TEXT
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell") as? TimeLineUpdateTextTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
@@ -483,7 +466,7 @@ extension TimelineDetailViewController {
                     if arrData.count > 0{
                         self.pageIndexForApi += 1
                         self.arrUpdateList = self.arrUpdateList + arrData
-                        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: UITableViewRowAnimation.top)
+                        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
                     }
                 }
                 
