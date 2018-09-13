@@ -44,6 +44,10 @@ extension String {
         return self.trim.isEmpty
     }
     
+    var isNumber : Bool {
+        return !self.isEmpty && self.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+    }
+    
     var isAlphanumeric:Bool {
       return !isBlank && rangeOfCharacter(from: .alphanumerics) != nil
     }

@@ -28,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         Fabric.with([Crashlytics.self])
         
-        self.checkInternetConnection()
         self.initRootViewController()
         self.loadCountryList()
     
@@ -73,30 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
     }
     
-    func checkInternetConnection() {
-        
-        let noInternetVW = NoInternetView.viewFromNib(is_ipad: false) as? NoInternetView
-        noInternetVW?.frame = CGRect(x: 0, y: 0, width: CScreenWidth, height: CScreenHeight)
-        
-        let net = NetworkReachabilityManager()
-        
-        net?.startListening()
-        
-        net?.listener = { status in
 
-            if (net?.isReachable)! {
-                //...Network Available
-                print("Network Available")
-                noInternetVW?.removeFromSuperview()
-            } else {
-                //...Not Available Network
-                print("Not Network Available")
-
-                noInternetVW?.removeFromSuperview()
-                appDelegate.window.addSubview(noInternetVW!)
-            }
-        }
-    }
     
     func hideTabBar() {
         appDelegate.tabbarView?.CViewSetY(y: CScreenHeight)

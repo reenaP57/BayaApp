@@ -130,8 +130,12 @@ extension SubscribedProjectViewController {
                 let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
                 
                 if arrData.count > 0 {
-                    for item in arrData {
-                        self.arrSubscribeList.append(item)
+                    
+                    if arrData.count != self.arrSubscribeList.count {
+                        self.arrSubscribeList.removeAll()
+                        for item in arrData {
+                            self.arrSubscribeList.append(item)
+                        }
                     }
                 }
                 

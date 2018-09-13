@@ -61,6 +61,7 @@ let CStatus500              = 500
 let CStatus550              = 550 // Inactive/Delete user
 let CStatus555              = 555 // Invalid request
 let CStatus556              = 556 // Invalid request
+let CStatus1009             = -1009 // No Internet
 
 
 //MARK:- ---------Networking
@@ -580,6 +581,40 @@ class APIRequest: NSObject {
         print("API Error =" + "\(strApiTag )" + "\(String(describing: error?.localizedDescription))" )
     }
     
+    func checkInternetConnection(complete:() -> Void) {
+        
+        var isScreenFind = false
+        
+        for objView in CTopMostViewController.view.subviews {
+            if objView .isKind(of: NoInternetView.classForCoder()) {
+                isScreenFind = true
+                break
+            }
+        }
+        
+        if isScreenFind {
+            return
+        }
+
+        
+        let noInternetVW = NoInternetView.viewFromNib(is_ipad: false) as? NoInternetView
+        noInternetVW?.frame = CGRect(x: 0, y: 64, width: CScreenWidth, height: CScreenHeight - 64)
+        
+        let net = NetworkReachabilityManager()
+        net?.startListening()
+        
+        CTopMostViewController.view.addSubview(noInternetVW!)
+        
+        noInternetVW?.btnTryAgain.touchUpInside(genericTouchUpInsideHandler: { (sender) in
+            
+            if (net?.isReachable)! {
+                //...Network Available
+                print("Network Available")
+                noInternetVW?.removeFromSuperview()
+                complete()
+            }
+        })
+    }
 }
 
 
@@ -587,6 +622,8 @@ class APIRequest: NSObject {
 //MARK:- ---------API Functions
 
 extension APIRequest {
+    
+    
     //TODO:
     //TODO: --------------GENERAL API--------------
     //TODO:
@@ -810,7 +847,15 @@ extension APIRequest {
             }
             
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectList, error: error)
+            
+            completion(nil, error)
+            if error?.code == CStatus1009 {
+                self.checkInternetConnection {
+                    _ = self.getProjectList(page, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectList, error: error)
+            }
         })!
     }
     
@@ -835,7 +880,14 @@ extension APIRequest {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
-            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
+            completion(nil, error)
+            if error?.code == CStatus1009 {
+                self.checkInternetConnection {
+                    _ = self.getSubscribedProjectList(completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
+            }
         })!
     }
     

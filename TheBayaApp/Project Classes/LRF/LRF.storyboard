@@ -167,12 +167,18 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baya_logo" translatesAutoresizingMaskIntoConstraints="NO" id="kOq-If-vap">
                                 <rect key="frame" x="104" y="85" width="166" height="103"/>
                             </imageView>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-MC-Q4A" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="243" width="345" height="50"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ZW-vh-Zf3" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="240" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="XKS-MC-Q4A" secondAttribute="height" multiplier="69:10" id="fnl-cd-OUf"/>
-                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XKS-MC-Q4A">
+                                <rect key="frame" x="80" y="241" width="278" height="47"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -180,9 +186,33 @@
                                     <outlet property="delegate" destination="GZ2-G3-woT" id="Pw9-4H-4op"/>
                                 </connections>
                             </textField>
-                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgd-mG-i6T" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="308" width="345" height="50"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qc-yh-A2f">
+                                <rect key="frame" x="80" y="253" width="1" height="25"/>
+                                <color key="backgroundColor" red="0.62352941179999999" green="0.59607843140000005" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="8gO-gy-yxI"/>
+                                    <constraint firstAttribute="width" constant="1" id="9rA-9e-BAy"/>
+                                </constraints>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3K-sF-8m1">
+                                <rect key="frame" x="16" y="241.5" width="64" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="64" id="UbG-e9-CdQ"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="GZ2-G3-woT" id="xUk-TX-Wmb"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vgd-mG-i6T" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="304.5" width="345" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vgd-mG-i6T" secondAttribute="height" multiplier="69:10" id="v64-r5-dPa"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -191,18 +221,18 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CTN-jp-0vs">
-                                <rect key="frame" x="15" y="382" width="22" height="22"/>
+                                <rect key="frame" x="15" y="376" width="22" height="22"/>
                                 <state key="normal" image="remember"/>
                                 <state key="selected" image="select_remember"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quI-8K-81s" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="45" y="384.5" width="87.5" height="18"/>
+                                <rect key="frame" x="45" y="378.5" width="87.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wOE-vC-9aX">
-                                <rect key="frame" x="15" y="378" width="164" height="30"/>
+                                <rect key="frame" x="15" y="372" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="7AZ-x7-KXO"/>
                                 </constraints>
@@ -211,7 +241,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYU-dU-c06">
-                                <rect key="frame" x="196" y="378" width="164" height="30"/>
+                                <rect key="frame" x="196" y="372" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="164" id="cnR-uw-oWw"/>
                                 </constraints>
@@ -224,7 +254,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3PK-Yv-mVS" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="15" y="446" width="345" height="50"/>
+                                <rect key="frame" x="15" y="440" width="345" height="50"/>
                                 <color key="backgroundColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="3PK-Yv-mVS" secondAttribute="height" multiplier="69:10" id="9Lw-Ao-SF8"/>
@@ -243,13 +273,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New user? Sign Up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWF-wv-Hsh">
-                                <rect key="frame" x="131" y="548" width="112.5" height="18"/>
+                                <rect key="frame" x="131" y="542" width="112.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-gz-wkL">
-                                <rect key="frame" x="105" y="542" width="164" height="30"/>
+                                <rect key="frame" x="105" y="536" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9Qu-eO-aE3"/>
                                     <constraint firstAttribute="width" constant="164" id="Yg1-ff-dzL"/>
@@ -261,40 +291,51 @@
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="XKS-MC-Q4A" firstAttribute="width" secondItem="piR-t0-MTT" secondAttribute="width" multiplier="0.92" id="1Bt-vw-CiV"/>
-                            <constraint firstItem="vgd-mG-i6T" firstAttribute="height" secondItem="XKS-MC-Q4A" secondAttribute="height" id="3Ys-jg-2ix"/>
+                            <constraint firstItem="CTN-jp-0vs" firstAttribute="leading" secondItem="vgd-mG-i6T" secondAttribute="leading" id="0Lj-lr-Rbm"/>
+                            <constraint firstItem="quI-8K-81s" firstAttribute="centerY" secondItem="CTN-jp-0vs" secondAttribute="centerY" id="0gY-GR-fBb"/>
+                            <constraint firstItem="1ZW-vh-Zf3" firstAttribute="height" secondItem="XKS-MC-Q4A" secondAttribute="height" constant="3" id="0iu-CI-2EG"/>
+                            <constraint firstItem="XKS-MC-Q4A" firstAttribute="height" secondItem="vgd-mG-i6T" secondAttribute="height" constant="-3" id="5mL-gQ-n5v"/>
+                            <constraint firstItem="ANf-Hh-RT5" firstAttribute="trailing" secondItem="vgd-mG-i6T" secondAttribute="trailing" constant="15" id="75D-eI-Xh6"/>
                             <constraint firstItem="jMa-gz-wkL" firstAttribute="top" secondItem="3PK-Yv-mVS" secondAttribute="bottom" constant="46" id="7Mp-Qg-lbt"/>
                             <constraint firstItem="jMa-gz-wkL" firstAttribute="centerX" secondItem="piR-t0-MTT" secondAttribute="centerX" id="BZE-2q-Chk"/>
-                            <constraint firstItem="XKS-MC-Q4A" firstAttribute="top" secondItem="kOq-If-vap" secondAttribute="bottom" constant="55" id="CXg-Mv-fJw"/>
+                            <constraint firstItem="1Qc-yh-A2f" firstAttribute="centerY" secondItem="h3K-sF-8m1" secondAttribute="centerY" constant="0.5" id="Elt-Ft-sai"/>
                             <constraint firstItem="3PK-Yv-mVS" firstAttribute="centerX" secondItem="piR-t0-MTT" secondAttribute="centerX" id="FUP-Xx-ZFD"/>
+                            <constraint firstItem="AYU-dU-c06" firstAttribute="trailing" secondItem="vgd-mG-i6T" secondAttribute="trailing" id="GuR-N2-bBg"/>
+                            <constraint firstItem="h3K-sF-8m1" firstAttribute="height" secondItem="XKS-MC-Q4A" secondAttribute="height" id="HAV-IC-1fc"/>
                             <constraint firstItem="hWF-wv-Hsh" firstAttribute="centerY" secondItem="jMa-gz-wkL" secondAttribute="centerY" id="KVv-Zg-tzm"/>
-                            <constraint firstItem="XKS-MC-Q4A" firstAttribute="centerX" secondItem="piR-t0-MTT" secondAttribute="centerX" id="Pgm-jl-Sks"/>
-                            <constraint firstItem="vgd-mG-i6T" firstAttribute="leading" secondItem="XKS-MC-Q4A" secondAttribute="leading" id="RbL-PR-PoM"/>
+                            <constraint firstItem="XKS-MC-Q4A" firstAttribute="leading" secondItem="h3K-sF-8m1" secondAttribute="trailing" id="MFL-AD-hHO"/>
                             <constraint firstItem="3PK-Yv-mVS" firstAttribute="width" secondItem="piR-t0-MTT" secondAttribute="width" multiplier="0.92" id="SOu-AT-YRP"/>
-                            <constraint firstItem="AYU-dU-c06" firstAttribute="trailing" secondItem="vgd-mG-i6T" secondAttribute="trailing" id="SY8-Yt-r4B"/>
-                            <constraint firstItem="vgd-mG-i6T" firstAttribute="trailing" secondItem="XKS-MC-Q4A" secondAttribute="trailing" id="TKU-1x-8oh"/>
                             <constraint firstItem="kOq-If-vap" firstAttribute="centerX" secondItem="piR-t0-MTT" secondAttribute="centerX" id="WWA-ix-yBe"/>
                             <constraint firstItem="AYU-dU-c06" firstAttribute="centerY" secondItem="wOE-vC-9aX" secondAttribute="centerY" id="Yvh-aD-L2t"/>
+                            <constraint firstItem="1ZW-vh-Zf3" firstAttribute="leading" secondItem="ANf-Hh-RT5" secondAttribute="leading" constant="15" id="axg-DS-nLg"/>
                             <constraint firstItem="hWF-wv-Hsh" firstAttribute="centerX" secondItem="jMa-gz-wkL" secondAttribute="centerX" id="c91-Ng-eih"/>
-                            <constraint firstItem="vgd-mG-i6T" firstAttribute="top" secondItem="XKS-MC-Q4A" secondAttribute="bottom" constant="15" id="fOz-oT-m80"/>
-                            <constraint firstItem="wOE-vC-9aX" firstAttribute="top" secondItem="vgd-mG-i6T" secondAttribute="bottom" constant="20" id="l5O-pj-Zcy"/>
-                            <constraint firstItem="vgd-mG-i6T" firstAttribute="width" secondItem="XKS-MC-Q4A" secondAttribute="width" id="lYC-Ei-WHa"/>
+                            <constraint firstItem="h3K-sF-8m1" firstAttribute="leading" secondItem="ANf-Hh-RT5" secondAttribute="leading" constant="16" id="elh-DH-pNu"/>
+                            <constraint firstItem="h3K-sF-8m1" firstAttribute="centerY" secondItem="XKS-MC-Q4A" secondAttribute="centerY" id="l9c-Hc-P1r"/>
+                            <constraint firstItem="wOE-vC-9aX" firstAttribute="top" secondItem="vgd-mG-i6T" secondAttribute="bottom" constant="17.5" id="ljc-Rh-FOz"/>
+                            <constraint firstItem="vgd-mG-i6T" firstAttribute="top" secondItem="XKS-MC-Q4A" secondAttribute="bottom" constant="16.5" id="mZe-kO-sTM"/>
                             <constraint firstItem="3PK-Yv-mVS" firstAttribute="top" secondItem="wOE-vC-9aX" secondAttribute="bottom" constant="38" id="nNU-6p-WWH"/>
-                            <constraint firstItem="CTN-jp-0vs" firstAttribute="leading" secondItem="XKS-MC-Q4A" secondAttribute="leading" id="q24-Q9-afb"/>
+                            <constraint firstItem="XKS-MC-Q4A" firstAttribute="top" secondItem="kOq-If-vap" secondAttribute="bottom" constant="53" id="pTG-ht-1FY"/>
+                            <constraint firstItem="vgd-mG-i6T" firstAttribute="leading" secondItem="ANf-Hh-RT5" secondAttribute="leading" constant="15" id="r2M-yH-PNg"/>
                             <constraint firstItem="kOq-If-vap" firstAttribute="top" secondItem="ANf-Hh-RT5" secondAttribute="top" constant="65" id="uJh-RG-E1Y"/>
                             <constraint firstItem="wOE-vC-9aX" firstAttribute="leading" secondItem="CTN-jp-0vs" secondAttribute="leading" id="vdW-8p-xGI"/>
-                            <constraint firstItem="CTN-jp-0vs" firstAttribute="top" secondItem="vgd-mG-i6T" secondAttribute="bottom" constant="24" id="wHH-Mu-8Cx"/>
-                            <constraint firstItem="quI-8K-81s" firstAttribute="centerY" secondItem="CTN-jp-0vs" secondAttribute="centerY" id="ylZ-bG-LcI"/>
+                            <constraint firstItem="1Qc-yh-A2f" firstAttribute="leading" secondItem="h3K-sF-8m1" secondAttribute="trailing" id="vfd-BU-MrA"/>
+                            <constraint firstItem="ANf-Hh-RT5" firstAttribute="trailing" secondItem="1ZW-vh-Zf3" secondAttribute="trailing" constant="15" id="win-8n-ezd"/>
+                            <constraint firstItem="CTN-jp-0vs" firstAttribute="top" secondItem="vgd-mG-i6T" secondAttribute="bottom" constant="21.5" id="xOz-iE-RIg"/>
                             <constraint firstItem="quI-8K-81s" firstAttribute="leading" secondItem="CTN-jp-0vs" secondAttribute="trailing" constant="8" id="z90-ck-ZKj"/>
+                            <constraint firstItem="1ZW-vh-Zf3" firstAttribute="top" secondItem="XKS-MC-Q4A" secondAttribute="top" constant="-1" id="zEs-Uc-6XX"/>
+                            <constraint firstItem="ANf-Hh-RT5" firstAttribute="trailing" secondItem="XKS-MC-Q4A" secondAttribute="trailing" constant="17" id="zbX-5z-zxQ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="ANf-Hh-RT5"/>
                     </view>
                     <connections>
                         <outlet property="btnRememberMe" destination="CTN-jp-0vs" id="oEH-zx-Nak"/>
                         <outlet property="lblSignUp" destination="hWF-wv-Hsh" id="Zma-Gp-aaA"/>
+                        <outlet property="txtCountryCode" destination="h3K-sF-8m1" id="Bim-M9-YND"/>
                         <outlet property="txtEmail" destination="XKS-MC-Q4A" id="JjQ-lH-KVu"/>
                         <outlet property="txtPassword" destination="vgd-mG-i6T" id="V9n-DC-jMd"/>
                         <outlet property="vwContent" destination="piR-t0-MTT" id="UYZ-xp-z9u"/>
+                        <outlet property="vwEmail" destination="1ZW-vh-Zf3" id="p6H-Ly-yl1"/>
+                        <outlet property="vwSeprater" destination="1Qc-yh-A2f" id="24j-Yd-0kr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vv8-WQ-R1B" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -659,17 +700,52 @@
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-4z-Lrr" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                            <view tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AYG-qc-ekd" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="206" width="345" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="1IL-4z-Lrr" secondAttribute="height" multiplier="69:10" id="Enj-gt-vED"/>
+                                    <constraint firstAttribute="width" secondItem="AYG-qc-ekd" secondAttribute="height" multiplier="69:10" id="stj-6i-HQ7"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1IL-4z-Lrr">
+                                <rect key="frame" x="80" y="206" width="280" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" keyboardType="emailAddress"/>
                                 <connections>
                                     <outlet property="delegate" destination="nZI-QC-JGF" id="xDn-ah-r4U"/>
+                                </connections>
+                            </textField>
+                            <view clipsSubviews="YES" tag="103" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3K-gY-ZjA">
+                                <rect key="frame" x="80" y="218" width="1" height="25"/>
+                                <color key="backgroundColor" red="0.62352941179999999" green="0.59607843140000005" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="1" id="fmr-7Z-Z6A"/>
+                                    <constraint firstAttribute="height" constant="25" id="i1g-Ho-OpO"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="emY-gZ-82i">
+                                <rect key="frame" x="15" y="206" width="65" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="65" id="PPu-B2-5yN"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                <connections>
+                                    <outlet property="delegate" destination="GZ2-G3-woT" id="qUH-Lf-Gj9"/>
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGq-IN-NHO" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
@@ -691,27 +767,39 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uGq-IN-NHO" firstAttribute="centerX" secondItem="1IL-4z-Lrr" secondAttribute="centerX" id="59s-pq-xsk"/>
-                            <constraint firstItem="uGq-IN-NHO" firstAttribute="width" secondItem="1IL-4z-Lrr" secondAttribute="width" id="5R3-ow-GUi"/>
-                            <constraint firstItem="uGq-IN-NHO" firstAttribute="top" secondItem="1IL-4z-Lrr" secondAttribute="bottom" constant="50" id="K3T-B3-SNc"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="trailing" secondItem="AYG-qc-ekd" secondAttribute="trailing" id="9Qp-Un-LbD"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="centerY" secondItem="AYG-qc-ekd" secondAttribute="centerY" id="EVv-qw-u3U"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" id="L1p-nh-Flj"/>
                             <constraint firstItem="cTy-ev-B4j" firstAttribute="bottom" secondItem="znH-KF-d7g" secondAttribute="bottom" id="Pgx-aq-nH0"/>
                             <constraint firstItem="513-4S-sKY" firstAttribute="top" secondItem="znH-KF-d7g" secondAttribute="top" constant="130" id="QlX-5S-mVC"/>
-                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="centerX" secondItem="HGm-av-htu" secondAttribute="centerX" id="T1Z-bY-Ldc"/>
-                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="top" secondItem="513-4S-sKY" secondAttribute="bottom" constant="20" id="WWA-57-frd"/>
-                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="width" secondItem="HGm-av-htu" secondAttribute="width" multiplier="0.92" id="XpI-go-ul9"/>
+                            <constraint firstItem="AYG-qc-ekd" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" constant="15" id="SGC-QM-679"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" id="XXJ-MD-zOe"/>
+                            <constraint firstItem="znH-KF-d7g" firstAttribute="trailing" secondItem="AYG-qc-ekd" secondAttribute="trailing" constant="15" id="YKg-by-OVk"/>
                             <constraint firstItem="cTy-ev-B4j" firstAttribute="top" secondItem="HGm-av-htu" secondAttribute="top" id="d7a-uP-rio"/>
                             <constraint firstItem="cTy-ev-B4j" firstAttribute="trailing" secondItem="znH-KF-d7g" secondAttribute="trailing" id="f9P-PD-uWi"/>
+                            <constraint firstItem="R3K-gY-ZjA" firstAttribute="centerY" secondItem="emY-gZ-82i" secondAttribute="centerY" id="gDH-lv-kYR"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="width" secondItem="AYG-qc-ekd" secondAttribute="width" id="gLW-3r-l8M"/>
                             <constraint firstItem="znH-KF-d7g" firstAttribute="trailing" secondItem="513-4S-sKY" secondAttribute="trailing" constant="15" id="ga8-FI-WzX"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="centerX" secondItem="AYG-qc-ekd" secondAttribute="centerX" id="hrJ-hB-gDZ"/>
+                            <constraint firstItem="uGq-IN-NHO" firstAttribute="top" secondItem="AYG-qc-ekd" secondAttribute="bottom" constant="50" id="i1Y-jj-pFv"/>
                             <constraint firstItem="cTy-ev-B4j" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" id="iuC-S2-TyG"/>
+                            <constraint firstItem="R3K-gY-ZjA" firstAttribute="leading" secondItem="emY-gZ-82i" secondAttribute="trailing" id="jrP-Ez-tPW"/>
+                            <constraint firstItem="emY-gZ-82i" firstAttribute="centerY" secondItem="1IL-4z-Lrr" secondAttribute="centerY" id="luZ-nh-DMx"/>
                             <constraint firstItem="513-4S-sKY" firstAttribute="leading" secondItem="znH-KF-d7g" secondAttribute="leading" constant="15" id="miN-X4-gAc"/>
-                            <constraint firstItem="uGq-IN-NHO" firstAttribute="height" secondItem="1IL-4z-Lrr" secondAttribute="height" id="vlY-dr-9zU"/>
+                            <constraint firstItem="AYG-qc-ekd" firstAttribute="top" secondItem="513-4S-sKY" secondAttribute="bottom" constant="20" id="oyI-ER-9Uq"/>
+                            <constraint firstItem="emY-gZ-82i" firstAttribute="leading" secondItem="AYG-qc-ekd" secondAttribute="leading" id="r0u-Z6-WtA"/>
+                            <constraint firstItem="1IL-4z-Lrr" firstAttribute="leading" secondItem="emY-gZ-82i" secondAttribute="trailing" id="wlM-bO-JDE"/>
+                            <constraint firstItem="emY-gZ-82i" firstAttribute="height" secondItem="AYG-qc-ekd" secondAttribute="height" id="zxE-Lw-N0y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="znH-KF-d7g"/>
                     </view>
                     <connections>
                         <outlet property="lblNote" destination="513-4S-sKY" id="DHa-eY-Es6"/>
+                        <outlet property="txtCountryCode" destination="emY-gZ-82i" id="65h-tZ-j8v"/>
                         <outlet property="txtEmail" destination="1IL-4z-Lrr" id="Xdg-5n-tcB"/>
                         <outlet property="vwContent" destination="HGm-av-htu" id="yaa-Ik-Sgv"/>
+                        <outlet property="vwEmail" destination="AYG-qc-ekd" id="2HE-yU-B7c"/>
+                        <outlet property="vwSeprater" destination="R3K-gY-ZjA" id="4AW-n3-Utx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rpH-io-JqQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

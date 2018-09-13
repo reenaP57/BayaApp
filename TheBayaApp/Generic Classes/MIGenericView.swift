@@ -27,7 +27,6 @@ class MIGenericView: UIView {
         if self.tag == 101 {
             
             ///... A View that will in CornerRadius shape AND in shadow shape.
-            
             self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 7, height: 5), shadowRadius: 5.0, shadowOpacity: 0.7)
 
             self.layer.cornerRadius = cornerRadius
@@ -38,11 +37,11 @@ class MIGenericView: UIView {
             self.setGradientBackground()
             
         } else if self.tag == 103 {
+            //...TextField Shadow for Login and Forgot screen
             
-            self.layer.borderWidth = 2
-            self.layer.borderColor = CRGB(r: 185, g: 200, b: 207).cgColor
             self.layer.cornerRadius = cornerRadius
-            
+            self.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
+  
         } else if self.tag == 104 {
             
             //...Shadow for project detail, Timeline screen card

@@ -12,11 +12,24 @@ import UIKit
 
 class LoginViewController: ParentViewController {
 
-    @IBOutlet fileprivate weak var txtEmail : UITextField!
+    @IBOutlet fileprivate weak var txtEmail : UITextField!{
+        didSet{
+            txtEmail.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+        }
+    }
     @IBOutlet fileprivate weak var txtPassword : UITextField!
+    @IBOutlet fileprivate weak var txtCountryCode : UITextField!{
+        didSet{
+            txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+        }
+    }
     @IBOutlet fileprivate weak var btnRememberMe : UIButton!
     @IBOutlet fileprivate weak var vwContent : UIView!
+    @IBOutlet fileprivate weak var vwEmail : UIView!
+    @IBOutlet fileprivate weak var vwSeprater : UIView!
     @IBOutlet fileprivate weak var lblSignUp : UILabel!
+
+    var countryID : Int = 356 //India country ID
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +45,30 @@ class LoginViewController: ParentViewController {
     
     func initialize() {
         
+        txtEmail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        txtCountryCode.hide(byWidth: true)
+        vwSeprater.isHidden = true
+        
+        self.showValidation(isAdd: false)
+        self.setCountryList()
         self.setAtttibuteString()
+    }
+    
+    func setCountryList(){
+        
+        let arrCountry = TblCountryList.fetch(predicate: nil, orderBy: "country_name", ascending: true)
+        let arrCountryCode = arrCountry?.value(forKeyPath: "country_with_code") as? [Any]
+        
+        if (arrCountryCode?.count)! > 0 {
+            
+            txtCountryCode.setPickerData(arrPickerData: arrCountryCode!, selectedPickerDataHandler: { (select, index, component) in
+                
+                let dict = arrCountry![index] as AnyObject
+                countryID = dict.value(forKey: "country_id") as! Int
+                txtCountryCode.text = "+\(dict.value(forKey: "country_code") ?? "")"
+            }, defaultPlaceholder: "+91")
+        }
     }
     
     func setAtttibuteString() {
@@ -45,17 +81,61 @@ class LoginViewController: ParentViewController {
         
         lblSignUp.attributedText = attributedString
     }
+    
+    func showValidation(isAdd : Bool){
+        
+        self.txtEmail.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+        self.txtEmail.layer.masksToBounds = true
+        txtEmail.layer.cornerRadius = 5
+        txtCountryCode.layer.cornerRadius = 5
+
+        if isAdd {
+            txtCountryCode.backgroundColor = CRGB(r: 254, g: 242, b: 242)
+            txtEmail.backgroundColor = CRGB(r: 254, g: 242, b: 242)
+            vwEmail.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+            vwEmail.layer.borderWidth = 1.0
+            vwEmail.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
+            
+        } else {
+            vwEmail.layer.borderWidth = 0.0
+            vwEmail.layer.borderColor = UIColor.white.cgColor
+            txtCountryCode.backgroundColor = UIColor.white
+            txtEmail.backgroundColor = UIColor.white
+            vwEmail.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
+        }
+    }
 }
 
 
 // MARK:- -------- UITextFieldDelegate
 extension LoginViewController: UITextFieldDelegate {
     
+    @objc func textFieldDidChange(textField : UITextField) {
+        
+        if textField == txtEmail {
+            
+            txtEmail.hideValidationMessage(15.0)
+            self.showValidation(isAdd: false)
+            
+            if (txtEmail.text?.isValidPhoneNo)!{
+                txtEmail.tag = 101
+                txtCountryCode.hide(byWidth: false)
+                vwSeprater.isHidden = false
+            } else {
+                txtEmail.tag = 100
+                txtCountryCode.hide(byWidth: true)
+                vwSeprater.isHidden = true
+            }
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         switch textField {
         case txtEmail:
             txtEmail.hideValidationMessage(15.0)
+            self.showValidation(isAdd: false)
+
         default:
             txtPassword.hideValidationMessage(15.0)
             let cs = NSCharacterSet(charactersIn: PASSWORDALLOWCHAR).inverted
@@ -77,17 +157,24 @@ extension LoginViewController {
     @IBAction fileprivate func btnLoginClicked (sender : UIButton) {
         
             if (self.txtEmail.text?.isBlank)! {
+                self.txtEmail.tag = 100
                 self.txtPassword.hideValidationMessage(15.0)
                 self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CBlankEmailOrMobileMessage))
+                self.txtEmail.textfiledAddRemoveShadow(true)
+                self.showValidation(isAdd: true)
                 
             } else if !(self.txtEmail.text?.isBlank)! {
                 
                 //...Email
                 if self.txtEmail.text?.range(of:"@") != nil || self.txtEmail.text?.rangeOfCharacter(from: CharacterSet.letters) != nil  {
                     
+                    self.txtEmail.tag = 100
+                    
                     if !(self.txtEmail.text?.isValidEmail)! {
                         self.txtPassword.hideValidationMessage(15.0)
-                        self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
+                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidEmailMessage))
+                        self.txtEmail.textfiledAddRemoveShadow(true)
+                        self.showValidation(isAdd: true)
                         
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
@@ -102,9 +189,14 @@ extension LoginViewController {
                 } else {
                     //...Mobile Number
                     
+                    self.txtEmail.tag = 101
+                    
                     if !(self.txtEmail.text?.isValidPhoneNo)! || ((self.txtEmail.text?.count)! > 10 || (self.txtEmail.text?.count)! < 10) {
-                       self.txtPassword.hideValidationMessage(15.0)
-                        self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
+                        self.txtPassword.hideValidationMessage(15.0)
+                    self.vwContent.addSubview(self.txtEmail.showValidationMessage(15.0, CInvalidMobileMessage))
+                        self.txtEmail.textfiledAddRemoveShadow(true)
+                        self.showValidation(isAdd: true)
+                        
                     } else if (self.txtPassword.text?.isBlank)! {
                         self.vwContent.addSubview(self.txtPassword.showValidationMessage(15.0,CBlankPasswordMessage))
                         

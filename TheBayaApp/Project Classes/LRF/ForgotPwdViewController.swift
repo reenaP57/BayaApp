@@ -10,10 +10,25 @@ import UIKit
 
 class ForgotPwdViewController: ParentViewController {
 
-    @IBOutlet fileprivate weak var txtEmail : UITextField!
+    @IBOutlet fileprivate weak var txtEmail : UITextField!{
+        didSet{
+            txtEmail.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+        }
+    }
+
+    @IBOutlet fileprivate weak var txtCountryCode : UITextField!{
+        didSet{
+            txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+        }
+    }
+    
+    @IBOutlet fileprivate weak var vwEmail : UIView!
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var lblNote : UILabel!
-
+    @IBOutlet fileprivate weak var vwSeprater : UIView!
+    
+    var countryID : Int = 356 //India country ID
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -30,8 +45,47 @@ class ForgotPwdViewController: ParentViewController {
     func initialize() {
         self.title = "Forgot Password"
         
+        txtCountryCode.hide(byWidth: true)
+        vwSeprater.isHidden = true
+        
+        self.setCountryList()
+        
         if IS_iPhone_6_Plus {
             _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
+        }
+    }
+    
+    func showValidation(isAdd : Bool){
+        
+        if isAdd {
+            txtCountryCode.backgroundColor = CRGB(r: 254, g: 242, b: 242)
+            txtEmail.backgroundColor = CRGB(r: 254, g: 242, b: 242)
+            vwEmail.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+            vwEmail.layer.borderWidth = 1.0
+            vwEmail.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
+            
+        } else {
+            vwEmail.layer.borderWidth = 0.0
+            vwEmail.layer.borderColor = UIColor.white.cgColor
+            txtCountryCode.backgroundColor = UIColor.white
+            txtEmail.backgroundColor = UIColor.white
+            vwEmail.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
+        }
+    }
+    
+    func setCountryList(){
+        
+        let arrCountry = TblCountryList.fetch(predicate: nil, orderBy: "country_name", ascending: true)
+        let arrCountryCode = arrCountry?.value(forKeyPath: "country_with_code") as? [Any]
+        
+        if (arrCountryCode?.count)! > 0 {
+            
+            txtCountryCode.setPickerData(arrPickerData: arrCountryCode!, selectedPickerDataHandler: { (select, index, component) in
+                
+                let dict = arrCountry![index] as AnyObject
+                countryID = dict.value(forKey: "country_id") as! Int
+                txtCountryCode.text = "+\(dict.value(forKey: "country_code") ?? "")"
+            }, defaultPlaceholder: "+91")
         }
     }
 }
@@ -41,9 +95,38 @@ class ForgotPwdViewController: ParentViewController {
 
 extension ForgotPwdViewController: UITextFieldDelegate {
     
+    @objc func textFieldDidChange(textField : UITextField) {
+        
+        if textField == txtEmail {
+            
+            txtEmail.hideValidationMessage(15.0)
+            self.showValidation(isAdd: false)
+            
+            if (txtEmail.text?.isValidPhoneNo)!{
+                txtEmail.tag = 101
+                txtCountryCode.hide(byWidth: false)
+                vwSeprater.isHidden = false
+            } else {
+                txtEmail.tag = 100
+                txtCountryCode.hide(byWidth: true)
+                vwSeprater.isHidden = true
+            }
+        }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         txtEmail.hideValidationMessage(50.0)
+        self.showValidation(isAdd: false)
+
+        if (txtEmail.text?.isValidPhoneNo)! && string.isValidPhoneNo {
+            txtCountryCode.hide(byWidth: false)
+            vwSeprater.isHidden = false
+        } else {
+            txtCountryCode.hide(byWidth: true)
+            vwSeprater.isHidden = true
+        }
+        
         return true
     }
 }

@@ -71,19 +71,31 @@ extension UITextField {
         if self.tag == lblMessage.tag {
             lblMessage.removeFromSuperview()
             updateTextFiledBottomSpace(space)
-            self.textfiledAddRemoveShadow(true)
+           self.textfiledAddRemoveShadow(true)
+          
+           
         }
     }
     
     func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
     {
-        self.textfiledAddRemoveShadow(false)
+       self.textfiledAddRemoveShadow(false)
+       
+        
        // self.delegate = self
         
         DispatchQueue.main.async {
             lblMessage.tag = self.tag
             lblMessage.text = message
-            lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+            
+            if self.tag == 101 {
+                //...For Auto detect country code
+                lblMessage.frame = CGRect(x: self.frame.origin.x - 65 + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+
+            } else {
+                lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+            }
+            
             lblMessage.numberOfLines = 0
             lblMessage.textColor = ColorValidation
             

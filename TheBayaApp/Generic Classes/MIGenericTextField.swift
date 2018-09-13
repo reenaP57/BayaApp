@@ -29,10 +29,6 @@ class MIGenericTextField: UITextField {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        layer.masksToBounds = false
-        layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
-        layer.shadowOpacity = 5
-        layer.shadowOffset = CGSize(width: 0, height: 3)
-        layer.shadowRadius = 7
+        self.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
     }
 }
