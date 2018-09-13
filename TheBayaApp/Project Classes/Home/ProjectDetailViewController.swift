@@ -70,7 +70,8 @@ class ProjectDetailViewController: ParentViewController {
     var arrSpecification = [String]()
     var arrAmmenities = [[String : AnyObject]]()
     var arrImg = [String]()
-
+ 
+    var projectID = 0
     var planIndexPath : IndexPath = IndexPath(item: 0, section: 0)
     
     override func viewDidLoad() {
@@ -178,6 +179,17 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.async {
             self.updateCollectionAndTableHeight()
         }
+        
+        APIRequest.shared().getProjectDetail(projectId: self.projectID) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let dict = response?.value(forKey: CJsonData) as! [String : AnyObject]
+                
+                
+            }
+        }
+        
     }
     
     func updateCollectionAndTableHeight() {
