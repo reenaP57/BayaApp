@@ -18,7 +18,7 @@ class ForgotPwdViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtCountryCode : UITextField!{
         didSet{
-            txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+            txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 7.0)
         }
     }
     
@@ -45,6 +45,9 @@ class ForgotPwdViewController: ParentViewController {
     func initialize() {
         self.title = "Forgot Password"
         
+        txtEmail.font = txtEmail.font?.setUpAppropriateFont()
+        txtCountryCode.font = txtCountryCode.font?.setUpAppropriateFont()
+
         txtEmail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
 
         self.showValidation(isAdd: false)
@@ -188,7 +191,16 @@ extension ForgotPwdViewController {
     func forgotPassword(type : Int) {
         self.resignKeyboard()
         
-        APIRequest.shared().forgotPassword(txtEmail.text, type: type) { (response, error) in
+        var dict = [String : AnyObject]()
+        
+        if type == CMobileType {
+            dict = ["type" : type as AnyObject, "userName" : txtEmail.text as AnyObject, CCountryId : countryID as AnyObject]
+
+        } else {
+            dict = ["type" : type as AnyObject, "userName" : txtEmail.text as AnyObject]
+        }
+        
+        APIRequest.shared().forgotPassword(dict: dict) { (response, error) in
             
             if response != nil && error == nil {
                 
@@ -198,6 +210,7 @@ extension ForgotPwdViewController {
                         resetPwdVC.isEmail = true
                     } else {
                         resetPwdVC.isEmail = false
+                        resetPwdVC.countryId = self.countryID
                     }
                     
                     resetPwdVC.strEmailMobile = self.txtEmail.text!

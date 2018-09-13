@@ -20,7 +20,7 @@ class LoginViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtPassword : UITextField!
     @IBOutlet fileprivate weak var txtCountryCode : UITextField!{
         didSet{
-            txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+            txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 7.0)
         }
     }
     @IBOutlet fileprivate weak var btnRememberMe : UIButton!
@@ -45,6 +45,9 @@ class LoginViewController: ParentViewController {
     
     func initialize() {
         
+        txtEmail.font = txtEmail.font?.setUpAppropriateFont()
+        txtCountryCode.font = txtCountryCode.font?.setUpAppropriateFont()
+
         txtEmail.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         
         txtCountryCode.hide(byWidth: true)
@@ -239,7 +242,7 @@ extension LoginViewController {
         
         self.resignKeyboard()
         
-        APIRequest.shared().loginUser(txtEmail.text, txtPassword.text, type) { (response, error) in
+        APIRequest.shared().loginUser(txtEmail.text, txtPassword.text, type, countryID) { (response, error) in
             
             if response != nil && error == nil {
                 
