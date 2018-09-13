@@ -57,7 +57,9 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeLineImgCollCell", for: indexPath) as? TimeLineImgCollCell {
             
-            cell.imgVSlider.image = UIImage(named: arrImg[indexPath.row])
+            cell.imgVSlider.sd_setShowActivityIndicatorView(true)
+            cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
+            
             return cell
         }
         

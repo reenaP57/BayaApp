@@ -74,6 +74,7 @@ class Networking: NSObject
     var BASEURL:String?
     
     var headers:[String: String] {
+        
         if UserDefaults.standard.value(forKey: UserDefaultLoginUserToken) != nil {
             return ["Authorization" : "Bearer \((CUserDefaults.value(forKey: UserDefaultLoginUserToken)) as? String ?? "")","Accept-Language" : "en","Accept" : "application/json"]
         } else {
@@ -910,7 +911,7 @@ extension APIRequest {
     //TODO: --------------TIMELINE RELATED API--------------
     //TODO:
     
-    func fetchTimelineList(_ projectId : Int?, startDate:String?, endDate:String?, page : Int?, completion : @escaping ClosureCompletion) {
+    func fetchTimelineList(_ projectId : Int?, startDate:String?, endDate:String?, page : Int?, completion : @escaping ClosureCompletion)  -> URLSessionTask {
         
         var para = [String : Any]()
         para[CProjectId] = projectId
@@ -923,7 +924,7 @@ extension APIRequest {
         }
         
         MILoader.shared.showLoader(type: .circularRing, message: "")
-        _ = Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
+        return Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
             MILoader.shared.hideLoader()
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagTimeline){
                 completion(response, nil)
@@ -932,7 +933,7 @@ extension APIRequest {
         }, failureBlock: { (task, message, error) in
             MILoader.shared.hideLoader()
             self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
-        })
+        })!
     }
     
     
@@ -966,14 +967,15 @@ extension APIRequest {
         
         appDelegate.loginUser = tblUser
         
-        if (CUserDefaults.object(forKey: UserDefaultLoginUserToken) == nil) || (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) == ""{
+//        if (CUserDefaults.object(forKey: UserDefaultLoginUserToken) == nil) || (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) == ""{
+
             if let token = metaData?.valueForString(key: "token") {
                 CUserDefaults.setValue(token, forKey: UserDefaultLoginUserToken)
             }
-            
+        
             CUserDefaults.setValue(dict!.valueForInt(key: "userId"), forKey: UserDefaultLoginUserID)
             CUserDefaults.synchronize()
-        }
+//        }
 
         
         CoreData.saveContext()

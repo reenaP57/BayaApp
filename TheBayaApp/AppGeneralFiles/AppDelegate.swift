@@ -40,9 +40,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (CUserDefaults.value(forKey: UserDefaultFirstTimeLaunch)) != nil {
             
             if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil && (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) != "" && (CUserDefaults.value(forKey: UserDefaultRememberMe)) != nil {
-                
                  loginUser =  TblUser.findOrCreate(dictionary: ["user_id" : CUserDefaults.object(forKey: UserDefaultLoginUserID) as Any]) as? TblUser
-                
                  self.initHomeViewController()
             } else {
                 self.initLoginViewController()

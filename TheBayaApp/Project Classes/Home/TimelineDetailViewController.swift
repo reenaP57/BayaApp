@@ -161,6 +161,9 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
     func reloadTimelineList(index: Int) {
         currentIndex = index
         pageIndexForApi = 1
+        
+        arrUpdateList.removeAll()
+        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: UITableViewRowAnimation.none)
         self.loadTimeLineListFromServer()
     }
     
@@ -207,6 +210,15 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             }
         } else {
             
+            if indexPath == self.tblUpdates.lastIndexPath(){
+                if self.apiTask != nil{
+                    if self.apiTask?.state != .running{
+                        print("Load more data ====== ")
+                        self.loadTimeLineListFromServer()
+                    }
+                }
+            }
+            
             let dict = arrUpdateList[indexPath.row]
             
             if IS_iPad {
@@ -216,8 +228,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
                         
-                        let arrImg = dict.valueForJSON(key: "image") as!
-                            [String]
+                        let arrImg = dict.valueForJSON(key: "image") as! [String]
                         cell.imgVUpdate.image = UIImage(named: arrImg.first!)
                         
                         cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
@@ -298,10 +309,9 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
                         
-                        cell.loadSliderImages(images: dict.valueForJSON(key: "media") as! [String])
-                        
-                        if let arr = dict.valueForJSON(key: "media") as? [String] {
-                            cell.pageControlSlider.numberOfPages = arr.count
+                        if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                            cell.pageControlSlider.numberOfPages = arrImages.count
+                            cell.loadSliderImages(images: arrImages)
                         }
                         
                         cell.btnShare.touchUpInside { (sender) in
@@ -315,25 +325,27 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                         
-                        cell.lblDesc.text = dict.valueForString(key: "desc")
-                        cell.lblDateTime.text = dict.valueForString(key: "time")
+                        cell.lblDesc.text = dict.valueForString(key: "description")
+                        cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
                         
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
                         }
                         
                         cell.btnPlay.touchUpInside { (action) in
-                            
-                            // cell.imgVThumbNail.isHidden = true
-                            // cell.btnPlay.isSelected = !cell.btnPlay.isSelected
-                            
-                            let videoURL = URL(string: "https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")
-                            let player = AVPlayer(url: videoURL!)
-                            let playerViewController = AVPlayerViewController()
-                            playerViewController.player = player
-                            self.present(playerViewController, animated: true) {
-                                playerViewController.player!.play()
+                            if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
+                                if arrVideos.count > 0{
+                                    let videoURL = URL(string: arrVideos.first!)
+                                    let player = AVPlayer(url: videoURL!)
+                                    let playerViewController = AVPlayerViewController()
+                                    playerViewController.player = player
+                                    self.present(playerViewController, animated: true) {
+                                        playerViewController.player!.play()
+                                    }
+                                }
+                                
                             }
+                            
                         }
                         
                         return cell
@@ -348,7 +360,9 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
                         
-                        cell.loadSliderImages(images: dict.valueForJSON(key: "media") as! [String])
+                        if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                            cell.loadSliderImages(images: arrImages)
+                        }
                         
                         if let arr = dict.valueForJSON(key: "media") as? [String] {
                             cell.pageControlSlider.numberOfPages = arr.count
@@ -361,15 +375,16 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         return cell
                     }
                     
-                  
-                    
                     case 4: //URL
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
                             
-                            cell.lblDesc.text = dict.valueForString(key: "desc")
-                            cell.lblDateTime.text = dict.valueForString(key: "time")
+                            cell.lblDesc.text = dict.valueForString(key: "description")
+                            cell.lblDateTime.text = dict.valueForString(key: "updatedAt")
                             
-                            cell.loadSliderImages(images: dict.valueForJSON(key: "image") as! [String])
+                            if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                cell.loadSliderImages(images: arrImages)
+                            }
+                            
                             
                             cell.btnShare.touchUpInside { (sender) in
                                 self.shareContent()
@@ -417,7 +432,11 @@ extension TimelineDetailViewController {
         
         if !isRefresh {
             self.activityLoader.startAnimating()
-            self.btnProjectDetail.isHidden = true
+            if !IS_iPad
+            {
+                self.btnProjectDetail.isHidden = true
+            }
+            
         }
         
         apiTask =  APIRequest.shared().getSubscribedProjectList { (response, error) in
@@ -435,7 +454,10 @@ extension TimelineDetailViewController {
                     }
                 }
                 
-                self.btnProjectDetail.isHidden = false
+                if !IS_iPad
+                {
+                    self.btnProjectDetail.isHidden = true
+                }
                 self.tblUpdates.reloadData()
                 
                 self.pageIndexForApi = 1
@@ -446,23 +468,30 @@ extension TimelineDetailViewController {
     
     func loadTimeLineListFromServer(){
         
-        arrUpdateList.removeAll()
-        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: UITableViewRowAnimation.none)
+        if self.apiTask?.state == URLSessionTask.State.running {
+            apiTask?.cancel()
+        }
+        
+        
         
         if arrProject.count - 1 >= currentIndex{
             let dic = arrProject[currentIndex]
-            APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: nil, endDate: nil, page : pageIndexForApi) { (response, error) in
-        
-                if let arrData = response![CJsonData] as? [[String : Any]]{
-                    self.arrUpdateList = self.arrUpdateList + arrData
-                    self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: UITableViewRowAnimation.top)
-                }
+            apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: nil, endDate: nil, page : pageIndexForApi) { (response, error) in
+                self.apiTask?.cancel()
                 
-                if let dicMeta = response![CJsonMeta] as? [String : Any]{
-                    if let currentPage = dicMeta.valueForInt(key: CCurrentPage){
-                        self.pageIndexForApi = currentPage
+                if let arrData = response![CJsonData] as? [[String : Any]]{
+                    if arrData.count > 0{
+                        self.pageIndexForApi += 1
+                        self.arrUpdateList = self.arrUpdateList + arrData
+                        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: UITableViewRowAnimation.top)
                     }
                 }
+                
+//                if let dicMeta = response![CJsonMeta] as? [String : Any]{
+//                    if let currentPage = dicMeta.valueForInt(key: CCurrentPage){
+//                        self.pageIndexForApi = currentPage
+//                    }
+//                }
                 
             }
         }
