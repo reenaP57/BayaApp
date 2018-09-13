@@ -102,7 +102,7 @@ extension VerificationViewController {
         if self.isEmailVerify {
             self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject,"type" : CEmailType as AnyObject])
         } else {
-            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject, CMobileNo : (appDelegate.loginUser?.mobileNo)! as AnyObject,"type" : CMobileType as AnyObject])
+            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject, CMobileNo : (appDelegate.loginUser?.mobileNo)! as AnyObject,"type" : CMobileType as AnyObject, CCountryId : (appDelegate.loginUser?.countryId)! as AnyObject])
         }
         
     }

@@ -18,7 +18,8 @@ class ResetPwdViewController: ParentViewController {
 
     var isEmail : Bool = false
     var strEmailMobile = ""
-    
+    var countryId = 0
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -76,9 +77,9 @@ extension ResetPwdViewController {
     @IBAction fileprivate func btnResendCodeClicked (sender : UIButton) {
    
         if isEmail {
-            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject,"type" : CEmailType as AnyObject])
+            self.resendVerificationCode(type: CEmailType)
         } else {
-            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject, CMobileNo : (appDelegate.loginUser?.mobileNo)! as AnyObject,"type" : CMobileType as AnyObject])
+            self.resendVerificationCode(type: CMobileType)
         }
     }
     
@@ -127,6 +128,28 @@ extension ResetPwdViewController {
 
 extension ResetPwdViewController {
     
+    func resendVerificationCode(type : Int) {
+        self.resignKeyboard()
+        
+        var dict = [String : AnyObject]()
+        
+        if type == CMobileType {
+            dict = ["type" : type as AnyObject, "userName" : strEmailMobile as AnyObject, CCountryId : countryId as AnyObject]
+            
+        } else {
+            dict = ["type" : type as AnyObject, "userName" : strEmailMobile as AnyObject]
+        }
+        
+        APIRequest.shared().forgotPassword(dict: dict) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
+                }
+            }
+        }
+    }
+    
     func resetPassword() {
         
         let dict = ["userName": strEmailMobile as AnyObject, "type": isEmail ? CEmailType : CMobileType, "password": txtConfirmPwd.text as AnyObject, "code":txtCode.text as AnyObject] as [String : AnyObject]
@@ -145,15 +168,4 @@ extension ResetPwdViewController {
         }
     }
     
-    func resendVerificationCode(dict : [String : AnyObject]) {
-        
-        APIRequest.shared().resendVerificationCode(dict) { (response, error) in
-            
-            if response != nil && error == nil {
-                
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
-                }
-            }
-        }
-    }
 }

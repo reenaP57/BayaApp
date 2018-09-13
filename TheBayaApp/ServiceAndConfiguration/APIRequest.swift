@@ -682,11 +682,11 @@ extension APIRequest {
   
     }
 
-    func loginUser (_ email: String?, _ password: String?, _ type:Int?, completion: @escaping ClosureCompletion)
+    func loginUser (_ email: String?, _ password: String?, _ type:Int?, _ countryId : Int?, completion: @escaping ClosureCompletion)
     {
         MILoader.shared.showLoader(type: .circularRing, message: "")
         
-        _ = Networking.sharedInstance.POST(apiTag: CAPITagLogin, param: ["userName" : email as AnyObject, "password": password as AnyObject, "type": type as AnyObject], successBlock: { (task, response) in
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagLogin, param: ["userName" : email as AnyObject, "password": password as AnyObject, "type": type as AnyObject, CCountryId : countryId as AnyObject], successBlock: { (task, response) in
             
             MILoader.shared.hideLoader()
             
@@ -738,11 +738,11 @@ extension APIRequest {
         })
     }
     
-    func forgotPassword(_ userName: String?, type: Int?, completion: @escaping ClosureCompletion) {
+    func forgotPassword(dict : [String : AnyObject],  completion: @escaping ClosureCompletion) {
         
         MILoader.shared.showLoader(type: .circularRing, message: "")
         
-        _ = Networking.sharedInstance.POST(apiTag: CAPITagForgotPassword, param: ["type" : type as AnyObject, "userName" : userName as AnyObject], successBlock: { (task, response) in
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagForgotPassword, param: dict , successBlock: { (task, response) in
             
             MILoader.shared.hideLoader()
             
