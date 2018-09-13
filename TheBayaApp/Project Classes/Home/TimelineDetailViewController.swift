@@ -462,20 +462,15 @@ extension TimelineDetailViewController {
             apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: nil, endDate: nil, page : pageIndexForApi) { (response, error) in
                 self.apiTask?.cancel()
                 
-                if let arrData = response![CJsonData] as? [[String : Any]]{
-                    if arrData.count > 0{
-                        self.pageIndexForApi += 1
-                        self.arrUpdateList = self.arrUpdateList + arrData
-                        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                if response != nil{
+                    if let arrData = response![CJsonData] as? [[String : Any]]{
+                        if arrData.count > 0{
+                            self.pageIndexForApi += 1
+                            self.arrUpdateList = self.arrUpdateList + arrData
+                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                        }
                     }
                 }
-                
-//                if let dicMeta = response![CJsonMeta] as? [String : Any]{
-//                    if let currentPage = dicMeta.valueForInt(key: CCurrentPage){
-//                        self.pageIndexForApi = currentPage
-//                    }
-//                }
-                
             }
         }
         
