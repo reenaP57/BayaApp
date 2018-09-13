@@ -15,7 +15,7 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var btnShare : UIButton!
-
+    var isGifImages = false
     var arrImg = [String]()
     
     override func awakeFromNib() {
@@ -29,7 +29,8 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func loadSliderImages(images : [String]) {
+    func loadSliderImages(images : [String], isGif : Bool?) {
+        isGifImages = isGif!
         
         arrImg = images
         collImg.reloadData()
@@ -63,8 +64,13 @@ extension TimeLineUpdateTblCell_ipad : UICollectionViewDelegateFlowLayout, UICol
                 cell.imgVSlider.isHidden = indexPath.item == 4
                 cell.lblCount.text = "+\(arrImg.count - 5)"
             }
+            if isGifImages{
+                cell.imgVSlider.image = UIImage.gif(url: URL(string: arrImg[indexPath.row])!)
+            }else{
+                cell.imgVSlider.sd_setShowActivityIndicatorView(true)
+                cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
+            }
             
-            cell.imgVSlider.image = UIImage(named: arrImg[indexPath.row])
             return cell
         }
         
