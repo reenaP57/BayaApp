@@ -230,6 +230,30 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
                         }
+                        
+                        if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
+                            if arrVideos.count > 0{
+                                DispatchQueue.global().async {
+                                    let videoURL = URL(string: arrVideos.first!)
+                                    let asset = AVAsset(url: videoURL!)
+                                    let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                                    assetImgGenerate.appliesPreferredTrackTransform = true
+                                    let time = CMTimeMake(1, 2)
+                                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                                    if img != nil {
+                                        let frameImg  = UIImage(cgImage: img!)
+                                        DispatchQueue.main.async(execute: {
+                                            if cell.imgVThumbNail != nil
+                                            {
+                                                cell.imgVThumbNail.image = frameImg
+                                            }
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
                         cell.btnPlay.touchUpInside { (action) in
                             if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
                                 if arrVideos.count > 0{
@@ -313,6 +337,28 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
                         }
+                        
+                        if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
+                            if arrVideos.count > 0{
+                                DispatchQueue.global().async {
+                                    let videoURL = URL(string: arrVideos.first!)
+                                    let asset = AVAsset(url: videoURL!)
+                                    let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                                    assetImgGenerate.appliesPreferredTrackTransform = true
+                                    let time = CMTimeMake(1, 2)
+                                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                                    if img != nil {
+                                        let frameImg  = UIImage(cgImage: img!)
+                                        DispatchQueue.main.async(execute: {
+                                            cell.imgVThumbNail.image = frameImg
+                                        })
+                                    }
+                                }
+                            }
+                        }
+                        
+                        
+                        
                         
                         cell.btnPlay.touchUpInside { (action) in
                             if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
@@ -477,52 +523,49 @@ extension TimelineDetailViewController {
     
     @objc func btnFilterClicked() {
         
-        if let vwFilter = FilterView.viewFromNib(is_ipad: true) as? FilterView {
-            
-            vwFilter.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
-            
-            if IS_iPad {
-                vwFilter.vwContent.frame = CGRect(x: CScreenCenter.x, y: CScreenCenter.y , width: vwFilter.vwContent.CViewWidth, height: vwFilter.vwContent.CViewHeight)
-                vwFilter.vwContent.layer.cornerRadius = 30
-                
-            } else {
-                vwFilter.vwContent.frame = CGRect(x: 0, y: CScreenHeight - (CScreenWidth * (vwFilter.CViewHeight / 375)) , width: CScreenWidth, height: CScreenWidth * (vwFilter.CViewHeight / 375))
-                vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
+        let vwFilter = FilterView.initFilterView()
+        
+        if IS_iPad {
+            vwFilter.vwContent.layer.cornerRadius = 30
+        } else {
+            vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
+        }
+        
+        
+        UIView.animate(withDuration: 1.0) {
+//            self.view.addSubview(vwFilter)
+            appDelegate.window.addSubview(vwFilter)
+        }
+        
+        vwFilter.btnDone.touchUpInside { (sender) in
+            if (vwFilter.txtStartDate.text?.isBlank)!{
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageStartDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+            }else if (vwFilter.txtEndDate.text?.isBlank)!
+            {
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageEndDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
             }
-            
-            
-            UIView.animate(withDuration: 1.0) {
-                appDelegate.window.addSubview(vwFilter)
-            }
-            
-            vwFilter.btnDone.touchUpInside { (sender) in
-                if (vwFilter.txtStartDate.text?.isBlank)!{
-                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageStartDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
-                }else if (vwFilter.txtEndDate.text?.isBlank)!
-                {
-                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageEndDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
-                }
-                else{
-                    strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-                    strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-                    pageIndexForApi = 1
-                    self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
-                    vwFilter.removeFromSuperview()
-                }
-                
-            }
-            
-            vwFilter.btnClose.touchUpInside { (sender) in
+            else{
+                strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                pageIndexForApi = 1
+                self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
                 vwFilter.removeFromSuperview()
             }
             
-            vwFilter.btnClear.touchUpInside { (sender) in
-                vwFilter.txtStartDate.text = ""
-                vwFilter.txtEndDate.text = ""
-                strFilterStartDate = ""
-                strFilterEndDate = ""
-                self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
-            }
+        }
+        
+        vwFilter.btnClose.touchUpInside { (sender) in
+            vwFilter.removeFromSuperview()
+        }
+        
+        vwFilter.btnClear.touchUpInside { (sender) in
+            vwFilter.txtStartDate.text = ""
+            vwFilter.txtEndDate.text = ""
+            strFilterStartDate = ""
+            strFilterEndDate = ""
+            pageIndexForApi = 1
+            self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+            vwFilter.removeFromSuperview()
         }
     }
 }
