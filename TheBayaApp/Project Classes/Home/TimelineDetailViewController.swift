@@ -23,7 +23,10 @@ class TimelineDetailViewController: ParentViewController {
     var arrUpdateList = [[String : Any]]()
     var arrProject = [[String : AnyObject]]()
     var currentIndex = 0
-    var pageIndexForApi = 0
+    var pageIndexForApi = 1
+    
+    var strFilterStartDate = ""
+    var strFilterEndDate = ""
     
     var apiTask : URLSessionTask?
     var refreshControl : UIRefreshControl?
@@ -106,43 +109,9 @@ class TimelineDetailViewController: ParentViewController {
         
     }
     
-    @objc func btnFilterClicked() {
-        
-        if let vwFilter = FilterView.viewFromNib(is_ipad: true) as? FilterView {
-            
-            vwFilter.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
-            
-            if IS_iPad {
-                vwFilter.vwContent.frame = CGRect(x: CScreenCenter.x, y: CScreenCenter.y , width: vwFilter.vwContent.CViewWidth, height: vwFilter.vwContent.CViewHeight)
-                vwFilter.vwContent.layer.cornerRadius = 30
 
-            } else {
-                vwFilter.vwContent.frame = CGRect(x: 0, y: CScreenHeight - (CScreenWidth * (vwFilter.CViewHeight / 375)) , width: CScreenWidth, height: CScreenWidth * (vwFilter.CViewHeight / 375))
-                vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
-            }
-          
-            
-            UIView.animate(withDuration: 1.0) {
-                appDelegate.window.addSubview(vwFilter)
-            }
-            
-            vwFilter.btnDone.touchUpInside { (sender) in
-               vwFilter.removeFromSuperview()
-            }
-            
-            vwFilter.btnClose.touchUpInside { (sender) in
-                vwFilter.removeFromSuperview()
-            }
-            
-            vwFilter.btnClear.touchUpInside { (sender) in
-                vwFilter.txtStartDate.text = ""
-                vwFilter.txtEndDate.text = ""
-            }
-        }
-    }
     
     func shareContent() {
-       
         let text = "This is the text...."
         let shareAll = [text]
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
@@ -164,7 +133,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         
         arrUpdateList.removeAll()
         self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-        self.loadTimeLineListFromServer(true)
+        self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
     }
     
 }
@@ -214,7 +183,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                 if self.apiTask != nil{
                     if self.apiTask?.state != .running{
                         print("Load more data ====== ")
-                        self.loadTimeLineListFromServer(false)
+                        self.loadTimeLineListFromServer(false, startDate: strFilterStartDate, endDate: strFilterEndDate)
                     }
                 }
             }
@@ -227,7 +196,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                 case 1,3: // Image
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
-                        
+                        cell.updateImageViewSize()
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
@@ -235,16 +204,13 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                 if mediaType == 1{
                                     cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
                                     cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
-                                    cell.loadSliderImages(images: arrImages, isGif: false)
+                                    cell.loadSliderImagesIpad(images: arrImages, isGif: false)
                                 }else{
                                     cell.imgVUpdate.image = UIImage.gif(url: URL(string: arrImages.first!)!)
-                                    cell.loadSliderImages(images: arrImages, isGif: true)
+                                    cell.loadSliderImagesIpad(images: arrImages, isGif: true)
                                 }
-                                
-                                
                             }
                         }
-                        
                         
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
@@ -255,6 +221,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                 case 2: // ViDEO
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
+                        cell.updateImageViewSize()
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
@@ -263,7 +230,6 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent()
                         }
-                        
                         cell.btnPlay.touchUpInside { (action) in
                             if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
                                 if arrVideos.count > 0{
@@ -283,6 +249,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                 
                     case 4: // URL
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
+                            
+                            cell.updateImageViewSize()
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
                             cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
@@ -449,25 +417,29 @@ extension TimelineDetailViewController {
                 self.tblUpdates.reloadData()
                 
                 self.pageIndexForApi = 1
-                self.loadTimeLineListFromServer(true)
+                self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
             }
         }
     }
     
-    func loadTimeLineListFromServer(_ shouldShowLoader : Bool?){
+    func loadTimeLineListFromServer(_ shouldShowLoader : Bool?, startDate : String?, endDate : String?){
         
         if self.apiTask?.state == URLSessionTask.State.running {
             apiTask?.cancel()
         }
         
-        
-        
         if arrProject.count - 1 >= currentIndex{
             let dic = arrProject[currentIndex]
-            apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: nil, endDate: nil, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
+            apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: startDate, endDate: endDate, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
                 self.apiTask?.cancel()
                 
                 if response != nil{
+                    
+                    if self.pageIndexForApi == 1{
+                        self.arrUpdateList.removeAll()
+                        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                    }
+                    
                     if let arrData = response![CJsonData] as? [[String : Any]]{
                         if arrData.count > 0{
                             self.pageIndexForApi += 1
@@ -500,6 +472,57 @@ extension TimelineDetailViewController {
         
         if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
             self.navigationController?.pushViewController(projectDetailVC, animated: true)
+        }
+    }
+    
+    @objc func btnFilterClicked() {
+        
+        if let vwFilter = FilterView.viewFromNib(is_ipad: true) as? FilterView {
+            
+            vwFilter.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
+            
+            if IS_iPad {
+                vwFilter.vwContent.frame = CGRect(x: CScreenCenter.x, y: CScreenCenter.y , width: vwFilter.vwContent.CViewWidth, height: vwFilter.vwContent.CViewHeight)
+                vwFilter.vwContent.layer.cornerRadius = 30
+                
+            } else {
+                vwFilter.vwContent.frame = CGRect(x: 0, y: CScreenHeight - (CScreenWidth * (vwFilter.CViewHeight / 375)) , width: CScreenWidth, height: CScreenWidth * (vwFilter.CViewHeight / 375))
+                vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
+            }
+            
+            
+            UIView.animate(withDuration: 1.0) {
+                appDelegate.window.addSubview(vwFilter)
+            }
+            
+            vwFilter.btnDone.touchUpInside { (sender) in
+                if (vwFilter.txtStartDate.text?.isBlank)!{
+                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageStartDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                }else if (vwFilter.txtEndDate.text?.isBlank)!
+                {
+                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageEndDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                }
+                else{
+                    strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                    strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                    pageIndexForApi = 1
+                    self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+                    vwFilter.removeFromSuperview()
+                }
+                
+            }
+            
+            vwFilter.btnClose.touchUpInside { (sender) in
+                vwFilter.removeFromSuperview()
+            }
+            
+            vwFilter.btnClear.touchUpInside { (sender) in
+                vwFilter.txtStartDate.text = ""
+                vwFilter.txtEndDate.text = ""
+                strFilterStartDate = ""
+                strFilterEndDate = ""
+                self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+            }
         }
     }
 }

@@ -30,7 +30,7 @@ extension UIView {
     
     static func viewFromNib (is_ipad : Bool) -> UIView? {
         
-        if IS_iPad {
+        if is_ipad {
             return self.viewWithNibName(strViewName: "\(self)_ipad")
         }
         

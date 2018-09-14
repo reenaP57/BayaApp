@@ -56,9 +56,8 @@ extension TimelineImgZoomViewController_ipad : UICollectionViewDelegateFlowLayou
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeLineZoomImgCollCell_ipad", for: indexPath) as? TimeLineZoomImgCollCell_ipad {
-            
-            cell.imgVSlider.image = UIImage(named: arrImg[indexPath.row])
-            
+            cell.imgVSlider.sd_setShowActivityIndicatorView(true)
+            cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
             return cell
         }
         

@@ -104,3 +104,7 @@ var CResetMessage  : String { return CLocalize(text: "You might have got verific
 var CResetCodeEmailMessage  : String { return CLocalize(text: "Verification code has been resent on your email address")}
 var CResetCodeMobileMessage  : String { return CLocalize(text: "Verification code has been resent on your mobile number")}
 
+var CMessageStartDate : String{ return CLocalize(text: "Please select start date.") }
+var CMessageEndDate : String{ return CLocalize(text: "Please select end date.") }
+
+

@@ -15,6 +15,8 @@ class TimeLineUpdateUrlTblCell_ipad: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var btnShare : UIButton!
+    @IBOutlet weak var cnImgVUpdateHeight : NSLayoutConstraint!
+    @IBOutlet weak var cnImgVUpdateWidth : NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,8 +25,9 @@ class TimeLineUpdateUrlTblCell_ipad: UITableViewCell {
         imgVUpdate.layer.masksToBounds = true
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
 
+    func updateImageViewSize(){
+        cnImgVUpdateWidth.constant = CScreenHeight*271/1144
+        cnImgVUpdateHeight.constant = CScreenHeight*161/1144
+    }
 }

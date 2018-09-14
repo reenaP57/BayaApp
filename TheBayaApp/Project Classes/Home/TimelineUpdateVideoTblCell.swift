@@ -17,14 +17,17 @@ class TimelineUpdateVideoTblCell: UITableViewCell {
     @IBOutlet weak var btnShare : UIButton!
     @IBOutlet weak var btnPlay : UIButton!
     @IBOutlet weak var imgVThumbNail : UIImageView!
-
+    @IBOutlet weak var cnVideoViewHeight : NSLayoutConstraint!
+    @IBOutlet weak var cnVideoViewWidth : NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    func updateImageViewSize(){
+        cnVideoViewWidth.constant = CScreenHeight*271/1144
+        cnVideoViewHeight.constant = CScreenHeight*161/1144
     }
 
 }

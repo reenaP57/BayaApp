@@ -15,6 +15,10 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var btnShare : UIButton!
+    @IBOutlet weak var cnImgVUpdateHeight : NSLayoutConstraint!
+    @IBOutlet weak var cnImgVUpdateWidth : NSLayoutConstraint!
+    
+    
     var isGifImages = false
     var arrImg = [String]()
     
@@ -25,15 +29,21 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
         imgVUpdate.layer.masksToBounds = true
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    
+    func updateImageViewSize(){
+        cnImgVUpdateWidth.constant = CScreenHeight*271/1144
+        cnImgVUpdateHeight.constant = CScreenHeight*161/1144
     }
     
-    func loadSliderImages(images : [String], isGif : Bool?) {
+    func loadSliderImagesIpad(images : [String], isGif : Bool?) {
         isGifImages = isGif!
         
-        arrImg = images
-        collImg.reloadData()
+        if images.count > 1{
+            arrImg = images
+            arrImg.remove(at: 0)    // Remove first object...
+            collImg.reloadData()
+        }
+        
     }
 
 }
@@ -45,31 +55,42 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
 extension TimeLineUpdateTblCell_ipad : UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return arrImg.count > 5 ? 5 : arrImg.count
+        return arrImg.count > 4 ? 5 : arrImg.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
         
-        return CGSize(width: 40, height: 40)
+        return CGSize(width: collImg.frame.size.height, height: collImg.frame.size.height)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeLineImgCollCell", for: indexPath) as? TimeLineImgCollCell {
            
-            if arrImg.count > 5 {
-                cell.vwCount.isHidden = indexPath.item != 4
-                cell.imgVSlider.isHidden = indexPath.item == 4
-                cell.lblCount.text = "+\(arrImg.count - 5)"
-            }
-            if isGifImages{
-                cell.imgVSlider.image = UIImage.gif(url: URL(string: arrImg[indexPath.row])!)
+            if arrImg.count > 4 {
+                if indexPath.item == 4{
+                    cell.imgVSlider.isHidden = true
+                    cell.vwCount.isHidden = false
+                    cell.lblCount.text = "+\(arrImg.count - 4)"
+                }else{
+                    cell.imgVSlider.isHidden = false
+                    cell.vwCount.isHidden = true
+                }
             }else{
-                cell.imgVSlider.sd_setShowActivityIndicatorView(true)
-                cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
+                cell.vwCount.isHidden = true
             }
+            
+            if indexPath.item != 4{
+                if isGifImages{
+                    cell.imgVSlider.image = UIImage.gif(url: URL(string: arrImg[indexPath.row])!)
+                }else{
+                    cell.imgVSlider.sd_setShowActivityIndicatorView(true)
+                    cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
+                }
+            }
+            
             
             return cell
         }
@@ -79,7 +100,7 @@ extension TimeLineUpdateTblCell_ipad : UICollectionViewDelegateFlowLayout, UICol
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        if arrImg.count > 5 && indexPath.item == 4 {
+        if arrImg.count > 4 && indexPath.item == 4 {
             
             if let zoomImgVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineImgZoomViewController_ipad") as? TimelineImgZoomViewController_ipad {
                 zoomImgVC.arrImg = arrImg
