@@ -1835,6 +1835,10 @@ reach for you.</string>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_projects_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ndP-uE-VGN">
                                                                             <rect key="frame" x="10" y="10" width="22" height="22"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" secondItem="ndP-uE-VGN" secondAttribute="height" multiplier="1:1" id="ASs-Yc-B7i"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="i6t-to-oxV"/>
+                                                                            </constraints>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Project Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wg-bY-TFq" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                             <rect key="frame" x="42" y="13" width="79" height="17"/>
@@ -1843,7 +1847,7 @@ reach for you.</string>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3 Towers, 213 Units" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIq-Cm-SyB" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="42" y="37" width="106.5" height="16"/>
+                                                                            <rect key="frame" x="42" y="32" width="106.5" height="26"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -1856,9 +1860,9 @@ reach for you.</string>
                                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4Wg-bY-TFq" secondAttribute="trailing" constant="10" id="Vc0-qQ-ASq"/>
                                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bIq-Cm-SyB" secondAttribute="trailing" constant="10" id="ZJo-4x-scx"/>
                                                                     <constraint firstItem="4Wg-bY-TFq" firstAttribute="centerY" secondItem="ndP-uE-VGN" secondAttribute="centerY" id="dsC-yx-tRE"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="bIq-Cm-SyB" secondAttribute="bottom" constant="7" id="hVT-7P-hfq"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="bIq-Cm-SyB" secondAttribute="bottom" constant="2" id="hVT-7P-hfq"/>
                                                                     <constraint firstItem="bIq-Cm-SyB" firstAttribute="leading" secondItem="4Wg-bY-TFq" secondAttribute="leading" id="l1R-lj-KuS"/>
-                                                                    <constraint firstItem="bIq-Cm-SyB" firstAttribute="top" secondItem="4Wg-bY-TFq" secondAttribute="bottom" constant="7" id="wVO-QR-R65"/>
+                                                                    <constraint firstItem="bIq-Cm-SyB" firstAttribute="top" secondItem="4Wg-bY-TFq" secondAttribute="bottom" constant="2" id="wVO-QR-R65"/>
                                                                     <constraint firstItem="4Wg-bY-TFq" firstAttribute="leading" secondItem="ndP-uE-VGN" secondAttribute="trailing" constant="10" id="x9p-QR-Fcg"/>
                                                                 </constraints>
                                                                 <size key="customSize" width="187" height="60"/>
@@ -2978,7 +2982,7 @@ reach for you.</string>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2D-fV-bv9" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11.5"/>
+                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
