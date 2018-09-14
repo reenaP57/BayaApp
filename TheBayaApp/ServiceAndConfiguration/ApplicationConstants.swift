@@ -119,6 +119,9 @@ func CLocalize(text: String) -> String {
 let CEmailType  =  1
 let CMobileType =  2
 
+let CUnitPlanType =  1
+let CTypicalPlanType =  2
+
 
 //MARK:- API Parameter
 
@@ -154,8 +157,11 @@ let CReraNumber          = "reraNumber"
 let CStatusId            = "statusId"
 let CProjectProgress     = "projectProgress"
 let CIsSoldOut           = "isSoldOut"
-let CIStartDate           = "startDate"
-let CIEndDate           = "endDate"
+let CIStartDate          = "startDate"
+let CIEndDate            = "endDate"
+let CIcon                = "icon"
+let CTitle               = "title"
+let CImage               = "image"
 
 
 

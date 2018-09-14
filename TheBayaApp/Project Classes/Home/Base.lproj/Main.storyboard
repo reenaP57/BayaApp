@@ -7,7 +7,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1835,16 +1834,16 @@ reach for you.</string>
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_projects_profile" translatesAutoresizingMaskIntoConstraints="NO" id="ndP-uE-VGN">
-                                                                            <rect key="frame" x="10" y="10" width="22" height="14"/>
+                                                                            <rect key="frame" x="10" y="10" width="22" height="22"/>
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Project Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Wg-bY-TFq" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="42" y="9" width="79" height="17"/>
+                                                                            <rect key="frame" x="42" y="13" width="79" height="17"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                             <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3 Towers, 213 Units" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bIq-Cm-SyB" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                            <rect key="frame" x="42" y="33" width="106.5" height="20"/>
+                                                                            <rect key="frame" x="42" y="37" width="106.5" height="16"/>
                                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -1859,7 +1858,6 @@ reach for you.</string>
                                                                     <constraint firstItem="4Wg-bY-TFq" firstAttribute="centerY" secondItem="ndP-uE-VGN" secondAttribute="centerY" id="dsC-yx-tRE"/>
                                                                     <constraint firstAttribute="bottom" secondItem="bIq-Cm-SyB" secondAttribute="bottom" constant="7" id="hVT-7P-hfq"/>
                                                                     <constraint firstItem="bIq-Cm-SyB" firstAttribute="leading" secondItem="4Wg-bY-TFq" secondAttribute="leading" id="l1R-lj-KuS"/>
-                                                                    <constraint firstAttribute="bottomMargin" secondItem="ndP-uE-VGN" secondAttribute="bottom" constant="28" id="pUv-uQ-3Vp"/>
                                                                     <constraint firstItem="bIq-Cm-SyB" firstAttribute="top" secondItem="4Wg-bY-TFq" secondAttribute="bottom" constant="7" id="wVO-QR-R65"/>
                                                                     <constraint firstItem="4Wg-bY-TFq" firstAttribute="leading" secondItem="ndP-uE-VGN" secondAttribute="trailing" constant="10" id="x9p-QR-Fcg"/>
                                                                 </constraints>
@@ -2495,6 +2493,9 @@ reach for you.</string>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Layer_7" translatesAutoresizingMaskIntoConstraints="NO" id="mKr-UM-fcc">
                                                                                     <rect key="frame" x="36" y="10" width="29" height="33"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="33" id="ue4-fg-quo"/>
+                                                                                    </constraints>
                                                                                 </imageView>
                                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Lift" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uA3-1i-N7l" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                                     <rect key="frame" x="5" y="53" width="90" height="18"/>
@@ -2800,11 +2801,17 @@ reach for you.</string>
                                     <constraint firstItem="gqM-2P-1qX" firstAttribute="leading" secondItem="6JP-vZ-reE" secondAttribute="leading" constant="20" id="mc7-HZ-uVU"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-pV-P6B">
+                                <rect key="frame" x="169" y="1137" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764705882346" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="2Em-pV-P6B" firstAttribute="centerX" secondItem="Dgp-pu-Ss7" secondAttribute="centerX" id="ENh-uw-EJx"/>
                             <constraint firstItem="6JP-vZ-reE" firstAttribute="bottom" secondItem="as6-Tc-tPQ" secondAttribute="bottom" id="MYf-ee-I1R"/>
                             <constraint firstItem="1u9-Jt-xAK" firstAttribute="trailing" secondItem="as6-Tc-tPQ" secondAttribute="trailing" id="Rxc-Ky-As5"/>
+                            <constraint firstItem="2Em-pV-P6B" firstAttribute="centerY" secondItem="Dgp-pu-Ss7" secondAttribute="centerY" id="VQX-BR-wr3"/>
                             <constraint firstItem="6JP-vZ-reE" firstAttribute="top" secondItem="1u9-Jt-xAK" secondAttribute="bottom" id="b2v-vv-t2m"/>
                             <constraint firstItem="1u9-Jt-xAK" firstAttribute="leading" secondItem="as6-Tc-tPQ" secondAttribute="leading" id="coM-iD-SqL"/>
                             <constraint firstItem="1u9-Jt-xAK" firstAttribute="top" secondItem="Dgp-pu-Ss7" secondAttribute="top" id="kR1-bn-yBk"/>
@@ -2815,6 +2822,7 @@ reach for you.</string>
                     </view>
                     <size key="freeformSize" width="375" height="2312"/>
                     <connections>
+                        <outlet property="activityLoader" destination="2Em-pV-P6B" id="QVJ-VV-2Kt"/>
                         <outlet property="btnSubscribe" destination="yWP-mV-xNg" id="lHU-tv-M3m"/>
                         <outlet property="btnTypicalPlan" destination="09M-gL-Ti0" id="zRd-9H-hWy"/>
                         <outlet property="btnUnitPlans" destination="sXc-D3-CdO" id="otF-rM-J7W"/>
@@ -2837,11 +2845,13 @@ reach for you.</string>
                         <outlet property="lblProjectName" destination="grZ-mk-O9k" id="gkl-Cb-12k"/>
                         <outlet property="lblReraNo" destination="l0G-9o-N1D" id="k9A-kY-DPw"/>
                         <outlet property="pageVProject" destination="rxp-zV-zXM" id="rLM-kU-oPM"/>
+                        <outlet property="scrollVw" destination="1u9-Jt-xAK" id="vsv-4q-enn"/>
                         <outlet property="sliderPercentage" destination="GfX-ap-ThJ" id="yAe-wS-iyv"/>
                         <outlet property="tblConfigure" destination="6V3-00-yOS" id="bZb-z3-AgO"/>
                         <outlet property="tblSpecification" destination="qTe-p4-9hj" id="9kg-iR-EGy"/>
                         <outlet property="vw3DTitle" destination="8cE-MF-PRT" id="LMU-it-LEm"/>
                         <outlet property="vw3DTour" destination="QGw-aK-VSF" id="M4P-jW-sWk"/>
+                        <outlet property="vwBottom" destination="6JP-vZ-reE" id="y2Q-KI-ooJ"/>
                         <outlet property="vwPanorama" destination="mr1-uZ-q3Y" id="4Kj-ZA-Nse"/>
                         <outlet property="vwProjectDetail" destination="v4n-RR-INM" id="hJr-nb-NOg"/>
                         <outlet property="vwSoldOut" destination="igV-cq-9AG" id="gcl-vN-RD2"/>
