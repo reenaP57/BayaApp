@@ -416,7 +416,7 @@ extension ProjectDetailViewController : UITableViewDelegate, UITableViewDataSour
                 let dict = arrConfigure[indexPath.row]
                 
                 cell.lblPlanType.text = dict.valueForString(key: "unitDetail")
-                cell.lblSqft.text = dict.valueForString(key: "areaIn")
+                cell.lblSqft.text = "\(dict.valueForString(key: "areaIn")) sq.ft"
                 cell.lblPrice.text = "₹\(dict.valueForString(key: "price"))"
 
                 return cell
