@@ -18,6 +18,8 @@ let ANIMATION_SPEED = 0.2
 class TimeLineSubscribeTblCell: UITableViewCell {
 
     @IBOutlet weak var collSubscribe : UICollectionView!
+    @IBOutlet weak var cnClSubscribeHeight : NSLayoutConstraint!
+    
     var arrProject = [[String : AnyObject]]()
     var delegate : subscribeProjectListDelegate?
     var currentIndex = 0

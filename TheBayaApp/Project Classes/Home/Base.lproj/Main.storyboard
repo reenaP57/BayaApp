@@ -229,7 +229,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
                                                     <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="f3O-iV-3Vx" secondAttribute="height" multiplier="15:7" id="HPr-rm-dAY"/>
+                                                        <constraint firstAttribute="height" constant="175" id="6QX-AZ-kaC"/>
                                                     </constraints>
                                                     <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="i8E-Vc-Aat">
@@ -428,6 +428,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="cnClSubscribeHeight" destination="6QX-AZ-kaC" id="Wsp-l8-gaH"/>
                                             <outlet property="collSubscribe" destination="f3O-iV-3Vx" id="pNU-Jk-9n3"/>
                                         </connections>
                                     </tableViewCell>

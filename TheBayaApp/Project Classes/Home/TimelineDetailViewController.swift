@@ -169,6 +169,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             if indexPath.row == 0 {
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineSubscribeTblCell") as? TimeLineSubscribeTblCell {
                     cell.loadProjectList(arr: arrProject, selectedIndex: currentIndex)
+                    cell.cnClSubscribeHeight.constant = IS_iPad ? CScreenWidth * (340/768) : CScreenWidth * (200/375)
+                    
                     cell.delegate = self
                     return cell
                 }

@@ -231,7 +231,7 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="768" height="290"/>
                                                     <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="35s-81-Kns" secondAttribute="height" multiplier="384:145" id="yIk-AY-ENK"/>
+                                                        <constraint firstAttribute="height" constant="290" id="3OZ-0o-U7R"/>
                                                     </constraints>
                                                     <inset key="scrollIndicatorInsets" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="16w-yc-fbj">
@@ -483,6 +483,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="cnClSubscribeHeight" destination="3OZ-0o-U7R" id="1wi-YV-kz5"/>
                                             <outlet property="collSubscribe" destination="35s-81-Kns" id="H1X-OO-G4K"/>
                                         </connections>
                                     </tableViewCell>
@@ -2982,7 +2983,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJo-Pb-7Vb" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="3" width="613" height="18"/>
+                                                                        <rect key="frame" x="0.0" y="3" width="613" height="18.5"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
