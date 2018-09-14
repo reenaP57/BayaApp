@@ -269,10 +269,6 @@ class ProjectDetailViewController: ParentViewController {
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
             self.cnstHeightTblSpecification.constant =  IS_iPad ? self.tblSpecification.contentSize.height : self.tblSpecification.contentSize.height - 25
             self.cnstHeightCollLocation.constant = self.collLocation.contentSize.height
-      
-            if IS_iPad {
-                self.cnstHeightCollPlanType.constant = self.collPlansType.contentSize.height
-            }
         }
     }
 
