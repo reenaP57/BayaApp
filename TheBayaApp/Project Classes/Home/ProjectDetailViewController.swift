@@ -46,13 +46,15 @@ class ProjectDetailViewController: ParentViewController {
         }
     }
     @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-   // @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
     @IBOutlet fileprivate weak var tblSpecification : UITableView!
 
     @IBOutlet fileprivate weak var lblDisclaimer : UILabel!
+    @IBOutlet fileprivate weak var scrollVw : UIScrollView!
+    @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var vwBottom : UIView!
 
     @IBOutlet fileprivate weak var cnstHeightCollOverView : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightTblConfigure : NSLayoutConstraint!
@@ -63,14 +65,16 @@ class ProjectDetailViewController: ParentViewController {
 
     
     var arrLocation = [[String : AnyObject]]()
-    var arrPlanType = [String]()
-    var arrFloorImg = [String]()
     var arrOverView = [[String : AnyObject]]()
     var arrConfigure = [[String : AnyObject]]()
     var arrSpecification = [String]()
     var arrAmmenities = [[String : AnyObject]]()
-    var arrImg = [String]()
- 
+    var arrProjectImg = [String]()
+    var arrUnitPlan = [[String : AnyObject]]()
+    var arrTypicalPlan = [[String : AnyObject]]()
+    var arrUnitType = [String]()
+    var arrTypicalType = [String]()
+
     var projectID = 0
     var planIndexPath : IndexPath = IndexPath(item: 0, section: 0)
     
@@ -100,93 +104,159 @@ class ProjectDetailViewController: ParentViewController {
         vwSoldOut.layer.borderWidth = 1
         vwSoldOut.layer.borderColor = CRGB(r: 255, g: 0, b: 0).cgColor
         
-        arrImg = ["img1.jpeg","img2.jpeg","img3.jpeg"]
-        
-        arrPlanType = ["TYPE A - 1 BHK", "TYPE B - 1 BHK", "TYPE d - 2 BHK", "TYPE e - 2 BHK", "TYPE c - 2 BHK", "TYPE f - 2 BHK"]
-        
-        arrFloorImg = ["img1.jpeg", "img6.jpeg", "img7.jpeg","img8.jpeg","img1.jpeg", "img6.jpeg"]
-        
-        arrConfigure = [["type" : "TYPE A - 1 BHK", "sq.ft" : "1350 sq.ft.", "price" : "4,50,000"],
-                        ["type" : "TYPE A - 2 BHK", "sq.ft" : "2350 sq.ft.", "price" : "7,00,000"],
-                        ["type" : "TYPE B - 2 BHK", "sq.ft" : "1000 sq.ft.", "price" : "7,00,000"],
-                        ["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"],["type" : "TYPE C - 2 BHK", "sq.ft" : "1500 sq.ft.", "price" : "7,00,000"]] as [[String : AnyObject]]
-        
-        arrSpecification = ["Drapes/Curtains/Window Cover", "Fire/Smoke Alarm", "Italian Kitchen", "Vitrified Tiles"]
-        
-        
-        if IS_iPad {
-            
-            arrOverView = [["img" : "overview1_ipad", "title": "Project Details", "subtitle" : "3 Towers, 213 Units"],
-                           ["img" : "overview2_ipad", "title": "Possessions", "subtitle" : "Ready to move"],
-                           ["img" : "overview3_ipad", "title": "Launch Date", "subtitle" : "August 2015"],
-                           ["img" : "overview4_ipad", "title": "Parking", "subtitle" : "1 Parking available"],
-                           ["img" : "overview5_ipad", "title": "Plot Area", "subtitle" : "2500 sq.ft."],
-                           ["img" : "overview6_ipad", "title": "Number Of Storeys", "subtitle" : "22 Storeys Tower"]] as [[String : AnyObject]]
-            
-            
-            arrLocation = [["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km","Dadar Station 1.0 km"]],
-                           ["img" : "malls_ipad", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "Hospital_ipad", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "schools_ipad", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
-            
-            arrAmmenities = [["img" : "ammenitie1_ipad", "title" : "Lift"],
-                             ["img" : "ammenitie2_ipad", "title" : "Gym"],
-                             ["img" : "ammenitie3_ipad", "title" : "Swimming Pool"],
-                             ["img" : "ammenitie4_ipad", "title" : "Power Backup"],
-                             ["img" : "ammenitie1_ipad", "title" : "Lift"],
-                             ["img" : "ammenitie2_ipad", "title" : "Gym"],
-                             ["img" : "ammenitie3_ipad", "title" : "Swimming Pool"]] as [[String : AnyObject]]
-            
-        } else {
-            arrOverView = [["img" : "my_projects_profile", "title": "Project Details", "subtitle" : "3 Towers, 213 Units"],
-                           ["img" : "Forma_1_2", "title": "Possessions", "subtitle" : "Ready to move"],
-                           ["img" : "Forma_1", "title": "Launch Date", "subtitle" : "August 2015"],
-                           ["img" : "Forma_1_1", "title": "Parking", "subtitle" : "1 Parking available"],
-                           ["img" : "Layer_13", "title": "Plot Area", "subtitle" : "2500 sq.ft."],
-                           ["img" : "line", "title": "Number Of Storeys", "subtitle" : "22 Storeys Tower"]] as [[String : AnyObject]]
-            
-            arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km","Dadar Station 1.0 km"]],
-                           ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
-            
-            arrAmmenities = [["img" : "Layer_7", "title" : "Lift"],
-                             ["img" : "Group_11", "title" : "Gym"],
-                             ["img" : "Group_12", "title" : "Swimming Pool"],
-                             ["img" : "Group_1", "title" : "Power Backup"],
-                             ["img" : "Layer_7", "title" : "Lift"],
-                             ["img" : "Group_11", "title" : "Gym"],
-                             ["img" : "Group_12", "title" : "Swimming Pool"]] as [[String : AnyObject]]
-        }
-        
         sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
         sliderPercentage.setThumbImage(UIImage(named: "baya_slider_shadow"), for: .normal)
         
-        self.loadProjectDetail()
-
-        //...Load 3D image
-         vwPanorama.image = UIImage(named: "spherical.jpg")
+        self.loadProjectDetailFromServer()
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
     
-    func loadProjectDetail () {
-      
-        DispatchQueue.main.async {
-            self.updateCollectionAndTableHeight()
-        }
+    func loadProjectDetailFromServer () {
+        
+        scrollVw.isHidden = true
+        vwBottom.isHidden = true
+        activityLoader.startAnimating()
+        
         
         APIRequest.shared().getProjectDetail(projectId: self.projectID) { (response, error) in
             
             if response != nil && error == nil {
                 
+                self.scrollVw.isHidden = false
+                self.vwBottom.isHidden = false
+                self.activityLoader.stopAnimating()
+                
                 let dict = response?.value(forKey: CJsonData) as! [String : AnyObject]
                 
+                self.lblProjectName.text = dict.valueForString(key: CProjectName)
+                self.lblProjectDesc.text = dict.valueForString(key: CDesciption)
+                self.lblEmail.text = dict.valueForString(key: "website")
+                self.lblReraNo.text = dict.valueForString(key: CReraNumber)
+                self.lblPercentage.text = "\(dict.valueForInt(key: CProjectProgress) ?? 0)% Completed"
+                self.lblLocation.text = dict.valueForString(key: CAddress)
+                self.lblDisclaimer.text = dict.valueForString(key: "disclaimer")
                 
+                self.imgVLocation.sd_setShowActivityIndicatorView(true)
+                self.imgVLocation.sd_setImage(with: URL(string: (dict.valueForString(key: "locationImage"))), placeholderImage: nil)
+
+                self.btnSubscribe.isSelected = dict.valueForInt(key: CIsSubscribe) == 0 ? false : true
+                
+                self.sliderPercentage.setValue(Float(dict.valueForInt(key: CProjectProgress)!), animated: false)
+                self.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ? true : false
+                
+                
+                //...Load 3D image
+                
+                if let imgUrl = URL(string: dict.valueForString(key: "tour3DImage")){
+                    do {
+                        let imageData = try Data(contentsOf: imgUrl as URL)
+                        self.vwPanorama.image = UIImage(data: imageData)
+                    } catch {
+                        print("Unable to load data: \(error)")
+                    }
+                }
+                
+                
+             
+//
+//                let data = Data.init(contentsOf: URL(string: dict.valueForString(key: "tour3DImage"))!)
+//                self.vwPanorama.image = UIImage(data: data)
+                
+//
+//                cell.imgVProject.sd_setShowActivityIndicatorView(true)
+//
+//
+//                cell.imgVProject.sd_setImage(with: URL(string: arrProjectImg[indexPath.row] ), placeholderImage: nil, options: .retryFailed, completed: nil)
+//
+//                self.vwPanorama.image = UIImage(named: dict.valueForString(key: "tour3DImage"))
+              
+
+                //...Overview
+                let arrTempOverView = dict.valueForJSON(key: "overview") as? [[String : AnyObject]]
+                if (arrTempOverView?.count)! > 0{
+                    self.arrOverView = arrTempOverView!
+                }
+                
+              
+                //...Location Advantges
+                let arrTempLocAdvantges = dict.valueForJSON(key: "locationAdvantages") as? [[String : AnyObject]]
+                if (arrTempLocAdvantges?.count)! > 0{
+                    self.arrLocation = arrTempLocAdvantges!
+                }
+                
+                
+                //...Configurtion
+                let arrTempConfiguration = dict.valueForJSON(key: "configuration") as? [[String : AnyObject]]
+                if (arrTempConfiguration?.count)! > 0{
+                    self.arrConfigure = arrTempConfiguration!
+                }
+                
+               
+                //...Project Imgaes
+                let arrImg = dict.valueForJSON(key: "projectImages") as? [String]
+                if (arrImg?.count)! > 0 {
+                    self.arrProjectImg = arrImg!
+                }
+                
+               
+                //...Amenities
+                let arrTempAmenities = dict.valueForJSON(key: "amenities") as? [[String : AnyObject]]
+                if (arrTempAmenities?.count)! > 0 {
+                    self.arrAmmenities = arrTempAmenities!
+                }
+                
+                //...Specification
+                let arrTempSepc = dict.valueForString(key: "specification").components(separatedBy:"\n")
+                if arrTempSepc.count > 0{
+                    self.arrSpecification = arrTempSepc
+                }
+                
+                
+                //...Floor Plan
+                let arrTempPlanType = dict.valueForJSON(key: "floorPlan") as? [[String : AnyObject]]
+                if (arrTempPlanType?.count)! > 0{
+                    
+                    //...Unit Plan
+                    let arrTempUnitPlan = arrTempPlanType?.filter {
+                        ($0.valueForString(key: "type")).range(of: "1" , options: [.caseInsensitive]) != nil
+                    }
+                    
+                    if (arrTempUnitPlan?.count)! > 0 {
+                        self.arrUnitPlan = arrTempUnitPlan!
+                        self.arrUnitType = self.arrUnitPlan.map({$0["title"]! as! String})
+                    }
+                    
+                    //...Typical Plan
+                    let arrTempTypicalPlan  = arrTempPlanType?.filter {
+                        ($0.valueForString(key: "type")).range(of: "2" , options: [.caseInsensitive]) != nil
+                    }
+                    
+                    if (arrTempTypicalPlan?.count)! > 0 {
+                        self.arrTypicalPlan = arrTempTypicalPlan!
+                        self.arrTypicalType = self.arrTypicalPlan.map({$0["title"]! as! String})
+
+                    }
+                    
+                    print("arrUnitType : ",self.arrUnitType as Any)
+                    print("arrTypicalType : ",self.arrTypicalType as Any)
+
+                }
+                
+                self.collProject.reloadData()
+                self.collOverView.reloadData()
+                self.collLocation.reloadData()
+                self.tblConfigure.reloadData()
+                self.collPlansType.reloadData()
+                self.collFloorImg.reloadData()
+                self.collAmmenities.reloadData()
+                self.tblSpecification.reloadData()
+                
+                DispatchQueue.main.async {
+                    self.updateCollectionAndTableHeight()
+                }
             }
         }
         
@@ -261,6 +331,17 @@ extension ProjectDetailViewController {
            
             self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
             self.btnSubscribe.isSelected = !sender.isSelected
+         
+            APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
+                
+                if response != nil && error == nil {
+                    
+//                    let data = response?.value(forKey: CJsonData) as? [String : AnyObject]
+//
+//                    let vcProject = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController
+                    
+                }
+            }
             
         }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
         })
@@ -289,7 +370,9 @@ extension ProjectDetailViewController {
         sender.isSelected = true
         sender.backgroundColor = ColorGreenSelected
         sender.layer.borderColor = ColorGreenSelected.cgColor
-
+  
+        self.collPlansType.reloadData()
+        self.collFloorImg.reloadData()
         
     }
     
@@ -332,8 +415,8 @@ extension ProjectDetailViewController : UITableViewDelegate, UITableViewDataSour
                 
                 let dict = arrConfigure[indexPath.row]
                 
-                cell.lblPlanType.text = dict.valueForString(key: "type")
-                cell.lblSqft.text = dict.valueForString(key: "sq.ft")
+                cell.lblPlanType.text = dict.valueForString(key: "unitDetail")
+                cell.lblSqft.text = dict.valueForString(key: "areaIn")
                 cell.lblPrice.text = "₹\(dict.valueForString(key: "price"))"
 
                 return cell
@@ -366,15 +449,15 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
 
         switch collectionView {
         case collFloorImg:
-            return arrFloorImg.count
+            return self.btnUnitPlans.isSelected ? arrUnitPlan.count : arrTypicalPlan.count
         case collPlansType:
-            return arrPlanType.count
+            return self.btnUnitPlans.isSelected ? arrUnitType.count : arrTypicalType.count
         case collAmmenities:
             return arrAmmenities.count
         case collOverView:
             return arrOverView.count
         case collProject:
-            return arrImg.count
+            return arrProjectImg.count
         default:
             return arrLocation.count
         }
@@ -390,10 +473,13 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
         case collPlansType:
             let fontToResize = CFontAvenir(size: IS_iPad ? 14 : 12, type: .heavy).setUpAppropriateFont()
-            return CGSize(width: arrPlanType[indexPath.row].size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? CScreenWidth * 60/768 : collectionView.CViewHeight)
+           
+            let strTitle = self.btnUnitPlans.isSelected ? arrUnitType[indexPath.row] : arrTypicalType[indexPath.row]
+            
+            return CGSize(width: strTitle.size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? CScreenWidth * 60/768 : collectionView.CViewHeight)
             
         case collAmmenities:
-            return IS_iPad ? CGSize(width:(collProject.CViewWidth/4 - 45), height: CScreenWidth * 120/768) : CGSize(width: (CScreenWidth/4 - 20), height: collectionView.CViewHeight)
+            return IS_iPad ? CGSize(width:(collProject.CViewWidth/4 - 45), height: CScreenWidth * 120/768) : CGSize(width: (CScreenWidth/3 - 20), height: collectionView.CViewHeight)
             
         case collOverView:
             return CGSize(width: IS_iPad ? (collProject.CViewWidth/2 - 50):(CScreenWidth/2 - 20), height: IS_iPad ? (CScreenWidth * (90/768)) : (CScreenWidth * (60/375)))
@@ -412,8 +498,10 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         case collProject:
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectImageCollCell", for: indexPath) as? ProjectImageCollCell {
-                cell.imgVProject.image = UIImage(named: arrImg[indexPath.row])
-            
+                
+                cell.imgVProject.sd_setShowActivityIndicatorView(true)
+                cell.imgVProject.sd_setImage(with: URL(string: arrProjectImg[indexPath.row] ), placeholderImage: nil, options: .retryFailed, completed: nil)
+                
                 return cell
             }
             return UICollectionViewCell()
@@ -424,10 +512,15 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 
                 let dict = arrLocation[indexPath.row]
                 
-                cell.lblLocation.text = dict.valueForString(key: "title")
-                cell.imgVLocation.image = UIImage(named: dict.valueForString(key: "img"))
-                cell.loadLocationDesc(arrDesc: dict.valueForJSON(key: "desc") as! [String])
+                cell.lblLocation.text = dict.valueForString(key: CTitle)
+                cell.imgVLocation.sd_setShowActivityIndicatorView(true)
+                cell.imgVLocation.sd_setImage(with: URL(string: dict.valueForString(key: CIcon)), placeholderImage: nil, options: .retryFailed, completed: nil)
 
+                let arrDesc = dict.valueForString(key: CDesciption).components(separatedBy:"\n")
+                if arrDesc.count > 0 {
+                    cell.loadLocationDesc(arrDesc: arrDesc)
+                }
+                
                 return cell
             }
             
@@ -437,7 +530,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlanTypeCollCell", for: indexPath) as? PlanTypeCollCell {
          
-                cell.lblPlanType.text = arrPlanType[indexPath.row]
+                cell.lblPlanType.text = self.btnUnitPlans.isSelected ? arrUnitType[indexPath.row] : arrTypicalType[indexPath.row]
                 
                 if self.planIndexPath == indexPath {
                     cell.vwLine.isHidden = false
@@ -458,7 +551,10 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FloorPlansImgCollCell", for: indexPath) as? FloorPlansImgCollCell {
                 
-                cell.imgVPlan.image = UIImage(named: arrFloorImg[indexPath.row])
+                let dic = self.btnUnitPlans.isSelected ? arrUnitPlan[indexPath.row] : arrTypicalPlan[indexPath.row]
+                
+                cell.imgVPlan.sd_setShowActivityIndicatorView(true)
+                cell.imgVPlan.sd_setImage(with: URL(string: dic.valueForString(key: CImage) ), placeholderImage: nil, options: .retryFailed, completed: nil)
                 
                 return cell
             }
@@ -471,9 +567,12 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 
                 let dict = arrOverView[indexPath.row]
                 
-                cell.lblTitle.text = dict.valueForString(key: "title")
-                cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
-                cell.lblSubTitle.text = dict.valueForString(key: "subtitle")
+                cell.lblTitle.text = dict.valueForString(key: CTitle)
+                cell.lblSubTitle.text = dict.valueForString(key: CDesciption)
+                
+                cell.imgVTitle.sd_setShowActivityIndicatorView(true)
+                cell.imgVTitle.sd_setImage(with: URL(string: dict.valueForString(key: CIcon)), placeholderImage: nil, options: .retryFailed, completed: nil)
+                
                 return cell
             }
             
@@ -485,8 +584,10 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 
                 let dict = arrAmmenities[indexPath.row]
                 
-                cell.lblTitle.text = dict.valueForString(key: "title")
-                cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
+                cell.lblTitle.text = dict.valueForString(key: CTitle)
+                
+                cell.imgVTitle.sd_setShowActivityIndicatorView(true)
+                cell.imgVTitle.sd_setImage(with: URL(string: dict.valueForString(key: CIcon) ), placeholderImage: nil, options: .retryFailed, completed: nil)
                 
                 return cell
             }
@@ -522,7 +623,9 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         
         if scrollView == collFloorImg {
             
-            if Int(index) <= arrPlanType.count - 1 {
+            let count = self.btnUnitPlans.isSelected ? arrUnitType.count : arrTypicalType.count
+            
+            if Int(index) <= count - 1 {
                 collPlansType.scrollToItem(at: IndexPath(item: Int(index), section: 0), at: IS_iPad ? .top : .left, animated: true)
                 self.planIndexPath = IndexPath(item: Int(index), section: 0)
                 collPlansType.reloadData()
