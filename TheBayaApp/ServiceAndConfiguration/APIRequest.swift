@@ -33,6 +33,9 @@ let CAPITagProjectDetails      =   "project-details"
 let CAPITagFavorite            =   "favorite"
 let CAPITagTimeline            =   "timelinelist"
 let CAPITagScheduleVisit       =   "schedule-visit"
+let CAPITagVisitList           =   "visitlist"
+let CAPITagRateVisit           =   "rate-visit"
+let CAPITagSupport             =   "support"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -1029,9 +1032,108 @@ extension APIRequest {
     }
     
     
+    
+    //TODO:
+    //TODO: --------------VISIT RELATED API--------------
+    //TODO:
+    
+    
+    
     func scheduleVisit(dict : [String : AnyObject], completion : @escaping ClosureCompletion) {
         
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagScheduleVisit, param: dict, successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagScheduleVisit){
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.scheduleVisit(dict: dict, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagScheduleVisit, error: error)
+            }
+        })
+        
     }
+    
+    func getVisitList(page : Int?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagVisitList, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagVisitList){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+           
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.getVisitList(page: page, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagVisitList, error: error)
+            }
+        })!
+    }
+    
+    func rateVisit (visitId : Int?, rating : Int?, desc : String?, completion : @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagRateVisit, param: ["visitId" : visitId as AnyObject, "ratings" : rating as AnyObject, "description" : desc as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagRateVisit) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.rateVisit(visitId: visitId, rating: rating, desc: desc, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagRateVisit, error: error)
+            }
+        })
+    }
+    
+    func support (msg : String?, completion : @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagSupport, param: ["message" : msg as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSupport){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.support(msg: msg, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSupport, error: error)
+            }
+        })
+    }
+    
     
     
     //TODO:

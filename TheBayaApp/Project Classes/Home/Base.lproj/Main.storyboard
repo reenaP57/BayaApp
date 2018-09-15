@@ -2806,6 +2806,30 @@ reach for you.</string>
                                     <constraint firstItem="gqM-2P-1qX" firstAttribute="leading" secondItem="6JP-vZ-reE" secondAttribute="leading" constant="20" id="mc7-HZ-uVU"/>
                                 </constraints>
                             </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ga-mR-7Fr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4CK-64-H7g">
+                                        <rect key="frame" x="0.0" y="0.0" width="60" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="60" id="ibl-yb-97X"/>
+                                        </constraints>
+                                        <state key="normal" image="nav_back"/>
+                                        <state key="selected" image="nav_back"/>
+                                        <state key="highlighted" image="nav_back"/>
+                                        <connections>
+                                            <action selector="btnNavBackClickedWithSender:" destination="yEF-Az-t2f" eventType="touchUpInside" id="zW8-Wx-mzL"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="5w3-n3-z7p"/>
+                                    <constraint firstItem="4CK-64-H7g" firstAttribute="leading" secondItem="5Ga-mR-7Fr" secondAttribute="leading" id="HoV-Ok-6LN"/>
+                                    <constraint firstAttribute="bottom" secondItem="4CK-64-H7g" secondAttribute="bottom" id="M1h-pV-DUz"/>
+                                    <constraint firstItem="4CK-64-H7g" firstAttribute="top" secondItem="5Ga-mR-7Fr" secondAttribute="top" id="nSp-XX-KQq"/>
+                                </constraints>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="2Em-pV-P6B">
                                 <rect key="frame" x="169" y="1137" width="37" height="37"/>
                                 <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2813,6 +2837,7 @@ reach for you.</string>
                         </subviews>
                         <color key="backgroundColor" red="0.89411764705882346" green="0.92156862745098034" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="5Ga-mR-7Fr" firstAttribute="trailing" secondItem="as6-Tc-tPQ" secondAttribute="trailing" id="4b6-wA-qGk"/>
                             <constraint firstItem="2Em-pV-P6B" firstAttribute="centerX" secondItem="Dgp-pu-Ss7" secondAttribute="centerX" id="ENh-uw-EJx"/>
                             <constraint firstItem="6JP-vZ-reE" firstAttribute="bottom" secondItem="as6-Tc-tPQ" secondAttribute="bottom" id="MYf-ee-I1R"/>
                             <constraint firstItem="1u9-Jt-xAK" firstAttribute="trailing" secondItem="as6-Tc-tPQ" secondAttribute="trailing" id="Rxc-Ky-As5"/>
@@ -2821,7 +2846,9 @@ reach for you.</string>
                             <constraint firstItem="1u9-Jt-xAK" firstAttribute="leading" secondItem="as6-Tc-tPQ" secondAttribute="leading" id="coM-iD-SqL"/>
                             <constraint firstItem="1u9-Jt-xAK" firstAttribute="top" secondItem="Dgp-pu-Ss7" secondAttribute="top" id="kR1-bn-yBk"/>
                             <constraint firstItem="6JP-vZ-reE" firstAttribute="trailing" secondItem="as6-Tc-tPQ" secondAttribute="trailing" id="mR9-uL-cUI"/>
+                            <constraint firstItem="5Ga-mR-7Fr" firstAttribute="top" secondItem="Dgp-pu-Ss7" secondAttribute="top" id="oxW-yz-OoA"/>
                             <constraint firstItem="6JP-vZ-reE" firstAttribute="leading" secondItem="as6-Tc-tPQ" secondAttribute="leading" id="ps1-hm-aEV"/>
+                            <constraint firstItem="5Ga-mR-7Fr" firstAttribute="leading" secondItem="as6-Tc-tPQ" secondAttribute="leading" id="ssW-ZK-uEf"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="as6-Tc-tPQ"/>
                     </view>
@@ -2857,6 +2884,7 @@ reach for you.</string>
                         <outlet property="vw3DTitle" destination="8cE-MF-PRT" id="LMU-it-LEm"/>
                         <outlet property="vw3DTour" destination="QGw-aK-VSF" id="M4P-jW-sWk"/>
                         <outlet property="vwBottom" destination="6JP-vZ-reE" id="y2Q-KI-ooJ"/>
+                        <outlet property="vwNav" destination="5Ga-mR-7Fr" id="Qjm-Mh-0cx"/>
                         <outlet property="vwPanorama" destination="mr1-uZ-q3Y" id="4Kj-ZA-Nse"/>
                         <outlet property="vwProjectDetail" destination="v4n-RR-INM" id="hJr-nb-NOg"/>
                         <outlet property="vwSoldOut" destination="igV-cq-9AG" id="gcl-vN-RD2"/>
@@ -2983,7 +3011,7 @@ reach for you.</string>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2D-fV-bv9" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11.5"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
@@ -3124,6 +3152,7 @@ reach for you.</string>
         <image name="map" width="414" height="149"/>
         <image name="metro" width="22" height="28"/>
         <image name="my_projects_profile" width="22" height="22"/>
+        <image name="nav_back" width="13" height="22"/>
         <image name="page_select" width="11" height="2"/>
         <image name="page_unselect" width="11" height="2"/>
         <image name="pause" width="27" height="27"/>
