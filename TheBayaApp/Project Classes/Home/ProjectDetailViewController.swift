@@ -465,7 +465,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         
         switch collectionView {
         case collFloorImg:
-            return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
+            return IS_iPad ? CGSize(width: collFloorImg.CViewWidth, height: collFloorImg.CViewHeight) : CGSize(width: CScreenWidth, height: collFloorImg.CViewHeight)
             
         case collPlansType:
             let fontToResize = CFontAvenir(size: IS_iPad ? 14 : 12, type: .heavy).setUpAppropriateFont()
