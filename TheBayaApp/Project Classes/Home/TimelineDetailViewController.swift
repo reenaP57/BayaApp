@@ -536,16 +536,20 @@ extension TimelineDetailViewController {
         
         
         UIView.animate(withDuration: 1.0) {
-//            self.view.addSubview(vwFilter)
-            appDelegate.window.addSubview(vwFilter)
+          self.view.addSubview(vwFilter)
+        //    appDelegate.window.addSubview(vwFilter)
         }
         
         vwFilter.btnDone.touchUpInside { (sender) in
             if (vwFilter.txtStartDate.text?.isBlank)!{
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageStartDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
-            }else if (vwFilter.txtEndDate.text?.isBlank)!
-            {
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageEndDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                 vwFilter.vwContent.addSubview(vwFilter.txtStartDate.showValidationMessage(10.0, CMessageStartDate))
+                
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: ?CMessageStartDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+            }else if (vwFilter.txtEndDate.text?.isBlank)!{
+                
+                vwFilter.vwContent.addSubview(vwFilter.txtEndDate.showValidationMessage(15.0, CMessageEndDate))
+                
+               // self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageEndDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
             }
             else{
                 strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"

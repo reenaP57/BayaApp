@@ -55,6 +55,7 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var scrollVw : UIScrollView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     @IBOutlet fileprivate weak var vwBottom : UIView!
+    @IBOutlet fileprivate weak var vwNav : UIView!
 
     @IBOutlet fileprivate weak var cnstHeightCollOverView : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightTblConfigure : NSLayoutConstraint!
@@ -127,7 +128,9 @@ class ProjectDetailViewController: ParentViewController {
                 
                 self.scrollVw.isHidden = false
                 self.vwBottom.isHidden = false
+                self.vwNav.isHidden = true
                 self.activityLoader.stopAnimating()
+                
                 
                 let dict = response?.value(forKey: CJsonData) as! [String : AnyObject]
                 
@@ -158,22 +161,8 @@ class ProjectDetailViewController: ParentViewController {
                         print("Unable to load data: \(error)")
                     }
                 }
-                
-                
-             
-//
-//                let data = Data.init(contentsOf: URL(string: dict.valueForString(key: "tour3DImage"))!)
-//                self.vwPanorama.image = UIImage(data: data)
-                
-//
-//                cell.imgVProject.sd_setShowActivityIndicatorView(true)
-//
-//
-//                cell.imgVProject.sd_setImage(with: URL(string: arrProjectImg[indexPath.row] ), placeholderImage: nil, options: .retryFailed, completed: nil)
-//
-//                self.vwPanorama.image = UIImage(named: dict.valueForString(key: "tour3DImage"))
-              
 
+                
                 //...Overview
                 let arrTempOverView = dict.valueForJSON(key: "overview") as? [[String : AnyObject]]
                 if (arrTempOverView?.count)! > 0{
@@ -257,6 +246,8 @@ class ProjectDetailViewController: ParentViewController {
                 DispatchQueue.main.async {
                     self.updateCollectionAndTableHeight()
                 }
+            } else {
+                 self.vwNav.isHidden = false
             }
         }
         
@@ -290,6 +281,10 @@ class ProjectDetailViewController: ParentViewController {
 //MARK:- Action
 
 extension ProjectDetailViewController {
+    
+    @IBAction func btnNavBackClicked (sender : UIButton) {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBAction func btnBackClicked (sender : UIButton) {
         self.navigationController?.popViewController(animated: true)
@@ -475,7 +470,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             return CGSize(width: strTitle.size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? CScreenWidth * 60/768 : collectionView.CViewHeight)
             
         case collAmmenities:
-            return IS_iPad ? CGSize(width:(collProject.CViewWidth/4 - 45), height: CScreenWidth * 120/768) : CGSize(width: (CScreenWidth/3 - 20), height: collectionView.CViewHeight)
+            return IS_iPad ? CGSize(width:(collProject.CViewWidth/4 - 45), height: CScreenWidth * 130/768) : CGSize(width: (CScreenWidth/3 - 20), height: collectionView.CViewHeight)
             
         case collOverView:
             return CGSize(width: IS_iPad ? (collProject.CViewWidth/2 - 50):(CScreenWidth/2 - 20), height: IS_iPad ? (CScreenWidth * (90/768)) : (CScreenWidth * (60/375)))
