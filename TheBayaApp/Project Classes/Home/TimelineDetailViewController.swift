@@ -74,7 +74,7 @@ class TimelineDetailViewController: ParentViewController {
         {
             //... For TimeLine Guide Screen
             
-            if let vwTimlineGuideline = TimelineGuideLineView.viewFromNib(is_ipad: true) as? TimelineGuideLineView {
+            if let vwTimlineGuideline = TimelineGuideLineView.viewFromNib(is_ipad: IS_iPad) as? TimelineGuideLineView {
                 
                 vwTimlineGuideline.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
            
@@ -471,6 +471,7 @@ extension TimelineDetailViewController {
     }
     
     func loadTimeLineListFromServer(_ shouldShowLoader : Bool?, startDate : String?, endDate : String?){
+        
         
         if self.apiTask?.state == URLSessionTask.State.running {
             apiTask?.cancel()
