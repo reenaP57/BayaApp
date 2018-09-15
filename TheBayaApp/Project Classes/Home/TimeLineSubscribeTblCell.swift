@@ -147,6 +147,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 cell.btnProjectDetail.touchUpInside { (sender) in
                     
                     if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                        projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
                         self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)
                     }
                 }
