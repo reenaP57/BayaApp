@@ -134,10 +134,21 @@ extension ResetPwdViewController {
         var dict = [String : AnyObject]()
         
         if type == CMobileType {
-            dict = ["type" : type as AnyObject, "userName" : strEmailMobile as AnyObject, CCountryId : countryId as AnyObject]
+            dict = ["type" : type as AnyObject,
+                    "userName" : strEmailMobile as AnyObject,
+                    CCountryId : countryId as AnyObject,
+                    "deviceInfo" : ["platform" : "IOS",
+                                    "deviceVersion" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
             
         } else {
-            dict = ["type" : type as AnyObject, "userName" : strEmailMobile as AnyObject]
+            dict = ["type" : type as AnyObject,
+                    "userName" : strEmailMobile as AnyObject,
+                    "deviceInfo" : ["platform" : "IOS",
+                                    "deviceVersion" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
         }
         
         APIRequest.shared().forgotPassword(dict: dict) { (response, error) in

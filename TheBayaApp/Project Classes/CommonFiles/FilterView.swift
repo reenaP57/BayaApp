@@ -32,10 +32,13 @@ class FilterView: UIView {
         txtEndDate.setDatePickerMode(mode: .date)
 
         txtStartDate.setDatePickerWithDateFormate(dateFormate: "dd MMMM YYYY", defaultDate: Date(), isPrefilledDate: true) { (date) in
+            txtEndDate.text = ""
+            txtEndDate.setMinimumDate(minDate: date.tomorrow)
         }
         
         txtEndDate.setDatePickerWithDateFormate(dateFormate: "dd MMMM YYYY", defaultDate: Date(), isPrefilledDate: true) { (date) in
         }
+       
     }
     
 }

@@ -12,6 +12,14 @@ import BFRImageViewer
 
 class ProjectDetailViewController: ParentViewController {
 
+    @IBOutlet fileprivate weak var vwOverView : UIView!
+    @IBOutlet fileprivate weak var vwLocAdvantages : UIView!
+    @IBOutlet fileprivate weak var vwConfigurtion : UIView!
+    @IBOutlet fileprivate weak var vwFloorPlan : UIView!
+    @IBOutlet fileprivate weak var vwAmenities : UIView!
+    @IBOutlet fileprivate weak var vwSpecification : UIView!
+
+
     @IBOutlet fileprivate weak var collProject : UICollectionView!
     @IBOutlet fileprivate weak var pageVProject : UIPageControl!
     @IBOutlet fileprivate weak var vwSoldOut : UIView!
@@ -51,6 +59,9 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
     @IBOutlet fileprivate weak var tblSpecification : UITableView!
 
+    @IBOutlet fileprivate weak var btnSeeAllAmenities : UIButton!
+    @IBOutlet fileprivate weak var btnSeeAllAdvantages : UIButton!
+
     @IBOutlet fileprivate weak var lblDisclaimer : UILabel!
     @IBOutlet fileprivate weak var scrollVw : UIScrollView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
@@ -75,9 +86,12 @@ class ProjectDetailViewController: ParentViewController {
     var arrTypicalPlan = [[String : AnyObject]]()
     var arrUnitType = [String]()
     var arrTypicalType = [String]()
+    var arrContactNo = [[String : AnyObject]]()
 
     var projectID = 0
     var planIndexPath : IndexPath = IndexPath(item: 0, section: 0)
+    var dictDetail = [String : AnyObject]()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -101,6 +115,9 @@ class ProjectDetailViewController: ParentViewController {
     func initialize() {
         
         self.btnFloorPlansClicked(sender: btnUnitPlans)
+        
+        tblSpecification.estimatedRowHeight = 32.0
+        tblSpecification.rowHeight = UITableViewAutomaticDimension
         
         vwSoldOut.layer.borderWidth = 1
         vwSoldOut.layer.borderColor = CRGB(r: 255, g: 0, b: 0).cgColor
@@ -134,8 +151,10 @@ class ProjectDetailViewController: ParentViewController {
                 
                 let dict = response?.value(forKey: CJsonData) as! [String : AnyObject]
                 
+                self.dictDetail = dict
+                
                 self.lblProjectName.text = dict.valueForString(key: CProjectName)
-                self.lblProjectDesc.text = dict.valueForString(key: CDesciption)
+                self.lblProjectDesc.text = dict.valueForString(key: CDescription)
                 self.lblEmail.text = dict.valueForString(key: "website")
                 self.lblReraNo.text = dict.valueForString(key: CReraNumber)
                 self.lblPercentage.text = "\(dict.valueForInt(key: CProjectProgress) ?? 0)% Completed"
@@ -149,6 +168,15 @@ class ProjectDetailViewController: ParentViewController {
                 
                 self.sliderPercentage.setValue(Float(dict.valueForInt(key: CProjectProgress)!), animated: false)
                 self.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ? true : false
+                
+                
+                //...Contact Detail
+                
+                let arrTempContact = dict.valueForJSON(key: "contactDetail") as? [[String : AnyObject]]
+                
+                if (arrTempContact?.count)! > 0 {
+                    self.arrContactNo = arrTempContact!
+                }
                 
                 
                 //...Load 3D image
@@ -167,13 +195,34 @@ class ProjectDetailViewController: ParentViewController {
                 let arrTempOverView = dict.valueForJSON(key: "overview") as? [[String : AnyObject]]
                 if (arrTempOverView?.count)! > 0{
                     self.arrOverView = arrTempOverView!
+                } else {
+                    self.vwOverView.hide(byHeight: true)
                 }
                 
               
                 //...Location Advantges
                 let arrTempLocAdvantges = dict.valueForJSON(key: "locationAdvantages") as? [[String : AnyObject]]
-                if (arrTempLocAdvantges?.count)! > 0{
-                    self.arrLocation = arrTempLocAdvantges!
+                if (arrTempLocAdvantges?.count)! > 0 {
+                   
+                    if IS_iPhone && (arrTempLocAdvantges?.count)! > 3 {
+                        self.btnSeeAllAdvantages.isHidden = false
+                        
+                        for index in 1..<4 {
+                            self.arrLocation.append(arrTempLocAdvantges![index])
+                        }
+                    
+                    } else if IS_iPad  && (arrTempLocAdvantges?.count)! > 4 {
+                        self.btnSeeAllAdvantages.isHidden = false
+                        for index in 1..<5 {
+                            self.arrLocation.append(arrTempLocAdvantges![index])
+                        }
+                    } else {
+                         self.btnSeeAllAdvantages.isHidden = true
+                         self.arrLocation = arrTempLocAdvantges!
+                    }
+                    
+                } else {
+                    self.vwLocAdvantages.hide(byHeight: true)
                 }
                 
                 
@@ -181,28 +230,57 @@ class ProjectDetailViewController: ParentViewController {
                 let arrTempConfiguration = dict.valueForJSON(key: "configuration") as? [[String : AnyObject]]
                 if (arrTempConfiguration?.count)! > 0{
                     self.arrConfigure = arrTempConfiguration!
+                } else {
+                    self.vwConfigurtion.hide(byHeight: true)
                 }
                 
                
                 //...Project Imgaes
                 let arrImg = dict.valueForJSON(key: "projectImages") as? [String]
+                self.pageVProject.numberOfPages = (arrImg?.count)!
+                
                 if (arrImg?.count)! > 0 {
                     self.arrProjectImg = arrImg!
+                    self.pageVProject.isHidden = false
+                } else{
+                    self.pageVProject.isHidden = true
                 }
                 
                
                 //...Amenities
                 let arrTempAmenities = dict.valueForJSON(key: "amenities") as? [[String : AnyObject]]
                 if (arrTempAmenities?.count)! > 0 {
-                    self.arrAmmenities = arrTempAmenities!
+                    
+                    if IS_iPhone && (arrTempAmenities?.count)! > 3 {
+                        self.btnSeeAllAmenities.isHidden = false
+                        for index in 1..<4 {
+                            self.arrAmmenities.append(arrTempAmenities![index])
+                        }
+                        
+                    } else if IS_iPad  && (arrTempAmenities?.count)! > 4 {
+                        self.btnSeeAllAmenities.isHidden = false
+                        for index in 1..<5 {
+                            self.arrAmmenities.append(arrTempAmenities![index])
+                        }
+                    } else {
+                        self.btnSeeAllAmenities.isHidden = true
+                        self.arrAmmenities = arrTempAmenities!
+                    }
+                    
+                } else {
+                    self.vwAmenities.hide(byHeight: true)
                 }
                 
                 //...Specification
                 let arrTempSepc = dict.valueForString(key: "specification").components(separatedBy:"\n")
                 if arrTempSepc.count > 0{
                     self.arrSpecification = arrTempSepc
+                } else {
+                    self.vwSpecification.hide(byHeight: true)
                 }
                 
+
+           
                 
                 //...Floor Plan
                 let arrTempPlanType = dict.valueForJSON(key: "floorPlan") as? [[String : AnyObject]]
@@ -216,7 +294,10 @@ class ProjectDetailViewController: ParentViewController {
                     if (arrTempUnitPlan?.count)! > 0 {
                         self.arrUnitPlan = arrTempUnitPlan!
                         self.arrUnitType = self.arrUnitPlan.map({$0["title"]! as! String})
+                    } else {
+                        self.btnUnitPlans.hide(byWidth: true)
                     }
+                    
                     
                     //...Typical Plan
                     let arrTempTypicalPlan  = arrTempPlanType?.filter {
@@ -227,11 +308,15 @@ class ProjectDetailViewController: ParentViewController {
                         self.arrTypicalPlan = arrTempTypicalPlan!
                         self.arrTypicalType = self.arrTypicalPlan.map({$0["title"]! as! String})
 
+                    } else {
+                        self.btnTypicalPlan.hide(byWidth: true)
                     }
                     
                     print("arrUnitType : ",self.arrUnitType as Any)
                     print("arrTypicalType : ",self.arrTypicalType as Any)
 
+                } else {
+                    self.vwFloorPlan.hide(byHeight: true)
                 }
                 
                 self.collProject.reloadData()
@@ -246,6 +331,12 @@ class ProjectDetailViewController: ParentViewController {
                 DispatchQueue.main.async {
                     self.updateCollectionAndTableHeight()
                 }
+                
+                
+                GCDMainThread.asyncAfter(deadline: .now() + 0.5, execute: {
+                    self.cnstHeightCollLocation.constant = self.collLocation.contentSize.height
+                })
+                
             } else {
                  self.vwNav.isHidden = false
             }
@@ -258,8 +349,7 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
-            self.cnstHeightTblSpecification.constant =  IS_iPad ? self.tblSpecification.contentSize.height : self.tblSpecification.contentSize.height - 25
-            self.cnstHeightCollLocation.constant = self.collLocation.contentSize.height
+            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height
         }
     }
 
@@ -296,7 +386,10 @@ extension ProjectDetailViewController {
     
     @IBAction func btnShareClicked (sender : UIButton) {
         
-        let text = "This is the text...."
+        let contactNo = (arrContactNo.mapValue(forKey: "mobileNo") as? [String])?.joined(separator: ",")
+        
+        let text = "\(dictDetail.valueForString(key: CProjectName))\n\nMahaRERA: \(dictDetail.valueForString(key: CReraNumber))\n\nCall \(contactNo!)\n\n\(dictDetail.valueForString(key: "website"))\n\nSite Address: \(dictDetail.valueForString(key: CAddress))\n\n\(dictDetail.valueForString(key: CDescription))"
+        
         let shareAll = [text]
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
@@ -313,7 +406,13 @@ extension ProjectDetailViewController {
     
     @IBAction func btnProjectBrochureClicked (sender : UIButton) {
         
-        self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+        APIRequest.shared().projectBrochure(projectId: self.projectID) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+            }
+        }
     }
     
     @IBAction func btnSubscribeClicked (sender : UIButton) {
@@ -327,10 +426,24 @@ extension ProjectDetailViewController {
                 
                 if response != nil && error == nil {
                     
-//                    let data = response?.value(forKey: CJsonData) as? [String : AnyObject]
-//
-//                    let vcProject = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController
+                    let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
                     
+                    appDelegate.loginUser?.postBadge = Int16(data.valueForInt(key: CFavoriteProjectBadge)!)
+                    appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: CFavoriteProjectProgress)!)
+                    appDelegate.loginUser?.project_name = data.valueForString(key: CFavoriteProjectName)
+                    
+                    CoreData.saveContext()
+                    
+                    for vwController in (self.navigationController?.viewControllers)! {
+                        
+                        if vwController.isKind(of: ProjectViewController .classForCoder()){
+                            
+                            let projectVC = vwController as? ProjectViewController
+                            projectVC?.refreshIsSubscribedStatus(projectId: self.projectID, isSubscribed: data.valueForInt(key: CIsSubscribe)!)
+                            
+                            break
+                        }
+                    }
                 }
             }
             
@@ -339,8 +452,40 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnCallClicked (sender : UIButton) {
-        self.dialPhoneNumber(phoneNumber: "123456789")
+        
+        if arrContactNo.count == 1 {
+            self.dialPhoneNumber(phoneNumber: arrContactNo[0].valueForString(key: "mobileNo"))
+       
+        } else {
+            
+            if arrContactNo.count == 2 {
+                
+                self.presentActionsheetWithTwoButtons(actionSheetTitle: "", actionSheetMessage:"Contact Detail", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
+                    
+                      self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
+                    
+                }, btnTwoTitle: self.arrContactNo[1].valueForString(key: "mobileNo"), btnTwoStyle: .default) { (action) in
+                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[1].valueForString(key: "mobileNo"))
 
+                }
+                
+            } else {
+                
+                self.presentActionsheetWithThreeButton(actionSheetTitle: "Contact", actionSheetMessage: "", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
+                    
+                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
+
+                }, btnTwoTitle: self.arrContactNo[1].valueForString(key: "mobileNo"), btnTwoStyle: .default, btnTwoTapped: { (action) in
+                    
+                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[1].valueForString(key: "mobileNo"))
+
+                }, btnThreeTitle: self.arrContactNo[2].valueForString(key: "mobileNo"), btnThreeStyle: .default) { (action) in
+                    
+                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[2].valueForString(key: "mobileNo"))
+
+                }
+            }
+        }
     }
     
     @IBAction func btnFloorPlansClicked (sender : UIButton) {
@@ -370,6 +515,7 @@ extension ProjectDetailViewController {
     @IBAction func btnSeeAllAmenitiesClicked (sender : UIButton) {
         
         if let seeAllAmenitiesVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllAmenitiesViewController") as? SeeAllAmenitiesViewController {
+            seeAllAmenitiesVC.projectId = self.projectID
             self.navigationController?.pushViewController(seeAllAmenitiesVC, animated: true)
         }
     }
@@ -377,6 +523,7 @@ extension ProjectDetailViewController {
     @IBAction func btnSeeAllLocationClicked (sender : UIButton) {
         
         if let seeAllLocVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllLocationAdvantagesViewController") as? SeeAllLocationAdvantagesViewController {
+             seeAllLocVC.projectId = self.projectID
             self.navigationController?.pushViewController(seeAllLocVC, animated: true)
         }
     }
@@ -419,8 +566,7 @@ extension ProjectDetailViewController : UITableViewDelegate, UITableViewDataSour
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SpecificationTblCell") as? SpecificationTblCell {
                 
-                cell.lblTitle.text = arrSpecification[indexPath.row]
-
+                cell.lblTitle.text = (arrSpecification[indexPath.row]).replacingOccurrences(of: "\r", with: "", options: NSString.CompareOptions.literal, range: nil)
                 return cell
             }
             
@@ -507,7 +653,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 cell.imgVLocation.sd_setShowActivityIndicatorView(true)
                 cell.imgVLocation.sd_setImage(with: URL(string: dict.valueForString(key: CIcon)), placeholderImage: nil, options: .retryFailed, completed: nil)
 
-                let arrDesc = dict.valueForString(key: CDesciption).components(separatedBy:"\n")
+                let arrDesc = dict.valueForString(key: CDescription).components(separatedBy:"\n")
                 if arrDesc.count > 0 {
                     cell.loadLocationDesc(arrDesc: arrDesc)
                 }
@@ -559,7 +705,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 let dict = arrOverView[indexPath.row]
                 
                 cell.lblTitle.text = dict.valueForString(key: CTitle)
-                cell.lblSubTitle.text = dict.valueForString(key: CDesciption)
+                cell.lblSubTitle.text = dict.valueForString(key: CDescription)
                 
                 cell.imgVTitle.sd_setShowActivityIndicatorView(true)
                 cell.imgVTitle.sd_setImage(with: URL(string: dict.valueForString(key: CIcon)), placeholderImage: nil, options: .retryFailed, completed: nil)

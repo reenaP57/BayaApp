@@ -194,10 +194,21 @@ extension ForgotPwdViewController {
         var dict = [String : AnyObject]()
         
         if type == CMobileType {
-            dict = ["type" : type as AnyObject, "userName" : txtEmail.text as AnyObject, CCountryId : countryID as AnyObject]
+            dict = ["type" : type as AnyObject,
+                    "userName" : txtEmail.text as AnyObject,
+                    CCountryId : countryID as AnyObject,
+                    "deviceInfo" : ["platform" : "IOS",
+                                    "deviceVersion" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
 
         } else {
-            dict = ["type" : type as AnyObject, "userName" : txtEmail.text as AnyObject]
+            dict = ["type" : type as AnyObject,
+                    "userName" : txtEmail.text as AnyObject,
+                    "deviceInfo" : ["platform" : "IOS",
+                                    "deviceVersion" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
         }
         
         APIRequest.shared().forgotPassword(dict: dict) { (response, error) in

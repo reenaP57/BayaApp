@@ -11,8 +11,12 @@ import UIKit
 class SeeAllAmenitiesViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var collAmenities : UICollectionView!
-    
+    @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
+
     var arrAmmenities = [[String : AnyObject]]()
+    var projectId = 0
+    
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,46 +35,11 @@ class SeeAllAmenitiesViewController: ParentViewController {
         
         self.title = "Amenities"
         
-        if IS_iPad {
-            
-            arrAmmenities = [["img" : "ammenitie1_ipad", "title" : "Lift"],
-                             ["img" : "ammenitie2_ipad", "title" : "Gym"],
-                             ["img" : "ammenitie3_ipad", "title" : "Swimming Pool"],
-                             ["img" : "ammenitie4_ipad", "title" : "Power Backup"],
-                             ["img" : "ammenitie1_ipad", "title" : "Gym"],
-                             ["img" : "ammenitie2_ipad", "title" : "Swimming Pool"],
-                             ["img" : "ammenitie3_ipad", "title" : "Power Backup"],
-                             ["img" : "ammenitie4_ipad", "title" : "Lift"],
-                             ["img" : "ammenitie1_ipad", "title" : "Lift"],
-                             ["img" : "ammenitie2_ipad", "title" : "Gym"],
-                             ["img" : "ammenitie3_ipad", "title" : "Swimming Pool"],
-                             ["img" : "ammenitie4_ipad", "title" : "Power Backup"],
-                             ["img" : "ammenitie1_ipad", "title" : "Gym"],
-                             ["img" : "ammenitie2_ipad", "title" : "Swimming Pool"],
-                             ["img" : "ammenitie3_ipad", "title" : "Power Backup"],
-                             ["img" : "ammenitie4_ipad", "title" : "Lift"]] as [[String : AnyObject]]
-            
-        } else {
-            
-            arrAmmenities = [["img" : "Layer_7", "title" : "Lift"],
-                             ["img" : "Group_11", "title" : "Gym"],
-                             ["img" : "Group_12", "title" : "Swimming Pool"],
-                             ["img" : "Group_1", "title" : "Power Backup"],
-                             ["img" : "Group_11", "title" : "Gym"],
-                             ["img" : "Group_12", "title" : "Swimming Pool"],
-                             ["img" : "Group_1", "title" : "Power Backup"],
-                             ["img" : "Layer_7", "title" : "Lift"],
-                             ["img" : "Layer_7", "title" : "Lift"],
-                             ["img" : "Group_11", "title" : "Gym"],
-                             ["img" : "Group_12", "title" : "Swimming Pool"],
-                             ["img" : "Group_1", "title" : "Power Backup"],
-                             ["img" : "Group_11", "title" : "Gym"],
-                             ["img" : "Group_12", "title" : "Swimming Pool"],
-                             ["img" : "Group_1", "title" : "Power Backup"],
-                             ["img" : "Layer_7", "title" : "Lift"]] as [[String : AnyObject]]
-        }
+        refreshControl.addTarget(self, action: #selector(pulltoRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        collAmenities.refreshControl = refreshControl
         
- 
+        self.loadAmenities(isRefresh: false)
     }
     
 }
@@ -88,7 +57,7 @@ extension SeeAllAmenitiesViewController : UICollectionViewDelegateFlowLayout, UI
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
-        return CGSize(width: IS_iPad ?(CScreenWidth/4 - 50) : (CScreenWidth/4 - 20), height: IS_iPad ? CScreenWidth * (140/CScreenWidth) :  CScreenWidth * (100/CScreenWidth))
+        return CGSize(width: IS_iPad ?(CScreenWidth/4 - 50) : (CScreenWidth/3 - 20), height: IS_iPad ? CScreenWidth * (140/CScreenWidth) :  CScreenWidth * (100/CScreenWidth))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -101,17 +70,58 @@ extension SeeAllAmenitiesViewController : UICollectionViewDelegateFlowLayout, UI
             
             let dict = arrAmmenities[indexPath.row]
             
-            cell.lblTitle.text = dict.valueForString(key: "title")
-            cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
+            cell.lblTitle.text = dict.valueForString(key: CTitle)
+            
+            cell.imgVTitle.sd_setShowActivityIndicatorView(true)
+            cell.imgVTitle.sd_setImage(with: URL(string: dict.valueForString(key: CIcon) ), placeholderImage: nil, options: .retryFailed, completed: nil)
             
             return cell
         }
         
         return UICollectionViewCell()
     }
-    
-    
-
-    
 }
 
+
+//MARK:-
+//MARK:- API
+
+extension SeeAllAmenitiesViewController {
+    
+    @objc func pulltoRefresh(){
+        refreshControl.beginRefreshing()
+        self.loadAmenities(isRefresh: true)
+    }
+    
+    func loadAmenities(isRefresh : Bool) {
+        
+        if !isRefresh{
+            activityLoader.startAnimating()
+        }
+        
+        
+        APIRequest.shared().getAmenities(projectId: projectId) { (response, error) in
+            
+            self.refreshControl.endRefreshing()
+            self.activityLoader.stopAnimating()
+            
+            if response != nil && error == nil {
+                
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                
+                
+                if arrData.count > 0 {
+                    if arrData.count != self.arrAmmenities.count {
+                        self.arrAmmenities.removeAll()
+                        for item in arrData {
+                            self.arrAmmenities.append(item)
+                        }
+                    }
+                }
+                
+                self.collAmenities.reloadData()
+            }
+        }
+    }
+    
+}

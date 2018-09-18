@@ -17,12 +17,13 @@ class HomeViewController: ParentViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialize()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        self.initialize()
+        collHome.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -35,15 +36,10 @@ class HomeViewController: ParentViewController {
     
     
     func initialize() {
-        
-        if IS_iPad {
-            arrHome = [["title": "Timeline", "subtitle": "THE BAYA VICTORIA", "img": "timeline_ipad"],["title": "Projects", "subtitle": "5 PROJECTS", "img": "projects_ipad"],["title": "Schedule a Visit", "subtitle": "CHOOSE TIME OF VISIT", "img": "schedule_visit_ipad"]] as [[String : AnyObject]]
-
-        } else {
-            arrHome = [["title": "Timeline", "subtitle": "THE BAYA VICTORIA", "img": "timeline"],["title": "Projects", "subtitle": "5 PROJECTS", "img": "projects"],["title": "Schedule a Visit", "subtitle": "CHOOSE TIME OF VISIT", "img": "schedule_visit"]] as [[String : AnyObject]]
-
-        }
-        
+       
+        arrHome = [["title": "Timeline" as AnyObject, "subtitle": appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
+                   ["title": "Projects" as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject) PROJECT", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
+                   ["title": "Schedule a Visit" as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject]] as [[String : AnyObject]]
     }
 }
 
@@ -73,18 +69,30 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
             cell.lblTitle.text = dict.valueForString(key: "title")
             cell.lblPrjctName.text = dict.valueForString(key: "subtitle")
+            cell.lblBadge.text = "\(appDelegate.loginUser?.postBadge ?? 0)"
+            cell.lblPercentage.text = "\(appDelegate.loginUser?.projectProgress ?? 0)% Completed"
             
-            cell.vwCount.isHidden = indexPath.row != 0
+            if indexPath.row != 0 || appDelegate.loginUser?.project_name == "" {
 
-            if indexPath.row != 0 {
-
+                cell.vwCount.isHidden = true
+                
                 if IS_iPhone {
-                    cell.vwProgress.isHidden = indexPath.row != 0
+                    cell.vwProgress.isHidden = true
                 } else {
                     cell.vwProgress.hide(byHeight: true)
                     _ = cell.lblPrjctName.setConstraintConstant(30.0, edge: .bottom, ancestor: true)
                 }
              
+            } else {
+                
+                if IS_iPhone {
+                    cell.vwProgress.isHidden = false
+                }else {
+                    cell.vwProgress.hide(byHeight: false)
+                    _ = cell.lblPrjctName.setConstraintConstant(10.0, edge: .bottom, ancestor: true)
+                }
+                
+                cell.vwCount.isHidden = appDelegate.loginUser?.postBadge == 0
             }
             
             return cell

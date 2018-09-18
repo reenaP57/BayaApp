@@ -35,6 +35,8 @@ class RateYoorVisitViewController: ParentViewController {
         }
     }
     
+    var visitId = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -77,14 +79,12 @@ extension RateYoorVisitViewController {
         self.view.layoutIfNeeded()
         
         DispatchQueue.main.async {
-           
+            
             if self.vwRating.rating < 1.0 {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSelectRating, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 
             } else {
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessRateVisitMessage, btnOneTitle: CBtnOk) { (action) in
-                    self.navigationController?.popViewController(animated: true)
-                }
+                self.rateVisit()
             }
         }
     }
@@ -109,15 +109,7 @@ extension RateYoorVisitViewController : UITextViewDelegate {
             txtVFeedback.text = currentText.substring(to: currentText.length - 1)
         }
     }
-    
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//
-//        if text == "\n" {
-//            return false
-//        }
-//
-//        return true
-//    }
+
 }
 
 
@@ -128,5 +120,37 @@ extension RateYoorVisitViewController : FloatRatingViewDelegate {
     
     func floatRatingView(_ ratingView: FloatRatingView, isUpdating rating: Double) {
         print("Rating : ",vwRating.rating)
+    }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension RateYoorVisitViewController {
+    
+    func rateVisit() {
+        
+        APIRequest.shared().rateVisit(visitId: self.visitId, rating: Int(vwRating.rating), desc: txtVFeedback.text) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessRateVisitMessage, btnOneTitle: CBtnOk) { (action) in
+                    
+                    for vwController in (self.navigationController?.viewControllers)! {
+                        
+                        if vwController.isKind(of: VisitDetailsViewController .classForCoder()){
+                            
+                            let visitDetail = vwController as? VisitDetailsViewController
+                            visitDetail?.RefreshRatingVisit(visitId: self.visitId, rating : Int(self.vwRating.rating))
+                            self.navigationController?.popViewController(animated: true)
+                            
+                            break
+                        }
+                    }
+
+                }
+            }
+        }
     }
 }

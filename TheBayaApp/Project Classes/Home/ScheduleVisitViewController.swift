@@ -57,11 +57,12 @@ class ScheduleVisitViewController: ParentViewController {
     }
     
     
-    
     var dateSlot1 = Date()
     var dateSlot2 = Date()
     var dateSlot3 = Date()
     
+    var arrProject = [[String : AnyObject]]()
+    var projectId = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -130,6 +131,7 @@ class ScheduleVisitViewController: ParentViewController {
         
         self.title = "Schedule a Visit"
         
+        self.loadProjectList()
         
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
             dateSlot1 = date
@@ -150,9 +152,6 @@ class ScheduleVisitViewController: ParentViewController {
            txtNoOfGuest.hideValidationMessage(15.0)
         }, defaultPlaceholder: "")
         
-        txtSelectProject.setPickerData(arrPickerData: ["The Baya Victoria","The Baya Victoria1","The Baya Victoria2"], selectedPickerDataHandler: { (string, row, index) in
-           txtSelectProject.hideValidationMessage(15.0)
-        }, defaultPlaceholder: "")
         
         txtSlot1.setMinimumDate(minDate: Date().tomorrow)
         txtSlot2.setMinimumDate(minDate: Date().tomorrow)
@@ -188,25 +187,7 @@ class ScheduleVisitViewController: ParentViewController {
 extension ScheduleVisitViewController {
     
     @IBAction func btnSubmitClicked (sender : UIButton) {
-        
-//        for objView in vwContent.subviews{
-//            if  objView.isKind(of: UITextField.classForCoder()){
-//                let txField = objView as? UITextField
-//                txField?.hideValidationMessage(15.0)
-//                txField?.resignFirstResponder()
-//            }
-//
-//            if  objView.isKind(of: UITextView.classForCoder()){
-//                let txView = objView as? UITextView
-//                txView?.hideValidationMessage(15.0)
-//                txView?.resignFirstResponder()
-//            }
-//        }
-//
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
-        
+
             if (self.txtSlot1.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CBlankTimeSlot1Message))
                 
@@ -239,12 +220,8 @@ extension ScheduleVisitViewController {
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 
             }  else {
-                
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    self.navigationController?.popViewController(animated: true)
-                })
+                self.scheduleVisit()
             }
-       // }
     }
 }
 
@@ -269,13 +246,64 @@ extension ScheduleVisitViewController : UITextViewDelegate {
             txtVPurpose.text = currentText.substring(to: currentText.length - 1)
         }
     }
+
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension ScheduleVisitViewController {
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//
-//        if text == "\n" {
-//            return false
-//        }
-//        
-//        return true
-//    }
+    func loadProjectList() {
+
+        _ = APIRequest.shared().getProjectList(1, completion: { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                
+                if arrData.count > 0 {
+                    
+                    for item in arrData {
+                        self.arrProject.append(item)
+                    }
+                    
+                    self.txtSelectProject.setPickerData(arrPickerData: self.arrProject.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
+                        self.txtSelectProject.hideValidationMessage(15.0)
+                        self.projectId = self.arrProject[row].valueForInt(key: CProjectId)!
+                        
+                    }, defaultPlaceholder: "")
+                }
+            }
+        })
+    }
+    
+    
+    func scheduleVisit() {
+        
+        let timeslot1 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot1.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
+        let timeslot2 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot2.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
+        let timeslot3 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot3.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
+
+        
+        let dict = ["projectId" : self.projectId,
+                    "timeSlot1" : timeslot1,
+                    "timeSlot2" : timeslot2,
+                    "timeSlot3" : timeslot3,
+                    "purpose" : txtVPurpose.text,
+                    "guests" : txtNoOfGuest.text!] as [String : Any]
+
+
+        APIRequest.shared().scheduleVisit(dict: dict as [String : AnyObject]) { (response, error) in
+
+            if response != nil && error == nil {
+
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+        }
+        
+    }
 }

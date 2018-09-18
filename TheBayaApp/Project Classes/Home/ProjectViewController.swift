@@ -56,7 +56,23 @@ class ProjectViewController: ParentViewController {
         } else {
             tblProject.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
         }
-     
+    }
+    
+    
+    func refreshIsSubscribedStatus(projectId : Int, isSubscribed : Int) {
+        
+        for (index, _) in self.arrProject.enumerated() {
+            
+            let dict = self.arrProject[index]
+            
+            if dict.valueForInt(key: CProjectId) == projectId {
+                
+                var updatedDict = dict
+                updatedDict[CIsSubscribe] = isSubscribed as AnyObject
+                self.arrProject[index] = updatedDict
+                tblProject.reloadRows(at: [IndexPath(row: index, section: 0)], with: .none)
+            }
+        }
     }
 }
 
@@ -79,7 +95,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
       
             cell.lblPjctName.text = dict.valueForString(key: CProjectName)
             cell.lblLocation.text = dict.valueForString(key: CAddress)
-            cell.lblDesc.text = dict.valueForString(key: CDesciption)
+            cell.lblDesc.text = dict.valueForString(key: CDescription)
             cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
             
             cell.imgVPrjct.sd_setShowActivityIndicatorView(true)
@@ -109,11 +125,17 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                         
                         if response != nil && error == nil {
                             
-                            let data = response?.value(forKey: CJsonData) as? [String : AnyObject]
+                            let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
                             
-                            dict[CIsSubscribe] = data?.valueForInt(key: CIsSubscribe) as AnyObject
+                            dict[CIsSubscribe] = data.valueForInt(key: CIsSubscribe) as AnyObject
                             self.arrProject[indexPath.row] = dict
                             self.tblProject.reloadRows(at: [indexPath], with: .none)
+                            
+                            appDelegate.loginUser?.postBadge = Int16(data.valueForInt(key: CFavoriteProjectBadge)!)
+                            appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: CFavoriteProjectProgress)!)
+                            appDelegate.loginUser?.project_name = data.valueForString(key: CFavoriteProjectName)
+                            
+                            CoreData.saveContext()
                         }
                     }
                     

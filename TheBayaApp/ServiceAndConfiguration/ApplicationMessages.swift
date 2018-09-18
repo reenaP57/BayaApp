@@ -108,3 +108,7 @@ var CMessageStartDate : String{ return CLocalize(text: "Please select start date
 var CMessageEndDate : String{ return CLocalize(text: "Please select end date.") }
 
 
+var CMessageRequested  = "We have received your request for a visit. We will get back to you soon."
+var CMessageCompleted  = "You have visited this project on"
+var CMessageScheduled  = "Your visit has been scheduled for"
+

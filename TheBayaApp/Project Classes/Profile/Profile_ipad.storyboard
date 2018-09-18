@@ -477,6 +477,8 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="activityLoader" destination="jD7-Si-avd" id="3UH-3Z-E0C"/>
+                        <outlet property="lblNoData" destination="FLC-c3-xFE" id="yhJ-et-TJ2"/>
                         <outlet property="tblVVisitDetails" destination="rD9-GQ-ndw" id="1Jc-Ix-SNZ"/>
                     </connections>
                 </viewController>

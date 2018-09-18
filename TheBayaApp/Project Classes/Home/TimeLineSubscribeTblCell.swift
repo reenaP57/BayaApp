@@ -91,6 +91,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             var dict = arrProject[indexPath.row]
             
             cell.lblProjectName.text = dict.valueForString(key: CProjectName)
+            cell.lblLocation.text = dict.valueForString(key: "shortLocation")
             cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
             cell.lblPercentage.text = " \(dict.valueForInt(key: CProjectProgress) ?? 0)% "
             
@@ -110,6 +111,16 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                         dict[CIsFavorite] = data.valueForInt(key: CIsFavorite) as AnyObject
                         self.arrProject[indexPath.row] = dict
                         self.collSubscribe.reloadItems(at: [indexPath])
+                        
+                        if data.valueForInt(key: CIsFavorite) == 1{
+                            appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
+                            appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
+                        } else {
+                            appDelegate.loginUser?.project_name = ""
+                            appDelegate.loginUser?.projectProgress = 0
+                        }
+                        
+                        CoreData.saveContext()
                     }
                 })
             }
@@ -123,21 +134,21 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
             }
             
-            if IS_iPad {
-                
-                if indexPath.item == 0 {
-                    //...Hide call button
-                    cell.btnCall.isHidden = true
-                    _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
-                    
-                } else if indexPath.item == 1 {
-                    //...Hide call and schedule button
-                    cell.btnCall.isHidden = true
-                    cell.btnScheduleVisit.isHidden = true
-//                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
-
-                }
-                
+          if IS_iPad {
+//
+//                if indexPath.item == 0 {
+//                    //...Hide call button
+//                    cell.btnCall.isHidden = true
+//                    _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
+//
+//                } else if indexPath.item == 1 {
+//                    //...Hide call and schedule button
+//                    cell.btnCall.isHidden = true
+//                    cell.btnScheduleVisit.isHidden = true
+////                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
+//
+//                }
+            
                 cell.btnScheduleVisit.touchUpInside { (sender) in
                     if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                         self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)

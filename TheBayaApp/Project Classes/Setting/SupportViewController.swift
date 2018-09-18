@@ -56,26 +56,11 @@ extension SupportViewController {
     
     @IBAction func btnSendClicked (sender : UIButton) {
         
-//        for objView in self.view.subviews{
-//            if  objView.isKind(of: UITextView.classForCoder()){
-//                let txView = objView as? UITextView
-//                txView?.hideValidationMessage(15.0)
-//                txView?.resignFirstResponder()
-//            }
-//        }
-//
-//        self.view.layoutIfNeeded()
-//
-//        DispatchQueue.main.async {
-
-            if (self.txtVMsg.text?.isBlank)! {
-                self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport))
-            } else {
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    self.navigationController?.popViewController(animated: true)
-                })
-            }
-       // }
+        if (self.txtVMsg.text?.isBlank)! {
+            self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport))
+        } else {
+            self.postAppSupportDetail()
+        }
     }
     
     @IBAction func btnUploadImage (sender : UIButton) {
@@ -144,13 +129,38 @@ extension SupportViewController : UITextViewDelegate {
             txtVMsg.text = currentText.substring(to: currentText.length - 1)
         }
     }
+
     
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//
-//        if text == "\n" {
-//            return false
-//        }
-//
-//        return true
-//    }
+    
+
+    
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension SupportViewController {
+    
+    func postAppSupportDetail() {
+   
+        let dict = ["message" : txtVMsg.text as AnyObject,
+                    "deviceInfo" : "a",
+                    "iPhone" : 1,
+                    "platform" : "IOS",
+                    "deviceVersion" : UIDevice.current.systemVersion,
+                    "deviceOS" : UIDevice.current.systemVersion,
+                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String] as [String : AnyObject]
+        
+        
+        APIRequest.shared().support(dict: dict as [String : AnyObject], imgData: imgData) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+        }
+    }
 }

@@ -18,7 +18,8 @@ class TimelineDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblUpdates : UITableView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     @IBOutlet fileprivate weak var btnProjectDetail : UIButton!
-
+    @IBOutlet fileprivate weak var vwNoProject : UIView!
+    @IBOutlet fileprivate weak var lblNoUpdates : UILabel!
 
     var arrUpdateList = [[String : Any]]()
     var arrProject = [[String : AnyObject]]()
@@ -39,6 +40,7 @@ class TimelineDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
+        self.loadSubscribedProjectList(isRefresh: false)
     }
     
     override func didReceiveMemoryWarning() {
@@ -63,13 +65,29 @@ class TimelineDetailViewController: ParentViewController {
         refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         refreshControl?.tintColor = ColorGreenSelected
         tblUpdates.pullToRefreshControl = refreshControl
-        self.loadSubscribedProjectList(isRefresh: false)
+       // self.loadSubscribedProjectList(isRefresh: false)
         
         if IS_iPad {
             tblUpdates.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
         }
         
         
+        
+        
+    }
+    
+
+    
+    func shareContent(text : String, mediaUrl : String) {
+        
+        let shareAll = [text, mediaUrl]
+        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
+    func showTimelineGuideLineView() {
+       
         if CUserDefaults.string(forKey: UserDefaultOpenedTimeLine) != "true"
         {
             //... For TimeLine Guide Screen
@@ -77,7 +95,7 @@ class TimelineDetailViewController: ParentViewController {
             if let vwTimlineGuideline = TimelineGuideLineView.viewFromNib(is_ipad: IS_iPad) as? TimelineGuideLineView {
                 
                 vwTimlineGuideline.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
-           
+                
                 vwTimlineGuideline.cnstImgvCheckmarkY.constant = 80
                 vwTimlineGuideline.cnstImgvCheckmarkTrailing.constant = IS_iPad ?  CGFloat(IpadSpace) : space-3
                 
@@ -93,7 +111,7 @@ class TimelineDetailViewController: ParentViewController {
                     }
                 }
                 
-          
+                
                 UIView.animate(withDuration: 1.0) {
                     appDelegate.window.addSubview(vwTimlineGuideline)
                 }
@@ -103,20 +121,9 @@ class TimelineDetailViewController: ParentViewController {
                     CUserDefaults.set("true", forKey: UserDefaultOpenedTimeLine)
                     CUserDefaults.synchronize()
                 }
-      
+                
             }
         }
-        
-    }
-    
-
-    
-    func shareContent() {
-        let text = "This is the text...."
-        let shareAll = [text]
-        let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-        self.present(activityViewController, animated: true, completion: nil)
     }
 }
 
@@ -215,7 +222,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         }
                         
                         cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
+                            
+                            if let arr = dict.valueForJSON(key: "media") as? [String] {
+                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
+                            }
                         }
                         
                         return cell
@@ -230,7 +240,9 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
 
 
                         cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
+                            
+                            let arrVideos = dict.valueForJSON(key: "media") as? [String]
+                            self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arrVideos?.count != 0 ? (arrVideos?.first)! : "")
                         }
                         
                         if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
@@ -288,7 +300,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             }
                             
                             cell.btnShare.touchUpInside { (sender) in
-                                self.shareContent()
+                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
                             }
                             
                             return cell
@@ -301,7 +313,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
                         cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
+                            self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: "")
                         }
                         
                         return cell
@@ -324,7 +336,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         }
                         
                         cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
+                            
+                            if let arr = dict.valueForJSON(key: "media") as? [String] {
+                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
+                            }
                         }
                         
                         return cell
@@ -336,10 +351,13 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
                         
+                        cell.btnShare.touchUpInside { (sender) in
+                            
+                            let arrVideos = dict.valueForJSON(key: "media") as? [String]
+                            self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arrVideos?.count != 0 ? (arrVideos?.first)! : "")
+                        }
+                 
                         if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
                             if arrVideos.count > 0{
                                 DispatchQueue.global().async {
@@ -390,8 +408,9 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             }
                             
                             cell.btnShare.touchUpInside { (sender) in
-                                self.shareContent()
+                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
                             }
+                     
                             
                             return cell
                     }
@@ -400,10 +419,11 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
                         cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
-                        cell.btnShare.touchUpInside { (sender) in
-                            self.shareContent()
-                        }
                         
+                        cell.btnShare.touchUpInside { (sender) in
+                            self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: "")
+                        }
+                      
                         return cell
                     }
 
@@ -441,6 +461,9 @@ extension TimelineDetailViewController {
             
         }
         
+        vwNoProject.isHidden = true
+        self.lblNoUpdates.isHidden = true
+        
         apiTask =  APIRequest.shared().getSubscribedProjectList { (response, error) in
             self.apiTask?.cancel()
             self.refreshControl?.endRefreshing()
@@ -461,7 +484,11 @@ extension TimelineDetailViewController {
                     self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
                 }
                 
+                if self.arrProject.count != 0 {
+                    self.showTimelineGuideLineView()
+                }
                 
+                self.vwNoProject.isHidden = self.arrProject.count != 0
                 self.tblUpdates.reloadData()
                 
                 self.pageIndexForApi = 1
@@ -493,7 +520,14 @@ extension TimelineDetailViewController {
                         if arrData.count > 0{
                             self.pageIndexForApi += 1
                             self.arrUpdateList = self.arrUpdateList + arrData
+                            self.lblNoUpdates.isHidden = true
                             self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                            
+                        }else{
+                            
+                            if self.pageIndexForApi == 1 {
+                                self.lblNoUpdates.isHidden = false
+                            }
                         }
                     }
                 }
@@ -509,6 +543,12 @@ extension TimelineDetailViewController {
 
 extension TimelineDetailViewController {
     
+    @IBAction func btnVisitProjectClicked (sender : UIButton) {
+        
+        if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
+            self.navigationController?.pushViewController(projectVC, animated: true)
+        }
+    }
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
@@ -519,7 +559,10 @@ extension TimelineDetailViewController {
     
     @IBAction func btnProjectDetailClicked (sender : UIButton) {
         
+        let dic = arrProject[currentIndex]
+
         if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+            projectDetailVC.projectID = dic.valueForInt(key: CProjectId)!
             self.navigationController?.pushViewController(projectDetailVC, animated: true)
         }
     }
@@ -527,6 +570,8 @@ extension TimelineDetailViewController {
     @objc func btnFilterClicked() {
         
         let vwFilter = FilterView.initFilterView()
+        let vwAlert = CustomAlertView.initAlertView()
+        
         
         if IS_iPad {
             vwFilter.vwContent.layer.cornerRadius = 30
@@ -536,20 +581,26 @@ extension TimelineDetailViewController {
         
         
         UIView.animate(withDuration: 1.0) {
-          self.view.addSubview(vwFilter)
-        //    appDelegate.window.addSubview(vwFilter)
+          appDelegate.window.addSubview(vwFilter)
+        }
+        
+        vwAlert.btnOk.touchUpInside { (sender) in
+            vwAlert.removeFromSuperview()
         }
         
         vwFilter.btnDone.touchUpInside { (sender) in
             if (vwFilter.txtStartDate.text?.isBlank)!{
-                 vwFilter.vwContent.addSubview(vwFilter.txtStartDate.showValidationMessage(10.0, CMessageStartDate))
                 
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: ?CMessageStartDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                vwAlert.lblMsg.text = CMessageStartDate
+                UIView.animate(withDuration: 1.0) {
+                    appDelegate.window.addSubview(vwAlert)
+                }
             }else if (vwFilter.txtEndDate.text?.isBlank)!{
                 
-                vwFilter.vwContent.addSubview(vwFilter.txtEndDate.showValidationMessage(15.0, CMessageEndDate))
-                
-               // self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CMessageEndDate, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                vwAlert.lblMsg.text = CMessageEndDate
+                UIView.animate(withDuration: 1.0) {
+                    appDelegate.window.addSubview(vwAlert)
+                }
             }
             else{
                 strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"

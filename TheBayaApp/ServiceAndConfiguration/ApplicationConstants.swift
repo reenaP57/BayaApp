@@ -68,8 +68,8 @@ func CFontAvenir(size: CGFloat, type: CFontType) -> UIFont {
 
 
 //MARK:- Notification Constants
-let NotificationDidUpdateUserDetail     = "NotificationDidUpdateUserDetail"
 
+let NotificationDidUpdateVisitDetail     = "NotificationDidUpdateVisitDetail"
 
 
 
@@ -122,6 +122,11 @@ let CMobileType =  2
 let CUnitPlanType =  1
 let CTypicalPlanType =  2
 
+let CRequested    =  1
+let CScheduled    =  2
+let CCancel       =  3
+let CCompleted    =  4
+
 
 //MARK:- API Parameter
 
@@ -147,7 +152,7 @@ let CMobileVerify        = "mobileVerify"
 let CPushNotify          = "pushNotify"
 let CUserType            = "userType"
 let CAddress             = "address"
-let CDesciption          = "description"
+let CDescription         = "description"
 let CIsFavorite          = "isFavorite"
 let CIsSubscribe         = "isSubscribe"
 let CProjectId           = "projectId"
@@ -162,6 +167,7 @@ let CIEndDate            = "endDate"
 let CIcon                = "icon"
 let CTitle               = "title"
 let CImage               = "image"
-
-
+let CFavoriteProjectBadge           = "favoriteProjectBadge"
+let CFavoriteProjectProgress        = "favoriteProjectProgress"
+let CFavoriteProjectName            = "favoriteProjectName"
 

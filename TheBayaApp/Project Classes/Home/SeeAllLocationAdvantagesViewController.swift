@@ -11,8 +11,12 @@ import UIKit
 class SeeAllLocationAdvantagesViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblLocation : UITableView!
+    @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     
+    var refreshControl = UIRefreshControl()
     var arrLocation = [[String : AnyObject]]()
+    var projectId = 0
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,31 +27,18 @@ class SeeAllLocationAdvantagesViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
     //MARK:-
     //MARK:- General Methods
     
     func initialize() {
         self.title = "Location Advantages"
         
-        if IS_iPad {
-            arrLocation = [["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "malls_ipad", "title" : "Malls", "desc" : ["Alfa One 2.0 km"]],
-                           ["img" : "Hospital_ipad", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km"]],
-                           ["img" : "schools_ipad", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "metro_ipad", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
-        } else {
-            arrLocation = [["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "malls", "title" : "Malls", "desc" : ["Alfa One 2.0 km"]],
-                           ["img" : "Hospital", "title" : "Hospitals", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km","VT Station 1.5 km", "Dadar Station 1.0 km"]],
-                           ["img" : "schools", "title" : "Schools", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]],
-                           ["img" : "metro", "title" : "Metro", "desc" : ["VT Station 1.5 km", "Dadar Station 1.0 km", "Vile Parle 1.0 km"]]] as [[String : AnyObject]]
-        }
+        refreshControl.addTarget(self, action: #selector(pulltoRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        tblLocation.pullToRefreshControl = refreshControl
         
-
-        
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
-            self.tblLocation.reloadData()
-        }
+        self.loadLocationAdvantages(isRefresh: false)
     }
 }
 
@@ -75,9 +66,15 @@ extension SeeAllLocationAdvantagesViewController : UITableViewDelegate, UITableV
             
             let dict = arrLocation[indexPath.row]
             
-            cell.lblLocation.text = dict.valueForString(key: "title")
-            cell.imgVLocation.image = UIImage(named: dict.valueForString(key: "img"))
-            cell.loadLocationDesc(arrDesc: dict.valueForJSON(key: "desc") as! [String])
+            cell.lblLocation.text = dict.valueForString(key: CTitle)
+            cell.imgVLocation.sd_setShowActivityIndicatorView(true)
+            cell.imgVLocation.sd_setImage(with: URL(string: dict.valueForString(key: CIcon) ), placeholderImage: nil, options: .retryFailed, completed: nil)
+            
+            let arrDesc = dict.valueForString(key: CDescription).components(separatedBy:"\n")
+            if arrDesc.count > 0 {
+                cell.loadLocationDesc(arrDesc: arrDesc)
+            }
+            
 
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear
@@ -86,5 +83,50 @@ extension SeeAllLocationAdvantagesViewController : UITableViewDelegate, UITableV
         }
         
         return UITableViewCell()
+    }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension SeeAllLocationAdvantagesViewController {
+    
+    @objc func pulltoRefresh(){
+        refreshControl.beginRefreshing()
+        self.loadLocationAdvantages(isRefresh: true)
+    }
+    
+    func loadLocationAdvantages(isRefresh : Bool) {
+        
+        if !isRefresh {
+            activityLoader.startAnimating()
+        }
+        
+        APIRequest.shared().getLocationAdvantages(projectId: self.projectId) { (response, error) in
+            
+            self.refreshControl.endRefreshing()
+            self.activityLoader.stopAnimating()
+            
+            if response != nil && error == nil {
+                
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                
+                
+                if arrData.count > 0 {
+                    if arrData.count != self.arrLocation.count {
+                        self.arrLocation.removeAll()
+                        for item in arrData {
+                            self.arrLocation.append(item)
+                        }
+                    }
+                }
+                
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                    self.tblLocation.reloadData()
+                }
+                
+            }
+        }
     }
 }

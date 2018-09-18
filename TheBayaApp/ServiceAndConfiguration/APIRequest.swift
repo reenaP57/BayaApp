@@ -36,6 +36,10 @@ let CAPITagScheduleVisit       =   "schedule-visit"
 let CAPITagVisitList           =   "visitlist"
 let CAPITagRateVisit           =   "rate-visit"
 let CAPITagSupport             =   "support"
+let CAPITagBrochure            =   "brochure"
+let CAPITagAmenities           =   "amenities"
+let CAPITagLocationAdvantages  =   "location-advantages"
+let CAPITagDeviceToken         =   "device-token"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -45,7 +49,7 @@ let CJsonTitle              = "title"
 let CJsonData               = "data"
 let CJsonMeta               = "meta"
 
-let CLimit                  = 7
+let CLimit                  = 20
 
 let CStatusZero             = 0
 let CStatusOne              = 1
@@ -268,16 +272,22 @@ class Networking: NSObject
         return uRequest.task
     }
     
-    func POST(param parameters:[String: AnyObject]?, multipartFormData: @escaping (MultipartFormData) -> Void, success:ClosureSuccess?,  failure:ClosureError?) -> Void
+    func POST(param parameters:[String: AnyObject]?, tag:String?, multipartFormData: @escaping (MultipartFormData) -> Void, success:ClosureSuccess?,  failure:ClosureError?) -> Void
     {
         SessionManager.default.upload(multipartFormData: { (multipart) in
             multipartFormData(multipart)
             
-            for (key, value) in parameters! {
-                multipart.append("\(value)".data(using: .utf8)!, withName: key)
+            if parameters != nil
+            {
+                for (key, value) in parameters!
+                {
+                    multipart.append("\(value)".data(using: .utf8)!, withName: key)
+                    //  multipart.append(value.data(using: String.Encoding.utf8.rawValue)! , withName: key)
+                }
             }
             
-        },  to: (BASEURL!), method: HTTPMethod.post , headers: headers) { (encodingResult) in
+        },  to: (BASEURL! + (tag ?? "")), method: HTTPMethod.post , headers: headers) { (encodingResult) in
+            
             
             switch encodingResult {
                 
@@ -679,6 +689,28 @@ extension APIRequest {
         })
     }
     
+    func registerDeviceToken(isLoggedIn : Int?, token : String?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagDeviceToken, param: ["deviceType" : 2 as AnyObject, "deviceToken" : token as AnyObject, "isLoggedIn" : isLoggedIn as AnyObject], successBlock: { (task, response) in
+        
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagDeviceToken) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+        
+            completion(nil, error)
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.registerDeviceToken(isLoggedIn: isLoggedIn, token: token, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagDeviceToken, error: error)
+            }
+        })
+        
+    }
+    
     
     //TODO:
     //TODO: --------------LRF API--------------
@@ -716,7 +748,20 @@ extension APIRequest {
     {
         MILoader.shared.showLoader(type: .circularRing, message: "")
         
-        _ = Networking.sharedInstance.POST(apiTag: CAPITagLogin, param: ["userName" : email as AnyObject, "password": password as AnyObject, "type": type as AnyObject, CCountryId : countryId as AnyObject], successBlock: { (task, response) in
+        
+      let dict = ["userName" : email as AnyObject,
+                  "password": password as AnyObject,
+                  "type": type as AnyObject,
+                  CCountryId : countryId as AnyObject,
+                  "deviceInfo" : ["platform" : "IOS",
+                                  "deviceVersion" : UIDevice.current.systemVersion,
+                                  "deviceOS" : UIDevice.current.systemVersion,
+                                  "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
+        
+        
+        Networking.sharedInstance.POST(param: dict as [String : AnyObject], tag: CAPITagLogin, multipartFormData: { (data) in
+            
+        }, success: { (task, response) in
             
             MILoader.shared.hideLoader()
             
@@ -725,7 +770,8 @@ extension APIRequest {
                 completion(response, nil)
             }
             
-        }, failureBlock: { (task, message, error) in
+        }) { (task, message, error) in
+            
             MILoader.shared.hideLoader()
             completion(nil, error)
             
@@ -736,7 +782,8 @@ extension APIRequest {
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLogin, error: error)
             }
-        })
+        }
+
     }
     
     func verifyUser(_ dict : [String : AnyObject], completion: @escaping ClosureCompletion) {
@@ -795,7 +842,9 @@ extension APIRequest {
         
         MILoader.shared.showLoader(type: .circularRing, message: "")
         
-        _ = Networking.sharedInstance.POST(apiTag: CAPITagForgotPassword, param: dict , successBlock: { (task, response) in
+        Networking.sharedInstance.POST(param: dict, tag: CAPITagForgotPassword, multipartFormData: { (data) in
+            
+        }, success: { (task, response) in
             
             MILoader.shared.hideLoader()
             
@@ -803,7 +852,7 @@ extension APIRequest {
                 completion(response, nil)
             }
             
-        }, failureBlock: { (task, message, error) in
+        }) { (task, message, error) in
             
             MILoader.shared.hideLoader()
             completion(nil, error)
@@ -813,8 +862,8 @@ extension APIRequest {
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagForgotPassword, error: error)
             }
-            
-        })
+        }
+
     }
     
     func resetPassword(_ dict : [String : AnyObject], completion : @escaping ClosureCompletion) {
@@ -1032,6 +1081,78 @@ extension APIRequest {
     }
     
     
+    func projectBrochure (projectId : Int?, completion : @escaping ClosureCompletion){
+        
+        let dict = [CProjectId : projectId!,
+                    "deviceInfo" : ["platform" : "IOS",
+                                    "deviceVersion" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
+        
+        
+        Networking.sharedInstance.POST(param: dict as [String : AnyObject], tag: CAPITagBrochure, multipartFormData: { (data) in
+            
+        }, success: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagBrochure){
+                completion(response, nil)
+            }
+            
+        }) { (task, message, error) in
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.projectBrochure(projectId: projectId, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagBrochure, error: error)
+            }
+            
+        }
+    }
+    
+    
+    func getAmenities (projectId : Int?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagAmenities, param: [CProjectId : projectId as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagAmenities) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.getAmenities(projectId: projectId, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagAmenities, error: error)
+            }
+        })
+    }
+    
+    
+    func getLocationAdvantages (projectId : Int?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagLocationAdvantages, param: [CProjectId : projectId as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagLocationAdvantages) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.getLocationAdvantages(projectId: projectId, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLocationAdvantages, error: error)
+            }
+        })
+    }
+    
+    
+    
     
     //TODO:
     //TODO: --------------VISIT RELATED API--------------
@@ -1109,29 +1230,57 @@ extension APIRequest {
         })
     }
     
-    func support (msg : String?, completion : @escaping ClosureCompletion) {
+    func support (dict : [String : AnyObject], imgData : Data?, completion : @escaping ClosureCompletion) {
         
         MILoader.shared.showLoader(type: .circularRing, message: "")
         
-        _ = Networking.sharedInstance.POST(apiTag: CAPITagSupport, param: ["message" : msg as AnyObject], successBlock: { (task, response) in
-            
+        _ = Networking.sharedInstance.POST(param: dict as [String : AnyObject], tag: CAPITagSupport, multipartFormData: { (formData) in
+
+            if imgData?.count != 0 {
+                formData.append(imgData!, withName: CImage, fileName:  String(format: "%.0f.jpg", Date().timeIntervalSince1970 * 1000), mimeType: "image/jpeg")
+            }
+
+        }, success: { (task, response) in
+
             MILoader.shared.hideLoader()
-            
+
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSupport){
                 completion(response, nil)
             }
-            
-        }, failureBlock: { (task, message, error) in
-            
+
+        }, failure: { (task, message, error) in
+
             MILoader.shared.hideLoader()
             completion(nil, error)
-            
+
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.support(msg: msg, completion: completion)
+                _ = self.support(dict: dict, imgData: imgData, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSupport, error: error)
             }
+
         })
+        
+        
+//        _ = Networking.sharedInstance.POST(apiTag: CAPITagSupport, param: dict as [String : AnyObject], successBlock: { (task, response) in
+//
+//            MILoader.shared.hideLoader()
+//
+//            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSupport){
+//                completion(response, nil)
+//            }
+//
+//        }, failureBlock: { (task, message, error) in
+//
+//            MILoader.shared.hideLoader()
+//            completion(nil, error)
+//
+//            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+//                _ = self.support(dict: dict, completion: completion)
+//            } else {
+//                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSupport, error: error)
+//            }
+//        })
     }
     
     
@@ -1199,7 +1348,12 @@ extension APIRequest {
         tblUser.mobileVerify = dict!.valueForBool(key: CMobileVerify)
         tblUser.pushNotify = dict!.valueForBool(key: CPushNotify)
         tblUser.userType = Int16(dict!.valueForInt(key: CUserType)!)
-
+        tblUser.postBadge = Int16(dict!.valueForInt(key: CFavoriteProjectBadge)!)
+        tblUser.projectBadge = Int16(dict!.valueForInt(key: "projectCount")!)
+        tblUser.projectProgress = Int16(dict!.valueForInt(key: CFavoriteProjectProgress)!)
+        tblUser.project_name = dict!.valueForString(key: CFavoriteProjectName)
+        
+        
         let arrCountry = TblCountryList.fetch(predicate: NSPredicate(format:"%K == %d", CCountry_id, Int16(dict!.valueForInt(key: CCountryId)!)))
         
         tblUser.country_code = "+\(((arrCountry![0] as! TblCountryList).country_code) ?? "")"
