@@ -202,13 +202,13 @@ extension SignUpViewController {
     @IBAction fileprivate func btnRememberMeClicked (sender : UIButton) {
         btnRememberMe.isSelected = !btnRememberMe.isSelected
         
-//        if btnRememberMe.isSelected {
-//            CUserDefaults.set(true, forKey: UserDefaultRememberMe)
-//        } else {
-//            CUserDefaults.set(nil, forKey: UserDefaultRememberMe)
-//        }
-//
-//        CUserDefaults.synchronize()
+        if btnRememberMe.isSelected {
+            CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+        } else {
+            CUserDefaults.set(nil, forKey: UserDefaultRememberMe)
+        }
+
+        CUserDefaults.synchronize()
     }
     
     @IBAction fileprivate func btnAcceptConditionClicked (sender : UIButton) {
@@ -235,6 +235,8 @@ extension SignUpViewController {
             
             if response != nil && error == nil {
                 
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 let status = metaData.valueForInt(key: CJsonStatus)
@@ -242,11 +244,11 @@ extension SignUpViewController {
                 if status == CStatusFour {
                     
                     self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                       self.navigateToVerification()
+                       self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
                     })
                     
                 } else {
-                    self.navigateToVerification()
+                    self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
                 }
                 
                 print("Response :",response as Any)
@@ -254,10 +256,11 @@ extension SignUpViewController {
         }
     }
     
-    func navigateToVerification() {
+    func navigateToVerification(code : String) {
         
         if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
             verifyVC.isEmailVerify = true
+            verifyVC.verifiyCode = code
             self.navigationController?.pushViewController(verifyVC, animated: true)
         }
     }

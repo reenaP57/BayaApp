@@ -45,17 +45,8 @@ class ScheduleVisitViewController: ParentViewController {
             txtVPurpose.placeholderFont = CFontAvenir(size: IS_iPhone ? 14.0 : 18.0, type: .medium).setUpAppropriateFont()
         }
     }
-    @IBOutlet fileprivate weak var vwPurpose : UIView!{
-        didSet {
-            vwPurpose.layer.masksToBounds = true
-            vwPurpose.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
-            vwPurpose.layer.shadowOpacity = 5
-            vwPurpose.layer.shadowOffset = CGSize(width: 0, height: 3)
-            vwPurpose.layer.shadowRadius = 7
-            vwPurpose.layer.cornerRadius = 3
-        }
-    }
-    
+    @IBOutlet fileprivate weak var vwPurpose : UIView!
+
     
     var dateSlot1 = Date()
     var dateSlot2 = Date()
@@ -63,6 +54,7 @@ class ScheduleVisitViewController: ParentViewController {
     
     var arrProject = [[String : AnyObject]]()
     var projectId = 0
+    var projectName = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -131,6 +123,18 @@ class ScheduleVisitViewController: ParentViewController {
         
         self.title = "Schedule a Visit"
         
+        txtSelectProject.text = projectName
+        
+        GCDMainThread.async {
+            self.vwPurpose.layer.masksToBounds = true
+            self.vwPurpose.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
+            self.vwPurpose.layer.shadowOpacity = 5
+            self.vwPurpose.layer.shadowOffset = CGSize(width: 0, height: 3)
+            self.vwPurpose.layer.shadowRadius = 7
+            self.vwPurpose.layer.cornerRadius = 3
+        }
+        
+        
         self.loadProjectList()
         
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
@@ -178,6 +182,23 @@ class ScheduleVisitViewController: ParentViewController {
         
         return true
     }
+    
+    func showValidation(isAdd : Bool){
+        
+        self.txtVPurpose.backgroundColor = UIColor.white
+        self.txtVPurpose.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+        
+        if isAdd {
+            vwPurpose.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+            vwPurpose.layer.borderWidth = 1.0
+            vwPurpose.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
+            
+        } else {
+            vwPurpose.layer.borderWidth = 0.0
+            vwPurpose.layer.borderColor = UIColor.white.cgColor
+            vwPurpose.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
+        }
+    }
 }
 
 
@@ -207,7 +228,10 @@ extension ScheduleVisitViewController {
                
                 self.txtNoOfGuest.hideValidationMessage(15.0)
                 self.txtSelectProject.hideValidationMessage(15.0)
-                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0,CBlankPurposeOfVisitMessage))
+                
+                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0, CBlankPurposeOfVisitMessage,vwPurpose.CViewY))
+                self.txtVPurpose.textfiledAddRemoveShadow(true)
+                self.showValidation(isAdd: true)
                 
             } else if (self.txtNoOfGuest.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtNoOfGuest.showValidationMessage(15.0,CBlankNoOfGuestMessage))
@@ -234,7 +258,8 @@ extension ScheduleVisitViewController : UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
         textView.hideValidationMessage(15.0)
-        
+        self.showValidation(isAdd: false)
+
         if textView.text.count > 0 {
             textView.placeholderColor = UIColor.clear
         } else {
@@ -266,7 +291,9 @@ extension ScheduleVisitViewController {
                 if arrData.count > 0 {
                     
                     for item in arrData {
-                        self.arrProject.append(item)
+                        if item.valueForInt(key: CIsVisit) == 1 {
+                             self.arrProject.append(item)
+                        }
                     }
                     
                     self.txtSelectProject.setPickerData(arrPickerData: self.arrProject.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in

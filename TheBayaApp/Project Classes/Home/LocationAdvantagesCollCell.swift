@@ -14,6 +14,8 @@ class LocationAdvantagesCollCell: UICollectionViewCell {
     @IBOutlet weak var lblLocation : UILabel!
     @IBOutlet weak var tblLocDesc : UITableView!
     @IBOutlet weak var cnstTblHeight : NSLayoutConstraint!
+    @IBOutlet weak var lblLocAdvantages : UILabel!
+
 
     var arrLocDesc = [String]()
     

@@ -70,6 +70,7 @@
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
 		5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4221479AEC00658633 /* NoInternetView.swift */; };
 		5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4521479B2000658633 /* NoInternetView.xib */; };
+		5C0CF76A215223FD009979FE /* LocationAdvantagesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */; };
 		5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */; };
 		5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */; };
 		5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C14CA82211C48D300B06E29 /* Setting.storyboard */; };
@@ -237,6 +238,7 @@
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
 		5C0CBF4221479AEC00658633 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		5C0CBF4521479B2000658633 /* NoInternetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
+		5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAdvantagesLayout.swift; sourceTree = "<group>"; };
 		5C14CA7E211C049100B06E29 /* ForgotPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPwdViewController.swift; sourceTree = "<group>"; };
 		5C14CA80211C079800B06E29 /* ResetPwdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPwdViewController.swift; sourceTree = "<group>"; };
 		5C14CA82211C48D300B06E29 /* Setting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Setting.storyboard; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 			isa = PBXGroup;
 			children = (
 				5C189C0A21253911001B72C5 /* FloatRatingView */,
+				5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */,
 			);
 			path = "Custom class";
 			sourceTree = "<group>";
@@ -1057,6 +1060,7 @@
 				486FDD5B2119AEF500EA0188 /* ExtensionString.swift in Sources */,
 				5CDE13F62119B7BE00B11AA5 /* MIGenericButton.swift in Sources */,
 				5CDE13F92119B7BE00B11AA5 /* MIGenericLabel.swift in Sources */,
+				5C0CF76A215223FD009979FE /* LocationAdvantagesLayout.swift in Sources */,
 				5C48FB63212851B000B0D6CB /* SeeAllAmenitiesViewController.swift in Sources */,
 				5C1E61532122D9D50090308D /* SettingTblCell.swift in Sources */,
 				486FDD6B2119AEF500EA0188 /* MasterConstant.swift in Sources */,
@@ -1208,7 +1212,7 @@
 			baseConfigurationReference = 45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mehul Rajput (7224G6JACN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1219,8 +1223,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f86297-aec8-4a2d-b0b9-faacf10254d3";
-				PROVISIONING_PROFILE_SPECIFIER = "The-Baya-ADhoc 24 Aug 2018";
+				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
+				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1231,7 +1235,7 @@
 			baseConfigurationReference = 8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mehul Rajput (7224G6JACN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1242,8 +1246,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f86297-aec8-4a2d-b0b9-faacf10254d3";
-				PROVISIONING_PROFILE_SPECIFIER = "The-Baya-ADhoc 24 Aug 2018";
+				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
+				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

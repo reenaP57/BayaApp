@@ -102,10 +102,10 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             cell.imgVPrjct.sd_setImage(with: URL(string: (dict.valueForString(key: CProjectImage))), placeholderImage: nil)
             
             if dict.valueForInt(key: CIsSubscribe) == 0 {
-                cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
+                cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"),for: .normal)
                 cell.btnSubscribe.isSelected = false
             } else {
-                cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
+                cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
                 cell.btnSubscribe.isSelected = true
             }
             
@@ -117,7 +117,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                 
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
                   
-                    cell.btnSubscribe.isSelected ? cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
+                    cell.btnSubscribe.isSelected ? cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal) : cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
                     
                     cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                     

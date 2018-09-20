@@ -90,7 +90,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
             var dict = arrProject[indexPath.row]
             
-            cell.lblProjectName.text = dict.valueForString(key: CProjectName)
+            cell.lblProjectName.text = "\(dict.valueForString(key: CProjectName)),"
             cell.lblLocation.text = dict.valueForString(key: "shortLocation")
             cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
             cell.lblPercentage.text = " \(dict.valueForInt(key: CProjectProgress) ?? 0)% "
@@ -151,7 +151,8 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
                 cell.btnScheduleVisit.touchUpInside { (sender) in
                     if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
-                        self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+                        scheduleVisitVC.projectId = dict.valueForInt(key: CProjectId)!
+                        scheduleVisitVC.projectName = dict.valueForString(key: CProjectName); self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)
                     }
                 }
                 

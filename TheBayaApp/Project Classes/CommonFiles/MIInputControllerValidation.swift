@@ -72,8 +72,6 @@ extension UITextField {
             lblMessage.removeFromSuperview()
             updateTextFiledBottomSpace(space)
            self.textfiledAddRemoveShadow(true)
-          
-           
         }
     }
     
@@ -112,9 +110,9 @@ extension UITextView{
     func textfiledAddRemoveShadow(_ isAdd : Bool)
     {
         if isAdd{
-            self.backgroundColor = UIColor.white
+            self.backgroundColor = UIColor.red
             self.layer.borderWidth = 0.0
-            layer.masksToBounds = false
+            layer.masksToBounds = true
             layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
             layer.shadowOpacity = 5
             layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -125,7 +123,7 @@ extension UITextView{
             self.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
             self.backgroundColor = CRGB(r: 254, g: 242, b: 242)
             
-            layer.masksToBounds = false
+            layer.masksToBounds = true
             layer.shadowColor = UIColor.clear.cgColor
             layer.shadowOpacity = 0
             layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -136,6 +134,10 @@ extension UITextView{
     
     func updateTextFiledBottomSpace(_ bottomSpace : CGFloat)
     {
+        if self.tag == 102 {
+          return
+        }
+        
         let arrConstraints = self.superview?.constraints as NSArray?
         
         if ((arrConstraints?.count)! > 0)
@@ -160,11 +162,14 @@ extension UITextView{
         if self.tag == lblMessage.tag {
             lblMessage.removeFromSuperview()
             updateTextFiledBottomSpace(space)
-            self.textfiledAddRemoveShadow(true)
+            
+            if self.tag != 102{
+                self.textfiledAddRemoveShadow(true)
+            }
         }
     }
     
-    func showValidationMessage(_ space : CGFloat , _ message : String) -> UILabel
+    func showValidationMessage(_ space : CGFloat , _ message : String, _ yPoint : CGFloat) -> UILabel
     {
         self.textfiledAddRemoveShadow(false)
         //self.delegate = self
@@ -172,7 +177,7 @@ extension UITextView{
         DispatchQueue.main.async {
             lblMessage.tag = self.tag
             lblMessage.text = message
-            lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+            lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: yPoint + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
             lblMessage.textColor = CRGB(r: 247, g: 51, b: 52)
             lblMessage.font = CFontAvenir(size: 14, type: .roman).setUpAppropriateFont()

@@ -262,6 +262,8 @@ extension LoginViewController {
                             if dataResponse.valueForInt(key: "emailVerify") == 0 {
                                 verifyVC.isEmailVerify = true
                             }
+                            
+                            verifyVC.verifiyCode = dataResponse.valueForString(key: "verifyCode")
                             self.navigationController?.pushViewController(verifyVC, animated: true)
                         }
                     })

@@ -15,6 +15,7 @@ class VerificationViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
 
     var isEmailVerify : Bool = false
+    var verifiyCode = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,7 @@ class VerificationViewController: ParentViewController {
           _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
         }
         
+        txtCode.text = verifiyCode
         
         if isEmailVerify {
             //...Verify Email
@@ -139,9 +141,12 @@ extension VerificationViewController {
             
             if response != nil && error == nil {
              
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
+                self.txtCode.text = dataResponse.valueForString(key: "verifyCode")
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
                 })
             }

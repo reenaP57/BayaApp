@@ -18,6 +18,7 @@ class TimelineDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblUpdates : UITableView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     @IBOutlet fileprivate weak var btnProjectDetail : UIButton!
+    @IBOutlet fileprivate weak var btnScheduleVisit : UIButton!
     @IBOutlet fileprivate weak var vwNoProject : UIView!
     @IBOutlet fileprivate weak var lblNoUpdates : UILabel!
 
@@ -125,6 +126,19 @@ class TimelineDetailViewController: ParentViewController {
             }
         }
     }
+    
+    func dayDifference(from interval : TimeInterval) -> String
+    {
+        let calendar = NSCalendar.current
+        let date = Date(timeIntervalSince1970: interval)
+        if calendar.isDateInYesterday(date) {
+            return "Yesterday at \(DateFormatter.dateStringFrom(timestamp: interval, withFormate: "hh:mm a"))"
+        } else if calendar.isDateInToday(date) {
+            return "Today at \(DateFormatter.dateStringFrom(timestamp: interval, withFormate: "hh:mm a"))"
+        } else {
+            return DateFormatter.dateStringFrom(timestamp: interval, withFormate: "dd MMMM yyyy 'at' hh:mm a")
+        }
+    }
 }
 
 
@@ -207,7 +221,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
                         cell.updateImageViewSize()
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             if arrImages.count > 0{
                                 if mediaType == 1{
@@ -236,7 +251,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.updateImageViewSize()
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
 
 
                         cell.btnShare.touchUpInside { (sender) in
@@ -291,7 +306,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             cell.updateImageViewSize()
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
-                            cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                            cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                                
                             cell.lblUrl.text = dict.valueForString(key: "link")
                             
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
@@ -311,7 +327,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                            
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: "")
                         }
@@ -329,7 +346,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             cell.pageControlSlider.numberOfPages = arrImages.count
                             cell.loadSliderImages(images: arrImages, isGif: dict.valueForInt(key: "mediaType") == 3)
@@ -350,7 +368,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         cell.btnShare.touchUpInside { (sender) in
                             
@@ -400,7 +418,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
-                            cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                            cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
                             cell.lblUrl.text = dict.valueForString(key: "link")
                             
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
@@ -418,7 +436,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell") as? TimeLineUpdateTextTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt"), withFormate: "dd MMMM yyyy")
+                        cell.lblDateTime.text =  self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        
                         
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: "")
@@ -552,7 +571,11 @@ extension TimelineDetailViewController {
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
+        let dic = arrProject[currentIndex]
+
         if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+            scheduleVisitVC.projectId = dic.valueForInt(key: CProjectId)!
+            scheduleVisitVC.projectName = dic.valueForString(key: CProjectName)
             self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
         }
     }

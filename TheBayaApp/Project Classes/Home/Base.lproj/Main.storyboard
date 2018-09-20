@@ -928,16 +928,15 @@
                                 <rect key="frame" x="10" y="828.5" width="355" height="20.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0Hu-pT-FVu">
                                 <rect key="frame" x="169" y="680" width="37" height="37"/>
                                 <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-iU-CJJ" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-iU-CJJ" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="20" y="1333" width="162" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
                                 <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -954,7 +953,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-Zi-OZ0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="107" y="1333" width="162" height="50"/>
+                                <rect key="frame" x="200.5" y="1333" width="162" height="50"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="y7L-Zi-OZ0" secondAttribute="height" multiplier="81:25" id="EdC-D9-mic"/>
@@ -981,7 +980,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kZT-6y-MSl">
                                         <rect key="frame" x="0.0" y="524.5" width="375" height="350"/>
                                         <subviews>
-                                            <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_project" translatesAutoresizingMaskIntoConstraints="NO" id="O6b-oS-UBM">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_project" translatesAutoresizingMaskIntoConstraints="NO" id="O6b-oS-UBM">
                                                 <rect key="frame" x="84" y="0.0" width="177" height="110"/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Project Subscribed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MvX-fx-UEw">
@@ -1046,17 +1045,21 @@
                             <constraint firstItem="ouW-8t-dk4" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" constant="10" id="37U-1j-CxL"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="top" secondItem="MAJ-h1-BhF" secondAttribute="top" id="5xc-DV-JO7"/>
                             <constraint firstItem="0Hu-pT-FVu" firstAttribute="centerX" secondItem="zEm-AV-gjv" secondAttribute="centerX" id="75K-mg-jtg"/>
+                            <constraint firstItem="vtH-iU-CJJ" firstAttribute="width" secondItem="y7L-Zi-OZ0" secondAttribute="width" id="A0F-3n-gBf"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="bottom" secondItem="MAJ-h1-BhF" secondAttribute="bottom" id="C7P-Z6-VQI"/>
+                            <constraint firstItem="vtH-iU-CJJ" firstAttribute="centerY" secondItem="y7L-Zi-OZ0" secondAttribute="centerY" id="Gds-5O-frf"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="MpB-LY-hRw"/>
                             <constraint firstItem="0Hu-pT-FVu" firstAttribute="centerY" secondItem="zEm-AV-gjv" secondAttribute="centerY" id="NcC-E5-nMd"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="bottom" secondItem="y7L-Zi-OZ0" secondAttribute="bottom" constant="15" id="S98-Kl-61w"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="SwG-gk-Ra5"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="top" secondItem="zEm-AV-gjv" secondAttribute="top" id="TjP-IJ-pYe"/>
-                            <constraint firstItem="y7L-Zi-OZ0" firstAttribute="centerX" secondItem="zEm-AV-gjv" secondAttribute="centerX" id="V6N-CD-2d4"/>
+                            <constraint firstItem="vtH-iU-CJJ" firstAttribute="height" secondItem="y7L-Zi-OZ0" secondAttribute="height" id="Ung-92-fMM"/>
+                            <constraint firstItem="y7L-Zi-OZ0" firstAttribute="centerX" secondItem="zEm-AV-gjv" secondAttribute="centerX" multiplier="1.5" id="V6N-CD-2d4"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="trailing" secondItem="ouW-8t-dk4" secondAttribute="trailing" constant="10" id="f0w-Yg-U5X"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="h0r-Na-Yp7"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="l5T-1J-tq9"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="width" secondItem="zEm-AV-gjv" secondAttribute="width" multiplier="0.432" id="lkN-DZ-mD8"/>
+                            <constraint firstItem="y7L-Zi-OZ0" firstAttribute="leading" secondItem="vtH-iU-CJJ" secondAttribute="trailing" constant="18.5" id="tt7-mf-3ek"/>
                             <constraint firstItem="ouW-8t-dk4" firstAttribute="centerY" secondItem="zEm-AV-gjv" secondAttribute="centerY" multiplier="1.2" id="uI0-AF-o2b"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="top" secondItem="gVF-fn-5OQ" secondAttribute="bottom" constant="10" id="yjA-FQ-0KI"/>
                         </constraints>
@@ -1066,6 +1069,7 @@
                     <connections>
                         <outlet property="activityLoader" destination="0Hu-pT-FVu" id="JdZ-8g-aGx"/>
                         <outlet property="btnProjectDetail" destination="y7L-Zi-OZ0" id="nCL-G4-GhL"/>
+                        <outlet property="btnScheduleVisit" destination="vtH-iU-CJJ" id="SZG-6c-bUK"/>
                         <outlet property="lblNoUpdates" destination="ouW-8t-dk4" id="rm4-bx-dK8"/>
                         <outlet property="tblUpdates" destination="gVF-fn-5OQ" id="7eu-aG-W1u"/>
                         <outlet property="vwNoProject" destination="2Fp-sj-sDO" id="XWB-n9-fEq"/>
@@ -1340,20 +1344,14 @@
                                                     <outlet property="delegate" destination="qZU-GT-OIW" id="zVx-ll-2VD"/>
                                                 </connections>
                                             </textField>
-                                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-mb-WbU">
+                                            <view clipsSubviews="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-mb-WbU">
                                                 <rect key="frame" x="15" y="311" width="345" height="125"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-o5-Vyp" customClass="MIGenericTextView" customModule="TheBayaApp" customModuleProvider="target">
+                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-o5-Vyp">
                                                         <rect key="frame" x="10" y="0.0" width="325" height="125"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Purpose of your visit"/>
-                                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                                <color key="value" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="delegate" destination="qZU-GT-OIW" id="h0P-Zd-YRN"/>
                                                         </connections>
@@ -1361,11 +1359,11 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="125" id="0Qg-9N-1ZD"/>
                                                     <constraint firstItem="FZa-o5-Vyp" firstAttribute="top" secondItem="6JE-mb-WbU" secondAttribute="top" id="DMV-6B-8Sv"/>
                                                     <constraint firstAttribute="trailing" secondItem="FZa-o5-Vyp" secondAttribute="trailing" constant="10" id="DuB-fQ-hLx"/>
                                                     <constraint firstItem="FZa-o5-Vyp" firstAttribute="leading" secondItem="6JE-mb-WbU" secondAttribute="leading" constant="10" id="ei2-8h-k59"/>
                                                     <constraint firstAttribute="bottom" secondItem="FZa-o5-Vyp" secondAttribute="bottom" id="v9T-TM-7px"/>
-                                                    <constraint firstAttribute="width" secondItem="6JE-mb-WbU" secondAttribute="height" multiplier="69:25" id="xh2-Cu-RpA"/>
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How many guest are we expecting?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvV-02-kK1" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
@@ -1433,10 +1431,10 @@
                                             <constraint firstItem="Z3c-jx-MZ2" firstAttribute="leading" secondItem="AcP-MA-APt" secondAttribute="leading" constant="20" id="L0R-Bz-LFf"/>
                                             <constraint firstItem="dRr-Wn-aTq" firstAttribute="top" secondItem="fzK-D5-p3y" secondAttribute="bottom" constant="10" id="Rqo-Yu-pL2"/>
                                             <constraint firstAttribute="trailing" secondItem="P4N-am-Pnh" secondAttribute="trailing" constant="15" id="W3c-yY-Cw6"/>
-                                            <constraint firstItem="kvV-02-kK1" firstAttribute="top" secondItem="6JE-mb-WbU" secondAttribute="bottom" constant="10.5" id="WFz-dm-eMk"/>
                                             <constraint firstAttribute="trailing" secondItem="Z3c-jx-MZ2" secondAttribute="trailing" constant="20" id="X4q-w3-kIJ"/>
                                             <constraint firstItem="Th3-Ic-thG" firstAttribute="top" secondItem="dRr-Wn-aTq" secondAttribute="bottom" constant="10" id="dN0-5X-RIz"/>
                                             <constraint firstItem="l47-D7-12n" firstAttribute="top" secondItem="kvV-02-kK1" secondAttribute="bottom" constant="10" id="det-TG-xbK"/>
+                                            <constraint firstItem="kvV-02-kK1" firstAttribute="top" secondItem="6JE-mb-WbU" secondAttribute="bottom" constant="10.5" id="diN-jM-N0g"/>
                                             <constraint firstItem="fzK-D5-p3y" firstAttribute="leading" secondItem="AcP-MA-APt" secondAttribute="leading" constant="15" id="fEg-05-MCh"/>
                                             <constraint firstItem="6JE-mb-WbU" firstAttribute="trailing" secondItem="Th3-Ic-thG" secondAttribute="trailing" id="gLP-qc-gaH"/>
                                             <constraint firstAttribute="bottom" secondItem="P4N-am-Pnh" secondAttribute="bottom" constant="30" id="lOf-aA-rUA"/>
@@ -1651,7 +1649,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="2212"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="epk-dE-nsY">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2203"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="2173"/>
                                         <subviews>
                                             <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v4n-RR-INM" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="245" width="375" height="291"/>
@@ -1989,10 +1987,10 @@ reach for you.</string>
                                                 </constraints>
                                             </view>
                                             <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZO6-7j-yfo" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="701" width="375" height="224.5"/>
+                                                <rect key="frame" x="0.0" y="686" width="375" height="239.5"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xNN-wK-maR" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="224.5"/>
+                                                        <rect key="frame" x="0.0" y="15" width="375" height="224.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Location:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FaA-KO-Gqs" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="15" width="64.5" height="20"/>
@@ -2047,11 +2045,11 @@ reach for you.</string>
                                                         </userDefinedRuntimeAttributes>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="xNN-wK-maR" secondAttribute="trailing" id="F5a-no-LD4"/>
                                                     <constraint firstAttribute="bottom" secondItem="xNN-wK-maR" secondAttribute="bottom" id="MHc-Qi-fXo"/>
-                                                    <constraint firstItem="xNN-wK-maR" firstAttribute="top" secondItem="ZO6-7j-yfo" secondAttribute="top" id="Mg8-8S-xxw"/>
+                                                    <constraint firstItem="xNN-wK-maR" firstAttribute="top" secondItem="ZO6-7j-yfo" secondAttribute="top" constant="15" id="Mg8-8S-xxw"/>
                                                     <constraint firstItem="xNN-wK-maR" firstAttribute="leading" secondItem="ZO6-7j-yfo" secondAttribute="leading" id="dVV-Wb-YQk"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -2060,11 +2058,11 @@ reach for you.</string>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs7-Nz-6bS">
-                                                <rect key="frame" x="0.0" y="925.5" width="375" height="205"/>
+                                            <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hs7-Nz-6bS" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="925.5" width="375" height="175"/>
                                                 <subviews>
-                                                    <view clipsSubviews="YES" tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yI-N1-5Cx" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="15" width="375" height="190"/>
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8yI-N1-5Cx" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="15" width="375" height="160"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Location Advantages:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ivw-8J-WIA" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                 <rect key="frame" x="15" y="15" width="152" height="20"/>
@@ -2086,30 +2084,25 @@ reach for you.</string>
                                                                     <action selector="btnSeeAllLocationClickedWithSender:" destination="yEF-Az-t2f" eventType="touchUpInside" id="muT-Bg-eCv"/>
                                                                 </connections>
                                                             </button>
-                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lpp-lF-SfQ">
-                                                                <rect key="frame" x="0.0" y="55" width="375" height="120"/>
+                                                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lpp-lF-SfQ">
+                                                                <rect key="frame" x="0.0" y="40" width="375" height="120"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="120" id="04T-Zm-vXV"/>
                                                                 </constraints>
-                                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="MpQ-2y-quO">
-                                                                    <size key="itemSize" width="116" height="115"/>
-                                                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                                                    <inset key="sectionInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
-                                                                </collectionViewFlowLayout>
+                                                                <collectionViewLayout key="collectionViewLayout" id="Ckc-K5-hDx" customClass="LocationAdvantagesLayout" customModule="TheBayaApp" customModuleProvider="target"/>
                                                                 <cells>
-                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LocationAdvantagesCollCell" id="Yya-23-P1N" customClass="LocationAdvantagesCollCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="15" y="7.5" width="116" height="105"/>
+                                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="top" reuseIdentifier="LocationAdvantagesCollCell" id="Yya-23-P1N" customClass="LocationAdvantagesCollCell" customModule="TheBayaApp" customModuleProvider="target">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="116" height="85"/>
                                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="116" height="105"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="116" height="85"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metro" translatesAutoresizingMaskIntoConstraints="NO" id="JNW-r5-yNW">
-                                                                                    <rect key="frame" x="0.0" y="10" width="22" height="28"/>
+                                                                                    <rect key="frame" x="0.0" y="0.0" width="22" height="38"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="height" constant="28" id="BT5-tB-xSD"/>
+                                                                                        <constraint firstAttribute="height" constant="38" id="BT5-tB-xSD"/>
                                                                                         <constraint firstAttribute="width" constant="22" id="HyM-ad-f5f"/>
                                                                                     </constraints>
                                                                                 </imageView>
@@ -2122,12 +2115,20 @@ reach for you.</string>
                                                                                     <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="18" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="O83-7f-7nj">
-                                                                                    <rect key="frame" x="0.0" y="65" width="116" height="36"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Metro" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pme-hC-4gK" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                                                    <rect key="frame" x="0.0" y="62" width="116" height="15"/>
+                                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="height" constant="36" id="2Wm-TX-Dua"/>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" id="COD-M3-B97"/>
                                                                                     </constraints>
+                                                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                    <nil key="highlightedColor"/>
+                                                                                </label>
+                                                                                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="18" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="O83-7f-7nj">
+                                                                                    <rect key="frame" x="0.0" y="65" width="116" height="36"/>
+                                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <prototypes>
                                                                                         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationDescTblCell" rowHeight="18" id="8gq-qL-nyV" customClass="LocationDescTblCell" customModule="TheBayaApp" customModuleProvider="target">
                                                                                             <rect key="frame" x="0.0" y="1" width="116" height="18"/>
@@ -2164,20 +2165,20 @@ reach for you.</string>
                                                                         </view>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
-                                                                            <constraint firstItem="JNW-r5-yNW" firstAttribute="top" secondItem="Yya-23-P1N" secondAttribute="top" constant="10" id="6t3-CI-SWb"/>
+                                                                            <constraint firstItem="pme-hC-4gK" firstAttribute="top" secondItem="fD6-SR-qSz" secondAttribute="bottom" constant="1" id="48a-sn-vFt"/>
+                                                                            <constraint firstItem="JNW-r5-yNW" firstAttribute="top" secondItem="Yya-23-P1N" secondAttribute="top" id="6t3-CI-SWb"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="pme-hC-4gK" secondAttribute="trailing" id="988-1B-2zN"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="pme-hC-4gK" secondAttribute="bottom" constant="8" id="9dg-ZZ-qTe"/>
+                                                                            <constraint firstItem="pme-hC-4gK" firstAttribute="leading" secondItem="Yya-23-P1N" secondAttribute="leading" id="GTk-mM-fAe"/>
                                                                             <constraint firstItem="fD6-SR-qSz" firstAttribute="leading" secondItem="JNW-r5-yNW" secondAttribute="leading" id="N9h-oe-Wri"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="O83-7f-7nj" secondAttribute="trailing" id="SAV-tE-Hrv"/>
-                                                                            <constraint firstItem="O83-7f-7nj" firstAttribute="top" secondItem="fD6-SR-qSz" secondAttribute="bottom" constant="4" id="Ucb-ij-h0u"/>
-                                                                            <constraint firstItem="O83-7f-7nj" firstAttribute="leading" secondItem="Yya-23-P1N" secondAttribute="leading" id="adD-rS-ZHe"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="O83-7f-7nj" secondAttribute="bottom" constant="4" id="f8p-4C-Oie"/>
                                                                             <constraint firstItem="JNW-r5-yNW" firstAttribute="leading" secondItem="Yya-23-P1N" secondAttribute="leading" id="jsZ-by-NHT"/>
                                                                             <constraint firstItem="fD6-SR-qSz" firstAttribute="top" secondItem="JNW-r5-yNW" secondAttribute="bottom" constant="5" id="qan-9m-hUk"/>
                                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fD6-SR-qSz" secondAttribute="trailing" constant="10" id="xli-jv-oVb"/>
                                                                         </constraints>
-                                                                        <size key="customSize" width="116" height="105"/>
+                                                                        <size key="customSize" width="116" height="85"/>
                                                                         <connections>
-                                                                            <outlet property="cnstTblHeight" destination="2Wm-TX-Dua" id="igV-Gk-Pe2"/>
                                                                             <outlet property="imgVLocation" destination="JNW-r5-yNW" id="tGt-vN-aWT"/>
+                                                                            <outlet property="lblLocAdvantages" destination="pme-hC-4gK" id="acH-sF-esC"/>
                                                                             <outlet property="lblLocation" destination="fD6-SR-qSz" id="nZl-Ua-o1p"/>
                                                                             <outlet property="tblLocDesc" destination="O83-7f-7nj" id="tPI-hG-jcp"/>
                                                                         </connections>
@@ -2191,12 +2192,12 @@ reach for you.</string>
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="lpp-lF-SfQ" firstAttribute="top" secondItem="8dv-yJ-0oc" secondAttribute="bottom" constant="15" id="8cF-Pg-Y8D"/>
+                                                            <constraint firstItem="lpp-lF-SfQ" firstAttribute="top" secondItem="8dv-yJ-0oc" secondAttribute="bottom" id="8cF-Pg-Y8D"/>
                                                             <constraint firstAttribute="trailing" secondItem="lpp-lF-SfQ" secondAttribute="trailing" id="JJF-i0-mjS"/>
                                                             <constraint firstItem="Ivw-8J-WIA" firstAttribute="leading" secondItem="8yI-N1-5Cx" secondAttribute="leading" constant="15" id="Jur-Ef-e6w"/>
                                                             <constraint firstItem="8dv-yJ-0oc" firstAttribute="centerY" secondItem="Ivw-8J-WIA" secondAttribute="centerY" id="XdQ-aw-liN"/>
                                                             <constraint firstItem="Ivw-8J-WIA" firstAttribute="top" secondItem="8yI-N1-5Cx" secondAttribute="top" constant="15" id="bcn-wt-Zrc"/>
-                                                            <constraint firstAttribute="bottom" secondItem="lpp-lF-SfQ" secondAttribute="bottom" constant="15" id="g9m-jm-lBg"/>
+                                                            <constraint firstAttribute="bottom" secondItem="lpp-lF-SfQ" secondAttribute="bottom" id="g9m-jm-lBg"/>
                                                             <constraint firstAttribute="trailing" secondItem="8dv-yJ-0oc" secondAttribute="trailing" id="qEW-7N-UGP"/>
                                                             <constraint firstItem="lpp-lF-SfQ" firstAttribute="leading" secondItem="8yI-N1-5Cx" secondAttribute="leading" id="u9P-Yn-gSj"/>
                                                         </constraints>
@@ -2214,28 +2215,33 @@ reach for you.</string>
                                                     <constraint firstAttribute="trailing" secondItem="8yI-N1-5Cx" secondAttribute="trailing" id="IJQ-4C-xUm"/>
                                                     <constraint firstItem="8yI-N1-5Cx" firstAttribute="top" secondItem="hs7-Nz-6bS" secondAttribute="top" constant="15" id="Qwf-Lc-KYe"/>
                                                 </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="15"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
                                             </view>
                                             <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uYQ-MT-OcD" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1145.5" width="375" height="175"/>
+                                                <rect key="frame" x="0.0" y="1100.5" width="375" height="190"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QGw-aK-VSF" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
+                                                        <rect key="frame" x="0.0" y="15" width="375" height="175"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mr1-uZ-q3Y" customClass="CTPanoramaView" customModule="CTPanoramaView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="175"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8cE-MF-PRT" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                                 <rect key="frame" x="283" y="15" width="77" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3D TOUR" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBc-Cx-qxK" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="10" y="9" width="57.5" height="13"/>
+                                                                        <rect key="frame" x="10.5" y="8.5" width="57.5" height="13"/>
                                                                         <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="13"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <constraints>
                                                                     <constraint firstItem="lBc-Cx-qxK" firstAttribute="centerY" secondItem="8cE-MF-PRT" secondAttribute="centerY" id="7n7-bw-nuj"/>
                                                                     <constraint firstItem="lBc-Cx-qxK" firstAttribute="centerX" secondItem="8cE-MF-PRT" secondAttribute="centerX" id="LaO-WC-Rn8"/>
@@ -2249,7 +2255,7 @@ reach for you.</string>
                                                                 </userDefinedRuntimeAttributes>
                                                             </view>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UBb-He-pOy">
-                                                                <rect key="frame" x="310" y="125" width="50" height="50"/>
+                                                                <rect key="frame" x="310" y="110" width="50" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="X1p-2m-g81"/>
                                                                     <constraint firstAttribute="width" constant="50" id="pBs-vn-l25"/>
@@ -2266,7 +2272,7 @@ reach for you.</string>
                                                         <constraints>
                                                             <constraint firstAttribute="bottom" secondItem="mr1-uZ-q3Y" secondAttribute="bottom" id="2zO-R6-vl4"/>
                                                             <constraint firstItem="8cE-MF-PRT" firstAttribute="top" secondItem="QGw-aK-VSF" secondAttribute="top" constant="15" id="8Jk-Yh-aeh"/>
-                                                            <constraint firstAttribute="bottom" secondItem="UBb-He-pOy" secondAttribute="bottom" id="P2h-GY-yYJ"/>
+                                                            <constraint firstAttribute="bottom" secondItem="UBb-He-pOy" secondAttribute="bottom" constant="15" id="P2h-GY-yYJ"/>
                                                             <constraint firstItem="mr1-uZ-q3Y" firstAttribute="leading" secondItem="QGw-aK-VSF" secondAttribute="leading" id="PZc-U1-Gqs"/>
                                                             <constraint firstItem="mr1-uZ-q3Y" firstAttribute="top" secondItem="QGw-aK-VSF" secondAttribute="top" id="VOA-e1-0Zk"/>
                                                             <constraint firstAttribute="trailing" secondItem="UBb-He-pOy" secondAttribute="trailing" constant="15" id="aIY-o6-Vax"/>
@@ -2283,9 +2289,9 @@ reach for you.</string>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="QGw-aK-VSF" firstAttribute="leading" secondItem="uYQ-MT-OcD" secondAttribute="leading" id="Nza-2K-VN1"/>
-                                                    <constraint firstAttribute="width" secondItem="uYQ-MT-OcD" secondAttribute="height" multiplier="15:7" id="Y5x-pj-EtG"/>
+                                                    <constraint firstAttribute="width" secondItem="uYQ-MT-OcD" secondAttribute="height" multiplier="15:7" constant="-32.14285714285711" id="Y5x-pj-EtG"/>
                                                     <constraint firstAttribute="trailing" secondItem="QGw-aK-VSF" secondAttribute="trailing" id="ojo-bW-7rb"/>
-                                                    <constraint firstItem="QGw-aK-VSF" firstAttribute="top" secondItem="uYQ-MT-OcD" secondAttribute="top" id="pue-yv-fN6"/>
+                                                    <constraint firstItem="QGw-aK-VSF" firstAttribute="top" secondItem="uYQ-MT-OcD" secondAttribute="top" constant="15" id="pue-yv-fN6"/>
                                                     <constraint firstAttribute="bottom" secondItem="QGw-aK-VSF" secondAttribute="bottom" id="wBb-BK-V7u"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
@@ -2295,7 +2301,7 @@ reach for you.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4M9-ZI-Y0q">
-                                                <rect key="frame" x="0.0" y="1320.5" width="375" height="127.5"/>
+                                                <rect key="frame" x="0.0" y="1290.5" width="375" height="127.5"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47Q-K0-mL5" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="15" width="375" height="112.5"/>
@@ -2398,7 +2404,7 @@ reach for you.</string>
                                                 </constraints>
                                             </view>
                                             <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2A-9C-4DN" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1448" width="375" height="335.5"/>
+                                                <rect key="frame" x="0.0" y="1418" width="375" height="335.5"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7BG-VZ-2EZ" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="15" width="375" height="320.5"/>
@@ -2532,15 +2538,15 @@ reach for you.</string>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
                                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img1.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="dCi-Zn-pY7">
-                                                                                    <rect key="frame" x="15" y="10" width="345" height="170"/>
+                                                                                    <rect key="frame" x="0.0" y="10" width="375" height="180"/>
                                                                                 </imageView>
                                                                             </subviews>
                                                                         </view>
                                                                         <constraints>
-                                                                            <constraint firstItem="dCi-Zn-pY7" firstAttribute="leading" secondItem="wzn-ed-zIv" secondAttribute="leading" constant="15" id="1Q9-4L-K6i"/>
+                                                                            <constraint firstItem="dCi-Zn-pY7" firstAttribute="leading" secondItem="wzn-ed-zIv" secondAttribute="leading" id="1Q9-4L-K6i"/>
                                                                             <constraint firstItem="dCi-Zn-pY7" firstAttribute="top" secondItem="wzn-ed-zIv" secondAttribute="top" constant="10" id="O2l-fD-jmn"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="dCi-Zn-pY7" secondAttribute="trailing" constant="15" id="UTs-5v-vIf"/>
-                                                                            <constraint firstAttribute="bottom" secondItem="dCi-Zn-pY7" secondAttribute="bottom" constant="10" id="uvo-IL-Ozd"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="dCi-Zn-pY7" secondAttribute="trailing" id="UTs-5v-vIf"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="dCi-Zn-pY7" secondAttribute="bottom" id="uvo-IL-Ozd"/>
                                                                         </constraints>
                                                                         <size key="customSize" width="375" height="190"/>
                                                                         <connections>
@@ -2592,7 +2598,7 @@ reach for you.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Oc-B0-hhS" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1784" width="375" height="165"/>
+                                                <rect key="frame" x="0.0" y="1754" width="375" height="165"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fiF-C2-cka" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="15" width="375" height="150"/>
@@ -2703,7 +2709,7 @@ reach for you.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="thq-5v-D1P" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1949" width="375" height="90"/>
+                                                <rect key="frame" x="0.0" y="1919" width="375" height="90"/>
                                                 <subviews>
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ssb-3I-HUj" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="15" width="375" height="75"/>
@@ -2799,7 +2805,7 @@ reach for you.</string>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view clipsSubviews="YES" tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rx7-I5-stL" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="2054" width="375" height="142"/>
+                                                <rect key="frame" x="0.0" y="2024" width="375" height="142"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Disclaimer:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WP6-fl-LPA" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="15" y="15" width="77" height="20"/>
@@ -2871,8 +2877,8 @@ reach for you.</string>
                                             <constraint firstAttribute="bottom" secondItem="Rx7-I5-stL" secondAttribute="bottom" constant="7" id="oe0-FG-MRa"/>
                                             <constraint firstAttribute="trailing" secondItem="ZO6-7j-yfo" secondAttribute="trailing" id="qVw-1q-9vy"/>
                                             <constraint firstAttribute="trailing" secondItem="Tas-LU-FZF" secondAttribute="trailing" id="seI-RI-h71"/>
-                                            <constraint firstItem="ZO6-7j-yfo" firstAttribute="top" secondItem="qzo-qO-NYc" secondAttribute="bottom" constant="15" id="szf-3h-uyQ"/>
-                                            <constraint firstItem="uYQ-MT-OcD" firstAttribute="top" secondItem="hs7-Nz-6bS" secondAttribute="bottom" constant="15" id="u7l-MB-Syl"/>
+                                            <constraint firstItem="ZO6-7j-yfo" firstAttribute="top" secondItem="qzo-qO-NYc" secondAttribute="bottom" id="szf-3h-uyQ"/>
+                                            <constraint firstItem="uYQ-MT-OcD" firstAttribute="top" secondItem="hs7-Nz-6bS" secondAttribute="bottom" id="u7l-MB-Syl"/>
                                             <constraint firstItem="7eA-RI-v3n" firstAttribute="top" secondItem="epk-dE-nsY" secondAttribute="top" id="u8d-G1-Sjy"/>
                                             <constraint firstItem="ZO6-7j-yfo" firstAttribute="leading" secondItem="epk-dE-nsY" secondAttribute="leading" id="v1H-um-AjV"/>
                                             <constraint firstAttribute="trailing" secondItem="4M9-ZI-Y0q" secondAttribute="trailing" id="vQg-79-dmj"/>
@@ -2888,7 +2894,7 @@ reach for you.</string>
                                 <constraints>
                                     <constraint firstItem="epk-dE-nsY" firstAttribute="width" secondItem="1u9-Jt-xAK" secondAttribute="width" id="CSz-cx-icZ"/>
                                     <constraint firstAttribute="trailing" secondItem="epk-dE-nsY" secondAttribute="trailing" id="Fc0-Ay-aWl"/>
-                                    <constraint firstAttribute="bottom" secondItem="epk-dE-nsY" secondAttribute="bottom" id="k6S-Bs-NF3"/>
+                                    <constraint firstAttribute="bottom" secondItem="epk-dE-nsY" secondAttribute="bottom" constant="54" id="k6S-Bs-NF3"/>
                                     <constraint firstItem="epk-dE-nsY" firstAttribute="top" secondItem="1u9-Jt-xAK" secondAttribute="top" id="xZz-r7-4XX"/>
                                     <constraint firstItem="epk-dE-nsY" firstAttribute="leading" secondItem="1u9-Jt-xAK" secondAttribute="leading" id="yje-mA-Y1z"/>
                                 </constraints>
@@ -2897,8 +2903,12 @@ reach for you.</string>
                                 <rect key="frame" x="0.0" y="2212" width="375" height="100"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqM-2P-1qX" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="25" width="162" height="50"/>
+                                        <rect key="frame" x="19.5" y="25" width="163.5" height="50"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="163.5" id="jBg-OM-cr9"/>
+                                            <constraint firstAttribute="height" constant="50" id="wFD-Wj-eXs"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
@@ -2917,7 +2927,7 @@ reach for you.</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2u-hy-7w3" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="193" y="25" width="162" height="50"/>
+                                        <rect key="frame" x="192.5" y="25" width="163" height="50"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -2939,15 +2949,14 @@ reach for you.</string>
                                 </subviews>
                                 <color key="backgroundColor" red="0.93333333333333335" green="0.96078431372549022" blue="0.97647058823529409" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="width" secondItem="gqM-2P-1qX" secondAttribute="width" id="5TZ-ty-Srk"/>
-                                    <constraint firstAttribute="trailing" secondItem="z2u-hy-7w3" secondAttribute="trailing" constant="20" id="6oY-6r-KLs"/>
-                                    <constraint firstItem="gqM-2P-1qX" firstAttribute="top" secondItem="6JP-vZ-reE" secondAttribute="top" constant="25" id="HYG-uj-Lba"/>
+                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="top" secondItem="6JP-vZ-reE" secondAttribute="top" constant="25" id="EY0-SI-0dt"/>
+                                    <constraint firstAttribute="bottom" secondItem="z2u-hy-7w3" secondAttribute="bottom" constant="25" id="I4f-FD-HQN"/>
                                     <constraint firstAttribute="width" secondItem="6JP-vZ-reE" secondAttribute="height" multiplier="15:4" id="IS7-kY-Mk5"/>
-                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="height" secondItem="gqM-2P-1qX" secondAttribute="height" id="TCw-Tz-6cs"/>
-                                    <constraint firstAttribute="bottom" secondItem="gqM-2P-1qX" secondAttribute="bottom" constant="25" id="bFp-eB-iOo"/>
-                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="centerY" secondItem="gqM-2P-1qX" secondAttribute="centerY" id="csM-Av-ILg"/>
-                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="leading" secondItem="gqM-2P-1qX" secondAttribute="trailing" constant="11" id="k0L-of-xXF"/>
-                                    <constraint firstItem="gqM-2P-1qX" firstAttribute="leading" secondItem="6JP-vZ-reE" secondAttribute="leading" constant="20" id="mc7-HZ-uVU"/>
+                                    <constraint firstItem="gqM-2P-1qX" firstAttribute="centerY" secondItem="z2u-hy-7w3" secondAttribute="centerY" id="WvC-DP-AxT"/>
+                                    <constraint firstItem="gqM-2P-1qX" firstAttribute="centerX" secondItem="6JP-vZ-reE" secondAttribute="centerX" multiplier="0.54" id="Xqm-Wz-3ti"/>
+                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="leading" secondItem="gqM-2P-1qX" secondAttribute="trailing" constant="9.5" id="gOc-EV-wbO"/>
+                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="width" secondItem="gqM-2P-1qX" secondAttribute="width" id="jsu-r3-DSY"/>
+                                    <constraint firstItem="z2u-hy-7w3" firstAttribute="height" secondItem="gqM-2P-1qX" secondAttribute="height" id="w7U-TO-1WE"/>
                                 </constraints>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Ga-mR-7Fr">
@@ -2999,6 +3008,7 @@ reach for you.</string>
                     <size key="freeformSize" width="375" height="2312"/>
                     <connections>
                         <outlet property="activityLoader" destination="2Em-pV-P6B" id="QVJ-VV-2Kt"/>
+                        <outlet property="btnScheduleVisit" destination="gqM-2P-1qX" id="3fv-6w-0jb"/>
                         <outlet property="btnSeeAllAdvantages" destination="8dv-yJ-0oc" id="jpE-FL-UB5"/>
                         <outlet property="btnSeeAllAmenities" destination="q8q-Nr-beV" id="gCP-Yx-oLK"/>
                         <outlet property="btnSubscribe" destination="yWP-mV-xNg" id="lHU-tv-M3m"/>
@@ -3034,6 +3044,7 @@ reach for you.</string>
                         <outlet property="vwConfigurtion" destination="4M9-ZI-Y0q" id="y2I-GZ-B0c"/>
                         <outlet property="vwFloorPlan" destination="v2A-9C-4DN" id="lbU-yE-ta3"/>
                         <outlet property="vwLocAdvantages" destination="hs7-Nz-6bS" id="tbu-2V-4Ii"/>
+                        <outlet property="vwMain3DTour" destination="uYQ-MT-OcD" id="ugW-k2-DjT"/>
                         <outlet property="vwNav" destination="5Ga-mR-7Fr" id="Qjm-Mh-0cx"/>
                         <outlet property="vwOverView" destination="qzo-qO-NYc" id="S9F-5g-Mg9"/>
                         <outlet property="vwPanorama" destination="mr1-uZ-q3Y" id="4Kj-ZA-Nse"/>

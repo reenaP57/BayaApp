@@ -30,23 +30,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.initRootViewController()
         self.loadCountryList()
-    
-        
-        let systemVersion = UIDevice.current.systemVersion
-        print("iOS\(systemVersion)")
-        
-        //iPhone or iPad
-      //  let model = UIDevice.current.model
-        
-        let Device = UIDevice.current
-        //_ = NSString(string: Device.systemVersion).doubleValue
-        
-        print("Curren Device Model : ", UIDevice.current.model)
-        print("Curren Device name : ", UIDevice.current.name)
-        print("Curren Device localizedModel : ", UIDevice.current.localizedModel)
-        print("Curren Device localizedModel : ", UIDevice.current.localizedModel)
-
-        print("Curren Version : ", Device.systemVersion)
 
         return true
     }

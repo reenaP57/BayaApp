@@ -205,23 +205,17 @@
                                                         </label>
                                                         <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2fE-ah-O26" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="245" y="34" width="90" height="25"/>
-                                                            <color key="backgroundColor" red="1" green="0.27058823529999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="2fE-ah-O26" secondAttribute="height" multiplier="3:1" constant="15" id="WEm-Yc-aeg"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="10"/>
-                                                            <state key="normal" title="UNSUBSCRIBE">
+                                                            <state key="normal" title="UNSUBSCRIBE" backgroundImage="gradient_bg1">
                                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             </state>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="3"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="gradientColor1">
-                                                                    <color key="value" red="0.95686274509803915" green="0.38039215686274508" blue="0.61176470588235299" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                </userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="gradientColor2">
-                                                                    <color key="value" red="1" green="0.33333333333333331" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </button>
@@ -599,6 +593,7 @@
     </scenes>
     <resources>
         <image name="bg.jpg" width="1242" height="2208"/>
+        <image name="gradient_bg1" width="77" height="27"/>
         <image name="img2.jpeg" width="275" height="183"/>
         <image name="location_projects" width="9" height="13"/>
         <image name="next" width="8" height="13"/>

@@ -1301,18 +1301,18 @@ extension APIRequest {
             para[CIEndDate] = endDate
         }
         
-        if shouldShowLoader!{
-        MILoader.shared.showLoader(type: .circularRing, message: "")
-        }
+//        if shouldShowLoader!{
+//        MILoader.shared.showLoader(type: .circularRing, message: "")
+//        }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
-            MILoader.shared.hideLoader()
+        //    MILoader.shared.hideLoader()
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagTimeline){
                 completion(response, nil)
             }
             
         }, failureBlock: { (task, message, error) in
-            MILoader.shared.hideLoader()
+          //  MILoader.shared.hideLoader()
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {

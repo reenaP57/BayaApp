@@ -215,7 +215,11 @@ extension ForgotPwdViewController {
             
             if response != nil && error == nil {
                 
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+
                 if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
+                    
+                    resetPwdVC.verifyCode = dataResponse.valueForString(key: "verifyCode")
                     
                     if type == CEmailType {
                         resetPwdVC.isEmail = true

@@ -57,7 +57,7 @@ extension SupportViewController {
     @IBAction func btnSendClicked (sender : UIButton) {
         
         if (self.txtVMsg.text?.isBlank)! {
-            self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport))
+            self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport,vwMsg.CViewY))
         } else {
             self.postAppSupportDetail()
         }

@@ -19,6 +19,7 @@ class ResetPwdViewController: ParentViewController {
     var isEmail : Bool = false
     var strEmailMobile = ""
     var countryId = 0
+    var verifyCode = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,7 @@ class ResetPwdViewController: ParentViewController {
             _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
         }
         
+       txtCode.text = verifyCode
        strEmailMobile =  strEmailMobile.replacingOccurrences(of: "\"", with: "")
         
        lblNote.text = isEmail ? "\(CResetMessage) email address \([strEmailMobile]). Enter verification code in below." : "\(CResetMessage) mobile number \([strEmailMobile]). Enter verification code in below."
@@ -155,6 +157,10 @@ extension ResetPwdViewController {
             
             if response != nil && error == nil {
                 
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+
+                self.txtCode.text = dataResponse.valueForString(key: "verifyCode")
+
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
                 }
             }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BFRImageViewer
 
 class TimeLineUpdateTblCell: UITableViewCell {
 
@@ -73,6 +74,21 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! TimeLineImgCollCell
+        
+        if cell.imgVSlider.image != nil
+        {
+            DispatchQueue.main.async {
+                let imageVC = BFRImageViewController(imageSource: [cell.imgVSlider.image!])
+                imageVC?.isUsingTransparentBackground = false
+                self.viewController?.present(imageVC!, animated: true, completion: nil)
+            }
+        }
+    }
+    
     
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool)
     {

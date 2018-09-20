@@ -170,4 +170,5 @@ let CImage               = "image"
 let CFavoriteProjectBadge           = "favoriteProjectBadge"
 let CFavoriteProjectProgress        = "favoriteProjectProgress"
 let CFavoriteProjectName            = "favoriteProjectName"
+let CIsVisit             = "isVisit"
 
