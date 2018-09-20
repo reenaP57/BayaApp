@@ -197,13 +197,14 @@ class ScheduleVisitViewController: ParentViewController {
             vwPurpose.layer.borderWidth = 0.0
             vwPurpose.layer.borderColor = UIColor.white.cgColor
             vwPurpose.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
+        
         }
     }
 }
 
 
 //MARK:-
-//MARk:- Action
+//MARK:- Action
 
 extension ScheduleVisitViewController {
     

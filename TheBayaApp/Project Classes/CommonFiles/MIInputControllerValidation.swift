@@ -110,13 +110,13 @@ extension UITextView{
     func textfiledAddRemoveShadow(_ isAdd : Bool)
     {
         if isAdd{
-            self.backgroundColor = UIColor.red
+            self.backgroundColor = UIColor.white
             self.layer.borderWidth = 0.0
-            layer.masksToBounds = true
-            layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
-            layer.shadowOpacity = 5
-            layer.shadowOffset = CGSize(width: 0, height: 3)
-            layer.shadowRadius = 7
+            self.layer.masksToBounds = true
+            self.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
+            self.layer.shadowOpacity = 5
+            self.layer.shadowOffset = CGSize(width: 0, height: 3)
+            self.layer.shadowRadius = 7
         }else
         {
             self.layer.borderWidth = 1.0

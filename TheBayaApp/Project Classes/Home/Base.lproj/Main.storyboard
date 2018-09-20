@@ -1347,23 +1347,35 @@
                                             <view clipsSubviews="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6JE-mb-WbU">
                                                 <rect key="frame" x="15" y="311" width="345" height="125"/>
                                                 <subviews>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-o5-Vyp">
+                                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9QV-Zu-lJX">
                                                         <rect key="frame" x="10" y="0.0" width="325" height="125"/>
-                                                        <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                        <connections>
-                                                            <outlet property="delegate" destination="qZU-GT-OIW" id="h0P-Zd-YRN"/>
-                                                        </connections>
-                                                    </textView>
+                                                        <subviews>
+                                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FZa-o5-Vyp">
+                                                                <rect key="frame" x="0.0" y="0.0" width="325" height="125"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                                <connections>
+                                                                    <outlet property="delegate" destination="qZU-GT-OIW" id="h0P-Zd-YRN"/>
+                                                                </connections>
+                                                            </textView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="bottom" secondItem="FZa-o5-Vyp" secondAttribute="bottom" id="Yc3-Y2-zaz"/>
+                                                            <constraint firstItem="FZa-o5-Vyp" firstAttribute="top" secondItem="9QV-Zu-lJX" secondAttribute="top" id="g5l-pH-e8U"/>
+                                                            <constraint firstAttribute="trailing" secondItem="FZa-o5-Vyp" secondAttribute="trailing" id="iAT-xa-18b"/>
+                                                            <constraint firstItem="FZa-o5-Vyp" firstAttribute="leading" secondItem="9QV-Zu-lJX" secondAttribute="leading" id="lG8-QI-4re"/>
+                                                        </constraints>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="125" id="0Qg-9N-1ZD"/>
-                                                    <constraint firstItem="FZa-o5-Vyp" firstAttribute="top" secondItem="6JE-mb-WbU" secondAttribute="top" id="DMV-6B-8Sv"/>
-                                                    <constraint firstAttribute="trailing" secondItem="FZa-o5-Vyp" secondAttribute="trailing" constant="10" id="DuB-fQ-hLx"/>
-                                                    <constraint firstItem="FZa-o5-Vyp" firstAttribute="leading" secondItem="6JE-mb-WbU" secondAttribute="leading" constant="10" id="ei2-8h-k59"/>
-                                                    <constraint firstAttribute="bottom" secondItem="FZa-o5-Vyp" secondAttribute="bottom" id="v9T-TM-7px"/>
+                                                    <constraint firstAttribute="trailing" secondItem="9QV-Zu-lJX" secondAttribute="trailing" constant="10" id="TKw-HV-W3O"/>
+                                                    <constraint firstItem="9QV-Zu-lJX" firstAttribute="top" secondItem="6JE-mb-WbU" secondAttribute="top" id="eKg-zY-wfb"/>
+                                                    <constraint firstItem="9QV-Zu-lJX" firstAttribute="leading" secondItem="6JE-mb-WbU" secondAttribute="leading" constant="10" id="f5l-jL-LpW"/>
+                                                    <constraint firstAttribute="bottom" secondItem="9QV-Zu-lJX" secondAttribute="bottom" id="lSC-BF-Xur"/>
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="How many guest are we expecting?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvV-02-kK1" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
@@ -3187,7 +3199,7 @@ reach for you.</string>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2D-fV-bv9" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11.5"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
