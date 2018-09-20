@@ -372,33 +372,50 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="oZg-Xz-c79">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYT-yV-CLM">
+                            <view clipsSubviews="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eYT-yV-CLM" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="40" width="345" height="125"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cGs-w5-vFE" customClass="MIGenericTextView" customModule="TheBayaApp" customModuleProvider="target">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O4i-PB-DsP">
                                         <rect key="frame" x="10" y="0.0" width="325" height="125"/>
+                                        <subviews>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="102" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cGs-w5-vFE">
+                                                <rect key="frame" x="0.0" y="0.0" width="325" height="125"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write your message"/>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="Izy-td-8V8" id="Q6O-kO-p1m"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Write your message"/>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="delegate" destination="Izy-td-8V8" id="Q6O-kO-p1m"/>
-                                        </connections>
-                                    </textView>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="cGs-w5-vFE" secondAttribute="bottom" id="G8g-6S-9Yx"/>
+                                            <constraint firstAttribute="trailing" secondItem="cGs-w5-vFE" secondAttribute="trailing" id="dOC-eP-K11"/>
+                                            <constraint firstItem="cGs-w5-vFE" firstAttribute="leading" secondItem="O4i-PB-DsP" secondAttribute="leading" id="g3T-De-oa0"/>
+                                            <constraint firstItem="cGs-w5-vFE" firstAttribute="top" secondItem="O4i-PB-DsP" secondAttribute="top" id="zRc-kL-SYS"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="cGs-w5-vFE" firstAttribute="leading" secondItem="eYT-yV-CLM" secondAttribute="leading" constant="10" id="AVT-1e-xPD"/>
-                                    <constraint firstAttribute="bottom" secondItem="cGs-w5-vFE" secondAttribute="bottom" id="StP-9u-3OB"/>
-                                    <constraint firstAttribute="trailing" secondItem="cGs-w5-vFE" secondAttribute="trailing" constant="10" id="Wh4-kt-ypS"/>
-                                    <constraint firstItem="cGs-w5-vFE" firstAttribute="top" secondItem="eYT-yV-CLM" secondAttribute="top" id="pHk-Wp-yLP"/>
+                                    <constraint firstAttribute="trailing" secondItem="O4i-PB-DsP" secondAttribute="trailing" constant="10" id="OXH-kn-PBt"/>
+                                    <constraint firstAttribute="bottom" secondItem="O4i-PB-DsP" secondAttribute="bottom" id="du1-IE-zyG"/>
+                                    <constraint firstItem="O4i-PB-DsP" firstAttribute="top" secondItem="eYT-yV-CLM" secondAttribute="top" id="rrH-Xu-ICf"/>
                                     <constraint firstAttribute="width" secondItem="eYT-yV-CLM" secondAttribute="height" multiplier="69:25" id="rt5-r5-gab"/>
+                                    <constraint firstItem="O4i-PB-DsP" firstAttribute="leading" secondItem="eYT-yV-CLM" secondAttribute="leading" constant="10" id="xmK-YE-cRh"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Upload image (optional)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iGK-Vu-7tp" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="185" width="142" height="18"/>

@@ -71,10 +71,6 @@ class TimelineDetailViewController: ParentViewController {
         if IS_iPad {
             tblUpdates.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
         }
-        
-        
-        
-        
     }
     
 
@@ -139,6 +135,20 @@ class TimelineDetailViewController: ParentViewController {
             return DateFormatter.dateStringFrom(timestamp: interval, withFormate: "dd MMMM yyyy 'at' hh:mm a")
         }
     }
+    
+    func hideScheduleVisit() {
+        
+        let dict = arrProject[currentIndex]
+        if dict.valueForInt(key: CIsVisit) == 0 {
+            btnScheduleVisit.isHidden = true
+            _ = btnProjectDetail.setConstraintConstant(-(btnScheduleVisit.CViewWidth/2), edge: .leading, ancestor: true)
+            _ = btnProjectDetail.setConstraintConstant(btnScheduleVisit.CViewWidth/2, edge: .trailing, ancestor: true)
+        } else {
+            btnScheduleVisit.isHidden = false
+            _ = btnProjectDetail.setConstraintConstant(20, edge: .leading, ancestor: true)
+            _ = btnProjectDetail.setConstraintConstant(16, edge: .trailing, ancestor: true)
+        }
+    }
 }
 
 
@@ -151,6 +161,10 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
     func reloadTimelineList(index: Int) {
         currentIndex = index
         pageIndexForApi = 1
+        
+        if IS_iPhone {
+            self.hideScheduleVisit()
+        }
         
         arrUpdateList.removeAll()
         self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
@@ -476,6 +490,7 @@ extension TimelineDetailViewController {
             if !IS_iPad
             {
                 self.btnProjectDetail.isHidden = true
+                self.btnScheduleVisit.isHidden = true
             }
             
         }
@@ -501,6 +516,8 @@ extension TimelineDetailViewController {
                 if !IS_iPad
                 {
                     self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
+                    self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
+                    self.hideScheduleVisit()
                 }
                 
                 if self.arrProject.count != 0 {
@@ -509,6 +526,7 @@ extension TimelineDetailViewController {
                 
                 self.vwNoProject.isHidden = self.arrProject.count != 0
                 self.tblUpdates.reloadData()
+             
                 
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)

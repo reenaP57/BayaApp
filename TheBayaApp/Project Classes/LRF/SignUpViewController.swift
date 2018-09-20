@@ -54,7 +54,7 @@ class SignUpViewController: ParentViewController {
                 
                 let dict = arrCountry![index] as AnyObject
                 countryID = dict.value(forKey: "country_id") as! Int
-                txtCountryCode.text = "+\(dict.value(forKey: "country_code") ?? "")"
+                txtCountryCode.text = dict.value(forKey: "country_code") as? String
             }, defaultPlaceholder: "+91")
         }
     }

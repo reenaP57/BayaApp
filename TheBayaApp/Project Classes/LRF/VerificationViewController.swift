@@ -41,7 +41,9 @@ class VerificationViewController: ParentViewController {
             //...Verify Email
             
             self.title = "Verify Email"
-            self.lblNote.text = "\(CVerifyNoteMessage) email address \([(appDelegate.loginUser?.email)!])."
+            
+            let email = appDelegate.loginUser?.email
+            self.lblNote.text = "\(CVerifyNoteMessage) email address \([email!])."
             
         } else {
             //...Verify Mobile Number
@@ -122,9 +124,12 @@ extension VerificationViewController {
             
             if response != nil && error == nil {
                 
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+
                 if self.isEmailVerify {
                     
                     if let verifyMobileVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+                        verifyMobileVC.verifiyCode = dataResponse.valueForString(key: "verifyCode")
                         self.navigationController?.pushViewController(verifyMobileVC, animated: true)
                     }
                     

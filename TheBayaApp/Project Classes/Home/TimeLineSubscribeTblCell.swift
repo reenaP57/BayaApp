@@ -135,19 +135,24 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             }
             
           if IS_iPad {
+
+            //...Hide schedule visit button
+            
+//                if dict.valueForInt(key: CIsVisit) == 0 {
 //
-//                if indexPath.item == 0 {
-//                    //...Hide call button
-//                    cell.btnCall.isHidden = true
-//                    _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
 //
-//                } else if indexPath.item == 1 {
+//                } else {
 //                    //...Hide call and schedule button
 //                    cell.btnCall.isHidden = true
 //                    cell.btnScheduleVisit.isHidden = true
 ////                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
 //
 //                }
+            
+            
+//            //...Hide call button
+//            cell.btnCall.isHidden = true
+//            _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
             
                 cell.btnScheduleVisit.touchUpInside { (sender) in
                     if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
@@ -165,6 +170,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
             }
             
+            cell.imgVPjctCompletion.image =  IS_iPad ? UIImage(named: "project_completion_ipad") : UIImage(named: "project_completion")
             let space = IS_iPad ? 37 :30
             
             let imgVHeight = cell.imgVPjctCompletion.CViewHeight - CGFloat(space)

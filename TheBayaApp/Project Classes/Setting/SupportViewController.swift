@@ -17,17 +17,7 @@ class SupportViewController: ParentViewController {
     }
     
     @IBOutlet fileprivate weak var imgVUpload : UIImageView!
-
-    @IBOutlet fileprivate weak var vwMsg : UIView! {
-        didSet {
-            vwMsg.layer.masksToBounds = true
-            vwMsg.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
-            vwMsg.layer.shadowOpacity = 5
-            vwMsg.layer.shadowOffset = CGSize(width: 0, height: 3)
-            vwMsg.layer.shadowRadius = 7
-            vwMsg.layer.cornerRadius = 3
-        }
-    }
+    @IBOutlet fileprivate weak var vwMsg : UIView!
     
     var imgData = Data()
     
@@ -47,6 +37,24 @@ class SupportViewController: ParentViewController {
     func initialize() {
         self.title = "App Support"
     }
+    
+    func showValidation(isAdd : Bool){
+        
+        self.txtVMsg.backgroundColor = UIColor.white
+        self.txtVMsg.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+        
+        if isAdd {
+            vwMsg.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
+            vwMsg.layer.borderWidth = 1.0
+            vwMsg.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
+            
+        } else {
+            vwMsg.layer.borderWidth = 0.0
+            vwMsg.layer.borderColor = UIColor.white.cgColor
+            vwMsg.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
+            
+        }
+    }
 }
 
 //MARK:-
@@ -57,7 +65,11 @@ extension SupportViewController {
     @IBAction func btnSendClicked (sender : UIButton) {
         
         if (self.txtVMsg.text?.isBlank)! {
-            self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport,vwMsg.CViewY))
+        self.view.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankFeedbackSupport,vwMsg.CViewX, vwMsg.CViewY))
+
+            self.txtVMsg.textfiledAddRemoveShadow(true)
+            self.showValidation(isAdd: true)
+            _ = self.vwMsg.setConstraintConstant((30/2) + 30 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
         } else {
             self.postAppSupportDetail()
         }
@@ -117,6 +129,8 @@ extension SupportViewController : UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         
         textView.hideValidationMessage(15.0)
+        self.showValidation(isAdd: false)
+        _ = self.vwMsg.setConstraintConstant(IS_iPad ? 23 : 20, edge: .bottom, ancestor: true)
         
         if textView.text.count > 0 {
             textView.placeholderColor = UIColor.clear
@@ -129,11 +143,6 @@ extension SupportViewController : UITextViewDelegate {
             txtVMsg.text = currentText.substring(to: currentText.length - 1)
         }
     }
-
-    
-    
-
-    
 }
 
 

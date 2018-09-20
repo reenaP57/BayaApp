@@ -63,6 +63,7 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var btnSeeAllAmenities : UIButton!
     @IBOutlet fileprivate weak var btnSeeAllAdvantages : UIButton!
     @IBOutlet fileprivate weak var btnScheduleVisit : UIButton!
+    @IBOutlet fileprivate weak var btnProjectBrochure : UIButton!
 
     @IBOutlet fileprivate weak var lblDisclaimer : UILabel!
     @IBOutlet fileprivate weak var scrollVw : UIScrollView!
@@ -74,7 +75,7 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var cnstHeightTblConfigure : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightTblSpecification : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightCollLocation : NSLayoutConstraint!
-    @IBOutlet fileprivate weak var cnstHeightCollPlanType : NSLayoutConstraint!
+    @IBOutlet fileprivate weak var cnstXPointBrochureBtn : NSLayoutConstraint!
 
 
     
@@ -186,9 +187,18 @@ class ProjectDetailViewController: ParentViewController {
                 self.sliderPercentage.setValue(Float(dict.valueForInt(key: CProjectProgress)!), animated: false)
                 self.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ? true : false
                 
-//                if dict.valueForInt(key: CIsVisit) == 0 {
-//                    self.btnScheduleVisit.hide(byWidth: true)
-//                }
+                if dict.valueForInt(key: CIsVisit) == 0 {
+                    
+                     self.btnScheduleVisit.isHidden = true
+                    
+                    if IS_iPhone {
+                        self.cnstXPointBrochureBtn.constant = 0
+                    } else {
+                        _ = self.btnProjectBrochure.setConstraintConstant(-(self.btnScheduleVisit.CViewWidth/2), edge: .leading, ancestor: true)
+                        _ = self.btnProjectBrochure.setConstraintConstant(self.btnScheduleVisit.CViewWidth/2, edge: .trailing, ancestor: true)
+                    }
+                   
+                }
                 
                 
                 //...Contact Detail

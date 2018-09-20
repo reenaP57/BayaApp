@@ -75,8 +75,8 @@ class ScheduleVisitViewController: ParentViewController {
     //MARK:- General Methods
     
     func checkValidation(txtField : UITextField) {
-  
-        if self.checkSlotTime(date:dateSlot1) {
+        
+        if self.checkSlotTime(date:dateSlot1) && txtField == txtSlot1 {
             txtSlot2.hideValidationMessage(15.0)
             txtSlot3.hideValidationMessage(15.0)
             txtNoOfGuest.hideValidationMessage(15.0)
@@ -85,7 +85,7 @@ class ScheduleVisitViewController: ParentViewController {
 
             self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CInvalidTimeRangeMessage))
             
-        } else if self.checkSlotTime(date:dateSlot2) {
+        } else if self.checkSlotTime(date:dateSlot2) && txtField == txtSlot2 {
            
             txtSlot3.hideValidationMessage(15.0)
             txtNoOfGuest.hideValidationMessage(15.0)
@@ -93,7 +93,7 @@ class ScheduleVisitViewController: ParentViewController {
             txtSelectProject.hideValidationMessage(15.0)
             self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CInvalidTimeRangeMessage))
             
-        } else if self.checkSlotTime(date:dateSlot3) {
+        } else if self.checkSlotTime(date:dateSlot3)  && txtField == txtSlot3 {
             txtNoOfGuest.hideValidationMessage(15.0)
             txtVPurpose.hideValidationMessage(15.0)
             txtSelectProject.hideValidationMessage(15.0)
@@ -229,10 +229,10 @@ extension ScheduleVisitViewController {
                
                 self.txtNoOfGuest.hideValidationMessage(15.0)
                 self.txtSelectProject.hideValidationMessage(15.0)
-                
-                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0, CBlankPurposeOfVisitMessage,vwPurpose.CViewY))
+                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0, CBlankPurposeOfVisitMessage,vwPurpose.CViewX, vwPurpose.CViewY))
                 self.txtVPurpose.textfiledAddRemoveShadow(true)
                 self.showValidation(isAdd: true)
+                _ = self.vwPurpose.setConstraintConstant(IS_iPad ? (30/2) + 30 + lblMessage.frame.size.height :(15/2) + 15 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
                 
             } else if (self.txtNoOfGuest.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtNoOfGuest.showValidationMessage(15.0,CBlankNoOfGuestMessage))
@@ -260,6 +260,7 @@ extension ScheduleVisitViewController : UITextViewDelegate {
         
         textView.hideValidationMessage(15.0)
         self.showValidation(isAdd: false)
+        _ = self.vwPurpose.setConstraintConstant(IS_iPad ? 15 : 10, edge: .bottom, ancestor: true)
 
         if textView.text.count > 0 {
             textView.placeholderColor = UIColor.clear

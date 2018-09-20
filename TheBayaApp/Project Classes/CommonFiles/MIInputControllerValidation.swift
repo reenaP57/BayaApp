@@ -135,6 +135,10 @@ extension UITextView{
     func updateTextFiledBottomSpace(_ bottomSpace : CGFloat)
     {
         if self.tag == 102 {
+            
+            self.setNeedsLayout()
+            self.layoutIfNeeded()
+            
           return
         }
         
@@ -169,7 +173,7 @@ extension UITextView{
         }
     }
     
-    func showValidationMessage(_ space : CGFloat , _ message : String, _ yPoint : CGFloat) -> UILabel
+    func showValidationMessage(_ space : CGFloat , _ message : String, _ xPoint : CGFloat, _ yPoint : CGFloat) -> UILabel
     {
         self.textfiledAddRemoveShadow(false)
         //self.delegate = self
@@ -177,7 +181,7 @@ extension UITextView{
         DispatchQueue.main.async {
             lblMessage.tag = self.tag
             lblMessage.text = message
-            lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: yPoint + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+            lblMessage.frame = CGRect(x: xPoint + 8, y: yPoint + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             lblMessage.numberOfLines = 0
             lblMessage.textColor = CRGB(r: 247, g: 51, b: 52)
             lblMessage.font = CFontAvenir(size: 14, type: .roman).setUpAppropriateFont()
