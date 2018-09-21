@@ -410,7 +410,7 @@ class ProjectDetailViewController: ParentViewController {
         let attributes = [NSAttributedStringKey.font: CFontAvenir(size: 12, type: .medium).setUpAppropriateFont()!]
         let attributes1 = [NSAttributedStringKey.font: CFontAvenir(size: 13, type: .medium).setUpAppropriateFont()!]
         
-        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 100
+        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 70
     }
 }
 
@@ -508,35 +508,61 @@ extension ProjectDetailViewController {
        
         } else {
             
-            if arrContactNo.count == 2 {
+            if IS_iPad {
                 
-                self.presentActionsheetWithTwoButtons(actionSheetTitle: "", actionSheetMessage:"Contact Detail", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
-                    
-                      self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
-                    
-                }, btnTwoTitle: self.arrContactNo[1].valueForString(key: "mobileNo"), btnTwoStyle: .default) { (action) in
+                let actionSheet = UIAlertController(title: "Contact Detail", message: "", preferredStyle: .alert)
+                
+                actionSheet.addAction(UIAlertAction(title: self.arrContactNo[0].valueForString(key: "mobileNo"), style: .default, handler: { (UIAlertAction) in
+                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
+                }))
+                
+                actionSheet.addAction(UIAlertAction(title: self.arrContactNo[1].valueForString(key: "mobileNo"), style: .default, handler: { (UIAlertAction) in
                     self.dialPhoneNumber(phoneNumber: self.arrContactNo[1].valueForString(key: "mobileNo"))
-
+                }))
+                
+                if arrContactNo.count == 3 {
+                    actionSheet.addAction(UIAlertAction(title: self.arrContactNo[3].valueForString(key: "mobileNo"), style: .default, handler: { (UIAlertAction) in
+                        self.dialPhoneNumber(phoneNumber: self.arrContactNo[3].valueForString(key: "mobileNo"))
+                    }))
                 }
+                
+                actionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                self.present(actionSheet, animated: true, completion: nil)
+                
                 
             } else {
                 
-                self.presentActionsheetWithThreeButton(actionSheetTitle: "Contact", actionSheetMessage: "", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
+                if arrContactNo.count == 2 {
                     
-                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
-
-                }, btnTwoTitle: self.arrContactNo[1].valueForString(key: "mobileNo"), btnTwoStyle: .default, btnTwoTapped: { (action) in
+                    self.presentActionsheetWithTwoButtons(actionSheetTitle: "", actionSheetMessage:"Contact Detail", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
+                        
+                        self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
+                        
+                    }, btnTwoTitle: self.arrContactNo[1].valueForString(key: "mobileNo"), btnTwoStyle: .default) { (action) in
+                        self.dialPhoneNumber(phoneNumber: self.arrContactNo[1].valueForString(key: "mobileNo"))
+                        
+                    }
                     
-                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[1].valueForString(key: "mobileNo"))
-
-                }, btnThreeTitle: self.arrContactNo[2].valueForString(key: "mobileNo"), btnThreeStyle: .default) { (action) in
+                } else {
                     
-                    self.dialPhoneNumber(phoneNumber: self.arrContactNo[2].valueForString(key: "mobileNo"))
-
+                    self.presentActionsheetWithThreeButton(actionSheetTitle: "Contact", actionSheetMessage: "", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
+                        
+                        self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
+                        
+                    }, btnTwoTitle: self.arrContactNo[1].valueForString(key: "mobileNo"), btnTwoStyle: .default, btnTwoTapped: { (action) in
+                        
+                        self.dialPhoneNumber(phoneNumber: self.arrContactNo[1].valueForString(key: "mobileNo"))
+                        
+                    }, btnThreeTitle: self.arrContactNo[2].valueForString(key: "mobileNo"), btnThreeStyle: .default) { (action) in
+                        
+                        self.dialPhoneNumber(phoneNumber: self.arrContactNo[2].valueForString(key: "mobileNo"))
+                        
+                    }
                 }
             }
         }
     }
+    
     
     @IBAction func btnFloorPlansClicked (sender : UIButton) {
         

@@ -1636,14 +1636,29 @@
                                     <outlet property="delegate" destination="V5h-Uo-lGH" id="UoH-UJ-03o"/>
                                 </connections>
                             </tableView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="FMt-uK-kBd">
+                                <rect key="frame" x="169" y="315" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ntotification list not found." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Avb-In-g96">
+                                <rect key="frame" x="10" y="321" width="355" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="U92-Lf-zBL" firstAttribute="bottom" secondItem="rCe-3V-7QW" secondAttribute="bottom" constant="49" id="17d-se-rGe"/>
                             <constraint firstItem="rCe-3V-7QW" firstAttribute="trailing" secondItem="U92-Lf-zBL" secondAttribute="trailing" id="1ov-qc-0dL"/>
                             <constraint firstItem="TS3-ii-C5o" firstAttribute="bottom" secondItem="U92-Lf-zBL" secondAttribute="bottom" id="4Cd-U7-xFe"/>
+                            <constraint firstItem="FMt-uK-kBd" firstAttribute="centerY" secondItem="AJz-4M-dwe" secondAttribute="centerY" id="BKR-vS-ZYl"/>
                             <constraint firstItem="rCe-3V-7QW" firstAttribute="top" secondItem="U92-Lf-zBL" secondAttribute="top" id="EYK-Vl-WCa"/>
                             <constraint firstItem="TS3-ii-C5o" firstAttribute="leading" secondItem="U92-Lf-zBL" secondAttribute="leading" id="IBo-5o-mUS"/>
+                            <constraint firstItem="U92-Lf-zBL" firstAttribute="trailing" secondItem="Avb-In-g96" secondAttribute="trailing" constant="10" id="Kh9-3S-92y"/>
+                            <constraint firstItem="Avb-In-g96" firstAttribute="leading" secondItem="U92-Lf-zBL" secondAttribute="leading" constant="10" id="QeV-Iv-8uY"/>
+                            <constraint firstItem="FMt-uK-kBd" firstAttribute="centerX" secondItem="AJz-4M-dwe" secondAttribute="centerX" id="UGO-3t-O4Y"/>
+                            <constraint firstItem="Avb-In-g96" firstAttribute="centerY" secondItem="AJz-4M-dwe" secondAttribute="centerY" id="Vik-He-uLh"/>
                             <constraint firstItem="rCe-3V-7QW" firstAttribute="leading" secondItem="U92-Lf-zBL" secondAttribute="leading" id="WaJ-qt-bel"/>
                             <constraint firstItem="TS3-ii-C5o" firstAttribute="top" secondItem="AJz-4M-dwe" secondAttribute="top" id="Yf2-0P-orq"/>
                             <constraint firstItem="TS3-ii-C5o" firstAttribute="trailing" secondItem="U92-Lf-zBL" secondAttribute="trailing" id="lP6-ZN-cNp"/>
@@ -1651,6 +1666,7 @@
                         <viewLayoutGuide key="safeArea" id="U92-Lf-zBL"/>
                     </view>
                     <connections>
+                        <outlet property="activityLoader" destination="FMt-uK-kBd" id="O43-gF-1Vl"/>
                         <outlet property="tblNotification" destination="rCe-3V-7QW" id="Rvi-Uc-4gf"/>
                     </connections>
                 </viewController>
@@ -2106,7 +2122,7 @@ reach for you.</string>
                                                                 </connections>
                                                             </button>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="lpp-lF-SfQ">
-                                                                <rect key="frame" x="0.0" y="40" width="375" height="120"/>
+                                                                <rect key="frame" x="20" y="40" width="335" height="120"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="120" id="04T-Zm-vXV"/>
@@ -2214,13 +2230,13 @@ reach for you.</string>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="lpp-lF-SfQ" firstAttribute="top" secondItem="8dv-yJ-0oc" secondAttribute="bottom" id="8cF-Pg-Y8D"/>
-                                                            <constraint firstAttribute="trailing" secondItem="lpp-lF-SfQ" secondAttribute="trailing" id="JJF-i0-mjS"/>
+                                                            <constraint firstAttribute="trailing" secondItem="lpp-lF-SfQ" secondAttribute="trailing" constant="20" id="JJF-i0-mjS"/>
                                                             <constraint firstItem="Ivw-8J-WIA" firstAttribute="leading" secondItem="8yI-N1-5Cx" secondAttribute="leading" constant="15" id="Jur-Ef-e6w"/>
                                                             <constraint firstItem="8dv-yJ-0oc" firstAttribute="centerY" secondItem="Ivw-8J-WIA" secondAttribute="centerY" id="XdQ-aw-liN"/>
                                                             <constraint firstItem="Ivw-8J-WIA" firstAttribute="top" secondItem="8yI-N1-5Cx" secondAttribute="top" constant="15" id="bcn-wt-Zrc"/>
                                                             <constraint firstAttribute="bottom" secondItem="lpp-lF-SfQ" secondAttribute="bottom" id="g9m-jm-lBg"/>
                                                             <constraint firstAttribute="trailing" secondItem="8dv-yJ-0oc" secondAttribute="trailing" id="qEW-7N-UGP"/>
-                                                            <constraint firstItem="lpp-lF-SfQ" firstAttribute="leading" secondItem="8yI-N1-5Cx" secondAttribute="leading" id="u9P-Yn-gSj"/>
+                                                            <constraint firstItem="lpp-lF-SfQ" firstAttribute="leading" secondItem="8yI-N1-5Cx" secondAttribute="leading" constant="20" id="u9P-Yn-gSj"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">

@@ -72,6 +72,8 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear
             
+            cell.btnUnsubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
+            
             cell.btnUnsubscribe.touchUpInside { (sender) in
                 
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CUnsubscribeMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in

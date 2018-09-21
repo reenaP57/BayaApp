@@ -9,6 +9,7 @@
 import UIKit
 
 let CharacterLimit = 500
+let Gap : CGFloat = IS_iPad ? 15 : 10
 
 class ScheduleVisitViewController: ParentViewController {
 
@@ -77,45 +78,45 @@ class ScheduleVisitViewController: ParentViewController {
     func checkValidation(txtField : UITextField) {
         
         if self.checkSlotTime(date:dateSlot1) && txtField == txtSlot1 {
-            txtSlot2.hideValidationMessage(15.0)
-            txtSlot3.hideValidationMessage(15.0)
-            txtNoOfGuest.hideValidationMessage(15.0)
-            txtVPurpose.hideValidationMessage(15.0)
-            txtSelectProject.hideValidationMessage(15.0)
+            txtSlot2.hideValidationMessage(Gap)
+            txtSlot3.hideValidationMessage(Gap)
+            txtNoOfGuest.hideValidationMessage(Gap)
+            txtVPurpose.hideValidationMessage(Gap)
+            txtSelectProject.hideValidationMessage(Gap)
 
-            self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+            self.vwContent.addSubview(self.txtSlot1.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             
         } else if self.checkSlotTime(date:dateSlot2) && txtField == txtSlot2 {
            
-            txtSlot3.hideValidationMessage(15.0)
-            txtNoOfGuest.hideValidationMessage(15.0)
-            txtVPurpose.hideValidationMessage(15.0)
-            txtSelectProject.hideValidationMessage(15.0)
-            self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+            txtSlot3.hideValidationMessage(Gap)
+            txtNoOfGuest.hideValidationMessage(Gap)
+            txtVPurpose.hideValidationMessage(Gap)
+            txtSelectProject.hideValidationMessage(Gap)
+            self.vwContent.addSubview(self.txtSlot2.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             
         } else if self.checkSlotTime(date:dateSlot3)  && txtField == txtSlot3 {
-            txtNoOfGuest.hideValidationMessage(15.0)
-            txtVPurpose.hideValidationMessage(15.0)
-            txtSelectProject.hideValidationMessage(15.0)
-            self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+            txtNoOfGuest.hideValidationMessage(Gap)
+            txtVPurpose.hideValidationMessage(Gap)
+            txtSelectProject.hideValidationMessage(Gap)
+            self.vwContent.addSubview(self.txtSlot3.showValidationMessage(Gap,CInvalidTimeRangeMessage))
 
         } else {
            
             if txtField == txtSlot1 {
-                txtField.hideValidationMessage(15.0)
+                txtField.hideValidationMessage(Gap)
             } else if txtField == txtSlot2 {
-                txtSlot1.hideValidationMessage(15.0)
-                txtField.hideValidationMessage(15.0)
-                txtSlot3.hideValidationMessage(15.0)
+                txtSlot1.hideValidationMessage(Gap)
+                txtField.hideValidationMessage(Gap)
+                txtSlot3.hideValidationMessage(Gap)
             } else  if txtField == txtSlot3 {
-                txtSlot1.hideValidationMessage(15.0)
-                txtSlot2.hideValidationMessage(15.0)
-                txtField.hideValidationMessage(15.0)
+                txtSlot1.hideValidationMessage(Gap)
+                txtSlot2.hideValidationMessage(Gap)
+                txtField.hideValidationMessage(Gap)
             }
             
-            txtVPurpose.hideValidationMessage(15.0)
-            txtNoOfGuest.hideValidationMessage(15.0)
-            txtSelectProject.hideValidationMessage(15.0)
+            txtVPurpose.hideValidationMessage(Gap)
+            txtNoOfGuest.hideValidationMessage(Gap)
+            txtSelectProject.hideValidationMessage(Gap)
         }
     }
     
@@ -153,7 +154,7 @@ class ScheduleVisitViewController: ParentViewController {
         }
         
         txtNoOfGuest.setPickerData(arrPickerData: ["1","2","3","4","5","6","7","8","9","10"], selectedPickerDataHandler: { (string, row, index) in
-           txtNoOfGuest.hideValidationMessage(15.0)
+           txtNoOfGuest.hideValidationMessage(Gap)
         }, defaultPlaceholder: "")
         
         
@@ -185,15 +186,18 @@ class ScheduleVisitViewController: ParentViewController {
     
     func showValidation(isAdd : Bool){
         
-        self.txtVPurpose.backgroundColor = UIColor.white
         self.txtVPurpose.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
         
         if isAdd {
+            txtVPurpose.backgroundColor = CRGB(r: 254, g: 242, b: 242)
+            vwPurpose.backgroundColor = CRGB(r: 254, g: 242, b: 242)
             vwPurpose.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
             vwPurpose.layer.borderWidth = 1.0
             vwPurpose.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
             
         } else {
+            txtVPurpose.backgroundColor = UIColor.white
+            vwPurpose.backgroundColor = UIColor.white
             vwPurpose.layer.borderWidth = 0.0
             vwPurpose.layer.borderColor = UIColor.white.cgColor
             vwPurpose.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
@@ -210,35 +214,66 @@ extension ScheduleVisitViewController {
     
     @IBAction func btnSubmitClicked (sender : UIButton) {
 
+        GCDMainThread.asyncAfter(deadline: .now() + 1.0) {
+            
             if (self.txtSlot1.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CBlankTimeSlot1Message))
+                self.vwContent.addSubview(self.txtSlot1.showValidationMessage(Gap,CBlankTimeSlot1Message))
                 
             } else if self.checkSlotTime(date: self.dateSlot1) {
-                self.vwContent.addSubview(self.txtSlot1.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+                self.vwContent.addSubview(self.txtSlot1.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             } else if (self.txtSlot2.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CBlankTimeSlot2Message))
+                
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.vwContent.addSubview(self.txtSlot2.showValidationMessage(Gap,CBlankTimeSlot2Message))
                 
             } else if self.checkSlotTime(date: self.dateSlot2) {
-                self.vwContent.addSubview(self.txtSlot2.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.vwContent.addSubview(self.txtSlot2.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             } else if (self.txtSlot3.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CBlankTimeSlot3Message))
+                
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.txtSlot2.hideValidationMessage(Gap)
+                self.vwContent.addSubview(self.txtSlot3.showValidationMessage(Gap,CBlankTimeSlot3Message))
                 
             } else if self.checkSlotTime(date: self.dateSlot3) {
-                self.vwContent.addSubview(self.txtSlot3.showValidationMessage(15.0,CInvalidTimeRangeMessage))
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.txtSlot2.hideValidationMessage(Gap)
+                self.vwContent.addSubview(self.txtSlot3.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             } else if (self.txtVPurpose.text?.isBlank)! {
-               
-                self.txtNoOfGuest.hideValidationMessage(15.0)
-                self.txtSelectProject.hideValidationMessage(15.0)
-                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(15.0, CBlankPurposeOfVisitMessage,vwPurpose.CViewX, vwPurpose.CViewY))
+                
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.txtSlot2.hideValidationMessage(Gap)
+                self.txtSlot3.hideValidationMessage(Gap)
+                self.txtNoOfGuest.hideValidationMessage(Gap)
+                self.txtSelectProject.hideValidationMessage(45)
+                
+                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(Gap, CBlankPurposeOfVisitMessage,self.vwPurpose.CViewX, self.vwPurpose.CViewY))
                 self.txtVPurpose.textfiledAddRemoveShadow(true)
                 self.showValidation(isAdd: true)
                 _ = self.vwPurpose.setConstraintConstant(IS_iPad ? (30/2) + 30 + lblMessage.frame.size.height :(15/2) + 15 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
                 
             } else if (self.txtNoOfGuest.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtNoOfGuest.showValidationMessage(15.0,CBlankNoOfGuestMessage))
+               
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.txtSlot2.hideValidationMessage(Gap)
+                self.txtSlot3.hideValidationMessage(Gap)
+               
+                self.txtVPurpose.hideValidationMessage(Gap)
+                self.showValidation(isAdd: false)
+                _ = self.vwPurpose.setConstraintConstant(Gap, edge: .bottom, ancestor: true)
+                self.vwContent.addSubview(self.txtNoOfGuest.showValidationMessage(Gap,CBlankNoOfGuestMessage))
                 
             } else if (self.txtSelectProject.text?.isBlank)! {
-                self.vwContent.addSubview(self.txtSelectProject.showValidationMessage(15.0,CSelectProjectMessage))
+               
+                self.txtSlot1.hideValidationMessage(Gap)
+                self.txtSlot2.hideValidationMessage(Gap)
+                self.txtSlot3.hideValidationMessage(Gap)
+                self.txtNoOfGuest.hideValidationMessage(Gap)
+
+                self.txtVPurpose.hideValidationMessage(Gap)
+                self.showValidation(isAdd: false)
+                _ = self.vwPurpose.setConstraintConstant(Gap, edge: .bottom, ancestor: true)
+                self.vwContent.addSubview(self.txtSelectProject.showValidationMessage(45.0,CSelectProjectMessage))
                 
             } else if (self.txtSlot1.text == self.txtSlot2.text) ||  (self.txtSlot2.text == self.txtSlot3.text) || (self.txtSlot1.text == self.txtSlot3.text) {
                 
@@ -247,6 +282,8 @@ extension ScheduleVisitViewController {
             }  else {
                 self.scheduleVisit()
             }
+        }
+     
     }
 }
 
@@ -258,9 +295,9 @@ extension ScheduleVisitViewController : UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         
-        textView.hideValidationMessage(15.0)
+        textView.hideValidationMessage(Gap)
         self.showValidation(isAdd: false)
-        _ = self.vwPurpose.setConstraintConstant(IS_iPad ? 15 : 10, edge: .bottom, ancestor: true)
+        _ = self.vwPurpose.setConstraintConstant(Gap, edge: .bottom, ancestor: true)
 
         if textView.text.count > 0 {
             textView.placeholderColor = UIColor.clear
@@ -299,7 +336,7 @@ extension ScheduleVisitViewController {
                     }
                     
                     self.txtSelectProject.setPickerData(arrPickerData: self.arrProject.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
-                        self.txtSelectProject.hideValidationMessage(15.0)
+                        self.txtSelectProject.hideValidationMessage(45)
                         self.projectId = self.arrProject[row].valueForInt(key: CProjectId)!
                         
                     }, defaultPlaceholder: "")

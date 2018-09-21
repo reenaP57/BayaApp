@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreTelephony
 
 let TRANSFORM_CELL_VALUE = CGAffineTransform(scaleX: 0.9, y: 0.9)
 let ANIMATION_SPEED = 0.2
@@ -126,7 +127,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             }
             
             cell.btnCall.touchUpInside { (sender) in
-               
+                
                 let arrMobileNo = dict.valueForJSON(key: CMobileNo) as! [[String : AnyObject]]
                 
                 if arrMobileNo.count > 0 {
@@ -134,26 +135,35 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
             }
             
-          if IS_iPad {
-
-            //...Hide schedule visit button
-            
-//                if dict.valueForInt(key: CIsVisit) == 0 {
-//
-//
-//                } else {
-//                    //...Hide call and schedule button
-//                    cell.btnCall.isHidden = true
-//                    cell.btnScheduleVisit.isHidden = true
-////                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
-//
-//                }
-            
-            
-//            //...Hide call button
-//            cell.btnCall.isHidden = true
-//            _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
-            
+            if IS_iPad {
+                
+                //...Check device support calling features
+                
+                if UIApplication.shared.canOpenURL(NSURL(string: "tel://")! as URL) {
+                    if let mnc = CTTelephonyNetworkInfo().subscriberCellularProvider?.mobileNetworkCode, !mnc.isEmpty {
+                    } else {
+                        cell.btnCall.isHidden = true
+                        _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
+                    }
+                } else {
+                    cell.btnCall.isHidden = true
+                    _ = cell.btnProjectDetail.setConstraintConstant(60, edge: .trailing, ancestor: true)
+                }
+                
+                
+                //...Hide schedule visit button
+                
+                if dict.valueForInt(key: CIsVisit) == 0 {
+                    cell.btnScheduleVisit.isHidden = true
+                    
+                    _ = cell.btnProjectDetail.setConstraintConstant(cell.btnScheduleVisit.CViewWidth - 20/2, edge: .trailing, ancestor: true)
+                } else {
+                    cell.btnScheduleVisit.isHidden = false
+                    //                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
+                    
+                }
+                
+                
                 cell.btnScheduleVisit.touchUpInside { (sender) in
                     if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                         scheduleVisitVC.projectId = dict.valueForInt(key: CProjectId)!
@@ -179,7 +189,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
             if (dict.valueForInt(key: CProjectProgress)) != 100 || (dict.valueForInt(key: CProjectProgress)) != 0 {
                 if cell.imgVPjctCompletion.image != nil{
-                cell.imgVPjctCompletion.image = self.CropImage(image: cell.imgVPjctCompletion.image!, cropRect: CGRect(x: 0, y: imgVHeight - percentage , width: cell.imgVPjctCompletion.CViewWidth, height: percentage))
+                    cell.imgVPjctCompletion.image = self.CropImage(image: cell.imgVPjctCompletion.image!, cropRect: CGRect(x: 0, y: imgVHeight - percentage , width: cell.imgVPjctCompletion.CViewWidth, height: percentage))
                 }
             }
             

@@ -1212,7 +1212,7 @@
 			baseConfigurationReference = 45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mehul Rajput (7224G6JACN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1223,8 +1223,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f86297-aec8-4a2d-b0b9-faacf10254d3";
-				PROVISIONING_PROFILE_SPECIFIER = "The-Baya-ADhoc 24 Aug 2018";
+				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
+				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1235,7 +1235,7 @@
 			baseConfigurationReference = 8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mehul Rajput (7224G6JACN)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1246,8 +1246,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f86297-aec8-4a2d-b0b9-faacf10254d3";
-				PROVISIONING_PROFILE_SPECIFIER = "The-Baya-ADhoc 24 Aug 2018";
+				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
+				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

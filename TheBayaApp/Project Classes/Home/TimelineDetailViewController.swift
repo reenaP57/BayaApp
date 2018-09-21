@@ -435,7 +435,12 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
                             cell.lblUrl.text = dict.valueForString(key: "link")
                             
+                            
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                
+                                if arrImages.count > 0 {
+                                    cell.collImg.hide(byHeight: true)
+                                }
                                 cell.loadSliderImages(images: arrImages)
                             }
                             
@@ -512,12 +517,14 @@ extension TimelineDetailViewController {
                         self.arrProject.append(item)
                     }
                 }
-                
-                if !IS_iPad
-                {
+       
+                if !IS_iPad {
                     self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
                     self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
-                    self.hideScheduleVisit()
+                    
+                    if self.arrProject.count > 0 {
+                       self.hideScheduleVisit()
+                    }
                 }
                 
                 if self.arrProject.count != 0 {

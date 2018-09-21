@@ -94,10 +94,11 @@ var CSubscribeMessage  : String { return CLocalize(text: "You will now receive n
 
 var CUnsubscribeMessage  : String { return CLocalize(text: "You will no longer receive notifications for project updates.")}
 
-var CEnablePushNotificationMessage  : String { return CLocalize(text: "Are you sure want to enable Push Notifications?")}
-var CDisablePushNotificationMessage  : String { return CLocalize(text: "Are you sure want to disable Push Notifications?")}
-var CEnableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure want to enable Email Notifications?")}
-var CDisableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure want to disable Email Notifications?")}
+
+var CEnablePushNotificationMessage  : String { return CLocalize(text: "Are you sure you want to enable Push Notifications?")}
+var CDisablePushNotificationMessage  : String { return CLocalize(text: "Are you sure you want to disable Push Notifications?")}
+var CEnableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure you want to enable Email Notifications?")}
+var CDisableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure you want to disable Email Notifications?")}
 
 var CResetMessage  : String { return CLocalize(text: "You might have got verification code on entered")}
 

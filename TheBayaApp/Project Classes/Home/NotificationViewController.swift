@@ -12,6 +12,13 @@ class NotificationViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var tblNotification : UITableView!
     
+    @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
+    
+    var refreshControl = UIRefreshControl()
+    var apiTask : URLSessionTask?
+    fileprivate var lastPage : Int = 0
+    fileprivate var currentPage : Int = 1
+    
     var arrNotification = [[String : AnyObject]]()
     
     override func viewDidLoad() {
@@ -35,6 +42,13 @@ class NotificationViewController: ParentViewController {
     
     func initialize() {
         self.title = "Notifications"
+        
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        tblNotification?.pullToRefreshControl = refreshControl
+        
+        self.loadNotificationList(isRefresh: false)
+
         
         arrNotification = [["project_name" : "Baya Victoria", "message" : "Your visit at 5:00 PM has been confirmed.","time" : "Yesterday at 12:00 PM", "isRead" : false, "isRate" : false],
         ["project_name" : "Baya Junction", "message" : "Box filling till 15th floor has been done.","time" : "Yesterday at 12:00 PM", "isRead" : false, "isRate" : false],
@@ -115,4 +129,62 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             }
         }
     }
+}
+
+
+//MARK:-
+//MARK:- API
+
+extension NotificationViewController {
+    
+    @objc func pullToRefresh(){
+        currentPage = 1
+        self.refreshControl.beginRefreshing()
+        self.loadNotificationList(isRefresh: true)
+    }
+    
+    func loadNotificationList(isRefresh : Bool) {
+        
+        if apiTask?.state == URLSessionTask.State.running {
+            return
+        }
+        
+        if !isRefresh {
+            activityLoader.startAnimating()
+        }
+        
+        
+        apiTask = APIRequest.shared().notificationList(page: currentPage, completion: { (response, error) in
+            
+            self.apiTask?.cancel()
+            self.activityLoader.stopAnimating()
+            self.refreshControl.endRefreshing()
+            
+            if response != nil && error == nil {
+                
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
+                
+                if self.currentPage == 1 {
+                    self.arrNotification.removeAll()
+                }
+                
+                if arrData.count > 0 {
+                    
+                    for item in arrData {
+                        self.arrNotification.append(item)
+                    }
+                }
+                
+                self.lastPage = metaData.valueForInt(key: CLastPage)!
+                
+                if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
+                    self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+                }
+                
+                self.tblNotification.reloadData()
+            }
+        })
+    }
+ 
 }

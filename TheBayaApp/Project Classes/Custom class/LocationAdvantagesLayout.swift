@@ -19,7 +19,7 @@ class LocationAdvantagesLayout: UICollectionViewLayout {
     
     //2. Configurable properties
     fileprivate var numberOfColumns = IS_iPad ? 4 :3
-    fileprivate var cellPadding: CGFloat = 15
+    fileprivate var cellPadding: CGFloat = IS_iPad ? 0 : 0
     
     //3. Array to keep a cache of attributes.
     fileprivate var cache = [UICollectionViewLayoutAttributes]()

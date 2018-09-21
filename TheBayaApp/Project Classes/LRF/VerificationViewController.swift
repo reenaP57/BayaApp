@@ -43,13 +43,13 @@ class VerificationViewController: ParentViewController {
             self.title = "Verify Email"
             
             let email = appDelegate.loginUser?.email
-            self.lblNote.text = "\(CVerifyNoteMessage) email address \([email!])."
+            self.lblNote.text = "\(CVerifyNoteMessage) email address [\(email!)]."
             
         } else {
             //...Verify Mobile Number
             
             self.title = "Verify Mobile Number"
-            self.lblNote.text = "\(CVerifyNoteMessage) mobile number \([(appDelegate.loginUser?.mobileNo)!])."
+            self.lblNote.text = "\(CVerifyNoteMessage) mobile number [\((appDelegate.loginUser?.country_code)!) | \((appDelegate.loginUser?.mobileNo)!)]."
         }
     }
 

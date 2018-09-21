@@ -25,6 +25,12 @@ class ProfileViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        
+        //...Prefilled user detail
+        
+        lblName.text = "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"
+        lblEmail.text = appDelegate.loginUser?.email
+        lblMobileNo.text = "\(appDelegate.loginUser?.country_code ?? "")-\(appDelegate.loginUser?.mobileNo ?? "")"
     }
     
     override func didReceiveMemoryWarning() {
@@ -37,12 +43,6 @@ class ProfileViewController: ParentViewController {
     
     func initialize() {
         self.title = "My Profile"
-        
-        //...Prefilled user detail
-        
-        lblName.text = "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"
-        lblEmail.text = appDelegate.loginUser?.email
-        lblMobileNo.text = "\(appDelegate.loginUser?.country_code ?? "")-\(appDelegate.loginUser?.mobileNo ?? "")"
         
         if IS_iPhone{
            arrList =  [["img" : "schedule_profile", "title": "Schedule a Visit"],

@@ -13,7 +13,9 @@ import SDWebImage
 
 //MARK:- ---------BASEURL __ TAG
 
-var BASEURL:String        =   "http://192.168.1.59/baya-app/api/v1/"
+//var BASEURL:String        =   "http://192.168.1.59/baya-app/api/v1/"
+var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/"
+
 
 let CAPITagCountry             =   "country"
 let CAPITagSignUp              =   "signup"
@@ -40,6 +42,7 @@ let CAPITagBrochure            =   "brochure"
 let CAPITagAmenities           =   "amenities"
 let CAPITagLocationAdvantages  =   "location-advantages"
 let CAPITagDeviceToken         =   "device-token"
+let CAPITagNotificationList    =   "notificationlist "
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -712,6 +715,28 @@ extension APIRequest {
     }
     
     
+    func notificationList(page : Int?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagNotificationList, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagNotificationList){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.notificationList(page: page, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotificationList, error: error)
+            }
+        })!
+    }
+    
+    
     //TODO:
     //TODO: --------------LRF API--------------
     //TODO:
@@ -1356,21 +1381,19 @@ extension APIRequest {
         
         let arrCountry = TblCountryList.fetch(predicate: NSPredicate(format:"%K == %d", CCountry_id, Int16(dict!.valueForInt(key: CCountryId)!)))
         
-        tblUser.country_code = "+\(((arrCountry![0] as! TblCountryList).country_code) ?? "")"
+        tblUser.country_code = ((arrCountry![0] as! TblCountryList).country_code)
         
         appDelegate.loginUser = tblUser
         
-//        if (CUserDefaults.object(forKey: UserDefaultLoginUserToken) == nil) || (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) == ""{
-
+        if (CUserDefaults.object(forKey: UserDefaultLoginUserToken) == nil) || (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) == ""{
+            
             if let token = metaData?.valueForString(key: "token") {
                 CUserDefaults.setValue(token, forKey: UserDefaultLoginUserToken)
+                CUserDefaults.synchronize()
             }
-        
-            CUserDefaults.setValue(dict!.valueForInt(key: "userId"), forKey: UserDefaultLoginUserID)
-            CUserDefaults.synchronize()
-//        }
+        }
 
-        
+        CUserDefaults.setValue(dict!.valueForInt(key: "userId"), forKey: UserDefaultLoginUserID)
         CoreData.saveContext()
     }
     

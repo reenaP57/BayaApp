@@ -528,7 +528,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="DQT-yS-hge">
-                                                            <rect key="frame" x="311" y="116" width="383" height="40"/>
+                                                            <rect key="frame" x="311" y="119" width="383" height="40"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="f4o-zH-k2i"/>
@@ -622,7 +622,7 @@
                                                         <constraint firstItem="gbx-Tc-7BY" firstAttribute="leading" secondItem="DQT-yS-hge" secondAttribute="trailing" constant="14" id="Qgq-fc-ld2"/>
                                                         <constraint firstItem="pf7-gi-551" firstAttribute="leading" secondItem="uw1-r2-Fe9" secondAttribute="leading" constant="20" id="RDj-co-oa1"/>
                                                         <constraint firstItem="DQT-yS-hge" firstAttribute="leading" secondItem="ORr-X8-RJJ" secondAttribute="leading" id="SE1-o6-KiO"/>
-                                                        <constraint firstItem="DQT-yS-hge" firstAttribute="top" secondItem="ORr-X8-RJJ" secondAttribute="bottom" constant="7" id="bD2-eY-h5Q"/>
+                                                        <constraint firstItem="DQT-yS-hge" firstAttribute="top" secondItem="ORr-X8-RJJ" secondAttribute="bottom" constant="10" id="bD2-eY-h5Q"/>
                                                         <constraint firstItem="wKS-g9-HX5" firstAttribute="centerY" secondItem="ORr-X8-RJJ" secondAttribute="centerY" id="bmq-Wu-bEW"/>
                                                         <constraint firstItem="rq8-AJ-1EA" firstAttribute="top" secondItem="uw1-r2-Fe9" secondAttribute="top" constant="22" id="fen-Ff-U9g"/>
                                                         <constraint firstItem="rq8-AJ-1EA" firstAttribute="leading" secondItem="pf7-gi-551" secondAttribute="trailing" constant="20" id="fnk-Nq-FP1"/>
@@ -1628,7 +1628,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your visit at 5:00 PM has been confirmed. Your visit at 5:00 PM has " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GWS-Iq-lR4">
-                                                            <rect key="frame" x="150" y="45.5" width="482.5" height="49.5"/>
+                                                            <rect key="frame" x="150" y="46" width="482.5" height="49.5"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -2168,7 +2168,7 @@
                                                                 </connections>
                                                             </button>
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ngn-mo-FA2">
-                                                                <rect key="frame" x="-0.5" y="51" width="738.5" height="200"/>
+                                                                <rect key="frame" x="30" y="51" width="678.5" height="200"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="200" id="ZaD-OG-bLA"/>
@@ -2271,11 +2271,11 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstItem="Ngn-mo-FA2" firstAttribute="leading" secondItem="gE3-F8-FSE" secondAttribute="leading" id="1DB-pr-GFT"/>
+                                                            <constraint firstItem="Ngn-mo-FA2" firstAttribute="leading" secondItem="gE3-F8-FSE" secondAttribute="leading" constant="30" id="1DB-pr-GFT"/>
                                                             <constraint firstItem="zEa-ki-hXL" firstAttribute="leading" secondItem="gE3-F8-FSE" secondAttribute="leading" constant="35" id="4Ru-14-ums"/>
                                                             <constraint firstItem="Ngn-mo-FA2" firstAttribute="top" secondItem="zEa-ki-hXL" secondAttribute="bottom" constant="10" id="4s6-1L-0Dr"/>
                                                             <constraint firstItem="zEa-ki-hXL" firstAttribute="top" secondItem="gE3-F8-FSE" secondAttribute="top" constant="15" id="Axq-xT-gMg"/>
-                                                            <constraint firstAttribute="trailing" secondItem="Ngn-mo-FA2" secondAttribute="trailing" id="OuD-uI-h0e"/>
+                                                            <constraint firstAttribute="trailing" secondItem="Ngn-mo-FA2" secondAttribute="trailing" constant="30" id="OuD-uI-h0e"/>
                                                             <constraint firstItem="OeE-WT-Qbv" firstAttribute="top" secondItem="gE3-F8-FSE" secondAttribute="top" constant="10" id="Uv4-Xf-HDq"/>
                                                             <constraint firstAttribute="bottom" secondItem="Ngn-mo-FA2" secondAttribute="bottom" constant="15" id="vhz-fB-sem"/>
                                                             <constraint firstAttribute="trailing" secondItem="OeE-WT-Qbv" secondAttribute="trailing" constant="22" id="yFW-t0-h8f"/>
@@ -3198,7 +3198,7 @@
                                                         <constraint firstAttribute="height" constant="45" id="sYe-wU-zlu"/>
                                                     </constraints>
                                                     <prototypes>
-                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationDescTblCell" rowHeight="25" id="zVV-El-N2N" customClass="LocationDescTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationDescTblCell" rowHeight="25" id="zVV-El-N2N" customClass="LocationDescTblCell" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="1" width="613" height="25"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zVV-El-N2N" id="9VK-be-7k4">
@@ -3206,7 +3206,7 @@
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJo-Pb-7Vb" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="3" width="613" height="18.5"/>
+                                                                        <rect key="frame" x="0.0" y="3" width="1006" height="18"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>
