@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>802561637007-q7ucnvuo3c5jndvtu0c5btg702c8ltlu.apps.googleusercontent.com</string>
+	<string>802561637007-61fdqm5idvj6rtatrdo12upqhvr42np3.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.802561637007-q7ucnvuo3c5jndvtu0c5btg702c8ltlu</string>
+	<string>com.googleusercontent.apps.802561637007-61fdqm5idvj6rtatrdo12upqhvr42np3</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBDBRj7n6SyMWQ4akOAqaoEd9U-tqyDjso</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.mi.baya</string>
+	<string>com.app.baya</string>
 	<key>PROJECT_ID</key>
 	<string>baya-co-216404</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:802561637007:ios:f46274394e39dfce</string>
+	<string>1:802561637007:ios:42b4a287c47167fe</string>
 	<key>DATABASE_URL</key>
 	<string>https://baya-co-216404.firebaseio.com</string>
 </dict>

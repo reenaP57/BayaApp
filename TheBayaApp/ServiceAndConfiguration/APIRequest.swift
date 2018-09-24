@@ -834,8 +834,17 @@ extension APIRequest {
             
             MILoader.shared.hideLoader()
             
+          let metaData = response?.value(forKey: CJsonMeta) as? [String : Any]
+            
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagLogin) {
+            
                 self.saveLoginUserDetail(response : response as! [String : AnyObject])
+             
+                if metaData?.valueForInt(key: "status") == CStatusZero {
+                    let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
+                    appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
+                }
+                
                 completion(response, nil)
             }
             

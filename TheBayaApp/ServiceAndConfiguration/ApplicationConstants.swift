@@ -80,6 +80,7 @@ let UserDefaultTimestamp                  = "UserDefaultTimestamp"
 let UserDefaultFirstTimeLaunch            = "UserDefaultFirstTimeLaunch"
 let UserDefaultLoginUserID                = "UserDefaultLoginUserID"
 let UserDefaultLoginUserToken             = "UserDefaultLoginUserToken"
+let UserDefaultFCMToken                   = "UserDefaultFCMToken"
 
 
 //MARK:- Color

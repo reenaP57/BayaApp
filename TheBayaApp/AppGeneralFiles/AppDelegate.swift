@@ -63,7 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if let refreshedToken = InstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
-            self.registerDeviceToken(fcmToken: refreshedToken, isLoggedIn: 1)
+            CUserDefaults.set(refreshedToken, forKey: UserDefaultFCMToken)
+            CUserDefaults.synchronize()
         }
     }
     
@@ -182,6 +183,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
         CUserDefaults.synchronize()
         
+        let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
+        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
+
         self.initLoginViewController()
     }
     

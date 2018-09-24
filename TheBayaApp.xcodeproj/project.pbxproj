@@ -105,7 +105,6 @@
 		5C48FB63212851B000B0D6CB /* SeeAllAmenitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */; };
 		5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */; };
 		5C48FB672128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB662128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift */; };
-		5C4C4CF62155037000052F5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C4C4CF52155037000052F5F /* GoogleService-Info.plist */; };
 		5C4DC5372127E43200C69ACF /* RateYoorVisitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC5362127E43200C69ACF /* RateYoorVisitViewController.swift */; };
 		5C4DC5392127EC1F00C69ACF /* TutorialCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC5382127EC1F00C69ACF /* TutorialCollCell.swift */; };
 		5C4DC53B2127EC3500C69ACF /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC53A2127EC3500C69ACF /* TutorialViewController.swift */; };
@@ -130,6 +129,7 @@
 		5C8D5B9621258B380080193A /* ConfigurationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */; };
 		5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B972125941C0080193A /* LocationDescTblCell.swift */; };
 		5C93C7232158AD6600AFFAFD /* MIFCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93C7222158AD6600AFFAFD /* MIFCM.swift */; };
+		5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C93C7242158D02600AFFAFD /* GoogleService-Info.plist */; };
 		5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */; };
 		5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */; };
 		5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */; };
@@ -276,7 +276,6 @@
 		5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellAllLocationTblCell.swift; sourceTree = "<group>"; };
 		5C48FB662128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllLocationAdvantagesViewController.swift; sourceTree = "<group>"; };
 		5C4C4CF42154FCDC00052F5F /* TheBayaApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheBayaApp.entitlements; sourceTree = "<group>"; };
-		5C4C4CF52155037000052F5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C4DC5362127E43200C69ACF /* RateYoorVisitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateYoorVisitViewController.swift; sourceTree = "<group>"; };
 		5C4DC5382127EC1F00C69ACF /* TutorialCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollCell.swift; sourceTree = "<group>"; };
 		5C4DC53A2127EC3500C69ACF /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -301,6 +300,7 @@
 		5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTblCell.swift; sourceTree = "<group>"; };
 		5C8D5B972125941C0080193A /* LocationDescTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDescTblCell.swift; sourceTree = "<group>"; };
 		5C93C7222158AD6600AFFAFD /* MIFCM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIFCM.swift; sourceTree = "<group>"; };
+		5C93C7242158D02600AFFAFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlTblCell.swift; sourceTree = "<group>"; };
 		5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTextTblCell.swift; sourceTree = "<group>"; };
 		5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView.xib; sourceTree = "<group>"; };
@@ -564,7 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				486FDD3C2119AEF400EA0188 /* AppDelegate.swift */,
-				5C4C4CF52155037000052F5F /* GoogleService-Info.plist */,
+				5C93C7242158D02600AFFAFD /* GoogleService-Info.plist */,
 				486FDD3D2119AEF400EA0188 /* Assets.xcassets */,
 				486FDD3E2119AEF400EA0188 /* Info.plist */,
 			);
@@ -786,7 +786,7 @@
 				486FDCE42119ADBC00EA0188 /* Frameworks */,
 				486FDCE52119ADBC00EA0188 /* Resources */,
 				68DF06806F97FE88BB413AA1 /* [CP] Embed Pods Frameworks */,
-				5CF2C7C5213ABF4F0037DA0F /* ShellScript */,
+				5CF2C7C5213ABF4F0037DA0F /* Run Script */,
 			);
 			buildRules = (
 			);
@@ -881,7 +881,7 @@
 				5CD76412211DC33D00C267AB /* img3.jpeg in Resources */,
 				487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */,
 				486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */,
-				5C4C4CF62155037000052F5F /* GoogleService-Info.plist in Resources */,
+				5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */,
 				487E4E63211C4CD8000CB32F /* AvenirLTStd-Black.otf in Resources */,
 				487E4E69211C4CD8000CB32F /* AvenirLTStd-Light.otf in Resources */,
 				486FDD702119AEF500EA0188 /* Info.plist in Resources */,
@@ -912,18 +912,19 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5CF2C7C5213ABF4F0037DA0F /* ShellScript */ = {
+		5CF2C7C5213ABF4F0037DA0F /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 4288448eadfda246c1405490046a24ead52bd740 20afabf8e7a5ecc29ebb254aea5ede93b1a96fd9548dbd433bcc8c51d2aeca33";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" cb7107c0d44c9ef403aff556047936711d92aa7b e48fd9c570c4fff00e36ce9acfceee3496f98ecf33286398cda506bb6c3df7a0";
 		};
 		68DF06806F97FE88BB413AA1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1234,19 +1235,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 7224G6JACN;
+				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a32822f0-8b2b-40e2-86bd-09cfe8b8dbec";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_21_sep_2018;
+				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1258,19 +1259,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Mehul Rajput (7224G6JACN)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 7224G6JACN;
+				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
+				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "02f86297-aec8-4a2d-b0b9-faacf10254d3";
-				PROVISIONING_PROFILE_SPECIFIER = "The-Baya-ADhoc 24 Aug 2018";
+				PROVISIONING_PROFILE = "a0235220-8ecb-4ed1-b52e-5d2deb48ef7d";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_ADHOC_24_Sep_2018;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
