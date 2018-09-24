@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4839F448214A9A2E00E5A325 /* ExtensionDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4839F447214A9A2E00E5A325 /* ExtensionDateFormatter.swift */; };
+		486F3BD22159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */; };
 		486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486FDCEE2119ADBC00EA0188 /* Main.storyboard */; };
 		486FDCF82119ADBD00EA0188 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486FDCF62119ADBD00EA0188 /* LaunchScreen.storyboard */; };
 		486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD082119AEF400EA0188 /* APIRequest.swift */; };
@@ -177,6 +178,7 @@
 /* Begin PBXFileReference section */
 		45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBayaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4839F447214A9A2E00E5A325 /* ExtensionDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDateFormatter.swift; sourceTree = "<group>"; };
+		486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlWithoutImageTblCell_ipad.swift; sourceTree = "<group>"; };
 		486FDCE72119ADBC00EA0188 /* TheBayaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBayaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		486FDCEF2119ADBC00EA0188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		486FDCF72119ADBD00EA0188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -703,6 +705,7 @@
 				5CF34B9E212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift */,
 				5CF34BA2212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift */,
 				5CF34BA4212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift */,
+				486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */,
 				5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */,
 				5C51A95A2133E40800998135 /* TimelineUpdateVideoTblCell.swift */,
 				5C51A95E2133F9F800998135 /* TimelineCompletedProjectTblCell.swift */,
@@ -936,6 +939,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BFRImageViewer/BFRImageViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/CTPanoramaView/CTPanoramaView.framework",
+				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
@@ -952,6 +956,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BFRImageViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTPanoramaView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
@@ -976,6 +981,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				486FDD672119AEF500EA0188 /* ExtensionUIViewController.swift in Sources */,
+				486F3BD22159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift in Sources */,
 				5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */,
 				5CD763F9211D51EA00C267AB /* HomeViewController.swift in Sources */,
 				486FDD582119AEF500EA0188 /* ExtensionDouble.swift in Sources */,

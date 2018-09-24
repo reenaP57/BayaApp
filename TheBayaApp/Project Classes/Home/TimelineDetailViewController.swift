@@ -245,6 +245,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                            
                             if arrImages.count > 0{
                                 if mediaType == 1{
                                     cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
@@ -322,30 +323,94 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     }
                 
                     case 4: // URL
-                        if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
-                            
-                            cell.updateImageViewSize()
-                            
-                            cell.lblDesc.text = dict.valueForString(key: "description")
-                            cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
-                                
-                            cell.lblUrl.text = dict.valueForString(key: "link")
-                            
-                            if let arrImages = dict.valueForJSON(key: "media") as? [String] {
-                                
-                                if arrImages.count == 0 {
-                                    cell.imgVUpdate.hide(byWidth: true)
+                        
+                        if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                            if arrImages.count > 0{
+                                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell_ipad") as? TimeLineUpdateUrlTblCell_ipad {
+                                    cell.updateImageViewSize()
+                                    
+                                    cell.lblDesc.text = dict.valueForString(key: "description")
+                                    cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                                    cell.lblUrl.text = dict.valueForString(key: "link")
+                                    
+                                    if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                        
+                                        if arrImages.count > 0{
+                                            cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
+                                            cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
+                                        }
+                                    }
+                                    
+                                    // Hide Image Title here....
+                                    cell.lblImgTitle.text = ""
+                                    _ = cell.lblImgTitle.setConstraintConstant(0, edge: .top, ancestor: true)
+                                    if let strMetaDiscription = dict.valueForJSON(key: "metaTitle") as? String{
+                                        if !strMetaDiscription.isBlank{
+                                            cell.lblImgTitle.text = strMetaDiscription
+                                            _ = cell.lblImgTitle.setConstraintConstant(8, edge: .top, ancestor: true)
+                                        }
+                                    }
+
+
+                                    // Hide Image Description here....
+                                    cell.lblImgDescription.text = ""
+                                    _ = cell.lblImgDescription.setConstraintConstant(0, edge: .top, ancestor: true)
+                                    if let strMetaDiscription = dict.valueForJSON(key: "metaDescription") as? String{
+                                        if !strMetaDiscription.isBlank{
+                                            cell.lblImgDescription.text = strMetaDiscription
+                                            _ = cell.lblImgDescription.setConstraintConstant(8, edge: .top, ancestor: true)
+                                        }
+                                    }
+                                    
+                                    
+                                    cell.btnShare.touchUpInside { (sender) in
+                                        self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
+                                    }
+                                    
+                                    cell.btnLinkContent.touchUpInside { (sender) in
+                                        self.openInSafari(strUrl: dict.valueForString(key: "link"))
+                                    }
+                                    
+                                    return cell
                                 }
-                                
-                                cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
-                                cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
+                            }else{
+                                if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlWithoutImageTblCell_ipad") as? TimeLineUpdateUrlWithoutImageTblCell_ipad {
+                                    cell.lblDesc.text = dict.valueForString(key: "description")
+                                    cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                                    cell.lblUrl.text = dict.valueForString(key: "link")
+                                    
+                                    // Hide Image Title here....
+                                    cell.lblImgTitle.text = ""
+                                    _ = cell.lblImgTitle.setConstraintConstant(0, edge: .top, ancestor: true)
+                                    if let strMetaDiscription = dict.valueForJSON(key: "metaTitle") as? String{
+                                        if !strMetaDiscription.isBlank{
+                                            cell.lblImgTitle.text = strMetaDiscription
+                                            _ = cell.lblImgTitle.setConstraintConstant(8, edge: .top, ancestor: true)
+                                        }
+                                    }
+                                    
+                                    
+                                    // Hide Image Description here....
+                                    cell.lblImgDescription.text = ""
+                                    _ = cell.lblImgDescription.setConstraintConstant(0, edge: .top, ancestor: true)
+                                    if let strMetaDiscription = dict.valueForJSON(key: "metaDescription") as? String{
+                                        if !strMetaDiscription.isBlank{
+                                            cell.lblImgDescription.text = strMetaDiscription
+                                            _ = cell.lblImgDescription.setConstraintConstant(8, edge: .top, ancestor: true)
+                                        }
+                                    }
+                                    
+                                    
+                                    cell.btnShare.touchUpInside { (sender) in
+                                        self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
+                                    }
+                                    
+                                    cell.btnLinkContent.touchUpInside { (sender) in
+                                        self.openInSafari(strUrl: dict.valueForString(key: "link"))
+                                    }
+                                    return cell
+                                }
                             }
-                            
-                            cell.btnShare.touchUpInside { (sender) in
-                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
-                            }
-                            
-                            return cell
                         }
                     break
                 
@@ -446,20 +511,43 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             cell.lblDesc.text = dict.valueForString(key: "description")
                             cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                             cell.lblUrl.text = dict.valueForString(key: "link")
-                            
+
                             
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
-                                
                                 if arrImages.count == 0 {
                                     cell.collImg.hide(byHeight: true)
                                 }
                                 cell.loadSliderImages(images: arrImages)
+                            }
+
+                            // Hide Image Title here....
+                            cell.lblImgTitle.text = ""
+                            _ = cell.lblImgTitle.setConstraintConstant(0, edge: .top, ancestor: true)
+                            if let strMetaDiscription = dict.valueForJSON(key: "metaTitle") as? String{
+                                if !strMetaDiscription.isBlank{
+                                    cell.lblImgTitle.text = strMetaDiscription
+                                    _ = cell.lblImgTitle.setConstraintConstant(8, edge: .top, ancestor: true)
+                                }
+                            }
+
+                            
+                            // Hide Image Description here....
+                            cell.lblImgDescription.text = ""
+                            _ = cell.lblImgDescription.setConstraintConstant(0, edge: .top, ancestor: true)
+                            if let strMetaDiscription = dict.valueForJSON(key: "metaDescription") as? String{
+                                if !strMetaDiscription.isBlank{
+                                    cell.lblImgDescription.text = strMetaDiscription
+                                    _ = cell.lblImgDescription.setConstraintConstant(8, edge: .top, ancestor: true)
+                                }
                             }
                             
                             cell.btnShare.touchUpInside { (sender) in
                                 self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
                             }
                      
+                            cell.btnLinkContent.touchUpInside { (sender) in
+                                self.openInSafari(strUrl: dict.valueForString(key: "link"))
+                            }
                             
                             return cell
                     }

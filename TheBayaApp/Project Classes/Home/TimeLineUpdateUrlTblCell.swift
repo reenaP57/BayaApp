@@ -10,21 +10,31 @@ import UIKit
 
 class TimeLineUpdateUrlTblCell: UITableViewCell {
     
+    
     @IBOutlet weak var collImg : UICollectionView!
     @IBOutlet weak var lblDesc : UILabel!
+    @IBOutlet weak var lblImgTitle : UILabel!
+    @IBOutlet weak var lblImgDescription : UILabel!
+    @IBOutlet weak var viewContainer : UIView!
+    
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var lblUrl : UILabel!
     @IBOutlet weak var btnShare : UIButton!
+    @IBOutlet weak var btnLinkContent : UIButton!
     
     var arrImg = [String]()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        GCDMainThread.async {
+            self.viewContainer.layer.borderWidth = 1
+            self.viewContainer.layer.borderColor = UIColor.lightGray.cgColor
+            self.viewContainer.layer.cornerRadius = 15
+        }
     }
     
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
+    
     
     func loadSliderImages(images : [String]) {
         

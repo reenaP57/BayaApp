@@ -14,8 +14,8 @@ import SDWebImage
 //MARK:- ---------BASEURL __ TAG
 
 //var BASEURL:String        =   "http://192.168.1.59/baya-app/api/v1/"
-//var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/"
-var BASEURL:String          =   "http://192.168.1.199/baya-app/api/v1/"
+var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/"
+//var BASEURL:String          =   "http://192.168.1.199/baya-app/api/v1/"
 
 let CAPITagCountry             =   "country"
 let CAPITagSignUp              =   "signup"
@@ -841,8 +841,11 @@ extension APIRequest {
                 self.saveLoginUserDetail(response : response as! [String : AnyObject])
              
                 if metaData?.valueForInt(key: "status") == CStatusZero {
-                    let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
-                    appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
+                    
+                    if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
+                        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
+                    }
+                    
                 }
                 
                 completion(response, nil)
