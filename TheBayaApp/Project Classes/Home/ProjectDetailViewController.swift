@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CTPanoramaView
+//import CTPanoramaView
 import BFRImageViewer
 
 class ProjectDetailViewController: ParentViewController {
@@ -54,7 +54,8 @@ class ProjectDetailViewController: ParentViewController {
             vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+   // @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -133,7 +134,7 @@ class ProjectDetailViewController: ParentViewController {
         vwSoldOut.layer.borderColor = CRGB(r: 255, g: 0, b: 0).cgColor
         
         sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
-        sliderPercentage.setThumbImage(UIImage(named: "baya_slider_shadow"), for: .normal)
+        sliderPercentage.setThumbImage(UIImage(named: "slider"), for: .normal)
         
         self.loadProjectDetailFromServer()
     }
@@ -216,7 +217,7 @@ class ProjectDetailViewController: ParentViewController {
                     IS_iPad ? self.vw3DTour.hide(byHeight: true) : self.vwMain3DTour.hide(byHeight: true)
                 }
                 
-                if let imgUrl = URL(string: dict.valueForString(key: "tour3DImage")){
+             /*   if let imgUrl = URL(string: dict.valueForString(key: "tour3DImage")){
                     do {
                         let imageData = try Data(contentsOf: imgUrl as URL)
                         let img = UIImage(data: imageData)
@@ -224,7 +225,7 @@ class ProjectDetailViewController: ParentViewController {
                     } catch {
                         print("Unable to load data: \(error)")
                     }
-                }
+                } */
                 
                 
                 //...Overview
@@ -289,13 +290,13 @@ class ProjectDetailViewController: ParentViewController {
                     
                     if IS_iPhone && (arrTempAmenities?.count)! > 3 {
                         self.btnSeeAllAmenities.isHidden = false
-                        for index in 1..<4 {
+                        for index in 0..<3 {
                             self.arrAmmenities.append(arrTempAmenities![index])
                         }
                         
                     } else if IS_iPad  && (arrTempAmenities?.count)! > 4 {
                         self.btnSeeAllAmenities.isHidden = false
-                        for index in 1..<5 {
+                        for index in 0..<4 {
                             self.arrAmmenities.append(arrTempAmenities![index])
                         }
                     } else {
@@ -381,7 +382,7 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
-            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height
+            self.cnstHeightTblSpecification.constant = IS_iPad ? self.tblSpecification.contentSize.height + 20 : self.tblSpecification.contentSize.height
             
             if self.arrCollLocationHeight.count > 0 {
                 self.cnstHeightCollLocation.constant = self.arrCollLocationHeight.max()!
@@ -405,7 +406,7 @@ class ProjectDetailViewController: ParentViewController {
         //we make the height arbitrarily large so we don't undershoot height in calculation
        
         let height: CGFloat = 500
-        let size = CGSize(width: IS_iPad ? (CScreenWidth/4 - 20) : (CScreenWidth/3 - 15) , height: height)
+        let size = CGSize(width: IS_iPad ? (collLocation.CViewWidth/4 - 20) : (collLocation.CViewWidth/3 - 15) , height: height)
         let options =  NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
         let attributes = [NSAttributedStringKey.font: CFontAvenir(size: 12, type: .medium).setUpAppropriateFont()!]
         let attributes1 = [NSAttributedStringKey.font: CFontAvenir(size: 13, type: .medium).setUpAppropriateFont()!]
@@ -436,7 +437,7 @@ extension ProjectDetailViewController {
         
         let contactNo = (arrContactNo.mapValue(forKey: "mobileNo") as? [String])?.joined(separator: ",")
         
-        let text = "\(dictDetail.valueForString(key: CProjectName))\n\nMahaRERA: \(dictDetail.valueForString(key: CReraNumber))\n\nCall \(contactNo!)\n\n\(dictDetail.valueForString(key: "website"))\n\nSite Address: \(dictDetail.valueForString(key: CAddress))\n\n\(dictDetail.valueForString(key: CDescription))"
+        let text = "\(dictDetail.valueForString(key: CProjectName)),\(dictDetail.valueForString(key: "shortLocation"))\n\nMahaRERA: \(dictDetail.valueForString(key: CReraNumber))\n\nCall \(contactNo!)\n\n\(dictDetail.valueForString(key: "website"))\n\nSite Address: \(dictDetail.valueForString(key: CAddress))\n\n\(dictDetail.valueForString(key: CDescription))"
         
         let shareAll = [text]
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
@@ -607,6 +608,7 @@ extension ProjectDetailViewController {
     @IBAction func btn3DZoomClicked (sender : UIButton) {
         
         if let zoom3DVC = CStoryboardMain.instantiateViewController(withIdentifier: "Zoom3DImageViewController") as? Zoom3DImageViewController {
+            zoom3DVC.imgUrl = dictDetail.valueForString(key: "tour3DImage")
             self.navigationController?.present(zoom3DVC, animated: true, completion: nil)
         }
     }
@@ -633,8 +635,6 @@ extension ProjectDetailViewController : LocationAdvantagesLayoutDelegate {
         height = estimateFrameForText(locAdvantages: strLocation, location : (dict.valueForString(key: CTitle))) + padding
         
         self.arrCollLocationHeight.append(height)
-        
-      //  return IS_iPad ? CGSize(width: (collProject.CViewWidth/3 - 20), height: collectionView.contentSize.height) : CGSize(width: (CScreenWidth/3 - 20), height: height)
         
         return height
     }
@@ -718,7 +718,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
            
             let strTitle = self.btnUnitPlans.isSelected ? arrUnitType[indexPath.row] : arrTypicalType[indexPath.row]
             
-            return CGSize(width: strTitle.size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? CScreenWidth * 60/768 : collectionView.CViewHeight)
+            return CGSize(width: IS_iPad ? collPlansType.CViewWidth : strTitle.size(withAttributes: [NSAttributedStringKey.font: fontToResize as Any]).width + 30, height: IS_iPad ? CScreenWidth * 60/768 : collectionView.CViewHeight)
             
         case collAmmenities:
             return IS_iPad ? CGSize(width:(collProject.CViewWidth/4 - 45), height: CScreenWidth * 130/768) : CGSize(width: (CScreenWidth/3 - 20), height: collectionView.CViewHeight)

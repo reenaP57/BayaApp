@@ -26,6 +26,8 @@ class TimelineDetailViewController: ParentViewController {
     var arrProject = [[String : AnyObject]]()
     var currentIndex = 0
     var pageIndexForApi = 1
+    var startDate = ""
+    var endDate = ""
     
     var strFilterStartDate = ""
     var strFilterEndDate = ""
@@ -123,7 +125,7 @@ class TimelineDetailViewController: ParentViewController {
         }
     }
     
-    func dayDifference(from interval : TimeInterval) -> String
+    func getDateTimeFromTimestamp(from interval : TimeInterval) -> String
     {
         let calendar = NSCalendar.current
         let date = Date(timeIntervalSince1970: interval)
@@ -166,9 +168,14 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
             self.hideScheduleVisit()
         }
         
+        self.startDate = ""
+        self.endDate = ""
+        
         arrUpdateList.removeAll()
         self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-        self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+        self.loadTimeLineListFromServer(true, startDate: "", endDate: "")
+
+       // self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
     }
     
 }
@@ -235,7 +242,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
                         cell.updateImageViewSize()
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             if arrImages.count > 0{
@@ -265,7 +272,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.updateImageViewSize()
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
 
 
                         cell.btnShare.touchUpInside { (sender) in
@@ -320,11 +327,16 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             cell.updateImageViewSize()
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
-                            cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                            cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                                 
                             cell.lblUrl.text = dict.valueForString(key: "link")
                             
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                
+                                if arrImages.count == 0 {
+                                    cell.imgVUpdate.hide(byWidth: true)
+                                }
+                                
                                 cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
                                 cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
                             }
@@ -341,7 +353,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                             
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: "")
@@ -360,7 +372,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             cell.pageControlSlider.numberOfPages = arrImages.count
@@ -382,7 +394,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         cell.btnShare.touchUpInside { (sender) in
                             
@@ -432,13 +444,13 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
-                            cell.lblDateTime.text = self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                            cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                             cell.lblUrl.text = dict.valueForString(key: "link")
                             
                             
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                                 
-                                if arrImages.count > 0 {
+                                if arrImages.count == 0 {
                                     cell.collImg.hide(byHeight: true)
                                 }
                                 cell.loadSliderImages(images: arrImages)
@@ -455,7 +467,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell") as? TimeLineUpdateTextTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text =  self.dayDifference(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text =  self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         
                         cell.btnShare.touchUpInside { (sender) in
@@ -620,6 +632,11 @@ extension TimelineDetailViewController {
         let vwFilter = FilterView.initFilterView()
         let vwAlert = CustomAlertView.initAlertView()
         
+        if self.startDate != "" && self.endDate != "" {
+            vwFilter.txtStartDate.text = self.startDate
+            vwFilter.txtEndDate.text = self.endDate
+        }
+        
         
         if IS_iPad {
             vwFilter.vwContent.layer.cornerRadius = 30
@@ -637,6 +654,17 @@ extension TimelineDetailViewController {
         }
         
         vwFilter.btnDone.touchUpInside { (sender) in
+            
+            self.startDate = vwFilter.txtStartDate.text!
+            self.endDate = vwFilter.txtEndDate.text!
+            
+            
+            let dateFormat = DateFormatter()
+            
+            let startDate = dateFormat.date(fromString: vwFilter.txtStartDate.text!, dateFormat: "dd MMMM YYYY")
+            let endDate = dateFormat.date(fromString: vwFilter.txtEndDate.text!, dateFormat: "dd MMMM YYYY")
+
+            
             if (vwFilter.txtStartDate.text?.isBlank)!{
                 
                 vwAlert.lblMsg.text = CMessageStartDate
@@ -649,8 +677,20 @@ extension TimelineDetailViewController {
                 UIView.animate(withDuration: 1.0) {
                     appDelegate.window.addSubview(vwAlert)
                 }
+            } else if startDate?.compare((endDate)!) == .orderedDescending {
+               
+                vwAlert.lblMsg.text = CMessageCompareFilterDate
+                UIView.animate(withDuration: 1.0) {
+                    appDelegate.window.addSubview(vwAlert)
             }
-            else{
+                
+                
+//                Calendar.current.dateComponents([.day], from: startDate!, to: endDate!).day! < 24 {
+//                vwAlert.lblMsg.text = CMessageEndDate
+//                UIView.animate(withDuration: 1.0) {
+//                    appDelegate.window.addSubview(vwAlert)
+//                }
+            } else {
                 strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 pageIndexForApi = 1

@@ -11,8 +11,12 @@ target 'TheBayaApp' do
   pod 'SDWebImage'
   pod 'BFRImageViewer'
   pod 'CTPanoramaView', '1.0'
+  pod 'SwiftGifOrigin', '~> 1.6.1'
   
   pod 'Fabric'
   pod 'Crashlytics'
+
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
 end

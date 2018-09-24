@@ -14,8 +14,8 @@ import SDWebImage
 //MARK:- ---------BASEURL __ TAG
 
 //var BASEURL:String        =   "http://192.168.1.59/baya-app/api/v1/"
-var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/"
-
+//var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/"
+var BASEURL:String          =   "http://192.168.1.199/baya-app/api/v1/"
 
 let CAPITagCountry             =   "country"
 let CAPITagSignUp              =   "signup"
@@ -42,7 +42,9 @@ let CAPITagBrochure            =   "brochure"
 let CAPITagAmenities           =   "amenities"
 let CAPITagLocationAdvantages  =   "location-advantages"
 let CAPITagDeviceToken         =   "device-token"
-let CAPITagNotificationList    =   "notificationlist "
+let CAPITagNotificationList    =   "notificationlist"
+let CAPITagBadgeCount          =   "badge-count"
+let CAPITagPushNotifyCount     =   "push-notify-count"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -68,6 +70,7 @@ let CStatusEleven           = 11
 let CStatus200              = 200 // Success
 let CStatus400              = 400 
 let CStatus401              = 401 // Unauthorized
+let CStatus405              = 405 // User Deleted
 let CStatus500              = 500
 let CStatus550              = 550 // Inactive/Delete user
 let CStatus555              = 555 // Invalid request
@@ -128,6 +131,21 @@ class Networking: NSObject
             if (res?.result.error != nil) {
                 print("API Response: (\(String(describing: res?.response?.statusCode))) [\(String(describing: res?.timeline.totalDuration))s] Error:\(String(describing: res?.result.error))")
             } else {
+                
+                let data = res?.result.value as? [String : AnyObject]
+                if res?.response!.statusCode == CStatus400
+                {
+                    CTopMostViewController.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                    }, btnTwoTitle:CBtnCancel) { (action) in
+                    }
+                    
+                }else if res?.response!.statusCode == CStatus401 || res?.response!.statusCode == CStatus405
+                {
+                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk) { (action) in
+                        appDelegate.logout()
+                    }
+                }
+                
                 print("API Response: (\(String(describing: res?.response!.statusCode))) [\(String(describing: res?.timeline.totalDuration))s] Response:\(String(describing: res?.result.value))")
             }
         }
@@ -572,8 +590,8 @@ class APIRequest: NSObject {
             case CStatusFour:
                 return true
                 
-            case CStatusTen :
-                appDelegate.logout()
+            case CStatusTen : //register from admin
+                return true
                 
             default:
                 if showAlert {
@@ -736,6 +754,33 @@ extension APIRequest {
         })!
     }
     
+    func unreadCount(completion : @escaping ClosureCompletion) {
+    
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagBadgeCount, param: [:], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagBadgeCount){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+          
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagBadgeCount, error: error)
+        })
+    }
+    
+    func pushNotifiyCount(adminNotifyId : Int?, completion : @escaping ClosureCompletion){
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagPushNotifyCount, param: ["adminNotifyId" : adminNotifyId as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagPushNotifyCount) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            
+            self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagPushNotifyCount, error: error)
+        })
+    }
+    
     
     //TODO:
     //TODO: --------------LRF API--------------
@@ -773,15 +818,14 @@ extension APIRequest {
     {
         MILoader.shared.showLoader(type: .circularRing, message: "")
         
-        
-      let dict = ["userName" : email as AnyObject,
-                  "password": password as AnyObject,
-                  "type": type as AnyObject,
-                  CCountryId : countryId as AnyObject,
-                  "deviceInfo" : ["platform" : "IOS",
-                                  "deviceVersion" : UIDevice.current.systemVersion,
-                                  "deviceOS" : UIDevice.current.systemVersion,
-                                  "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
+        let dict = ["userName" : email as AnyObject,
+                    "password": password as AnyObject,
+                    "type": type as AnyObject,
+                    CCountryId : countryId as AnyObject,
+                    "deviceInfo" : ["platform" : "IOS",
+                                    "deviceVersion" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
         
         
         Networking.sharedInstance.POST(param: dict as [String : AnyObject], tag: CAPITagLogin, multipartFormData: { (data) in
@@ -1385,13 +1429,14 @@ extension APIRequest {
         
         appDelegate.loginUser = tblUser
         
-        if (CUserDefaults.object(forKey: UserDefaultLoginUserToken) == nil) || (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) == ""{
-            
+        if metaData?.valueForString(key: "token") != "" {
+           
             if let token = metaData?.valueForString(key: "token") {
                 CUserDefaults.setValue(token, forKey: UserDefaultLoginUserToken)
                 CUserDefaults.synchronize()
             }
         }
+
 
         CUserDefaults.setValue(dict!.valueForInt(key: "userId"), forKey: UserDefaultLoginUserID)
         CoreData.saveContext()

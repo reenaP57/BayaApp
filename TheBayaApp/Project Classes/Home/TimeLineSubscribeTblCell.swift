@@ -159,8 +159,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                     _ = cell.btnProjectDetail.setConstraintConstant(cell.btnScheduleVisit.CViewWidth - 20/2, edge: .trailing, ancestor: true)
                 } else {
                     cell.btnScheduleVisit.isHidden = false
-                    //                    _ = cell.btnProjectDetail.setConstraintConstant(CGFloat(cell.CViewCenter), edge: .centerX, ancestor: true)
-                    
                 }
                 
                 
@@ -193,9 +191,14 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
             }
             
-            
-            cell.cnstImgvDottedBottom.constant = -percentage+2
-            cell.cnstlblPercentageCenter.constant = cell.imgVDottedLine.CViewCenterY
+            if (dict.valueForInt(key: CProjectProgress)) == 0 {
+                cell.cnstImgvDottedBottom.constant = -percentage+2
+                cell.cnstlblPercentageCenter.constant = -percentage-cell.lblPercentage.CViewHeight/2 //cell.imgVProgress.CViewY + cell.imgVProgress.CViewHeight - cell.lblPercentage.CViewHeight/2
+
+            } else {
+                cell.cnstImgvDottedBottom.constant = -percentage+2
+                cell.cnstlblPercentageCenter.constant = cell.imgVDottedLine.CViewCenterY
+            }
             
             return cell
         }

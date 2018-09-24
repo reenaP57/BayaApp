@@ -364,6 +364,7 @@
                                                                 </userDefinedRuntimeAttribute>
                                                                 <userDefinedRuntimeAttribute type="image" keyPath="fullImage" value="star_selected"/>
                                                                 <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="star"/>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="editable" value="NO"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <button opaque="NO" clipsSubviews="YES" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hHo-TL-hac" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">

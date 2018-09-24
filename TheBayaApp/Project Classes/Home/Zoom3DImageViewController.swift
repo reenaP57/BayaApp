@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import CTPanoramaView
+//import CTPanoramaView
 
 class Zoom3DImageViewController: ParentViewController {
 
-    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-   // @IBOutlet fileprivate weak var vwPanorama: UIView!
+   // @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    @IBOutlet fileprivate weak var vwPanorama: UIView!
 
+    var imgUrl = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -30,7 +32,18 @@ class Zoom3DImageViewController: ParentViewController {
     func initialize() {
         
         //...Load 3D image
-       vwPanorama.image = UIImage(named: "spherical.jpg")
+        
+        /*   if let url = URL(string: imgUrl){
+         do {
+         let imageData = try Data(contentsOf: url as URL)
+         let img = UIImage(data: imageData)
+         self.vwPanorama.image = img
+         } catch {
+         print("Unable to load data: \(error)")
+         }
+         } */
+        
+       //vwPanorama.image = UIImage(named: "spherical.jpg")
     }
 }
 

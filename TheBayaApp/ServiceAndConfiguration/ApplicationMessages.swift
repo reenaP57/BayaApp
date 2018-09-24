@@ -107,6 +107,8 @@ var CResetCodeMobileMessage  : String { return CLocalize(text: "Verification cod
 
 var CMessageStartDate : String{ return CLocalize(text: "Please select start date.") }
 var CMessageEndDate : String{ return CLocalize(text: "Please select end date.") }
+var CMessageCompareFilterDate : String{ return CLocalize(text: "End date cannot be less than start date") }
+
 
 
 var CMessageRequested  = "We have received your request for a visit. We will get back to you soon."

@@ -82,7 +82,6 @@ let UserDefaultLoginUserID                = "UserDefaultLoginUserID"
 let UserDefaultLoginUserToken             = "UserDefaultLoginUserToken"
 
 
-
 //MARK:- Color
 
 let ColorBlack          = CRGB(r: 0, g: 0, b: 0)
@@ -126,6 +125,14 @@ let CRequested    =  1
 let CScheduled    =  2
 let CCancel       =  3
 let CCompleted    =  4
+
+let NotificationAdmin            = 0
+let NotificationNewProject       = 1
+let NotificationPostUpdate       = 2
+let NotificationProjectComplete  = 3
+let NotificationVisitUpdate      = 4
+let NotificationVisitReschedule  = 5
+let NotificationRateVisit        = 6
 
 
 //MARK:- API Parameter

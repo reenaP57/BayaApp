@@ -12,9 +12,12 @@ import IQKeyboardManagerSwift
 import Fabric
 import Crashlytics
 import Alamofire
+import Firebase
+import FirebaseInstanceID
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var tabbarViewcontroller : TabbarViewController?
     var tabbarView : TabBarView?
@@ -27,6 +30,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         IQKeyboardManager.shared.enable = true
         Fabric.with([Crashlytics.self])
+
+        FirebaseApp.configure()
+        
+        application.registerForRemoteNotifications()
+        requestNotificationAuthorization(application: application)
+        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
+            print("User Info :",userInfo)
+        }
         
         self.initRootViewController()
         self.loadCountryList()
@@ -34,14 +45,95 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-  
+    func requestNotificationAuthorization(application: UIApplication) {
+        if #available(iOS 10.0, *) {
+            UNUserNotificationCenter.current().delegate = self
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+        print("fcmToken: \(fcmToken)")
+    }
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        if let refreshedToken = InstanceID.instanceID().token() {
+            print("InstanceID token: \(refreshedToken)")
+            self.registerDeviceToken(fcmToken: refreshedToken, isLoggedIn: 1)
+        }
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
+        print(userInfo)
+      
+        if let notifyType = userInfo["notifyType"] as? Int {
+            
+            switch notifyType {
+                
+            case NotificationAdmin :
+                if let notifyID = userInfo["gcm.notification.adminNotifyId"] as? Int {
+                    self.getPushNotifyCountForAdminTypeNotification(adminNotifyID: notifyID)
+                }
+                
+            case NotificationNewProject :
+                
+                let tabbar = self.tabbarViewcontroller?.viewControllers![0] as? UINavigationController
+                 
+                if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
+                    tabbar?.pushViewController(projectVC, animated: true)
+                }
+                
+                break
+                
+            case NotificationPostUpdate,NotificationProjectComplete :
+                
+                let tabbar = self.tabbarViewcontroller?.viewControllers![0] as? UINavigationController
+                
+                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                    tabbar?.pushViewController(timelineVC, animated: true)
+                }
+                
+                break
+        
+            case NotificationVisitUpdate, NotificationVisitReschedule :
+                let tabbar = self.tabbarViewcontroller?.viewControllers![3] as? UINavigationController
+                
+                if let visitDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+                    tabbar?.pushViewController(visitDetailVC, animated: true)
+                }
+                break
+                
+            default :
+                let tabbar = self.tabbarViewcontroller?.viewControllers![3] as? UINavigationController
+                
+                if let visitDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                    visitDetailVC.visitId =  userInfo["gcm.notification.visitId"] as! Int
+                    tabbar?.pushViewController(visitDetailVC, animated: true)
+                }
+                
+            }
+            
+       
+        }
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+
     func initRootViewController() {
         
         if (CUserDefaults.value(forKey: UserDefaultFirstTimeLaunch)) != nil {
-            
-            if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil && (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) != "" && (CUserDefaults.value(forKey: UserDefaultRememberMe)) != nil {
-                 loginUser =  TblUser.findOrCreate(dictionary: ["user_id" : CUserDefaults.object(forKey: UserDefaultLoginUserID) as Any]) as? TblUser
-                 self.initHomeViewController()
+          
+            if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil && (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) != "" && (CUserDefaults.value(forKey: UserDefaultRememberMe)) != nil  {
+                
+                loginUser =  TblUser.findOrCreate(dictionary: ["user_id" : CUserDefaults.object(forKey: UserDefaultLoginUserID) as Any]) as? TblUser
+                self.unreadCount()
+                self.initHomeViewController()
             } else {
                 self.initLoginViewController()
             }
@@ -137,6 +229,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK:-
     // MARK:- API
     
+    func registerDeviceToken(fcmToken : String, isLoggedIn : Int?) {
+        
+        APIRequest.shared().registerDeviceToken(isLoggedIn: isLoggedIn, token: fcmToken) { (response, error) in
+            
+            if response != nil && error == nil {
+                print("Response :",response as Any)
+            }
+        }
+    }
+    
+    func getPushNotifyCountForAdminTypeNotification(adminNotifyID : Int) {
+        
+        APIRequest.shared().pushNotifiyCount(adminNotifyId: adminNotifyID) { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                print("Response :",response)
+            }
+        }
+        
+    }
+    
+    
     func loadCountryList(){
         
         var timestamp : TimeInterval = 0
@@ -155,6 +270,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 CUserDefaults.synchronize()
             }
         })
+    }
+    
+    func unreadCount(){
+        
+        APIRequest.shared().unreadCount { (response, error) in
+            
+            if response != nil && error == nil {
+                
+                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
+                
+                appDelegate.loginUser?.postBadge = Int16(dataResponse.valueForInt(key: CFavoriteProjectBadge)!)
+                CoreData.saveContext()
+                
+                if dataResponse.valueForInt(key: "unreadCount") == 0 {
+                    self.tabbarView?.lblCount.isHidden = true
+                } else {
+                    self.tabbarView?.lblCount.isHidden = false
+                    self.tabbarView?.lblCount.text = "\(dataResponse.valueForInt(key: "unreadCount") ?? 0)"
+                }
+            }
+        }
     }
 }
 

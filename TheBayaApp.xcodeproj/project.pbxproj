@@ -105,6 +105,7 @@
 		5C48FB63212851B000B0D6CB /* SeeAllAmenitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */; };
 		5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */; };
 		5C48FB672128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C48FB662128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift */; };
+		5C4C4CF62155037000052F5F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C4C4CF52155037000052F5F /* GoogleService-Info.plist */; };
 		5C4DC5372127E43200C69ACF /* RateYoorVisitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC5362127E43200C69ACF /* RateYoorVisitViewController.swift */; };
 		5C4DC5392127EC1F00C69ACF /* TutorialCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC5382127EC1F00C69ACF /* TutorialCollCell.swift */; };
 		5C4DC53B2127EC3500C69ACF /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C4DC53A2127EC3500C69ACF /* TutorialViewController.swift */; };
@@ -128,6 +129,7 @@
 		5C8D5B9421258B190080193A /* SpecificationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B9321258B190080193A /* SpecificationTblCell.swift */; };
 		5C8D5B9621258B380080193A /* ConfigurationTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */; };
 		5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B972125941C0080193A /* LocationDescTblCell.swift */; };
+		5C93C7232158AD6600AFFAFD /* MIFCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93C7222158AD6600AFFAFD /* MIFCM.swift */; };
 		5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */; };
 		5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */; };
 		5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */; };
@@ -273,6 +275,8 @@
 		5C48FB62212851B000B0D6CB /* SeeAllAmenitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllAmenitiesViewController.swift; sourceTree = "<group>"; };
 		5C48FB642128585800B0D6CB /* SellAllLocationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SellAllLocationTblCell.swift; sourceTree = "<group>"; };
 		5C48FB662128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeeAllLocationAdvantagesViewController.swift; sourceTree = "<group>"; };
+		5C4C4CF42154FCDC00052F5F /* TheBayaApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TheBayaApp.entitlements; sourceTree = "<group>"; };
+		5C4C4CF52155037000052F5F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5C4DC5362127E43200C69ACF /* RateYoorVisitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateYoorVisitViewController.swift; sourceTree = "<group>"; };
 		5C4DC5382127EC1F00C69ACF /* TutorialCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollCell.swift; sourceTree = "<group>"; };
 		5C4DC53A2127EC3500C69ACF /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
@@ -296,6 +300,7 @@
 		5C8D5B9321258B190080193A /* SpecificationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpecificationTblCell.swift; sourceTree = "<group>"; };
 		5C8D5B9521258B380080193A /* ConfigurationTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationTblCell.swift; sourceTree = "<group>"; };
 		5C8D5B972125941C0080193A /* LocationDescTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDescTblCell.swift; sourceTree = "<group>"; };
+		5C93C7222158AD6600AFFAFD /* MIFCM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIFCM.swift; sourceTree = "<group>"; };
 		5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlTblCell.swift; sourceTree = "<group>"; };
 		5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTextTblCell.swift; sourceTree = "<group>"; };
 		5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView.xib; sourceTree = "<group>"; };
@@ -384,6 +389,7 @@
 		486FDCE92119ADBC00EA0188 /* TheBayaApp */ = {
 			isa = PBXGroup;
 			children = (
+				5C4C4CF42154FCDC00052F5F /* TheBayaApp.entitlements */,
 				486FDD052119AEF300EA0188 /* Resources */,
 				486FDD3B2119AEF400EA0188 /* AppGeneralFiles */,
 				486FDD0E2119AEF400EA0188 /* Master */,
@@ -558,6 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				486FDD3C2119AEF400EA0188 /* AppDelegate.swift */,
+				5C4C4CF52155037000052F5F /* GoogleService-Info.plist */,
 				486FDD3D2119AEF400EA0188 /* Assets.xcassets */,
 				486FDD3E2119AEF400EA0188 /* Info.plist */,
 			);
@@ -609,6 +616,7 @@
 			children = (
 				5C189C0A21253911001B72C5 /* FloatRatingView */,
 				5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */,
+				5C93C7222158AD6600AFFAFD /* MIFCM.swift */,
 			);
 			path = "Custom class";
 			sourceTree = "<group>";
@@ -801,6 +809,11 @@
 				TargetAttributes = {
 					486FDCE62119ADBC00EA0188 = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -868,6 +881,7 @@
 				5CD76412211DC33D00C267AB /* img3.jpeg in Resources */,
 				487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */,
 				486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */,
+				5C4C4CF62155037000052F5F /* GoogleService-Info.plist in Resources */,
 				487E4E63211C4CD8000CB32F /* AvenirLTStd-Black.otf in Resources */,
 				487E4E69211C4CD8000CB32F /* AvenirLTStd-Light.otf in Resources */,
 				486FDD702119AEF500EA0188 /* Info.plist in Resources */,
@@ -921,26 +935,32 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/BFRImageViewer/BFRImageViewer.framework",
 				"${BUILT_PRODUCTS_DIR}/CTPanoramaView/CTPanoramaView.framework",
-				"${BUILT_PRODUCTS_DIR}/DACircularProgress/DACircularProgress.framework",
 				"${BUILT_PRODUCTS_DIR}/FLAnimatedImage/FLAnimatedImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/PINCache/PINCache.framework",
 				"${BUILT_PRODUCTS_DIR}/PINOperation/PINOperation.framework",
 				"${BUILT_PRODUCTS_DIR}/PINRemoteImage/PINRemoteImage.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftGifOrigin/SwiftGifOrigin.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BFRImageViewer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CTPanoramaView.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DACircularProgress.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FLAnimatedImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINCache.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINOperation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PINRemoteImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftGifOrigin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1004,6 +1024,7 @@
 				5C14CA86211C7A7700B06E29 /* TabBarView.swift in Sources */,
 				5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */,
 				5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */,
+				5C93C7232158AD6600AFFAFD /* MIFCM.swift in Sources */,
 				486FDD602119AEF500EA0188 /* ExtensionUIImage.swift in Sources */,
 				486FDD492119AEF500EA0188 /* ApplicationMessages.swift in Sources */,
 				486FDD592119AEF500EA0188 /* ExtensionInt.swift in Sources */,
@@ -1212,19 +1233,20 @@
 			baseConfigurationReference = 45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
-				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
+				PROVISIONING_PROFILE = "a32822f0-8b2b-40e2-86bd-09cfe8b8dbec";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_21_sep_2018;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1235,19 +1257,20 @@
 			baseConfigurationReference = 8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Mehul Rajput (YSH4RKP8LD)";
+				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Mehul Rajput (7224G6JACN)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 7224G6JACN;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.mi.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "d43c8d5f-1c56-4348-a857-36c5a9d2a26e";
-				PROVISIONING_PROFILE_SPECIFIER = "MIAccount2Development 23 Aug 2018";
+				PROVISIONING_PROFILE = "02f86297-aec8-4a2d-b0b9-faacf10254d3";
+				PROVISIONING_PROFILE_SPECIFIER = "The-Baya-ADhoc 24 Aug 2018";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

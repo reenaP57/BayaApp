@@ -77,7 +77,7 @@ class ScheduleVisitViewController: ParentViewController {
     
     func checkValidation(txtField : UITextField) {
         
-        if self.checkSlotTime(date:dateSlot1) && txtField == txtSlot1 {
+        if self.checkSlotTime(date:dateSlot1) {
             txtSlot2.hideValidationMessage(Gap)
             txtSlot3.hideValidationMessage(Gap)
             txtNoOfGuest.hideValidationMessage(Gap)
@@ -86,15 +86,18 @@ class ScheduleVisitViewController: ParentViewController {
 
             self.vwContent.addSubview(self.txtSlot1.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             
-        } else if self.checkSlotTime(date:dateSlot2) && txtField == txtSlot2 {
+        } else if self.checkSlotTime(date:dateSlot2) {
            
+            txtSlot1.hideValidationMessage(Gap)
             txtSlot3.hideValidationMessage(Gap)
             txtNoOfGuest.hideValidationMessage(Gap)
             txtVPurpose.hideValidationMessage(Gap)
             txtSelectProject.hideValidationMessage(Gap)
             self.vwContent.addSubview(self.txtSlot2.showValidationMessage(Gap,CInvalidTimeRangeMessage))
             
-        } else if self.checkSlotTime(date:dateSlot3)  && txtField == txtSlot3 {
+        } else if self.checkSlotTime(date:dateSlot3) {
+            txtSlot1.hideValidationMessage(Gap)
+            txtSlot2.hideValidationMessage(Gap)
             txtNoOfGuest.hideValidationMessage(Gap)
             txtVPurpose.hideValidationMessage(Gap)
             txtSelectProject.hideValidationMessage(Gap)
@@ -140,15 +143,28 @@ class ScheduleVisitViewController: ParentViewController {
         
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
             dateSlot1 = date
+            txtSlot2.setMinimumDate(minDate: dateSlot1.tomorrow)
             self.checkValidation(txtField: txtSlot1)
+            
+            txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot1.tomorrow, isPrefilledDate: true) { (date) in
+                dateSlot2 = date
+                txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
+                self.checkValidation(txtField: txtSlot2)
+            }
         }
         
-        txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
+        txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot1.tomorrow, isPrefilledDate: true) { (date) in
             dateSlot2 = date
+            txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
             self.checkValidation(txtField: txtSlot2)
+            
+            txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot2.tomorrow, isPrefilledDate: true) { (date) in
+                dateSlot3 = date
+                self.checkValidation(txtField: txtSlot3)
+            }
         }
         
-        txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
+        txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot2.tomorrow, isPrefilledDate: true) { (date) in
             dateSlot3 = date
             self.checkValidation(txtField: txtSlot3)
         }
@@ -169,6 +185,7 @@ class ScheduleVisitViewController: ParentViewController {
         //date formatter
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
+        
         
         // Get current time and format it to compare
         let currentTimeStr = dateFormatter.string(from: date)
@@ -203,6 +220,17 @@ class ScheduleVisitViewController: ParentViewController {
             vwPurpose.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
         
         }
+    }
+    
+    func checkDifferenceBetweenTwoDate() -> Bool {
+        
+        if Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot2).second! < 24 * 60 * 60 - 5 ||
+            Calendar.current.dateComponents([.second], from: dateSlot2, to: dateSlot3).second! < 24 * 60 * 60 - 5 ||
+            Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot3).second! < 24 * 60 * 60 - 5 {
+            return false
+        }
+        
+        return true
     }
 }
 
@@ -275,11 +303,17 @@ extension ScheduleVisitViewController {
                 _ = self.vwPurpose.setConstraintConstant(Gap, edge: .bottom, ancestor: true)
                 self.vwContent.addSubview(self.txtSelectProject.showValidationMessage(45.0,CSelectProjectMessage))
                 
-            } else if (self.txtSlot1.text == self.txtSlot2.text) ||  (self.txtSlot2.text == self.txtSlot3.text) || (self.txtSlot1.text == self.txtSlot3.text) {
+            } else if !self.checkDifferenceBetweenTwoDate() {
                 
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 
-            }  else {
+            }
+//            else if (self.txtSlot1.text == self.txtSlot2.text) ||  (self.txtSlot2.text == self.txtSlot3.text) || (self.txtSlot1.text == self.txtSlot3.text) {
+//
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+//
+//            }
+            else {
                 self.scheduleVisit()
             }
         }
@@ -335,11 +369,15 @@ extension ScheduleVisitViewController {
                         }
                     }
                     
-                    self.txtSelectProject.setPickerData(arrPickerData: self.arrProject.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
-                        self.txtSelectProject.hideValidationMessage(45)
-                        self.projectId = self.arrProject[row].valueForInt(key: CProjectId)!
+                    if self.arrProject.count > 0 {
                         
-                    }, defaultPlaceholder: "")
+                        self.txtSelectProject.setPickerData(arrPickerData: self.arrProject.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
+                            self.txtSelectProject.hideValidationMessage(45)
+                            self.projectId = self.arrProject[row].valueForInt(key: CProjectId)!
+                            
+                        }, defaultPlaceholder: "")
+                    }
+                    
                 }
             }
         })

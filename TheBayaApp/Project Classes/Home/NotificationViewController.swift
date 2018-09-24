@@ -11,9 +11,9 @@ import UIKit
 class NotificationViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var tblNotification : UITableView!
-    
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
-    
+    @IBOutlet fileprivate weak var lblNoData : UILabel!
+
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
     fileprivate var lastPage : Int = 0
@@ -29,6 +29,7 @@ class NotificationViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        appDelegate.tabbarView?.lblCount.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,19 +49,27 @@ class NotificationViewController: ParentViewController {
         tblNotification?.pullToRefreshControl = refreshControl
         
         self.loadNotificationList(isRefresh: false)
-
-        
-        arrNotification = [["project_name" : "Baya Victoria", "message" : "Your visit at 5:00 PM has been confirmed.","time" : "Yesterday at 12:00 PM", "isRead" : false, "isRate" : false],
-        ["project_name" : "Baya Junction", "message" : "Box filling till 15th floor has been done.","time" : "Yesterday at 12:00 PM", "isRead" : false, "isRate" : false],
-        ["project_name" : "Baya Victoria", "message" : "Your visit at 5:00 PM has been confirmed.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : true],
-        ["project_name" : "Baya Victoria", "message" : "Please spare few minutes to rate your visit to The Baya Victoria, Chembur on 20 July 2018 at 5:00 PM","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false],
-        ["project_name" : "Baya Victoria", "message" : "New project from the Baya group.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false],
-        ["project_name" : "The Baya Group", "message" : "Happy New Year... Best wishes to you on this new year.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false],
-        ["project_name" : "Baya GoldSpot", "message" : "Your visit at 5:00 PM has been confirmed.","time" : "Yesterday at 12:00 PM", "isRead" : true, "isRate" : false]] as [[String : AnyObject]]
         
         if IS_iPhone {
             tblNotification.estimatedRowHeight = 105
             tblNotification.rowHeight = UITableViewAutomaticDimension
+        }
+    }
+    
+    func getDateTimeFromTimestamp(from interval : TimeInterval, isReschedule : Bool) -> String
+    {
+        let calendar = NSCalendar.current
+        let date = Date(timeIntervalSince1970: interval)
+        if calendar.isDateInYesterday(date) {
+            return "Yesterday at \(DateFormatter.dateStringFrom(timestamp: interval, withFormate: "hh:mm a"))"
+        } else if calendar.isDateInToday(date) {
+            return "Today at \(DateFormatter.dateStringFrom(timestamp: interval, withFormate: "hh:mm a"))"
+        } else {
+            if isReschedule {
+                return DateFormatter.dateStringFrom(timestamp: interval, withFormate: "dd MMMM yyyy hh:mm a")
+            } else {
+                return DateFormatter.dateStringFrom(timestamp: interval, withFormate: "dd MMMM yyyy 'at' hh:mm a")
+            }
         }
     }
     
@@ -82,15 +91,48 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             let dict = arrNotification[indexPath.row]
             
-            cell.lblProjectName.text = dict.valueForString(key: "project_name")
-            cell.lblMsg.text = dict.valueForString(key: "message")
-            cell.lblDateTime.text = dict.valueForString(key: "time")
+            cell.lblProjectName.text = dict.valueForString(key: "title")
+            cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false)
+            cell.btnRateVisit.hide(byWidth: true)
+            
+            cell.imgVProject.sd_setShowActivityIndicatorView(true)
+            cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: "thumbImage"))), placeholderImage: nil)
+            
+            
+            switch dict.valueForInt(key: "notifyType") {
+            case 1:  //... New Project
+                 cell.lblMsg.text = "The new project \(dict.valueForString(key: "title")) has been added by The Baya Group."
+
+                break
+                
+            case 2:  //... Post Update
+                cell.lblMsg.text = "There is new update from this project."
+
+                break
+                
+            case 3: //... Project Complete
+                cell.lblMsg.text = "\(dict.valueForString(key: "title")) project is completed now, no further updates will be posted. You can view our other projects and subscribe if you are interested."
+
+                break
+                
+            case 4: //... Visit Update
+                cell.lblMsg.text = "Your visit \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "dateTime")!, withFormate: "'at' hh:mm a 'on' dd MMMM yyyy")) has been confirmed."
+
+                
+                break
+                
+            case 5: //... Visit Reschedule
+                cell.lblMsg.text = "Your visit has been re-scheduled from \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) to \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true))"
+
+                break
+                
+            default : //... Rate Visit
+                cell.lblMsg.text = "Rate the visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false))"
  
-            if dict.valueForBool(key: "isRate") {
                 cell.btnRateVisit.hide(byWidth: false)
-            } else {
-                cell.btnRateVisit.hide(byWidth: true)
+                break
             }
+            
             
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear
@@ -113,6 +155,18 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                     self.navigationController?.pushViewController(rateVisitVC, animated: true)
                 }
             }
+            
+            if indexPath == tblNotification.lastIndexPath() {
+                
+                //...Load More
+                if currentPage < lastPage {
+                    
+                    if apiTask?.state == URLSessionTask.State.running {
+                        self.loadNotificationList(isRefresh: true)
+                    }
+                }
+            }
+            
             return cell
         }
         
@@ -182,6 +236,7 @@ extension NotificationViewController {
                     self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
                 }
                 
+                self.lblNoData.isHidden = self.arrNotification.count != 0
                 self.tblNotification.reloadData()
             }
         })

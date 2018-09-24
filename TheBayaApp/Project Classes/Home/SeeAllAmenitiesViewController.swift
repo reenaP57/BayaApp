@@ -37,7 +37,11 @@ class SeeAllAmenitiesViewController: ParentViewController {
         
         refreshControl.addTarget(self, action: #selector(pulltoRefresh), for: .valueChanged)
         refreshControl.tintColor = ColorGreenSelected
-        collAmenities.refreshControl = refreshControl
+        if #available(iOS 10.0, *) {
+            collAmenities.refreshControl = refreshControl
+        } else {
+            // Fallback on earlier versions
+        }
         
         self.loadAmenities(isRefresh: false)
     }

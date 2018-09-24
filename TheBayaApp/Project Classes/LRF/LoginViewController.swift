@@ -15,12 +15,14 @@ class LoginViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtEmail : UITextField!{
         didSet{
             txtEmail.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
+            txtEmail.placeholderColor = ColorGray
         }
     }
     @IBOutlet fileprivate weak var txtPassword : UITextField!
     @IBOutlet fileprivate weak var txtCountryCode : UITextField!{
         didSet{
             txtCountryCode.addLeftImageAsLeftView(strImgName: nil, leftPadding: 7.0)
+            txtCountryCode.placeholderColor = ColorGray
         }
     }
     @IBOutlet fileprivate weak var btnRememberMe : UIButton!
@@ -267,6 +269,15 @@ extension LoginViewController {
                             self.navigationController?.pushViewController(verifyVC, animated: true)
                         }
                     })
+                    
+                } else if status == CStatusTen {
+                    //...Register From Admin
+                    
+                    if let changePwdVC = CStoryboardSetting.instantiateViewController(withIdentifier: "ChangePasswordViewController") as? ChangePasswordViewController {
+                        changePwdVC.isFromLogin = true
+                        changePwdVC.isRememberMe =  self.btnRememberMe.isSelected
+                        self.navigationController?.pushViewController(changePwdVC, animated: true)
+                    }
                     
                 } else {
                     if self.btnRememberMe.isSelected && (appDelegate.loginUser?.mobileVerify)! && (appDelegate.loginUser?.emailVerify)! {

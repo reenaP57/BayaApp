@@ -15,6 +15,8 @@ class ChangePasswordViewController: ParentViewController {
     @IBOutlet weak var txtConfirmPwd: UITextField!
     @IBOutlet weak var vwContent: UIView!
 
+    var isFromLogin : Bool = false
+    var isRememberMe : Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,9 +112,19 @@ extension ChangePasswordViewController {
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    self.navigationController?.popViewController(animated: true)
-                })
+                if self.isFromLogin {
+                    
+                    if self.isRememberMe && (appDelegate.loginUser?.mobileVerify)! && (appDelegate.loginUser?.emailVerify)! {
+                        CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+                        CUserDefaults.synchronize()
+                    }
+                    appDelegate.initHomeViewController()
+                    
+                } else {
+                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                        self.navigationController?.popViewController(animated: true)
+                    })
+                }
             }
         }
     }

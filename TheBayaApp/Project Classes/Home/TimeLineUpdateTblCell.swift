@@ -8,6 +8,7 @@
 
 import UIKit
 import BFRImageViewer
+//import SwiftGifOrigin
 
 class TimeLineUpdateTblCell: UITableViewCell {
 
@@ -62,7 +63,7 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeLineImgCollCell", for: indexPath) as? TimeLineImgCollCell {
             
             if isGifImages{
-                cell.imgVSlider.image = UIImage.gif(url: URL(string: arrImg[indexPath.row])!)
+               // cell.imgVSlider.image = UIImage.gif(url: URL(string: arrImg[indexPath.row])!)
             }else{
                 cell.imgVSlider.sd_setShowActivityIndicatorView(true)
                 cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
