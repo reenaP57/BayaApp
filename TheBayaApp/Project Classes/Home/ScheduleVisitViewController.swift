@@ -141,21 +141,26 @@ class ScheduleVisitViewController: ParentViewController {
         
         self.loadProjectList()
         
+        txtSlot1.setMinimumDate(minDate:Date().tomorrow)
+        txtSlot2.setMinimumDate(minDate:Date().tomorrow)
+        txtSlot3.setMinimumDate(minDate:Date().tomorrow)
+        
+        
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
             dateSlot1 = date
-            txtSlot2.setMinimumDate(minDate: dateSlot1.tomorrow)
+            //txtSlot2.setMinimumDate(minDate: dateSlot1.tomorrow)
             self.checkValidation(txtField: txtSlot1)
             
-            txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot1.tomorrow, isPrefilledDate: true) { (date) in
+            txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
                 dateSlot2 = date
-                txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
+               // txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
                 self.checkValidation(txtField: txtSlot2)
             }
         }
         
-        txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot1.tomorrow, isPrefilledDate: true) { (date) in
+        txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
             dateSlot2 = date
-            txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
+           // txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
             self.checkValidation(txtField: txtSlot2)
             
             txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot2.tomorrow, isPrefilledDate: true) { (date) in
@@ -172,11 +177,6 @@ class ScheduleVisitViewController: ParentViewController {
         txtNoOfGuest.setPickerData(arrPickerData: ["1","2","3","4","5","6","7","8","9","10"], selectedPickerDataHandler: { (string, row, index) in
            txtNoOfGuest.hideValidationMessage(Gap)
         }, defaultPlaceholder: "")
-        
-        
-        txtSlot1.setMinimumDate(minDate: Date().tomorrow)
-        txtSlot2.setMinimumDate(minDate: Date().tomorrow)
-        txtSlot3.setMinimumDate(minDate: Date().tomorrow)
         
     }
     
@@ -224,13 +224,23 @@ class ScheduleVisitViewController: ParentViewController {
     
     func checkDifferenceBetweenTwoDate() -> Bool {
         
-        if Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot2).second! < 24 * 60 * 60 - 5 ||
-            Calendar.current.dateComponents([.second], from: dateSlot2, to: dateSlot3).second! < 24 * 60 * 60 - 5 ||
-            Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot3).second! < 24 * 60 * 60 - 5 {
+        let timeslot1 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot1.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
+        let timeslot2 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot2.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
+        let timeslot3 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot3.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
+        
+        if timeslot1 == timeslot2 || timeslot2 == timeslot3 || timeslot1 == timeslot3 {
             return false
         }
         
-        return true
+         return true
+        
+//        if Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot2).second! < 24 * 60 * 60 - 5 ||
+//            Calendar.current.dateComponents([.second], from: dateSlot2, to: dateSlot3).second! < 24 * 60 * 60 - 5 ||
+//            Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot3).second! < 24 * 60 * 60 - 5 {
+//            return false
+//        }
+        
+       
     }
 }
 

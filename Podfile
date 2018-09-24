@@ -11,8 +11,9 @@ target 'TheBayaApp' do
   pod 'SDWebImage'
   pod 'BFRImageViewer'
   pod 'CTPanoramaView', '1.0'
-  pod 'SwiftGifOrigin', '~> 1.6.1'
-  
+  pod 'FLAnimatedImage', '~> 1.0'
+  pod 'JMAnimatedImageView'
+
   pod 'Fabric'
   pod 'Crashlytics'
 

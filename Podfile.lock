@@ -59,6 +59,7 @@ PODS:
   - GoogleUtilities/Reachability (5.3.0):
     - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.1.1)
+  - JMAnimatedImageView (0.2.4)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -87,7 +88,6 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - SwiftGifOrigin (1.6.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -97,9 +97,10 @@ DEPENDENCIES:
   - Fabric
   - Firebase/Core
   - Firebase/Messaging
+  - FLAnimatedImage (~> 1.0)
   - IQKeyboardManagerSwift
+  - JMAnimatedImageView
   - SDWebImage
-  - SwiftGifOrigin (~> 1.6.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -118,13 +119,13 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - IQKeyboardManagerSwift
+    - JMAnimatedImageView
     - nanopb
     - PINCache
     - PINOperation
     - PINRemoteImage
     - Protobuf
     - SDWebImage
-    - SwiftGifOrigin
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
@@ -142,14 +143,14 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 7d2552cea4e12d09ce737ef0441887a746585ff3
   GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  JMAnimatedImageView: 60bbbc6b13df66f59451353e0ba19b5e350fcfc5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
 
-PODFILE CHECKSUM: 78a66aff53a9a55c04ec0a3208c33d1d1f674218
+PODFILE CHECKSUM: aae77312a3f2eaadd8ff5083ed35e187d93dc117
 
 COCOAPODS: 1.5.0
