@@ -31,7 +31,9 @@ class TimelineDetailViewController: ParentViewController {
     
     var strFilterStartDate = ""
     var strFilterEndDate = ""
-    
+    var projectID = 0
+    var isFromNotifition = false
+
     var apiTask : URLSessionTask?
     var refreshControl : UIRefreshControl?
     
@@ -43,7 +45,8 @@ class TimelineDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        self.loadSubscribedProjectList(isRefresh: false)
+        
+        self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
     }
     
     override func didReceiveMemoryWarning() {
@@ -150,6 +153,11 @@ class TimelineDetailViewController: ParentViewController {
             _ = btnProjectDetail.setConstraintConstant(20, edge: .leading, ancestor: true)
             _ = btnProjectDetail.setConstraintConstant(16, edge: .trailing, ancestor: true)
         }
+    }
+    
+    func refreshTimelineFromNotification (projectID : Int) {
+        self.projectID = projectID
+        self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
     }
 }
 
@@ -582,10 +590,10 @@ extension TimelineDetailViewController {
     
     @objc func pullToRefresh() {
         refreshControl?.beginRefreshing()
-        self.loadSubscribedProjectList(isRefresh: true)
+        self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
     }
     
-    func loadSubscribedProjectList(isRefresh : Bool) {
+    func loadSubscribedProjectList(isRefresh : Bool, isFromNotification : Bool) {
         if self.apiTask?.state == URLSessionTask.State.running {
             return
         }
@@ -615,6 +623,10 @@ extension TimelineDetailViewController {
                 if arrData.count > 0 {
                     for item in arrData {
                         self.arrProject.append(item)
+                        
+                        if isFromNotification && item.valueForInt(key: CProjectId) == self.projectID {
+                            self.currentIndex = self.arrProject.count - 1
+                        }
                     }
                 }
        
@@ -635,8 +647,13 @@ extension TimelineDetailViewController {
                 self.tblUpdates.reloadData()
              
                 
-                self.pageIndexForApi = 1
-                self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
+                if isFromNotification {
+                    self.reloadTimelineList(index: self.currentIndex)
+                } else {
+                   
+                    self.pageIndexForApi = 1
+                    self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
+                }
             }
         }
     }

@@ -144,6 +144,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 if application.applicationState == .inactive {
                     
                     if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                        timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
+                        timelineVC.isFromNotifition = true
                         self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
                     }
                     
@@ -152,6 +154,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
                         
                         if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                            timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
+                            timelineVC.isFromNotifition = true
                             self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
                         }
                         
@@ -161,7 +165,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 break
         
-            case NotificationVisitUpdate, NotificationVisitReschedule :
+            case NotificationVisitUpdate, NotificationVisitReschedule, NotificationVisitCancel :
              
                 if application.applicationState == .inactive {
                     

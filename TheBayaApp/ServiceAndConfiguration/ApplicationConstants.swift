@@ -134,6 +134,7 @@ let NotificationProjectComplete  = 3
 let NotificationVisitUpdate      = 4
 let NotificationVisitReschedule  = 5
 let NotificationRateVisit        = 6
+let NotificationVisitCancel      = 7
 
 
 //MARK:- API Parameter
