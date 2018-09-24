@@ -30,6 +30,7 @@ class NotificationViewController: ParentViewController {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
         appDelegate.tabbarView?.lblCount.isHidden = true
+        self.loadNotificationList(isRefresh: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +49,6 @@ class NotificationViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblNotification?.pullToRefreshControl = refreshControl
         
-        self.loadNotificationList(isRefresh: false)
         
         if IS_iPhone {
             tblNotification.estimatedRowHeight = 105

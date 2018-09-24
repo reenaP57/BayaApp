@@ -56,9 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
-        print("fcmToken: \(fcmToken)")
-    }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if let refreshedToken = InstanceID.instanceID().token() {
@@ -73,59 +70,214 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         print(userInfo)
       
-        if let notifyType = userInfo["notifyType"] as? Int {
+        let notification = userInfo as? [String : AnyObject]
+        
+        var message = ""
+        var projectName = ""
+        
+        if let dataDic =  notification!["aps"] as? [String : Any] {
             
-            switch notifyType {
+            if let key = dataDic["alert"] as? [String : Any] {
+                
+                if let body = key["body"] as? String {
+                    message = body
+                }
+                
+                if let title = key["title"] as? String {
+                    projectName = title
+                }
+            }
+        }
+        
+        
+        if let notifyType = notification?.valueForInt(key: "gcm.notification.notifyType") {
+            
+          switch notifyType {
                 
             case NotificationAdmin :
-                if let notifyID = userInfo["gcm.notification.adminNotifyId"] as? Int {
+            
+                if let notifyID = notification?.valueForInt(key: "gcm.notification.adminNotifyId") {
                     self.getPushNotifyCountForAdminTypeNotification(adminNotifyID: notifyID)
                 }
                 
+                if application.applicationState == .inactive {
+                    
+                    self.tabbarView?.btnNotification.isSelected = false
+                    self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
+                    
+                } else {
+                    
+                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                        
+                        self.tabbarView?.btnNotification.isSelected = false
+                        self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
+                        
+                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+                    })
+               }
+            
+            
             case NotificationNewProject :
                 
-                let tabbar = self.tabbarViewcontroller?.viewControllers![0] as? UINavigationController
-                 
-                if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
-                    tabbar?.pushViewController(projectVC, animated: true)
+                if application.applicationState == .inactive {
+                    
+                    if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
+                        self.topViewController()?.navigationController?.pushViewController(projectVC, animated: true)
+                    }
+                    
+                } else {
+                    
+                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                        
+                        if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
+                            self.topViewController()?.navigationController?.pushViewController(projectVC, animated: true)
+                        }
+                        
+                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+                    })
                 }
                 
                 break
                 
             case NotificationPostUpdate,NotificationProjectComplete :
                 
-                let tabbar = self.tabbarViewcontroller?.viewControllers![0] as? UINavigationController
-                
-                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
-                    tabbar?.pushViewController(timelineVC, animated: true)
+                if application.applicationState == .inactive {
+                    
+                    if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                        self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                    }
+                    
+                } else {
+                   
+                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                        
+                        if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                            self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                        }
+                        
+                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+                    })
                 }
                 
                 break
         
             case NotificationVisitUpdate, NotificationVisitReschedule :
-                let tabbar = self.tabbarViewcontroller?.viewControllers![3] as? UINavigationController
-                
-                if let visitDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
-                    tabbar?.pushViewController(visitDetailVC, animated: true)
+             
+                if application.applicationState == .inactive {
+                    
+                    if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+                        self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+                    }
+                    
+                } else {
+                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                        
+                        if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+                            self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+                        }
+                        
+                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+                    })
                 }
+                
                 break
                 
             default :
-                let tabbar = self.tabbarViewcontroller?.viewControllers![3] as? UINavigationController
                 
-                if let visitDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                    visitDetailVC.visitId =  userInfo["gcm.notification.visitId"] as! Int
-                    tabbar?.pushViewController(visitDetailVC, animated: true)
+                if application.applicationState == .inactive {
+                    
+                    if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                        rateVC.visitId = (notification?.valueForInt(key: "gcm.notification.visitId"))!
+                        self.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+                    }
+                    
+                } else {
+                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                        
+                        if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                            rateVC.visitId = (notification?.valueForInt(key: "gcm.notification.visitId"))!
+                            self.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+                        }
+                        
+                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+                    })
                 }
-                
             }
-            
-       
         }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
 
+    
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+        
+        if url.host == nil
+        {
+            return true;
+        }
+        
+        let urlString = url.absoluteString
+        let queryArray = urlString!.components(separatedBy: "/")
+        let query = queryArray[2]
+        
+        // Check if article
+//        if query.rangeOfString("article") != nil
+//        {
+//            let data = urlString!.components(separatedBy: "/")
+//            if data.count >= 3
+//            {
+//                let parameter = data[3]
+//                let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
+//                self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
+//            }
+//        }
+        
+        return true
+    }
+    
+    func applicationHandleRemoteNotification(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
+    {
+//        if application.applicationState == UIApplicationState.Background || application.applicationState == UIApplicationState.Inactive
+//        {
+//            var canDoNow = loadedEnoughToDeepLink
+//
+//            self.deepLink = RemoteNotificationDeepLink.create(userInfo)
+//
+//            if canDoNow
+//            {
+//                self.triggerDeepLinkIfPresent()
+//            }
+//        }
+    }
+    
+    func triggerDeepLinkIfPresent() -> Bool
+    {
+//        self.loadedEnoughToDeepLink = true
+//        var ret = (self.deepLink?.trigger() != nil)
+//        self.deepLink = nil
+//        return ret
+        
+        return true
+    }
+    
+    
+    func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
+        
+        if let navigationController = controller as? UINavigationController {
+            return topViewController(controller: navigationController.visibleViewController)
+        }
+        if let tabController = controller as? UITabBarController {
+            if let selected = tabController.selectedViewController {
+                return topViewController(controller: selected)
+            }
+        }
+        if let presented = controller?.presentedViewController {
+            return topViewController(controller: presented)
+        }
+        return controller
+    }
+    
+    
     func initRootViewController() {
         
         if (CUserDefaults.value(forKey: UserDefaultFirstTimeLaunch)) != nil {
@@ -175,6 +327,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func logout()
     {
+        let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
+        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
+        
+        
         tabbarViewcontroller = nil
         tabbarView = nil
 
@@ -183,9 +339,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
         CUserDefaults.synchronize()
         
-        let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
-        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
-
         self.initLoginViewController()
     }
     

@@ -1,10 +1,12 @@
 PODS:
   - Alamofire (4.7.3)
-  - BFRImageViewer (1.2.3):
-    - PINRemoteImage (~> 3.0.0-beta.12)
+  - BFRImageViewer (1.0.32):
+    - DACircularProgress
+    - PINRemoteImage (~> 3.0.0-beta.7)
   - Crashlytics (3.10.7):
     - Fabric (~> 1.7.11)
   - CTPanoramaView (1.0)
+  - DACircularProgress (2.3.1)
   - Fabric (1.7.11)
   - Firebase/Core (5.8.1):
     - Firebase/CoreOnly
@@ -57,6 +59,7 @@ PODS:
   - GoogleUtilities/Reachability (5.3.0):
     - GoogleUtilities/Logger
   - IQKeyboardManagerSwift (6.1.1)
+  - JMAnimatedImageView (0.2.4)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -85,7 +88,6 @@ PODS:
   - SDWebImage (4.4.2):
     - SDWebImage/Core (= 4.4.2)
   - SDWebImage/Core (4.4.2)
-  - SwiftGifOrigin (1.6.1)
 
 DEPENDENCIES:
   - Alamofire
@@ -95,9 +97,10 @@ DEPENDENCIES:
   - Fabric
   - Firebase/Core
   - Firebase/Messaging
+  - FLAnimatedImage (~> 1.0)
   - IQKeyboardManagerSwift
+  - JMAnimatedImageView
   - SDWebImage
-  - SwiftGifOrigin (~> 1.6.1)
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -105,6 +108,7 @@ SPEC REPOS:
     - BFRImageViewer
     - Crashlytics
     - CTPanoramaView
+    - DACircularProgress
     - Fabric
     - Firebase
     - FirebaseAnalytics
@@ -115,19 +119,20 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleUtilities
     - IQKeyboardManagerSwift
+    - JMAnimatedImageView
     - nanopb
     - PINCache
     - PINOperation
     - PINRemoteImage
     - Protobuf
     - SDWebImage
-    - SwiftGifOrigin
 
 SPEC CHECKSUMS:
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
-  BFRImageViewer: 647b91e4c9956d1ffc66245614aca22f10b0d370
+  BFRImageViewer: 941dfb08cbf5b05c13e3baeab3e168383f0c64a5
   Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
   CTPanoramaView: 26a11a330ff606ea5d059ffe86b7e34eb902023e
+  DACircularProgress: 4dd437c0fc3da5161cb289e07ac449493d41db71
   Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
   Firebase: a870ed114d769b424021a0c8ddb0c86c3250a0c5
   FirebaseAnalytics: 361594968a84a04d9598ef0f2e769d3735cd03de
@@ -138,14 +143,14 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 7d2552cea4e12d09ce737ef0441887a746585ff3
   GoogleUtilities: 760ccb53b7c7f40f9c02d8c241f76f841a7a6162
   IQKeyboardManagerSwift: 977affaeb4d6e971975c7790a6850f31d38f1207
+  JMAnimatedImageView: 60bbbc6b13df66f59451353e0ba19b5e350fcfc5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   PINCache: d195fdba255283f7e9900a55e3cced377f431f9b
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
-  SwiftGifOrigin: d6679d3ebe9df2e049a84bc52582635107b581f6
 
-PODFILE CHECKSUM: 78a66aff53a9a55c04ec0a3208c33d1d1f674218
+PODFILE CHECKSUM: aae77312a3f2eaadd8ff5083ed35e187d93dc117
 
 COCOAPODS: 1.5.0
