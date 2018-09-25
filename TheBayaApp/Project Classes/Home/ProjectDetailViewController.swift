@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CTPanoramaView
+//import CTPanoramaView
 import BFRImageViewer
 import AVKit
 
@@ -55,8 +55,8 @@ class ProjectDetailViewController: ParentViewController {
             vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-    //@IBOutlet fileprivate weak var vwPanorama: UIView!
+   // @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -216,7 +216,7 @@ class ProjectDetailViewController: ParentViewController {
                 
                 
                 //...Load 3D image
-                
+                /*
                 if dict.valueForString(key: "tour3DImage") == "" {
                     IS_iPad ? self.vw3DTour.hide(byHeight: true) : self.vwMain3DTour.hide(byHeight: true)
                 }
@@ -229,7 +229,7 @@ class ProjectDetailViewController: ParentViewController {
                     } catch {
                         print("Unable to load data: \(error)")
                     }
-                }
+                } */
                 
                 
                 //...Overview

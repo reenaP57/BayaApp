@@ -102,6 +102,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
             
             cell.btnSubscribe.touchUpInside { (sender) in
+               
+                appDelegate.trackCustomEvent(buttonName: "TimeLine subscribe")
+                
                 cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                 APIRequest.shared().favouriteSubcribedProject(dict.valueForInt(key: CProjectId), type: sender.isSelected ? 1 : 0, completion: { (response, error) in
                     
@@ -127,6 +130,8 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             }
             
             cell.btnCall.touchUpInside { (sender) in
+                
+                appDelegate.trackCustomEvent(buttonName: "TimeLine Call")
                 
                 let arrMobileNo = dict.valueForJSON(key: CMobileNo) as! [[String : AnyObject]]
                 
@@ -163,6 +168,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 
                 
                 cell.btnScheduleVisit.touchUpInside { (sender) in
+                    
+                     appDelegate.trackCustomEvent(buttonName: "TimeLine ScheduleVisit")
+                    
                     if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                         scheduleVisitVC.projectId = dict.valueForInt(key: CProjectId)!
                         scheduleVisitVC.projectName = dict.valueForString(key: CProjectName); self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)
@@ -171,6 +179,8 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 
                 cell.btnProjectDetail.touchUpInside { (sender) in
                     
+                    appDelegate.trackCustomEvent(buttonName: "TimeLine ProjectDetail")
+
                     if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
                         projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
                         self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)

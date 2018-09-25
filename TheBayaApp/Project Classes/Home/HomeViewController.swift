@@ -74,6 +74,8 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.lblBadge.text = "\(appDelegate.loginUser?.postBadge ?? 0)"
             cell.lblPercentage.text = "\(appDelegate.loginUser?.projectProgress ?? 0)% Completed"
             
+         
+            
             if indexPath.row != 0 || appDelegate.loginUser?.project_name == "" {
 
                 cell.vwCount.isHidden = true
@@ -107,15 +109,21 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
 
         switch indexPath.row {
         case 0:
+            appDelegate.trackCustomEvent(buttonName: "TimeLine")
+            
             if let timeLineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
                 self.navigationController?.pushViewController(timeLineVC, animated: true)
             }
         case 1:
+            appDelegate.trackCustomEvent(buttonName: "Project")
+
             if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
                 self.navigationController?.pushViewController(projectVC, animated: true)
             }
             
         default:
+            appDelegate.trackCustomEvent(buttonName: "Schedule Visit")
+
             if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                 self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
             }

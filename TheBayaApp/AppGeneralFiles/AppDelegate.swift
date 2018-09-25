@@ -420,6 +420,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
+    func trackCustomEvent(buttonName : String) {
+      
+        let tracker = GAI.sharedInstance().defaultTracker
+        
+        tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "Button Interaction", action: "\(buttonName) is clicked", label: "Button Click", value: nil).build() as [NSObject : AnyObject])
+    }
+    
     
     // MARK:-
     // MARK:- Root update
@@ -520,7 +527,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.tabbarView?.lblCount.isHidden = true
                 } else {
                     self.tabbarView?.lblCount.isHidden = false
-                    self.tabbarView?.lblCount.text = "\(dataResponse.valueForInt(key: "unreadCount") ?? 0)"
+                   // self.tabbarView?.lblCount.text = "\(dataResponse.valueForInt(key: "unreadCount") ?? 0)"
                 }
             }
         }

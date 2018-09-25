@@ -60,7 +60,7 @@
                                 <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="Unu-g6-LfO"/>
                             </connections>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Mg-XBL">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GfU-Mg-XBL">
                             <rect key="frame" x="154" y="8" width="15" height="15"/>
                             <color key="backgroundColor" red="1" green="0.27058823529999998" blue="0.30196078430000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
