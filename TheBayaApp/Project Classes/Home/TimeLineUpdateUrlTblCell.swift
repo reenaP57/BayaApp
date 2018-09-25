@@ -56,18 +56,14 @@ extension TimeLineUpdateUrlTblCell : UICollectionViewDelegateFlowLayout, UIColle
         return arrImg.count
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize  {
-        
-        return CGSize(width: arrImg.count > 1 ? (CScreenWidth - space) : (CScreenWidth - 30), height: collectionView.CViewHeight)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize  {
+        return CGSize(width: arrImg.count > 1 ? (collectionView.CViewWidth - space) : collectionView.CViewWidth, height: collectionView.CViewHeight)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
+
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeLineImgCollCell", for: indexPath) as? TimeLineImgCollCell {
-            
-            cell.imgVSlider.image = UIImage(named: arrImg[indexPath.row])
+            cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
             return cell
         }
         

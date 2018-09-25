@@ -19,22 +19,15 @@ class TimeLineUpdateTblCell: UITableViewCell {
     @IBOutlet weak var pageControlSlider : UIPageControl!
 
     var arrImg = [String]()
-    var isGifImages = false
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
-
-    func loadSliderImages(images : [String], isGif : Bool?) {
+    func loadSliderImages(images : [String]) {
         
         arrImg = images
-        isGifImages = isGif!
-        
+        self.collImg.reloadData()
         GCDMainThread.async {
             self.collImg.reloadData()
         }
@@ -61,15 +54,8 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimeLineImgCollCell", for: indexPath) as? TimeLineImgCollCell {
-            
-            if isGifImages{
-               // cell.imgVSlider.image = UIImage.gif(url: URL(string: arrImg[indexPath.row])!)
-            }else{
-                cell.imgVSlider.sd_setShowActivityIndicatorView(true)
-                cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
-            }
-            
-            
+            cell.imgVSlider.sd_setShowActivityIndicatorView(true)
+            cell.imgVSlider.sd_setImage(with: URL(string: arrImg[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
             return cell
         }
         

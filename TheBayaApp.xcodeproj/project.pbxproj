@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4839F448214A9A2E00E5A325 /* ExtensionDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4839F447214A9A2E00E5A325 /* ExtensionDateFormatter.swift */; };
+		483D21682159F700008EA16B /* TimeLineUpdateGIFTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D21672159F700008EA16B /* TimeLineUpdateGIFTblCell.swift */; };
 		486F3BD22159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */; };
 		486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486FDCEE2119ADBC00EA0188 /* Main.storyboard */; };
 		486FDCF82119ADBD00EA0188 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 486FDCF62119ADBD00EA0188 /* LaunchScreen.storyboard */; };
@@ -178,6 +179,7 @@
 /* Begin PBXFileReference section */
 		45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBayaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp.debug.xcconfig"; sourceTree = "<group>"; };
 		4839F447214A9A2E00E5A325 /* ExtensionDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDateFormatter.swift; sourceTree = "<group>"; };
+		483D21672159F700008EA16B /* TimeLineUpdateGIFTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateGIFTblCell.swift; sourceTree = "<group>"; };
 		486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlWithoutImageTblCell_ipad.swift; sourceTree = "<group>"; };
 		486FDCE72119ADBC00EA0188 /* TheBayaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TheBayaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		486FDCEF2119ADBC00EA0188 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -690,6 +692,7 @@
 				5CF50BA721215EEB002FDAB8 /* SubscribedProjectCollCell.swift */,
 				5CFCAAA6212BF00B00717C10 /* TimeLineSubscribeTblCell.swift */,
 				5CF50BA921218244002FDAB8 /* TimeLineUpdateTblCell.swift */,
+				483D21672159F700008EA16B /* TimeLineUpdateGIFTblCell.swift */,
 				5CF50BAB212182AC002FDAB8 /* TimeLineImgCollCell.swift */,
 				5C1E614D2122C22C0090308D /* NotificationTblCell.swift */,
 				5C8D5B8921258A8D0080193A /* LocationAdvantagesCollCell.swift */,
@@ -1042,6 +1045,7 @@
 				5C8D5B9021258ADC0080193A /* OverViewCollCell.swift in Sources */,
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
 				5CF34BA3212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift in Sources */,
+				483D21682159F700008EA16B /* TimeLineUpdateGIFTblCell.swift in Sources */,
 				5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,

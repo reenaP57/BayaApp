@@ -13,11 +13,10 @@ target 'TheBayaApp' do
   pod 'CTPanoramaView', '1.0'
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'JMAnimatedImageView'
-
   pod 'Fabric'
   pod 'Crashlytics'
-
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
+  pod 'SDWebImage/GIF'
 
 end

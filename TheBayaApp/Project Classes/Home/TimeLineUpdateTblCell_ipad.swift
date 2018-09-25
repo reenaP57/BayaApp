@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import SDWebImage
 
 class TimeLineUpdateTblCell_ipad: UITableViewCell {
 
-    @IBOutlet weak var imgVUpdate : UIImageView!
+    @IBOutlet weak var imgVUpdate : FLAnimatedImageView!
     @IBOutlet weak var collImg : UICollectionView!
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
@@ -24,7 +25,7 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        SDWebImageCodersManager.sharedInstance().addCoder(SDWebImageGIFCoder.shared())
         imgVUpdate.layer.cornerRadius = 5
         imgVUpdate.layer.masksToBounds = true
     }
@@ -37,6 +38,14 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     
     func loadSliderImagesIpad(images : [String], isGif : Bool?) {
         isGifImages = isGif!
+        
+        if isGifImages{
+            imgVUpdate.sd_setImage(with: URL(string: images.first!), completed: nil)
+            imgVUpdate.sd_cacheFLAnimatedImage = false
+        }else{
+            imgVUpdate.sd_setShowActivityIndicatorView(true)
+            imgVUpdate.sd_setImage(with: URL(string: images.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
+        }
         
         if images.count > 1{
             arrImg = images

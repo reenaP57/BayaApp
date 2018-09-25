@@ -214,17 +214,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="1398"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently there are no updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouW-8t-dk4" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="10" y="828" width="355" height="20.5"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
-                                <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0Hu-pT-FVu">
-                                <rect key="frame" x="169" y="680" width="37" height="37"/>
-                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="298" estimatedRowHeight="298" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="gVF-fn-5OQ">
                                 <rect key="frame" x="0.0" y="20" width="375" height="1303"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -606,8 +595,103 @@
                                             <outlet property="pageControlSlider" destination="HLB-Ct-uBG" id="yKN-F4-BAX"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeLineUpdateGIFTblCell" rowHeight="287" id="58o-4T-aDG" customClass="TimeLineUpdateGIFTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="578" width="375" height="287"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="58o-4T-aDG" id="i91-wG-DOk">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="287"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fzg-KY-aDE" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="7" width="375" height="273"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="69L-Qh-UoR" customClass="FLAnimatedImageView">
+                                                            <rect key="frame" x="15" y="5" width="345" height="170"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" secondItem="69L-Qh-UoR" secondAttribute="height" multiplier="69:34" id="rhC-Zd-eGR"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Construction of 5 the floor is done, check the progress here through the image here. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="We6-Jb-Jwu" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="190" width="345" height="36"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" id="LGZ-nh-Vmw"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="jtd-Hj-aw5">
+                                                            <rect key="frame" x="15" y="238.5" width="15" height="15"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="15" id="55f-X5-Q0C"/>
+                                                                <constraint firstAttribute="width" constant="15" id="zVo-ZE-Zkj"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Yesterday at 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mGb-fW-Zvb" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                            <rect key="frame" x="35" y="235.5" width="142" height="19.5"/>
+                                                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                                            <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JgY-hY-HKe" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                                            <rect key="frame" x="325" y="225" width="40" height="40"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="298-Pv-76p"/>
+                                                                <constraint firstAttribute="height" constant="40" id="b58-OB-p4Y"/>
+                                                            </constraints>
+                                                            <state key="normal" image="share"/>
+                                                            <state key="selected" image="call"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                    <real key="value" value="5"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </button>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="JgY-hY-HKe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="mGb-fW-Zvb" secondAttribute="trailing" constant="15" id="0bt-5V-CU8"/>
+                                                        <constraint firstItem="jtd-Hj-aw5" firstAttribute="top" secondItem="We6-Jb-Jwu" secondAttribute="bottom" constant="12.5" id="1Vg-Je-zw5"/>
+                                                        <constraint firstItem="mGb-fW-Zvb" firstAttribute="leading" secondItem="jtd-Hj-aw5" secondAttribute="trailing" constant="5" id="3DB-Ar-rBj"/>
+                                                        <constraint firstItem="JgY-hY-HKe" firstAttribute="centerY" secondItem="mGb-fW-Zvb" secondAttribute="centerY" id="HZW-oA-ldy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="JgY-hY-HKe" secondAttribute="trailing" constant="10" id="ItO-df-vhl"/>
+                                                        <constraint firstItem="We6-Jb-Jwu" firstAttribute="top" secondItem="69L-Qh-UoR" secondAttribute="bottom" constant="15" id="TK0-Z8-dSj"/>
+                                                        <constraint firstAttribute="trailing" secondItem="We6-Jb-Jwu" secondAttribute="trailing" constant="15" id="VeA-3i-9Y7"/>
+                                                        <constraint firstItem="69L-Qh-UoR" firstAttribute="top" secondItem="Fzg-KY-aDE" secondAttribute="top" constant="5" id="a6Z-Pj-G2f"/>
+                                                        <constraint firstAttribute="trailing" secondItem="69L-Qh-UoR" secondAttribute="trailing" constant="15" id="ens-wN-SJd"/>
+                                                        <constraint firstItem="jtd-Hj-aw5" firstAttribute="leading" secondItem="Fzg-KY-aDE" secondAttribute="leading" constant="15" id="gMI-OU-x4C"/>
+                                                        <constraint firstItem="69L-Qh-UoR" firstAttribute="leading" secondItem="Fzg-KY-aDE" secondAttribute="leading" constant="15" id="i38-mK-X48"/>
+                                                        <constraint firstItem="We6-Jb-Jwu" firstAttribute="leading" secondItem="Fzg-KY-aDE" secondAttribute="leading" constant="15" id="iN5-GT-JFs"/>
+                                                        <constraint firstAttribute="bottom" secondItem="JgY-hY-HKe" secondAttribute="bottom" constant="8" id="kgk-wr-rWY"/>
+                                                        <constraint firstItem="mGb-fW-Zvb" firstAttribute="centerY" secondItem="jtd-Hj-aw5" secondAttribute="centerY" id="quW-jm-Of7"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                            <real key="value" value="15"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="Fzg-KY-aDE" firstAttribute="leading" secondItem="i91-wG-DOk" secondAttribute="leading" id="Qj2-jL-MjU"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fzg-KY-aDE" secondAttribute="trailing" id="bLy-ys-I3t"/>
+                                                <constraint firstAttribute="bottom" secondItem="Fzg-KY-aDE" secondAttribute="bottom" constant="7" id="dQy-BG-nKj"/>
+                                                <constraint firstItem="Fzg-KY-aDE" firstAttribute="top" secondItem="i91-wG-DOk" secondAttribute="top" constant="7" id="iTC-hV-zW7"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="btnShare" destination="JgY-hY-HKe" id="r3t-Hs-Rqu"/>
+                                            <outlet property="imgGif" destination="69L-Qh-UoR" id="AE3-uj-m98"/>
+                                            <outlet property="lblDateTime" destination="mGb-fW-Zvb" id="QZa-ob-xu3"/>
+                                            <outlet property="lblDesc" destination="We6-Jb-Jwu" id="7T2-Uf-igb"/>
+                                        </connections>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeLineUpdateUrlTblCell" rowHeight="408" id="8rQ-nu-PJf" customClass="TimeLineUpdateUrlTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="578" width="375" height="408"/>
+                                        <rect key="frame" x="0.0" y="865" width="375" height="408"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8rQ-nu-PJf" id="BH6-7J-HR9">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="408"/>
@@ -802,32 +886,32 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimeLineUpdateTextTblCell" rowHeight="111" id="AFa-6T-Jmk" customClass="TimeLineUpdateTextTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="986" width="375" height="111"/>
+                                        <rect key="frame" x="0.0" y="1273" width="375" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="AFa-6T-Jmk" id="ZK5-97-UYn">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="111"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ibq-eY-hB4" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="7" width="375" height="97"/>
+                                                    <rect key="frame" x="0.0" y="7" width="375" height="96.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Construction of 5 the floor is done, check the progress here through the image here. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N3t-an-FwR" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="10" width="345" height="38.5"/>
+                                                            <rect key="frame" x="15" y="10" width="345" height="38"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="NGv-No-fhO">
-                                                            <rect key="frame" x="15" y="60" width="15" height="15"/>
+                                                            <rect key="frame" x="15" y="59.5" width="15" height="15"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Yesterday at 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F6E-zW-cPi" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="35" y="57" width="142" height="19.5"/>
+                                                            <rect key="frame" x="35" y="56.5" width="142" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                             <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eDI-Rt-lMt" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="325" y="52" width="40" height="40"/>
+                                                            <rect key="frame" x="325" y="51.5" width="40" height="40"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="0QC-Fz-fhZ"/>
@@ -878,10 +962,10 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TimelineUpdateVideoTblCell" rowHeight="301" id="Uuf-aL-HDD" customClass="TimelineUpdateVideoTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="1097" width="375" height="301"/>
+                                        <rect key="frame" x="0.0" y="1384" width="375" height="301"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Uuf-aL-HDD" id="fV7-g1-e1l">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="301"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="300.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-g2-8vG" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -996,48 +1080,6 @@
                                     <outlet property="delegate" destination="uL6-w3-mAz" id="b49-fU-jX5"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-iU-CJJ" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="16.5" y="1333" width="162" height="50"/>
-                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="vtH-iU-CJJ" secondAttribute="height" multiplier="81:25" id="KrG-wL-JKT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
-                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Schedule Visit" image="schedule">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="btnScheduleVisitClickedWithSender:" destination="uL6-w3-mAz" eventType="touchUpInside" id="Seq-Mh-hJE"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-Zi-OZ0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="197" y="1333" width="162" height="50"/>
-                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="y7L-Zi-OZ0" secondAttribute="height" multiplier="81:25" id="b5f-oK-RcD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
-                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="Project Details" image="project_details">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <state key="selected" image="project_details"/>
-                                <state key="highlighted" image="project_details"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="btnProjectDetailClickedWithSender:" destination="uL6-w3-mAz" eventType="touchUpInside" id="I49-iG-nGw"/>
-                                </connections>
-                            </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Fp-sj-sDO">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="1398"/>
                                 <subviews>
@@ -1103,26 +1145,80 @@
                                     <constraint firstItem="kZT-6y-MSl" firstAttribute="leading" secondItem="2Fp-sj-sDO" secondAttribute="leading" id="xyy-kk-Vfx"/>
                                 </constraints>
                             </view>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currently there are no updates." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ouW-8t-dk4" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="688" width="375" height="20.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="0Hu-pT-FVu">
+                                <rect key="frame" x="169" y="680" width="37" height="37"/>
+                                <color key="color" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtH-iU-CJJ" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="16.5" y="1333" width="162" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vtH-iU-CJJ" secondAttribute="height" multiplier="81:25" id="KrG-wL-JKT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Schedule Visit" image="schedule">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnScheduleVisitClickedWithSender:" destination="uL6-w3-mAz" eventType="touchUpInside" id="Seq-Mh-hJE"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y7L-Zi-OZ0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="197" y="1333" width="162" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="y7L-Zi-OZ0" secondAttribute="height" multiplier="81:25" id="b5f-oK-RcD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="15"/>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Project Details" image="project_details">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <state key="selected" image="project_details"/>
+                                <state key="highlighted" image="project_details"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnProjectDetailClickedWithSender:" destination="uL6-w3-mAz" eventType="touchUpInside" id="I49-iG-nGw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ouW-8t-dk4" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" constant="10" id="37U-1j-CxL"/>
                             <constraint firstItem="vtH-iU-CJJ" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" constant="16.5" id="37W-ms-V03"/>
                             <constraint firstItem="vtH-iU-CJJ" firstAttribute="top" secondItem="gVF-fn-5OQ" secondAttribute="bottom" constant="10" id="556-fO-OEJ"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="top" secondItem="MAJ-h1-BhF" secondAttribute="top" id="5xc-DV-JO7"/>
                             <constraint firstItem="0Hu-pT-FVu" firstAttribute="centerX" secondItem="zEm-AV-gjv" secondAttribute="centerX" id="75K-mg-jtg"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="bottom" secondItem="MAJ-h1-BhF" secondAttribute="bottom" id="C7P-Z6-VQI"/>
+                            <constraint firstItem="ouW-8t-dk4" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="HgM-zD-NMx"/>
+                            <constraint firstItem="ouW-8t-dk4" firstAttribute="centerX" secondItem="zEm-AV-gjv" secondAttribute="centerX" id="J3r-77-iaP"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="trailing" secondItem="y7L-Zi-OZ0" secondAttribute="trailing" constant="16" id="KFL-cQ-LTc"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="MpB-LY-hRw"/>
                             <constraint firstItem="0Hu-pT-FVu" firstAttribute="centerY" secondItem="zEm-AV-gjv" secondAttribute="centerY" id="NcC-E5-nMd"/>
+                            <constraint firstItem="ouW-8t-dk4" firstAttribute="centerY" secondItem="zEm-AV-gjv" secondAttribute="centerY" id="OB7-fF-eSr"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="SwG-gk-Ra5"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="top" secondItem="zEm-AV-gjv" secondAttribute="top" id="TjP-IJ-pYe"/>
-                            <constraint firstItem="MAJ-h1-BhF" firstAttribute="trailing" secondItem="ouW-8t-dk4" secondAttribute="trailing" constant="10" id="f0w-Yg-U5X"/>
+                            <constraint firstItem="ouW-8t-dk4" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="TwC-an-W0W"/>
                             <constraint firstItem="2Fp-sj-sDO" firstAttribute="leading" secondItem="MAJ-h1-BhF" secondAttribute="leading" id="h0r-Na-Yp7"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="top" secondItem="gVF-fn-5OQ" secondAttribute="bottom" constant="10" id="k90-y3-WuC"/>
                             <constraint firstItem="gVF-fn-5OQ" firstAttribute="trailing" secondItem="MAJ-h1-BhF" secondAttribute="trailing" id="l5T-1J-tq9"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="bottom" secondItem="vtH-iU-CJJ" secondAttribute="bottom" constant="15" id="pEL-mi-e6e"/>
-                            <constraint firstItem="ouW-8t-dk4" firstAttribute="centerY" secondItem="zEm-AV-gjv" secondAttribute="centerY" multiplier="1.2" id="uI0-AF-o2b"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="leading" secondItem="vtH-iU-CJJ" secondAttribute="trailing" constant="18.5" id="v1m-by-Cnh"/>
                             <constraint firstItem="MAJ-h1-BhF" firstAttribute="bottom" secondItem="y7L-Zi-OZ0" secondAttribute="bottom" constant="15" id="w1p-gp-adi"/>
                             <constraint firstItem="y7L-Zi-OZ0" firstAttribute="width" secondItem="vtH-iU-CJJ" secondAttribute="width" id="zTb-YB-hpB"/>
@@ -3288,7 +3384,7 @@ reach for you.</string>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2D-fV-bv9" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11"/>
+                                                                        <rect key="frame" x="0.0" y="3" width="308" height="11.5"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
                                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         <nil key="highlightedColor"/>

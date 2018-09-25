@@ -253,21 +253,12 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
-                            
                             if arrImages.count > 0{
-                                if mediaType == 1{
-                                    cell.imgVUpdate.sd_setShowActivityIndicatorView(true)
-                                    cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
-                                    cell.loadSliderImagesIpad(images: arrImages, isGif: false)
-                                }else{
-                                    cell.imgVUpdate.image = UIImage.gif(url: URL(string: arrImages.first!)!)
-                                    cell.loadSliderImagesIpad(images: arrImages, isGif: true)
-                                }
+                                cell.loadSliderImagesIpad(images: arrImages, isGif: mediaType == 1 ? false : true)
                             }
                         }
                         
                         cell.btnShare.touchUpInside { (sender) in
-                            
                             if let arr = dict.valueForJSON(key: "media") as? [String] {
                                 self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
                             }
@@ -440,7 +431,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             } else {
                 
                 switch dict.valueForInt(key: "mediaType") {
-                case 1,3: // Image
+                case 1: // Image
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                         
@@ -449,13 +440,15 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             cell.pageControlSlider.numberOfPages = arrImages.count
-                            cell.loadSliderImages(images: arrImages, isGif: dict.valueForInt(key: "mediaType") == 3)
+                            cell.loadSliderImages(images: arrImages)
                         }
                         
                         cell.btnShare.touchUpInside { (sender) in
                             
                             if let arr = dict.valueForJSON(key: "media") as? [String] {
-                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
+                                if arr.count > 0{
+                                    self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
+                                }
                             }
                         }
                         
@@ -494,9 +487,6 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             }
                         }
                         
-                        
-                        
-                        
                         cell.btnPlay.touchUpInside { (action) in
                             if let arrVideos = dict.valueForJSON(key: "media") as? [String] {
                                 if arrVideos.count > 0{
@@ -513,6 +503,27 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         return cell
                     }
                     
+                case 3: // GIF Image
+                    
+                    if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateGIFTblCell") as? TimeLineUpdateGIFTblCell {
+                        cell.lblDesc.text = dict.valueForString(key: "description")
+                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        
+                        if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                            if arrImages.count > 0{
+                                cell.loadGifImage(arrImages.first!)
+                            }
+                        }
+                        
+                        cell.btnShare.touchUpInside { (sender) in
+                            if let arr = dict.valueForJSON(key: "media") as? [String] {
+                                self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
+                            }
+                        }
+                        
+                        return cell
+                    }
+                    
                     case 4: //URL
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
                             
@@ -520,12 +531,14 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
                             cell.lblUrl.text = dict.valueForString(key: "link")
 
-                            
+                            cell.collImg.hide(byHeight: false)
                             if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                                 if arrImages.count == 0 {
                                     cell.collImg.hide(byHeight: true)
+                                }else{
+                                    cell.loadSliderImages(images: arrImages)
                                 }
-                                cell.loadSliderImages(images: arrImages)
+                                
                             }
 
                             // Hide Image Title here....
