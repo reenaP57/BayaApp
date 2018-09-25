@@ -67,6 +67,11 @@
 			<key>orderHint</key>
 			<integer>8</integer>
 		</dict>
+		<key>JMAnimatedImageView.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>16</integer>
+		</dict>
 		<key>PINCache.xcscheme</key>
 		<dict>
 			<key>isShown</key>
