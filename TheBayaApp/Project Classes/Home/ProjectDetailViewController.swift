@@ -9,6 +9,7 @@
 import UIKit
 import CTPanoramaView
 import BFRImageViewer
+import AVKit
 
 class ProjectDetailViewController: ParentViewController {
 
@@ -85,7 +86,7 @@ class ProjectDetailViewController: ParentViewController {
     var arrConfigure = [[String : AnyObject]]()
     var arrSpecification = [String]()
     var arrAmmenities = [[String : AnyObject]]()
-    var arrProjectImg = [String]()
+    var arrProjectImg = [[String : AnyObject]]()
     var arrUnitPlan = [[String : AnyObject]]()
     var arrTypicalPlan = [[String : AnyObject]]()
     var arrUnitType = [String]()
@@ -273,7 +274,7 @@ class ProjectDetailViewController: ParentViewController {
                 
                
                 //...Project Imgaes
-                let arrImg = dict.valueForJSON(key: "projectImages") as? [String]
+                let arrImg = dict.valueForJSON(key: "projectImages") as? [[String : AnyObject]]
                 self.pageVProject.numberOfPages = (arrImg?.count)!
                 
                 if (arrImg?.count)! > 0 {
@@ -739,13 +740,57 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
         switch collectionView {
         case collProject:
             
-            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectImageCollCell", for: indexPath) as? ProjectImageCollCell {
+            let dict = arrProjectImg[indexPath.row]
+            
+            if dict.valueForInt(key: "type") == 1 {
+                //Image
                 
-                cell.imgVProject.sd_setShowActivityIndicatorView(true)
-                cell.imgVProject.sd_setImage(with: URL(string: arrProjectImg[indexPath.row] ), placeholderImage: nil, options: .retryFailed, completed: nil)
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectImageCollCell", for: indexPath) as? ProjectImageCollCell {
+                    
+                    cell.imgVProject.sd_setShowActivityIndicatorView(true)
+                    cell.imgVProject.sd_setImage(with: URL(string: dict.valueForString(key: "url") ), placeholderImage: nil, options: .retryFailed, completed: nil)
+                    
+                    return cell
+                }
+            } else {
+                //..Video
                 
-                return cell
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProjectDetailVideoCollCell", for: indexPath) as? ProjectDetailVideoCollCell {
+                    
+                    DispatchQueue.global().async {
+                        let videoURL = URL(string: dict.valueForString(key: "url"))
+                        let asset = AVAsset(url: videoURL!)
+                        let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                        assetImgGenerate.appliesPreferredTrackTransform = true
+                        let time = CMTimeMake(1, 2)
+                        let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                        if img != nil {
+                            let frameImg  = UIImage(cgImage: img!)
+                            DispatchQueue.main.async(execute: {
+                                if cell.imgVThumbNail != nil
+                                {
+                                    cell.imgVThumbNail.image = frameImg
+                                }
+                            })
+                        }
+                    }
+                    
+                    cell.btnPlay.touchUpInside { (action) in
+                        if let videoUrl = dict.valueForString(key: "url") as? String {
+                            let videoURL = URL(string: videoUrl)
+                            let player = AVPlayer(url: videoURL!)
+                            let playerViewController = AVPlayerViewController()
+                            playerViewController.player = player
+                            self.present(playerViewController, animated: true) {
+                                playerViewController.player!.play()
+                            }
+                        }
+                    }
+                    
+                    return cell
+                }
             }
+            
             return UICollectionViewCell()
             
         case collLocation:

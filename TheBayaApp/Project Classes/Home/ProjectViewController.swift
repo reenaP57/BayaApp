@@ -48,7 +48,7 @@ class ProjectViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblProject?.pullToRefreshControl = refreshControl
         
-        self.loadProjectList(isRefresh: false)
+        self.loadProjectList(isRefresh: false, isFromNotification :false)
 
         if IS_iPhone {
             tblProject.estimatedRowHeight = 170
@@ -150,7 +150,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                 if currentPage < lastPage {
                     
                     if apiTask?.state == URLSessionTask.State.running {
-                        self.loadProjectList(isRefresh: true)
+                        self.loadProjectList(isRefresh: true, isFromNotification :false)
                     }
                 }
             }
@@ -182,10 +182,10 @@ extension ProjectViewController {
     @objc func pullToRefresh(){
         currentPage = 1
         self.refreshControl.beginRefreshing()
-        self.loadProjectList(isRefresh: true)
+        self.loadProjectList(isRefresh: true, isFromNotification :false)
     }
     
-    func loadProjectList(isRefresh : Bool) {
+    func loadProjectList(isRefresh : Bool, isFromNotification :Bool) {
      
         if apiTask?.state == URLSessionTask.State.running {
             return
