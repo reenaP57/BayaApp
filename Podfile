@@ -11,11 +11,10 @@ target 'TheBayaApp' do
   pod 'SDWebImage'
   pod 'BFRImageViewer'
   pod 'CTPanoramaView', '1.0'
-  pod 'FLAnimatedImage', '~> 1.0'
-  pod 'JMAnimatedImageView'
 
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'GoogleAnalytics'
 
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'

@@ -23,17 +23,11 @@
 		<dict>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app://bayacompany/timeline/12</string>
-			</array>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLSchemes</key>
-			<array>
-				<string>app://bayacompany/project_detail/12</string>
+				<string>app://bayacompany/</string>
 			</array>
 		</dict>
 	</array>
@@ -53,6 +47,11 @@
 			</dict>
 		</array>
 	</dict>
+    <key>GoogleAnalytics</key>
+    <dict>
+        <key>TRACKING_ID</key>
+        <string>UA-126227500-1</string>
+    </dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

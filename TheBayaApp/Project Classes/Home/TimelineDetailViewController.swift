@@ -260,8 +260,8 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                     cell.imgVUpdate.sd_setImage(with: URL(string: arrImages.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
                                     cell.loadSliderImagesIpad(images: arrImages, isGif: false)
                                 }else{
-                                    cell.imgVUpdate.image = UIImage.gif(url: URL(string: arrImages.first!)!)
-                                    cell.loadSliderImagesIpad(images: arrImages, isGif: true)
+//                                    cell.imgVUpdate.image = UIImage.gif(url: URL(string: arrImages.first!)!)
+//                                    cell.loadSliderImagesIpad(images: arrImages, isGif: true)
                                 }
                             }
                         }

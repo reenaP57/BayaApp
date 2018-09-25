@@ -30,7 +30,7 @@ class NotificationViewController: ParentViewController {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
         appDelegate.tabbarView?.lblCount.isHidden = true
-        self.loadNotificationList(isRefresh: false)
+        self.loadNotificationList(isRefresh: false, isFromNotification :false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,6 +100,10 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             
             switch dict.valueForInt(key: "notifyType") {
+            case 0 : //... Admin
+               cell.lblMsg.text = dict.valueForString(key: "message")
+                
+           
             case 1:  //... New Project
                  cell.lblMsg.text = "The new project \(dict.valueForString(key: "title")) has been added by The Baya Group."
 
@@ -125,12 +129,15 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 cell.lblMsg.text = "Your visit has been re-scheduled from \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) to \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true))"
 
                 break
-                
-            default : //... Rate Visit
+             
+            case 6 : //... Rate Visit
                 cell.lblMsg.text = "Rate the visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false))"
- 
+                
                 cell.btnRateVisit.hide(byWidth: false)
                 break
+                
+            default : //...Cancel Visit
+                cell.lblMsg.text = "Your visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) has been cancelled"
             }
             
             
@@ -162,7 +169,7 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 if currentPage < lastPage {
                     
                     if apiTask?.state == URLSessionTask.State.running {
-                        self.loadNotificationList(isRefresh: true)
+                        self.loadNotificationList(isRefresh: true, isFromNotification :false)
                     }
                 }
             }
@@ -194,10 +201,10 @@ extension NotificationViewController {
     @objc func pullToRefresh(){
         currentPage = 1
         self.refreshControl.beginRefreshing()
-        self.loadNotificationList(isRefresh: true)
+        self.loadNotificationList(isRefresh: true, isFromNotification :false)
     }
     
-    func loadNotificationList(isRefresh : Bool) {
+    func loadNotificationList(isRefresh : Bool, isFromNotification : Bool) {
         
         if apiTask?.state == URLSessionTask.State.running {
             return
@@ -207,6 +214,9 @@ extension NotificationViewController {
             activityLoader.startAnimating()
         }
         
+        if isFromNotification {
+            currentPage = 1
+        }
         
         apiTask = APIRequest.shared().notificationList(page: currentPage, completion: { (response, error) in
             

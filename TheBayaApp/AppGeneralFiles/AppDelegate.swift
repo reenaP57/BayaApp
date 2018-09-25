@@ -17,7 +17,7 @@ import FirebaseInstanceID
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
     var tabbarViewcontroller : TabbarViewController?
     var tabbarView : TabBarView?
@@ -113,7 +113,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             if topViewController is NotificationViewController {
                                 
                                 let notificationVC = topViewController as! NotificationViewController
-                                notificationVC.loadNotificationList(isRefresh: false)
+                                notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
                             } else {
                                 self.tabbarView?.btnNotification.isSelected = false
                                 self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
@@ -129,8 +129,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 if application.applicationState == .inactive {
                     
-                    if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
-                        self.topViewController()?.navigationController?.pushViewController(projectVC, animated: true)
+                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                        self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
                     }
                     
                 } else {
@@ -139,15 +139,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                         
                         if let topViewController = self.topViewController() {
                             
-                            if topViewController is ProjectViewController {
-                              
-                                let projectVC  = topViewController as! ProjectViewController
-                                projectVC.loadProjectList(isRefresh: false)
-                                
+                            if topViewController is ProjectDetailViewController {
                             } else {
                                 
-                                if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
-                                    self.topViewController()?.navigationController?.pushViewController(projectVC, animated: true)
+                                if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                                   projectDetailVC.projectID =  (notification?.valueForInt(key: "gcm.notification.projectId"))!
+                                    self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
                                 }
                             }
                         }
@@ -214,7 +211,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             if topViewController is VisitDetailsViewController {
                                 
                                 let visitDetailVC  = topViewController as! VisitDetailsViewController
-                              visitDetailVC.loadVisitList(isRefresh: false)
+                                visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
                                 
                             } else {
                                 
@@ -222,10 +219,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                     self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
                                 }
                             }
-                            
                         }
                
-                        
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
                 }
@@ -244,11 +239,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 } else {
                     self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
                         
-                        if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                            rateVC.visitId = (notification?.valueForInt(key: "gcm.notification.visitId"))!
-                            self.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+                        if let topViewController = self.topViewController() {
+                            
+                            if topViewController is RateYoorVisitViewController {
+                            } else {
+                                if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                                    rateVC.visitId = (notification?.valueForInt(key: "gcm.notification.visitId"))!
+                                    self.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+                                }
+                            }
                         }
-                        
+               
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
                 }
@@ -258,13 +259,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UIBackgroundFetchResult.newData)
     }
 
-//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
-//        print("url \(url)")
-//        print("url host :\(url.host!)")
-//        print("url path :\(url.path)")
-//
-//
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+    
+        print("url \(url)")
+        print("url host :\(url.host!)")
+        print("url path :\(url.path)")
+
+
 //        let urlPath : String = url.path as String!
 //        let urlHost : String = url.host as String!
 //        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -283,10 +284,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //
 //        }
         
-//        return true
-//    }
+        return true
+    }
     
-//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+//  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
 //
 //        if url.host == nil
 //        {
@@ -309,8 +310,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 ////            }
 ////        }
 //
-//        return true
-//    }
+//       return true
+//   }
     
     func applicationHandleRemoteNotification(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
     {
@@ -336,6 +337,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
+    
+//    func configureGoogleAnalytics() {
+//
+//        guard let gai = GAI.sharedInstance() else {
+//            assert(false, "Google Analytics not configured correctly")
+//        }
+//        gai.tracker(withTrackingId: "YOUR_TRACKING_ID")
+//        // Optional: automatically report uncaught exceptions.
+//        gai.trackUncaughtExceptions = true
+//
+//        // Optional: set Logger to VERBOSE for debug information.
+//        // Remove before app release.
+//        gai.logger.logLevel = .verbose;
+//    }
     
     
     func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
@@ -404,9 +419,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func logout()
     {
-        let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
-        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
-        
+        if CUserDefaults.value(forKey: UserDefaultFCMToken) != nil {
+            let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
+            appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
+        }
         
         tabbarViewcontroller = nil
         tabbarView = nil

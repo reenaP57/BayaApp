@@ -46,7 +46,7 @@ class VisitDetailsViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblVVisitDetails.pullToRefreshControl = refreshControl
         
-        self.loadVisitList(isRefresh: false)
+        self.loadVisitList(isRefresh: false, isFromNotification : false)
 
         if IS_iPhone {
             tblVVisitDetails.estimatedRowHeight = 125
@@ -159,11 +159,11 @@ extension VisitDetailsViewController {
     @objc func pullToRefresh() {
         currentPage = 1
         refreshControl.beginRefreshing()
-        self.loadVisitList(isRefresh: true)
+        self.loadVisitList(isRefresh: true, isFromNotification : false)
     }
     
     
-    func loadVisitList(isRefresh : Bool) {
+    func loadVisitList(isRefresh : Bool, isFromNotification : Bool) {
         
         if apiTask?.state == URLSessionTask.State.running {
             return
@@ -171,6 +171,10 @@ extension VisitDetailsViewController {
         
         if !isRefresh {
             activityLoader.startAnimating()
+        }
+        
+        if isFromNotification {
+           currentPage = 1
         }
         
         apiTask =  APIRequest.shared().getVisitList(page: self.currentPage) { (response, error) in
