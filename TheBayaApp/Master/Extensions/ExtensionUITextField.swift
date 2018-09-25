@@ -190,7 +190,7 @@ extension UITextField {
     ///   - defaultDate: A Date? (optional - you can pass nil if you don't want any defualt value) Or pass proper date which will behave like it is already selected from UIDatePicker(you can see this date into UIDatePicker First when UIDatePicker present).
     ///   - isPrefilledDate: A Bool value will help you to prefilled the UITextField with Default Value when UIDatePicker Present.
     ///   - selectedDateHandler: A Handler Block returns a selected date.
-    func setDatePickerWithDateFormate(dateFormate:String , defaultDate:Date? , isPrefilledDate:Bool , selectedDateHandler:selectedDateHandler) {
+    func setDatePickerWithDateFormate(dateFormate:String , defaultDate:Date? , isPrefilledDate:Bool , selectedDateHandler:@escaping selectedDateHandler) {
         
         self.inputView = self.txtFieldDatePicker
         
@@ -290,7 +290,7 @@ extension UITextField : UIPickerViewDataSource , UIPickerViewDelegate {
         }
     }
     
-    func setPickerData(arrPickerData:[Any] , selectedPickerDataHandler:selectedPickerDataHandler , defaultPlaceholder:String?) {
+    func setPickerData(arrPickerData:[Any] , selectedPickerDataHandler:@escaping selectedPickerDataHandler , defaultPlaceholder:String?) {
         
         self.inputView = txtFieldPickerView
         

@@ -148,35 +148,35 @@ class ScheduleVisitViewController: ParentViewController {
         
         
         txtSlot1.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow , isPrefilledDate: true) { (date) in
-            dateSlot1 = date
+            self.dateSlot1 = date
             //txtSlot2.setMinimumDate(minDate: dateSlot1.tomorrow)
-            self.checkValidation(txtField: txtSlot1)
+            self.checkValidation(txtField: self.txtSlot1)
             
-            txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
-                dateSlot2 = date
+            self.txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
+                self.dateSlot2 = date
                // txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
-                self.checkValidation(txtField: txtSlot2)
+                self.checkValidation(txtField: self.txtSlot2)
             }
         }
         
         txtSlot2.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: Date().tomorrow, isPrefilledDate: true) { (date) in
-            dateSlot2 = date
+            self.dateSlot2 = date
            // txtSlot3.setMinimumDate(minDate: dateSlot2.tomorrow)
-            self.checkValidation(txtField: txtSlot2)
+            self.checkValidation(txtField: self.txtSlot2)
             
-            txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot2.tomorrow, isPrefilledDate: true) { (date) in
-                dateSlot3 = date
-                self.checkValidation(txtField: txtSlot3)
+            self.txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: self.dateSlot2.tomorrow, isPrefilledDate: true) { (date) in
+                self.dateSlot3 = date
+                self.checkValidation(txtField: self.txtSlot3)
             }
         }
         
         txtSlot3.setDatePickerWithDateFormate(dateFormate: "dd MMMM yyyy hh:mm a", defaultDate: dateSlot2.tomorrow, isPrefilledDate: true) { (date) in
-            dateSlot3 = date
-            self.checkValidation(txtField: txtSlot3)
+            self.dateSlot3 = date
+            self.checkValidation(txtField: self.txtSlot3)
         }
         
         txtNoOfGuest.setPickerData(arrPickerData: ["1","2","3","4","5","6","7","8","9","10"], selectedPickerDataHandler: { (string, row, index) in
-           txtNoOfGuest.hideValidationMessage(Gap)
+            self.txtNoOfGuest.hideValidationMessage(Gap)
         }, defaultPlaceholder: "")
         
     }

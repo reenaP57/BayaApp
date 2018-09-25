@@ -22,7 +22,7 @@ extension UIButton {
     /// This method is used for UIButton's touchUpInside Handler
     ///
     /// - Parameter genericTouchUpInsideHandler: genericTouchUpInsideHandler will give you object of UIButton.
-    func touchUpInside(genericTouchUpInsideHandler:genericTouchUpInsideHandler<UIButton>) {
+    func touchUpInside(genericTouchUpInsideHandler:@escaping genericTouchUpInsideHandler<UIButton>) {
         
         objc_setAssociatedObject(self, &AssociatedObjectKey.genericTouchUpInsideHandler, genericTouchUpInsideHandler, .OBJC_ASSOCIATION_RETAIN)
         

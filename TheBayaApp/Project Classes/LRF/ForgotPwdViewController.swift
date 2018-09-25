@@ -99,8 +99,8 @@ class ForgotPwdViewController: ParentViewController {
             txtCountryCode.setPickerData(arrPickerData: arrCountryCode!, selectedPickerDataHandler: { (select, index, component) in
                 
                 let dict = arrCountry![index] as AnyObject
-                countryID = dict.value(forKey: "country_id") as! Int
-                txtCountryCode.text = "+\(dict.value(forKey: "country_code") ?? "")"
+                self.countryID = dict.value(forKey: "country_id") as! Int
+                self.txtCountryCode.text = "+\(dict.value(forKey: "country_code") ?? "")"
             }, defaultPlaceholder: "+91")
         }
     }

@@ -59,8 +59,8 @@ class SignUpViewController: ParentViewController {
             txtCountryCode.setPickerData(arrPickerData: arrCountryCode!, selectedPickerDataHandler: { (select, index, component) in
                 
                 let dict = arrCountry![index] as AnyObject
-                countryID = dict.value(forKey: "country_id") as! Int
-                txtCountryCode.text = dict.value(forKey: "country_code") as? String
+                self.countryID = dict.value(forKey: "country_id") as! Int
+                self.txtCountryCode.text = dict.value(forKey: "country_code") as? String
             }, defaultPlaceholder: "+91")
         }
     }

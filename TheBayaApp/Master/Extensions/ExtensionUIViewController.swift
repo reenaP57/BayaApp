@@ -348,7 +348,7 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
     /// - Parameters:
     ///   - allowEditing: Pass the Bool value for allowEditing OR Not on UIImagePickerController.
     ///   - imagePickerControllerCompletionHandler: This completionHandler contain selected image AND info Dictionary to let you help in CurrentController. Both image AND info Dictionary might be nil , in this case to prevent the crash please use if let OR guard let.
-    func presentImagePickerController(allowEditing:Bool , imagePickerControllerCompletionHandler:imagePickerControllerCompletionHandler) {
+    func presentImagePickerController(allowEditing:Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
         
         self.presentActionsheetWithTwoButtons(actionSheetTitle: nil, actionSheetMessage: nil, btnOneTitle: CLocalize(text: "Take A Photo"), btnOneStyle: .default, btnOneTapped: { (action) in
             
@@ -394,7 +394,7 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
     }
     
     // Open picker in gallery mode
-    func presentImagePickerControllerWithGallery(allowEditing:Bool , imagePickerControllerCompletionHandler:imagePickerControllerCompletionHandler) {
+    func presentImagePickerControllerWithGallery(allowEditing:Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
         
         self.chooseFromPhone(allowEditing:allowEditing)
         
@@ -402,7 +402,7 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
     }
     
     // Open picker in Camera mode
-    func presentImagePickerControllerWithCamera(allowEditing:Bool , imagePickerControllerCompletionHandler:imagePickerControllerCompletionHandler) {
+    func presentImagePickerControllerWithCamera(allowEditing:Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
         
         self.takeAPhoto()
         
@@ -469,7 +469,7 @@ extension UIViewController {
     /// This method is used to set the block on CurrentController for getting back with some data(Any Type of Data) AND error message(String).
     ///
     /// - Parameter block: This block contain data(Any Type of Data) AND error message(String) to let you help in CurrentController. Both data AND error might be nil , in this case to prevent the crash please use if let OR guard let.
-    func setBlock(block:blockHandler) {
+    func setBlock(block:@escaping blockHandler) {
         
         objc_setAssociatedObject(self, &blockKey.blockHandler, block, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }

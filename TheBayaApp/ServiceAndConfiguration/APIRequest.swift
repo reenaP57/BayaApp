@@ -621,7 +621,7 @@ class APIRequest: NSObject {
         print("API Error =" + "\(strApiTag )" + "\(String(describing: error?.localizedDescription))" )
     }
     
-    func checkInternetConnection(complete:() -> Void) {
+    func checkInternetConnection(complete:@escaping () -> Void) {
         
         var isScreenFind = false
         

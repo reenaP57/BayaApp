@@ -180,6 +180,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         self.endDate = ""
         
         arrUpdateList.removeAll()
+        
         if !isFromNotifition {
             self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
         }
@@ -811,10 +812,10 @@ extension TimelineDetailViewController {
 //                    appDelegate.window.addSubview(vwAlert)
 //                }
             } else {
-                strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-                strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-                pageIndexForApi = 1
-                self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+                self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                self.pageIndexForApi = 1
+                self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                 vwFilter.removeFromSuperview()
             }
             
@@ -827,10 +828,10 @@ extension TimelineDetailViewController {
         vwFilter.btnClear.touchUpInside { (sender) in
             vwFilter.txtStartDate.text = ""
             vwFilter.txtEndDate.text = ""
-            strFilterStartDate = ""
-            strFilterEndDate = ""
-            pageIndexForApi = 1
-            self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+            self.strFilterStartDate = ""
+            self.strFilterEndDate = ""
+            self.pageIndexForApi = 1
+            self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
             vwFilter.removeFromSuperview()
         }
     }

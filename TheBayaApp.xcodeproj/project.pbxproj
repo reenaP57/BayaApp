@@ -53,7 +53,6 @@
 		486FDD6D2119AEF500EA0188 /* SwiftyJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD3A2119AEF400EA0188 /* SwiftyJSON.swift */; };
 		486FDD6E2119AEF500EA0188 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486FDD3C2119AEF400EA0188 /* AppDelegate.swift */; };
 		486FDD6F2119AEF500EA0188 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD3D2119AEF400EA0188 /* Assets.xcassets */; };
-		486FDD702119AEF500EA0188 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 486FDD3E2119AEF400EA0188 /* Info.plist */; };
 		487E4E63211C4CD8000CB32F /* AvenirLTStd-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E58211C4CD8000CB32F /* AvenirLTStd-Black.otf */; };
 		487E4E64211C4CD8000CB32F /* AvenirLTStd-BlackOblique.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E59211C4CD8000CB32F /* AvenirLTStd-BlackOblique.otf */; };
 		487E4E65211C4CD8000CB32F /* AvenirLTStd-Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 487E4E5A211C4CD8000CB32F /* AvenirLTStd-Book.otf */; };
@@ -895,7 +894,6 @@
 				5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */,
 				487E4E63211C4CD8000CB32F /* AvenirLTStd-Black.otf in Resources */,
 				487E4E69211C4CD8000CB32F /* AvenirLTStd-Light.otf in Resources */,
-				486FDD702119AEF500EA0188 /* Info.plist in Resources */,
 				5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */,
 				5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */,
 				5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */,
@@ -1249,7 +1247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1261,7 +1259,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_ADHOC_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1274,7 +1272,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1286,7 +1284,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_ADHOC_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

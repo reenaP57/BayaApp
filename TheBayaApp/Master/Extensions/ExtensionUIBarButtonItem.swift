@@ -20,7 +20,7 @@ extension UIBarButtonItem {
     /// This method is used for UIBarButtonItem's touchUpInside Handler
     ///
     /// - Parameter genericTouchUpInsideHandler: genericTouchUpInsideHandler will give you object of UIBarButtonItem.
-    func touchUpInside(genericTouchUpInsideHandler:genericTouchUpInsideHandler<UIBarButtonItem>) {
+    func touchUpInside(genericTouchUpInsideHandler:@escaping genericTouchUpInsideHandler<UIBarButtonItem>) {
         
         objc_setAssociatedObject(self, &AssociatedObjectKey.genericTouchUpInsideHandler, genericTouchUpInsideHandler, .OBJC_ASSOCIATION_RETAIN)
         
