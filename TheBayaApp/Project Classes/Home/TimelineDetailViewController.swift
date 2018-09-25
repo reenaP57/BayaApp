@@ -618,41 +618,38 @@ extension TimelineDetailViewController {
             
             if  response != nil && error == nil {
                 
-                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                
-                if arrData.count > 0 {
-                    for item in arrData {
-                        self.arrProject.append(item)
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]]{
+                    
+                    self.arrProject = arrData
+                    
+                    if !IS_iPad {
+                        self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
+                        self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
                         
-                        if isFromNotification && item.valueForInt(key: CProjectId) == self.projectID {
-                            self.currentIndex = self.arrProject.count - 1
+                        if self.arrProject.count > 0 {
+                            self.hideScheduleVisit()
                         }
                     }
-                }
-       
-                if !IS_iPad {
-                    self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
-                    self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
                     
-                    if self.arrProject.count > 0 {
-                       self.hideScheduleVisit()
+                    if self.arrProject.count != 0 {
+                        self.showTimelineGuideLineView()
                     }
-                }
-                
-                if self.arrProject.count != 0 {
-                    self.showTimelineGuideLineView()
-                }
-                
-                self.vwNoProject.isHidden = self.arrProject.count != 0
-                self.tblUpdates.reloadData()
-             
-                
-                if isFromNotification {
-                    self.reloadTimelineList(index: self.currentIndex)
-                } else {
-                   
-                    self.pageIndexForApi = 1
-                    self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
+                    
+                    self.vwNoProject.isHidden = self.arrProject.count != 0
+                    self.tblUpdates.reloadData()
+                    
+                    
+                    if isFromNotification {
+                        if let index = self.arrProject.index(where: {$0["CProjectId"] as? Int == self.projectID}){
+                            self.currentIndex = index
+                            self.reloadTimelineList(index: self.currentIndex)
+                        }
+                        
+                    } else {
+                        
+                        self.pageIndexForApi = 1
+                        self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
+                    }
                 }
             }
         }
