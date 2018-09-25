@@ -399,7 +399,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         guard let gai = GAI.sharedInstance() else {
             assert(false, "Google Analytics not configured correctly")
+            return
         }
+        
         gai.tracker(withTrackingId: CTrackingID)
         // Optional: automatically report uncaught exceptions.
         gai.trackUncaughtExceptions = true
@@ -416,6 +418,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
         tracker.send(builder.build() as [NSObject : AnyObject])
+    }
+    
+    func trackCustomEvent(buttonName : String) {
+      
+        let tracker = GAI.sharedInstance().defaultTracker
+        
+        tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "Button Interaction", action: "\(buttonName) is clicked", label: "Button Click", value: nil).build() as [NSObject : AnyObject])
     }
     
     
@@ -518,7 +527,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.tabbarView?.lblCount.isHidden = true
                 } else {
                     self.tabbarView?.lblCount.isHidden = false
-                    self.tabbarView?.lblCount.text = "\(dataResponse.valueForInt(key: "unreadCount") ?? 0)"
+                   // self.tabbarView?.lblCount.text = "\(dataResponse.valueForInt(key: "unreadCount") ?? 0)"
                 }
             }
         }

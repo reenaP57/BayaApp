@@ -47,6 +47,8 @@ class TimelineDetailViewController: ParentViewController {
         appDelegate.hideTabBar()
         appDelegate.trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
         self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
+        appDelegate.loginUser?.projectBadge = 0
+        CoreData.saveContext()
     }
     
     override func didReceiveMemoryWarning() {
