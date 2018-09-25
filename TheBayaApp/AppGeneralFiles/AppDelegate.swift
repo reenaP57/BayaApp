@@ -17,7 +17,7 @@ import FirebaseInstanceID
 import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var tabbarViewcontroller : TabbarViewController?
     var tabbarView : TabBarView?
@@ -106,11 +106,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
                     
                 } else {
-                    
                     self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
                         
-                        self.tabbarView?.btnNotification.isSelected = false
-                        self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
+                        if let topViewController = self.topViewController() {
+                            
+                            if topViewController is NotificationViewController {
+                                
+                                let notificationVC = topViewController as! NotificationViewController
+                                notificationVC.loadNotificationList(isRefresh: false)
+                            } else {
+                                self.tabbarView?.btnNotification.isSelected = false
+                                self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
+                            }
+                        }
                         
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
@@ -129,9 +137,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     
                     self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
                         
-                        if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
-                            self.topViewController()?.navigationController?.pushViewController(projectVC, animated: true)
+                        if let topViewController = self.topViewController() {
+                            
+                            if topViewController is ProjectViewController {
+                              
+                                let projectVC  = topViewController as! ProjectViewController
+                                projectVC.loadProjectList(isRefresh: false)
+                                
+                            } else {
+                                
+                                if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
+                                    self.topViewController()?.navigationController?.pushViewController(projectVC, animated: true)
+                                }
+                            }
                         }
+                 
                         
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
@@ -153,11 +173,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                    
                     self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
                         
-                        if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
-                            timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
-                            timelineVC.isFromNotifition = true
-                            self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                        if let topViewController = self.topViewController() {
+                            
+                            if topViewController is TimelineDetailViewController {
+                                
+                                let timelineVC  = topViewController as! TimelineDetailViewController
+                                timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
+                                
+                            } else {
+                                
+                                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                                    timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
+                                    timelineVC.isFromNotifition = true
+                                    self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                                }
+                            }
+                            
                         }
+           
                         
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
@@ -176,9 +209,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 } else {
                     self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
                         
-                        if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
-                            self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+                        if let topViewController = self.topViewController() {
+                            
+                            if topViewController is VisitDetailsViewController {
+                                
+                                let visitDetailVC  = topViewController as! VisitDetailsViewController
+                              visitDetailVC.loadVisitList(isRefresh: false)
+                                
+                            } else {
+                                
+                                if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+                                    self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+                                }
+                            }
+                            
                         }
+               
                         
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
@@ -212,32 +258,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         completionHandler(UIBackgroundFetchResult.newData)
     }
 
-    
-    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+//    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
         
-        if url.host == nil
-        {
-            return true;
-        }
-        
-        let urlString = url.absoluteString
-        let queryArray = urlString!.components(separatedBy: "/")
-        let query = queryArray[2]
-        
-        // Check if article
-//        if query.rangeOfString("article") != nil
+//        print("url \(url)")
+//        print("url host :\(url.host!)")
+//        print("url path :\(url.path)")
+//
+//
+//        let urlPath : String = url.path as String!
+//        let urlHost : String = url.host as String!
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//
+//        if(urlHost != "swiftdeveloperblog.com")
 //        {
-//            let data = urlString!.components(separatedBy: "/")
-//            if data.count >= 3
-//            {
-//                let parameter = data[3]
-//                let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
-//                self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
-//            }
+//            print("Host is not correct")
+//            return false
 //        }
         
-        return true
-    }
+//        if(urlPath == "/inner"){
+//
+//            let innerPage: InnerPageViewController = mainStoryboard.instantiateViewController(withIdentifier: "InnerPageViewController") as! InnerPageViewController
+//            self.window?.rootViewController = innerPage
+//        } else if (urlPath == "/about"){
+//
+//        }
+        
+//        return true
+//    }
+    
+//    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+//
+//        if url.host == nil
+//        {
+//            return true;
+//        }
+//
+//        let urlString = url.absoluteString
+//        let queryArray = urlString!.components(separatedBy: "/")
+//        let query = queryArray[2]
+//
+//        // Check if article
+////        if query.rangeOfString("article") != nil
+////        {
+////            let data = urlString!.components(separatedBy: "/")
+////            if data.count >= 3
+////            {
+////                let parameter = data[3]
+////                let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
+////                self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
+////            }
+////        }
+//
+//        return true
+//    }
     
     func applicationHandleRemoteNotification(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
     {
