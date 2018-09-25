@@ -597,6 +597,10 @@ class APIRequest: NSObject {
                 if showAlert {
                     let message = meta.valueForString(key: CJsonMessage)
                     CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk) { (action) in
+                        
+                        if appDelegate.topViewController() is ProjectDetailViewController {
+                            appDelegate.topViewController()?.navigationController?.popViewController(animated: true)
+                        }
                     }
                 }
             }

@@ -27,6 +27,7 @@ class EditProfileViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CEditProfileScreenName)
     }
     
     override func didReceiveMemoryWarning() {

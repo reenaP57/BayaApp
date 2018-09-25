@@ -29,6 +29,7 @@ class NotificationViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CNotificationScreenName)
         appDelegate.tabbarView?.lblCount.isHidden = true
         self.loadNotificationList(isRefresh: false, isFromNotification :false)
     }
@@ -137,7 +138,8 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 break
                 
             default : //...Cancel Visit
-                cell.lblMsg.text = "Your visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) has been cancelled"
+                cell.lblMsg.text = dict.valueForString(key: "message")
+                //"Your visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) has been cancelled"
             }
             
             
@@ -182,10 +184,13 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let dict = arrNotification[indexPath.row]
+        
         if indexPath.row == 4 {
             //...New Project
             
             if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
                 self.navigationController?.pushViewController(projectDetailVC, animated: true)
             }
         }

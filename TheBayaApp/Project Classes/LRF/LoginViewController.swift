@@ -9,7 +9,6 @@
 import UIKit
 
 
-
 class LoginViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var txtEmail : UITextField!{
@@ -41,6 +40,12 @@ class LoginViewController: ParentViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CLoginScreenName)
+    }
+    
     
     //MARK:-
     //MARK:- General Methods

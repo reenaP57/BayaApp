@@ -27,7 +27,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>app://bayacompany/</string>
+				<string>bayacompany</string>
 			</array>
 		</dict>
 	</array>
@@ -47,11 +47,11 @@
 			</dict>
 		</array>
 	</dict>
-    <key>GoogleAnalytics</key>
-    <dict>
-        <key>TRACKING_ID</key>
-        <string>UA-126227500-1</string>
-    </dict>
+	<key>GoogleAnalytics</key>
+	<dict>
+		<key>TRACKING_ID</key>
+		<string>UA-126227500-1</string>
+	</dict>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

@@ -27,6 +27,11 @@ class SeeAllAmenitiesViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CAmeniriesScreenName)
+    }
+    
     
     //MARK:-
     //MARK:- General Methods

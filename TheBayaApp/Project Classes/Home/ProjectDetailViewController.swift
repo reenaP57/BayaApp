@@ -108,6 +108,7 @@ class ProjectDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CProjectDetailScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -152,6 +153,8 @@ class ProjectDetailViewController: ParentViewController {
         
         
         APIRequest.shared().getProjectDetail(projectId: self.projectID) { (response, error) in
+            
+            self.activityLoader.stopAnimating()
             
             if response != nil && error == nil {
                 

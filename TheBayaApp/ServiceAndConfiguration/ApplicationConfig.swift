@@ -9,3 +9,4 @@
 import Foundation
 
 let CAppStoreURI            = "https://itunes.apple.com/us/genre/ios/id007?mt=8"
+let CTrackingID             = "UA-126227500-1"

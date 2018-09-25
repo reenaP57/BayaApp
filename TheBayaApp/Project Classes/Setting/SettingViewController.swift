@@ -25,6 +25,7 @@ class SettingViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CSettingScreenName)
     }
     
     override func didReceiveMemoryWarning() {

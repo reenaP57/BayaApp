@@ -22,6 +22,8 @@ class HomeViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CHomeScreenName)
         self.initialize()
         collHome.reloadData()
     }

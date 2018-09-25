@@ -33,6 +33,12 @@ class SignUpViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CSignupScreenName)
+    }
+    
+    
     //MARK:-
     //MARK:- General Methods
     

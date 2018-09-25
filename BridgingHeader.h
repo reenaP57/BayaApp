@@ -9,5 +9,9 @@
 #ifndef BridgingHeader_h
 #define BridgingHeader_h
 
+#import "GAI.h"
+#import "GAITracker.h"
+#import "GAIFields.h"
+#import "GAIDictionaryBuilder.h"
 
 #endif /* BridgingHeader_h */

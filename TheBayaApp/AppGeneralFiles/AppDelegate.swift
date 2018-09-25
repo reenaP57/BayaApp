@@ -16,6 +16,7 @@ import Firebase
 import FirebaseInstanceID
 import UserNotifications
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
 
@@ -32,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Fabric.with([Crashlytics.self])
 
         FirebaseApp.configure()
+        self.configureGoogleAnalytics()
         
         application.registerForRemoteNotifications()
         requestNotificationAuthorization(application: application)
@@ -125,11 +127,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                }
             
             
-            case NotificationNewProject :
+            case NotificationNewProject, NotificationProjectComplete :
                 
                 if application.applicationState == .inactive {
                     
                     if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                        projectDetailVC.projectID =  (notification?.valueForInt(key: "gcm.notification.projectId"))!
                         self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
                     }
                     
@@ -156,7 +159,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 break
                 
-            case NotificationPostUpdate,NotificationProjectComplete :
+            case NotificationPostUpdate :
                 
                 if application.applicationState == .inactive {
                     
@@ -175,6 +178,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                             if topViewController is TimelineDetailViewController {
                                 
                                 let timelineVC  = topViewController as! TimelineDetailViewController
+                                timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
+                                timelineVC.isFromNotifition = true
                                 timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
                                 
                             } else {
@@ -185,9 +190,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                     self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
                                 }
                             }
-                            
                         }
-           
                         
                     }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
@@ -265,93 +268,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         print("url host :\(url.host!)")
         print("url path :\(url.path)")
 
-
-//        let urlPath : String = url.path as String!
-//        let urlHost : String = url.host as String!
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//
-//        if(urlHost != "swiftdeveloperblog.com")
-//        {
-//            print("Host is not correct")
-//            return false
-//        }
+        let url = url.absoluteString
+        let arrUrl = url.components(separatedBy: "/")
         
-//        if(urlPath == "/inner"){
-//
-//            let innerPage: InnerPageViewController = mainStoryboard.instantiateViewController(withIdentifier: "InnerPageViewController") as! InnerPageViewController
-//            self.window?.rootViewController = innerPage
-//        } else if (urlPath == "/about"){
-//
-//        }
-        
-        return true
-    }
-    
-//  func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-//
-//        if url.host == nil
-//        {
-//            return true;
-//        }
-//
-//        let urlString = url.absoluteString
-//        let queryArray = urlString!.components(separatedBy: "/")
-//        let query = queryArray[2]
-//
-//        // Check if article
-////        if query.rangeOfString("article") != nil
-////        {
-////            let data = urlString!.components(separatedBy: "/")
-////            if data.count >= 3
-////            {
-////                let parameter = data[3]
-////                let userInfo = [RemoteNotificationDeepLinkAppSectionKey : parameter ]
-////                self.applicationHandleRemoteNotification(application, didReceiveRemoteNotification: userInfo)
-////            }
-////        }
-//
-//       return true
-//   }
-    
-    func applicationHandleRemoteNotification(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject])
-    {
-//        if application.applicationState == UIApplicationState.Background || application.applicationState == UIApplicationState.Inactive
-//        {
-//            var canDoNow = loadedEnoughToDeepLink
-//
-//            self.deepLink = RemoteNotificationDeepLink.create(userInfo)
-//
-//            if canDoNow
-//            {
-//                self.triggerDeepLinkIfPresent()
-//            }
-//        }
-    }
-    
-    func triggerDeepLinkIfPresent() -> Bool
-    {
-//        self.loadedEnoughToDeepLink = true
-//        var ret = (self.deepLink?.trigger() != nil)
-//        self.deepLink = nil
-//        return ret
+        if arrUrl.count > 0 {
+            
+            let title = arrUrl[2]
+            let projectID = arrUrl[3]
+            
+            if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) == nil {
+                //...Login screen
+                self.initLoginViewController()
+                
+            } else {
+                
+                if title == "project_detail" {
+                    
+                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                        projectDetailVC.projectID = Int(projectID)!
+                        self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                    }
+                    
+                } else {
+                    
+                    if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                        timelineVC.projectID = Int(projectID)!
+                        timelineVC.isFromNotifition = true
+                        self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                    }
+                }
+            }
+        }
         
         return true
     }
-    
-//    func configureGoogleAnalytics() {
-//
-//        guard let gai = GAI.sharedInstance() else {
-//            assert(false, "Google Analytics not configured correctly")
-//        }
-//        gai.tracker(withTrackingId: "YOUR_TRACKING_ID")
-//        // Optional: automatically report uncaught exceptions.
-//        gai.trackUncaughtExceptions = true
-//
-//        // Optional: set Logger to VERBOSE for debug information.
-//        // Remove before app release.
-//        gai.logger.logLevel = .verbose;
-//    }
-    
     
     func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         
@@ -423,16 +373,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
             appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
         }
-        
-        tabbarViewcontroller = nil
-        tabbarView = nil
-
-        appDelegate.loginUser = nil
-        CUserDefaults.removeObject(forKey: UserDefaultLoginUserToken)
-        CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
-        CUserDefaults.synchronize()
-        
-        self.initLoginViewController()
     }
     
     func setProgressGradient(frame : CGRect) -> UIImage {
@@ -449,6 +389,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UIGraphicsEndImageContext()
         
         return image!
+    }
+    
+    
+    // MARK:-
+    // MARK:- Google Analytics
+    
+    func configureGoogleAnalytics() {
+        
+        guard let gai = GAI.sharedInstance() else {
+            assert(false, "Google Analytics not configured correctly")
+        }
+        gai.tracker(withTrackingId: CTrackingID)
+        // Optional: automatically report uncaught exceptions.
+        gai.trackUncaughtExceptions = true
+        
+        // Optional: set Logger to VERBOSE for debug information.
+        // Remove before app release.
+        gai.logger.logLevel = .verbose;
+    }
+    
+    func trackScreenNameForGoogleAnalytics(screenName : String) {
+        
+        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
+        tracker.set(kGAIScreenName, value: screenName)
+        
+        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
+        tracker.send(builder.build() as [NSObject : AnyObject])
     }
     
     
@@ -484,6 +451,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         APIRequest.shared().registerDeviceToken(isLoggedIn: isLoggedIn, token: fcmToken) { (response, error) in
             
             if response != nil && error == nil {
+                
+                if isLoggedIn == 0 {
+                    //...Log out
+                    
+                    self.tabbarViewcontroller = nil
+                    self.tabbarView = nil
+                    
+                    appDelegate.loginUser = nil
+                    CUserDefaults.removeObject(forKey: UserDefaultLoginUserToken)
+                    CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
+                    CUserDefaults.synchronize()
+                    
+                    self.initLoginViewController()
+                }
                 print("Response :",response as Any)
             }
         }

@@ -29,6 +29,7 @@ class VisitDetailsViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CVisitDetailScreenName)
     }
     
     override func didReceiveMemoryWarning() {

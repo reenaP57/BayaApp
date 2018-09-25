@@ -25,6 +25,7 @@ class ProfileViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CMyProfileScreenName)
         
         //...Prefilled user detail
         

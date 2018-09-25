@@ -30,6 +30,11 @@ class SupportViewController: ParentViewController {
         super.didReceiveMemoryWarning()
     }
  
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CAppSupportScreenName)
+    }
+    
     
     //MARK:-
     //MARK:- General Methods

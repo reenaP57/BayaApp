@@ -181,3 +181,27 @@ let CFavoriteProjectProgress        = "favoriteProjectProgress"
 let CFavoriteProjectName            = "favoriteProjectName"
 let CIsVisit             = "isVisit"
 
+
+//MARK:- Screen Name
+
+let CHomeScreenName                =    "home_screen"
+let CTimelineScreenName            =    "timeline_screen"
+let CScheduleVisitScreenName       =    "schedule_visit_screen"
+let CProjectDetailScreenName       =    "project_details_screen"
+let CProjectListScreenName         =    "the_baya_projects"
+let CNotificationScreenName        =    "notification_screen"
+let CSettingScreenName             =    "settings_screen"
+let CMyProfileScreenName           =    "my_profile_screen"
+let CEditProfileScreenName         =    "edit_profile_screen"
+let CRateScreenName                =    "rate_screen"
+let CAppSupportScreenName          =    "app_support_screen"
+let CSubscribedProjectsScreenName  =    "subscribed_projects"
+let CVisitDetailScreenName         =    "visit_details_screen"
+let CLoginScreenName               =    "login_screen"
+let CAmeniriesScreenName           =    "amenities_screen"
+let CSignupScreenName              =    "signup_screen"
+let CForgotPasswordScreenName      =    "forgot_password_screen"
+
+
+
+

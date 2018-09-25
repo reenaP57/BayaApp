@@ -378,6 +378,7 @@
 		486FDCDE2119ADBC00EA0188 = {
 			isa = PBXGroup;
 			children = (
+				5C5325E3215A16D100172B91 /* BridgingHeader.h */,
 				486FDCE92119ADBC00EA0188 /* TheBayaApp */,
 				486FDCE82119ADBC00EA0188 /* Products */,
 				35635322AC54FD68A582E486 /* Pods */,
@@ -574,7 +575,6 @@
 				5C93C7242158D02600AFFAFD /* GoogleService-Info.plist */,
 				486FDD3D2119AEF400EA0188 /* Assets.xcassets */,
 				486FDD3E2119AEF400EA0188 /* Info.plist */,
-				5C5325E3215A16D100172B91 /* BridgingHeader.h */,
 			);
 			path = AppGeneralFiles;
 			sourceTree = "<group>";
@@ -1262,6 +1262,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
 				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1286,6 +1287,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
 				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

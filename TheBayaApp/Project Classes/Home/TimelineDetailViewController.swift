@@ -45,7 +45,7 @@ class TimelineDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
         self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
     }
     
@@ -180,7 +180,9 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         self.endDate = ""
         
         arrUpdateList.removeAll()
-        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+        if !isFromNotifition {
+            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+        }
         self.loadTimeLineListFromServer(true, startDate: "", endDate: "")
 
        // self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
@@ -653,7 +655,7 @@ extension TimelineDetailViewController {
                     
                     
                     if isFromNotification {
-                        if let index = self.arrProject.index(where: {$0["CProjectId"] as? Int == self.projectID}){
+                        if let index = self.arrProject.index(where: {$0["projectId"] as? Int == self.projectID}){
                             self.currentIndex = index
                             self.reloadTimelineList(index: self.currentIndex)
                         }
@@ -684,7 +686,10 @@ extension TimelineDetailViewController {
                     
                     if self.pageIndexForApi == 1{
                         self.arrUpdateList.removeAll()
-                        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                        
+                        if !self.isFromNotifition {
+                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                        }
                     }
                     
                     if let arrData = response![CJsonData] as? [[String : Any]]{

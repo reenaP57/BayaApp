@@ -45,6 +45,7 @@ class RateYoorVisitViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
+        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CRateScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -145,6 +146,9 @@ extension RateYoorVisitViewController {
                             visitDetail?.RefreshRatingVisit(visitId: self.visitId, rating : Int(self.vwRating.rating))
                             self.navigationController?.popViewController(animated: true)
                             
+                            break
+                        } else {
+                           self.navigationController?.popViewController(animated: true)
                             break
                         }
                     }
