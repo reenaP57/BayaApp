@@ -127,8 +127,13 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
 
             default : //Cancelled
                 
-                cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
-                
+                if dict.valueForDouble(key: "selectedTimeSlot") == 0 {
+                     cell.lblTimeMsg.text = "Your visit request has been cancelled."
+                } else {
+                     cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
+                }
+              
+              
                 _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
                 cell.btnRateVisit.isHidden = true
                 cell.vwRating.isHidden = true

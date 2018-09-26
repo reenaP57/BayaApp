@@ -35,7 +35,7 @@ class VerificationViewController: ParentViewController {
           _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
         }
         
-        txtCode.text = verifiyCode
+       // txtCode.text = verifiyCode
         
         if isEmailVerify {
             //...Verify Email

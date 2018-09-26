@@ -168,25 +168,33 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
         switch indexPath.row {
         case 0:
             //...Edit Profile
+            appDelegate.trackCustomEvent(buttonName: "Setting EditProfile")
+
             if  let editProfileVC = CStoryboardSetting.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
                 self.navigationController?.pushViewController(editProfileVC, animated: true)
             }
       
         case 1:
             //...Change Password
+            appDelegate.trackCustomEvent(buttonName: "Setting ChangePassword")
+
             if let changePwdVC = CStoryboardSetting.instantiateViewController(withIdentifier: "ChangePasswordViewController") as? ChangePasswordViewController {
                 self.navigationController?.pushViewController(changePwdVC, animated: true)
             }
      
         case 4,5,7:
             //...Terms & Conditions
+            
             if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
                
                 if indexPath.row == 4 {
+                    appDelegate.trackCustomEvent(buttonName: "Setting TermsCondition")
                     cmsVC.cmsEnum = .TermsCondition
                 } else if indexPath.row == 5 {
+                    appDelegate.trackCustomEvent(buttonName: "Setting PrivacyPolicy")
                     cmsVC.cmsEnum = .PrivacyPolicy
                 } else {
+                    appDelegate.trackCustomEvent(buttonName: "Setting AboutUs")
                     cmsVC.cmsEnum = .AboutUs
                 }
    
@@ -195,12 +203,15 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
         case 6:
             //...Support
+            appDelegate.trackCustomEvent(buttonName: "Setting Support")
+
             if let supportVC = CStoryboardSetting.instantiateViewController(withIdentifier: "SupportViewController") as? SupportViewController {
                 self.navigationController?.pushViewController(supportVC, animated: true)
             }
             
         case 8:
             //...Rate App
+            appDelegate.trackCustomEvent(buttonName: "Setting RateApp")
             self.openInSafari(strUrl: "www.google.com")
             break
            

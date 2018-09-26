@@ -422,9 +422,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func trackCustomEvent(buttonName : String) {
       
-        let tracker = GAI.sharedInstance().defaultTracker
-        
-        tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "Button Interaction", action: "\(buttonName) is clicked", label: "Button Click", value: nil).build() as [NSObject : AnyObject])
+//        let tracker = GAI.sharedInstance().defaultTracker
+//
+//        tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "Button Interaction", action: "\(buttonName) is clicked", label: "Button Click", value: nil).build() as [NSObject : AnyObject])
     }
     
     

@@ -42,7 +42,7 @@ class ResetPwdViewController: ParentViewController {
             _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
         }
         
-       txtCode.text = verifyCode
+      // txtCode.text = verifyCode
        strEmailMobile =  strEmailMobile.replacingOccurrences(of: "\"", with: "")
         
        lblNote.text = isEmail ? "\(CResetMessage) email address \([strEmailMobile]). Enter verification code in below." : "\(CResetMessage) mobile number \([strEmailMobile]). Enter verification code in below."
