@@ -156,11 +156,6 @@ class TimelineDetailViewController: ParentViewController {
             _ = btnProjectDetail.setConstraintConstant(16, edge: .trailing, ancestor: true)
         }
     }
-    
-    func refreshTimelineFromNotification (projectID : Int) {
-        self.projectID = projectID
-        self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
-    }
 }
 
 
@@ -181,14 +176,20 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         self.startDate = ""
         self.endDate = ""
         
-        arrUpdateList.removeAll()
+        self.strFilterStartDate = ""
+        self.strFilterEndDate = ""
         
+        arrUpdateList.removeAll()
+        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
         if !isFromNotifition {
-            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+            GCDMainThread.async {
+        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+//                self.tblUpdates.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
+            }
         }
-        self.loadTimeLineListFromServer(true, startDate: "", endDate: "")
+        
 
-       // self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+        self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
     }
     
 }
@@ -654,13 +655,20 @@ extension TimelineDetailViewController {
                     }
                     
                     self.vwNoProject.isHidden = self.arrProject.count != 0
-                    self.tblUpdates.reloadData()
+                    
+                    GCDMainThread.async {
+                        self.tblUpdates.reloadData()
+                    }
+                    
                     
                     
                     if isFromNotification {
                         if let index = self.arrProject.index(where: {$0["projectId"] as? Int == self.projectID}){
                             self.currentIndex = index
                             self.reloadTimelineList(index: self.currentIndex)
+                        }else{
+                            self.pageIndexForApi = 1
+                            self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                         }
                         
                     } else {
@@ -691,7 +699,8 @@ extension TimelineDetailViewController {
                         self.arrUpdateList.removeAll()
                         
                         if !self.isFromNotifition {
-                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+//                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                            self.tblUpdates.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
                         }
                     }
                     
@@ -700,8 +709,8 @@ extension TimelineDetailViewController {
                             self.pageIndexForApi += 1
                             self.arrUpdateList = self.arrUpdateList + arrData
                             self.lblNoUpdates.isHidden = true
-                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-                            
+//                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
+                            self.tblUpdates.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
                         }else{
                             
                             if self.pageIndexForApi == 1 {
