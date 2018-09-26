@@ -71,10 +71,6 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
             DispatchQueue.main.async {
                 let imageVC = BFRImageViewController(imageSource: [cell.imgVSlider.image!])
                 imageVC?.isUsingTransparentBackground = false
-                
-                let timelineDetailVC = self.viewController as? TimelineDetailViewController
-                timelineDetailVC?.isFromZoomImg = true
-                
                 self.viewController?.present(imageVC!, animated: true, completion: nil)
             }
         }

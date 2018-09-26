@@ -20,13 +20,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559577173.589964"
+            timestampString = "559639746.286761"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -36,13 +36,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559577173.5906"
+            timestampString = "559639746.289435"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "664"
-            endingLineNumber = "664"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "661"
+            endingLineNumber = "661"
+            landmarkName = "loadSubscribedProjectList(isRefresh:isFromNotification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -52,13 +52,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559577173.591302"
+            timestampString = "559639746.289965"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "reloadTimelineList(index:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -68,13 +68,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559577173.591904"
+            timestampString = "559639746.290399"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "668"
-            endingLineNumber = "668"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            startingLineNumber = "665"
+            endingLineNumber = "665"
+            landmarkName = "loadSubscribedProjectList(isRefresh:isFromNotification:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

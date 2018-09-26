@@ -33,7 +33,6 @@ class TimelineDetailViewController: ParentViewController {
     var strFilterEndDate = ""
     var projectID = 0
     var isFromNotifition = false
-    var isFromZoomImg = false
     
     var apiTask : URLSessionTask?
     var refreshControl : UIRefreshControl?
@@ -46,13 +45,7 @@ class TimelineDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
-        
-        if !isFromZoomImg {
-            self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
-        }
-        
-        appDelegate.loginUser?.projectBadge = 0
+        appDelegate.loginUser?.postBadge = 0
         CoreData.saveContext()
     }
     
@@ -83,6 +76,10 @@ class TimelineDetailViewController: ParentViewController {
         if IS_iPad {
             tblUpdates.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
         }
+        
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
+        self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
+        
     }
     
 
