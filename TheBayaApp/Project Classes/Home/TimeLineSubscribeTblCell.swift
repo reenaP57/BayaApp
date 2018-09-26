@@ -24,19 +24,22 @@ class TimeLineSubscribeTblCell: UITableViewCell {
     var arrProject = [[String : AnyObject]]()
     var delegate : subscribeProjectListDelegate?
     var currentIndex = 0
+    var favProjectIndexPath : IndexPath!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
     }
 
     func loadProjectList(arr : [[String : AnyObject]], selectedIndex : Int){
         arrProject = arr
         currentIndex = selectedIndex
+        arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
+
+        // To get Fav. project...
+        if let index = arrProject.index(where: {$0[CIsFavorite] as? Int  == 1}){
+            favProjectIndexPath = IndexPath(item: index, section: 0)
+        }
+        
         
         GCDMainThread.async {
             if self.currentIndex == 0{
@@ -95,36 +98,53 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             cell.lblLocation.text = dict.valueForString(key: "shortLocation")
             cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
             cell.lblPercentage.text = " \(dict.valueForInt(key: CProjectProgress) ?? 0)% "
-            
-            
-            cell.btnSubscribe.isSelected = dict.valueForInt(key: CIsFavorite) == 0 ? false : true
             cell.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ?  true : false
             
+//            cell.btnSubscribe.isSelected = dict.valueForInt(key: CIsFavorite) == 0 ? false : true
+            cell.btnSubscribe.isSelected = indexPath == favProjectIndexPath
             
             cell.btnSubscribe.touchUpInside { (sender) in
-               
                 MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine subscribe")
+                var isFavType = 0
+                if !cell.btnSubscribe.isSelected{
+                    isFavType = 1
+                }
                 
-                cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
-                APIRequest.shared().favouriteSubcribedProject(dict.valueForInt(key: CProjectId), type: sender.isSelected ? 1 : 0, completion: { (response, error) in
+                APIRequest.shared().favouriteSubcribedProject(dict.valueForInt(key: CProjectId), type: isFavType, completion: { (response, error) in
                     
                     if response != nil && error == nil {
+                    
+                        cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                         
                         let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
                         
-                        dict[CIsFavorite] = data.valueForInt(key: CIsFavorite) as AnyObject
-                        self.arrProject[indexPath.row] = dict
-                        self.collSubscribe.reloadItems(at: [indexPath])
-                        
-                        if data.valueForInt(key: CIsFavorite) == 1{
-                            appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
-                            appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
-                        } else {
-                            appDelegate.loginUser?.project_name = ""
-                            appDelegate.loginUser?.projectProgress = 0
+                        // To get previous Fav. project...
+                        if let index = self.arrProject.index(where: {$0[CIsFavorite] as? Int  == 1}){
+                         var dicPreviousProject = self.arrProject[index]
+                            dicPreviousProject[CIsFavorite] = 0 as AnyObject
+                            self.arrProject[index] = dicPreviousProject
+                            self.collSubscribe.reloadData()
                         }
                         
-                        CoreData.saveContext()
+                        self.favProjectIndexPath = nil
+                        if sender.isSelected{
+                            dict[CIsFavorite] = data.valueForInt(key: CIsFavorite) as AnyObject
+                            self.arrProject[indexPath.row] = dict
+                            self.favProjectIndexPath = indexPath
+                            self.collSubscribe.reloadData()
+                            
+                            if data.valueForInt(key: CIsFavorite) == 1{
+                                appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
+                                appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
+                            } else {
+                                appDelegate.loginUser?.project_name = ""
+                                appDelegate.loginUser?.projectProgress = 0
+                            }
+                            
+                            CoreData.saveContext()
+                        }
+                        
+                       
                     }
                 })
             }
@@ -160,7 +180,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 
                 if dict.valueForInt(key: CIsVisit) == 0 {
                     cell.btnScheduleVisit.isHidden = true
-                    
                     _ = cell.btnProjectDetail.setConstraintConstant(cell.btnScheduleVisit.CViewWidth - 20/2, edge: .trailing, ancestor: true)
                 } else {
                     cell.btnScheduleVisit.isHidden = false
@@ -178,9 +197,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
                 
                 cell.btnProjectDetail.touchUpInside { (sender) in
-                    
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine ProjectDetail")
-
                     if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
                         projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
                         self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)
@@ -217,6 +234,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        print("scrollViewWillEndDragging ======== ")
         
         let pageWidth = IS_iPad ? CScreenWidth * 500/768 : CScreenWidth - space
         
@@ -239,15 +257,11 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         _ = Float(targetContentOffset.pointee.x) == currentOffset
         let index : Int = Int(newTargetOffset / Float(pageWidth))
         
-        if index == 0{
-            
-            UIView.animate(withDuration: 0.3) {
-                scrollView.setContentOffset(.zero, animated: true)
-                self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
-            }
-            
+        if index <= 0{
+            scrollView.setContentOffset(.zero, animated: true)
+            self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
         }else {
-            UIView.animate(withDuration: 0.3) {
+            if index <= arrProject.count - 1{
                 scrollView.setContentOffset(CGPoint(x:CGFloat(index) * CScreenWidth, y: 0), animated: true)
                 self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .left, animated: true)
             }
@@ -255,7 +269,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         }
 
         GCDMainThread.asyncAfter(deadline: .now() + 0.3) {
-            if self.currentIndex != Int(index) && Int(index) >= 0 {
+            if self.currentIndex != Int(index) && Int(index) >= 0 && index <= self.arrProject.count - 1{
                 self.currentIndex = Int(index)
                 self.delegate?.reloadTimelineList(index: Int(index))
             }

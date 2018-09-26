@@ -150,7 +150,6 @@
 		5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */; };
 		5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */; };
 		5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */; };
-		5CEE6A4B212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE6A4A212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift */; };
 		5CEE6A4D212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */; };
 		5CF1C344214D0F3700F60F26 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1C343214D0F3700F60F26 /* CustomAlertView.swift */; };
 		5CF1C346214D0F4000F60F26 /* CustomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF1C345214D0F4000F60F26 /* CustomAlertView.xib */; };
@@ -319,7 +318,6 @@
 		5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIFont.swift; sourceTree = "<group>"; };
 		5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIInputControllerValidation.swift; sourceTree = "<group>"; };
-		5CEE6A4A212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineImgZoomViewController_ipad.swift; sourceTree = "<group>"; };
 		5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineZoomImgCollCell_ipad.swift; sourceTree = "<group>"; };
 		5CF1C343214D0F3700F60F26 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		5CF1C345214D0F4000F60F26 /* CustomAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertView.xib; sourceTree = "<group>"; };
@@ -682,7 +680,6 @@
 				5CFCAAAE212C24C500717C10 /* Main_ipad.storyboard */,
 				5CD763F8211D51EA00C267AB /* HomeViewController.swift */,
 				5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */,
-				5CEE6A4A212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift */,
 				5CD76400211DC07E00C267AB /* ProjectViewController.swift */,
 				5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */,
 				5C475D79212ADFA800125A19 /* Zoom3DImageViewController.swift */,
@@ -975,7 +972,6 @@
 				5CF34B9F212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift in Sources */,
 				5C8D5B9221258AFA0080193A /* AmmenitiesCollCell.swift in Sources */,
 				486FDD4C2119AEF500EA0188 /* MIPopUpOverlay.swift in Sources */,
-				5CEE6A4B212D8A1B0066017A /* TimelineImgZoomViewController_ipad.swift in Sources */,
 				5C1E614E2122C22C0090308D /* NotificationTblCell.swift in Sources */,
 				5CF50BB02121B019002FDAB8 /* FilterView.swift in Sources */,
 				486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */,
