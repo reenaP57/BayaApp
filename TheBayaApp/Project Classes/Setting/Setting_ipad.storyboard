@@ -29,31 +29,31 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XzS-s2-wT2">
-                                <rect key="frame" x="0.0" y="20" width="768" height="955"/>
+                                <rect key="frame" x="150" y="20" width="468" height="955"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingTblCell" rowHeight="60" id="WV1-MY-6ZR" customClass="SettingTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="768" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingTblCell" rowHeight="60" id="WV1-MY-6ZR" customClass="SettingTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="468" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WV1-MY-6ZR" id="bE0-jt-TyF">
-                                            <rect key="frame" x="0.0" y="0.0" width="768" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="468" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMD-eM-fDs" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="266" y="5" width="629" height="50"/>
+                                                    <rect key="frame" x="0.0" y="5" width="468" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te4-RX-zQh" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="5" width="534" height="40"/>
+                                                            <rect key="frame" x="16" y="5" width="372" height="40"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" tag="103" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="n0n-IE-VIX">
-                                                            <rect key="frame" x="606" y="0.0" width="8" height="50"/>
+                                                            <rect key="frame" x="445" y="0.0" width="8" height="50"/>
                                                         </imageView>
                                                         <switch opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-y6-Wtx">
-                                                            <rect key="frame" x="565" y="9" width="51" height="31"/>
+                                                            <rect key="frame" x="404" y="9" width="51" height="31"/>
                                                         </switch>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -62,7 +62,7 @@
                                                         <constraint firstItem="75Z-y6-Wtx" firstAttribute="leading" secondItem="te4-RX-zQh" secondAttribute="trailing" constant="16" id="IAg-tl-lmb"/>
                                                         <constraint firstItem="te4-RX-zQh" firstAttribute="top" secondItem="WMD-eM-fDs" secondAttribute="top" constant="5" id="Row-lE-Tkj"/>
                                                         <constraint firstItem="n0n-IE-VIX" firstAttribute="top" secondItem="WMD-eM-fDs" secondAttribute="top" id="W9i-bW-FQy"/>
-                                                        <constraint firstItem="te4-RX-zQh" firstAttribute="leading" secondItem="WMD-eM-fDs" secondAttribute="leading" constant="15" id="d5d-2J-GFd"/>
+                                                        <constraint firstItem="te4-RX-zQh" firstAttribute="leading" secondItem="WMD-eM-fDs" secondAttribute="leading" constant="16" id="d5d-2J-GFd"/>
                                                         <constraint firstAttribute="trailing" secondItem="n0n-IE-VIX" secondAttribute="trailing" constant="15" id="erm-NP-O7A"/>
                                                         <constraint firstAttribute="trailing" secondItem="75Z-y6-Wtx" secondAttribute="trailing" constant="15" id="lFv-zR-C3P"/>
                                                         <constraint firstItem="75Z-y6-Wtx" firstAttribute="centerY" secondItem="WMD-eM-fDs" secondAttribute="centerY" id="nx0-kv-HGV"/>
@@ -78,7 +78,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="WMD-eM-fDs" firstAttribute="top" secondItem="bE0-jt-TyF" secondAttribute="top" constant="5" id="43r-jH-ayS"/>
-                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="width" secondItem="bE0-jt-TyF" secondAttribute="width" multiplier="0.541667" id="Irf-x6-Pbz"/>
+                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="width" secondItem="bE0-jt-TyF" secondAttribute="width" multiplier="0.541667" constant="214.499844" id="Irf-x6-Pbz"/>
                                                 <constraint firstItem="WMD-eM-fDs" firstAttribute="centerX" secondItem="bE0-jt-TyF" secondAttribute="centerX" id="JiJ-Rc-fa3"/>
                                                 <constraint firstAttribute="bottom" secondItem="WMD-eM-fDs" secondAttribute="bottom" constant="5" id="Xv5-7I-KeB"/>
                                             </constraints>
@@ -103,8 +103,8 @@
                             <constraint firstItem="YdU-Fw-ReR" firstAttribute="bottom" secondItem="AOl-pg-prH" secondAttribute="bottom" id="PJ9-bz-XTt"/>
                             <constraint firstItem="AOl-pg-prH" firstAttribute="leading" secondItem="YdU-Fw-ReR" secondAttribute="leading" id="SlF-oK-w6B"/>
                             <constraint firstItem="YdU-Fw-ReR" firstAttribute="bottom" secondItem="XzS-s2-wT2" secondAttribute="bottom" constant="49" id="aes-2R-0kw"/>
-                            <constraint firstItem="XzS-s2-wT2" firstAttribute="leading" secondItem="YdU-Fw-ReR" secondAttribute="leading" id="do5-dW-8kN"/>
-                            <constraint firstItem="YdU-Fw-ReR" firstAttribute="trailing" secondItem="XzS-s2-wT2" secondAttribute="trailing" id="lVj-np-pg6"/>
+                            <constraint firstItem="XzS-s2-wT2" firstAttribute="leading" secondItem="YdU-Fw-ReR" secondAttribute="leading" constant="150" id="do5-dW-8kN"/>
+                            <constraint firstItem="YdU-Fw-ReR" firstAttribute="trailing" secondItem="XzS-s2-wT2" secondAttribute="trailing" constant="150" id="lVj-np-pg6"/>
                             <constraint firstItem="YdU-Fw-ReR" firstAttribute="trailing" secondItem="AOl-pg-prH" secondAttribute="trailing" id="vwH-yX-9le"/>
                             <constraint firstItem="XzS-s2-wT2" firstAttribute="top" secondItem="YdU-Fw-ReR" secondAttribute="top" id="z87-PD-xpI"/>
                         </constraints>
