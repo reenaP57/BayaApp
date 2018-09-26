@@ -66,7 +66,7 @@ extension SeeAllAmenitiesViewController : UICollectionViewDelegateFlowLayout, UI
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize  {
-        return CGSize(width: IS_iPad ?(CScreenWidth/4 - 50) : (CScreenWidth/3 - 20), height: IS_iPad ? CScreenWidth * (140/CScreenWidth) :  CScreenWidth * (100/CScreenWidth))
+        return CGSize(width: IS_iPad ?(CScreenWidth/4 - 50) : (CScreenWidth/3 - 20), height: IS_iPad ? CScreenWidth * (140/CScreenWidth) :  CScreenWidth * (120/CScreenWidth))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

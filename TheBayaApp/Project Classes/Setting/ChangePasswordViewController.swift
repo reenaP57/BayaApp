@@ -118,6 +118,11 @@ extension ChangePasswordViewController {
                         CUserDefaults.set(true, forKey: UserDefaultRememberMe)
                         CUserDefaults.synchronize()
                     }
+                    
+                    if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
+                        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
+                    }
+                    
                     appDelegate.initHomeViewController()
                     
                 } else {

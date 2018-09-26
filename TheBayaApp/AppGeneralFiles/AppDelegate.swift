@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 //        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
 //            print("User Info :",userInfo)
 //        }
+
         
         self.initRootViewController()
         self.loadCountryList()
@@ -106,6 +107,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         return true
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        
+        if IS_iPad {
+            if self.topViewController() is ProjectDetailViewController {
+                self.hideTabBar()
+                appDelegate.tabbarView?.CViewSetHeight(height: 49.0)
+            } else {
+                GCDMainThread.async {
+                    appDelegate.tabbarView?.frame = CGRect(x: 0, y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0), width: CScreenWidth, height: 49.0)
+                }
+            }
+        }
     }
     
     

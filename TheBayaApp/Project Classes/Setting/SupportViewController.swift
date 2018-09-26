@@ -164,7 +164,7 @@ extension SupportViewController {
                     "iPhone" : 1,
                     "platform" : "IOS",
                     "deviceVersion" : UIDevice.current.systemVersion,
-                    "deviceOS" : UIDevice.current.systemVersion,
+                    "deviceOS" : UIDevice.current.model,
                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String] as [String : AnyObject]
         
         

@@ -10,6 +10,7 @@ import UIKit
 import CTPanoramaView
 import BFRImageViewer
 import AVKit
+import CoreTelephony
 
 class ProjectDetailViewController: ParentViewController {
 
@@ -66,6 +67,7 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var btnSeeAllAdvantages : UIButton!
     @IBOutlet fileprivate weak var btnScheduleVisit : UIButton!
     @IBOutlet fileprivate weak var btnProjectBrochure : UIButton!
+    @IBOutlet fileprivate weak var btnCall : UIButton!
 
     @IBOutlet fileprivate weak var lblDisclaimer : UILabel!
     @IBOutlet fileprivate weak var scrollVw : UIScrollView!
@@ -129,7 +131,7 @@ class ProjectDetailViewController: ParentViewController {
             layout.delegate = self
         }
         
-        tblSpecification.estimatedRowHeight = 32.0
+        tblSpecification.estimatedRowHeight = IS_iPad ? 45.0 : 32.0
         tblSpecification.rowHeight = UITableViewAutomaticDimension
         
         vwSoldOut.layer.borderWidth = 1
@@ -138,12 +140,31 @@ class ProjectDetailViewController: ParentViewController {
         sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
         sliderPercentage.setThumbImage(UIImage(named: "slider"), for: .normal)
         
+        if IS_iPad {
+            self.checkCallingFeaturesForIpad()
+        }
+        
         self.loadProjectDetailFromServer()
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .all
     }
+    
+    func checkCallingFeaturesForIpad() {
+        
+        //...Check device support calling features
+        
+        if UIApplication.shared.canOpenURL(NSURL(string: "tel://")! as URL) {
+            if let mnc = CTTelephonyNetworkInfo().subscriberCellularProvider?.mobileNetworkCode, !mnc.isEmpty {
+            } else {
+                self.btnCall.isHidden = true
+            }
+        } else {
+            self.btnCall.isHidden = true
+        }
+    }
+    
     
     func loadProjectDetailFromServer () {
         
@@ -386,7 +407,7 @@ class ProjectDetailViewController: ParentViewController {
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
-            self.cnstHeightTblSpecification.constant = IS_iPad ? self.tblSpecification.contentSize.height + 20 : self.tblSpecification.contentSize.height
+            self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height
             
             if self.arrCollLocationHeight.count > 0 {
                 self.cnstHeightCollLocation.constant = self.arrCollLocationHeight.max()!
@@ -437,6 +458,10 @@ extension ProjectDetailViewController {
         self.zoomImage(imgVLocation.image)
     }
     
+    @IBAction func btnLinkClicked (sender : UIButton) {
+        self.openInSafari(strUrl: dictDetail.valueForString(key: "website"))
+    }
+    
     @IBAction func btnShareClicked (sender : UIButton) {
         
     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Share")
@@ -454,12 +479,16 @@ extension ProjectDetailViewController {
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
-             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail ScheduleVisit")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail ScheduleVisit")
         
-        if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
-            scheduleVisitVC.projectId = dictDetail.valueForInt(key: CProjectId)!
-            scheduleVisitVC.projectName = dictDetail.valueForString(key: CProjectName)
-            self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+        btnScheduleVisit.alpha = 0.8
+        GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
+            self.btnScheduleVisit.alpha = 1.0
+            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                scheduleVisitVC.projectId = self.dictDetail.valueForInt(key: CProjectId)!
+                scheduleVisitVC.projectName = self.dictDetail.valueForString(key: CProjectName)
+                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+            }
         }
     }
     
@@ -467,11 +496,15 @@ extension ProjectDetailViewController {
         
         MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Brochure")
         
-        APIRequest.shared().projectBrochure(projectId: self.projectID) { (response, error) in
-            
-            if response != nil && error == nil {
+        btnProjectBrochure.alpha = 0.8
+        GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
+            self.btnProjectBrochure.alpha = 1.0
+            APIRequest.shared().projectBrochure(projectId: self.projectID) { (response, error) in
                 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                if response != nil && error == nil {
+                    
+                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                }
             }
         }
     }
