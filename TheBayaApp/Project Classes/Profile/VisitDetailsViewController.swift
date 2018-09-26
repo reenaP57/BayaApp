@@ -61,7 +61,6 @@ class VisitDetailsViewController: ParentViewController {
         
         print("arrVisitList : ",self.arrVisitList)
         
-        
         for (index, _) in self.arrVisitList.enumerated() {
             
             let dict = self.arrVisitList[index]
@@ -102,28 +101,33 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear
             
+            cell.btnRateVisit.isHidden = true
+            cell.vwRating.isHidden = true
+            cell.vwTagLbl.isHidden = true
+            cell.imgVTickMark.hide(byWidth: true)
             
             switch dict.valueForInt(key: "visitStatus") {
             case CRequested :
                 cell.lblTimeMsg.text = CMessageRequested
-                _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
-                cell.btnRateVisit.isHidden = true
-                cell.vwRating.isHidden = true
-             
+                cell.vwTagLbl.isHidden = false
+                cell.lblTag.text = "UNCONFIRMED"
+                cell.vwTagLbl.backgroundColor = ColorGradient2Background
+     
             case CScheduled:
                 cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
-                
-                _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
-                cell.btnRateVisit.isHidden = true
-                cell.vwRating.isHidden = true
-                
+                cell.vwTagLbl.isHidden = false
+                cell.lblTag.text = "CONFIRMED"
+                cell.vwTagLbl.backgroundColor = ColorGreenSelected
 
             case CCompleted:
                 cell.lblTimeMsg.text = "\(CMessageCompleted) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
                 
                 cell.btnRateVisit.isHidden = dict.valueForInt(key: "ratings") != 0
                 cell.vwRating.isHidden = dict.valueForInt(key: "ratings") == 0
-                
+                cell.btnRateVisit.isHidden = false
+                cell.vwRating.isHidden = false
+                cell.imgVTickMark.hide(byWidth: false)
+
             case CCancel :
                 
                 if dict.valueForDouble(key: "selectedTimeSlot") == 0 {
@@ -132,19 +136,18 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                     cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
                 }
                 
-                
-                _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
-                cell.btnRateVisit.isHidden = true
-                cell.vwRating.isHidden = true
-                
+                cell.vwTagLbl.isHidden = false
+                cell.lblTag.text = "CANCELLED"
+                cell.vwTagLbl.backgroundColor = CRGB(r: 255, g: 69, b: 77)
+
                 
             default : //Reschedule
                 
                 cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
                 
-                _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
-                cell.btnRateVisit.isHidden = true
-                cell.vwRating.isHidden = true
+                cell.vwTagLbl.isHidden = false
+                cell.lblTag.text = "CONFIRMED"
+                cell.vwTagLbl.backgroundColor = ColorGreenSelected
                 
                 break
             }

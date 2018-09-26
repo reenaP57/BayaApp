@@ -145,8 +145,15 @@ extension RateYoorVisitViewController {
                             let visitDetail = vwController as? VisitDetailsViewController
                             visitDetail?.RefreshRatingVisit(visitId: self.visitId, rating : Int(self.vwRating.rating))
                             self.navigationController?.popViewController(animated: true)
-                            
                             break
+                            
+                        } else if vwController.isKind(of: NotificationViewController .classForCoder()){
+                            
+                            let notificationVC = vwController as? NotificationViewController
+                            notificationVC?.isFromOtherScreen = true
+                            self.navigationController?.popViewController(animated: true)
+                            break
+                            
                         } else {
                            self.navigationController?.popViewController(animated: true)
                             break

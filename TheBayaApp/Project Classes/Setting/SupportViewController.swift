@@ -32,6 +32,7 @@ class SupportViewController: ParentViewController {
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        appDelegate.hideTabBar()
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CAppSupportScreenName)
     }
     
@@ -119,7 +120,7 @@ extension SupportViewController {
     }
     
     func setUploadedImg(img : UIImage) {
-        imgVUpload.contentMode = .scaleToFill
+        imgVUpload.contentMode = .scaleAspectFit
         imgVUpload.image = img
         self.imgData = UIImageJPEGRepresentation(img, 0.5)!
     }

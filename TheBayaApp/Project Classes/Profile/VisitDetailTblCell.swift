@@ -15,6 +15,9 @@ class VisitDetailTblCell: UITableViewCell {
     @IBOutlet weak var imgVProject : UIImageView!
     @IBOutlet weak var btnRateVisit : UIButton!
     @IBOutlet weak var vwRating : FloatRatingView!
+    @IBOutlet weak var imgVTickMark : UIImageView!
+    @IBOutlet weak var vwTagLbl : UIView!
+    @IBOutlet weak var lblTag : UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
