@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		483460FB215B808F008FC320 /* ImageZoomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483460F9215B808E008FC320 /* ImageZoomView.swift */; };
+		483460FC215B808F008FC320 /* ImageZoomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483460FA215B808F008FC320 /* ImageZoomView.xib */; };
+		483460FF215B80A7008FC320 /* ImageZoomCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483460FD215B80A6008FC320 /* ImageZoomCollCell.swift */; };
+		48346100215B80A7008FC320 /* ImageZoomCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 483460FE215B80A6008FC320 /* ImageZoomCollCell.xib */; };
 		4839F448214A9A2E00E5A325 /* ExtensionDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4839F447214A9A2E00E5A325 /* ExtensionDateFormatter.swift */; };
 		483D21682159F700008EA16B /* TimeLineUpdateGIFTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 483D21672159F700008EA16B /* TimeLineUpdateGIFTblCell.swift */; };
 		486F3BD22159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */; };
@@ -168,6 +172,10 @@
 
 /* Begin PBXFileReference section */
 		45DA2FFAD3BD2F8FB55C31C8 /* Pods-TheBayaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheBayaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TheBayaApp/Pods-TheBayaApp.debug.xcconfig"; sourceTree = "<group>"; };
+		483460F9215B808E008FC320 /* ImageZoomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageZoomView.swift; sourceTree = "<group>"; };
+		483460FA215B808F008FC320 /* ImageZoomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageZoomView.xib; sourceTree = "<group>"; };
+		483460FD215B80A6008FC320 /* ImageZoomCollCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageZoomCollCell.swift; sourceTree = "<group>"; };
+		483460FE215B80A6008FC320 /* ImageZoomCollCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageZoomCollCell.xib; sourceTree = "<group>"; };
 		4839F447214A9A2E00E5A325 /* ExtensionDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDateFormatter.swift; sourceTree = "<group>"; };
 		483D21672159F700008EA16B /* TimeLineUpdateGIFTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateGIFTblCell.swift; sourceTree = "<group>"; };
 		486F3BD12159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlWithoutImageTblCell_ipad.swift; sourceTree = "<group>"; };
@@ -352,6 +360,17 @@
 				8A2BFE689800EFF0A5FC7C8B /* Pods-TheBayaApp.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		48346101215B8154008FC320 /* MIZoomImage */ = {
+			isa = PBXGroup;
+			children = (
+				483460FD215B80A6008FC320 /* ImageZoomCollCell.swift */,
+				483460FE215B80A6008FC320 /* ImageZoomCollCell.xib */,
+				483460F9215B808E008FC320 /* ImageZoomView.swift */,
+				483460FA215B808F008FC320 /* ImageZoomView.xib */,
+			);
+			path = MIZoomImage;
 			sourceTree = "<group>";
 		};
 		486FDCDE2119ADBC00EA0188 = {
@@ -600,6 +619,7 @@
 		5C189C09212538F5001B72C5 /* Custom class */ = {
 			isa = PBXGroup;
 			children = (
+				48346101215B8154008FC320 /* MIZoomImage */,
 				5C189C0A21253911001B72C5 /* FloatRatingView */,
 				5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */,
 				5C93C7222158AD6600AFFAFD /* MIFCM.swift */,
@@ -840,11 +860,13 @@
 				5CF50BB22121B024002FDAB8 /* FilterView.xib in Resources */,
 				487E4E6D211C4CD8000CB32F /* AvenirLTStd-Roman.otf in Resources */,
 				487E4E64211C4CD8000CB32F /* AvenirLTStd-BlackOblique.otf in Resources */,
+				48346100215B80A7008FC320 /* ImageZoomCollCell.xib in Resources */,
 				487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */,
 				486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */,
 				5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */,
 				487E4E63211C4CD8000CB32F /* AvenirLTStd-Black.otf in Resources */,
 				487E4E69211C4CD8000CB32F /* AvenirLTStd-Light.otf in Resources */,
+				483460FC215B808F008FC320 /* ImageZoomView.xib in Resources */,
 				5C14CA83211C48D300B06E29 /* Setting.storyboard in Resources */,
 				5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */,
 				5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */,
@@ -1023,7 +1045,9 @@
 				5CF1C344214D0F3700F60F26 /* CustomAlertView.swift in Sources */,
 				486FDD472119AEF500EA0188 /* ApplicationConfig.swift in Sources */,
 				486FDD502119AEF500EA0188 /* CoreData.swift in Sources */,
+				483460FF215B80A7008FC320 /* ImageZoomCollCell.swift in Sources */,
 				486FDD5F2119AEF500EA0188 /* ExtensionUIColor.swift in Sources */,
+				483460FB215B808F008FC320 /* ImageZoomView.swift in Sources */,
 				486FDD532119AEF500EA0188 /* FetchResultController+Extension.swift in Sources */,
 				5CF34BA5212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift in Sources */,
 				5CD763FB211D62B200C267AB /* HomeCollCell.swift in Sources */,

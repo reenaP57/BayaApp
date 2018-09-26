@@ -20,7 +20,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559639746.286761"
+            timestampString = "559646951.395745"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "255"
@@ -36,7 +36,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559639746.289435"
+            timestampString = "559646951.3959"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "661"
@@ -52,12 +52,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559639746.289965"
+            timestampString = "559646951.395986"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
-            landmarkName = "reloadTimelineList(index:)"
+            startingLineNumber = "665"
+            endingLineNumber = "665"
+            landmarkName = "loadSubscribedProjectList(isRefresh:isFromNotification:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -67,13 +67,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TheBayaApp/Project Classes/Home/TimelineDetailViewController.swift"
-            timestampString = "559639746.290399"
+            filePath = "TheBayaApp/Project Classes/Custom class/MIZoomImage/ImageZoomView.swift"
+            timestampString = "559646951.396066"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "665"
-            endingLineNumber = "665"
-            landmarkName = "loadSubscribedProjectList(isRefresh:isFromNotification:)"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "showImage(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TheBayaApp/Project Classes/Custom class/MIZoomImage/ImageZoomView.swift"
+            timestampString = "559646951.396138"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "showImage(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

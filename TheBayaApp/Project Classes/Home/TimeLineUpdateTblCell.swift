@@ -68,11 +68,7 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         
         if cell.imgVSlider.image != nil
         {
-            DispatchQueue.main.async {
-                let imageVC = BFRImageViewController(imageSource: [cell.imgVSlider.image!])
-                imageVC?.isUsingTransparentBackground = false
-                self.viewController?.present(imageVC!, animated: true, completion: nil)
-            }
+            self.zoomImage()
         }
     }
     
@@ -89,4 +85,15 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
 //        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
 //        pageControlSlider.currentPage = Int(page)
 //    }
+    
+    func zoomImage(){
+        if let zoomView = ImageZoomView.initImageZoomView() {
+            appDelegate.window.addSubview(zoomView)
+            zoomView.showImage(arrImg)
+            zoomView.CViewSetY(y: CScreenHeight)
+            UIView.animate(withDuration: 0.3) {
+                zoomView.CViewSetY(y: 0)
+            }
+        }
+    }
 }

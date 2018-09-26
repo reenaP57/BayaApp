@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="I3k-X4-o74" customClass="ImageZoomView" customModule="TheBayaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" prefetchingEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7rj-j0-Ukn">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tZ3-xK-yWy">
+                        <size key="itemSize" width="50" height="667"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="I3k-X4-o74" id="e6D-f0-ET8"/>
+                        <outlet property="delegate" destination="I3k-X4-o74" id="Bhx-Ey-3JA"/>
+                    </connections>
+                </collectionView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hQ-QK-TzH">
+                    <rect key="frame" x="20" y="55" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="9uS-r4-c0z"/>
+                        <constraint firstAttribute="width" constant="50" id="qmi-v1-ZE4"/>
+                    </constraints>
+                    <state key="normal" image="ic_black_close">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="btnCancelCLK:" destination="I3k-X4-o74" eventType="touchUpInside" id="jNn-Pe-3bW"/>
+                    </connections>
+                </button>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="E2K-fp-GOU" customClass="MIGenericPageControlView" customModule="TheBayaApp" customModuleProvider="target">
+                    <rect key="frame" x="168" y="617" width="39" height="37"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="image" keyPath="currentPageImage" value="page_select"/>
+                        <userDefinedRuntimeAttribute type="image" keyPath="otherPagesImage" value="page_unselect"/>
+                    </userDefinedRuntimeAttributes>
+                </pageControl>
+            </subviews>
+            <color key="backgroundColor" red="0.87450980389999999" green="0.90980392160000001" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="5hQ-QK-TzH" firstAttribute="leading" secondItem="gUR-LR-HUu" secondAttribute="leading" constant="20" id="ELX-fw-Kaq"/>
+                <constraint firstItem="7rj-j0-Ukn" firstAttribute="leading" secondItem="gUR-LR-HUu" secondAttribute="leading" id="YNL-hn-eWY"/>
+                <constraint firstItem="gUR-LR-HUu" firstAttribute="bottom" secondItem="E2K-fp-GOU" secondAttribute="bottom" constant="13" id="atZ-Vt-EWQ"/>
+                <constraint firstItem="5hQ-QK-TzH" firstAttribute="top" secondItem="gUR-LR-HUu" secondAttribute="top" constant="35" id="kif-wF-tkt"/>
+                <constraint firstItem="E2K-fp-GOU" firstAttribute="centerX" secondItem="I3k-X4-o74" secondAttribute="centerX" id="mOI-Is-k90"/>
+                <constraint firstItem="7rj-j0-Ukn" firstAttribute="trailing" secondItem="gUR-LR-HUu" secondAttribute="trailing" id="oAG-Da-p68"/>
+                <constraint firstItem="7rj-j0-Ukn" firstAttribute="top" secondItem="I3k-X4-o74" secondAttribute="top" id="vME-IC-EqR"/>
+                <constraint firstItem="7rj-j0-Ukn" firstAttribute="bottom" secondItem="gUR-LR-HUu" secondAttribute="bottom" id="wfw-TI-V48"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="gUR-LR-HUu"/>
+            <connections>
+                <outlet property="btnCancel" destination="5hQ-QK-TzH" id="o4C-uh-sAh"/>
+                <outlet property="clImage" destination="7rj-j0-Ukn" id="97x-Ed-M5I"/>
+                <outlet property="pageController" destination="E2K-fp-GOU" id="5JP-gd-RIC"/>
+            </connections>
+            <point key="canvasLocation" x="238" y="-447"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_black_close" width="26" height="26"/>
+        <image name="page_select" width="11" height="2"/>
+        <image name="page_unselect" width="11" height="2"/>
+    </resources>
+</document>
