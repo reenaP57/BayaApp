@@ -45,7 +45,7 @@ class RateYoorVisitViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CRateScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CRateScreenName)
     }
     
     override func didReceiveMemoryWarning() {

@@ -33,13 +33,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Fabric.with([Crashlytics.self])
 
         FirebaseApp.configure()
-        self.configureGoogleAnalytics()
+        MIGoogleAnalytics.shared().configureGoogleAnalytics()
         
         application.registerForRemoteNotifications()
-        requestNotificationAuthorization(application: application)
-        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
-            print("User Info :",userInfo)
-        }
+        MIFCM.shared().requestNotificationAuthorization(application: application)
+//        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
+//            print("User Info :",userInfo)
+//        }
         
         self.initRootViewController()
         self.loadCountryList()
@@ -47,19 +47,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
 
-    func requestNotificationAuthorization(application: UIApplication) {
-        if #available(iOS 10.0, *) {
-            UNUserNotificationCenter.current().delegate = self
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(options: authOptions, completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-    }
     
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
         if let refreshedToken = InstanceID.instanceID().token() {
             print("InstanceID token: \(refreshedToken)")
             CUserDefaults.set(refreshedToken, forKey: UserDefaultFCMToken)
@@ -70,194 +61,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
                      fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         
-        print(userInfo)
-      
-        let notification = userInfo as? [String : AnyObject]
-        
-        var message = ""
-        var projectName = ""
-        
-        if let dataDic =  notification!["aps"] as? [String : Any] {
-            
-            if let key = dataDic["alert"] as? [String : Any] {
-                
-                if let body = key["body"] as? String {
-                    message = body
-                }
-                
-                if let title = key["title"] as? String {
-                    projectName = title
-                }
-            }
-        }
-        
-        
-        if let notifyType = notification?.valueForInt(key: "gcm.notification.notifyType") {
-            
-          switch notifyType {
-                
-            case NotificationAdmin :
-            
-                if let notifyID = notification?.valueForInt(key: "gcm.notification.adminNotifyId") {
-                    self.getPushNotifyCountForAdminTypeNotification(adminNotifyID: notifyID)
-                }
-                
-                if application.applicationState == .inactive {
-                    
-                    self.tabbarView?.btnNotification.isSelected = false
-                    self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
-                    
-                } else {
-                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-                        
-                        if let topViewController = self.topViewController() {
-                            
-                            if topViewController is NotificationViewController {
-                                
-                                let notificationVC = topViewController as! NotificationViewController
-                                notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
-                            } else {
-                                self.tabbarView?.btnNotification.isSelected = false
-                                self.tabbarView?.btnTabClicked(sender: (self.tabbarView?.btnNotification)!)
-                            }
-                        }
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-                    })
-               }
-            
-            
-            case NotificationNewProject, NotificationProjectComplete :
-                
-                if application.applicationState == .inactive {
-                    
-                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
-                        projectDetailVC.projectID =  (notification?.valueForInt(key: "gcm.notification.projectId"))!
-                        self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
-                    }
-                    
-                } else {
-                    
-                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-                        
-                        if let topViewController = self.topViewController() {
-                            
-                            if topViewController is ProjectDetailViewController {
-                            } else {
-                                
-                                if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
-                                   projectDetailVC.projectID =  (notification?.valueForInt(key: "gcm.notification.projectId"))!
-                                    self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
-                                }
-                            }
-                        }
-                 
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-                    })
-                }
-                
-                break
-                
-            case NotificationPostUpdate :
-                
-                if application.applicationState == .inactive {
-                    
-                    if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
-                        timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
-                        timelineVC.isFromNotifition = true
-                        self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
-                    }
-                    
-                } else {
-                   
-                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-                        
-                        if let topViewController = self.topViewController() {
-                            
-                            if topViewController is TimelineDetailViewController {
-                                
-                                let timelineVC  = topViewController as! TimelineDetailViewController
-                                timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
-                                timelineVC.isFromNotifition = true
-                                timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
-                                
-                            } else {
-                                
-                                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
-                                    timelineVC.projectID = (notification?.valueForInt(key: "gcm.notification.projectId"))!
-                                    timelineVC.isFromNotifition = true
-                                    self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
-                                }
-                            }
-                        }
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-                    })
-                }
-                
-                break
-        
-            case NotificationVisitUpdate, NotificationVisitReschedule, NotificationVisitCancel :
-             
-                if application.applicationState == .inactive {
-                    
-                    if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
-                        self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
-                    }
-                    
-                } else {
-                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-                        
-                        if let topViewController = self.topViewController() {
-                            
-                            if topViewController is VisitDetailsViewController {
-                                
-                                let visitDetailVC  = topViewController as! VisitDetailsViewController
-                                visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
-                                
-                            } else {
-                                
-                                if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
-                                    self.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
-                                }
-                            }
-                        }
-               
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-                    })
-                }
-                
-                break
-                
-            default :
-                
-                if application.applicationState == .inactive {
-                    
-                    if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                        rateVC.visitId = (notification?.valueForInt(key: "gcm.notification.visitId"))!
-                        self.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
-                    }
-                    
-                } else {
-                    self.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-                        
-                        if let topViewController = self.topViewController() {
-                            
-                            if topViewController is RateYoorVisitViewController {
-                            } else {
-                                if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                                    rateVC.visitId = (notification?.valueForInt(key: "gcm.notification.visitId"))!
-                                    self.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
-                                }
-                            }
-                        }
-               
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-                    })
-                }
-            }
-        }
+        MIFCM.shared().didReceiveNotification(userInfo: userInfo as! [String : AnyObject], application : application)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -302,6 +106,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return true
     }
+    
+    
+    // MARK:-
+    // MARK:- General Methods
+    
     
     func topViewController(controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         
@@ -390,43 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         return image!
     }
-    
-    
-    // MARK:-
-    // MARK:- Google Analytics
-    
-    func configureGoogleAnalytics() {
-        
-        guard let gai = GAI.sharedInstance() else {
-            assert(false, "Google Analytics not configured correctly")
-            return
-        }
-        
-        gai.tracker(withTrackingId: CTrackingID)
-        // Optional: automatically report uncaught exceptions.
-        gai.trackUncaughtExceptions = true
-        
-        // Optional: set Logger to VERBOSE for debug information.
-        // Remove before app release.
-        gai.logger.logLevel = .verbose;
-    }
-    
-    func trackScreenNameForGoogleAnalytics(screenName : String) {
-        
-        guard let tracker = GAI.sharedInstance().defaultTracker else { return }
-        tracker.set(kGAIScreenName, value: screenName)
-        
-        guard let builder = GAIDictionaryBuilder.createScreenView() else { return }
-        tracker.send(builder.build() as [NSObject : AnyObject])
-    }
-    
-    func trackCustomEvent(buttonName : String) {
-      
-//        let tracker = GAI.sharedInstance().defaultTracker
-//
-//        tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "Button Interaction", action: "\(buttonName) is clicked", label: "Button Click", value: nil).build() as [NSObject : AnyObject])
-    }
-    
+
     
     // MARK:-
     // MARK:- Root update

@@ -29,7 +29,7 @@ class NotificationViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CNotificationScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CNotificationScreenName)
         appDelegate.tabbarView?.lblCount.isHidden = true
         self.loadNotificationList(isRefresh: false, isFromNotification :false)
     }
@@ -159,7 +159,7 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             
             cell.btnRateVisit.touchUpInside { (sender) in
-                appDelegate.trackCustomEvent(buttonName: "Notification RateVisit")
+                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Notification RateVisit")
 
                 if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
                     self.navigationController?.pushViewController(rateVisitVC, animated: true)

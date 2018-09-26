@@ -32,7 +32,7 @@ class SupportViewController: ParentViewController {
  
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CAppSupportScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CAppSupportScreenName)
     }
     
     

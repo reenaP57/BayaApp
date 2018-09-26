@@ -29,7 +29,7 @@ class VisitDetailsViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CVisitDetailScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CVisitDetailScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -124,16 +124,24 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                 cell.btnRateVisit.isHidden = dict.valueForInt(key: "ratings") != 0
                 cell.vwRating.isHidden = dict.valueForInt(key: "ratings") == 0
                 
-
-            default : //Cancelled
+            case CCancel :
                 
                 if dict.valueForDouble(key: "selectedTimeSlot") == 0 {
-                     cell.lblTimeMsg.text = "Your visit request has been cancelled."
+                    cell.lblTimeMsg.text = "Your visit request has been cancelled."
                 } else {
-                     cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
+                    cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
                 }
-              
-              
+                
+                
+                _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
+                cell.btnRateVisit.isHidden = true
+                cell.vwRating.isHidden = true
+                
+                
+            default : //Reschedule
+                
+                cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+                
                 _ = cell.lblTimeMsg.setConstraintConstant(10, edge: .centerY, ancestor: true)
                 cell.btnRateVisit.isHidden = true
                 cell.vwRating.isHidden = true

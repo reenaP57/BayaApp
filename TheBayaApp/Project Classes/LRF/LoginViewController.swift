@@ -43,7 +43,7 @@ class LoginViewController: ParentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CLoginScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CLoginScreenName)
     }
     
     

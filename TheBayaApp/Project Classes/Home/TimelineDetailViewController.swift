@@ -33,7 +33,8 @@ class TimelineDetailViewController: ParentViewController {
     var strFilterEndDate = ""
     var projectID = 0
     var isFromNotifition = false
-
+    var isFromZoomImg = false
+    
     var apiTask : URLSessionTask?
     var refreshControl : UIRefreshControl?
     
@@ -45,8 +46,12 @@ class TimelineDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
-        self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
+        
+        if !isFromZoomImg {
+            self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
+        }
+        
         appDelegate.loginUser?.projectBadge = 0
         CoreData.saveContext()
     }
@@ -181,13 +186,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         
         arrUpdateList.removeAll()
         self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-        if !isFromNotifition {
-            GCDMainThread.async {
-        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-//                self.tblUpdates.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
-            }
-        }
-        
+
 
         self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
     }
@@ -665,6 +664,7 @@ extension TimelineDetailViewController {
                     if isFromNotification {
                         if let index = self.arrProject.index(where: {$0["projectId"] as? Int == self.projectID}){
                             self.currentIndex = index
+                            self.tblUpdates.reloadData()
                             self.reloadTimelineList(index: self.currentIndex)
                         }else{
                             self.pageIndexForApi = 1
@@ -777,9 +777,29 @@ extension TimelineDetailViewController {
         }
         
         
-        UIView.animate(withDuration: 1.0) {
-          appDelegate.window.addSubview(vwFilter)
+        UIView.animate(withDuration: 0.2, animations: {
+        }) { (completed) in
+            
+            if completed {
+                UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.0, initialSpringVelocity: 0.03, options: .curveEaseIn, animations: {
+                    
+                    vwFilter.vwContent.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
+                    
+                }, completion: { (completed) in
+                    
+                    if completed {
+                        vwFilter.vwContent.transform = .identity
+                    }
+                })
+            }
         }
+        
+
+        
+        UIView.animate(withDuration: 0.5, delay: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+             appDelegate.window.addSubview(vwFilter)
+        }, completion: nil)
+        
         
         vwAlert.btnOk.touchUpInside { (sender) in
             vwAlert.removeFromSuperview()
@@ -810,30 +830,36 @@ extension TimelineDetailViewController {
                     appDelegate.window.addSubview(vwAlert)
                 }
             } else if startDate?.compare((endDate)!) == .orderedDescending {
-               
+                
                 vwAlert.lblMsg.text = CMessageCompareFilterDate
                 UIView.animate(withDuration: 1.0) {
                     appDelegate.window.addSubview(vwAlert)
-            }
-                
-                
-//                Calendar.current.dateComponents([.day], from: startDate!, to: endDate!).day! < 24 {
-//                vwAlert.lblMsg.text = CMessageEndDate
-//                UIView.animate(withDuration: 1.0) {
-//                    appDelegate.window.addSubview(vwAlert)
-//                }
+                }
             } else {
                 self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
-                vwFilter.removeFromSuperview()
+                
+                UIView.animate(withDuration: 0.3, animations: {
+                }, completion: { (completed) in
+                    if completed {
+                        vwFilter.removeFromSuperview()
+                    }
+                })
+               
             }
             
         }
         
         vwFilter.btnClose.touchUpInside { (sender) in
-            vwFilter.removeFromSuperview()
+            
+            UIView.animate(withDuration: 0.3, animations: {
+            }, completion: { (completed) in
+                if completed {
+                    vwFilter.removeFromSuperview()
+                }
+            })
         }
         
         vwFilter.btnClear.touchUpInside { (sender) in
@@ -843,7 +869,10 @@ extension TimelineDetailViewController {
             self.strFilterEndDate = ""
             self.pageIndexForApi = 1
             self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
-            vwFilter.removeFromSuperview()
+          
+            UIView.animate(withDuration: 0.5, delay: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
+                vwFilter.removeFromSuperview()
+            }, completion: nil)
         }
     }
 }

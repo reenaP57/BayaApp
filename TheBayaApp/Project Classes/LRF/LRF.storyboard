@@ -164,7 +164,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baya_logo" translatesAutoresizingMaskIntoConstraints="NO" id="kOq-If-vap">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_baya_logo" translatesAutoresizingMaskIntoConstraints="NO" id="kOq-If-vap">
                                 <rect key="frame" x="104" y="85" width="166" height="103"/>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ZW-vh-Zf3" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -930,8 +930,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="baya_logo" width="166" height="103"/>
         <image name="bg.jpg" width="1242" height="2208"/>
+        <image name="ic_baya_logo" width="166" height="103"/>
         <image name="page_select" width="11" height="2"/>
         <image name="page_unselect" width="11" height="2"/>
         <image name="remember" width="22" height="22"/>

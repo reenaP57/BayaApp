@@ -126,6 +126,8 @@ let CRequested    =  1
 let CScheduled    =  2
 let CCancel       =  3
 let CCompleted    =  4
+let CRescheduled  =  5
+
 
 let NotificationAdmin            = 0
 let NotificationNewProject       = 1

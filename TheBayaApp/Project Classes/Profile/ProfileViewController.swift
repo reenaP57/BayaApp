@@ -25,7 +25,7 @@ class ProfileViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CMyProfileScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CMyProfileScreenName)
         
         //...Prefilled user detail
         
@@ -64,7 +64,7 @@ class ProfileViewController: ParentViewController {
 extension ProfileViewController {
     
     @IBAction func btnEditProfileClicked (sender : UIButton) {
-        appDelegate.trackCustomEvent(buttonName: "Edit Profile")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Edit Profile")
 
         if  let editProfileVC = CStoryboardSetting.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
             self.navigationController?.pushViewController(editProfileVC, animated: true)
@@ -107,7 +107,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
         switch indexPath.row {
         case 0:
             //...Schedule a Visit
-            appDelegate.trackCustomEvent(buttonName: "Profile Schedule Visit")
+            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Profile Schedule Visit")
 
             if  let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                 self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
@@ -115,7 +115,7 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
             
         case 1:
             //...My Subscribed Projects
-            appDelegate.trackCustomEvent(buttonName: "Profile ")
+            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Profile ")
 
             if let subscribedVC = CStoryboardProfile.instantiateViewController(withIdentifier: "SubscribedProjectViewController") as? SubscribedProjectViewController {
                 self.navigationController?.pushViewController(subscribedVC, animated: true)

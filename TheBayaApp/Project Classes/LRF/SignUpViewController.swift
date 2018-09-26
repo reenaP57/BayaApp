@@ -35,7 +35,7 @@ class SignUpViewController: ParentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CSignupScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CSignupScreenName)
     }
     
     

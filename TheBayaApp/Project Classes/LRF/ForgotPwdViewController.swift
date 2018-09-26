@@ -40,7 +40,7 @@ class ForgotPwdViewController: ParentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CForgotPasswordScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CForgotPasswordScreenName)
     }
     
     

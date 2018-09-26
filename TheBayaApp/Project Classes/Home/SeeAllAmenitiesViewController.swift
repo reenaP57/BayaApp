@@ -29,7 +29,7 @@ class SeeAllAmenitiesViewController: ParentViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CAmeniriesScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CAmeniriesScreenName)
     }
     
     

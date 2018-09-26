@@ -23,7 +23,7 @@ class HomeViewController: ParentViewController {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
         
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CHomeScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CHomeScreenName)
         self.initialize()
         collHome.reloadData()
     }
@@ -109,20 +109,20 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
 
         switch indexPath.row {
         case 0:
-            appDelegate.trackCustomEvent(buttonName: "TimeLine")
+            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine")
             
             if let timeLineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
                 self.navigationController?.pushViewController(timeLineVC, animated: true)
             }
         case 1:
-            appDelegate.trackCustomEvent(buttonName: "Project")
+            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project")
 
             if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
                 self.navigationController?.pushViewController(projectVC, animated: true)
             }
             
         default:
-            appDelegate.trackCustomEvent(buttonName: "Schedule Visit")
+            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Schedule Visit")
 
             if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                 self.navigationController?.pushViewController(scheduleVisitVC, animated: true)

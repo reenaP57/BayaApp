@@ -30,7 +30,7 @@ class ProjectViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CProjectListScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CProjectListScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -123,9 +123,9 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                     cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                     
                     if cell.btnSubscribe.isSelected {
-                        appDelegate.trackCustomEvent(buttonName: "Project Subscribe")
+                        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project Subscribe")
                     } else {
-                        appDelegate.trackCustomEvent(buttonName: "Project Unsubscribe")
+                        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project Unsubscribe")
                     }
                     
 

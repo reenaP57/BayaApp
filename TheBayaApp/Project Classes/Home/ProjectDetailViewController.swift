@@ -108,7 +108,7 @@ class ProjectDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CProjectDetailScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CProjectDetailScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -439,7 +439,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnShareClicked (sender : UIButton) {
         
-    appDelegate.trackCustomEvent(buttonName: "ProjectDetail Share")
+    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Share")
         
         let contactNo = (arrContactNo.mapValue(forKey: "mobileNo") as? [String])?.joined(separator: ",")
         
@@ -454,7 +454,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
-             appDelegate.trackCustomEvent(buttonName: "ProjectDetail ScheduleVisit")
+             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail ScheduleVisit")
         
         if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
             scheduleVisitVC.projectId = dictDetail.valueForInt(key: CProjectId)!
@@ -465,7 +465,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnProjectBrochureClicked (sender : UIButton) {
         
-        appDelegate.trackCustomEvent(buttonName: "ProjectDetail Brochure")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Brochure")
         
         APIRequest.shared().projectBrochure(projectId: self.projectID) { (response, error) in
             
@@ -484,9 +484,9 @@ extension ProjectDetailViewController {
             self.btnSubscribe.isSelected = !sender.isSelected
          
             if self.btnSubscribe.isSelected {
-                 appDelegate.trackCustomEvent(buttonName: "ProjectDetail Subscribe")
+                 MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Subscribe")
             } else {
-                appDelegate.trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
+                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
             }
             
             APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
@@ -520,7 +520,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnCallClicked (sender : UIButton) {
         
-        appDelegate.trackCustomEvent(buttonName: "ProjectDetail Call")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Call")
 
         if arrContactNo.count == 1 {
             self.dialPhoneNumber(phoneNumber: arrContactNo[0].valueForString(key: "mobileNo"))
@@ -609,7 +609,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSeeAllAmenitiesClicked (sender : UIButton) {
         
-        appDelegate.trackCustomEvent(buttonName: "SeeAll Amenities")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "SeeAll Amenities")
 
         if let seeAllAmenitiesVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllAmenitiesViewController") as? SeeAllAmenitiesViewController {
             seeAllAmenitiesVC.projectId = self.projectID
@@ -619,7 +619,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSeeAllLocationClicked (sender : UIButton) {
        
-        appDelegate.trackCustomEvent(buttonName: "SeeAll Location Advantages")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "SeeAll Location Advantages")
         
         if let seeAllLocVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllLocationAdvantagesViewController") as? SeeAllLocationAdvantagesViewController {
              seeAllLocVC.projectId = self.projectID

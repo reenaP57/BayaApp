@@ -65,7 +65,7 @@ class ScheduleVisitViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CScheduleVisitScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CScheduleVisitScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -416,7 +416,7 @@ extension ScheduleVisitViewController {
 
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
                    
-                    appDelegate.trackCustomEvent(buttonName: "ScheduleVisit Submit")
+                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ScheduleVisit Submit")
                     self.navigationController?.popViewController(animated: true)
                 })
             }

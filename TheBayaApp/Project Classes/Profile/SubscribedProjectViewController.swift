@@ -27,7 +27,7 @@ class SubscribedProjectViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        appDelegate.trackScreenNameForGoogleAnalytics(screenName: CSubscribedProjectsScreenName)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CSubscribedProjectsScreenName)
     }
     
     override func didReceiveMemoryWarning() {
