@@ -122,6 +122,13 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                     
                     cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                     
+                    if cell.btnSubscribe.isSelected {
+                        appDelegate.trackCustomEvent(buttonName: "Project Subscribe")
+                    } else {
+                        appDelegate.trackCustomEvent(buttonName: "Project Unsubscribe")
+                    }
+                    
+
                     APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
                         
                         if response != nil && error == nil {

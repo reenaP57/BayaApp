@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import CTPanoramaView
+import CTPanoramaView
 import BFRImageViewer
 import AVKit
 
@@ -55,8 +55,8 @@ class ProjectDetailViewController: ParentViewController {
             vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-   // @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-    @IBOutlet fileprivate weak var vwPanorama: UIView!
+    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    //@IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -216,7 +216,7 @@ class ProjectDetailViewController: ParentViewController {
                 
                 
                 //...Load 3D image
-                /*
+                
                 if dict.valueForString(key: "tour3DImage") == "" {
                     IS_iPad ? self.vw3DTour.hide(byHeight: true) : self.vwMain3DTour.hide(byHeight: true)
                 }
@@ -229,7 +229,7 @@ class ProjectDetailViewController: ParentViewController {
                     } catch {
                         print("Unable to load data: \(error)")
                     }
-                } */
+                }
                 
                 
                 //...Overview
@@ -439,6 +439,8 @@ extension ProjectDetailViewController {
     
     @IBAction func btnShareClicked (sender : UIButton) {
         
+    appDelegate.trackCustomEvent(buttonName: "ProjectDetail Share")
+        
         let contactNo = (arrContactNo.mapValue(forKey: "mobileNo") as? [String])?.joined(separator: ",")
         
         let text = "\(dictDetail.valueForString(key: CProjectName)),\(dictDetail.valueForString(key: "shortLocation"))\n\nMahaRERA: \(dictDetail.valueForString(key: CReraNumber))\n\nCall \(contactNo!)\n\n\(dictDetail.valueForString(key: "website"))\n\nSite Address: \(dictDetail.valueForString(key: CAddress))\n\n\(dictDetail.valueForString(key: CDescription))"
@@ -452,6 +454,8 @@ extension ProjectDetailViewController {
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
+             appDelegate.trackCustomEvent(buttonName: "ProjectDetail ScheduleVisit")
+        
         if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
             scheduleVisitVC.projectId = dictDetail.valueForInt(key: CProjectId)!
             scheduleVisitVC.projectName = dictDetail.valueForString(key: CProjectName)
@@ -460,6 +464,8 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnProjectBrochureClicked (sender : UIButton) {
+        
+        appDelegate.trackCustomEvent(buttonName: "ProjectDetail Brochure")
         
         APIRequest.shared().projectBrochure(projectId: self.projectID) { (response, error) in
             
@@ -477,6 +483,12 @@ extension ProjectDetailViewController {
             self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
             self.btnSubscribe.isSelected = !sender.isSelected
          
+            if self.btnSubscribe.isSelected {
+                 appDelegate.trackCustomEvent(buttonName: "ProjectDetail Subscribe")
+            } else {
+                appDelegate.trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
+            }
+            
             APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
                 
                 if response != nil && error == nil {
@@ -508,6 +520,8 @@ extension ProjectDetailViewController {
     
     @IBAction func btnCallClicked (sender : UIButton) {
         
+        appDelegate.trackCustomEvent(buttonName: "ProjectDetail Call")
+
         if arrContactNo.count == 1 {
             self.dialPhoneNumber(phoneNumber: arrContactNo[0].valueForString(key: "mobileNo"))
        
@@ -595,6 +609,8 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSeeAllAmenitiesClicked (sender : UIButton) {
         
+        appDelegate.trackCustomEvent(buttonName: "SeeAll Amenities")
+
         if let seeAllAmenitiesVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllAmenitiesViewController") as? SeeAllAmenitiesViewController {
             seeAllAmenitiesVC.projectId = self.projectID
             self.navigationController?.pushViewController(seeAllAmenitiesVC, animated: true)
@@ -602,6 +618,8 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnSeeAllLocationClicked (sender : UIButton) {
+       
+        appDelegate.trackCustomEvent(buttonName: "SeeAll Location Advantages")
         
         if let seeAllLocVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllLocationAdvantagesViewController") as? SeeAllLocationAdvantagesViewController {
              seeAllLocVC.projectId = self.projectID

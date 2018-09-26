@@ -159,7 +159,8 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             
             cell.btnRateVisit.touchUpInside { (sender) in
-                
+                appDelegate.trackCustomEvent(buttonName: "Notification RateVisit")
+
                 if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
                     self.navigationController?.pushViewController(rateVisitVC, animated: true)
                 }

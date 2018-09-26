@@ -415,6 +415,8 @@ extension ScheduleVisitViewController {
             if response != nil && error == nil {
 
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+                   
+                    appDelegate.trackCustomEvent(buttonName: "ScheduleVisit Submit")
                     self.navigationController?.popViewController(animated: true)
                 })
             }
