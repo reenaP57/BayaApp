@@ -2251,7 +2251,7 @@ reach for you.</string>
                                                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="wi8-nG-8DM">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map" translatesAutoresizingMaskIntoConstraints="NO" id="wi8-nG-8DM">
                                                                 <rect key="frame" x="0.0" y="74.5" width="375" height="150"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="wi8-nG-8DM" secondAttribute="height" multiplier="5:2" id="6nv-Ze-3ho"/>
@@ -3573,7 +3573,7 @@ reach for you.</string>
         <image name="gradient_bg2" width="77" height="27"/>
         <image name="ic_back_white" width="13" height="22"/>
         <image name="ic_baya_logo_home" width="49" height="29"/>
-        <image name="ic_black_close" width="16" height="16"/>
+        <image name="ic_black_close" width="26" height="26"/>
         <image name="img1.jpeg" width="285" height="177"/>
         <image name="img4.jpeg" width="318" height="159"/>
         <image name="img7.jpeg" width="280" height="180"/>
