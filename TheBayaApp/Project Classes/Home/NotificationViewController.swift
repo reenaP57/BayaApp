@@ -20,6 +20,7 @@ class NotificationViewController: ParentViewController {
     fileprivate var currentPage : Int = 1
     
     var arrNotification = [[String : AnyObject]]()
+    var isFromOtherScreen = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,7 @@ class NotificationViewController: ParentViewController {
         appDelegate.showTabBar()
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CNotificationScreenName)
         appDelegate.tabbarView?.lblCount.isHidden = true
-        self.loadNotificationList(isRefresh: false, isFromNotification :false)
+        self.loadNotificationList(isRefresh: false, isFromNotification :isFromOtherScreen)
     }
 
     override func didReceiveMemoryWarning() {
@@ -98,40 +99,40 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             cell.imgVProject.sd_setShowActivityIndicatorView(true)
             cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: "thumbImage"))), placeholderImage: nil)
-            
+        
             
             switch dict.valueForInt(key: "notifyType") {
-            case 0 : //... Admin
+            case NotificationAdmin : //... Admin
                cell.lblMsg.text = dict.valueForString(key: "message")
                 
            
-            case 1:  //... New Project
+            case NotificationNewProject:  //... New Project
                  cell.lblMsg.text = "The new project \(dict.valueForString(key: "title")) has been added by The Baya Group."
 
                 break
                 
-            case 2:  //... Post Update
+            case NotificationPostUpdate:  //... Post Update
                 cell.lblMsg.text = "There is new update from this project."
 
                 break
                 
-            case 3: //... Project Complete
+            case NotificationProjectComplete: //... Project Complete
                 cell.lblMsg.text = "\(dict.valueForString(key: "title")) project is completed now, no further updates will be posted. You can view our other projects and subscribe if you are interested."
 
                 break
                 
-            case 4: //... Visit Update
+            case NotificationVisitUpdate: //... Visit Update
                 cell.lblMsg.text = "Your visit \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "dateTime")!, withFormate: "'at' hh:mm a 'on' dd MMMM yyyy")) has been confirmed."
 
                 
                 break
                 
-            case 5: //... Visit Reschedule
+            case NotificationVisitReschedule: //... Visit Reschedule
                 cell.lblMsg.text = "Your visit has been re-scheduled from \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) to \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true))"
 
                 break
              
-            case 6 : //... Rate Visit
+            case NotificationRateVisit : //... Rate Visit
                 cell.lblMsg.text = "Rate the visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false))"
                 
                 cell.btnRateVisit.hide(byWidth: false)
@@ -162,6 +163,7 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Notification RateVisit")
 
                 if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                    rateVisitVC.visitId = dict.valueForInt(key: "visitId")!
                     self.navigationController?.pushViewController(rateVisitVC, animated: true)
                 }
             }
@@ -187,7 +189,14 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
         
         let dict = arrNotification[indexPath.row]
         
-        if indexPath.row == 4 {
+        if dict.valueForInt(key: "notifyType") == NotificationPostUpdate {
+            //...Post Update
+            
+            if let timeLineDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                self.navigationController?.pushViewController(timeLineDetailVC, animated: true)
+            }
+            
+        } else if dict.valueForInt(key: "notifyType") == NotificationNewProject {
             //...New Project
             
             if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
@@ -216,7 +225,7 @@ extension NotificationViewController {
             return
         }
         
-        if !isRefresh {
+        if !isRefresh && !isFromNotification {
             activityLoader.startAnimating()
         }
         

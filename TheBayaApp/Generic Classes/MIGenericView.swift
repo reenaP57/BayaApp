@@ -47,8 +47,8 @@ class MIGenericView: UIView {
             //...Shadow for project detail, Timeline screen card
             self.shadow(color: UIColor.black, shadowOffset: CGSize(width: 0, height: 2), shadowRadius: 3.0, shadowOpacity: 0.5)
             self.layer.cornerRadius = cornerRadius
-        }
-        else {
+            
+        } else {
             self.layer.cornerRadius = cornerRadius
         }
     }
