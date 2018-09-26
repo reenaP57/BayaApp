@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        appDelegate.window.backgroundColor = ColorBGColor
         IQKeyboardManager.shared.enable = true
         Fabric.with([Crashlytics.self])
 

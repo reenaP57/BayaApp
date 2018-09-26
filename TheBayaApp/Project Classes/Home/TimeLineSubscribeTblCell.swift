@@ -234,7 +234,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
     }
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        print("scrollViewWillEndDragging ======== ")
         
         let pageWidth = IS_iPad ? CScreenWidth * 500/768 : CScreenWidth - space
         
@@ -258,12 +257,18 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         let index : Int = Int(newTargetOffset / Float(pageWidth))
         
         if index <= 0{
-            scrollView.setContentOffset(.zero, animated: true)
-            self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
+            
+            GCDMainThread.async {
+                scrollView.setContentOffset(.zero, animated: true)
+                self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .right, animated: true)
+            }
+            
         }else {
             if index <= arrProject.count - 1{
-                scrollView.setContentOffset(CGPoint(x:CGFloat(index) * CScreenWidth, y: 0), animated: true)
-                self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .left, animated: true)
+                GCDMainThread.async {
+                    scrollView.setContentOffset(CGPoint(x:CGFloat(index) * CScreenWidth, y: 0), animated: true)
+                    self.collSubscribe.scrollToItem(at: IndexPath(item: index, section: 0), at: .left, animated: true)
+                }
             }
             
         }

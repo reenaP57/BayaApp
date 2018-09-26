@@ -235,9 +235,12 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
             
             if indexPath == self.tblUpdates.lastIndexPath(){
                 if self.apiTask != nil{
-                    if self.apiTask?.state != .running{
-                        print("Load more data ====== ")
-                        self.loadTimeLineListFromServer(false, startDate: strFilterStartDate, endDate: strFilterEndDate)
+                    
+                    GCDMainThread.asyncAfter(deadline: .now() + 0.5) {
+                        if self.apiTask?.state != .running{
+                            print("Load more data ====== ")
+                            self.loadTimeLineListFromServer(false, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
+                        }
                     }
                 }
             }
@@ -737,23 +740,29 @@ extension TimelineDetailViewController {
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
-        let dic = arrProject[currentIndex]
-
-        if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
-            scheduleVisitVC.projectId = dic.valueForInt(key: CProjectId)!
-            scheduleVisitVC.projectName = dic.valueForString(key: CProjectName)
-            self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+        btnScheduleVisit.alpha = 0.8
+        GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
+            self.btnScheduleVisit.alpha = 1.0
+            let dic = self.arrProject[self.currentIndex]
+            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                scheduleVisitVC.projectId = dic.valueForInt(key: CProjectId)!
+                scheduleVisitVC.projectName = dic.valueForString(key: CProjectName)
+                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+            }
         }
     }
     
     @IBAction func btnProjectDetailClicked (sender : UIButton) {
-        
-        let dic = arrProject[currentIndex]
-
-        if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
-            projectDetailVC.projectID = dic.valueForInt(key: CProjectId)!
-            self.navigationController?.pushViewController(projectDetailVC, animated: true)
+        btnProjectDetail.alpha = 0.8
+        GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
+            self.btnProjectDetail.alpha = 1.0
+            let dic = self.arrProject[self.currentIndex]
+            if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                projectDetailVC.projectID = dic.valueForInt(key: CProjectId)!
+                self.navigationController?.pushViewController(projectDetailVC, animated: true)
+            }
         }
+        
     }
     
     @objc func btnFilterClicked() {
