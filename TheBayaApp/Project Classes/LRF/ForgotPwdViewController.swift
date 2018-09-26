@@ -204,7 +204,7 @@ extension ForgotPwdViewController {
                     CCountryId : countryID as AnyObject,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.model,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
 
         } else {
@@ -212,7 +212,7 @@ extension ForgotPwdViewController {
                     "userName" : txtEmail.text as AnyObject,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.model,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
         }
         

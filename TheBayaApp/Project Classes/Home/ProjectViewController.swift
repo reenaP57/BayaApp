@@ -95,9 +95,12 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             var dict = arrProject[indexPath.row]
       
             cell.lblPjctName.text = dict.valueForString(key: CProjectName)
-            cell.lblLocation.text = dict.valueForString(key: CAddress)
-            cell.lblDesc.text = dict.valueForString(key: CDescription)
+            cell.lblLocation.text = dict.valueForString(key: "shortLocation")
             cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
+            
+            if IS_iPad {
+                cell.lblDesc.text = dict.valueForString(key: CDescription)
+            }
             
             cell.imgVPrjct.sd_setShowActivityIndicatorView(true)
             cell.imgVPrjct.sd_setImage(with: URL(string: (dict.valueForString(key: CProjectImage))), placeholderImage: nil)

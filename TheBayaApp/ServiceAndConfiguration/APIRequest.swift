@@ -828,7 +828,7 @@ extension APIRequest {
                     CCountryId : countryId as AnyObject,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.model,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
         
         
@@ -1171,7 +1171,7 @@ extension APIRequest {
         let dict = [CProjectId : projectId!,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.systemVersion,
+                                    "deviceOS" : UIDevice.current.model,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
         
         
