@@ -195,10 +195,8 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         self.strFilterEndDate = ""
         
         arrUpdateList.removeAll()
-        self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-
-
-        self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+        self.tblUpdates.reloadData()
+       self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
     }
     
 }
@@ -723,8 +721,7 @@ extension TimelineDetailViewController {
                         self.arrUpdateList.removeAll()
                         
                         if !self.isFromNotifition {
-//                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-                            self.tblUpdates.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
+                            self.tblUpdates.reloadData()
                         }
                     }
                     
@@ -733,8 +730,7 @@ extension TimelineDetailViewController {
                             self.pageIndexForApi += 1
                             self.arrUpdateList = self.arrUpdateList + arrData
                             self.lblNoUpdates.isHidden = true
-//                            self.tblUpdates.reloadSections(IndexSet(integersIn: 1...1), with: .none)
-                            self.tblUpdates.reloadSections(NSIndexSet(index: 1) as IndexSet, with: .none)
+                            self.tblUpdates.reloadData()
                         }else{
                             
                             if self.pageIndexForApi == 1 {
