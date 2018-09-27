@@ -1000,9 +1000,9 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
-        let index = IS_iPad ? round(scrollView.contentOffset.y/scrollView.bounds.size.height) : round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-        
         if scrollView == collFloorImg {
+            
+          let index = IS_iPad ? round(scrollView.contentOffset.y/scrollView.bounds.size.height) : round(scrollView.contentOffset.x/scrollView.bounds.size.width)
             
             let count = self.btnUnitPlans.isSelected ? arrUnitType.count : arrTypicalType.count
             
@@ -1013,7 +1013,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             }
             
         } else {
-            
+            let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
             pageVProject.currentPage = Int(index)
         }
     }
