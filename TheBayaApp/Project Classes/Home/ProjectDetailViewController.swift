@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import CTPanoramaView
+import CTPanoramaView
 import BFRImageViewer
 import AVKit
 import CoreTelephony
@@ -56,8 +56,8 @@ class ProjectDetailViewController: ParentViewController {
             vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-  //  @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-    @IBOutlet fileprivate weak var vwPanorama: UIView!
+    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+  //  @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -253,7 +253,7 @@ class ProjectDetailViewController: ParentViewController {
                     IS_iPad ? self.vw3DTour.hide(byHeight: true) : self.vwMain3DTour.hide(byHeight: true)
                 }
                 
-                /*
+                
                 if let imgUrl = URL(string: dict.valueForString(key: "tour3DImage")){
                     do {
                         let imageData = try Data(contentsOf: imgUrl as URL)
@@ -262,7 +262,7 @@ class ProjectDetailViewController: ParentViewController {
                     } catch {
                         print("Unable to load data: \(error)")
                     }
-                } */
+                } 
                 
                 
                 //...Overview
@@ -736,7 +736,7 @@ extension ProjectDetailViewController : UITableViewDelegate, UITableViewDataSour
                 
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigurationHeaderTblCell") as? ConfigurationHeaderTblCell {
                  
-                    cell.lblPriceText.text = "Price starting from"
+                    cell.lblPriceText.text = dictDetail.valueForString(key: "priceText")
                     return cell
                 }
                 

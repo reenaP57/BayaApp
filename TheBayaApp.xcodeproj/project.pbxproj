@@ -1235,19 +1235,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1260,19 +1260,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
