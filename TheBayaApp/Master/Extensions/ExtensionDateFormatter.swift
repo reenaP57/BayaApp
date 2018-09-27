@@ -32,6 +32,7 @@ extension DateFormatter{
     
     func timestampFromDate(date : String?, formate : String?) -> Double? {
         self.dateFormat = formate
+        self.timeZone = TimeZone(abbreviation: "GMT")
         var timeStamp = self.date(from: date!)?.timeIntervalSince1970
         timeStamp = Double((timeStamp?.toFloat)!)
         return timeStamp

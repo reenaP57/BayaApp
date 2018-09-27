@@ -862,13 +862,8 @@ extension TimelineDetailViewController {
                     appDelegate.window.addSubview(vwAlert)
                 }
             } else {
-                
-                self.strFilterStartDate =  "\(DateFormatter.shared().dateGMT(fromString: vwFilter.txtStartDate.text!, dateFormat: "dd MMMM yyyy") ?? Date())"
-                
-                 self.strFilterEndDate =  "\(DateFormatter.shared().dateGMT(fromString: vwFilter.txtEndDate.text!, dateFormat: "dd MMMM yyyy") ?? Date())"
-                
-//                self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-//                self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                 
