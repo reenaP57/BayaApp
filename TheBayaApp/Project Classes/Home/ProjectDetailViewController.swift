@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import CTPanoramaView
+//import CTPanoramaView
 import BFRImageViewer
 import AVKit
 import CoreTelephony
@@ -56,8 +56,8 @@ class ProjectDetailViewController: ParentViewController {
             vw3DTitle.layer.borderColor = CRGB(r: 99, g: 89, b: 79).cgColor
         }
     }
-    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-    //@IBOutlet fileprivate weak var vwPanorama: UIView!
+  //  @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
+    @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -80,6 +80,7 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var cnstHeightTblSpecification : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstHeightCollLocation : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstXPointBrochureBtn : NSLayoutConstraint!
+    @IBOutlet fileprivate weak var cnstXPointScheduleBtn : NSLayoutConstraint!
 
 
     
@@ -131,7 +132,7 @@ class ProjectDetailViewController: ParentViewController {
             layout.delegate = self
         }
         
-        tblSpecification.estimatedRowHeight = IS_iPad ? 45.0 : 32.0
+        tblSpecification.estimatedRowHeight = IS_iPad ? 45.0 : 38.0
         tblSpecification.rowHeight = UITableViewAutomaticDimension
         
         vwSoldOut.layer.borderWidth = 1
@@ -184,11 +185,10 @@ class ProjectDetailViewController: ParentViewController {
                 self.vwNav.isHidden = true
                 self.activityLoader.stopAnimating()
                 
-                
                 let dict = response?.value(forKey: CJsonData) as! [String : AnyObject]
                 
                 self.dictDetail = dict
-                
+               
                 self.lblProjectName.text = "\(dict.valueForString(key: CProjectName)), \(dict.valueForString(key: "shortLocation"))"
                 self.lblProjectDesc.text = dict.valueForString(key: CDescription)
                 self.lblEmail.text = dict.valueForString(key: "website")
@@ -213,9 +213,22 @@ class ProjectDetailViewController: ParentViewController {
                 self.sliderPercentage.setValue(Float(dict.valueForInt(key: CProjectProgress)!), animated: false)
                 self.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ? true : false
                 
-                if dict.valueForInt(key: CIsVisit) == 0 {
+                
+                if dict.valueForInt(key: "isBrochure") == 0 && dict.valueForInt(key: CIsVisit) == 0 {
+                    self.vwBottom.hide(byHeight: true)
+                } else if dict.valueForInt(key: "isBrochure") == 0 {
                     
-                     self.btnScheduleVisit.isHidden = true
+                    self.btnProjectBrochure.isHidden = true
+                    
+                    if IS_iPhone {
+                        self.cnstXPointScheduleBtn.constant = -(self.btnScheduleVisit.CViewWidth/2)+10
+                    } else {
+                        self.cnstXPointScheduleBtn.constant = (self.btnProjectBrochure.CViewWidth/2)-10
+                    }
+                    
+                } else if dict.valueForInt(key: CIsVisit) == 0 {
+                    
+                    self.btnScheduleVisit.isHidden = true
                     
                     if IS_iPhone {
                         self.cnstXPointBrochureBtn.constant = 0
@@ -223,10 +236,8 @@ class ProjectDetailViewController: ParentViewController {
                         _ = self.btnProjectBrochure.setConstraintConstant(-(self.btnScheduleVisit.CViewWidth/2), edge: .leading, ancestor: true)
                         _ = self.btnProjectBrochure.setConstraintConstant(self.btnScheduleVisit.CViewWidth/2, edge: .trailing, ancestor: true)
                     }
-                   
                 }
-                
-                
+
                 //...Contact Detail
                 
                 let arrTempContact = dict.valueForJSON(key: "contactDetail") as? [[String : AnyObject]]
@@ -242,6 +253,7 @@ class ProjectDetailViewController: ParentViewController {
                     IS_iPad ? self.vw3DTour.hide(byHeight: true) : self.vwMain3DTour.hide(byHeight: true)
                 }
                 
+                /*
                 if let imgUrl = URL(string: dict.valueForString(key: "tour3DImage")){
                     do {
                         let imageData = try Data(contentsOf: imgUrl as URL)
@@ -250,7 +262,7 @@ class ProjectDetailViewController: ParentViewController {
                     } catch {
                         print("Unable to load data: \(error)")
                     }
-                }
+                } */
                 
                 
                 //...Overview
@@ -269,13 +281,13 @@ class ProjectDetailViewController: ParentViewController {
                     if IS_iPhone && (arrTempLocAdvantges?.count)! > 3 {
                         self.btnSeeAllAdvantages.isHidden = false
                         
-                        for index in 1..<4 {
+                        for index in 0..<3 {
                             self.arrLocation.append(arrTempLocAdvantges![index])
                         }
                     
                     } else if IS_iPad  && (arrTempLocAdvantges?.count)! > 4 {
                         self.btnSeeAllAdvantages.isHidden = false
-                        for index in 1..<5 {
+                        for index in 0..<4 {
                             self.arrLocation.append(arrTempLocAdvantges![index])
                         }
                     } else {
@@ -408,7 +420,6 @@ class ProjectDetailViewController: ParentViewController {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
             self.cnstHeightTblSpecification.constant = self.tblSpecification.contentSize.height
-            
             if self.arrCollLocationHeight.count > 0 {
                 self.cnstHeightCollLocation.constant = self.arrCollLocationHeight.max()!
             }
@@ -427,6 +438,17 @@ class ProjectDetailViewController: ParentViewController {
         }
     }
     
+    func zoomImageAndVideo(){
+        if let zoomView = ImageZoomView.initImageZoomView() {
+            appDelegate.window.addSubview(zoomView)
+            zoomView.showImageAndVideo(arrProjectImg)
+            zoomView.CViewSetY(y: CScreenHeight)
+            UIView.animate(withDuration: 0.3) {
+                zoomView.CViewSetY(y: 0)
+            }
+        }
+    }
+    
     func estimateFrameForText(locAdvantages: String, location : String) -> CGFloat {
         //we make the height arbitrarily large so we don't undershoot height in calculation
        
@@ -436,7 +458,7 @@ class ProjectDetailViewController: ParentViewController {
         let attributes = [NSAttributedStringKey.font: CFontAvenir(size: 12, type: .medium).setUpAppropriateFont()!]
         let attributes1 = [NSAttributedStringKey.font: CFontAvenir(size: 13, type: .medium).setUpAppropriateFont()!]
         
-        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 70
+        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 80
     }
 }
 
@@ -703,21 +725,33 @@ extension ProjectDetailViewController : LocationAdvantagesLayoutDelegate {
 extension ProjectDetailViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableView .isEqual(tblConfigure) ? arrConfigure.count : arrSpecification.count
+        return tableView .isEqual(tblConfigure) ? arrConfigure.count+1 : arrSpecification.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         if tableView .isEqual(tblConfigure) {
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigurationTblCell") as? ConfigurationTblCell {
+            
+            if indexPath.row == 0 {
                 
-                let dict = arrConfigure[indexPath.row]
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigurationHeaderTblCell") as? ConfigurationHeaderTblCell {
+                 
+                    cell.lblPriceText.text = "Price starting from"
+                    return cell
+                }
                 
-                cell.lblPlanType.text = dict.valueForString(key: "unitDetail")
-                cell.lblSqft.text = dict.valueForString(key: "areaIn")
-                cell.lblPrice.text = dict.valueForString(key: "price")
-
-                return cell
+            } else {
+               
+                if let cell = tableView.dequeueReusableCell(withIdentifier: "ConfigurationTblCell") as? ConfigurationTblCell {
+                    
+                    let dict = arrConfigure[indexPath.row-1]
+                    
+                    cell.lblPlanType.text = dict.valueForString(key: "unitDetail")
+                    cell.lblSqft.text = dict.valueForString(key: "areaIn")
+                    cell.lblPrice.text = dict.valueForString(key: "price")
+                    
+                    return cell
+                }
             }
             
             return UITableViewCell()
@@ -951,11 +985,13 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             self.collFloorImg.scrollToItem(at: indexPath, at: IS_iPad ? .top : .left, animated: true)
             self.collPlansType.reloadData()
-
+            
         case collFloorImg:
             if let cell = collectionView.cellForItem(at: indexPath) as? FloorPlansImgCollCell {
-                 self.zoomImage(cell.imgVPlan.image)
+                self.zoomImage(cell.imgVPlan.image)
             }
+        case collProject:
+            self.zoomImageAndVideo()
             
         default:
             break

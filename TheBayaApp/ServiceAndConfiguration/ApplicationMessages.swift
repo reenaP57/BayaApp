@@ -113,5 +113,6 @@ var CMessageCompareFilterDate : String{ return CLocalize(text: "End date cannot 
 
 var CMessageRequested  = "We have received your request for a visit. We will get back to you soon."
 var CMessageCompleted  = "You have visited this project on"
-var CMessageScheduled  = "Your visit has been rescheduled for"
+var CMessageScheduled  = "Your visit has been scheduled for"
+var CMessageRescheduled  = "Your visit has been rescheduled for"
 

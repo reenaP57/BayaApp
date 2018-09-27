@@ -52,9 +52,10 @@ class VisitDetailsViewController: ParentViewController {
         if IS_iPhone {
             tblVVisitDetails.estimatedRowHeight = 125
             tblVVisitDetails.rowHeight = UITableViewAutomaticDimension
-        } else {
-             tblVVisitDetails.rowHeight = CScreenWidth * 155/768
         }
+//        else {
+//             tblVVisitDetails.rowHeight = CScreenWidth * 155/768
+//        }
     }
     
     func RefreshRatingVisit(visitId : Int, rating : Int) {
@@ -86,82 +87,115 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
         return arrVisitList.count
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        let dict = arrVisitList[indexPath.row]
+
+        if IS_iPad {
+            if dict.valueForInt(key: "visitStatus") == CScheduled || dict.valueForInt(key: "visitStatus") == CRescheduled {
+                return CScreenWidth * 250/768
+            } else {
+                return CScreenWidth * 155/768
+            }
+        }
+
+        return UITableViewAutomaticDimension
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "VisitDetailTblCell") as? VisitDetailTblCell {
+        let dict = arrVisitList[indexPath.row]
+        
+        if dict.valueForInt(key: "visitStatus") == CScheduled ||  dict.valueForInt(key: "visitStatus") == CRescheduled {
             
-            let dict = arrVisitList[indexPath.row]
-            
-            cell.lblProjectName.text = dict.valueForString(key: CProjectName)
-            cell.vwRating.rating = Double(dict.valueForInt(key: "ratings")!)
-            
-            cell.imgVProject.sd_setShowActivityIndicatorView(true)
-            cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: CProjectImage))), placeholderImage: nil)
-            
-            cell.contentView.backgroundColor = UIColor.clear
-            cell.backgroundColor = UIColor.clear
-            
-            cell.btnRateVisit.isHidden = true
-            cell.vwRating.isHidden = true
-            cell.vwTagLbl.isHidden = true
-            cell.imgVTickMark.hide(byWidth: true)
-            
-            switch dict.valueForInt(key: "visitStatus") {
-            case CRequested :
-                cell.lblTimeMsg.text = CMessageRequested
-                cell.vwTagLbl.isHidden = false
-                cell.lblTag.text = "UNCONFIRMED"
-                cell.vwTagLbl.backgroundColor = ColorGradient2Background
-     
-            case CScheduled:
-                cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
-                cell.vwTagLbl.isHidden = false
-                cell.lblTag.text = "CONFIRMED"
-                cell.vwTagLbl.backgroundColor = ColorGreenSelected
-
-            case CCompleted:
-                cell.lblTimeMsg.text = "\(CMessageCompleted) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "VisitConfirmTblCell") as? VisitConfirmTblCell {
                 
-                cell.btnRateVisit.isHidden = dict.valueForInt(key: "ratings") != 0
-                cell.vwRating.isHidden = dict.valueForInt(key: "ratings") == 0
-                cell.btnRateVisit.isHidden = false
-                cell.vwRating.isHidden = false
-                cell.imgVTickMark.hide(byWidth: false)
-
-            case CCancel :
+                cell.lblProjectName.text = dict.valueForString(key: CProjectName)
                 
-                if dict.valueForDouble(key: "selectedTimeSlot") == 0 {
-                    cell.lblTimeMsg.text = "Your visit request has been cancelled."
+                if dict.valueForInt(key: "visitStatus") == CScheduled  {
+                    cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
                 } else {
-                    cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
+                    cell.lblTimeMsg.text = "\(CMessageRescheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
                 }
                 
-                cell.vwTagLbl.isHidden = false
-                cell.lblTag.text = "CANCELLED"
-                cell.vwTagLbl.backgroundColor = CRGB(r: 255, g: 69, b: 77)
-
+                cell.lblUserName.text = dict.valueForString(key: "salesMgrName")
+                cell.lblLocation.text = dict.valueForString(key: "siteAddress")
+                cell.btnCall.setTitle(dict.valueForString(key: "salesMgrContact"), for: .normal)
                 
-            default : //Reschedule
+                cell.imgVProject.sd_setShowActivityIndicatorView(true)
+                cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: CProjectImage))), placeholderImage: nil)
                 
-                cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+                cell.contentView.backgroundColor = UIColor.clear
+                cell.backgroundColor = UIColor.clear
                 
-                cell.vwTagLbl.isHidden = false
-                cell.lblTag.text = "CONFIRMED"
-                cell.vwTagLbl.backgroundColor = ColorGreenSelected
-                
-                break
-            }
-            
-            
-            cell.btnRateVisit.touchUpInside { (sender) in
-                
-                if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                    rateVisitVC.visitId = dict.valueForInt(key: "visitId")!
-                    self.navigationController?.pushViewController(rateVisitVC, animated: true)
+                cell.btnCall.touchUpInside { (sender) in
+                    self.dialPhoneNumber(phoneNumber: (dict.valueForString(key: "salesMgrContact")))
                 }
+                
+                return cell
             }
             
-            return cell
+        } else {
+            
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "VisitDetailTblCell") as? VisitDetailTblCell {
+                
+                cell.lblProjectName.text = dict.valueForString(key: CProjectName)
+                cell.vwRating.rating = Double(dict.valueForInt(key: "ratings")!)
+                
+                cell.imgVProject.sd_setShowActivityIndicatorView(true)
+                cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: CProjectImage))), placeholderImage: nil)
+                
+                cell.contentView.backgroundColor = UIColor.clear
+                cell.backgroundColor = UIColor.clear
+                
+                cell.btnRateVisit.isHidden = true
+                cell.vwRating.isHidden = true
+                cell.vwTagLbl.isHidden = true
+                cell.imgVTickMark.hide(byWidth: true)
+                
+                switch dict.valueForInt(key: "visitStatus") {
+                case CRequested :
+                    cell.lblTimeMsg.text = CMessageRequested
+                    cell.vwTagLbl.isHidden = false
+                    cell.lblTag.text = "UNCONFIRMED"
+                    cell.vwTagLbl.backgroundColor = ColorGradient2Background
+                    
+                    
+                case CCompleted:
+                    cell.lblTimeMsg.text = "\(CMessageCompleted) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+                    
+                    cell.btnRateVisit.isHidden = dict.valueForInt(key: "ratings") != 0
+                    cell.vwRating.isHidden = dict.valueForInt(key: "ratings") == 0
+                    cell.btnRateVisit.isHidden = false
+                    cell.vwRating.isHidden = false
+                    cell.imgVTickMark.hide(byWidth: false)
+                    
+                default : //...Cancelled
+                    
+                    if dict.valueForDouble(key: "selectedTimeSlot") == 0 {
+                        cell.lblTimeMsg.text = "Your visit request has been cancelled."
+                    } else {
+                        cell.lblTimeMsg.text = "Your visit scheduled on \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a")) has been cancelled."
+                    }
+                    
+                    cell.vwTagLbl.isHidden = false
+                    cell.lblTag.text = "CANCELLED"
+                    cell.vwTagLbl.backgroundColor = CRGB(r: 255, g: 69, b: 77)
+        
+                    break
+                }
+                
+                
+                cell.btnRateVisit.touchUpInside { (sender) in
+                    
+                    if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                        rateVisitVC.visitId = dict.valueForInt(key: "visitId")!
+                        self.navigationController?.pushViewController(rateVisitVC, animated: true)
+                    }
+                }
+                
+                return cell
+            }
         }
         
         return UITableViewCell()

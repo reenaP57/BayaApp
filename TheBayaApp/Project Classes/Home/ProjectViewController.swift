@@ -95,7 +95,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             var dict = arrProject[indexPath.row]
       
             cell.lblPjctName.text = dict.valueForString(key: CProjectName)
-            cell.lblLocation.text = dict.valueForString(key: "shortLocation")
+            cell.lblLocation.text = dict.valueForString(key: CAddress)
             cell.lblReraNo.text = dict.valueForString(key: CReraNumber)
             
             if IS_iPad {

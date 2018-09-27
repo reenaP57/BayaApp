@@ -18,6 +18,7 @@ class TimeLineUpdateUrlTblCell_ipad: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var btnShare : UIButton!
+    @IBOutlet weak var btnZoomImg : UIButton!
     @IBOutlet weak var btnLinkContent : UIButton!
     @IBOutlet weak var cnImgVUpdateHeight : NSLayoutConstraint!
     @IBOutlet weak var cnImgVUpdateWidth : NSLayoutConstraint!
@@ -30,7 +31,7 @@ class TimeLineUpdateUrlTblCell_ipad: UITableViewCell {
         GCDMainThread.async {
             self.viewContainer.layer.borderWidth = 1
             self.viewContainer.layer.borderColor = UIColor.lightGray.cgColor
-            self.viewContainer.layer.cornerRadius = 15
+            self.viewContainer.layer.cornerRadius = 7
         }
     }
 

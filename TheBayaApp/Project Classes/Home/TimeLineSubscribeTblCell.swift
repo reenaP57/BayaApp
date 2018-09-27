@@ -33,7 +33,7 @@ class TimeLineSubscribeTblCell: UITableViewCell {
     func loadProjectList(arr : [[String : AnyObject]], selectedIndex : Int){
         arrProject = arr
         currentIndex = selectedIndex
-        arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
+//        arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
 
         // To get Fav. project...
         if let index = arrProject.index(where: {$0[CIsFavorite] as? Int  == 1}){
@@ -190,18 +190,29 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                     
                      MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine ScheduleVisit")
                     
-                    if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
-                        scheduleVisitVC.projectId = dict.valueForInt(key: CProjectId)!
-                        scheduleVisitVC.projectName = dict.valueForString(key: CProjectName); self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+                    cell.btnScheduleVisit.alpha = 0.8
+                    GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
+                        cell.btnScheduleVisit.alpha = 1.0
+                        if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                            scheduleVisitVC.projectId = dict.valueForInt(key: CProjectId)!
+                            scheduleVisitVC.projectName = dict.valueForString(key: CProjectName); self.viewController?.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+                        }
                     }
                 }
                 
                 cell.btnProjectDetail.touchUpInside { (sender) in
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine ProjectDetail")
-                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
-                        projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
-                        self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                    
+                    cell.btnProjectDetail.alpha = 0.8
+                    GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
+                        cell.btnProjectDetail.alpha = 1.0
+                        if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                            projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
+                            self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                        }
                     }
+                    
+          
                 }
             }
             

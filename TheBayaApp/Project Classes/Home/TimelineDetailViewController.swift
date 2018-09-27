@@ -8,9 +8,10 @@
 
 import UIKit
 import AVKit
+import BFRImageViewer
 
 let space = CScreenWidth * 70/375
-let IpadSpace = CScreenWidth - (CScreenWidth * 450/768)
+let IpadSpace = CScreenWidth - (CScreenWidth * 500/768)
 let NavigationBarHeight = 64
 
 class TimelineDetailViewController: ParentViewController {
@@ -102,8 +103,8 @@ class TimelineDetailViewController: ParentViewController {
                 
                 vwTimlineGuideline.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
                 
-                vwTimlineGuideline.cnstImgvCheckmarkY.constant = 80
-                vwTimlineGuideline.cnstImgvCheckmarkTrailing.constant = IS_iPad ?  CGFloat(IpadSpace) : space-3
+                vwTimlineGuideline.cnstImgvCheckmarkY.constant = IS_iPad ? 127 : 81
+                vwTimlineGuideline.cnstImgvCheckmarkTrailing.constant = IS_iPad ?  CGFloat(IpadSpace) : space+2
                 
                 if !IS_iPad {
                     if IS_iPhone_5 {
@@ -156,6 +157,18 @@ class TimelineDetailViewController: ParentViewController {
             btnScheduleVisit.isHidden = false
             _ = btnProjectDetail.setConstraintConstant(20, edge: .leading, ancestor: true)
             _ = btnProjectDetail.setConstraintConstant(16, edge: .trailing, ancestor: true)
+        }
+    }
+    
+    func zoomImage(_ image : UIImage?)
+    {
+        if image != nil
+        {
+            DispatchQueue.main.async {
+                let imageVC = BFRImageViewController(imageSource: [image!])
+                imageVC?.isUsingTransparentBackground = false
+                self.present(imageVC!, animated: true, completion: nil)
+            }
         }
     }
 }
@@ -263,6 +276,13 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             }
                         }
                         
+                        cell.btnZoomImg.touchUpInside { (sender) in
+                            if mediaType == 1 {
+                                self.zoomImage(cell.imgVUpdate.image)
+                            }
+                        }
+                        
+                        
                         cell.btnShare.touchUpInside { (sender) in
                             if let arr = dict.valueForJSON(key: "media") as? [String] {
                                 self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: arr.first!)
@@ -365,7 +385,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                             _ = cell.lblImgDescription.setConstraintConstant(8, edge: .top, ancestor: true)
                                         }
                                     }
-                                    
+                                   
+                                    cell.btnZoomImg.touchUpInside { (sender) in
+                                        self.zoomImage(cell.imgVUpdate.image)
+                                    }
                                     
                                     cell.btnShare.touchUpInside { (sender) in
                                         self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: dict.valueForString(key: "link"))
@@ -645,6 +668,7 @@ extension TimelineDetailViewController {
                         self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
                         
                         if self.arrProject.count > 0 {
+                            self.arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
                             self.hideScheduleVisit()
                         }
                     }
@@ -842,8 +866,13 @@ extension TimelineDetailViewController {
                     appDelegate.window.addSubview(vwAlert)
                 }
             } else {
-                self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-                self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                
+                self.strFilterStartDate =  "\(DateFormatter.shared().dateGMT(fromString: vwFilter.txtStartDate.text!, dateFormat: "dd MMMM yyyy") ?? Date())"
+                
+                 self.strFilterEndDate =  "\(DateFormatter.shared().dateGMT(fromString: vwFilter.txtEndDate.text!, dateFormat: "dd MMMM yyyy") ?? Date())"
+                
+//                self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+//                self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                 

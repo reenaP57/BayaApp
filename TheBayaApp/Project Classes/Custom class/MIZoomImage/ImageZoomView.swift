@@ -7,11 +7,14 @@
 //
 
 import UIKit
+import AVKit
 
 class ImageZoomView: UIView {
     
     @IBOutlet var clImage : UICollectionView!
     var arrImages = [String]()
+    var arrImgVideo = [[String : AnyObject]]()
+    
     @IBOutlet var btnCancel : UIButton!
     @IBOutlet var pageController : UIPageControl!
     var imageIndex:Int = 0
@@ -21,6 +24,21 @@ class ImageZoomView: UIView {
         let zoomView : ImageZoomView = Bundle.main.loadNibNamed("ImageZoomView", owner: nil, options: nil)?.last as! ImageZoomView
         zoomView.frame = CGRect(x: 0, y: 0, width: CScreenWidth, height: CScreenHeight)
         return zoomView
+    }
+    
+    func showImageAndVideo(_ arr : [[String :AnyObject]]?){
+        arrImgVideo = arr!
+        clImage.register(UINib(nibName: "ImageZoomCollCell", bundle: nil), forCellWithReuseIdentifier: "ImageZoomCollCell")
+        clImage.register(UINib(nibName: "VideoCollCell", bundle: nil), forCellWithReuseIdentifier: "VideoCollCell")
+
+        GCDMainThread.async {
+            self.pageController.numberOfPages = self.arrImgVideo.count
+            self.clImage.reloadData()
+            self.imageIndex = 0
+            self.clImage.setContentOffset(CGPoint(x: CScreenWidth * CGFloat(self.imageIndex), y: 0), animated: false)
+            self.updatePageController()
+            
+        }
     }
     
     func showImage(_ arr : [String]?){
@@ -35,7 +53,6 @@ class ImageZoomView: UIView {
             self.updatePageController()
             
         }
-        
     }
 }
 
@@ -46,7 +63,7 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return arrImages.count
+        return arrImgVideo.count > 0 ? arrImgVideo.count : arrImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -54,12 +71,73 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageZoomCollCell", for: indexPath) as! ImageZoomCollCell
-        cell.scrollView.zoomScale = 1.0
-        cell.imgGallery.sd_setShowActivityIndicatorView(true)
-        cell.imgGallery.sd_setImage(with: URL(string: arrImages[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
-        
-        return cell
+        if arrImgVideo.count > 0 {
+            
+            let dict = arrImgVideo[indexPath.row]
+            
+            if dict.valueForInt(key: "type") == 1 {
+                //...Image
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageZoomCollCell", for: indexPath) as! ImageZoomCollCell
+                cell.scrollView.zoomScale = 1.0
+                cell.imgGallery.sd_setShowActivityIndicatorView(true)
+                cell.imgGallery.sd_setImage(with: URL(string: dict.valueForString(key: "url")), placeholderImage: nil, options: .retryFailed, completed: nil)
+                
+                return cell
+                
+            } else {
+               //...Video
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollCell", for: indexPath) as! VideoCollCell
+                
+                DispatchQueue.global().async {
+                    let videoURL = URL(string: dict.valueForString(key: "url"))
+                    let asset = AVAsset(url: videoURL!)
+                    let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                    assetImgGenerate.appliesPreferredTrackTransform = true
+                    let time = CMTimeMake(1, 2)
+                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                    if img != nil {
+                        let frameImg  = UIImage(cgImage: img!)
+                        DispatchQueue.main.async(execute: {
+                            if cell.imgThumbnail != nil
+                            {
+                                cell.imgThumbnail.image = frameImg
+                            }
+                        })
+                    }
+                }
+                
+                let url = URL(string: dict.valueForString(key: "url"))
+                let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
+                let player = AVPlayer(playerItem: playerItem)
+                
+                let playerLayer=AVPlayerLayer(player: player)
+                playerLayer.frame=CGRect(x:0, y:0, width:CScreenWidth, height:CScreenHeight)
+                cell.vwPlayer.layer.addSublayer(playerLayer)
+                
+                cell.btnPlay.touchUpInside { (sender) in
+                    if cell.btnPlay.isSelected {
+                        cell.btnPlay.isSelected = false
+                        cell.imgThumbnail.isHidden = false
+                        player.pause()
+                    } else {
+                        cell.btnPlay.isSelected = true
+                        cell.imgThumbnail.isHidden = true
+                        player.play()
+                    }
+                }
+                
+                return cell
+            }
+            
+        } else {
+            
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageZoomCollCell", for: indexPath) as! ImageZoomCollCell
+            cell.scrollView.zoomScale = 1.0
+            cell.imgGallery.sd_setShowActivityIndicatorView(true)
+            cell.imgGallery.sd_setImage(with: URL(string: arrImages[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
+            
+            return cell
+        }
     }
 }
 

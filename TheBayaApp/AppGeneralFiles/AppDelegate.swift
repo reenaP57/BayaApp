@@ -53,11 +53,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
-        if let refreshedToken = InstanceID.instanceID().token() {
-            print("InstanceID token: \(refreshedToken)")
-            CUserDefaults.set(refreshedToken, forKey: UserDefaultFCMToken)
-            CUserDefaults.synchronize()
+        InstanceID.instanceID().instanceID { (result, error) in
+            if let error = error {
+                print("Error fetching remote instange ID: \(error)")
+            } else if let result = result {
+                CUserDefaults.set(result.token, forKey: UserDefaultFCMToken)
+                CUserDefaults.synchronize()
+                print("Remote instance ID token: \(result.token)")
+            }
         }
+        
+//        if let refreshedToken = InstanceID.instanceID().token() {
+//            print("InstanceID token: \(refreshedToken)")
+//            CUserDefaults.set(refreshedToken, forKey: UserDefaultFCMToken)
+//            CUserDefaults.synchronize()
+//        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],

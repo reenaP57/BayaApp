@@ -16,6 +16,7 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var btnShare : UIButton!
+    @IBOutlet weak var btnZoomImg : UIButton!
     @IBOutlet weak var cnImgVUpdateHeight : NSLayoutConstraint!
     @IBOutlet weak var cnImgVUpdateWidth : NSLayoutConstraint!
     

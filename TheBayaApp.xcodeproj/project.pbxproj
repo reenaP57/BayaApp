@@ -118,6 +118,10 @@
 		5C51A95D2133E67700998135 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C51A95C2133E67700998135 /* AVFoundation.framework */; };
 		5C51A95F2133F9F800998135 /* TimelineCompletedProjectTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51A95E2133F9F800998135 /* TimelineCompletedProjectTblCell.swift */; };
 		5C5325E2215A032900172B91 /* ProjectDetailVideoCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */; };
+		5C574D21215C8F48001D59FE /* VisitConfirmTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C574D20215C8F48001D59FE /* VisitConfirmTblCell.swift */; };
+		5C574D23215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */; };
+		5C574D28215CF80E001D59FE /* VideoCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C574D26215CF80E001D59FE /* VideoCollCell.swift */; };
+		5C574D29215CF80E001D59FE /* VideoCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C574D27215CF80E001D59FE /* VideoCollCell.xib */; };
 		5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C73A13E211B26320056FC65 /* VerificationViewController.swift */; };
 		5C8D5B7C212582030080193A /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */; };
 		5C8D5B8A21258A8D0080193A /* LocationAdvantagesCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B8921258A8D0080193A /* LocationAdvantagesCollCell.swift */; };
@@ -286,6 +290,10 @@
 		5C51A95E2133F9F800998135 /* TimelineCompletedProjectTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCompletedProjectTblCell.swift; sourceTree = "<group>"; };
 		5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVideoCollCell.swift; sourceTree = "<group>"; };
 		5C5325E3215A16D100172B91 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		5C574D20215C8F48001D59FE /* VisitConfirmTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitConfirmTblCell.swift; sourceTree = "<group>"; };
+		5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHeaderTblCell.swift; sourceTree = "<group>"; };
+		5C574D26215CF80E001D59FE /* VideoCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollCell.swift; sourceTree = "<group>"; };
+		5C574D27215CF80E001D59FE /* VideoCollCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCollCell.xib; sourceTree = "<group>"; };
 		5C73A13E211B26320056FC65 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
 		5C8D5B8921258A8D0080193A /* LocationAdvantagesCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAdvantagesCollCell.swift; sourceTree = "<group>"; };
@@ -367,6 +375,8 @@
 				483460FE215B80A6008FC320 /* ImageZoomCollCell.xib */,
 				483460F9215B808E008FC320 /* ImageZoomView.swift */,
 				483460FA215B808F008FC320 /* ImageZoomView.xib */,
+				5C574D26215CF80E001D59FE /* VideoCollCell.swift */,
+				5C574D27215CF80E001D59FE /* VideoCollCell.xib */,
 			);
 			path = MIZoomImage;
 			sourceTree = "<group>";
@@ -661,6 +671,7 @@
 				5C1E61632122F7C40090308D /* ProfileTblCell.swift */,
 				5C1E61672123068B0090308D /* SubscribedTblCell.swift */,
 				5C1E616B212312920090308D /* VisitDetailTblCell.swift */,
+				5C574D20215C8F48001D59FE /* VisitConfirmTblCell.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -715,6 +726,7 @@
 				5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */,
 				5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */,
 				5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */,
+				5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -858,6 +870,7 @@
 				487E4E6D211C4CD8000CB32F /* AvenirLTStd-Roman.otf in Resources */,
 				487E4E64211C4CD8000CB32F /* AvenirLTStd-BlackOblique.otf in Resources */,
 				48346100215B80A7008FC320 /* ImageZoomCollCell.xib in Resources */,
+				5C574D29215CF80E001D59FE /* VideoCollCell.xib in Resources */,
 				487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */,
 				486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */,
 				5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */,
@@ -986,6 +999,7 @@
 				5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */,
 				5C14CA8A211C7A9B00B06E29 /* TabbarViewController.swift in Sources */,
 				5C5325E2215A032900172B91 /* ProjectDetailVideoCollCell.swift in Sources */,
+				5C574D23215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift in Sources */,
 				5C51A95B2133E40800998135 /* TimelineUpdateVideoTblCell.swift in Sources */,
 				5C51A95F2133F9F800998135 /* TimelineCompletedProjectTblCell.swift in Sources */,
 				5C1E616A21230EEC0090308D /* VisitDetailsViewController.swift in Sources */,
@@ -1015,6 +1029,7 @@
 				5C8D5B8A21258A8D0080193A /* LocationAdvantagesCollCell.swift in Sources */,
 				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
 				5C8D5B9021258ADC0080193A /* OverViewCollCell.swift in Sources */,
+				5C574D28215CF80E001D59FE /* VideoCollCell.swift in Sources */,
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
 				5CF34BA3212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift in Sources */,
 				483D21682159F700008EA16B /* TimeLineUpdateGIFTblCell.swift in Sources */,
@@ -1067,6 +1082,7 @@
 				5CDE13F62119B7BE00B11AA5 /* MIGenericButton.swift in Sources */,
 				5CDE13F92119B7BE00B11AA5 /* MIGenericLabel.swift in Sources */,
 				5C0CF76A215223FD009979FE /* LocationAdvantagesLayout.swift in Sources */,
+				5C574D21215C8F48001D59FE /* VisitConfirmTblCell.swift in Sources */,
 				5C48FB63212851B000B0D6CB /* SeeAllAmenitiesViewController.swift in Sources */,
 				5C1E61532122D9D50090308D /* SettingTblCell.swift in Sources */,
 				486FDD6B2119AEF500EA0188 /* MasterConstant.swift in Sources */,
@@ -1223,7 +1239,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1248,7 +1264,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
