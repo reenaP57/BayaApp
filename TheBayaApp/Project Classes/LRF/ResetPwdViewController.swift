@@ -47,6 +47,9 @@ class ResetPwdViewController: ParentViewController {
         
        lblNote.text = isEmail ? "\(CResetMessage) email address \([strEmailMobile]). Enter verification code in below." : "\(CResetMessage) mobile number \([strEmailMobile]). Enter verification code in below."
         
+        if !isEmail {
+             self.resendVerificationCode(type: CMobileType)
+        }
     }
 }
 
@@ -139,6 +142,7 @@ extension ResetPwdViewController {
             dict = ["type" : type as AnyObject,
                     "userName" : strEmailMobile as AnyObject,
                     CCountryId : countryId as AnyObject,
+                    "sendSms" : 1,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
                                     "deviceOS" : UIDevice.current.model,
@@ -156,10 +160,6 @@ extension ResetPwdViewController {
         APIRequest.shared().forgotPassword(dict: dict) { (response, error) in
             
             if response != nil && error == nil {
-                
-                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
-
-                self.txtCode.text = dataResponse.valueForString(key: "verifyCode")
 
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
                 }

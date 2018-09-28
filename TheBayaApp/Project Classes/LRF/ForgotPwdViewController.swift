@@ -202,6 +202,7 @@ extension ForgotPwdViewController {
             dict = ["type" : type as AnyObject,
                     "userName" : txtEmail.text as AnyObject,
                     CCountryId : countryID as AnyObject,
+                    "sendSms" : 0,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
                                     "deviceOS" : UIDevice.current.model,

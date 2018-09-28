@@ -50,6 +50,8 @@ class VerificationViewController: ParentViewController {
             
             self.title = "Verify Mobile Number"
             self.lblNote.text = "\(CVerifyNoteMessage) mobile number [\((appDelegate.loginUser?.country_code)!) | \((appDelegate.loginUser?.mobileNo)!)]."
+            
+            self.resendVerificationCode(dict: [CEmail : (appDelegate.loginUser?.email)! as AnyObject, CMobileNo : (appDelegate.loginUser?.mobileNo)! as AnyObject,"type" : CMobileType as AnyObject, CCountryId : (appDelegate.loginUser?.countryId)! as AnyObject])
         }
     }
 
@@ -149,13 +151,10 @@ extension VerificationViewController {
         APIRequest.shared().resendVerificationCode(dict) { (response, error) in
             
             if response != nil && error == nil {
-             
-                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
-
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
-                self.txtCode.text = dataResponse.valueForString(key: "verifyCode")
+               // self.txtCode.text = dataResponse.valueForString(key: "verifyCode")
                 self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
                 })
             }

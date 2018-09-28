@@ -45,6 +45,8 @@ let CAPITagDeviceToken         =   "device-token"
 let CAPITagNotificationList    =   "notificationlist"
 let CAPITagBadgeCount          =   "badge-count"
 let CAPITagPushNotifyCount     =   "push-notify-count"
+let CAPITagPostViewCount       =   "post-view-count"
+
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -1345,27 +1347,6 @@ extension APIRequest {
             }
 
         })
-        
-        
-//        _ = Networking.sharedInstance.POST(apiTag: CAPITagSupport, param: dict as [String : AnyObject], successBlock: { (task, response) in
-//
-//            MILoader.shared.hideLoader()
-//
-//            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSupport){
-//                completion(response, nil)
-//            }
-//
-//        }, failureBlock: { (task, message, error) in
-//
-//            MILoader.shared.hideLoader()
-//            completion(nil, error)
-//
-//            if error?.code == CStatus1009 || error?.code == CStatus1005 {
-//                _ = self.support(dict: dict, completion: completion)
-//            } else {
-//                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSupport, error: error)
-//            }
-//        })
     }
     
     
@@ -1373,6 +1354,27 @@ extension APIRequest {
     //TODO:
     //TODO: --------------TIMELINE RELATED API--------------
     //TODO:
+    
+    func postVisitCount(postId : String,completion :@escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagPostViewCount, param: ["postId" : postId as AnyObject], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagPostViewCount){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.postVisitCount(postId: postId, completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagPostViewCount, error: error)
+            }
+        })
+    }
+    
     
     func fetchTimelineList(_ projectId : Int?, startDate:String?, endDate:String?, page : Int?, shouldShowLoader : Bool?, completion : @escaping ClosureCompletion)  -> URLSessionTask {
         

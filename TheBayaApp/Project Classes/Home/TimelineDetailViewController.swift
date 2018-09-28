@@ -196,7 +196,7 @@ extension TimelineDetailViewController : subscribeProjectListDelegate {
         
         arrUpdateList.removeAll()
         self.tblUpdates.reloadData()
-       self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
+        self.loadTimeLineListFromServer(true, startDate: strFilterStartDate, endDate: strFilterEndDate)
     }
     
 }
@@ -619,6 +619,35 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
         return UITableViewCell()
     }
     
+    public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        
+        if self.arrUpdateList.count > 0 {
+            
+            var arrPostID = [String]()
+            
+            let topVisibleIndexPath : [IndexPath] = self.tblUpdates.indexPathsForVisibleRows!
+            
+            for indexPath in topVisibleIndexPath {
+                
+                if indexPath.section == 1 {
+                   let dict = self.arrUpdateList[indexPath.row]
+                    
+                    print("dict :",dict)
+
+                    if dict.valueForInt(key: "isViewed") == 0 {
+                        arrPostID.append("\(dict.valueForInt(key: "postId") ?? 0)")
+                    }
+                }
+            }
+            
+            print("Arr Post ID :",arrPostID)
+            
+            if arrPostID.count > 0 {
+                self.postVisitCount(postID: arrPostID.joined(separator: ","))
+            }
+        }
+    }
+    
 }
 
 
@@ -743,6 +772,31 @@ extension TimelineDetailViewController {
         }
         
     }
+    
+    func postVisitCount(postID : String) {
+        
+        APIRequest.shared().postVisitCount(postId: postID) { (response, error) in
+            
+            if response != nil && error == nil {
+                print("Post Visit Count response :", response as Any)
+                
+                if let arrData = response![CJsonData] as? [[String : Any]] {
+                    
+                    for item in arrData {
+                        
+                        let postId = item.valueForInt(key: "postId")
+                        
+                        if let index = self.arrUpdateList.index(where: {$0["postId"] as? Int == postId}){
+                            
+                            var dict = self.arrUpdateList[index]
+                            dict["isViewed"] = item.valueForInt(key: "isViewed")
+                            self.arrUpdateList[index] = dict
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
 
 
@@ -801,31 +855,33 @@ extension TimelineDetailViewController {
         } else {
             vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
         }
-        
-        
-        UIView.animate(withDuration: 0.2, animations: {
-        }) { (completed) in
-            
-            if completed {
-                UIView.animate(withDuration: 0.3, delay: 0.0, usingSpringWithDamping: 0.0, initialSpringVelocity: 0.03, options: .curveEaseIn, animations: {
-                    
-                    vwFilter.vwContent.transform = CGAffineTransform(translationX: 0.0, y: 0.0)
-                    
-                }, completion: { (completed) in
-                    
-                    if completed {
-                        vwFilter.vwContent.transform = .identity
-                    }
-                })
-            }
-        }
-        
 
+        vwFilter.alpha = 0.0
+        vwFilter.vwContent.alpha = 0.0
         
-        UIView.animate(withDuration: 0.5, delay: 1.0, options: UIViewAnimationOptions.curveEaseIn, animations: {
-             appDelegate.window.addSubview(vwFilter)
-        }, completion: nil)
+        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+            appDelegate.window.addSubview(vwFilter)
+        }, completion: { (completed) in
+            
+            UIView.animate(withDuration: 1.0, animations: {
+                vwFilter.alpha = 1.0
+                vwFilter.vwContent.alpha = 1.0
+            })
+        })
         
+        
+        vwFilter.btnClose.touchUpInside { (sender) in
+            
+            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+                vwFilter.alpha = 0.0
+                vwFilter.vwContent.alpha = 0.0
+                
+            }, completion: { (completed) in
+                UIView.animate(withDuration: 2.0, animations: {
+                    vwFilter.removeFromSuperview()
+                })
+            })
+        }
         
         vwAlert.btnOk.touchUpInside { (sender) in
             vwAlert.removeFromSuperview()
@@ -867,26 +923,18 @@ extension TimelineDetailViewController {
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                 
-                UIView.animate(withDuration: 0.3, animations: {
+                UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
+                    vwFilter.alpha = 0.0
+                    vwFilter.vwContent.alpha = 0.0
+                    
                 }, completion: { (completed) in
-                    if completed {
+                    UIView.animate(withDuration: 2.0, animations: {
                         vwFilter.removeFromSuperview()
-                    }
+                    })
                 })
-               
             }
-            
         }
         
-        vwFilter.btnClose.touchUpInside { (sender) in
-            
-            UIView.animate(withDuration: 0.3, animations: {
-            }, completion: { (completed) in
-                if completed {
-                    vwFilter.removeFromSuperview()
-                }
-            })
-        }
         
         vwFilter.btnClear.touchUpInside { (sender) in
             vwFilter.txtStartDate.text = ""

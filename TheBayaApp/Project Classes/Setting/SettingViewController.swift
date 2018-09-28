@@ -12,8 +12,9 @@ class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
     
-    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications","Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
+    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications","Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout", "Version - \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)"]
     
+   
     //MARK:-
     //MARK:- LyfeCycle Methods
     
@@ -148,8 +149,14 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 }
                 
             } else {
-                cell.imgVArrow.isHidden = false
-                cell.switchNotify.isHidden = true
+                
+                if indexPath.row == arrSetting.count-1 {
+                    cell.imgVArrow.isHidden = true
+                    cell.switchNotify.isHidden = true
+                } else {
+                    cell.imgVArrow.isHidden = false
+                    cell.switchNotify.isHidden = true
+                }
             }
 
             cell.switchNotify.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)

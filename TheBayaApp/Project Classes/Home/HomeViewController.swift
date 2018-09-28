@@ -78,6 +78,13 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             
             if indexPath.row != 0 || appDelegate.loginUser?.project_name == "" {
 
+                if indexPath.row == 1 {
+                    cell.lblPrjctName.isHidden = dict.valueForString(key: "subtitle") == "0 PROJECTS"
+                } else {
+                    cell.lblPrjctName.isHidden = false
+                }
+                
+                
                 cell.vwCount.isHidden = true
                 
                 if IS_iPhone {
