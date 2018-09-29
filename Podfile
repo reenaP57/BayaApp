@@ -9,10 +9,16 @@ target 'TheBayaApp' do
   pod 'Alamofire'
   pod 'IQKeyboardManagerSwift'
   pod 'SDWebImage'
+  pod 'BFRImageViewer'
   pod 'CTPanoramaView', '1.0'
+  pod 'DeviceGuru'
+  
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'GoogleAnalytics'
+
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
   pod 'SDWebImage/GIF'
 
 end
