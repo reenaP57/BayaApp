@@ -15,7 +15,7 @@ import Foundation
 
 var CBtnYes         : String{ return CLocalize(text: "Yes") }
 var CBtnNo          : String{ return CLocalize(text: "No") }
-var CBtnOk          : String{ return CLocalize(text: "OK") }
+var CBtnOk          : String{ return CLocalize(text: "Ok") }
 var CBtnCancel      : String{ return CLocalize(text: "Cancel") }
 var CBtnRetry       : String{ return CLocalize(text: "Retry") }
 var CBtnSkip        : String{ return CLocalize(text: "Skip") }

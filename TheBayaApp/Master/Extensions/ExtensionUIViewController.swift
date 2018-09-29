@@ -551,5 +551,62 @@ extension UIViewController {
 
 extension UIViewController {
     
+    func showAlertConfirmationView(_ message : String?, okTitle: String?, cancleTitle: String?, type : AlertType, completion: ((Bool) -> Void)?) {
+        
+        for objView in (appDelegate.window.subviews)
+        {
+            if objView.isKind(of: CustomAlertView.classForCoder())
+            {
+                objView.removeFromSuperview()
+            }
+        }
+        
+        if let alertView = CustomAlertView.initAlertView() as? CustomAlertView {
+            alertView.showAlert(message, okTitle: okTitle ?? CBtnOk , cancleTitle: cancleTitle ?? CBtnCancel, type: type, completion: completion)
+            appDelegate.window.addSubview(alertView)
+            
+            alertView.btnOk.touchUpInside { (sender) in
+                alertView.removeFromSuperview()
+                if let handler = completion {
+                    handler(true)
+                }
+            }
+            alertView.btnCancel.touchUpInside { (sender) in
+                alertView.removeFromSuperview()
+                if let handler = completion {
+                    handler(false)
+                }
+            }
+        }
+    }
+    
+    func showAlertView(_ message : String?, completion: ((Bool) -> Void)?) {
+        
+        for objView in (appDelegate.window.subviews)
+        {
+            if objView.isKind(of: CustomAlertView.classForCoder())
+            {
+                objView.removeFromSuperview()
+            }
+        }
+        
+        if let alertView = CustomAlertView.initAlertView() as? CustomAlertView {
+            alertView.showAlert(message, okTitle:CBtnOk , cancleTitle: nil, type: .alertView, completion: completion)
+            appDelegate.window.addSubview(alertView)
+            
+            alertView.btnOk.touchUpInside { (sender) in
+                alertView.removeFromSuperview()
+                if let handler = completion {
+                    handler(true)
+                }
+            }
+            alertView.btnCancel.touchUpInside { (sender) in
+                alertView.removeFromSuperview()
+                if let handler = completion {
+                    handler(false)
+                }
+            }
+        }
+    }
     
 }

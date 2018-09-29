@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.371111"
+            timestampString = "559914229.531179"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1143"
-            endingLineNumber = "1143"
+            startingLineNumber = "1159"
+            endingLineNumber = "1159"
             landmarkName = "subcribedProject(_:type:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.372419"
+            timestampString = "559914229.531319"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1148"
-            endingLineNumber = "1148"
+            startingLineNumber = "1164"
+            endingLineNumber = "1164"
             landmarkName = "subcribedProject(_:type:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.373212"
+            timestampString = "559914229.5313931"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1154"
-            endingLineNumber = "1154"
+            startingLineNumber = "1170"
+            endingLineNumber = "1170"
             landmarkName = "subcribedProject(_:type:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -58,23 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.374074"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1165"
-            endingLineNumber = "1165"
-            landmarkName = "getSubscribedProjectList(completion:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.3749551"
+            timestampString = "559914229.531532"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "146"
@@ -90,45 +74,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.375862"
+            timestampString = "559914229.531659"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "157"
+            endingLineNumber = "157"
             landmarkName = "logging(response:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TheBayaApp.Networking.(logging in _11315747F5D1F2A27CD19BAD441F2CE3)(response: Swift.Optional&lt;Alamofire.DataResponse&lt;Any&gt;&gt;) -&gt; ()"
-                  moduleName = "TheBayaApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Project/XCODEPROJECTS/thebayaapp/TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-                  timestampString = "559833486.847077"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "148"
-                  endingLineNumber = "148"
-                  offsetFromSymbolStart = "3668">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #3 (__ObjC.UIAlertAction) -&gt; () in TheBayaApp.Networking.(logging in _11315747F5D1F2A27CD19BAD441F2CE3)(response: Swift.Optional&lt;Alamofire.DataResponse&lt;Any&gt;&gt;) -&gt; ()"
-                  moduleName = "TheBayaApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Project/XCODEPROJECTS/thebayaapp/TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-                  timestampString = "559833486.8514431"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "149"
-                  endingLineNumber = "149"
-                  offsetFromSymbolStart = "20">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -137,29 +89,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TheBayaApp/Project Classes/Setting/SettingViewController.swift"
-            timestampString = "559889647.603515"
+            filePath = "TheBayaApp/Project Classes/Home/TimeLineSubscribeTblCell.swift"
+            timestampString = "559914229.531743"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
-            landmarkName = "userDetail()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TheBayaApp/ServiceAndConfiguration/APIRequest.swift"
-            timestampString = "559835703.380095"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "1456"
-            endingLineNumber = "1456"
-            landmarkName = "saveLoginUserDetail(response:)"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "CropImage(image:cropRect:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

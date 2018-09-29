@@ -145,9 +145,15 @@ class Networking: NSObject
                     
                 }else if res?.response!.statusCode == CStatus401 || res?.response!.statusCode == CStatus405
                 {
-                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk) { (action) in
-                        appDelegate.logout(isForDeleteUser: true)
+                    CTopMostViewController.showAlertView((data?.valueForString(key: CJsonMessage))) { (result) in
+                        if result {
+                            appDelegate.logout(isForDeleteUser: true)
+                        }
                     }
+                    
+//                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk) { (action) in
+//                        appDelegate.logout(isForDeleteUser: true)
+//                    }
                 }
                 
                 print("API Response: (\(String(describing: res?.response!.statusCode))) [\(String(describing: res?.timeline.totalDuration))s] Response:\(String(describing: res?.result.value))")
@@ -605,12 +611,20 @@ class APIRequest: NSObject {
             default:
                 if showAlert {
                     let message = meta.valueForString(key: CJsonMessage)
-                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk) { (action) in
-                        
-                        if appDelegate.topViewController() is ProjectDetailViewController {
-                            appDelegate.topViewController()?.navigationController?.popViewController(animated: true)
+                    CTopMostViewController.showAlertView(message) { (result) in
+                        if result {
+                            if appDelegate.topViewController() is ProjectDetailViewController {
+                                appDelegate.topViewController()?.navigationController?.popViewController(animated: true)
+                            }
                         }
                     }
+                    
+//                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk) { (action) in
+//
+//                        if appDelegate.topViewController() is ProjectDetailViewController {
+//                            appDelegate.topViewController()?.navigationController?.popViewController(animated: true)
+//                        }
+//                    }
                 }
             }
         }
@@ -623,8 +637,10 @@ class APIRequest: NSObject {
     {
         MILoader.shared.hideLoader()
         if showAlert && errorMessage != nil {
-            CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: errorMessage, btnOneTitle: CBtnOk) { (action) in
+            CTopMostViewController.showAlertView(errorMessage) { (result) in
             }
+//            CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: errorMessage, btnOneTitle: CBtnOk) { (action) in
+//            }
         }
         
         print("API Error =" + "\(strApiTag )" + "\(String(describing: error?.localizedDescription))" )
@@ -1039,7 +1055,7 @@ extension APIRequest {
         })
     }
     
-    func changeNotificationStatus(emailNotify: Int?, pushNotify: Int?, smsNotify: Int?, completion: @escaping ClosureCompletion) {
+    func changeNotificationStatus(emailNotify: String?, pushNotify: String?, smsNotify: String?, completion: @escaping ClosureCompletion) {
     
         _  = Networking.sharedInstance.POST(apiTag: CAPITagNotifyStatus, param: ["emailNotify" : emailNotify as AnyObject, "pushNotify": pushNotify as AnyObject, "mobileNotify": smsNotify as AnyObject], successBlock: { (task, response) in
             

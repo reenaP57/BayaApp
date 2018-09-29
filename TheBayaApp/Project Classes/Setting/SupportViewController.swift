@@ -172,9 +172,15 @@ extension SupportViewController {
             
             if response != nil && error == nil {
                 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    self.navigationController?.popViewController(animated: true)
+                self.showAlertView(CSuccessSupportMessage, completion: { (result) in
+                    if result {
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 })
+                
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//                    self.navigationController?.popViewController(animated: true)
+//                })
             }
         }
     }

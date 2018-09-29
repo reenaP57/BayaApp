@@ -19,6 +19,9 @@ class VisitConfirmTblCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        imgVProject.layer.cornerRadius = 5
+        imgVProject.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

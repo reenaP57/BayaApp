@@ -154,9 +154,9 @@ extension VerificationViewController {
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
-               // self.txtCode.text = dataResponse.valueForString(key: "verifyCode")
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                })
+                self.showAlertView(message, completion: { (result) in })
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//                })
             }
         }
     }

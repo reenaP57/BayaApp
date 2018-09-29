@@ -98,6 +98,11 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                 
                 if IS_iPhone {
                     cell.vwProgress.isHidden = false
+                    
+                    if IS_iPhone_5 {
+                        _ = cell.imgVTitle.setConstraintConstant(15.0, edge: .top, ancestor: true)
+                    }
+                    
                 }else {
                     cell.vwProgress.hide(byHeight: false)
                     _ = cell.lblPrjctName.setConstraintConstant(10.0, edge: .bottom, ancestor: true)

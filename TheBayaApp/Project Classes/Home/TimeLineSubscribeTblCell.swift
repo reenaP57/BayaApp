@@ -60,11 +60,12 @@ class TimeLineSubscribeTblCell: UITableViewCell {
         
         context?.translateBy(x: 0.0, y: image.size.height);
         context?.scaleBy(x: 1.0, y: -1.0);
-        context?.draw(image.cgImage!, in: CGRect(x:0, y:image.size.height - cropRect.height, width:image.size.width, height:image.size.height), byTiling: false);
+        context?.draw(image.cgImage!, in: CGRect(x: IS_iPhone_6_Plus || IS_iPhone_X ? 5 : 0, y:image.size.height - cropRect.height, width:image.size.width, height:image.size.height), byTiling: false);
         context?.clip(to: [cropRect]);
         
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
+        
         
         return croppedImage
     }
@@ -217,7 +218,15 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             }
             
             cell.imgVPjctCompletion.image =  IS_iPad ? UIImage(named: "project_completion_ipad") : UIImage(named: "project_completion")
-            let space = IS_iPad ? 37 :30
+            var space = 0
+            
+            if IS_iPad {
+               space = 37
+            } else if IS_iPhone_6_Plus || IS_iPhone_X {
+              space = 25
+            } else {
+               space = 30
+            }
             
             let imgVHeight = cell.imgVPjctCompletion.CViewHeight - CGFloat(space)
             

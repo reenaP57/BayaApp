@@ -316,7 +316,10 @@ extension ScheduleVisitViewController {
                 
             } else if !self.checkDifferenceBetweenTwoDate() {
                 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                self.showAlertView(CDuplicateTimeSlotMessage, completion: { (result) in
+                })
+                
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 
             }
 //            else if (self.txtSlot1.text == self.txtSlot2.text) ||  (self.txtSlot2.text == self.txtSlot3.text) || (self.txtSlot1.text == self.txtSlot3.text) {
@@ -414,11 +417,18 @@ extension ScheduleVisitViewController {
 
             if response != nil && error == nil {
 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                   
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ScheduleVisit Submit")
-                    self.navigationController?.popViewController(animated: true)
+                self.showAlertView(CSuccessScheduleVisitMessage, completion: { (result) in
+                    if result {
+                        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ScheduleVisit Submit")
+                        self.navigationController?.popViewController(animated: true)
+                    }
                 })
+                
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//
+//                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ScheduleVisit Submit")
+//                    self.navigationController?.popViewController(animated: true)
+//                })
             }
         }
         

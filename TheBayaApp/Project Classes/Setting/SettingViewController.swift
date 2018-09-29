@@ -65,23 +65,26 @@ extension SettingViewController {
        
             if sender.isOn {
                 //...switch is in on
-                
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                    sender.isOn = true
-                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: 1, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
-                    
-                }, btnTwoTitle: CBtnNo) { (action) in
-                    sender.isOn = false
+            
+                self.showAlertConfirmationView(CEnablePushNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        sender.isOn = true
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: "1", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                    } else {
+                        sender.isOn = false
+                    }
                 }
                 
             } else {
                 //...switch is in off
                
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                    sender.isOn = false
-                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: 0, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
-                }, btnTwoTitle: CBtnNo) { (action) in
-                    sender.isOn = true
+                self.showAlertConfirmationView(CDisablePushNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        sender.isOn = false
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                    } else {
+                        sender.isOn = true
+                    }
                 }
             }
         }
@@ -91,20 +94,26 @@ extension SettingViewController {
             
             if sender.isOn {
                 //...switch is in on
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                    sender.isOn = true
-                    self.changeNotificationStatus(email: 1, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
-                }, btnTwoTitle: CBtnNo) { (action) in
-                    sender.isOn = false
+                
+                self.showAlertConfirmationView(CEnableEmailNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        sender.isOn = true
+                        self.changeNotificationStatus(email: "1", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                    } else {
+                        sender.isOn = false
+                    }
                 }
                 
             } else {
                 //...switch is in off
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                    sender.isOn = false
-                    self.changeNotificationStatus(email: 0, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
-                }, btnTwoTitle: CBtnNo) { (action) in
-                    sender.isOn = true
+                
+                self.showAlertConfirmationView(CDisableEmailNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        sender.isOn = false
+                        self.changeNotificationStatus(email: "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                    } else {
+                        sender.isOn = true
+                    }
                 }
             }
         }
@@ -114,20 +123,24 @@ extension SettingViewController {
             
             if sender.isOn {
                 //...switch is in on
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnableSMSNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                    sender.isOn = true
-                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: 1)
-                }, btnTwoTitle: CBtnNo) { (action) in
-                    sender.isOn = false
+                self.showAlertConfirmationView(CEnableSMSNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        sender.isOn = true
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: "1")
+                    } else {
+                        sender.isOn = false
+                    }
                 }
                 
             } else {
                 //...switch is in off
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisableSMSNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                    sender.isOn = false
-                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: 0)
-                }, btnTwoTitle: CBtnNo) { (action) in
-                    sender.isOn = true
+                self.showAlertConfirmationView(CDisableSMSNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        sender.isOn = false
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: "0")
+                    } else {
+                        sender.isOn = true
+                    }
                 }
             }
         }
@@ -268,11 +281,13 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
            
         case 10:
             //...Logout
-            self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CLogOutMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                appDelegate.logout(isForDeleteUser: false)
-            }, btnTwoTitle: CBtnNo) { (action) in
-            }
             
+            self.showAlertConfirmationView(CLogOutMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                if result {
+                 appDelegate.logout(isForDeleteUser: false)
+                }
+            }
+  
         default:
            print("")
         }
@@ -284,7 +299,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension SettingViewController {
     
-    func changeNotificationStatus(email : Int, push : Int, sms : Int) {
+    func changeNotificationStatus(email : String, push : String, sms : String) {
         
         APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push, smsNotify:sms ) { (response, error) in
             

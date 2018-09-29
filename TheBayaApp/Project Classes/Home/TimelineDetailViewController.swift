@@ -862,7 +862,8 @@ extension TimelineDetailViewController {
     @objc func btnFilterClicked() {
         
         let vwFilter = FilterView.initFilterView()
-        let vwAlert = CustomAlertView.initAlertView()
+       // let vwAlert = CustomAlertView.initAlertView()
+        
         
         if self.startDate != "" && self.endDate != "" {
             vwFilter.txtStartDate.text = self.startDate
@@ -925,9 +926,9 @@ extension TimelineDetailViewController {
             }
         }
         
-        vwAlert.btnOk.touchUpInside { (sender) in
-            vwAlert.removeFromSuperview()
-        }
+//        vwAlert.btnOk.touchUpInside { (sender) in
+//            vwAlert.removeFromSuperview()
+//        }
         
         vwFilter.btnDone.touchUpInside { (sender) in
             
@@ -942,23 +943,27 @@ extension TimelineDetailViewController {
 
             
             if (vwFilter.txtStartDate.text?.isBlank)!{
+                self.showAlertView(CMessageStartDate, completion: nil)
                 
-                vwAlert.lblMsg.text = CMessageStartDate
-                UIView.animate(withDuration: 1.0) {
-                    appDelegate.window.addSubview(vwAlert)
-                }
+//                vwAlert.lblMsg.text = CMessageStartDate
+//                UIView.animate(withDuration: 1.0) {
+//                    appDelegate.window.addSubview(vwAlert)
+//                }
             }else if (vwFilter.txtEndDate.text?.isBlank)!{
                 
-                vwAlert.lblMsg.text = CMessageEndDate
-                UIView.animate(withDuration: 1.0) {
-                    appDelegate.window.addSubview(vwAlert)
-                }
+                self.showAlertView(CMessageEndDate, completion: nil)
+
+//                vwAlert.lblMsg.text = CMessageEndDate
+//                UIView.animate(withDuration: 1.0) {
+//                    appDelegate.window.addSubview(vwAlert)
+//                }
             } else if startDate?.compare((endDate)!) == .orderedDescending {
-                
-                vwAlert.lblMsg.text = CMessageCompareFilterDate
-                UIView.animate(withDuration: 1.0) {
-                    appDelegate.window.addSubview(vwAlert)
-                }
+                self.showAlertView(CMessageCompareFilterDate, completion: nil)
+
+               // vwAlert.lblMsg.text = CMessageCompareFilterDate
+//                UIView.animate(withDuration: 1.0) {
+//                    appDelegate.window.addSubview(vwAlert)
+//                }
             } else {
                 self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"

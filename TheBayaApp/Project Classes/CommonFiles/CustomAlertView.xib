@@ -18,30 +18,29 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view clipsSubviews="YES" tag="10" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PRv-F7-cyg" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                    <rect key="frame" x="15" y="284" width="345" height="100"/>
+                    <rect key="frame" x="15" y="274" width="345" height="120"/>
                     <subviews>
                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="viq-rd-BC4" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="345" height="100"/>
+                            <rect key="frame" x="0.0" y="0.0" width="345" height="120"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_baya_logo_home" translatesAutoresizingMaskIntoConstraints="NO" id="Nfn-yy-9sy">
-                                    <rect key="frame" x="150" y="7" width="45" height="45"/>
+                                <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_baya_logo_home" translatesAutoresizingMaskIntoConstraints="NO" id="Nfn-yy-9sy">
+                                    <rect key="frame" x="137.5" y="4.5" width="70" height="70"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="9SI-jP-c2y"/>
-                                        <constraint firstAttribute="width" constant="45" id="BVR-CZ-mgw"/>
+                                        <constraint firstAttribute="height" constant="70" id="9SI-jP-c2y"/>
+                                        <constraint firstAttribute="width" constant="70" id="BVR-CZ-mgw"/>
                                     </constraints>
                                 </imageView>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date is blank." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJs-8e-BFX" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="5" width="325" height="50"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start date is blank." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJs-8e-BFX" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="5" width="325" height="70"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="djB-hN-2sR"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="70" id="djB-hN-2sR"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bjZ-t1-5LB" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="60" width="172.5" height="40"/>
+                                    <rect key="frame" x="0.0" y="80" width="172.5" height="40"/>
                                     <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="bjZ-t1-5LB" secondAttribute="height" multiplier="43:10" id="dgh-x0-GWB"/>
@@ -52,7 +51,7 @@
                                     </state>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QRa-BB-hTR" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                    <rect key="frame" x="172.5" y="60" width="172.5" height="40"/>
+                                    <rect key="frame" x="172.5" y="80" width="172.5" height="40"/>
                                     <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                     <state key="normal" title="Ok">

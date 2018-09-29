@@ -33,16 +33,18 @@ class Zoom3DImageViewController: ParentViewController {
         
         //...Load 3D image
        
-        if let url = URL(string: imgUrl){
-            do {
-                let imageData = try Data(contentsOf: url as URL)
-                let img = UIImage(data: imageData)
-                self.vwPanorama.image = img
-            } catch {
-                print("Unable to load data: \(error)")
+        GCDBackgroundThread.async {
+            if let url = URL(string: self.imgUrl){
+                do {
+                    let imageData = try Data(contentsOf: url as URL)
+                    let img = UIImage(data: imageData)
+                    self.vwPanorama.image = img
+                } catch {
+                    print("Unable to load data: \(error)")
+                }
             }
         }
-        
+
        //vwPanorama.image = UIImage(named: "spherical.jpg")
     }
 }

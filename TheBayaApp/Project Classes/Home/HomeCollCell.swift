@@ -18,7 +18,8 @@ class HomeCollCell: UICollectionViewCell {
     @IBOutlet weak var lblPercentage : UILabel!
     @IBOutlet weak var vwProgress : UIView!
     @IBOutlet weak var vwCount : UIView!
-
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
  

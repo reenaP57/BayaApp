@@ -126,9 +126,15 @@ extension ChangePasswordViewController {
                     appDelegate.initHomeViewController()
                     
                 } else {
-                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                        self.navigationController?.popViewController(animated: true)
+                    
+                    self.showAlertView(message, completion: { (result) in
+                        if result {
+                            self.navigationController?.popViewController(animated: true)
+                        }
                     })
+//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//                        self.navigationController?.popViewController(animated: true)
+//                    })
                 }
             }
         }

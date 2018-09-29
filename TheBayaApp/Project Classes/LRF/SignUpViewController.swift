@@ -181,7 +181,8 @@ extension SignUpViewController {
             } else if self.txtConfirmPwd.text != self.txtPwd.text {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
             } else if !self.btnTerms.isSelected {
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CTermsConditionNotAcceptedMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                self.showAlertView(CTermsConditionNotAcceptedMessage, completion: { (result) in })
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CTermsConditionNotAcceptedMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
             } else {
                 self.resignKeyboard()
                 self.signup()
@@ -249,9 +250,15 @@ extension SignUpViewController {
                 
                 if status == CStatusFour {
                     
-                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                       self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
+                    self.showAlertView(message, completion: { (result) in
+                        if result {
+                            self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
+                        }
                     })
+
+//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//                       self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
+//                    })
                     
                 } else {
                     self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum AlertType:Int {
+    case alertView
+    case confirmationView
+}
+
 class CustomAlertView: UIView {
 
     @IBOutlet weak var lblMsg : UILabel!
@@ -19,6 +24,27 @@ class CustomAlertView: UIView {
         alertView.frame = CGRect(x: 0.0, y: 0.0, width: CScreenWidth, height: CScreenHeight)
         alertView.layoutIfNeeded()
         return alertView
+    }
+    
+    func showAlert(_ message : String?, okTitle: String?, cancleTitle: String?, type : AlertType, completion: ((Bool) -> Void)?) {
+        
+        if type == .alertView {
+            self.btnCancel.hide(byWidth: true)
+            _ = self.btnOk.setConstraintConstant(-(self.btnOk.CViewX + self.btnOk.CViewWidth), edge: .leading, ancestor: true)
+        }
+        
+        GCDMainThread.async {
+            if okTitle != nil {
+                self.btnOk.setTitle(okTitle, for: .normal)
+            }
+            
+            if cancleTitle != nil {
+                self.btnCancel.setTitle(cancleTitle, for: .normal)
+            }
+        }
+  
+        
+        self.lblMsg.text = message
     }
 
 }

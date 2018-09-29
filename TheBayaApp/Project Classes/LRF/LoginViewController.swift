@@ -262,18 +262,33 @@ extension LoginViewController {
                 
                 if status == CStatusFour {
                     
-                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                        
-                        if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
-                            
-                            if dataResponse.valueForInt(key: "emailVerify") == 0 {
-                                verifyVC.isEmailVerify = true
+                    self.showAlertView(message, completion: { (result) in
+                        if result {
+                            if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+                                
+                                if dataResponse.valueForInt(key: "emailVerify") == 0 {
+                                    verifyVC.isEmailVerify = true
+                                }
+                                
+                                verifyVC.verifiyCode = dataResponse.valueForString(key: "verifyCode")
+                                self.navigationController?.pushViewController(verifyVC, animated: true)
                             }
-                            
-                            verifyVC.verifiyCode = dataResponse.valueForString(key: "verifyCode")
-                            self.navigationController?.pushViewController(verifyVC, animated: true)
                         }
                     })
+                    
+                    
+//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//
+//                        if let verifyVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
+//
+//                            if dataResponse.valueForInt(key: "emailVerify") == 0 {
+//                                verifyVC.isEmailVerify = true
+//                            }
+//
+//                            verifyVC.verifiyCode = dataResponse.valueForString(key: "verifyCode")
+//                            self.navigationController?.pushViewController(verifyVC, animated: true)
+//                        }
+//                    })
                     
                 } else if status == CStatusTen {
                     //...Register From Admin

@@ -161,8 +161,11 @@ extension ResetPwdViewController {
             
             if response != nil && error == nil {
 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
-                }
+                self.showAlertView(self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", completion: { (result) in
+                })
+                
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
+//                }
             }
         }
     }
@@ -178,9 +181,15 @@ extension ResetPwdViewController {
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
-                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    self.navigationController?.popToRootViewController(animated: true)
+                self.showAlertView(message, completion: { (result) in
+                    if result {
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
                 })
+                
+//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
+//                    self.navigationController?.popToRootViewController(animated: true)
+//                })
             }
         }
     }

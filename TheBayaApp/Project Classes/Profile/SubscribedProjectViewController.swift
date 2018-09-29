@@ -41,6 +41,9 @@ class SubscribedProjectViewController: ParentViewController {
     func initialize() {
         self.title = "Subscribed Projects"
         
+        tblSubscribedList.rowHeight = UITableViewAutomaticDimension
+        tblSubscribedList.estimatedRowHeight = 110
+        
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         refreshControl.tintColor = ColorGreenSelected
         tblSubscribedList.pullToRefreshControl = refreshControl
@@ -58,9 +61,9 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
         return arrSubscribeList.count
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return IS_iPad ? CScreenWidth * (115 / 768) : CScreenWidth * (108 / 375)
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return IS_iPad ? CScreenWidth * (115 / 768) : CScreenWidth * (120 / 375)
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -77,7 +80,22 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
             
             cell.btnUnsubscribe.touchUpInside { (sender) in
                 
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CUnsubscribeMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                self.showAlertConfirmationView(CUnsubscribeMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
+                    if result {
+                        
+                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0, completion: { (response, error) in
+                            
+                            if response != nil && error == nil {
+                                
+                                self.arrSubscribeList.remove(at: indexPath.row)
+                                self.lblNoData.isHidden = self.arrSubscribeList.count != 0
+                                self.tblSubscribedList.reloadData()
+                            }
+                        })
+                    }
+                }
+                
+              /*  self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CUnsubscribeMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     
                     APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0, completion: { (response, error) in
                         
@@ -90,7 +108,7 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
                     })
                     
                 }, btnTwoTitle: CBtnNo) { (action) in
-                }
+                } */
             }
             
             return cell

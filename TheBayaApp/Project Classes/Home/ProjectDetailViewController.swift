@@ -525,7 +525,10 @@ extension ProjectDetailViewController {
                 
                 if response != nil && error == nil {
                     
-                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
+                    self.showAlertView(CProjectBrochureMessage, completion: { (result) in
+                    })
+                    
+//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 }
             }
         }
@@ -533,6 +536,46 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSubscribeClicked (sender : UIButton) {
   
+        self.showAlertConfirmationView(sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, okTitle: CBtnOk, cancleTitle: CBtnCancel, type: .confirmationView) { (result) in
+            if result {
+              
+                self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
+                self.btnSubscribe.isSelected = !sender.isSelected
+                
+                if self.btnSubscribe.isSelected {
+                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Subscribe")
+                } else {
+                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
+                }
+                
+                APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
+                    
+                    if response != nil && error == nil {
+                        
+                        let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
+                        
+                        appDelegate.loginUser?.postBadge = Int16(data.valueForInt(key: CFavoriteProjectBadge)!)
+                        appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: CFavoriteProjectProgress)!)
+                        appDelegate.loginUser?.project_name = data.valueForString(key: CFavoriteProjectName)
+                        
+                        CoreData.saveContext()
+                        
+                        for vwController in (self.navigationController?.viewControllers)! {
+                            
+                            if vwController.isKind(of: ProjectViewController .classForCoder()){
+                                
+                                let projectVC = vwController as? ProjectViewController
+                                projectVC?.refreshIsSubscribedStatus(projectId: self.projectID, isSubscribed: data.valueForInt(key: CIsSubscribe)!)
+                                
+                                break
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        /*
         self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
            
             self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
@@ -570,7 +613,7 @@ extension ProjectDetailViewController {
             }
             
         }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
-        })
+        }) */
     }
     
     @IBAction func btnCallClicked (sender : UIButton) {
