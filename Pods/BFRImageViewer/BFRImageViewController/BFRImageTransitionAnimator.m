@@ -7,6 +7,7 @@
 //
 
 #import "BFRImageTransitionAnimator.h"
+#import "BFRImageViewerConstants.h"
 
 @interface BFRImageTransitionAnimator()
 
@@ -19,11 +20,15 @@
 /*! Represents the device orientation state when the controller is presented. If that changes when dismissal occurs, the custom transition animation isn't used. This is because it can be quite difficult for consumers to get the correct frame that the image should animate back to upon rotation. This may be supported in the future. */
 @property (nonatomic) UIDeviceOrientation presentedDeviceOrientation;
 
+/*!Kept around to make sure the presenting view's Y coodinates are persisted upon dismissal. */
+@property (nonatomic) CGFloat presentingViewY;
+
 @end
 
 @implementation BFRImageTransitionAnimator
 
 #pragma mark - Initialization
+
 - (instancetype)init {
     self = [super init];
     
@@ -32,7 +37,7 @@
         self.desiredContentMode = UIViewContentModeScaleAspectFill;
         self.animationDuration = DEFAULT_ANIMATION_DURATION;
         self.dismissWithoutCustomTransition = NO;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCancelCustomTransitionNotification:) name:@"CancelCustomDismissalTransition" object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleCancelCustomTransitionNotification:) name:NOTE_VC_SHOULD_CANCEL_CUSTOM_TRANSITION object:nil];
     }
     
     return self;
@@ -49,6 +54,7 @@
 }
 
 #pragma mark - Utils
+
 - (UIImageView *)temporaryImageView {
     if (self.animatedImage == nil) return nil;
     
@@ -85,6 +91,7 @@
 }
 
 #pragma mark - Animator delegate
+
 - (NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
     return self.animationDuration;
 }
@@ -102,8 +109,10 @@
     self.presentedDeviceOrientation = [[UIDevice currentDevice] orientation];
     
     UIView *animationContainerView = transitionContext.containerView;
+    UIView *presentingView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     UIView *destinationView = [transitionContext viewForKey:UITransitionContextToViewKey];
     
+    self.presentingViewY = presentingView.frame.origin.y;
     destinationView.alpha = 0.0f;
     
     // Hide the first image from showing during the animation
@@ -138,8 +147,14 @@
     UIView *animationContainerView = transitionContext.containerView;
     UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     UIView *destinationView = [transitionContext viewForKey:UITransitionContextToViewKey];
+    
+    // Size back the presenting view to ensure it looks fine it rotations occurred
+    CGSize destinationViewTargetSize = animationContainerView.bounds.size;
+    CGPoint destinationViewTargetPoint = CGPointMake(0, self.presentingViewY);
+    CGRect destinationViewRect = CGRectMake(destinationViewTargetPoint.x, destinationViewTargetPoint.y,
+                                            destinationViewTargetSize.width, destinationViewTargetSize.height);
+    destinationView.frame = destinationViewRect;
     destinationView.alpha = 0.0f;
-    destinationView.frame = animationContainerView.frame;
     
     // Hide the first image from showing during the animation, and the original image
     fromView.subviews.firstObject.hidden = YES;
@@ -148,7 +163,7 @@
     [animationContainerView addSubview:destinationView];
     
     if (self.shouldDismissWithoutCustomTransition == NO) {
-         [animationContainerView addSubview:temporaryAnimatedImageView];
+        [animationContainerView addSubview:temporaryAnimatedImageView];
     } else {
         self.animatedImageContainer.alpha = 1.0f;
     }
@@ -169,6 +184,7 @@
 }
 
 #pragma mark - Transitioning Delegate
+
 - (id <UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source {
     return self;
 }

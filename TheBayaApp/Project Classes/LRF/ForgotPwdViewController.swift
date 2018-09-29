@@ -202,10 +202,10 @@ extension ForgotPwdViewController {
             dict = ["type" : type as AnyObject,
                     "userName" : txtEmail.text as AnyObject,
                     CCountryId : countryID as AnyObject,
-                    "sendSms" : 0,
+                    "sendSMS" : 0,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.model,
+                                    "deviceOS" : appDelegate.deviceName,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
 
         } else {
@@ -213,7 +213,7 @@ extension ForgotPwdViewController {
                     "userName" : txtEmail.text as AnyObject,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.model,
+                                    "deviceOS" : appDelegate.deviceName,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
         }
         

@@ -231,7 +231,7 @@ class ProjectDetailViewController: ParentViewController {
                     self.btnScheduleVisit.isHidden = true
                     
                     if IS_iPhone {
-                        self.cnstXPointBrochureBtn.constant = 0
+                        self.cnstXPointBrochureBtn.constant = -(self.btnScheduleVisit.CViewWidth/2) //0
                     } else {
                         _ = self.btnProjectBrochure.setConstraintConstant(-(self.btnScheduleVisit.CViewWidth/2), edge: .leading, ancestor: true)
                         _ = self.btnProjectBrochure.setConstraintConstant(self.btnScheduleVisit.CViewWidth/2, edge: .trailing, ancestor: true)

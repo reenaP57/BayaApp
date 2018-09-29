@@ -15,7 +15,7 @@ import Alamofire
 import Firebase
 import FirebaseInstanceID
 import UserNotifications
-
+import DeviceGuru
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -24,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var tabbarView : TabBarView?
     
     var loginUser : TblUser?
+    var deviceName = ""
     
     let window = UIWindow.init(frame: UIScreen.main.bounds)
     
@@ -38,10 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         application.registerForRemoteNotifications()
         MIFCM.shared().requestNotificationAuthorization(application: application)
-//        if let userInfo = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] {
-//            print("User Info :",userInfo)
-//        }
 
+        let deviceGuru = DeviceGuru()
+        deviceName = "\(deviceGuru.hardware())"
         
         self.initRootViewController()
         self.loadCountryList()
@@ -203,11 +203,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
        appDelegate.tabbarView?.CViewSetY(y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0))
     }
     
-    func logout()
+    func logout(isForDeleteUser : Bool)
     {
-        if CUserDefaults.value(forKey: UserDefaultFCMToken) != nil {
-            let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
-            appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
+        if isForDeleteUser {
+            
+            self.tabbarViewcontroller = nil
+            self.tabbarView = nil
+            
+            appDelegate.loginUser = nil
+            CUserDefaults.removeObject(forKey: UserDefaultLoginUserToken)
+            CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
+            CUserDefaults.synchronize()
+            
+            self.initLoginViewController()
+            
+        } else {
+            if CUserDefaults.value(forKey: UserDefaultFCMToken) != nil {
+                let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
+                appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
+            }
         }
     }
     

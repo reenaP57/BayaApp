@@ -158,12 +158,12 @@ extension SupportViewController : UITextViewDelegate {
 extension SupportViewController {
     
     func postAppSupportDetail() {
-   
+        
         let dict = ["message" : txtVMsg.text as AnyObject,
                     "deviceInfo" : "a",
                     "iPhone" : 1,
                     "platform" : "IOS",
-                    "deviceVersion" : UIDevice.current.model,
+                    "deviceVersion" : appDelegate.deviceName,
                     "deviceOS" : UIDevice.current.systemVersion,
                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String] as [String : AnyObject]
         

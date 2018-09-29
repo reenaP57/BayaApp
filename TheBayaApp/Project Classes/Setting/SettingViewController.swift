@@ -11,8 +11,9 @@ import UIKit
 class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
-    
-    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications","Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout", "Version - \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)"]
+    @IBOutlet fileprivate weak var lblVersion: UILabel!
+
+    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications", "SMS Notifications", "Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
     
    
     //MARK:-
@@ -20,12 +21,13 @@ class SettingViewController: ParentViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.initialize()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.showTabBar()
+        self.initialize()
+        self.userDetail()
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CSettingScreenName)
     }
     
@@ -39,9 +41,10 @@ class SettingViewController: ParentViewController {
     func initialize() {
         self.title = "Settings"
         
+        lblVersion.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)"
         if IS_iPad {
             tblSettings.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
-            tblSettings.isScrollEnabled = false
+           // tblSettings.isScrollEnabled = false
         }
     }
 
@@ -59,18 +62,13 @@ extension SettingViewController {
         
         //...Push Notification switch
         if indexPath?.row == 2 {
-            
-            var email = 0
-            if (appDelegate.loginUser?.emailNotify)! {
-                email = 1
-            }
-            
+       
             if sender.isOn {
                 //...switch is in on
                 
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = true
-                    self.changeNotificationStatus(email: email, push: 1)
+                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: 1, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
                     
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = false
@@ -81,7 +79,7 @@ extension SettingViewController {
                
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisablePushNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = false
-                    self.changeNotificationStatus(email: email, push: 0)
+                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: 0, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = true
                 }
@@ -91,16 +89,11 @@ extension SettingViewController {
         //...Email Notification switch
         if indexPath?.row == 3 {
             
-            var push = 0
-            if (appDelegate.loginUser?.pushNotify)! {
-                push = 1
-            }
-            
             if sender.isOn {
                 //...switch is in on
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = true
-                    self.changeNotificationStatus(email: 1, push: push)
+                    self.changeNotificationStatus(email: 1, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = false
                 }
@@ -109,7 +102,30 @@ extension SettingViewController {
                 //...switch is in off
                 self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisableEmailNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
                     sender.isOn = false
-                    self.changeNotificationStatus(email: 0, push: push)
+                    self.changeNotificationStatus(email: 0, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: (appDelegate.loginUser?.smsNotify)! ? 1 : 0)
+                }, btnTwoTitle: CBtnNo) { (action) in
+                    sender.isOn = true
+                }
+            }
+        }
+        
+        //...SMS Notification switch
+        if indexPath?.row == 4 {
+            
+            if sender.isOn {
+                //...switch is in on
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CEnableSMSNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    sender.isOn = true
+                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: 1)
+                }, btnTwoTitle: CBtnNo) { (action) in
+                    sender.isOn = false
+                }
+                
+            } else {
+                //...switch is in off
+                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CDisableSMSNotificationMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
+                    sender.isOn = false
+                    self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? 1 : 0, push: (appDelegate.loginUser?.pushNotify)! ? 1 : 0, sms: 0)
                 }, btnTwoTitle: CBtnNo) { (action) in
                     sender.isOn = true
                 }
@@ -138,18 +154,24 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
             cell.lblTitle.text = arrSetting[indexPath.row]
             
-            if indexPath.row == 2 || indexPath.row == 3 {
+            
+            switch indexPath.row {
+            case 2:
                 cell.imgVArrow.isHidden = true
                 cell.switchNotify.isHidden = false
+                cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
                 
-                if indexPath.row == 2 {
-                    cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
-                } else{
-                    cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
-                }
+            case 3:
+                cell.imgVArrow.isHidden = true
+                cell.switchNotify.isHidden = false
+                cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
                 
-            } else {
-                
+            case 4:
+                cell.imgVArrow.isHidden = true
+                cell.switchNotify.isHidden = false
+                cell.switchNotify.isOn = (appDelegate.loginUser?.smsNotify)!
+
+            default :
                 if indexPath.row == arrSetting.count-1 {
                     cell.imgVArrow.isHidden = true
                     cell.switchNotify.isHidden = true
@@ -157,7 +179,29 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                     cell.imgVArrow.isHidden = false
                     cell.switchNotify.isHidden = true
                 }
+                
             }
+            
+//            if indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 {
+//                cell.imgVArrow.isHidden = true
+//                cell.switchNotify.isHidden = false
+//
+//                if indexPath.row == 2 {
+//                    cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
+//                } else{
+//                    cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
+//                }
+//
+//            } else {
+//
+//                if indexPath.row == arrSetting.count-1 {
+//                    cell.imgVArrow.isHidden = true
+//                    cell.switchNotify.isHidden = true
+//                } else {
+//                    cell.imgVArrow.isHidden = false
+//                    cell.switchNotify.isHidden = true
+//                }
+//            }
 
             cell.switchNotify.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
             
@@ -189,7 +233,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(changePwdVC, animated: true)
             }
      
-        case 4,5,7:
+        case 5,6,8:
             //...Terms & Conditions
             
             if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
@@ -208,7 +252,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(cmsVC, animated: true)
             }
             
-        case 6:
+        case 7:
             //...Support
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting Support")
 
@@ -216,16 +260,16 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(supportVC, animated: true)
             }
             
-        case 8:
+        case 9:
             //...Rate App
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting RateApp")
             self.openInSafari(strUrl: "www.google.com")
             break
            
-        case 9:
+        case 10:
             //...Logout
             self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: CLogOutMessage, btnOneTitle: CBtnYes, btnOneTapped: { (action) in
-                appDelegate.logout()
+                appDelegate.logout(isForDeleteUser: false)
             }, btnTwoTitle: CBtnNo) { (action) in
             }
             
@@ -240,12 +284,20 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension SettingViewController {
     
-    func changeNotificationStatus(email : Int, push : Int) {
+    func changeNotificationStatus(email : Int, push : Int, sms : Int) {
         
-        APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push) { (response, error) in
+        APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push, smsNotify:sms ) { (response, error) in
             
             if response != nil && error == nil {
 
+            }
+        }
+    }
+    
+    func userDetail() {
+        APIRequest.shared().userDetail { (response, error) in
+            if response != nil && error == nil {
+                self.tblSettings.reloadData()
             }
         }
     }

@@ -12,7 +12,7 @@ class CustomAlertView: UIView {
 
     @IBOutlet weak var lblMsg : UILabel!
     @IBOutlet weak var btnOk : UIButton!
-
+    @IBOutlet weak var btnCancel : UIButton!
     
     class func initAlertView() -> CustomAlertView {
         let alertView : CustomAlertView = Bundle.main.loadNibNamed(IS_iPad ? "CustomAlertView_ipad" : "CustomAlertView", owner: nil, options: nil)?.last as! CustomAlertView

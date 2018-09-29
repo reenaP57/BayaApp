@@ -22,11 +22,12 @@
         <attribute name="projectBadge" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="projectProgress" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="pushNotify" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="smsNotify" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="user_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="TblCountryList" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="TblUser" positionX="-54" positionY="27" width="128" height="285"/>
+        <element name="TblUser" positionX="-54" positionY="27" width="128" height="300"/>
     </elements>
 </model>

@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-1P-lcu">
-                    <rect key="frame" x="0.0" y="328" width="375" height="339"/>
+                    <rect key="frame" x="0.0" y="687" width="375" height="339"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Filter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bvQ-2S-g1c">
                             <rect key="frame" x="166" y="24" width="43" height="23.5"/>
@@ -120,7 +120,7 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="zBP-1P-lcu" firstAttribute="bottom" secondItem="Rh5-pC-gSG" secondAttribute="bottom" id="Hm3-PS-DrF"/>
+                <constraint firstItem="zBP-1P-lcu" firstAttribute="top" secondItem="Rh5-pC-gSG" secondAttribute="top" constant="667" id="HUz-Kc-GNo"/>
                 <constraint firstItem="zBP-1P-lcu" firstAttribute="leading" secondItem="Rh5-pC-gSG" secondAttribute="leading" id="ISR-sY-OPf"/>
                 <constraint firstItem="zBP-1P-lcu" firstAttribute="trailing" secondItem="Rh5-pC-gSG" secondAttribute="trailing" id="Ktb-Fm-cXV"/>
             </constraints>

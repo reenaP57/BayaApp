@@ -193,6 +193,8 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             //...Post Update
             
             if let timeLineDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                timeLineDetailVC.projectID = dict.valueForInt(key: CProjectId)!
+                timeLineDetailVC.isFromNotifition = true
                 self.navigationController?.pushViewController(timeLineDetailVC, animated: true)
             }
             

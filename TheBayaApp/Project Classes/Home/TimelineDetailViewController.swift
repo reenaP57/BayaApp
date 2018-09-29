@@ -104,7 +104,7 @@ class TimelineDetailViewController: ParentViewController {
                 vwTimlineGuideline.frame = CGRect(x: 0, y: 0 , width: CScreenWidth, height: CScreenHeight)
                 
                 vwTimlineGuideline.cnstImgvCheckmarkY.constant = IS_iPad ? 127 : 81
-                vwTimlineGuideline.cnstImgvCheckmarkTrailing.constant = IS_iPad ?  CGFloat(IpadSpace) : space+2
+                vwTimlineGuideline.cnstImgvCheckmarkTrailing.constant = IS_iPad ?  CGFloat(IpadSpace)+3 : space+2
                 
                 if !IS_iPad {
                     if IS_iPhone_5 {
@@ -168,6 +168,17 @@ class TimelineDetailViewController: ParentViewController {
                 let imageVC = BFRImageViewController(imageSource: [image!])
                 imageVC?.isUsingTransparentBackground = false
                 self.present(imageVC!, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func zoomImageForIpad(arrImg : [String]){
+        if let zoomView = ImageZoomView.initImageZoomView() {
+            appDelegate.window.addSubview(zoomView)
+            zoomView.showImage(arrImg)
+            zoomView.CViewSetY(y: CScreenHeight)
+            UIView.animate(withDuration: 0.3) {
+                zoomView.CViewSetY(y: 0)
             }
         }
     }
@@ -276,7 +287,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         cell.btnZoomImg.touchUpInside { (sender) in
                             if mediaType == 1 {
-                                self.zoomImage(cell.imgVUpdate.image)
+                                
+                                if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                    self.zoomImageForIpad(arrImg: arrImages)
+                                }
                             }
                         }
                         
@@ -619,6 +633,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
         return UITableViewCell()
     }
     
+    /*
     public func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         if self.arrUpdateList.count > 0 {
@@ -646,7 +661,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                 self.postVisitCount(postID: arrPostID.joined(separator: ","))
             }
         }
-    }
+    } */
     
 }
 
@@ -739,10 +754,15 @@ extension TimelineDetailViewController {
             apiTask?.cancel()
         }
         
+        if shouldShowLoader! {
+            self.activityLoader.startAnimating()
+        }
+        
         if arrProject.count - 1 >= currentIndex{
             let dic = arrProject[currentIndex]
             apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: startDate, endDate: endDate, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
                 self.apiTask?.cancel()
+                self.activityLoader.stopAnimating()
                 
                 if response != nil{
                     
@@ -856,31 +876,53 @@ extension TimelineDetailViewController {
             vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
         }
 
-        vwFilter.alpha = 0.0
-        vwFilter.vwContent.alpha = 0.0
         
-        UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-            appDelegate.window.addSubview(vwFilter)
-        }, completion: { (completed) in
+        if IS_iPhone {
             
-            UIView.animate(withDuration: 1.0, animations: {
-                vwFilter.alpha = 1.0
-                vwFilter.vwContent.alpha = 1.0
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                _ =  vwFilter.vwContent.setConstraintConstant(CScreenHeight - vwFilter.vwContent.CViewHeight, edge: .top, ancestor: true)
+                appDelegate.window.addSubview(vwFilter)
+            }, completion: { (completed) in
             })
-        })
+        } else {
+            
+            vwFilter.alpha = 0.0
+            vwFilter.vwContent.alpha = 0.0
+            
+            UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                appDelegate.window.addSubview(vwFilter)
+            }, completion: { (completed) in
+                
+                UIView.animate(withDuration: 0.5, animations: {
+                    vwFilter.alpha = 1.0
+                    vwFilter.vwContent.alpha = 1.0
+                })
+            })
+
+        }
+        
         
         
         vwFilter.btnClose.touchUpInside { (sender) in
             
-            UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-                vwFilter.alpha = 0.0
-                vwFilter.vwContent.alpha = 0.0
-                
-            }, completion: { (completed) in
-                UIView.animate(withDuration: 2.0, animations: {
+            if IS_iPhone {
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                    _ =  vwFilter.vwContent.setConstraintConstant(CScreenHeight, edge: .top, ancestor: true)
+                }, completion: { (completed) in
                     vwFilter.removeFromSuperview()
                 })
-            })
+            } else {
+                
+                UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                    vwFilter.alpha = 0.0
+                    vwFilter.vwContent.alpha = 0.0
+                    
+                }, completion: { (completed) in
+                    UIView.animate(withDuration: 0.5, animations: {
+                        vwFilter.removeFromSuperview()
+                    })
+                })
+            }
         }
         
         vwAlert.btnOk.touchUpInside { (sender) in
@@ -923,15 +965,24 @@ extension TimelineDetailViewController {
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                 
-                UIView.animate(withDuration: 1.0, delay: 0.0, options: .curveEaseOut, animations: {
-                    vwFilter.alpha = 0.0
-                    vwFilter.vwContent.alpha = 0.0
-                    
-                }, completion: { (completed) in
-                    UIView.animate(withDuration: 2.0, animations: {
+                if IS_iPhone {
+                    UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                        _ =  vwFilter.vwContent.setConstraintConstant(CScreenHeight, edge: .top, ancestor: true)
+                    }, completion: { (completed) in
                         vwFilter.removeFromSuperview()
                     })
-                })
+                } else {
+                    
+                    UIView.animate(withDuration: 0.5, delay: 0.0, options: .curveEaseOut, animations: {
+                        vwFilter.alpha = 0.0
+                        vwFilter.vwContent.alpha = 0.0
+                        
+                    }, completion: { (completed) in
+                        UIView.animate(withDuration: 0.5, animations: {
+                            vwFilter.removeFromSuperview()
+                        })
+                    })
+                }
             }
         }
         

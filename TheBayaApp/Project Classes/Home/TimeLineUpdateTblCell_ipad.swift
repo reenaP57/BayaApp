@@ -19,7 +19,8 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     @IBOutlet weak var btnZoomImg : UIButton!
     @IBOutlet weak var cnImgVUpdateHeight : NSLayoutConstraint!
     @IBOutlet weak var cnImgVUpdateWidth : NSLayoutConstraint!
-    
+    @IBOutlet weak var btnImgZoom : UIButton!
+
     
     var isGifImages = false
     var arrImg = [String]()

@@ -14,6 +14,8 @@
 #import "BFRImageContainerViewController.h"
 #import "BFRImageTransitionAnimator.h"
 #import "BFRImageViewController.h"
+#import "BFRImageViewerConstants.h"
+#import "BFRImageViewerDownloadProgressView.h"
 #import "BFRImageViewerLocalizations.h"
 
 FOUNDATION_EXPORT double BFRImageViewerVersionNumber;

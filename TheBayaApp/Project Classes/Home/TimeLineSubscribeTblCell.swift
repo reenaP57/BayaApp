@@ -244,6 +244,19 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
         return UICollectionViewCell()
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let dict = arrProject[indexPath.row]
+
+        if IS_iPhone {
+           
+            if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
+                self.viewController?.navigationController?.pushViewController(projectDetailVC, animated: true)
+            }
+        }
+    }
+    
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
         let pageWidth = IS_iPad ? CScreenWidth * 500/768 : CScreenWidth - space

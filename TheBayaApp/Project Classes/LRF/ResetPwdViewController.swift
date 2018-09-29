@@ -142,18 +142,18 @@ extension ResetPwdViewController {
             dict = ["type" : type as AnyObject,
                     "userName" : strEmailMobile as AnyObject,
                     CCountryId : countryId as AnyObject,
-                    "sendSms" : 1,
+                    "sendSMS" : 1,
                     "deviceInfo" : ["platform" : "IOS",
-                                    "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.model,
+                                    "deviceVersion" :appDelegate.deviceName,
+                                    "deviceOS" : UIDevice.current.systemVersion,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
             
         } else {
             dict = ["type" : type as AnyObject,
                     "userName" : strEmailMobile as AnyObject,
                     "deviceInfo" : ["platform" : "IOS",
-                                    "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.model,
+                                    "deviceVersion" :appDelegate.deviceName,
+                                    "deviceOS" : UIDevice.current.systemVersion,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : AnyObject]
         }
         

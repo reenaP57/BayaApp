@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 import SDWebImage
 
+
 //MARK:- ---------BASEURL __ TAG
 
 //var BASEURL:String        =   "http://192.168.1.59/baya-app/api/v1/"
@@ -46,6 +47,7 @@ let CAPITagNotificationList    =   "notificationlist"
 let CAPITagBadgeCount          =   "badge-count"
 let CAPITagPushNotifyCount     =   "push-notify-count"
 let CAPITagPostViewCount       =   "post-view-count"
+let CAPITagUserprofile         =   "userprofile"
 
 
 let CJsonResponse           = "response"
@@ -144,7 +146,7 @@ class Networking: NSObject
                 }else if res?.response!.statusCode == CStatus401 || res?.response!.statusCode == CStatus405
                 {
                     CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk) { (action) in
-                        appDelegate.logout()
+                        appDelegate.logout(isForDeleteUser: true)
                     }
                 }
                 
@@ -267,9 +269,14 @@ class Networking: NSObject
                 if(success != nil) {
                     success!(uRequest.task!, response.result.value as AnyObject)
                 }
+                
             }
-            else
-            {
+//            else if ([405, 403] .contains(response.response!.statusCode)) {
+//
+//                appDelegate.logout(isForDeleteUser: false)
+//
+//            }
+            else {
                 if(failure != nil) {
                     
                     if response.result.error != nil
@@ -829,8 +836,8 @@ extension APIRequest {
                     "type": type as AnyObject,
                     CCountryId : countryId as AnyObject,
                     "deviceInfo" : ["platform" : "IOS",
-                                    "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.model,
+                                    "deviceVersion" :appDelegate.deviceName,
+                                    "deviceOS" : UIDevice.current.systemVersion,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
         
         
@@ -982,7 +989,31 @@ extension APIRequest {
     //TODO: --------------PROFILE API--------------
     //TODO:
     
-
+    func userDetail(completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagUserprofile, param: [:], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagUserprofile) {
+                self.saveLoginUserDetail(response : response as! [String : AnyObject])
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                _ = self.userDetail(completion: completion)
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagUserprofile, error: error)
+            }
+        })
+        
+    }
+    
+    
     func editProfile(_ firstName : String?, _ lastName : String?, completion : @escaping ClosureCompletion) {
         
         MILoader.shared.showLoader(type: .circularRing, message: "")
@@ -1008,9 +1039,9 @@ extension APIRequest {
         })
     }
     
-    func changeNotificationStatus(emailNotify: Int?, pushNotify: Int?, completion: @escaping ClosureCompletion) {
+    func changeNotificationStatus(emailNotify: Int?, pushNotify: Int?, smsNotify: Int?, completion: @escaping ClosureCompletion) {
     
-        _  = Networking.sharedInstance.POST(apiTag: CAPITagNotifyStatus, param: ["emailNotify" : emailNotify as AnyObject, "pushNotify": pushNotify as AnyObject], successBlock: { (task, response) in
+        _  = Networking.sharedInstance.POST(apiTag: CAPITagNotifyStatus, param: ["emailNotify" : emailNotify as AnyObject, "pushNotify": pushNotify as AnyObject, "mobileNotify": smsNotify as AnyObject], successBlock: { (task, response) in
             
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagNotifyStatus) {
                 self.saveLoginUserDetail(response : response as! [String : AnyObject])
@@ -1023,7 +1054,7 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, completion: completion)
+                _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, smsNotify: smsNotify, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotifyStatus, error: error)
             }
@@ -1172,8 +1203,8 @@ extension APIRequest {
         
         let dict = [CProjectId : projectId!,
                     "deviceInfo" : ["platform" : "IOS",
-                                    "deviceVersion" : UIDevice.current.systemVersion,
-                                    "deviceOS" : UIDevice.current.model,
+                                    "deviceVersion" :appDelegate.deviceName,
+                                    "deviceOS" : UIDevice.current.systemVersion,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
         
         
@@ -1439,8 +1470,8 @@ extension APIRequest {
         tblUser.projectBadge = Int16(dict!.valueForInt(key: "projectCount")!)
         tblUser.projectProgress = Int16(dict!.valueForInt(key: CFavoriteProjectProgress)!)
         tblUser.project_name = dict!.valueForString(key: CFavoriteProjectName)
-        
-        
+        tblUser.smsNotify = dict!.valueForBool(key: CMobileNotify)
+
         let arrCountry = TblCountryList.fetch(predicate: NSPredicate(format:"%K == %d", CCountry_id, Int16(dict!.valueForInt(key: CCountryId)!)))
         
         tblUser.country_code = ((arrCountry![0] as! TblCountryList).country_code)

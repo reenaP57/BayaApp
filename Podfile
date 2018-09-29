@@ -11,7 +11,8 @@ target 'TheBayaApp' do
   pod 'SDWebImage'
   pod 'BFRImageViewer'
   pod 'CTPanoramaView', '1.0'
-
+  pod 'DeviceGuru'
+  
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'GoogleAnalytics'

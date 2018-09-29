@@ -99,6 +99,8 @@ var CEnablePushNotificationMessage  : String { return CLocalize(text: "Are you s
 var CDisablePushNotificationMessage  : String { return CLocalize(text: "Are you sure you want to disable Push Notifications?")}
 var CEnableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure you want to enable Email Notifications?")}
 var CDisableEmailNotificationMessage  : String { return CLocalize(text: "Are you sure you want to disable Email Notifications?")}
+var CEnableSMSNotificationMessage  : String { return CLocalize(text: "Are you sure you want to enable SMS Notifications?")}
+var CDisableSMSNotificationMessage  : String { return CLocalize(text: "Are you sure you want to disable SMS Notifications?")}
 
 var CResetMessage  : String { return CLocalize(text: "You might have got verification code on entered")}
 
