@@ -183,6 +183,7 @@ class ScheduleVisitViewController: ParentViewController {
     
     func checkSlotTime(date : Date) -> Bool {
 
+        print("checkSlotTime");
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
