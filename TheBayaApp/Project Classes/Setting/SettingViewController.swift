@@ -11,7 +11,6 @@ import UIKit
 class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
-    @IBOutlet fileprivate weak var lblVersion: UILabel!
 
     let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications", "SMS Notifications", "Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
     
@@ -41,7 +40,6 @@ class SettingViewController: ParentViewController {
     func initialize() {
         self.title = "Settings"
         
-        lblVersion.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)"
         if IS_iPad {
             tblSettings.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
            // tblSettings.isScrollEnabled = false
@@ -154,7 +152,7 @@ extension SettingViewController {
 extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrSetting.count
+        return arrSetting.count + 1
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -163,65 +161,55 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTblCell") as? SettingTblCell {
+        if indexPath.row == arrSetting.count {
             
-            cell.lblTitle.text = arrSetting[indexPath.row]
-            
-            
-            switch indexPath.row {
-            case 2:
-                cell.imgVArrow.isHidden = true
-                cell.switchNotify.isHidden = false
-                cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SettingVersionTblCell") as? SettingVersionTblCell {
                 
-            case 3:
-                cell.imgVArrow.isHidden = true
-                cell.switchNotify.isHidden = false
-                cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
-                
-            case 4:
-                cell.imgVArrow.isHidden = true
-                cell.switchNotify.isHidden = false
-                cell.switchNotify.isOn = (appDelegate.loginUser?.smsNotify)!
-
-            default :
-                if indexPath.row == arrSetting.count-1 {
-                    cell.imgVArrow.isHidden = true
-                    cell.switchNotify.isHidden = true
-                } else {
-                    cell.imgVArrow.isHidden = false
-                    cell.switchNotify.isHidden = true
-                }
-                
+                cell.lblVersion.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)"
+                return cell
             }
             
-//            if indexPath.row == 2 || indexPath.row == 3 || indexPath.row == 4 {
-//                cell.imgVArrow.isHidden = true
-//                cell.switchNotify.isHidden = false
-//
-//                if indexPath.row == 2 {
-//                    cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
-//                } else{
-//                    cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
-//                }
-//
-//            } else {
-//
-//                if indexPath.row == arrSetting.count-1 {
-//                    cell.imgVArrow.isHidden = true
-//                    cell.switchNotify.isHidden = true
-//                } else {
-//                    cell.imgVArrow.isHidden = false
-//                    cell.switchNotify.isHidden = true
-//                }
-//            }
-
-            cell.switchNotify.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
-            
-            cell.contentView.backgroundColor = UIColor.clear
-            cell.backgroundColor = UIColor.clear
-            
-            return cell
+        } else {
+           
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SettingTblCell") as? SettingTblCell {
+                
+                cell.lblTitle.text = arrSetting[indexPath.row]
+                
+                switch indexPath.row {
+                case 2:
+                    cell.imgVArrow.isHidden = true
+                    cell.switchNotify.isHidden = false
+                    cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
+                    
+                case 3:
+                    cell.imgVArrow.isHidden = true
+                    cell.switchNotify.isHidden = false
+                    cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
+                    
+                case 4:
+                    cell.imgVArrow.isHidden = true
+                    cell.switchNotify.isHidden = false
+                    cell.switchNotify.isOn = (appDelegate.loginUser?.smsNotify)!
+                    
+                default :
+                    if indexPath.row == arrSetting.count-1 {
+                        cell.imgVArrow.isHidden = true
+                        cell.switchNotify.isHidden = true
+                    } else {
+                        cell.imgVArrow.isHidden = false
+                        cell.switchNotify.isHidden = true
+                    }
+                    
+                }
+                
+                
+                cell.switchNotify.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+                
+                cell.contentView.backgroundColor = UIColor.clear
+                cell.backgroundColor = UIColor.clear
+                
+                return cell
+            }
         }
         
         return UITableViewCell()

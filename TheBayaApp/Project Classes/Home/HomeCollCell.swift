@@ -23,10 +23,14 @@ class HomeCollCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
  
+        progressVCom.progressImage = #imageLiteral(resourceName: "progress")
+        
         lblBadge.layer.cornerRadius = lblBadge.CViewHeight/2
         lblBadge.layer.masksToBounds = true
         
         progressVCom.layer.cornerRadius = progressVCom.CViewHeight/2
         progressVCom.layer.masksToBounds = true
+        
+        
     }
 }

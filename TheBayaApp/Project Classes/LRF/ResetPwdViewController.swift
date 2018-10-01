@@ -151,6 +151,7 @@ extension ResetPwdViewController {
         } else {
             dict = ["type" : type as AnyObject,
                     "userName" : strEmailMobile as AnyObject,
+                    "sendSMS" : 0,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" :appDelegate.deviceName,
                                     "deviceOS" : UIDevice.current.systemVersion,

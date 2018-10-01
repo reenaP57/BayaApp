@@ -211,6 +211,7 @@ extension ForgotPwdViewController {
         } else {
             dict = ["type" : type as AnyObject,
                     "userName" : txtEmail.text as AnyObject,
+                    "sendSMS" : 0,
                     "deviceInfo" : ["platform" : "IOS",
                                     "deviceVersion" : UIDevice.current.systemVersion,
                                     "deviceOS" : appDelegate.deviceName,

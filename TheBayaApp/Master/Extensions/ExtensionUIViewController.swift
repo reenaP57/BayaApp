@@ -562,6 +562,12 @@ extension UIViewController {
         }
         
         if let alertView = CustomAlertView.initAlertView() as? CustomAlertView {
+            
+            GCDMainThread.async {
+                alertView.btnOk.setTitle(okTitle, for: .normal)
+                alertView.btnCancel.setTitle(cancleTitle, for: .normal)
+            }
+            
             alertView.showAlert(message, okTitle: okTitle ?? CBtnOk , cancleTitle: cancleTitle ?? CBtnCancel, type: type, completion: completion)
             appDelegate.window.addSubview(alertView)
             
@@ -591,6 +597,11 @@ extension UIViewController {
         }
         
         if let alertView = CustomAlertView.initAlertView() as? CustomAlertView {
+            
+            GCDMainThread.async {
+                alertView.btnOk.setTitle(CBtnOk, for: .normal)
+            }
+            
             alertView.showAlert(message, okTitle:CBtnOk , cancleTitle: nil, type: .alertView, completion: completion)
             appDelegate.window.addSubview(alertView)
             

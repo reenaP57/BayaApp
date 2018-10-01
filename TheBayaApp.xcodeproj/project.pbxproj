@@ -139,6 +139,7 @@
 		5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */; };
 		5CC46D8221366DFD00A4A0B7 /* TimelineGuideLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */; };
 		5CC46D842136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */; };
+		5CCD30BC215FAA4B007CE650 /* SettingVersionTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD30BB215FAA4B007CE650 /* SettingVersionTblCell.swift */; };
 		5CD763F9211D51EA00C267AB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763F8211D51EA00C267AB /* HomeViewController.swift */; };
 		5CD763FB211D62B200C267AB /* HomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763FA211D62B200C267AB /* HomeCollCell.swift */; };
 		5CD763FD211DB8F700C267AB /* MIGenericProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763FC211DB8F700C267AB /* MIGenericProgressView.swift */; };
@@ -311,6 +312,7 @@
 		5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView.xib; sourceTree = "<group>"; };
 		5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineGuideLineView.swift; sourceTree = "<group>"; };
 		5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView_ipad.xib; sourceTree = "<group>"; };
+		5CCD30BB215FAA4B007CE650 /* SettingVersionTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVersionTblCell.swift; sourceTree = "<group>"; };
 		5CD763F8211D51EA00C267AB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CD763FA211D62B200C267AB /* HomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollCell.swift; sourceTree = "<group>"; };
 		5CD763FC211DB8F700C267AB /* MIGenericProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIGenericProgressView.swift; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 				5C1E615A2122EC8B0090308D /* SupportViewController.swift */,
 				5C1E615C2122EE6C0090308D /* CMSViewController.swift */,
 				5C1E61522122D9D40090308D /* SettingTblCell.swift */,
+				5CCD30BB215FAA4B007CE650 /* SettingVersionTblCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -1035,6 +1038,7 @@
 				483D21682159F700008EA16B /* TimeLineUpdateGIFTblCell.swift in Sources */,
 				5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */,
 				486FDD642119AEF500EA0188 /* ExtensionUITextField.swift in Sources */,
+				5CCD30BC215FAA4B007CE650 /* SettingVersionTblCell.swift in Sources */,
 				486FDD662119AEF500EA0188 /* ExtensionUIView.swift in Sources */,
 				5C14CA7F211C049100B06E29 /* ForgotPwdViewController.swift in Sources */,
 				5C8D5B8E21258AC60080193A /* FloorPlansImgCollCell.swift in Sources */,
@@ -1235,16 +1239,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1257,16 +1264,19 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

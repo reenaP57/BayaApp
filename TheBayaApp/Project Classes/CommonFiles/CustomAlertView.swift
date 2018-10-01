@@ -18,7 +18,8 @@ class CustomAlertView: UIView {
     @IBOutlet weak var lblMsg : UILabel!
     @IBOutlet weak var btnOk : UIButton!
     @IBOutlet weak var btnCancel : UIButton!
-    
+    @IBOutlet weak var vwLine : UIView!
+
     class func initAlertView() -> CustomAlertView {
         let alertView : CustomAlertView = Bundle.main.loadNibNamed(IS_iPad ? "CustomAlertView_ipad" : "CustomAlertView", owner: nil, options: nil)?.last as! CustomAlertView
         alertView.frame = CGRect(x: 0.0, y: 0.0, width: CScreenWidth, height: CScreenHeight)
@@ -30,19 +31,9 @@ class CustomAlertView: UIView {
         
         if type == .alertView {
             self.btnCancel.hide(byWidth: true)
+            self.vwLine.isHidden = true
             _ = self.btnOk.setConstraintConstant(-(self.btnOk.CViewX + self.btnOk.CViewWidth), edge: .leading, ancestor: true)
         }
-        
-        GCDMainThread.async {
-            if okTitle != nil {
-                self.btnOk.setTitle(okTitle, for: .normal)
-            }
-            
-            if cancleTitle != nil {
-                self.btnCancel.setTitle(cancleTitle, for: .normal)
-            }
-        }
-  
         
         self.lblMsg.text = message
     }

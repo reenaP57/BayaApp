@@ -71,22 +71,39 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
                     
                 } else {
-                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                    
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
-                        if let topViewController = appDelegate.topViewController() {
-                            
-                            if topViewController is NotificationViewController {
+                        if result {
+                            if let topViewController = appDelegate.topViewController() {
                                 
-                                let notificationVC = topViewController as! NotificationViewController
-                                notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
-                            } else {
-                                appDelegate.tabbarView?.btnNotification.isSelected = false
-                                appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
+                                if topViewController is NotificationViewController {
+                                    
+                                    let notificationVC = topViewController as! NotificationViewController
+                                    notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
+                                } else {
+                                    appDelegate.tabbarView?.btnNotification.isSelected = false
+                                    appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
+                                }
                             }
                         }
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
+//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+//
+//                        if let topViewController = appDelegate.topViewController() {
+//
+//                            if topViewController is NotificationViewController {
+//
+//                                let notificationVC = topViewController as! NotificationViewController
+//                                notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
+//                            } else {
+//                                appDelegate.tabbarView?.btnNotification.isSelected = false
+//                                appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
+//                            }
+//                        }
+//
+//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+//                    })
                 }
                 
                 
@@ -101,23 +118,40 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                 } else {
                     
-                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
-                        if let topViewController = appDelegate.topViewController() {
-                            
-                            if topViewController is ProjectDetailViewController {
-                            } else {
+                        if result {
+                            if let topViewController = appDelegate.topViewController() {
                                 
-                                if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
-                                    projectDetailVC.projectID =  (userInfo.valueForInt(key: "gcm.notification.projectId"))!
-                                    appDelegate.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                                if topViewController is ProjectDetailViewController {
+                                } else {
+                                    
+                                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                                        projectDetailVC.projectID =  (userInfo.valueForInt(key: "gcm.notification.projectId"))!
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                                    }
                                 }
                             }
                         }
-                        
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
+//
+//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+//
+//                        if let topViewController = appDelegate.topViewController() {
+//
+//                            if topViewController is ProjectDetailViewController {
+//                            } else {
+//
+//                                if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+//                                    projectDetailVC.projectID =  (userInfo.valueForInt(key: "gcm.notification.projectId"))!
+//                                    appDelegate.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
+//                                }
+//                            }
+//                        }
+//
+//
+//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+//                    })
                 }
                 
                 break
@@ -134,29 +168,54 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                 } else {
                     
-                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
-                        if let topViewController = appDelegate.topViewController() {
+                        if result {
                             
-                            if topViewController is TimelineDetailViewController {
+                            if let topViewController = appDelegate.topViewController() {
                                 
-                                let timelineVC  = topViewController as! TimelineDetailViewController
-                                timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
-                                timelineVC.isFromNotifition = true
-                                timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
-                                
-                            } else {
-                                
-                                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                                if topViewController is TimelineDetailViewController {
+                                    
+                                    let timelineVC  = topViewController as! TimelineDetailViewController
                                     timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
                                     timelineVC.isFromNotifition = true
-                                    appDelegate.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                                    timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
+                                    
+                                } else {
+                                    
+                                    if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                                        timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
+                                        timelineVC.isFromNotifition = true
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                                    }
                                 }
                             }
                         }
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
+                    
+//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+//
+//                        if let topViewController = appDelegate.topViewController() {
+//
+//                            if topViewController is TimelineDetailViewController {
+//
+//                                let timelineVC  = topViewController as! TimelineDetailViewController
+//                                timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
+//                                timelineVC.isFromNotifition = true
+//                                timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
+//
+//                            } else {
+//
+//                                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+//                                    timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
+//                                    timelineVC.isFromNotifition = true
+//                                    appDelegate.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+//                                }
+//                            }
+//                        }
+//
+//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+//                    })
                 }
                 
                 break
@@ -170,25 +229,48 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     }
                     
                 } else {
-                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                    
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
-                        if let topViewController = appDelegate.topViewController() {
+                        if result {
                             
-                            if topViewController is VisitDetailsViewController {
+                            if let topViewController = appDelegate.topViewController() {
                                 
-                                let visitDetailVC  = topViewController as! VisitDetailsViewController
-                                visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
-                                
-                            } else {
-                                
-                                if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
-                                    appDelegate.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+                                if topViewController is VisitDetailsViewController {
+                                    
+                                    let visitDetailVC  = topViewController as! VisitDetailsViewController
+                                    visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
+                                    
+                                } else {
+                                    
+                                    if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+                                    }
                                 }
                             }
                         }
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
+                    
+                    
+//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+//
+//                        if let topViewController = appDelegate.topViewController() {
+//
+//                            if topViewController is VisitDetailsViewController {
+//
+//                                let visitDetailVC  = topViewController as! VisitDetailsViewController
+//                                visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
+//
+//                            } else {
+//
+//                                if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+//                                    appDelegate.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
+//                                }
+//                            }
+//                        }
+//
+//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+//                    })
                 }
                 
                 break
@@ -203,21 +285,39 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     }
                     
                 } else {
-                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+                    
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
-                        if let topViewController = appDelegate.topViewController() {
+                        if result {
                             
-                            if topViewController is RateYoorVisitViewController {
-                            } else {
-                                if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                                    rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.visitId"))!
-                                    appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+                            if let topViewController = appDelegate.topViewController() {
+                                
+                                if topViewController is RateYoorVisitViewController {
+                                } else {
+                                    if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                                        rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.visitId"))!
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+                                    }
                                 }
                             }
                         }
-                        
-                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
                     })
+                    
+//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
+//
+//                        if let topViewController = appDelegate.topViewController() {
+//
+//                            if topViewController is RateYoorVisitViewController {
+//                            } else {
+//                                if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+//                                    rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.visitId"))!
+//                                    appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
+//                                }
+//                            }
+//                        }
+//
+//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
+//                    })
                 }
             }
         }

@@ -60,10 +60,18 @@
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
                         </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EEP-b7-OrR">
+                            <rect key="frame" x="234" y="89.5" width="1" height="50"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="VhV-vX-sJF"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="tHU-pV-i2g" firstAttribute="top" secondItem="PK5-do-5mJ" secondAttribute="bottom" constant="10" id="0WZ-1D-ylC"/>
+                        <constraint firstAttribute="bottom" secondItem="EEP-b7-OrR" secondAttribute="bottom" id="5T8-1N-fhR"/>
                         <constraint firstItem="WEe-cn-1hV" firstAttribute="width" secondItem="tHU-pV-i2g" secondAttribute="width" id="8XA-Pr-XYJ"/>
                         <constraint firstAttribute="trailing" secondItem="WEe-cn-1hV" secondAttribute="trailing" id="KN7-I2-PJr"/>
                         <constraint firstItem="PK5-do-5mJ" firstAttribute="top" secondItem="eHd-UK-FG7" secondAttribute="top" constant="10" id="N1e-aw-3cb"/>
@@ -72,9 +80,11 @@
                         <constraint firstAttribute="trailing" secondItem="PK5-do-5mJ" secondAttribute="trailing" constant="10" id="SR3-bG-BOO"/>
                         <constraint firstItem="CKR-bk-Khx" firstAttribute="centerY" secondItem="PK5-do-5mJ" secondAttribute="centerY" id="UjU-Gh-zsb"/>
                         <constraint firstItem="tHU-pV-i2g" firstAttribute="leading" secondItem="eHd-UK-FG7" secondAttribute="leading" id="Ygw-e9-xON"/>
+                        <constraint firstItem="EEP-b7-OrR" firstAttribute="height" secondItem="WEe-cn-1hV" secondAttribute="height" id="ZXc-l1-SCA"/>
                         <constraint firstItem="CKR-bk-Khx" firstAttribute="centerX" secondItem="PK5-do-5mJ" secondAttribute="centerX" id="kYf-dS-ddL"/>
                         <constraint firstItem="PK5-do-5mJ" firstAttribute="leading" secondItem="eHd-UK-FG7" secondAttribute="leading" constant="10" id="lHC-1q-2v3"/>
                         <constraint firstAttribute="bottom" secondItem="WEe-cn-1hV" secondAttribute="bottom" id="mFY-al-11E"/>
+                        <constraint firstItem="EEP-b7-OrR" firstAttribute="leading" secondItem="tHU-pV-i2g" secondAttribute="trailing" id="oFZ-BJ-yJ8"/>
                         <constraint firstAttribute="bottom" secondItem="tHU-pV-i2g" secondAttribute="bottom" id="oZa-iH-BFS"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -96,6 +106,7 @@
                 <outlet property="btnCancel" destination="tHU-pV-i2g" id="ncC-kK-GNb"/>
                 <outlet property="btnOk" destination="WEe-cn-1hV" id="9Pg-Zk-jTh"/>
                 <outlet property="lblMsg" destination="PK5-do-5mJ" id="bzt-1i-QEt"/>
+                <outlet property="vwLine" destination="EEP-b7-OrR" id="gXm-u6-5WE"/>
             </connections>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
