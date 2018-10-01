@@ -19,9 +19,11 @@ class FilterView: UIView {
     @IBOutlet weak var vwContent : UIView!
 
     class func initFilterView() -> FilterView{
+        
         let filterView:FilterView = Bundle.main.loadNibNamed(IS_iPad ? "FilterView_ipad" : "FilterView", owner: nil, options: nil)?.last as! FilterView
         filterView.frame = CGRect(x: 0.0, y: 0.0, width: CScreenWidth, height: CScreenHeight)
-        filterView.layoutIfNeeded()
+        filterView.vwContent.frame = CGRect(x: 0.0, y: CScreenHeight, width: CScreenWidth, height: filterView.vwContent.CViewHeight)
+        //filterView.layoutIfNeeded()
         return filterView
     }
     

@@ -1487,7 +1487,8 @@ extension APIRequest {
         tblUser.projectProgress = Int16(dict!.valueForInt(key: CFavoriteProjectProgress)!)
         tblUser.project_name = dict!.valueForString(key: CFavoriteProjectName)
         tblUser.smsNotify = dict!.valueForBool(key: CMobileNotify)
-
+        tblUser.fav_project_id = Int64(dict!.valueForInt(key: "favoriteProjectId")!)
+        
         let arrCountry = TblCountryList.fetch(predicate: NSPredicate(format:"%K == %d", CCountry_id, Int16(dict!.valueForInt(key: CCountryId)!)))
         
         tblUser.country_code = ((arrCountry![0] as! TblCountryList).country_code)

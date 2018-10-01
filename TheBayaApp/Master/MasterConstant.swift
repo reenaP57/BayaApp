@@ -56,7 +56,12 @@ let IS_iPhone_4 = CScreenHeight == 480
 let IS_iPhone_5 = CScreenHeight == 568
 let IS_iPhone_6 = CScreenHeight == 667
 let IS_iPhone_6_Plus = CScreenHeight == 736
+
 let IS_iPhone_X = CScreenHeight == 812
+let IS_iPhone_XR = CScreenHeight == 896
+let IS_iPhone_XS = CScreenHeight == 812
+let IS_iPhone_XS_MAX = CScreenHeight == 896
+let IS_iPhone_X_Series = (IS_iPhone_X || IS_iPhone_XR || IS_iPhone_XS || IS_iPhone_XS_MAX)
 
 let IS_Ipad_Mini = CScreenHeight == 1024/2
 let IS_Ipad_Air = CScreenHeight == 2048/2

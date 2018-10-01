@@ -182,24 +182,19 @@ class ScheduleVisitViewController: ParentViewController {
     }
     
     func checkSlotTime(date : Date) -> Bool {
-        
-        //date formatter
+
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "h:mm a"
+        dateFormatter.dateFormat = "hh:mm"
+        let calendar = Calendar.current
+        let comp = calendar.dateComponents([.hour, .minute], from: date)
+        let hour = comp.hour
+        let minute = comp.minute
         
-        
-        // Get current time and format it to compare
-        let currentTimeStr = dateFormatter.string(from: date)
-        let currentTime = dateFormatter.date(from: currentTimeStr)
-        
-        let startTime = dateFormatter.date(from: "10:00 AM")
-        let endTime = dateFormatter.date(from: "6:30 PM")
-        
-        if currentTime! > startTime! && currentTime! < endTime!  {
+        if (hour! >= 10 && hour! <= 18) || (hour! == 18 && minute! <= 30){
             return false
+        }else{
+            return true
         }
-        
-        return true
     }
     
     func showValidation(isAdd : Bool){

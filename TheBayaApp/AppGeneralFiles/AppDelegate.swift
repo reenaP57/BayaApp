@@ -205,7 +205,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func logout(isForDeleteUser : Bool)
     {
-        if isForDeleteUser {
+        if isForDeleteUser || IS_SIMULATOR {
             
             self.tabbarViewcontroller = nil
             self.tabbarView = nil

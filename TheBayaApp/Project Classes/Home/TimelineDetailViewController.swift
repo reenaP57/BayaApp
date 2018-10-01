@@ -36,7 +36,7 @@ class TimelineDetailViewController: ParentViewController {
     var isFromNotifition = false
     
     var apiTask : URLSessionTask?
-    var refreshControl : UIRefreshControl?
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,11 +68,9 @@ class TimelineDetailViewController: ParentViewController {
         tblUpdates.estimatedRowHeight = 100;
         tblUpdates.rowHeight = UITableViewAutomaticDimension;
         
-        
-        refreshControl?.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        refreshControl?.tintColor = ColorGreenSelected
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
         tblUpdates.pullToRefreshControl = refreshControl
-       // self.loadSubscribedProjectList(isRefresh: false)
         
         if IS_iPad {
             tblUpdates.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
@@ -678,7 +676,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
 extension TimelineDetailViewController {
     
     @objc func pullToRefresh() {
-        refreshControl?.beginRefreshing()
+        refreshControl.beginRefreshing()
         self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
     }
     
@@ -702,7 +700,7 @@ extension TimelineDetailViewController {
         
         apiTask =  APIRequest.shared().getSubscribedProjectList { (response, error) in
             self.apiTask?.cancel()
-            self.refreshControl?.endRefreshing()
+            self.refreshControl.endRefreshing()
             self.activityLoader.stopAnimating()
             
             if  response != nil && error == nil {
@@ -868,13 +866,6 @@ extension TimelineDetailViewController {
     @objc func btnFilterClicked() {
         
         let vwFilter = FilterView.initFilterView()
-       // let vwAlert = CustomAlertView.initAlertView()
-        
-        
-        if self.startDate != "" && self.endDate != "" {
-            vwFilter.txtStartDate.text = self.startDate
-            vwFilter.txtEndDate.text = self.endDate
-        }
         
         
         if IS_iPad {
@@ -882,7 +873,7 @@ extension TimelineDetailViewController {
         } else {
             vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
         }
-
+        
         
         if IS_iPhone {
             
@@ -905,9 +896,13 @@ extension TimelineDetailViewController {
                     vwFilter.vwContent.alpha = 1.0
                 })
             })
-
+            
         }
         
+        if self.startDate != "" && self.endDate != "" {
+            vwFilter.txtStartDate.text = self.startDate
+            vwFilter.txtEndDate.text = self.endDate
+        }
         
         
         vwFilter.btnClose.touchUpInside { (sender) in
@@ -932,9 +927,6 @@ extension TimelineDetailViewController {
             }
         }
         
-//        vwAlert.btnOk.touchUpInside { (sender) in
-//            vwAlert.removeFromSuperview()
-//        }
         
         vwFilter.btnDone.touchUpInside { (sender) in
             
@@ -951,28 +943,15 @@ extension TimelineDetailViewController {
             if (vwFilter.txtStartDate.text?.isBlank)!{
                 self.showAlertView(CMessageStartDate, completion: nil)
                 
-//                vwAlert.lblMsg.text = CMessageStartDate
-//                UIView.animate(withDuration: 1.0) {
-//                    appDelegate.window.addSubview(vwAlert)
-//                }
             }else if (vwFilter.txtEndDate.text?.isBlank)!{
-                
                 self.showAlertView(CMessageEndDate, completion: nil)
 
-//                vwAlert.lblMsg.text = CMessageEndDate
-//                UIView.animate(withDuration: 1.0) {
-//                    appDelegate.window.addSubview(vwAlert)
-//                }
             } else if startDate?.compare((endDate)!) == .orderedDescending {
                 self.showAlertView(CMessageCompareFilterDate, completion: nil)
 
-               // vwAlert.lblMsg.text = CMessageCompareFilterDate
-//                UIView.animate(withDuration: 1.0) {
-//                    appDelegate.window.addSubview(vwAlert)
-//                }
             } else {
-                self.strFilterStartDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
-                self.strFilterEndDate = "\(DateFormatter.shared().timestampFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                self.strFilterStartDate = "\(DateFormatter.shared().timestampGMTFromDate(date: vwFilter.txtStartDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
+                self.strFilterEndDate = "\(DateFormatter.shared().timestampGMTFromDate(date: vwFilter.txtEndDate.text!, formate: "dd MMMM yyyy") ?? 0.0)"
                 self.pageIndexForApi = 1
                 self.loadTimeLineListFromServer(true, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                 

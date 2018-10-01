@@ -453,12 +453,13 @@ class ProjectDetailViewController: ParentViewController {
         //we make the height arbitrarily large so we don't undershoot height in calculation
        
         let height: CGFloat = 500
-        let size = CGSize(width: IS_iPad ? (collLocation.CViewWidth/4 - 20) : (collLocation.CViewWidth/3 - 15) , height: height)
+        let size = CGSize(width: IS_iPad ? (collLocation.CViewWidth/4 - 20) : (collLocation.CViewWidth/3) , height: height)
         let options =  NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
-        let attributes = [NSAttributedStringKey.font: CFontAvenir(size: 12, type: .medium).setUpAppropriateFont()!]
-        let attributes1 = [NSAttributedStringKey.font: CFontAvenir(size: 13, type: .medium).setUpAppropriateFont()!]
-        
-        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 80
+
+        let attributes = [NSAttributedStringKey.font: CFontAvenir(size: 13, type: .medium).setUpAppropriateFont()!]
+        let attributes1 = [NSAttributedStringKey.font: CFontAvenir(size: 12, type: .medium).setUpAppropriateFont()!]
+
+        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 68
     }
 }
 
@@ -539,7 +540,7 @@ extension ProjectDetailViewController {
         self.showAlertConfirmationView(sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, okTitle: CBtnOk, cancleTitle: CBtnCancel, type: .confirmationView) { (result) in
             if result {
               
-                self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
+                self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(UIImage(named: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(UIImage(named: "gradient_bg1"), for: .normal)
                 self.btnSubscribe.isSelected = !sender.isSelected
                 
                 if self.btnSubscribe.isSelected {

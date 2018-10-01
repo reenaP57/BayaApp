@@ -45,7 +45,7 @@ class ResetPwdViewController: ParentViewController {
       // txtCode.text = verifyCode
        strEmailMobile =  strEmailMobile.replacingOccurrences(of: "\"", with: "")
         
-       lblNote.text = isEmail ? "\(CResetMessage) email address \([strEmailMobile]). Enter verification code in below." : "\(CResetMessage) mobile number \([strEmailMobile]). Enter verification code in below."
+       lblNote.text = isEmail ? "\(CResetMessage) email address [\(strEmailMobile)]. Enter verification code in below." : "\(CResetMessage) mobile number [\(strEmailMobile)]. Enter verification code in below."
         
         if !isEmail {
              self.resendVerificationCode(type: CMobileType)
@@ -162,7 +162,7 @@ extension ResetPwdViewController {
             
             if response != nil && error == nil {
 
-                self.showAlertView(self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", completion: { (result) in
+                self.showAlertView(self.isEmail ? "\(CResetCodeEmailMessage) [\(self.strEmailMobile)]." :"\(CResetCodeMobileMessage) [\(self.strEmailMobile)].", completion: { (result) in
                 })
                 
 //                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in

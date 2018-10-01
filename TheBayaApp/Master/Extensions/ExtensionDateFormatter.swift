@@ -30,7 +30,7 @@ extension DateFormatter{
         return DateFormatter.shared().date(fromString: stringDate, dateFormat: "dd MMM, YYYY")
     }
     
-    func timestampFromDate(date : String?, formate : String?) -> Double? {
+    func timestampGMTFromDate(date : String?, formate : String?) -> Double? {
         self.dateFormat = formate
         self.timeZone = TimeZone(abbreviation: "GMT")
         var timeStamp = self.date(from: date!)?.timeIntervalSince1970
@@ -38,6 +38,12 @@ extension DateFormatter{
         return timeStamp
     }
     
+    func timestampFromDate(date : String?, formate : String?) -> Double? {
+        self.dateFormat = formate
+        var timeStamp = self.date(from: date!)?.timeIntervalSince1970
+        timeStamp = Double((timeStamp?.toFloat)!)
+        return timeStamp
+    }
     
     func durationString(duration: String) -> String
     {

@@ -38,6 +38,15 @@ class TimeLineSubscribeTblCell: UITableViewCell {
         // To get Fav. project...
         if let index = arrProject.index(where: {$0[CIsFavorite] as? Int  == 1}){
             favProjectIndexPath = IndexPath(item: index, section: 0)
+        } else {
+            //...Set default first project as fav when not select any fav project
+            favProjectIndexPath = IndexPath(item: 0, section: 0)
+            
+            let dict = arrProject[0]
+            appDelegate.loginUser?.fav_project_id = Int64(dict.valueForInt(key: CProjectId)!)
+            appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
+            appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
+            CoreData.saveContext()
         }
         
         
@@ -101,9 +110,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             cell.lblPercentage.text = " \(dict.valueForInt(key: CProjectProgress) ?? 0)% "
             cell.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ?  true : false
             
-//            cell.btnSubscribe.isSelected = dict.valueForInt(key: CIsFavorite) == 0 ? false : true
+//            cell.btnSubscribe.isSelected = dict.valueForInt(key: CIsFavorite) == 0 ? false : tru
             cell.btnSubscribe.isSelected = indexPath == favProjectIndexPath
-            
+           
             cell.btnSubscribe.touchUpInside { (sender) in
                 MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine subscribe")
                 var isFavType = 0
@@ -135,9 +144,11 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                             self.collSubscribe.reloadData()
                             
                             if data.valueForInt(key: CIsFavorite) == 1{
-                                appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
-                                appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
+                                appDelegate.loginUser?.fav_project_id = Int64(data.valueForInt(key: "favoriteProjectId")!)
+                                appDelegate.loginUser?.project_name = data.valueForString(key: "favoriteProjectName")
+                                appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: "favoriteProjectProgress")!)
                             } else {
+                                appDelegate.loginUser?.fav_project_id = 0
                                 appDelegate.loginUser?.project_name = ""
                                 appDelegate.loginUser?.projectProgress = 0
                             }
