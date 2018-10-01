@@ -73,15 +73,12 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             cell.lblPrjctName.text = (dict.valueForString(key: "subtitle")).uppercased()
             cell.lblBadge.text = "\(appDelegate.loginUser?.postBadge ?? 0)"
             cell.lblPercentage.text = "\(appDelegate.loginUser?.projectProgress ?? 0)% Completed"
-       
-            cell.progressVCom.progressImage = #imageLiteral(resourceName: "progress")
-          //  cell.progressVCom.progress = 0.6 //Float((appDelegate.loginUser?.projectProgress)!)
-          
+    
             
-            let invertedValue = Float(100 - (appDelegate.loginUser?.projectProgress)!) / 100
-            cell.progressVCom.setProgress(invertedValue, animated: true)
-            
-           // cell.progressVCom.setProgress(50.0, animated: true)
+            cell.progressVCom.progressImage = UIImage(named: "progress")
+            let temp =  Double((appDelegate.loginUser?.projectProgress)!)
+            let invertedValue = temp/100
+            cell.progressVCom.setProgress(Float(invertedValue), animated: false)
 
             
             if indexPath.row != 0 || appDelegate.loginUser?.project_name == "" {

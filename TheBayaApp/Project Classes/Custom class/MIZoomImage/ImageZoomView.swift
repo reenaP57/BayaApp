@@ -108,23 +108,37 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
                 
                 let url = URL(string: dict.valueForString(key: "url"))
                 let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
-                let player = AVPlayer(playerItem: playerItem)
-                
-                let playerLayer=AVPlayerLayer(player: player)
-                playerLayer.frame=CGRect(x:0, y:0, width:CScreenWidth, height:CScreenHeight)
+
+                cell.player = AVPlayer(playerItem: playerItem)
+
+                let playerLayer = AVPlayerLayer(player: cell.player)
+                playerLayer.frame = CGRect(x:0, y:0, width:CScreenWidth, height:CScreenHeight)
                 cell.vwPlayer.layer.addSublayer(playerLayer)
-                
+
                 cell.btnPlay.touchUpInside { (sender) in
                     if cell.btnPlay.isSelected {
                         cell.btnPlay.isSelected = false
                         cell.imgThumbnail.isHidden = false
-                        player.pause()
+                        cell.player.pause()
                     } else {
                         cell.btnPlay.isSelected = true
                         cell.imgThumbnail.isHidden = true
-                        player.play()
+                        cell.player.play()
                     }
                 }
+                
+                
+//                cell.btnPlay.touchUpInside { (action) in
+//                    if let videoUrl = dict.valueForString(key: "url") as? String {
+//                        let videoURL = URL(string: videoUrl)
+//                        let player = AVPlayer(url: videoURL!)
+//                        let playerViewController = AVPlayerViewController()
+//                        playerViewController.player = player
+//                        self.viewController?.present(playerViewController, animated: true) {
+//                            playerViewController.player!.play()
+//                        }
+//                    }
+ //               }
                 
                 return cell
             }
@@ -137,6 +151,23 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
             cell.imgGallery.sd_setImage(with: URL(string: arrImages[indexPath.row]), placeholderImage: nil, options: .retryFailed, completed: nil)
             
             return cell
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        if arrImgVideo.count > 0 {
+
+            let dict = arrImgVideo[indexPath.row]
+
+            if dict.valueForInt(key: "type") != 1 {
+
+                if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollCell", for: indexPath) as? VideoCollCell {
+                    if cell.btnPlay.isSelected {
+                        cell.player.pause()
+                    }
+                }
+            }
         }
     }
 }

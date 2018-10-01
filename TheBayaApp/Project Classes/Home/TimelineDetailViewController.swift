@@ -286,12 +286,9 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         }
                         
                         cell.btnZoomImg.touchUpInside { (sender) in
-                            if mediaType == 1 {
-                                
                                 if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                                     self.zoomImageForIpad(arrImg: arrImages)
                                 }
-                            }
                         }
                         
                         
@@ -552,6 +549,15 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             if arrImages.count > 0{
                                 cell.loadGifImage(arrImages.first!)
+                            }
+                        }
+                        
+                        
+                        cell.btnZoomImg.touchUpInside { (sender) in
+                            if let arrImages = dict.valueForJSON(key: "media") as? [String] {
+                                if arrImages.count > 0{
+                                 self.zoomImageForIpad(arrImg: [arrImages.first!])
+                                }
                             }
                         }
                         

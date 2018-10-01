@@ -906,17 +906,17 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                         }
                     }
                     
-                    cell.btnPlay.touchUpInside { (action) in
-                        if let videoUrl = dict.valueForString(key: "url") as? String {
-                            let videoURL = URL(string: videoUrl)
-                            let player = AVPlayer(url: videoURL!)
-                            let playerViewController = AVPlayerViewController()
-                            playerViewController.player = player
-                            self.present(playerViewController, animated: true) {
-                                playerViewController.player!.play()
-                            }
-                        }
-                    }
+//                    cell.btnPlay.touchUpInside { (action) in
+//                        if let videoUrl = dict.valueForString(key: "url") as? String {
+//                            let videoURL = URL(string: videoUrl)
+//                            let player = AVPlayer(url: videoURL!)
+//                            let playerViewController = AVPlayerViewController()
+//                            playerViewController.player = player
+//                            self.present(playerViewController, animated: true) {
+//                                playerViewController.player!.play()
+//                            }
+//                        }
+//                    }
                     
                     return cell
                 }
