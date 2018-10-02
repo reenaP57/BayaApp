@@ -919,7 +919,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" cb7107c0d44c9ef403aff556047936711d92aa7b e48fd9c570c4fff00e36ce9acfceee3496f98ecf33286398cda506bb6c3df7a0";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" cb7107c0d44c9ef403aff556047936711d92aa7b e48fd9c570c4fff00e36ce9acfceee3496f98ecf33286398cda506bb6c3df7a0\n";
 		};
 		68DF06806F97FE88BB413AA1 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1239,7 +1239,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1250,8 +1250,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1264,7 +1264,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1275,8 +1275,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
+				PROVISIONING_PROFILE = "bd276a6d-6c0b-4424-a163-787f151136ed";
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

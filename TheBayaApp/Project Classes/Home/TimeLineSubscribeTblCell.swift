@@ -38,16 +38,17 @@ class TimeLineSubscribeTblCell: UITableViewCell {
         // To get Fav. project...
         if let index = arrProject.index(where: {$0[CIsFavorite] as? Int  == 1}){
             favProjectIndexPath = IndexPath(item: index, section: 0)
-        } else {
-            //...Set default first project as fav when not select any fav project
-            favProjectIndexPath = IndexPath(item: 0, section: 0)
-            
-            let dict = arrProject[0]
-            appDelegate.loginUser?.fav_project_id = Int64(dict.valueForInt(key: CProjectId)!)
-            appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
-            appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
-            CoreData.saveContext()
         }
+//        else {
+//            //...Set default first project as fav when not select any fav project
+//            favProjectIndexPath = IndexPath(item: 0, section: 0)
+//
+//            let dict = arrProject[0]
+//            appDelegate.loginUser?.fav_project_id = Int64(dict.valueForInt(key: CProjectId)!)
+//            appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
+//            appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
+//            CoreData.saveContext()
+//        }
         
         
         GCDMainThread.async {
@@ -147,12 +148,18 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                                 appDelegate.loginUser?.fav_project_id = Int64(data.valueForInt(key: "favoriteProjectId")!)
                                 appDelegate.loginUser?.project_name = data.valueForString(key: "favoriteProjectName")
                                 appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: "favoriteProjectProgress")!)
-                            } else {
-                                appDelegate.loginUser?.fav_project_id = 0
-                                appDelegate.loginUser?.project_name = ""
-                                appDelegate.loginUser?.projectProgress = 0
                             }
+//                            else {
+//                                appDelegate.loginUser?.fav_project_id = 0
+//                                appDelegate.loginUser?.project_name = ""
+//                                appDelegate.loginUser?.projectProgress = 0
+//                            }
                             
+                            CoreData.saveContext()
+                        } else {
+                            appDelegate.loginUser?.fav_project_id = 0
+                            appDelegate.loginUser?.project_name = ""
+                            appDelegate.loginUser?.projectProgress = 0
                             CoreData.saveContext()
                         }
                         

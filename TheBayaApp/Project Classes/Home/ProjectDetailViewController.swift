@@ -549,7 +549,7 @@ extension ProjectDetailViewController {
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
                 }
                 
-                APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
+                APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0, showLoader :true) { (response, error) in
                     
                     if response != nil && error == nil {
                         
@@ -561,14 +561,16 @@ extension ProjectDetailViewController {
                         
                         CoreData.saveContext()
                         
-                        for vwController in (self.navigationController?.viewControllers)! {
-                            
-                            if vwController.isKind(of: ProjectViewController .classForCoder()){
+                        if self.navigationController != nil {
+                            for vwController in (self.navigationController?.viewControllers)! {
                                 
-                                let projectVC = vwController as? ProjectViewController
-                                projectVC?.refreshIsSubscribedStatus(projectId: self.projectID, isSubscribed: data.valueForInt(key: CIsSubscribe)!)
-                                
-                                break
+                                if vwController.isKind(of: ProjectViewController .classForCoder()){
+                                    
+                                    let projectVC = vwController as? ProjectViewController
+                                    projectVC?.refreshIsSubscribedStatus(projectId: self.projectID, isSubscribed: data.valueForInt(key: CIsSubscribe)!)
+                                    
+                                    break
+                                }
                             }
                         }
                     }
@@ -907,17 +909,17 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                         }
                     }
                     
-//                    cell.btnPlay.touchUpInside { (action) in
-//                        if let videoUrl = dict.valueForString(key: "url") as? String {
-//                            let videoURL = URL(string: videoUrl)
-//                            let player = AVPlayer(url: videoURL!)
-//                            let playerViewController = AVPlayerViewController()
-//                            playerViewController.player = player
-//                            self.present(playerViewController, animated: true) {
-//                                playerViewController.player!.play()
-//                            }
-//                        }
-//                    }
+                    cell.btnPlay.touchUpInside { (action) in
+                        if let videoUrl = dict.valueForString(key: "url") as? String {
+                            let videoURL = URL(string: videoUrl)
+                            let player = AVPlayer(url: videoURL!)
+                            let playerViewController = AVPlayerViewController()
+                            playerViewController.player = player
+                            self.present(playerViewController, animated: true) {
+                                playerViewController.player!.play()
+                            }
+                        }
+                    }
                     
                     return cell
                 }

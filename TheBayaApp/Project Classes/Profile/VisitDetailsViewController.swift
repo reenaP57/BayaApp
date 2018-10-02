@@ -113,9 +113,9 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                 cell.lblProjectName.text = dict.valueForString(key: CProjectName)
                 
                 if dict.valueForInt(key: "visitStatus") == CScheduled  {
-                    cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+                    cell.lblTimeMsg.text = "\(CMessageScheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))."
                 } else {
-                    cell.lblTimeMsg.text = "\(CMessageRescheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+                    cell.lblTimeMsg.text = "\(CMessageRescheduled) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))."
                 }
                 
                 cell.lblUserName.text = dict.valueForString(key: "salesMgrName")
@@ -168,7 +168,7 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                     
                     
                 case CCompleted:
-                    cell.lblTimeMsg.text = "\(CMessageCompleted) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))"
+                    cell.lblTimeMsg.text = "\(CMessageCompleted) \(DateFormatter.dateStringFrom(timestamp: (dict.valueForDouble(key: "selectedTimeSlot")), withFormate: "dd MMMM yyyy hh:mm a"))."
                     
                     cell.btnRateVisit.isHidden = dict.valueForInt(key: "ratings") != 0
                     cell.vwRating.isHidden = dict.valueForInt(key: "ratings") == 0

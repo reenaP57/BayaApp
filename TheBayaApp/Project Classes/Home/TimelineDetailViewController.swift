@@ -79,9 +79,12 @@ class TimelineDetailViewController: ParentViewController {
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
         self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
         
+         NotificationCenter.default.addObserver(self, selector: #selector(refreshViewUpdateList), name: NSNotification.Name(rawValue: "NotificationUpdatePost"), object: nil)
     }
     
-
+    @objc func refreshViewUpdateList() {
+        self.loadSubscribedProjectList(isRefresh: false, isFromNotification: false)
+    }
     
     func shareContent(text : String, mediaUrl : String) {
         
@@ -707,14 +710,16 @@ extension TimelineDetailViewController {
                 
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]]{
                     
+                    self.currentIndex = 0
                     self.arrProject = arrData
+                    
                     
                     if !IS_iPad {
                         self.btnProjectDetail.isHidden = !(self.arrProject.count > 0)
                         self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
                         
                         if self.arrProject.count > 0 {
-                            self.arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
+                          //  self.arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
                             self.hideScheduleVisit()
                         }
                     }
@@ -832,6 +837,7 @@ extension TimelineDetailViewController {
     @IBAction func btnVisitProjectClicked (sender : UIButton) {
         
         if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
+            projectVC.isFromVisitDetail = true
             self.navigationController?.pushViewController(projectVC, animated: true)
         }
     }

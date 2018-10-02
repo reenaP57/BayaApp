@@ -1152,20 +1152,30 @@ extension APIRequest {
         })
     }
     
-    func subcribedProject (_ projectId : Int?, type: Int?, completion : @escaping ClosureCompletion) {
+    func subcribedProject (_ projectId : Int?, type: Int?, showLoader : Bool, completion : @escaping ClosureCompletion) {
+        
+        if showLoader {
+             MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         _ = Networking.sharedInstance.POST(apiTag: CAPITagProjectSubscribe, param: [CProjectId : projectId as AnyObject, "type" : type as AnyObject], successBlock: { (task, response) in
+            
+            if showLoader {
+                MILoader.shared.hideLoader()
+            }
             
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectSubscribe) {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
             
-            MILoader.shared.hideLoader()
+            if showLoader {
+                MILoader.shared.hideLoader()
+            }
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.subcribedProject(projectId, type: type, completion: completion)
+                _ = self.subcribedProject(projectId, type: type, showLoader: showLoader, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
             }

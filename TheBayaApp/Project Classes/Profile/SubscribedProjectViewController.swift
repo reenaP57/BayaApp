@@ -83,7 +83,7 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
                 self.showAlertConfirmationView(CUnsubscribeMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         
-                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0, completion: { (response, error) in
+                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0, showLoader :false, completion: { (response, error) in
                             
                             if response != nil && error == nil {
                                 

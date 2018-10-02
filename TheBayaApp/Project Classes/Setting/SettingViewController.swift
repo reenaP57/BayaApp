@@ -239,10 +239,10 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
             if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
                
-                if indexPath.row == 4 {
+                if indexPath.row == 5 {
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting TermsCondition")
                     cmsVC.cmsEnum = .TermsCondition
-                } else if indexPath.row == 5 {
+                } else if indexPath.row == 6 {
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting PrivacyPolicy")
                     cmsVC.cmsEnum = .PrivacyPolicy
                 } else {

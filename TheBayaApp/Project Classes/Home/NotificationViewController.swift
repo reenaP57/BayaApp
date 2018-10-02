@@ -189,7 +189,9 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
         
         let dict = arrNotification[indexPath.row]
         
-        if dict.valueForInt(key: "notifyType") == NotificationPostUpdate {
+        
+        switch dict.valueForInt(key: "notifyType") {
+        case NotificationPostUpdate:
             //...Post Update
             
             if let timeLineDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
@@ -198,13 +200,23 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 self.navigationController?.pushViewController(timeLineDetailVC, animated: true)
             }
             
-        } else if dict.valueForInt(key: "notifyType") == NotificationNewProject {
+        case NotificationNewProject:
             //...New Project
             
             if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
                 projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
                 self.navigationController?.pushViewController(projectDetailVC, animated: true)
             }
+            
+        case NotificationVisitUpdate, NotificationVisitCancel, NotificationVisitReschedule:
+            //...Visit Update
+            
+            if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
+                self.navigationController?.pushViewController(visitDetailVC, animated: true)
+            }
+            
+        default:
+            print("")
         }
     }
 }

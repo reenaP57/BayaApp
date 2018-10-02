@@ -20,7 +20,7 @@ class ProjectViewController: ParentViewController {
     
     fileprivate var lastPage : Int = 0
     fileprivate var currentPage : Int = 1
-
+    var isFromVisitDetail = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -133,7 +133,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                         }
                         
                         
-                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
+                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0, showLoader :false) { (response, error) in
                             
                             if response != nil && error == nil {
                                 
@@ -148,6 +148,10 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                                 appDelegate.loginUser?.project_name = data.valueForString(key: CFavoriteProjectName)
                                 
                                 CoreData.saveContext()
+                                
+                                if self.isFromVisitDetail {
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "NotificationUpdatePost"), object: nil)
+                                }
                             }
                         }
                     }
@@ -209,7 +213,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        var dict = arrProject[indexPath.row]
+        let dict = arrProject[indexPath.row]
         
         if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
             projectDetailVC.projectID = dict.valueForInt(key: CProjectId)!
