@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import BFRImageViewer
+import AVFoundation
 
 let space = CScreenWidth * 70/375
 let IpadSpace = CScreenWidth - (CScreenWidth * 500/768)
@@ -79,7 +80,7 @@ class TimelineDetailViewController: ParentViewController {
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
         self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
         
-         NotificationCenter.default.addObserver(self, selector: #selector(refreshViewUpdateList), name: NSNotification.Name(rawValue: "NotificationUpdatePost"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshViewUpdateList), name: NSNotification.Name(rawValue: "NotificationUpdatePost"), object: nil)
     }
     
     @objc func refreshViewUpdateList() {
@@ -148,6 +149,8 @@ class TimelineDetailViewController: ParentViewController {
     }
     
     func hideScheduleVisit() {
+        
+        //...Hide schedule visit button If isVisit = 0
         
         let dict = arrProject[currentIndex]
         if dict.valueForInt(key: CIsVisit) == 0 {
@@ -323,6 +326,9 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                     let asset = AVAsset(url: videoURL!)
                                     let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                                     assetImgGenerate.appliesPreferredTrackTransform = true
+                                    
+//                                    let lastFrameTime = Int64(CMTimeGetSeconds(asset.duration)*60.0)
+//                                    let time : CMTime = CMTimeMake(lastFrameTime, 2)
                                     let time = CMTimeMake(1, 2)
                                     let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
                                     if img != nil {
@@ -513,14 +519,34 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                     let asset = AVAsset(url: videoURL!)
                                     let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                                     assetImgGenerate.appliesPreferredTrackTransform = true
-                                    let time = CMTimeMake(1, 2)
-                                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-                                    if img != nil {
-                                        let frameImg  = UIImage(cgImage: img!)
-                                        DispatchQueue.main.async(execute: {
-                                            cell.imgVThumbNail.image = frameImg
-                                        })
+                                    
+                                    
+//                                    let lastFrameTime = Int64(CMTimeGetSeconds(asset.duration)*60.0)
+//                                    let time : CMTime = CMTimeMake(lastFrameTime, 2)
+                                    
+                                    do {
+
+                                        let time = CMTimeMake(1, 2)
+                                        let img = try assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                                        if img != nil {
+                                            let frameImg  = UIImage(cgImage: img)
+                                            DispatchQueue.main.async(execute: {
+                                                cell.imgVThumbNail.image = frameImg
+                                            })
+                                        }
+                                    } catch let err {
+                                        print(err)
                                     }
+                                    
+//                                    let time = CMTimeMake(1, 1)
+//                                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+//                                    if img != nil {
+//                                       // cell.imgVThumbNail.image = frameImg
+//                                        DispatchQueue.main.async(execute: {
+//                                            let frameImg  = UIImage(cgImage: img!)
+//                                            cell.imgVThumbNail.image = frameImg
+//                                        })
+//                                    }
                                 }
                             }
                         }
@@ -873,13 +899,11 @@ extension TimelineDetailViewController {
         
         let vwFilter = FilterView.initFilterView()
         
-        
         if IS_iPad {
             vwFilter.vwContent.layer.cornerRadius = 30
         } else {
             vwFilter.vwContent.roundCorners([.topLeft, .topRight], radius: 30)
         }
-        
         
         if IS_iPhone {
             
@@ -902,7 +926,6 @@ extension TimelineDetailViewController {
                     vwFilter.vwContent.alpha = 1.0
                 })
             })
-            
         }
         
         if self.startDate != "" && self.endDate != "" {
@@ -932,7 +955,6 @@ extension TimelineDetailViewController {
                 })
             }
         }
-        
         
         vwFilter.btnDone.touchUpInside { (sender) in
             
@@ -981,7 +1003,6 @@ extension TimelineDetailViewController {
                 }
             }
         }
-        
         
         vwFilter.btnClear.touchUpInside { (sender) in
             vwFilter.txtStartDate.text = ""

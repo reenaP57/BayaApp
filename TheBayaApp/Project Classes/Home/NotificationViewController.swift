@@ -102,19 +102,8 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
         
             
             switch dict.valueForInt(key: "notifyType") {
-            case NotificationAdmin : //... Admin
+            case NotificationAdmin, NotificationNewProject,NotificationPostUpdate, NotificationVisitCancel  : //... Admin, New Project, Post Update, Visit Cancel
                cell.lblMsg.text = dict.valueForString(key: "message")
-                
-           
-            case NotificationNewProject:  //... New Project
-                 cell.lblMsg.text = "The new project \(dict.valueForString(key: "title")) has been added by The Baya Group."
-
-                break
-                
-            case NotificationPostUpdate:  //... Post Update
-                cell.lblMsg.text = "There is new update from this project."
-
-                break
                 
             case NotificationProjectComplete: //... Project Complete
                 cell.lblMsg.text = "\(dict.valueForString(key: "title")) project is completed now, no further updates will be posted. You can view our other projects and subscribe if you are interested."
@@ -132,15 +121,11 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
 
                 break
              
-            case NotificationRateVisit : //... Rate Visit
+            default : //... Rate Visit
                 cell.lblMsg.text = "Rate the visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false))"
                 
                 cell.btnRateVisit.hide(byWidth: false)
                 break
-                
-            default : //...Cancel Visit
-                cell.lblMsg.text = dict.valueForString(key: "message")
-                //"Your visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) has been cancelled"
             }
             
             

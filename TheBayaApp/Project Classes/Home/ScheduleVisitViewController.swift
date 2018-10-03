@@ -365,7 +365,7 @@ extension ScheduleVisitViewController {
     
     func loadProjectList() {
 
-        _ = APIRequest.shared().getProjectList(1, completion: { (response, error) in
+        _ = APIRequest.shared().getProjectList(1, false, completion: { (response, error) in
             
             if response != nil && error == nil {
                 

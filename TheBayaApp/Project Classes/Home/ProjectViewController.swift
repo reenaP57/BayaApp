@@ -12,6 +12,7 @@ class ProjectViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var tblProject : UITableView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
+    @IBOutlet fileprivate weak var lblNoData : UILabel!
 
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
@@ -241,14 +242,14 @@ extension ProjectViewController {
             return
         }
         
-        if !isRefresh {
-            activityLoader.startAnimating()
-        }
+//        if !isRefresh {
+//            activityLoader.startAnimating()
+//        }
         
-        apiTask = APIRequest.shared().getProjectList(currentPage, completion: { (response, error) in
+        apiTask = APIRequest.shared().getProjectList(currentPage,!isRefresh, completion: { (response, error) in
         
             self.apiTask?.cancel()
-            self.activityLoader.stopAnimating()
+           // self.activityLoader.stopAnimating()
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
@@ -273,9 +274,9 @@ extension ProjectViewController {
                     self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
                 }
                 
+                self.lblNoData.isHidden = self.arrProject.count != 0
                 self.tblProject.reloadData()
-                
-            } 
+            }
         })
     }
     

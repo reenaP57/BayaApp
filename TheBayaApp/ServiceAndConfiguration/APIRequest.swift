@@ -1111,9 +1111,17 @@ extension APIRequest {
     //TODO:
     
    
-    func getProjectList (_ page : Int?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+    func getProjectList (_ page : Int?, _ showLoader : Bool, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        if showLoader {
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagProjectList, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
+            
+            if showLoader {
+                MILoader.shared.hideLoader()
+            }
             
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectList) {
                 completion(response, nil)
@@ -1121,10 +1129,14 @@ extension APIRequest {
             
         }, failureBlock: { (task, message, error) in
             
+            if showLoader {
+                MILoader.shared.hideLoader()
+            }
+            
             completion(nil, error)
             if error?.code == CStatus1009 || error?.code == CStatus1005  {
                 self.checkInternetConnection {
-                    _ = self.getProjectList(page, completion: completion)
+                    _ = self.getProjectList(page, showLoader, completion: completion)
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectList, error: error)

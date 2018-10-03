@@ -60,9 +60,11 @@ class ParentViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_back_white")
         self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "nav_back")
-     
+       
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
-        
+
+          //self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back")?.withAlignmentRectInsets(UIEdgeInsetsMake(0, -50, 0, 0))
+//       self.navigationItem.backBarButtonItem?.imageInsets   = UIEdgeInsetsMake(0, -100, 0, 0)
         if self.view.tag == 100 {
             //...Hide NavigationBar
             self.navigationItem.hidesBackButton = true

@@ -71,7 +71,7 @@ extension MILoader {
     fileprivate static let containView:UIView = {
         
         let containView = UIView()
-        containView.backgroundColor = ColorWhite
+        containView.backgroundColor = UIColor.clear
         containView.layer.cornerRadius = 4.0
         containView.translatesAutoresizingMaskIntoConstraints = false
         return containView

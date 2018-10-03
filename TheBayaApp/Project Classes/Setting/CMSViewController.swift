@@ -14,7 +14,7 @@ enum cmsTitle {
     case PrivacyPolicy
 }
 
-class CMSViewController: ParentViewController {
+class CMSViewController: ParentViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webContent : UIWebView!
     
@@ -76,10 +76,16 @@ class CMSViewController: ParentViewController {
                 
                 let font = UIFont.init(name: "Avenir-Medium", size: IS_iPad ? 20.0 : 13.0)
                 self.webContent.loadHTMLString("<span style=\"font-family: \(font!.fontName); font-size: \(font!.pointSize); color: #333333\">\(content)</span>", baseURL: nil)
-                
+         
             }
         }
     }
-    
+   
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        // Disable user selection
+        _ = webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitUserSelect='none'")!
+        // Disable callout
+//        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitTouchCallout='none'")!
+    }
 }
 

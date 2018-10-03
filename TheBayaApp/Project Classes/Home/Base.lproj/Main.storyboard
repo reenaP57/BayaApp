@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -1415,20 +1413,30 @@
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
                                 <color key="color" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No projects yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jBB-Sg-lmO">
+                                <rect key="frame" x="10" y="322" width="355" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="jBB-Sg-lmO" firstAttribute="centerY" secondItem="yVF-xh-XtM" secondAttribute="centerY" id="83d-bD-K4F"/>
                             <constraint firstItem="7uy-c9-TMK" firstAttribute="bottom" secondItem="pzz-0U-hTH" secondAttribute="bottom" id="AN7-MG-W74"/>
                             <constraint firstItem="7uy-c9-TMK" firstAttribute="leading" secondItem="pzz-0U-hTH" secondAttribute="leading" id="Kx9-kP-zcs"/>
                             <constraint firstItem="Bcu-UH-JG9" firstAttribute="centerY" secondItem="yVF-xh-XtM" secondAttribute="centerY" id="O1W-E7-9Jx"/>
                             <constraint firstItem="7uy-c9-TMK" firstAttribute="trailing" secondItem="pzz-0U-hTH" secondAttribute="trailing" id="PLs-cR-50x"/>
                             <constraint firstItem="Bcu-UH-JG9" firstAttribute="centerX" secondItem="yVF-xh-XtM" secondAttribute="centerX" id="Zs7-lL-q6I"/>
+                            <constraint firstItem="pzz-0U-hTH" firstAttribute="trailing" secondItem="jBB-Sg-lmO" secondAttribute="trailing" constant="10" id="hfw-1w-ygH"/>
+                            <constraint firstItem="jBB-Sg-lmO" firstAttribute="leading" secondItem="pzz-0U-hTH" secondAttribute="leading" constant="10" id="rQU-l5-QEL"/>
                             <constraint firstItem="7uy-c9-TMK" firstAttribute="top" secondItem="yVF-xh-XtM" secondAttribute="top" id="zrf-g1-5nB"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="pzz-0U-hTH"/>
                     </view>
                     <connections>
                         <outlet property="activityLoader" destination="Bcu-UH-JG9" id="OsA-BF-5bS"/>
+                        <outlet property="lblNoData" destination="jBB-Sg-lmO" id="j6D-au-s10"/>
                         <outlet property="tblProject" destination="7uy-c9-TMK" id="Ylu-fR-FNp"/>
                     </connections>
                 </viewController>
@@ -2267,7 +2275,7 @@ reach for you.</string>
                                                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wi8-nG-8DM">
+                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wi8-nG-8DM">
                                                                 <rect key="frame" x="0.0" y="75.5" width="375" height="212"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="wi8-nG-8DM" secondAttribute="height" multiplier="375:212" id="9RS-bV-fpB"/>
@@ -2385,42 +2393,6 @@ reach for you.</string>
                                                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="18" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="O83-7f-7nj">
-                                                                                    <rect key="frame" x="0.0" y="65" width="116" height="36"/>
-                                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                                    <prototypes>
-                                                                                        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LocationDescTblCell" rowHeight="18" id="8gq-qL-nyV" customClass="LocationDescTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                                                                            <rect key="frame" x="0.0" y="1" width="116" height="18"/>
-                                                                                            <autoresizingMask key="autoresizingMask"/>
-                                                                                            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8gq-qL-nyV" id="vdi-25-zR9">
-                                                                                                <rect key="frame" x="0.0" y="0.0" width="116" height="18"/>
-                                                                                                <autoresizingMask key="autoresizingMask"/>
-                                                                                                <subviews>
-                                                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Floor Plans:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sd-aU-bGQ" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                                                        <rect key="frame" x="0.0" y="2" width="106" height="14.5"/>
-                                                                                                        <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
-                                                                                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                                                        <nil key="highlightedColor"/>
-                                                                                                    </label>
-                                                                                                </subviews>
-                                                                                                <constraints>
-                                                                                                    <constraint firstItem="8sd-aU-bGQ" firstAttribute="leading" secondItem="vdi-25-zR9" secondAttribute="leading" id="1UF-WC-xb2"/>
-                                                                                                    <constraint firstAttribute="trailing" secondItem="8sd-aU-bGQ" secondAttribute="trailing" constant="10" id="Xnx-Fq-k0A"/>
-                                                                                                    <constraint firstAttribute="bottom" secondItem="8sd-aU-bGQ" secondAttribute="bottom" constant="1.5" id="dgp-nt-QQZ"/>
-                                                                                                    <constraint firstItem="8sd-aU-bGQ" firstAttribute="top" secondItem="vdi-25-zR9" secondAttribute="top" constant="2" id="y8y-dP-nFy"/>
-                                                                                                </constraints>
-                                                                                            </tableViewCellContentView>
-                                                                                            <connections>
-                                                                                                <outlet property="lblLocation" destination="8sd-aU-bGQ" id="e7z-dp-cbF"/>
-                                                                                            </connections>
-                                                                                        </tableViewCell>
-                                                                                    </prototypes>
-                                                                                    <connections>
-                                                                                        <outlet property="dataSource" destination="Yya-23-P1N" id="PWP-Ut-3iw"/>
-                                                                                        <outlet property="delegate" destination="Yya-23-P1N" id="M3D-F8-aVI"/>
-                                                                                    </connections>
-                                                                                </tableView>
                                                                             </subviews>
                                                                         </view>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -2440,7 +2412,6 @@ reach for you.</string>
                                                                             <outlet property="imgVLocation" destination="JNW-r5-yNW" id="tGt-vN-aWT"/>
                                                                             <outlet property="lblLocAdvantages" destination="pme-hC-4gK" id="acH-sF-esC"/>
                                                                             <outlet property="lblLocation" destination="fD6-SR-qSz" id="nZl-Ua-o1p"/>
-                                                                            <outlet property="tblLocDesc" destination="O83-7f-7nj" id="tPI-hG-jcp"/>
                                                                         </connections>
                                                                     </collectionViewCell>
                                                                 </cells>
@@ -2495,7 +2466,7 @@ reach for you.</string>
                                                                 <rect key="frame" x="283" y="15" width="77" height="30"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3D TOUR" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lBc-Cx-qxK" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                        <rect key="frame" x="11" y="8.5" width="57.5" height="13"/>
+                                                                        <rect key="frame" x="11.5" y="7" width="56" height="15.5"/>
                                                                         <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="13"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>

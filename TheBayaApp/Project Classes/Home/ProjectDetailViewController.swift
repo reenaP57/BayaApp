@@ -82,8 +82,6 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var cnstXPointBrochureBtn : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstXPointScheduleBtn : NSLayoutConstraint!
 
-
-    
     var arrLocation = [[String : AnyObject]]()
     var arrOverView = [[String : AnyObject]]()
     var arrConfigure = [[String : AnyObject]]()
@@ -96,7 +94,6 @@ class ProjectDetailViewController: ParentViewController {
     var arrTypicalType = [String]()
     var arrContactNo = [[String : AnyObject]]()
     var arrCollLocationHeight = [CGFloat]()
-    
     
     var projectID = 0
     var planIndexPath : IndexPath = IndexPath(item: 0, section: 0)
@@ -173,7 +170,6 @@ class ProjectDetailViewController: ParentViewController {
         vwBottom.isHidden = true
         activityLoader.startAnimating()
         
-        
         APIRequest.shared().getProjectDetail(projectId: self.projectID) { (response, error) in
             
             self.activityLoader.stopAnimating()
@@ -245,7 +241,6 @@ class ProjectDetailViewController: ParentViewController {
                 if (arrTempContact?.count)! > 0 {
                     self.arrContactNo = arrTempContact!
                 }
-                
                 
                 //...Load 3D image
                 
@@ -391,7 +386,6 @@ class ProjectDetailViewController: ParentViewController {
                     self.vwFloorPlan.hide(byHeight: true)
                 }
                 
-                
                 self.collProject.reloadData()
                 self.collOverView.reloadData()
                 self.collLocation.reloadData()
@@ -400,13 +394,10 @@ class ProjectDetailViewController: ParentViewController {
                 self.collFloorImg.reloadData()
                 self.collAmmenities.reloadData()
                 self.tblSpecification.reloadData()
-
                 
                 DispatchQueue.main.async {
                     self.updateCollectionAndTableHeight()
                 }
-            
-                
             } else {
                  self.vwNav.isHidden = false
             }
@@ -920,7 +911,6 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                             }
                         }
                     }
-                    
                     return cell
                 }
             }
@@ -936,14 +926,11 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 cell.lblLocation.text = dict.valueForString(key: CTitle)
                 cell.imgVLocation.sd_setShowActivityIndicatorView(true)
                 cell.imgVLocation.sd_setImage(with: URL(string: dict.valueForString(key: CIcon)), placeholderImage: nil, options: .retryFailed, completed: nil)
-
-             //   cell.lblLocAdvantages.text =
                 
                 let arrDesc = dict.valueForString(key: CDescription).components(separatedBy:"\n")
                 if arrDesc.count > 0 {
                    cell.lblLocAdvantages.text =
                     (dict.valueForString(key: CDescription)).replacingOccurrences(of: "\r", with: "", options: NSString.CompareOptions.literal, range: nil)
-                    //cell.loadLocationDesc(arrDesc: arrDesc)
                 }
                 
                 return cell

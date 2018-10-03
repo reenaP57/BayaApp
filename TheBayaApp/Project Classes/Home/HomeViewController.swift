@@ -11,9 +11,7 @@ import UIKit
 class HomeViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var collHome : UICollectionView!
-    
     var arrHome = [[String : AnyObject]]()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,7 +38,7 @@ class HomeViewController: ParentViewController {
     func initialize() {
        
         arrHome = [["title": "Timeline" as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
-                   ["title": "Projects" as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject) PROJECTS", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
+                   ["title": "Projects" as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
                    ["title": "Schedule a Visit" as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject]] as [[String : AnyObject]]
     }
 }
@@ -84,7 +82,14 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             if indexPath.row != 0 || appDelegate.loginUser?.project_name == "" {
 
                 if indexPath.row == 1 {
-                    cell.lblPrjctName.isHidden = dict.valueForString(key: "subtitle") == "0 PROJECTS"
+                    cell.lblPrjctName.isHidden = dict.valueForString(key: "subtitle") == "0"
+                    
+                    if appDelegate.loginUser?.projectBadge == 0 || appDelegate.loginUser?.projectBadge == 1 {
+                        cell.lblPrjctName.text = "\(dict.valueForString(key: "subtitle")) PROJECT"
+                    } else {
+                        cell.lblPrjctName.text = "\(dict.valueForString(key: "subtitle")) PROJECTS"
+                    }
+                    
                 } else {
                     cell.lblPrjctName.isHidden = false
                 }
@@ -125,20 +130,20 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         switch indexPath.row {
-        case 0:
+        case 0: //...Timeline
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine")
             
             if let timeLineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
                 self.navigationController?.pushViewController(timeLineVC, animated: true)
             }
-        case 1:
+        case 1: //...Project
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project")
 
             if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
                 self.navigationController?.pushViewController(projectVC, animated: true)
             }
             
-        default:
+        default: //...Schedule Visit
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Schedule Visit")
 
             if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
