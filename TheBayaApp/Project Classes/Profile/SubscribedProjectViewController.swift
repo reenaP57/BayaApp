@@ -83,7 +83,7 @@ extension SubscribedProjectViewController: UITableViewDelegate,UITableViewDataSo
                 self.showAlertConfirmationView(CUnsubscribeMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         
-                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0, showLoader :false, completion: { (response, error) in
+                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId), type: 0,completion: { (response, error) in
                             
                             if response != nil && error == nil {
                                 
@@ -136,26 +136,23 @@ extension SubscribedProjectViewController {
             return
         }
         
-        if !isRefresh {
-            activityLoader.startAnimating()
-        }
+//        if !isRefresh {
+//            activityLoader.startAnimating()
+//        }
         
-        apiTask = APIRequest.shared().getSubscribedProjectList(completion: { (response, error) in
+        apiTask = APIRequest.shared().getSubscribedProjectList(showLoader: !isRefresh, completion: { (response, error) in
             
             self.apiTask?.cancel()
-            self.activityLoader.stopAnimating()
+           // self.activityLoader.stopAnimating()
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
                 
-                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                
-                if arrData.count > 0 {
-                    
-                    if arrData.count != self.arrSubscribeList.count {
-                        self.arrSubscribeList.removeAll()
-                        for item in arrData {
-                            self.arrSubscribeList.append(item)
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    if arrData.count > 0 {
+                        if arrData.count != self.arrSubscribeList.count {
+                            self.arrSubscribeList.removeAll()
+                            self.arrSubscribeList = arrData
                         }
                     }
                 }

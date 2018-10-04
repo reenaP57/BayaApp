@@ -80,7 +80,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                                 if topViewController is NotificationViewController {
                                     
                                     let notificationVC = topViewController as! NotificationViewController
-                                    notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
+                                    notificationVC.loadNotificationList(showLoader: false, isFromNotification : true)
                                 } else {
                                     appDelegate.tabbarView?.btnNotification.isSelected = false
                                     appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
@@ -179,7 +179,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                                     let timelineVC  = topViewController as! TimelineDetailViewController
                                     timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
                                     timelineVC.isFromNotifition = true
-                                    timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
+                                    timelineVC.loadSubscribedProjectList(showLoader: false, isFromNotification: true)
                                     
                                 } else {
                                     
@@ -239,7 +239,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                                 if topViewController is VisitDetailsViewController {
                                     
                                     let visitDetailVC  = topViewController as! VisitDetailsViewController
-                                    visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
+                                    visitDetailVC.loadVisitList(showLoader: false, isFromNotification : true)
                                     
                                 } else {
                                     

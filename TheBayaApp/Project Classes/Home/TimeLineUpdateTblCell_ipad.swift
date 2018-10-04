@@ -123,6 +123,4 @@ extension TimeLineUpdateTblCell_ipad : UICollectionViewDelegateFlowLayout, UICol
             }
         }
     }
-
-  
 }

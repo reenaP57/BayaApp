@@ -25,7 +25,6 @@ class SellAllLocationTblCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    
     func loadLocationDesc(arrDesc : [String]) {
         
         if arrDesc.count > 0{
@@ -44,12 +43,9 @@ class SellAllLocationTblCell: UITableViewCell {
                 GCDMainThread.async {
                     self.cnstHeightTbl.constant = self.tblLocDesc.contentSize.height
                 }
-           
             }
-
         }
     }
-
 }
 
 

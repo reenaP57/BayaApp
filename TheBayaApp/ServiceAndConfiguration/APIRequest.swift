@@ -762,20 +762,29 @@ extension APIRequest {
     }
     
     
-    func notificationList(page : Int?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+    func notificationList(page : Int?, showLoader : Bool, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        if showLoader{
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagNotificationList, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
             
+            if showLoader{
+                MILoader.shared.hideLoader()
+            }
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagNotificationList){
                 completion(response, nil)
             }
             
         }, failureBlock: { (task, message, error) in
-            
+            if showLoader{
+                MILoader.shared.hideLoader()
+            }
             completion(nil, error)
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection {
-                    _ = self.notificationList(page: page, completion: completion)
+                    _ = self.notificationList(page: page,showLoader : showLoader, completion: completion)
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotificationList, error: error)
@@ -1144,19 +1153,30 @@ extension APIRequest {
         })!
     }
     
-    func getProjectDetail(projectId : Int?, completion : @escaping ClosureCompletion) {
+    func getProjectDetail(projectId : Int?, showLoader : Bool, completion : @escaping ClosureCompletion) {
+        
+        if showLoader {
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         _ = Networking.sharedInstance.POST(apiTag: CAPITagProjectDetails, param: [CProjectId : projectId as AnyObject], successBlock: { (task, response) in
+            
+            if showLoader {
+                MILoader.shared.hideLoader()
+            }
             
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectDetails) {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
             
+            if showLoader {
+                MILoader.shared.hideLoader()
+            }
             completion(nil, error)
             if error?.code == CStatus1009  || error?.code == CStatus1005 {
                 self.checkInternetConnection {
-                    _ = self.getProjectDetail(projectId: projectId, completion: completion)
+                    _ = self.getProjectDetail(projectId: projectId,showLoader : true, completion: completion)
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectDetails, error: error)
@@ -1164,30 +1184,19 @@ extension APIRequest {
         })
     }
     
-    func subcribedProject (_ projectId : Int?, type: Int?, showLoader : Bool, completion : @escaping ClosureCompletion) {
-        
-        if showLoader {
-             MILoader.shared.showLoader(type: .circularRing, message: "")
-        }
+    func subcribedProject (_ projectId : Int?, type: Int?, completion : @escaping ClosureCompletion) {
         
         _ = Networking.sharedInstance.POST(apiTag: CAPITagProjectSubscribe, param: [CProjectId : projectId as AnyObject, "type" : type as AnyObject], successBlock: { (task, response) in
-            
-            if showLoader {
-                MILoader.shared.hideLoader()
-            }
             
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectSubscribe) {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
             
-            if showLoader {
-                MILoader.shared.hideLoader()
-            }
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.subcribedProject(projectId, type: type, showLoader: showLoader, completion: completion)
+                _ = self.subcribedProject(projectId, type: type, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
             }
@@ -1196,18 +1205,29 @@ extension APIRequest {
         
     }
     
-    func getSubscribedProjectList(completion : @escaping ClosureCompletion) -> URLSessionTask {
+    func getSubscribedProjectList(showLoader : Bool, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        if showLoader{
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagSubscribedProject, param: [:], successBlock: { (task, response) in
             
+            if showLoader{
+                MILoader.shared.hideLoader()
+            }
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagProjectSubscribe) {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
+            
+            if showLoader{
+                MILoader.shared.hideLoader()
+            }
             completion(nil, error)
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection {
-                    _ = self.getSubscribedProjectList(completion: completion)
+                    _ = self.getSubscribedProjectList(showLoader: showLoader, completion: completion)
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
@@ -1218,13 +1238,13 @@ extension APIRequest {
     func favouriteSubcribedProject(_ projectId : Int?, type : Int?, completion : @escaping ClosureCompletion) {
         
         _ = Networking.sharedInstance.POST(apiTag: CAPITagFavorite, param: [CProjectId : projectId as AnyObject, "type" : type as AnyObject], successBlock: { (task, response) in
-            
+           
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagFavorite){
                 completion(response, nil)
             }
             
         }, failureBlock: { (task, message, error) in
-            
+        
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
@@ -1237,7 +1257,7 @@ extension APIRequest {
     }
     
     
-    func projectBrochure (projectId : Int?, completion : @escaping ClosureCompletion){
+    func projectBrochure (projectId : Int?,completion : @escaping ClosureCompletion){
         
         let dict = [CProjectId : projectId!,
                     "deviceInfo" : ["platform" : "IOS",
@@ -1245,17 +1265,20 @@ extension APIRequest {
                                     "deviceOS" : UIDevice.current.systemVersion,
                                     "appVersion" : Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String]] as [String : Any]
         
+        MILoader.shared.showLoader(type: .circularRing, message: "")
         
         Networking.sharedInstance.POST(param: dict as [String : AnyObject], tag: CAPITagBrochure, multipartFormData: { (data) in
             
         }, success: { (task, response) in
             
+            MILoader.shared.hideLoader()
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagBrochure){
                 completion(response, nil)
             }
             
         }) { (task, message, error) in
             
+            MILoader.shared.hideLoader()
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
@@ -1268,19 +1291,29 @@ extension APIRequest {
     }
     
     
-    func getAmenities (projectId : Int?, completion : @escaping ClosureCompletion) {
+    func getAmenities (projectId : Int?, showLoader : Bool, completion : @escaping ClosureCompletion) {
+        
+        if showLoader{
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         _ = Networking.sharedInstance.POST(apiTag: CAPITagAmenities, param: [CProjectId : projectId as AnyObject], successBlock: { (task, response) in
             
+            if showLoader{
+                MILoader.shared.showLoader(type: .circularRing, message: "")
+            }
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagAmenities) {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
             
+            if showLoader{
+                MILoader.shared.showLoader(type: .circularRing, message: "")
+            }
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.getAmenities(projectId: projectId, completion: completion)
+                _ = self.getAmenities(projectId: projectId, showLoader: showLoader, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagAmenities, error: error)
             }
@@ -1288,19 +1321,29 @@ extension APIRequest {
     }
     
     
-    func getLocationAdvantages (projectId : Int?, completion : @escaping ClosureCompletion) {
+    func getLocationAdvantages (projectId : Int?, showLoader : Bool, completion : @escaping ClosureCompletion) {
+        
+        if showLoader{
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         _ = Networking.sharedInstance.POST(apiTag: CAPITagLocationAdvantages, param: [CProjectId : projectId as AnyObject], successBlock: { (task, response) in
             
+            if showLoader{
+                MILoader.shared.showLoader(type: .circularRing, message: "")
+            }
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagLocationAdvantages) {
                 completion(response, nil)
             }
         }, failureBlock: { (task, message, error) in
             
+            if showLoader{
+                MILoader.shared.showLoader(type: .circularRing, message: "")
+            }
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.getLocationAdvantages(projectId: projectId, completion: completion)
+                _ = self.getLocationAdvantages(projectId: projectId, showLoader : showLoader, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLocationAdvantages, error: error)
             }
@@ -1341,20 +1384,30 @@ extension APIRequest {
         
     }
     
-    func getVisitList(page : Int?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+    func getVisitList(page : Int?, showLoader : Bool, completion : @escaping ClosureCompletion) -> URLSessionTask {
+        
+        if showLoader{
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagVisitList, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
             
+            if showLoader{
+                MILoader.shared.hideLoader()
+            }
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagVisitList){
                 completion(response, nil)
             }
             
         }, failureBlock: { (task, message, error) in
            
+            if showLoader{
+                MILoader.shared.hideLoader()
+            }
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.getVisitList(page: page, completion: completion)
+                _ = self.getVisitList(page: page, showLoader : showLoader, completion: completion)
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagVisitList, error: error)
             }
@@ -1457,18 +1510,18 @@ extension APIRequest {
             para[CIEndDate] = endDate
         }
         
-//        if shouldShowLoader!{
-//        MILoader.shared.showLoader(type: .circularRing, message: "")
-//        }
+        if shouldShowLoader!{
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
-        //    MILoader.shared.hideLoader()
+           MILoader.shared.hideLoader()
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagTimeline){
                 completion(response, nil)
             }
             
         }, failureBlock: { (task, message, error) in
-          //  MILoader.shared.hideLoader()
+            MILoader.shared.hideLoader()
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {

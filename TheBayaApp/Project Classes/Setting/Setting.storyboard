@@ -19,7 +19,7 @@
         <scene sceneID="pJf-pa-KzB">
             <objects>
                 <viewController storyboardIdentifier="SettingViewController" id="p4F-FJ-pot" customClass="SettingViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" tag="101" contentMode="scaleToFill" id="ZYi-yl-cxH">
+                    <view key="view" tag="102" contentMode="scaleToFill" id="ZYi-yl-cxH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

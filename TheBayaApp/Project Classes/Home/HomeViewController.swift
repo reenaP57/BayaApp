@@ -22,6 +22,7 @@ class HomeViewController: ParentViewController {
         appDelegate.showTabBar()
         
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CHomeScreenName)
+        self.userDetail()
         self.initialize()
         collHome.reloadData()
     }
@@ -40,6 +41,15 @@ class HomeViewController: ParentViewController {
         arrHome = [["title": "Timeline" as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
                    ["title": "Projects" as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
                    ["title": "Schedule a Visit" as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject]] as [[String : AnyObject]]
+    }
+    
+    func userDetail() {
+        APIRequest.shared().userDetail { (response, error) in
+            if response != nil && error == nil {
+                self.initialize()
+                self.collHome.reloadData()
+            }
+        }
     }
 }
 
@@ -62,67 +72,50 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollCell", for: indexPath) as? HomeCollCell {
+        let dict = arrHome[indexPath.row]
+        
+        if indexPath.item == 0 {
             
-            let dict = arrHome[indexPath.row]
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimelineHomeCollCell", for: indexPath) as? TimelineHomeCollCell {
+                
+                cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
+                cell.lblTitle.text = dict.valueForString(key: "title")
+                cell.lblPrjctName.text = (dict.valueForString(key: "subtitle")).uppercased()
+                cell.lblBadge.text = "\(appDelegate.loginUser?.postBadge ?? 0)"
+                cell.lblPercentage.text = "\(appDelegate.loginUser?.projectProgress ?? 0)% Completed"
+                
+                cell.progressVCom.progressImage = UIImage(named: "progress")
+                let temp =  Double((appDelegate.loginUser?.projectProgress)!)
+                let invertedValue = temp/100
+                cell.progressVCom.setProgress(Float(invertedValue), animated: false)
+                
+                cell.vwCount.isHidden = appDelegate.loginUser?.postBadge == 0
+                
+                return cell
+            }
+        } else {
             
-            cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
-            cell.lblTitle.text = dict.valueForString(key: "title")
-            cell.lblPrjctName.text = (dict.valueForString(key: "subtitle")).uppercased()
-            cell.lblBadge.text = "\(appDelegate.loginUser?.postBadge ?? 0)"
-            cell.lblPercentage.text = "\(appDelegate.loginUser?.projectProgress ?? 0)% Completed"
-    
-            
-            cell.progressVCom.progressImage = UIImage(named: "progress")
-            let temp =  Double((appDelegate.loginUser?.projectProgress)!)
-            let invertedValue = temp/100
-            cell.progressVCom.setProgress(Float(invertedValue), animated: false)
-
-            
-            if indexPath.row != 0 || appDelegate.loginUser?.project_name == "" {
-
+            if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "HomeCollCell", for: indexPath) as? HomeCollCell {
+                
+                cell.imgVTitle.image = UIImage(named: dict.valueForString(key: "img"))
+                cell.lblTitle.text = dict.valueForString(key: "title")
+                cell.lblPrjctName.text = (dict.valueForString(key: "subtitle")).uppercased()
+             
                 if indexPath.row == 1 {
                     cell.lblPrjctName.isHidden = dict.valueForString(key: "subtitle") == "0"
-                    
                     if appDelegate.loginUser?.projectBadge == 0 || appDelegate.loginUser?.projectBadge == 1 {
                         cell.lblPrjctName.text = "\(dict.valueForString(key: "subtitle")) PROJECT"
                     } else {
                         cell.lblPrjctName.text = "\(dict.valueForString(key: "subtitle")) PROJECTS"
                     }
-                    
                 } else {
                     cell.lblPrjctName.isHidden = false
                 }
                 
-                
-                cell.vwCount.isHidden = true
-                
-                if IS_iPhone {
-                    cell.vwProgress.isHidden = true
-                } else {
-                    cell.vwProgress.hide(byHeight: true)
-                    _ = cell.lblPrjctName.setConstraintConstant(30.0, edge: .bottom, ancestor: true)
-                }
-             
-            } else {
-                
-                if IS_iPhone {
-                    cell.vwProgress.isHidden = false
-                    
-                    if IS_iPhone_5 {
-                        _ = cell.imgVTitle.setConstraintConstant(15.0, edge: .top, ancestor: true)
-                    }
-                    
-                }else {
-                    cell.vwProgress.hide(byHeight: false)
-                    _ = cell.lblPrjctName.setConstraintConstant(10.0, edge: .bottom, ancestor: true)
-                }
-                
-                cell.vwCount.isHidden = appDelegate.loginUser?.postBadge == 0
+                return cell
             }
-            
-            return cell
         }
+        
         
         return UICollectionViewCell()
     }

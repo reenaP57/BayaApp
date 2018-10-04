@@ -44,6 +44,10 @@ class SignUpViewController: ParentViewController {
     
     func initialize() {
         self.title = "Sign Up"
+     
+        btnRememberMe.isSelected = true
+        CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+        CUserDefaults.synchronize()
         
         self.setCountryList()
         self.setAttributeString()

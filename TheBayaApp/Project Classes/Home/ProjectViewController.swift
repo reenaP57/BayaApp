@@ -50,7 +50,7 @@ class ProjectViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblProject?.pullToRefreshControl = refreshControl
         
-        self.loadProjectList(isRefresh: false, isFromNotification :false)
+        self.loadProjectList(showLoader: true, isFromNotification :false)
 
         if IS_iPhone {
             tblProject.estimatedRowHeight = 170
@@ -134,7 +134,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                         }
                         
                         
-                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0, showLoader :false) { (response, error) in
+                        APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
                             
                             if response != nil && error == nil {
                                 
@@ -201,7 +201,7 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                 if currentPage < lastPage {
                     
                     if apiTask?.state == URLSessionTask.State.running {
-                        self.loadProjectList(isRefresh: true, isFromNotification :false)
+                        self.loadProjectList(showLoader: false, isFromNotification :false)
                     }
                 }
             }
@@ -233,10 +233,10 @@ extension ProjectViewController {
     @objc func pullToRefresh(){
         currentPage = 1
         self.refreshControl.beginRefreshing()
-        self.loadProjectList(isRefresh: true, isFromNotification :false)
+        self.loadProjectList(showLoader: false, isFromNotification :false)
     }
     
-    func loadProjectList(isRefresh : Bool, isFromNotification :Bool) {
+    func loadProjectList(showLoader : Bool, isFromNotification :Bool) {
      
         if apiTask?.state == URLSessionTask.State.running {
             return
@@ -246,32 +246,30 @@ extension ProjectViewController {
 //            activityLoader.startAnimating()
 //        }
         
-        apiTask = APIRequest.shared().getProjectList(currentPage,!isRefresh, completion: { (response, error) in
+        apiTask = APIRequest.shared().getProjectList(currentPage,showLoader, completion: { (response, error) in
         
             self.apiTask?.cancel()
            // self.activityLoader.stopAnimating()
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
-                
-                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
-                
+              
                 if self.currentPage == 1 {
                     self.arrProject.removeAll()
                 }
                 
-                if arrData.count > 0 {
-                    
-                    for item in arrData {
-                        self.arrProject.append(item)
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    if arrData.count > 0 {
+                        self.arrProject = arrData
                     }
                 }
-                
-                self.lastPage = metaData.valueForInt(key: CLastPage)!
-                
-                if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
-                    self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+    
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.lastPage = metaData.valueForInt(key: CLastPage)!
+                    
+                    if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
+                        self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+                    }
                 }
                 
                 self.lblNoData.isHidden = self.arrProject.count != 0

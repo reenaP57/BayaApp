@@ -60,6 +60,8 @@ class LoginViewController: ParentViewController {
         txtCountryCode.hide(byWidth: true)
         vwSeprater.isHidden = true
         
+        self.btnRememberMe.isSelected = true
+        
         self.showValidation(isAdd: false)
         self.setCountryList()
         self.setAtttibuteString()
@@ -302,9 +304,11 @@ extension LoginViewController {
                 } else {
                     if self.btnRememberMe.isSelected && (appDelegate.loginUser?.mobileVerify)! && (appDelegate.loginUser?.emailVerify)! {
                          CUserDefaults.set(true, forKey: UserDefaultRememberMe)
+                    } else {
+                        CUserDefaults.set(nil, forKey: UserDefaultRememberMe)
                     }
-                    
-                   appDelegate.initHomeViewController()
+                    CUserDefaults.synchronize()
+                    appDelegate.initHomeViewController()
                 }
             }
         }

@@ -32,7 +32,7 @@ class NotificationViewController: ParentViewController {
         appDelegate.showTabBar()
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CNotificationScreenName)
         appDelegate.tabbarView?.lblCount.isHidden = true
-        self.loadNotificationList(isRefresh: false, isFromNotification :isFromOtherScreen)
+        self.loadNotificationList(showLoader: true, isFromNotification :isFromOtherScreen)
     }
 
     override func didReceiveMemoryWarning() {
@@ -100,30 +100,24 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             cell.imgVProject.sd_setShowActivityIndicatorView(true)
             cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: "thumbImage"))), placeholderImage: nil)
         
-            
             switch dict.valueForInt(key: "notifyType") {
             case NotificationAdmin, NotificationNewProject,NotificationPostUpdate, NotificationVisitCancel  : //... Admin, New Project, Post Update, Visit Cancel
                cell.lblMsg.text = dict.valueForString(key: "message")
                 
             case NotificationProjectComplete: //... Project Complete
                 cell.lblMsg.text = "\(dict.valueForString(key: "title")) project is completed now, no further updates will be posted. You can view our other projects and subscribe if you are interested."
-
                 break
                 
             case NotificationVisitUpdate: //... Visit Update
                 cell.lblMsg.text = "Your visit \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "dateTime")!, withFormate: "'at' hh:mm a 'on' dd MMMM yyyy")) has been confirmed."
-
-                
                 break
                 
             case NotificationVisitReschedule: //... Visit Reschedule
                 cell.lblMsg.text = "Your visit has been re-scheduled from \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) to \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true))"
-
                 break
              
             default : //... Rate Visit
                 cell.lblMsg.text = "Rate the visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false))"
-                
                 cell.btnRateVisit.hide(byWidth: false)
                 break
             }
@@ -159,7 +153,7 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 if currentPage < lastPage {
                     
                     if apiTask?.state == URLSessionTask.State.running {
-                        self.loadNotificationList(isRefresh: true, isFromNotification :false)
+                        self.loadNotificationList(showLoader: false, isFromNotification :false)
                     }
                 }
             }
@@ -173,7 +167,6 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let dict = arrNotification[indexPath.row]
-        
         
         switch dict.valueForInt(key: "notifyType") {
         case NotificationPostUpdate:
@@ -215,49 +208,48 @@ extension NotificationViewController {
     @objc func pullToRefresh(){
         currentPage = 1
         self.refreshControl.beginRefreshing()
-        self.loadNotificationList(isRefresh: true, isFromNotification :false)
+        self.loadNotificationList(showLoader: false, isFromNotification :false)
     }
     
-    func loadNotificationList(isRefresh : Bool, isFromNotification : Bool) {
+    func loadNotificationList(showLoader : Bool, isFromNotification : Bool) {
         
         if apiTask?.state == URLSessionTask.State.running {
             return
         }
         
-        if !isRefresh && !isFromNotification {
-            activityLoader.startAnimating()
-        }
+//        if !isRefresh && !isFromNotification {
+//            activityLoader.startAnimating()
+//        }
         
         if isFromNotification {
             currentPage = 1
         }
         
-        apiTask = APIRequest.shared().notificationList(page: currentPage, completion: { (response, error) in
+        apiTask = APIRequest.shared().notificationList(page: currentPage, showLoader: showLoader, completion: { (response, error) in
             
             self.apiTask?.cancel()
-            self.activityLoader.stopAnimating()
+        //    self.activityLoader.stopAnimating()
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
-                
-                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 
                 if self.currentPage == 1 {
                     self.arrNotification.removeAll()
                 }
                 
-                if arrData.count > 0 {
-                    
-                    for item in arrData {
-                        self.arrNotification.append(item)
+                if  let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    if arrData.count > 0 {
+                        self.arrNotification = arrData
                     }
                 }
                 
-                self.lastPage = metaData.valueForInt(key: CLastPage)!
-                
-                if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
-                    self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    
+                    self.lastPage = metaData.valueForInt(key: CLastPage)!
+                    
+                    if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
+                        self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+                    }
                 }
                 
                 self.lblNoData.isHidden = self.arrNotification.count != 0

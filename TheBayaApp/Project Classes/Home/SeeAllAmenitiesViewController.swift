@@ -46,9 +46,10 @@ class SeeAllAmenitiesViewController: ParentViewController {
             collAmenities.refreshControl = refreshControl
         } else {
             // Fallback on earlier versions
+            collAmenities.refreshControl = refreshControl
         }
         
-        self.loadAmenities(isRefresh: false)
+        self.loadAmenities(showLoader: true)
     }
     
 }
@@ -99,25 +100,24 @@ extension SeeAllAmenitiesViewController {
     
     @objc func pulltoRefresh(){
         refreshControl.beginRefreshing()
-        self.loadAmenities(isRefresh: true)
+        self.loadAmenities(showLoader: false)
     }
     
-    func loadAmenities(isRefresh : Bool) {
+    func loadAmenities(showLoader : Bool) {
         
-        if !isRefresh{
-            activityLoader.startAnimating()
-        }
+//        if !isRefresh{
+//            activityLoader.startAnimating()
+//        }
         
         
-        APIRequest.shared().getAmenities(projectId: projectId) { (response, error) in
+        APIRequest.shared().getAmenities(projectId: projectId, showLoader:showLoader) { (response, error) in
             
             self.refreshControl.endRefreshing()
-            self.activityLoader.stopAnimating()
+          //  self.activityLoader.stopAnimating()
             
             if response != nil && error == nil {
                 
                 let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                
                 
                 if arrData.count > 0 {
                     if arrData.count != self.arrAmmenities.count {
@@ -127,7 +127,6 @@ extension SeeAllAmenitiesViewController {
                         }
                     }
                 }
-                
                 self.collAmenities.reloadData()
             }
         }

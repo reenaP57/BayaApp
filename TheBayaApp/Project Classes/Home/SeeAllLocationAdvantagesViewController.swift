@@ -38,7 +38,7 @@ class SeeAllLocationAdvantagesViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblLocation.pullToRefreshControl = refreshControl
         
-        self.loadLocationAdvantages(isRefresh: false)
+        self.loadLocationAdvantages(showLoader: true)
     }
 }
 
@@ -51,10 +51,6 @@ extension SeeAllLocationAdvantagesViewController : UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return arrLocation.count
     }
-    
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 137
-//    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -94,25 +90,23 @@ extension SeeAllLocationAdvantagesViewController {
     
     @objc func pulltoRefresh(){
         refreshControl.beginRefreshing()
-        self.loadLocationAdvantages(isRefresh: true)
+        self.loadLocationAdvantages(showLoader: false)
     }
     
-    func loadLocationAdvantages(isRefresh : Bool) {
+    func loadLocationAdvantages(showLoader : Bool) {
         
-        if !isRefresh {
-            activityLoader.startAnimating()
-        }
+//        if !isRefresh {
+//            activityLoader.startAnimating()
+//        }
         
-        APIRequest.shared().getLocationAdvantages(projectId: self.projectId) { (response, error) in
+        APIRequest.shared().getLocationAdvantages(projectId: self.projectId, showLoader : showLoader) { (response, error) in
             
             self.refreshControl.endRefreshing()
-            self.activityLoader.stopAnimating()
+         //   self.activityLoader.stopAnimating()
             
             if response != nil && error == nil {
                 
                 let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                
-                
                 if arrData.count > 0 {
                     if arrData.count != self.arrLocation.count {
                         self.arrLocation.removeAll()
@@ -122,10 +116,11 @@ extension SeeAllLocationAdvantagesViewController {
                     }
                 }
                 
-                DispatchQueue.main.asyncAfter(deadline: .now()+0.3) {
+                self.tblLocation.reloadData()
+                
+                GCDMainThread.async {
                     self.tblLocation.reloadData()
                 }
-                
             }
         }
     }

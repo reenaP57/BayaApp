@@ -9,7 +9,7 @@
 import UIKit
 import AVKit
 import BFRImageViewer
-import AVFoundation
+//import AVFoundation
 
 let space = CScreenWidth * 70/375
 let IpadSpace = CScreenWidth - (CScreenWidth * 500/768)
@@ -63,28 +63,34 @@ class TimelineDetailViewController: ParentViewController {
     func initialize() {
     
         self.title = "Timeline"
-       
+
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        tblUpdates?.pullToRefreshControl = refreshControl
+        
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
 
         tblUpdates.estimatedRowHeight = 100;
         tblUpdates.rowHeight = UITableViewAutomaticDimension;
-        
-        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        refreshControl.tintColor = ColorGreenSelected
-        tblUpdates.pullToRefreshControl = refreshControl
         
         if IS_iPad {
             tblUpdates.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
         }
         
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CTimelineScreenName)
-        self.loadSubscribedProjectList(isRefresh: false, isFromNotification: isFromNotifition)
+        self.loadSubscribedProjectList(showLoader: true, isFromNotification: isFromNotifition)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshViewUpdateList), name: NSNotification.Name(rawValue: "NotificationUpdatePost"), object: nil)
     }
     
+    
+    @objc func pullToRefresh() {
+        //  your code to refresh tableView
+    }
+    
+    
     @objc func refreshViewUpdateList() {
-        self.loadSubscribedProjectList(isRefresh: false, isFromNotification: false)
+        self.loadSubscribedProjectList(showLoader: true, isFromNotification: false)
     }
     
     func shareContent(text : String, mediaUrl : String) {
@@ -704,33 +710,33 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
 
 extension TimelineDetailViewController {
     
-    @objc func pullToRefresh() {
-        refreshControl.beginRefreshing()
-        self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
-    }
+//    @objc func pullToRefresh() {
+//        refreshControl.beginRefreshing()
+//        self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
+//    }
     
-    func loadSubscribedProjectList(isRefresh : Bool, isFromNotification : Bool) {
+    func loadSubscribedProjectList(showLoader : Bool, isFromNotification : Bool) {
         if self.apiTask?.state == URLSessionTask.State.running {
             return
         }
         
-        if !isRefresh {
-            self.activityLoader.startAnimating()
-            if !IS_iPad
-            {
-                self.btnProjectDetail.isHidden = true
-                self.btnScheduleVisit.isHidden = true
-            }
-            
+//        if showLoader {
+//            self.activityLoader.startAnimating()
+//        }
+        
+        if !IS_iPad
+        {
+            self.btnProjectDetail.isHidden = true
+            self.btnScheduleVisit.isHidden = true
         }
         
         vwNoProject.isHidden = true
         self.lblNoUpdates.isHidden = true
         
-        apiTask =  APIRequest.shared().getSubscribedProjectList { (response, error) in
+        apiTask =  APIRequest.shared().getSubscribedProjectList(showLoader: showLoader, completion: { (response, error) in
             self.apiTask?.cancel()
             self.refreshControl.endRefreshing()
-            self.activityLoader.stopAnimating()
+           // self.activityLoader.stopAnimating()
             
             if  response != nil && error == nil {
                 
@@ -745,7 +751,7 @@ extension TimelineDetailViewController {
                         self.btnScheduleVisit.isHidden = !(self.arrProject.count > 0)
                         
                         if self.arrProject.count > 0 {
-                          //  self.arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
+                            //  self.arrProject.sort(by: {$1[CProjectId] as! Int > $0[CProjectId] as! Int})
                             self.hideScheduleVisit()
                         }
                     }
@@ -779,7 +785,7 @@ extension TimelineDetailViewController {
                     }
                 }
             }
-        }
+        })
     }
     
     func loadTimeLineListFromServer(_ shouldShowLoader : Bool?, startDate : String?, endDate : String?){
@@ -789,15 +795,15 @@ extension TimelineDetailViewController {
             apiTask?.cancel()
         }
         
-        if shouldShowLoader! {
-            self.activityLoader.startAnimating()
-        }
+//        if shouldShowLoader! {
+//            self.activityLoader.startAnimating()
+//        }
         
         if arrProject.count - 1 >= currentIndex{
             let dic = arrProject[currentIndex]
             apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: startDate, endDate: endDate, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
                 self.apiTask?.cancel()
-                self.activityLoader.stopAnimating()
+                //self.activityLoader.stopAnimating()
                 
                 if response != nil{
                     

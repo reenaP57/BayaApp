@@ -39,18 +39,7 @@ class TimeLineSubscribeTblCell: UITableViewCell {
         if let index = arrProject.index(where: {$0[CIsFavorite] as? Int  == 1}){
             favProjectIndexPath = IndexPath(item: index, section: 0)
         }
-//        else {
-//            //...Set default first project as fav when not select any fav project
-//            favProjectIndexPath = IndexPath(item: 0, section: 0)
-//
-//            let dict = arrProject[0]
-//            appDelegate.loginUser?.fav_project_id = Int64(dict.valueForInt(key: CProjectId)!)
-//            appDelegate.loginUser?.project_name = dict.valueForString(key: CProjectName)
-//            appDelegate.loginUser?.projectProgress = Int16(dict.valueForInt(key: CProjectProgress)!)
-//            CoreData.saveContext()
-//        }
-        
-        
+
         GCDMainThread.async {
             if self.currentIndex == 0{
                 self.collSubscribe.setContentOffset(.zero, animated: false)
@@ -120,7 +109,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 if !cell.btnSubscribe.isSelected{
                     isFavType = 1
                 }
-                
                 APIRequest.shared().favouriteSubcribedProject(dict.valueForInt(key: CProjectId), type: isFavType, completion: { (response, error) in
                     
                     if response != nil && error == nil {
@@ -148,22 +136,14 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                                 appDelegate.loginUser?.fav_project_id = Int64(data.valueForInt(key: "favoriteProjectId")!)
                                 appDelegate.loginUser?.project_name = data.valueForString(key: "favoriteProjectName")
                                 appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: "favoriteProjectProgress")!)
+                                CoreData.saveContext()
                             }
-//                            else {
-//                                appDelegate.loginUser?.fav_project_id = 0
-//                                appDelegate.loginUser?.project_name = ""
-//                                appDelegate.loginUser?.projectProgress = 0
-//                            }
-                            
-                            CoreData.saveContext()
                         } else {
                             appDelegate.loginUser?.fav_project_id = 0
                             appDelegate.loginUser?.project_name = ""
                             appDelegate.loginUser?.projectProgress = 0
                             CoreData.saveContext()
                         }
-                        
-                       
                     }
                 })
             }
@@ -248,6 +228,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
             let imgVHeight = cell.imgVPjctCompletion.CViewHeight - CGFloat(space)
             
+           // dict["CProjectProgress"] = 100 as AnyObject
             let percentage = imgVHeight * CGFloat((dict.valueForInt(key: CProjectProgress))!)/100
             
             if (dict.valueForInt(key: CProjectProgress)) != 100 || (dict.valueForInt(key: CProjectProgress)) != 0 {

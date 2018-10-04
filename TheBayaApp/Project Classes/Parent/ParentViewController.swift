@@ -51,20 +51,32 @@ class ParentViewController: UIViewController {
     fileprivate func setupViewAppearance() {
         
         //....Generic Navigation Setup
-        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+//        self.navigationController?.navigationBar.topItem?.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font:CFontAvenir(size: 19, type: .heavy).setUpAppropriateFont()!, NSAttributedStringKey.foregroundColor:ColorLightBlack]
         
         self.navigationController?.navigationBar.tintColor = ColorLightBlack
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_back_white")
+   
+        /*   self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_back_white")
         self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "nav_back")
-       
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil) */
+ 
+        
+        let vwBackBtn = UIView.init(frame: CGRect(x: 0, y: 0, width: 60, height: 44))
+        let imgBack = UIImageView.init(frame: CGRect(x: 0, y: 10, width: 13, height: 22))
+        imgBack.image = UIImage(named: "nav_back")
 
-          //self.navigationController?.navigationBar.backIndicatorImage = UIImage(named: "nav_back")?.withAlignmentRectInsets(UIEdgeInsetsMake(0, -50, 0, 0))
-//       self.navigationItem.backBarButtonItem?.imageInsets   = UIEdgeInsetsMake(0, -100, 0, 0)
+        let backBtn = UIButton.init(frame: vwBackBtn.frame)
+        backBtn.addTarget(self, action: #selector(backButtonClicked), for: .touchUpInside)
+
+        vwBackBtn.addSubview(imgBack)
+        vwBackBtn.addSubview(backBtn)
+        
+        let backButton = UIBarButtonItem.init(customView: vwBackBtn)
+        self.navigationItem.leftBarButtonItem = backButton
+
         if self.view.tag == 100 {
             //...Hide NavigationBar
             self.navigationItem.hidesBackButton = true
@@ -78,6 +90,12 @@ class ParentViewController: UIViewController {
                  self.navigationController?.navigationBar.isTranslucent = true
                  self.navigationController?.navigationBar.backgroundColor = UIColor.clear
 
+            } else if self.view.tag == 102 {
+                //...Transparent and Hide leftBarButton
+                self.navigationController?.navigationBar.isTranslucent = true
+                self.navigationController?.navigationBar.backgroundColor = UIColor.clear
+                self.navigationItem.leftBarButtonItem = nil
+          
             } else {
                  self.navigationController?.navigationBar.isTranslucent = false
                  self.navigationController?.navigationBar.backgroundColor = ColorBGColor
@@ -91,6 +109,10 @@ class ParentViewController: UIViewController {
             self.navigationController?.isNavigationBarHidden = false
         }
         
+    }
+    
+    @objc func backButtonClicked(){
+        self.navigationController?.popViewController(animated: true)
     }
     
     func resignKeyboard() {

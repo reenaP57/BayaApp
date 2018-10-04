@@ -73,6 +73,7 @@
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
 		489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6B212293AA00080739 /* login_bg_ipad.jpg */; };
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
+		5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */; };
 		5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4221479AEC00658633 /* NoInternetView.swift */; };
 		5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4521479B2000658633 /* NoInternetView.xib */; };
 		5C0CF76A215223FD009979FE /* LocationAdvantagesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */; };
@@ -244,6 +245,7 @@
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
+		5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHomeCollCell.swift; sourceTree = "<group>"; };
 		5C0CBF4221479AEC00658633 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		5C0CBF4521479B2000658633 /* NoInternetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
 		5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAdvantagesLayout.swift; sourceTree = "<group>"; };
@@ -730,6 +732,7 @@
 				5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */,
 				5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */,
 				5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */,
+				5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -996,6 +999,7 @@
 				5C1E61642122F7C40090308D /* ProfileTblCell.swift in Sources */,
 				486FDD612119AEF500EA0188 /* ExtensionUIImageView.swift in Sources */,
 				486FDD552119AEF500EA0188 /* ExtensionArray.swift in Sources */,
+				5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */,
 				486FDD692119AEF500EA0188 /* MIKeyboardManager.swift in Sources */,
 				5CF50BAA21218244002FDAB8 /* TimeLineUpdateTblCell.swift in Sources */,
 				5C1E616C212312920090308D /* VisitDetailTblCell.swift in Sources */,

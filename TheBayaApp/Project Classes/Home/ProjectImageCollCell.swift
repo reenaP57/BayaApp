@@ -9,6 +9,5 @@
 import UIKit
 
 class ProjectImageCollCell: UICollectionViewCell {
-    
     @IBOutlet weak var imgVProject : UIImageView!
 }

@@ -47,15 +47,13 @@ class VisitDetailsViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblVVisitDetails.pullToRefreshControl = refreshControl
         
-        self.loadVisitList(isRefresh: false, isFromNotification : false)
+        self.loadVisitList(showLoader: true, isFromNotification : false)
 
         if IS_iPhone {
             tblVVisitDetails.estimatedRowHeight = 125
             tblVVisitDetails.rowHeight = UITableViewAutomaticDimension
         }
-//        else {
-//             tblVVisitDetails.rowHeight = CScreenWidth * 155/768
-//        }
+
     }
     
     func RefreshRatingVisit(visitId : Int, rating : Int) {
@@ -217,51 +215,50 @@ extension VisitDetailsViewController {
     @objc func pullToRefresh() {
         currentPage = 1
         refreshControl.beginRefreshing()
-        self.loadVisitList(isRefresh: true, isFromNotification : false)
+        self.loadVisitList(showLoader: false, isFromNotification : false)
     }
     
     
-    func loadVisitList(isRefresh : Bool, isFromNotification : Bool) {
+    func loadVisitList(showLoader : Bool, isFromNotification : Bool) {
         
         if apiTask?.state == URLSessionTask.State.running {
             return
         }
         
-        if !isRefresh {
-            activityLoader.startAnimating()
-        }
+//        if !isRefresh {
+//            activityLoader.startAnimating()
+//        }
         
         if isFromNotification {
            currentPage = 1
         }
         
-        apiTask =  APIRequest.shared().getVisitList(page: self.currentPage) { (response, error) in
+        apiTask =  APIRequest.shared().getVisitList(page: self.currentPage, showLoader: showLoader) { (response, error) in
             
             self.apiTask?.cancel()
-            self.activityLoader.stopAnimating()
+        //    self.activityLoader.stopAnimating()
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
-                
-                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
 
                 if self.currentPage == 1{
                     self.arrVisitList.removeAll()
                 }
                 
-                if arrData.count > 0 {
-                    for item in arrData {
-                        self.arrVisitList.append(item)
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    if arrData.count > 0 {
+                        self.arrVisitList = arrData
                     }
                 }
-                
-                self.lastPage = metaData.valueForInt(key: CLastPage)!
-                
-                if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
-                    self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+              
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.lastPage = metaData.valueForInt(key: CLastPage)!
+                    
+                    if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
+                        self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+                    }
                 }
-                
+             
                 self.lblNoData.isHidden = self.arrVisitList.count != 0
                 self.tblVVisitDetails.reloadData()
             }

@@ -8,7 +8,6 @@
 
 import UIKit
 import BFRImageViewer
-//import SwiftGifOrigin
 
 class TimeLineUpdateTblCell: UITableViewCell {
 
@@ -79,13 +78,7 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         pageControlSlider.currentPage = Int(index)
 
     }
-    
-//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-//        
-//        let page = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
-//        pageControlSlider.currentPage = Int(page)
-//    }
-    
+
     func zoomImage(){
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)

@@ -168,18 +168,18 @@ class ProjectDetailViewController: ParentViewController {
         
         scrollVw.isHidden = true
         vwBottom.isHidden = true
-        activityLoader.startAnimating()
+        //activityLoader.startAnimating()
         
-        APIRequest.shared().getProjectDetail(projectId: self.projectID) { (response, error) in
+        APIRequest.shared().getProjectDetail(projectId: self.projectID, showLoader : true) { (response, error) in
             
-            self.activityLoader.stopAnimating()
+           // self.activityLoader.stopAnimating()
             
             if response != nil && error == nil {
                 
                 self.scrollVw.isHidden = false
                 self.vwBottom.isHidden = false
                 self.vwNav.isHidden = true
-                self.activityLoader.stopAnimating()
+              //  self.activityLoader.stopAnimating()
                 
                 let dict = response?.value(forKey: CJsonData) as! [String : AnyObject]
                 
@@ -444,13 +444,13 @@ class ProjectDetailViewController: ParentViewController {
         //we make the height arbitrarily large so we don't undershoot height in calculation
        
         let height: CGFloat = 500
-        let size = CGSize(width: IS_iPad ? (collLocation.CViewWidth/4 - 20) : (collLocation.CViewWidth/3) , height: height)
+        let size = CGSize(width: IS_iPad ? (collLocation.CViewWidth/4) : (collLocation.CViewWidth/3) , height: height)
         let options =  NSStringDrawingOptions.usesFontLeading.union(.usesLineFragmentOrigin)
 
         let attributes = [NSAttributedStringKey.font: CFontAvenir(size: 13, type: .medium).setUpAppropriateFont()!]
         let attributes1 = [NSAttributedStringKey.font: CFontAvenir(size: 12, type: .medium).setUpAppropriateFont()!]
 
-        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 68
+        return IS_iPad ? NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 110 : NSString(string: locAdvantages).boundingRect(with: size, options: options, attributes: attributes, context: nil).height +  NSString(string: location).boundingRect(with: size, options: options, attributes: attributes1, context: nil).height + 58
     }
 }
 
@@ -540,7 +540,7 @@ extension ProjectDetailViewController {
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
                 }
                 
-                APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0, showLoader :true) { (response, error) in
+                APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
                     
                     if response != nil && error == nil {
                         

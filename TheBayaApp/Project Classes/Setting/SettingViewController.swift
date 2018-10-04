@@ -165,7 +165,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
             if let cell = tableView.dequeueReusableCell(withIdentifier: "SettingVersionTblCell") as? SettingVersionTblCell {
                 
-                cell.lblVersion.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String)"
+                cell.lblVersion.text = "Version: \(Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String) (\(Bundle.main.infoDictionary?["CFBundleVersion"] as! String))" //
                 return cell
             }
             

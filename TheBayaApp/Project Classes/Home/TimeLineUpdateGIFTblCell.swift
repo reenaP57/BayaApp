@@ -16,7 +16,7 @@ class TimeLineUpdateGIFTblCell: UITableViewCell {
     @IBOutlet weak var lblDateTime : UILabel!
     @IBOutlet weak var btnShare : UIButton!
     @IBOutlet weak var btnZoomImg : UIButton!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         

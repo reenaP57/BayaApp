@@ -28,8 +28,6 @@ class TimeLineUpdateUrlTblCell: UITableViewCell {
         super.awakeFromNib()
         
         GCDMainThread.async {
-//            self.viewContainer.layer.borderWidth = 1
-//            self.viewContainer.layer.borderColor = UIColor.lightGray.cgColor
             self.viewContainer.layer.cornerRadius = 7
         }
     }
