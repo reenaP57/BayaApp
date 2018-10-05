@@ -122,17 +122,12 @@ class ProjectDetailViewController: ParentViewController {
     
     
     func initialize() {
-        
-//        scrollVw.alwaysBounceVertical = true
-//        scrollVw.bounces  = true
-//      //  refreshControl = UIRefreshControl()
-//        refreshControl.addTarget(self, action: #selector(refreshProjectDetail), for: .valueChanged)
-//        scrollVw.addSubview(refreshControl)
-        
-        refreshControl.addTarget(self, action: #selector(refreshProjectDetail), for: .valueChanged)
-        refreshControl.tintColor = ColorGreenSelected
-        scrollVw.refreshControl = refreshControl
-        scrollVw.addSubview(refreshControl)
+
+        GCDMainThread.async {
+            self.refreshControl.addTarget(self, action: #selector(self.pullToRefresh), for: .valueChanged)
+            self.refreshControl.tintColor = ColorGreenSelected
+            self.scrollVw.refreshControl = self.refreshControl
+        }
         
         self.btnFloorPlansClicked(sender: btnUnitPlans)
         
@@ -154,7 +149,7 @@ class ProjectDetailViewController: ParentViewController {
             self.checkCallingFeaturesForIpad()
         }
         
-        self.loadProjectDetailFromServer()
+        self.loadProjectDetailFromServer(showLoader: true)
     }
     
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
@@ -175,18 +170,21 @@ class ProjectDetailViewController: ParentViewController {
         }
     }
     
-    @objc func refreshProjectDetail() {
+    @objc func pullToRefresh() {
         refreshControl.beginRefreshing()
-        self.loadProjectDetailFromServer()
+        self.loadProjectDetailFromServer(showLoader: false)
     }
     
-    func loadProjectDetailFromServer () {
+    func loadProjectDetailFromServer (showLoader : Bool) {
         
-        scrollVw.isHidden = true
-        vwBottom.isHidden = true
+        if showLoader {
+            scrollVw.isHidden = true
+            vwBottom.isHidden = true
+        }
+     
         //activityLoader.startAnimating()
         
-        APIRequest.shared().getProjectDetail(projectId: self.projectID, showLoader : true) { (response, error) in
+        APIRequest.shared().getProjectDetail(projectId: self.projectID, showLoader : showLoader) { (response, error) in
             
             self.refreshControl.endRefreshing()
            // self.activityLoader.stopAnimating()

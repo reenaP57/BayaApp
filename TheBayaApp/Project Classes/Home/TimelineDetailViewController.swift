@@ -64,12 +64,14 @@ class TimelineDetailViewController: ParentViewController {
     
         self.title = "Timeline"
 
-        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
-        refreshControl.tintColor = ColorGreenSelected
-        tblUpdates?.pullToRefreshControl = refreshControl
-        
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
+        GCDMainThread.async {
+            self.refreshControl.addTarget(self, action: #selector(self.pullToRefresh), for: .valueChanged)
+            self.refreshControl.tintColor = ColorGreenSelected
+            self.tblUpdates?.pullToRefreshControl = self.refreshControl
+        }
 
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
+        
         tblUpdates.estimatedRowHeight = 100;
         tblUpdates.rowHeight = UITableViewAutomaticDimension;
         
@@ -82,12 +84,6 @@ class TimelineDetailViewController: ParentViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshViewUpdateList), name: NSNotification.Name(rawValue: "NotificationUpdatePost"), object: nil)
     }
-    
-    
-    @objc func pullToRefresh() {
-        //  your code to refresh tableView
-    }
-    
     
     @objc func refreshViewUpdateList() {
         self.loadSubscribedProjectList(showLoader: true, isFromNotification: false)
@@ -710,10 +706,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
 
 extension TimelineDetailViewController {
     
-//    @objc func pullToRefresh() {
-//        refreshControl.beginRefreshing()
-//        self.loadSubscribedProjectList(isRefresh: true, isFromNotification: isFromNotifition)
-//    }
+    @objc func pullToRefresh() {
+        refreshControl.beginRefreshing()
+        self.reloadTimelineList(index: self.currentIndex)
+    }
     
     func loadSubscribedProjectList(showLoader : Bool, isFromNotification : Bool) {
         if self.apiTask?.state == URLSessionTask.State.running {
@@ -766,8 +762,6 @@ extension TimelineDetailViewController {
                         self.tblUpdates.reloadData()
                     }
                     
-                    
-                    
                     if isFromNotification {
                         if let index = self.arrProject.index(where: {$0["projectId"] as? Int == self.projectID}){
                             self.currentIndex = index
@@ -790,7 +784,6 @@ extension TimelineDetailViewController {
     
     func loadTimeLineListFromServer(_ shouldShowLoader : Bool?, startDate : String?, endDate : String?){
         
-        
         if self.apiTask?.state == URLSessionTask.State.running {
             apiTask?.cancel()
         }
@@ -803,6 +796,7 @@ extension TimelineDetailViewController {
             let dic = arrProject[currentIndex]
             apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: startDate, endDate: endDate, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
                 self.apiTask?.cancel()
+                self.refreshControl.endRefreshing()
                 //self.activityLoader.stopAnimating()
                 
                 if response != nil{

@@ -42,7 +42,7 @@
                                     <rect key="frame" x="0.0" y="80" width="172.5" height="50"/>
                                     <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="bjZ-t1-5LB" secondAttribute="height" multiplier="86:25" id="Mvk-bw-ir8"/>
+                                        <constraint firstAttribute="height" constant="50" id="JKk-B7-cBA"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
                                     <state key="normal">
