@@ -1790,7 +1790,7 @@
         <scene sceneID="Hyx-xK-N5G">
             <objects>
                 <viewController storyboardIdentifier="NotificationViewController" id="CDj-ww-JEn" customClass="NotificationViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" tag="101" contentMode="scaleToFill" id="vfJ-43-Qpo">
+                    <view key="view" tag="102" contentMode="scaleToFill" id="vfJ-43-Qpo">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>

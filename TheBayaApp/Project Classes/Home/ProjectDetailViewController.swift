@@ -81,7 +81,8 @@ class ProjectDetailViewController: ParentViewController {
     @IBOutlet fileprivate weak var cnstHeightCollLocation : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstXPointBrochureBtn : NSLayoutConstraint!
     @IBOutlet fileprivate weak var cnstXPointScheduleBtn : NSLayoutConstraint!
-
+    var refreshControl = UIRefreshControl()
+    
     var arrLocation = [[String : AnyObject]]()
     var arrOverView = [[String : AnyObject]]()
     var arrConfigure = [[String : AnyObject]]()
@@ -121,6 +122,17 @@ class ProjectDetailViewController: ParentViewController {
     
     
     func initialize() {
+        
+//        scrollVw.alwaysBounceVertical = true
+//        scrollVw.bounces  = true
+//      //  refreshControl = UIRefreshControl()
+//        refreshControl.addTarget(self, action: #selector(refreshProjectDetail), for: .valueChanged)
+//        scrollVw.addSubview(refreshControl)
+        
+        refreshControl.addTarget(self, action: #selector(refreshProjectDetail), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        scrollVw.refreshControl = refreshControl
+        scrollVw.addSubview(refreshControl)
         
         self.btnFloorPlansClicked(sender: btnUnitPlans)
         
@@ -163,6 +175,10 @@ class ProjectDetailViewController: ParentViewController {
         }
     }
     
+    @objc func refreshProjectDetail() {
+        refreshControl.beginRefreshing()
+        self.loadProjectDetailFromServer()
+    }
     
     func loadProjectDetailFromServer () {
         
@@ -172,6 +188,7 @@ class ProjectDetailViewController: ParentViewController {
         
         APIRequest.shared().getProjectDetail(projectId: self.projectID, showLoader : true) { (response, error) in
             
+            self.refreshControl.endRefreshing()
            // self.activityLoader.stopAnimating()
             
             if response != nil && error == nil {

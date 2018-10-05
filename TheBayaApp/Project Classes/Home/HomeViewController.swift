@@ -91,6 +91,12 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                 
                 cell.vwCount.isHidden = appDelegate.loginUser?.postBadge == 0
                 
+                if appDelegate.loginUser?.fav_project_id == 0 {
+                    
+                    cell.vwProgress.isHidden = true
+                    _ = cell.imgVTitle.setConstraintConstant(50, edge: .top, ancestor: true)
+                }
+                
                 return cell
             }
         } else {
