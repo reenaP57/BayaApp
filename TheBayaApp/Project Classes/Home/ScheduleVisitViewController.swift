@@ -16,28 +16,28 @@ class ScheduleVisitViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var txtSlot1 : UITextField! {
         didSet {
-            txtSlot1.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+            txtSlot1.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
     @IBOutlet fileprivate weak var txtSlot2 : UITextField!{
         didSet {
-            txtSlot2.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+            txtSlot2.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
     @IBOutlet fileprivate weak var txtSlot3 : UITextField!{
         didSet {
-            txtSlot3.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+            txtSlot3.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
     
     @IBOutlet fileprivate weak var txtNoOfGuest : UITextField!{
         didSet {
-            txtNoOfGuest.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+            txtNoOfGuest.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
     @IBOutlet fileprivate weak var txtSelectProject : UITextField!{
         didSet {
-            txtSelectProject.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+            txtSelectProject.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
     @IBOutlet fileprivate weak var txtVPurpose : UITextView!
@@ -77,6 +77,8 @@ class ScheduleVisitViewController: ParentViewController {
     //MARK:- General Methods
     
     func checkValidation(txtField : UITextField) {
+        
+        //...Checked validation for particular textfield when change date
         
         if self.checkSlotTime(date:dateSlot1) {
             txtSlot2.hideValidationMessage(Gap)
@@ -183,7 +185,8 @@ class ScheduleVisitViewController: ParentViewController {
     
     func checkSlotTime(date : Date) -> Bool {
 
-        print("checkSlotTime");
+        //...Checked selected time validation for > 10 and < 6:30
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "hh:mm"
         let calendar = Calendar.current
@@ -200,9 +203,11 @@ class ScheduleVisitViewController: ParentViewController {
     
     func showValidation(isAdd : Bool){
         
+        //...Set validation for purpose textView
         self.txtVPurpose.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
         
         if isAdd {
+            //... show validation
             txtVPurpose.backgroundColor = CRGB(r: 254, g: 242, b: 242)
             vwPurpose.backgroundColor = CRGB(r: 254, g: 242, b: 242)
             vwPurpose.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
@@ -210,6 +215,7 @@ class ScheduleVisitViewController: ParentViewController {
             vwPurpose.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
             
         } else {
+            //...Hide validation
             txtVPurpose.backgroundColor = UIColor.white
             vwPurpose.backgroundColor = UIColor.white
             vwPurpose.layer.borderWidth = 0.0
@@ -220,6 +226,7 @@ class ScheduleVisitViewController: ParentViewController {
     }
     
     func checkDifferenceBetweenTwoDate() -> Bool {
+        //...Checked here for timeslot1, timeslot2 and timeslot3 are not qual
         
         let timeslot1 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot1.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
         let timeslot2 = "\(DateFormatter.shared().timestampFromDate(date: txtSlot2.text, formate: "dd MMMM yyyy hh:mm a") ?? 0.0)"
@@ -230,14 +237,6 @@ class ScheduleVisitViewController: ParentViewController {
         }
         
          return true
-        
-//        if Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot2).second! < 24 * 60 * 60 - 5 ||
-//            Calendar.current.dateComponents([.second], from: dateSlot2, to: dateSlot3).second! < 24 * 60 * 60 - 5 ||
-//            Calendar.current.dateComponents([.second], from: dateSlot1, to: dateSlot3).second! < 24 * 60 * 60 - 5 {
-//            return false
-//        }
-        
-       
     }
 }
 
@@ -365,6 +364,8 @@ extension ScheduleVisitViewController {
     
     func loadProjectList() {
 
+        //...Load project list from server for show list on project field
+        
         _ = APIRequest.shared().getProjectList(1, false, completion: { (response, error) in
             
             if response != nil && error == nil {
@@ -408,6 +409,7 @@ extension ScheduleVisitViewController {
                     "purpose" : txtVPurpose.text,
                     "guests" : txtNoOfGuest.text!] as [String : Any]
 
+        //...Called api for post schedule visit detail on server
 
         APIRequest.shared().scheduleVisit(dict: dict as [String : AnyObject]) { (response, error) in
 
@@ -419,12 +421,6 @@ extension ScheduleVisitViewController {
                         self.navigationController?.popViewController(animated: true)
                     }
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessScheduleVisitMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-//
-//                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ScheduleVisit Submit")
-//                    self.navigationController?.popViewController(animated: true)
-//                })
             }
         }
         

@@ -50,11 +50,13 @@ class SupportViewController: ParentViewController {
         self.txtVMsg.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
         
         if isAdd {
+            //...Show validation
             vwMsg.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
             vwMsg.layer.borderWidth = 1.0
             vwMsg.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
             
         } else {
+            //...Hide validation
             vwMsg.layer.borderWidth = 0.0
             vwMsg.layer.borderColor = UIColor.white.cgColor
             vwMsg.shadow(color: CRGB(r: 230, g: 235, b: 239), shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
@@ -177,10 +179,6 @@ extension SupportViewController {
                         self.navigationController?.popViewController(animated: true)
                     }
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessSupportMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-//                    self.navigationController?.popViewController(animated: true)
-//                })
             }
         }
     }

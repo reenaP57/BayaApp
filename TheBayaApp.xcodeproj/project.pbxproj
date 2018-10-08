@@ -143,7 +143,6 @@
 		5CCD30BC215FAA4B007CE650 /* SettingVersionTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CCD30BB215FAA4B007CE650 /* SettingVersionTblCell.swift */; };
 		5CD763F9211D51EA00C267AB /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763F8211D51EA00C267AB /* HomeViewController.swift */; };
 		5CD763FB211D62B200C267AB /* HomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763FA211D62B200C267AB /* HomeCollCell.swift */; };
-		5CD763FD211DB8F700C267AB /* MIGenericProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763FC211DB8F700C267AB /* MIGenericProgressView.swift */; };
 		5CD763FF211DBF5700C267AB /* TimelineDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */; };
 		5CD76401211DC07E00C267AB /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76400211DC07E00C267AB /* ProjectViewController.swift */; };
 		5CD76415211DC6F900C267AB /* ProjectTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76414211DC6F900C267AB /* ProjectTblCell.swift */; };
@@ -317,7 +316,6 @@
 		5CCD30BB215FAA4B007CE650 /* SettingVersionTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVersionTblCell.swift; sourceTree = "<group>"; };
 		5CD763F8211D51EA00C267AB /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5CD763FA211D62B200C267AB /* HomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollCell.swift; sourceTree = "<group>"; };
-		5CD763FC211DB8F700C267AB /* MIGenericProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIGenericProgressView.swift; sourceTree = "<group>"; };
 		5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDetailViewController.swift; sourceTree = "<group>"; };
 		5CD76400211DC07E00C267AB /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		5CD76414211DC6F900C267AB /* ProjectTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTblCell.swift; sourceTree = "<group>"; };
@@ -444,7 +442,6 @@
 				5CDE13F32119B7BD00B11AA5 /* MIGenericTextField.swift */,
 				5CDE13F52119B7BE00B11AA5 /* MIGenericTextView.swift */,
 				5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */,
-				5CD763FC211DB8F700C267AB /* MIGenericProgressView.swift */,
 				5C1E614B2122BCFE0090308D /* MIGenericPageControlView.swift */,
 			);
 			path = "Generic Classes";
@@ -985,7 +982,6 @@
 				486FDD562119AEF500EA0188 /* ExtensionDate.swift in Sources */,
 				5C1E61592122E59F0090308D /* EditProfileViewController.swift in Sources */,
 				5CF50BAC212182AC002FDAB8 /* TimeLineImgCollCell.swift in Sources */,
-				5CD763FD211DB8F700C267AB /* MIGenericProgressView.swift in Sources */,
 				5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */,
 				5CD76401211DC07E00C267AB /* ProjectViewController.swift in Sources */,
 				5CF34B9F212D494E001901B1 /* TimeLineUpdateTblCell_ipad.swift in Sources */,

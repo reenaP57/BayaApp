@@ -361,9 +361,9 @@
                                                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="32" id="AsM-mv-C6d"/>
                                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="25" id="qr9-pc-PLr"/>
                                                                                 </constraints>
-                                                                                <state key="normal" image="call"/>
-                                                                                <state key="selected" image="call"/>
-                                                                                <state key="highlighted" image="call"/>
+                                                                                <state key="normal" image="ic_call"/>
+                                                                                <state key="selected" image="ic_call"/>
+                                                                                <state key="highlighted" image="ic_call"/>
                                                                                 <userDefinedRuntimeAttributes>
                                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                                         <real key="value" value="5"/>
@@ -378,7 +378,7 @@
                                                                                 <rect key="frame" x="237" y="25" width="85" height="115"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             </imageView>
-                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dottedline" translatesAutoresizingMaskIntoConstraints="NO" id="OM6-9Z-gT6">
+                                                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dottedline" translatesAutoresizingMaskIntoConstraints="NO" id="OM6-9Z-gT6">
                                                                                 <rect key="frame" x="222" y="78" width="100" height="5"/>
                                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                 <constraints>
@@ -605,7 +605,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="uO4-F7-vuK"/>
                                                             </constraints>
                                                             <state key="normal" image="share"/>
-                                                            <state key="selected" image="call"/>
+                                                            <state key="selected" image="share"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="5"/>
@@ -706,7 +706,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="b58-OB-p4Y"/>
                                                             </constraints>
                                                             <state key="normal" image="share"/>
-                                                            <state key="selected" image="call"/>
+                                                            <state key="selected" image="share"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="5"/>
@@ -901,7 +901,7 @@
                                                                 <constraint firstAttribute="height" constant="40" id="NGc-KW-luM"/>
                                                             </constraints>
                                                             <state key="normal" image="share"/>
-                                                            <state key="selected" image="call"/>
+                                                            <state key="selected" image="share"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="5"/>
@@ -987,7 +987,7 @@
                                                                 <constraint firstAttribute="width" constant="40" id="OFs-dn-hJj"/>
                                                             </constraints>
                                                             <state key="normal" image="share"/>
-                                                            <state key="selected" image="call"/>
+                                                            <state key="selected" image="share"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="5"/>
@@ -1038,7 +1038,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ue7-g2-8vG" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="7" width="375" height="287"/>
+                                                    <rect key="frame" x="0.0" y="7" width="375" height="286.5"/>
                                                     <subviews>
                                                         <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jKh-B8-ZEM" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="15" width="345" height="185"/>
@@ -1071,29 +1071,29 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Construction of 5 the floor is done, check the progress here through the image here. " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aZ9-m7-w1l" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="212" width="345" height="38"/>
+                                                            <rect key="frame" x="15" y="212" width="345" height="37.5"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="time" translatesAutoresizingMaskIntoConstraints="NO" id="mzW-D9-Shr">
-                                                            <rect key="frame" x="15" y="259.5" width="15" height="15"/>
+                                                            <rect key="frame" x="15" y="259" width="15" height="15"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="Yesterday at 12:00 PM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWo-bp-Z3F" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="35" y="257" width="142" height="19.5"/>
+                                                            <rect key="frame" x="35" y="256.5" width="142" height="19.5"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                             <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="22T-VX-2Ui" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="325" y="244" width="40" height="40"/>
+                                                            <rect key="frame" x="325" y="243.5" width="40" height="40"/>
                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="40" id="DiP-Qh-XWI"/>
                                                                 <constraint firstAttribute="width" constant="40" id="WXP-lA-10B"/>
                                                             </constraints>
                                                             <state key="normal" image="share"/>
-                                                            <state key="selected" image="call"/>
+                                                            <state key="selected" image="share"/>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                     <real key="value" value="5"/>
@@ -1348,17 +1348,14 @@
                                                                 </imageView>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Baya Victoria" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UmG-og-1gc" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                     <rect key="frame" x="15" y="205" width="124.5" height="20.5"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="q6X-wq-nPR"/>
-                                                                    </constraints>
                                                                     <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
                                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="203 Orbital Plaza, " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdx-eI-kPh" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                    <rect key="frame" x="30" y="230.5" width="300" height="22.5"/>
+                                                                    <rect key="frame" x="30" y="230.5" width="300" height="19.5"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22.5" id="JfQ-bd-VaX"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="19.5" id="6Pl-It-qJz"/>
                                                                     </constraints>
                                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1418,11 +1415,11 @@
                                                                 <constraint firstItem="gdx-eI-kPh" firstAttribute="top" secondItem="UmG-og-1gc" secondAttribute="bottom" constant="5" id="Tlj-Uk-tKK"/>
                                                                 <constraint firstItem="g7z-iX-1Ck" firstAttribute="centerY" secondItem="8Sh-aK-DcM" secondAttribute="centerY" id="avc-8q-SGO"/>
                                                                 <constraint firstItem="wvm-9a-JFg" firstAttribute="leading" secondItem="bRj-yR-e2B" secondAttribute="leading" constant="15" id="c08-Mk-7WU"/>
+                                                                <constraint firstItem="wvm-9a-JFg" firstAttribute="top" secondItem="gdx-eI-kPh" secondAttribute="bottom" constant="11" id="cOy-WJ-LA3"/>
                                                                 <constraint firstItem="8Sh-aK-DcM" firstAttribute="centerY" secondItem="wvm-9a-JFg" secondAttribute="centerY" id="dfu-3P-oHg"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="UmG-og-1gc" secondAttribute="trailing" constant="15" id="eE1-B2-VmC"/>
                                                                 <constraint firstAttribute="trailing" secondItem="Los-lw-SsB" secondAttribute="trailing" id="ePl-WZ-uGO"/>
                                                                 <constraint firstItem="g7z-iX-1Ck" firstAttribute="leading" secondItem="8Sh-aK-DcM" secondAttribute="trailing" constant="4" id="h07-KT-GzZ"/>
-                                                                <constraint firstItem="wvm-9a-JFg" firstAttribute="top" secondItem="gdx-eI-kPh" secondAttribute="bottom" constant="8" id="kL9-7I-oZN"/>
                                                                 <constraint firstItem="bTF-6H-Cqy" firstAttribute="leading" secondItem="Los-lw-SsB" secondAttribute="leading" id="obd-44-hLE"/>
                                                                 <constraint firstItem="Los-lw-SsB" firstAttribute="top" secondItem="bRj-yR-e2B" secondAttribute="top" id="rBr-Ba-1K2"/>
                                                                 <constraint firstItem="gdx-eI-kPh" firstAttribute="leading" secondItem="q6G-9P-yix" secondAttribute="trailing" constant="6" id="tC9-b0-nwf"/>
@@ -2015,9 +2012,9 @@ reach for you.</string>
                                                             <constraint firstAttribute="height" constant="28" id="MUb-sI-Afh"/>
                                                             <constraint firstAttribute="width" constant="32" id="Y4q-88-YAd"/>
                                                         </constraints>
-                                                        <state key="normal" image="call"/>
-                                                        <state key="selected" image="call"/>
-                                                        <state key="highlighted" image="call"/>
+                                                        <state key="normal" image="ic_call"/>
+                                                        <state key="selected" image="ic_call"/>
+                                                        <state key="highlighted" image="ic_call"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="5"/>
@@ -2427,7 +2424,7 @@ reach for you.</string>
                                                                             <rect key="frame" x="0.0" y="0.0" width="116" height="85"/>
                                                                             <autoresizingMask key="autoresizingMask"/>
                                                                             <subviews>
-                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metro" translatesAutoresizingMaskIntoConstraints="NO" id="JNW-r5-yNW">
+                                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JNW-r5-yNW">
                                                                                     <rect key="frame" x="0.0" y="0.0" width="22" height="38"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="38" id="BT5-tB-xSD"/>
@@ -3230,9 +3227,6 @@ reach for you.</string>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqM-2P-1qX" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
                                         <rect key="frame" x="20" y="15" width="163" height="50"/>
                                         <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="gqM-2P-1qX" secondAttribute="height" multiplier="163:50" id="q3D-yj-xTW"/>
-                                        </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                         <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
@@ -3650,12 +3644,12 @@ reach for you.</string>
     <resources>
         <image name="Layer_7" width="29" height="33"/>
         <image name="bg.jpg" width="1242" height="2208"/>
-        <image name="call" width="15" height="16"/>
-        <image name="dottedline" width="158" height="1"/>
         <image name="gradient_bg2" width="77" height="27"/>
         <image name="ic_back_white" width="13" height="22"/>
         <image name="ic_baya_logo_home" width="49" height="29"/>
         <image name="ic_black_close" width="32" height="32"/>
+        <image name="ic_call" width="15" height="16"/>
+        <image name="ic_dottedline" width="158" height="1"/>
         <image name="img1.jpeg" width="285" height="177"/>
         <image name="img4.jpeg" width="318" height="159"/>
         <image name="img7.jpeg" width="280" height="180"/>

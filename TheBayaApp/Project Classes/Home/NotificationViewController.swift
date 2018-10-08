@@ -32,6 +32,8 @@ class NotificationViewController: ParentViewController {
         appDelegate.showTabBar()
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CNotificationScreenName)
         appDelegate.tabbarView?.lblCount.isHidden = true
+        
+        //...Load notification list from server
         self.loadNotificationList(showLoader: true, isFromNotification :isFromOtherScreen)
     }
 
@@ -60,6 +62,7 @@ class NotificationViewController: ParentViewController {
     
     func getDateTimeFromTimestamp(from interval : TimeInterval, isReschedule : Bool) -> String
     {
+        //...Get Date and Time from timestamp
         let calendar = NSCalendar.current
         let date = Date(timeIntervalSince1970: interval)
         if calendar.isDateInYesterday(date) {
@@ -122,21 +125,17 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 break
             }
             
-            
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear
-            
             cell.vwContent.layer.borderWidth = 1
             
             if dict.valueForBool(key: "isRead") {
                 cell.vwContent.layer.borderColor = UIColor.clear.cgColor
                 cell.vwContent.backgroundColor = ColorWhite
-                
             } else {
                 cell.vwContent.layer.borderColor = ColorGreenSelected.cgColor
                 cell.vwContent.backgroundColor = ColorUnreadNotification
             }
-            
             
             cell.btnRateVisit.touchUpInside { (sender) in
                 MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Notification RateVisit")

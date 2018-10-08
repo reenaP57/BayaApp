@@ -32,14 +32,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         appDelegate.window.backgroundColor = ColorBGColor
         IQKeyboardManager.shared.enable = true
+        
+        //...Fabric configuration
         Fabric.with([Crashlytics.self])
 
+        //...Firebase configuration
         FirebaseApp.configure()
+        
+        //...Google analytics configuration
         MIGoogleAnalytics.shared().configureGoogleAnalytics()
         
+        //...Register remote notification
         application.registerForRemoteNotifications()
         MIFCM.shared().requestNotificationAuthorization(application: application)
 
+        //...Get device name
         let deviceGuru = DeviceGuru()
         deviceName = "\(deviceGuru.hardware())"
         
@@ -53,6 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         
+        //...Get FCM token
         InstanceID.instanceID().instanceID { (result, error) in
             if let error = error {
                 print("Error fetching remote instange ID: \(error)")
@@ -62,12 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 print("Remote instance ID token: \(result.token)")
             }
         }
-        
-//        if let refreshedToken = InstanceID.instanceID().token() {
-//            print("InstanceID token: \(refreshedToken)")
-//            CUserDefaults.set(refreshedToken, forKey: UserDefaultFCMToken)
-//            CUserDefaults.synchronize()
-//        }
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -79,11 +81,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-    
-        print("url \(url)")
-        print("url host :\(url.host!)")
-        print("url path :\(url.path)")
 
+        //...Deep Linking redirection
+        
         let url = url.absoluteString
         let arrUrl = url.components(separatedBy: "/")
         
@@ -99,14 +99,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             } else {
                 
                 if title == "project_detail" {
-                    
+                    //...Project detail
                     if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
                         projectDetailVC.projectID = Int(projectID)!
                         self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
                     }
                     
                 } else {
-                    
+                    //...Timeline
                     if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
                         timelineVC.projectID = Int(projectID)!
                         timelineVC.isFromNotifition = true
@@ -224,22 +224,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             }
         }
     }
-    
-    func setProgressGradient(frame : CGRect) -> UIImage {
-       
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [ColorProgressGradient1.cgColor,ColorProgressGradient2.cgColor]
-        gradientLayer.frame = frame
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)
-        
-        UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, false, 0.0)
-        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        return image!
-    }
 
     
     // MARK:-
@@ -296,18 +280,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func getPushNotifyCountForAdminTypeNotification(adminNotifyID : Int) {
         
         APIRequest.shared().pushNotifiyCount(adminNotifyId: adminNotifyID) { (response, error) in
-            
             if response != nil && error == nil {
-                
-                print("Response :",response)
             }
         }
-        
     }
     
     
     func loadCountryList(){
         
+        //...Load country list from server
         var timestamp : TimeInterval = 0
         
         if CUserDefaults.value(forKey: UserDefaultTimestamp) != nil {
@@ -327,7 +308,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func unreadCount(){
-        
+        //...Get unread notification count
         APIRequest.shared().unreadCount { (response, error) in
             
             if response != nil && error == nil {
@@ -341,7 +322,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                     self.tabbarView?.lblCount.isHidden = true
                 } else {
                     self.tabbarView?.lblCount.isHidden = false
-                   // self.tabbarView?.lblCount.text = "\(dataResponse.valueForInt(key: "unreadCount") ?? 0)"
                 }
             }
         }

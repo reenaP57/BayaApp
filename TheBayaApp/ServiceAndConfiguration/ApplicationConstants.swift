@@ -185,6 +185,20 @@ let CFavoriteProjectName            = "favoriteProjectName"
 let CIsVisit             = "isVisit"
 
 
+let CEditProfile         = "Edit Profile"
+let CChangePassword      = "Change Password"
+let CPushNotifications   = "Push Notifications"
+let CEmailNotifications  = "Email Notifications"
+let CSMSNotifications    = "SMS Notifications"
+let CTermsConditions     = "Terms & Conditions"
+let CPrivacyPolicy       = "Privacy Policy"
+let CAppSupport          = "App Support"
+let CAboutUs             = "About Us"
+let CRateApp             = "Rate App"
+let CLogout              = "Logout"
+
+
+
 //MARK:- Screen Name
 
 let CHomeScreenName                =    "home_screen"

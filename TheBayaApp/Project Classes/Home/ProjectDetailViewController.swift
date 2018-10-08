@@ -57,7 +57,6 @@ class ProjectDetailViewController: ParentViewController {
         }
     }
     @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-  //  @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     @IBOutlet fileprivate weak var tblConfigure : UITableView!
     @IBOutlet fileprivate weak var collAmmenities : UICollectionView!
@@ -109,6 +108,7 @@ class ProjectDetailViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
+        
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CProjectDetailScreenName)
     }
     
@@ -129,6 +129,7 @@ class ProjectDetailViewController: ParentViewController {
             self.scrollVw.refreshControl = self.refreshControl
         }
         
+        //...For set select by default button unit plans
         self.btnFloorPlansClicked(sender: btnUnitPlans)
         
         //... Set delegate for custom layout location collection
@@ -142,13 +143,15 @@ class ProjectDetailViewController: ParentViewController {
         vwSoldOut.layer.borderWidth = 1
         vwSoldOut.layer.borderColor = CRGB(r: 255, g: 0, b: 0).cgColor
         
-        sliderPercentage.setMinimumTrackImage(appDelegate.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
+        //...Set thumb image for slider
+        sliderPercentage.setMinimumTrackImage(self.setProgressGradient(frame: sliderPercentage.bounds), for: .normal)
         sliderPercentage.setThumbImage(UIImage(named: "slider"), for: .normal)
         
         if IS_iPad {
             self.checkCallingFeaturesForIpad()
         }
         
+        //...Load project detail from server
         self.loadProjectDetailFromServer(showLoader: true)
     }
     
@@ -223,12 +226,15 @@ class ProjectDetailViewController: ParentViewController {
                 
                 self.sliderPercentage.setValue(Float(dict.valueForInt(key: CProjectProgress)!), animated: false)
                 self.vwSoldOut.isHidden = dict.valueForInt(key: CIsSoldOut) == 0 ? true : false
-                
+
                 
                 if dict.valueForInt(key: "isBrochure") == 0 && dict.valueForInt(key: CIsVisit) == 0 {
+                   
+                    //...Hide Schedule visit button and brochure button if CIsVisit == 0 && isBrochure == 0
                     self.vwBottom.hide(byHeight: true)
                 } else if dict.valueForInt(key: "isBrochure") == 0 {
                     
+                    //...Hide brochure button if isBrochure == 0
                     self.btnProjectBrochure.isHidden = true
                     
                     if IS_iPhone {
@@ -239,6 +245,8 @@ class ProjectDetailViewController: ParentViewController {
                     
                 } else if dict.valueForInt(key: CIsVisit) == 0 {
                     
+                    //...Hide Schedule visit button if CIsVisit == 0
+                    
                     self.btnScheduleVisit.isHidden = true
                     
                     if IS_iPhone {
@@ -248,7 +256,7 @@ class ProjectDetailViewController: ParentViewController {
                         _ = self.btnProjectBrochure.setConstraintConstant(self.btnScheduleVisit.CViewWidth/2, edge: .trailing, ancestor: true)
                     }
                 }
-
+            
                 //...Contact Detail
                 
                 let arrTempContact = dict.valueForJSON(key: "contactDetail") as? [[String : AnyObject]]
@@ -393,10 +401,6 @@ class ProjectDetailViewController: ParentViewController {
                     } else {
                         self.btnTypicalPlan.hide(byWidth: true)
                     }
-                    
-                    print("arrUnitType : ",self.arrUnitType as Any)
-                    print("arrTypicalType : ",self.arrTypicalType as Any)
-
                 } else {
                     self.vwFloorPlan.hide(byHeight: true)
                 }
@@ -422,6 +426,8 @@ class ProjectDetailViewController: ParentViewController {
 
     func updateCollectionAndTableHeight() {
         
+        //...Update collection and Tableview height as per content
+        
         DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
             self.cnstHeightCollOverView.constant = self.collOverView.contentSize.height
             self.cnstHeightTblConfigure.constant = self.tblConfigure.contentSize.height
@@ -434,6 +440,7 @@ class ProjectDetailViewController: ParentViewController {
 
     func zoomImage(_ image : UIImage?)
     {
+        //...Zoom single image
         if image != nil
         {
             DispatchQueue.main.async {
@@ -445,6 +452,8 @@ class ProjectDetailViewController: ParentViewController {
     }
     
     func zoomImageAndVideo(){
+        
+        //...Zoom Image and video
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)
             zoomView.showImageAndVideo(arrProjectImg)
@@ -453,6 +462,22 @@ class ProjectDetailViewController: ParentViewController {
                 zoomView.CViewSetY(y: 0)
             }
         }
+    }
+    
+    func setProgressGradient(frame : CGRect) -> UIImage {
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ColorProgressGradient1.cgColor,ColorProgressGradient2.cgColor]
+        gradientLayer.frame = frame
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)
+        
+        UIGraphicsBeginImageContextWithOptions(gradientLayer.frame.size, false, 0.0)
+        gradientLayer.render(in: UIGraphicsGetCurrentContext()!)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
     }
     
     func estimateFrameForText(locAdvantages: String, location : String) -> CGFloat {
@@ -493,8 +518,9 @@ extension ProjectDetailViewController {
     
     @IBAction func btnShareClicked (sender : UIButton) {
         
-    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Share")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Share")
         
+        //...Share project detail content
         let contactNo = (arrContactNo.mapValue(forKey: "mobileNo") as? [String])?.joined(separator: ",")
         
         let text = "\(dictDetail.valueForString(key: CProjectName)),\(dictDetail.valueForString(key: "shortLocation"))\n\nMahaRERA: \(dictDetail.valueForString(key: CReraNumber))\n\nCall \(contactNo!)\n\n\(dictDetail.valueForString(key: "website"))\n\nSite Address: \(dictDetail.valueForString(key: CAddress))\n\n\(dictDetail.valueForString(key: CDescription))"
@@ -525,17 +551,18 @@ extension ProjectDetailViewController {
         
         MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Brochure")
         
+        //...For animation effect when clicked on button
         btnProjectBrochure.alpha = 0.8
         GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
             self.btnProjectBrochure.alpha = 1.0
+            
+            //...Called project brochure api
             APIRequest.shared().projectBrochure(projectId: self.projectID) { (response, error) in
                 
                 if response != nil && error == nil {
                     
                     self.showAlertView(CProjectBrochureMessage, completion: { (result) in
                     })
-                    
-//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CProjectBrochureMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
                 }
             }
         }
@@ -583,46 +610,6 @@ extension ProjectDetailViewController {
                 }
             }
         }
-        
-        /*
-        self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-           
-            self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal)
-            self.btnSubscribe.isSelected = !sender.isSelected
-         
-            if self.btnSubscribe.isSelected {
-                 MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Subscribe")
-            } else {
-                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
-            }
-            
-            APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
-                
-                if response != nil && error == nil {
-                    
-                    let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
-                    
-                    appDelegate.loginUser?.postBadge = Int16(data.valueForInt(key: CFavoriteProjectBadge)!)
-                    appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: CFavoriteProjectProgress)!)
-                    appDelegate.loginUser?.project_name = data.valueForString(key: CFavoriteProjectName)
-                    
-                    CoreData.saveContext()
-                    
-                    for vwController in (self.navigationController?.viewControllers)! {
-                        
-                        if vwController.isKind(of: ProjectViewController .classForCoder()){
-                            
-                            let projectVC = vwController as? ProjectViewController
-                            projectVC?.refreshIsSubscribedStatus(projectId: self.projectID, isSubscribed: data.valueForInt(key: CIsSubscribe)!)
-                            
-                            break
-                        }
-                    }
-                }
-            }
-            
-        }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
-        }) */
     }
     
     @IBAction func btnCallClicked (sender : UIButton) {
@@ -630,12 +617,14 @@ extension ProjectDetailViewController {
         MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Call")
 
         if arrContactNo.count == 1 {
+            //...For single contact no
             self.dialPhoneNumber(phoneNumber: arrContactNo[0].valueForString(key: "mobileNo"))
        
         } else {
             
             if IS_iPad {
                 
+                //...For multiple contact no
                 let actionSheet = UIAlertController(title: "Contact Detail", message: "", preferredStyle: .alert)
                 
                 actionSheet.addAction(UIAlertAction(title: self.arrContactNo[0].valueForString(key: "mobileNo"), style: .default, handler: { (UIAlertAction) in
@@ -660,6 +649,7 @@ extension ProjectDetailViewController {
                 
                 if arrContactNo.count == 2 {
                     
+                    //...For two conatct no
                     self.presentActionsheetWithTwoButtons(actionSheetTitle: "", actionSheetMessage:"Contact Detail", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
                         
                         self.dialPhoneNumber(phoneNumber: self.arrContactNo[0].valueForString(key: "mobileNo"))
@@ -670,6 +660,8 @@ extension ProjectDetailViewController {
                     }
                     
                 } else {
+                    
+                    //...For three contact no
                     
                     self.presentActionsheetWithThreeButton(actionSheetTitle: "Contact", actionSheetMessage: "", btnOneTitle: self.arrContactNo[0].valueForString(key: "mobileNo"), btnOneStyle: .default, btnOneTapped: { (action) in
                         
@@ -871,14 +863,13 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             return CGSize(width: CScreenWidth, height: collProject.CViewHeight)
         default:
             return CGSize(width: 0, height: 0)
-            print("")
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 
         switch collectionView {
-        case collProject:
+        case collProject: //...Project Imgae
             
             let dict = arrProjectImg[indexPath.row]
             
@@ -932,7 +923,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             return UICollectionViewCell()
             
-        case collLocation:
+        case collLocation: //...Location Advtanges
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LocationAdvantagesCollCell", for: indexPath) as? LocationAdvantagesCollCell {
                 
@@ -953,7 +944,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             return UICollectionViewCell()
             
-        case collPlansType:
+        case collPlansType: //...Plan Type
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PlanTypeCollCell", for: indexPath) as? PlanTypeCollCell {
          
@@ -974,7 +965,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             return UICollectionViewCell()
             
-        case collFloorImg:
+        case collFloorImg: //..Plan Type image
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FloorPlansImgCollCell", for: indexPath) as? FloorPlansImgCollCell {
                 
@@ -988,7 +979,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             return UICollectionViewCell()
             
-        case collOverView:
+        case collOverView: //...Overview
         
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OverViewCollCell", for: indexPath) as? OverViewCollCell {
                 
@@ -1005,7 +996,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             
             return UICollectionViewCell()
             
-        default:
+        default: //...Amenities
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AmmenitiesCollCell", for: indexPath) as? AmmenitiesCollCell {
                 
@@ -1049,6 +1040,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         
         if scrollView == collFloorImg {
+            //...Scroll multiple images for Floor section
             
           let index = IS_iPad ? round(scrollView.contentOffset.y/scrollView.bounds.size.height) : round(scrollView.contentOffset.x/scrollView.bounds.size.width)
             
@@ -1061,6 +1053,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
             }
             
         } else {
+            //...For change pagecontrol index
             let index = round(scrollView.contentOffset.x/scrollView.bounds.size.width)
             pageVProject.currentPage = Int(index)
         }

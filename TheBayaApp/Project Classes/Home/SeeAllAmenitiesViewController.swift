@@ -40,6 +40,7 @@ class SeeAllAmenitiesViewController: ParentViewController {
         
         self.title = "Amenities"
         
+        //...Added refresh control in collectionview
         refreshControl.addTarget(self, action: #selector(pulltoRefresh), for: .valueChanged)
         refreshControl.tintColor = ColorGreenSelected
         if #available(iOS 10.0, *) {
@@ -49,6 +50,7 @@ class SeeAllAmenitiesViewController: ParentViewController {
             collAmenities.refreshControl = refreshControl
         }
         
+        //...Load amenities from server
         self.loadAmenities(showLoader: true)
     }
     
@@ -122,9 +124,7 @@ extension SeeAllAmenitiesViewController {
                 if arrData.count > 0 {
                     if arrData.count != self.arrAmmenities.count {
                         self.arrAmmenities.removeAll()
-                        for item in arrData {
-                            self.arrAmmenities.append(item)
-                        }
+                        self.arrAmmenities = arrData
                     }
                 }
                 self.collAmenities.reloadData()

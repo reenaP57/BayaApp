@@ -32,8 +32,6 @@ class TimeLineUpdateUrlTblCell: UITableViewCell {
         }
     }
     
-    
-    
     func loadSliderImages(images : [String]) {
         
         arrImg = images

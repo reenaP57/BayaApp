@@ -33,6 +33,7 @@ class CustomAlertView: UIView {
             self.btnCancel.hide(byWidth: true)
             self.vwLine.isHidden = true
             _ = self.btnOk.setConstraintConstant(-(self.btnOk.CViewX + self.btnOk.CViewWidth), edge: .leading, ancestor: true)
+        
         }
         
         self.lblMsg.text = message

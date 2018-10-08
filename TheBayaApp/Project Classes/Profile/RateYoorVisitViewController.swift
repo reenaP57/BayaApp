@@ -76,16 +76,12 @@ extension RateYoorVisitViewController {
                 txField?.resignFirstResponder()
             }
         }
-        
         self.view.layoutIfNeeded()
-        
         DispatchQueue.main.async {
             
             if self.vwRating.rating < 1.0 {
                 self.showAlertView(CSelectRating, completion: { (result) in
                 })
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSelectRating, btnOneTitle: CBtnOk, btnOneTapped: nil)
-                
             } else {
                 self.rateVisit()
             }
@@ -165,31 +161,6 @@ extension RateYoorVisitViewController {
                         }
                     }
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CSuccessRateVisitMessage, btnOneTitle: CBtnOk) { (action) in
-//                    
-//                    for vwController in (self.navigationController?.viewControllers)! {
-//                        
-//                        if vwController.isKind(of: VisitDetailsViewController .classForCoder()){
-//                            
-//                            let visitDetail = vwController as? VisitDetailsViewController
-//                            visitDetail?.RefreshRatingVisit(visitId: self.visitId, rating : Int(self.vwRating.rating))
-//                            self.navigationController?.popViewController(animated: true)
-//                            break
-//                            
-//                        } else if vwController.isKind(of: NotificationViewController .classForCoder()){
-//                            
-//                            let notificationVC = vwController as? NotificationViewController
-//                            notificationVC?.isFromOtherScreen = true
-//                            self.navigationController?.popViewController(animated: true)
-//                            break
-//                            
-//                        } else {
-//                           self.navigationController?.popViewController(animated: true)
-//                            break
-//                        }
-//                    }
-//                }
             }
         }
     }

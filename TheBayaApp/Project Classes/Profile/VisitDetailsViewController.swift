@@ -47,6 +47,7 @@ class VisitDetailsViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblVVisitDetails.pullToRefreshControl = refreshControl
         
+        //...Load Visit detail list
         self.loadVisitList(showLoader: true, isFromNotification : false)
 
         if IS_iPhone {
@@ -58,8 +59,7 @@ class VisitDetailsViewController: ParentViewController {
     
     func RefreshRatingVisit(visitId : Int, rating : Int) {
         
-        print("arrVisitList : ",self.arrVisitList)
-        
+        //...Refresh Particular visit when rating is done
         for (index, _) in self.arrVisitList.enumerated() {
             
             let dict = self.arrVisitList[index]
@@ -145,11 +145,6 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                 
                 cell.contentView.backgroundColor = UIColor.clear
                 cell.backgroundColor = UIColor.clear
-                
-                
-//                cell.vwTagLbl.hide(byHeight: true)
-//                cell.vwRating.hide(byHeight: true)
-//                cell.btnRateVisit.hide(byHeight: true)
 
                 cell.btnRateVisit.isHidden = true
                 cell.vwRating.isHidden = true
@@ -160,7 +155,6 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                 case CRequested :
                     cell.lblTimeMsg.text = CMessageRequested
                     cell.vwTagLbl.isHidden = false
-                    //cell.vwTagLbl.hide(byHeight: false)
                     cell.lblTag.text = "UNCONFIRMED"
                     cell.vwTagLbl.backgroundColor = ColorGradient2Background
                     
@@ -184,7 +178,6 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                     
                     cell.vwTagLbl.isHidden = false
                     cell.lblTag.text = "CANCELLED"
-                   // cell.vwTagLbl.hide(byHeight: false)
                     cell.vwTagLbl.backgroundColor = CRGB(r: 255, g: 69, b: 77)
         
                     break

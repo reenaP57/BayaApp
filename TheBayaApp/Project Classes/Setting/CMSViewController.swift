@@ -17,10 +17,8 @@ enum cmsTitle {
 class CMSViewController: ParentViewController, UIWebViewDelegate {
 
     @IBOutlet weak var webContent : UIWebView!
-    
     var cmsEnum = cmsTitle.AboutUs
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -43,11 +41,11 @@ class CMSViewController: ParentViewController, UIWebViewDelegate {
         
         switch cmsEnum {
         case .AboutUs :
-            self.title = "About Us"
+            self.title = CAboutUs
         case .TermsCondition :
-            self.title = "Terms & Conditions"
+            self.title = CTermsConditions
         case .PrivacyPolicy :
-            self.title = "Privacy Policy"
+            self.title = CPrivacyPolicy
         }
         
         self.webContent.isOpaque = false;
@@ -82,10 +80,8 @@ class CMSViewController: ParentViewController, UIWebViewDelegate {
     }
    
     func webViewDidFinishLoad(_ webView: UIWebView) {
-        // Disable user selection
+        // Disable user selection like copy, paste and cut
         _ = webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitUserSelect='none'")!
-        // Disable callout
-//        webView.stringByEvaluatingJavaScript(from: "document.documentElement.style.webkitTouchCallout='none'")!
     }
 }
 

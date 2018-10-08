@@ -23,7 +23,6 @@ class FilterView: UIView {
         let filterView:FilterView = Bundle.main.loadNibNamed(IS_iPad ? "FilterView_ipad" : "FilterView", owner: nil, options: nil)?.last as! FilterView
         filterView.frame = CGRect(x: 0.0, y: 0.0, width: CScreenWidth, height: CScreenHeight)
         filterView.vwContent.frame = CGRect(x: 0.0, y: CScreenHeight, width: CScreenWidth, height: filterView.vwContent.CViewHeight)
-        //filterView.layoutIfNeeded()
         return filterView
     }
     
@@ -38,7 +37,6 @@ class FilterView: UIView {
 
         txtStartDate.setDatePickerWithDateFormate(dateFormate: "dd MMMM YYYY", defaultDate: Date(), isPrefilledDate: true) { (date) in
             self.txtEndDate.text = ""
-           // txtEndDate.setMinimumDate(minDate: date.tomorrow)
         }
         
         txtEndDate.setDatePickerWithDateFormate(dateFormate: "dd MMMM YYYY", defaultDate: Date(), isPrefilledDate: true) { (date) in

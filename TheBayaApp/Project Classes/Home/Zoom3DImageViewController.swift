@@ -12,7 +12,6 @@ import CTPanoramaView
 class Zoom3DImageViewController: ParentViewController {
 
    @IBOutlet fileprivate weak var vwPanorama: CTPanoramaView!
-   // @IBOutlet fileprivate weak var vwPanorama: UIView!
 
     var imgUrl = ""
     
@@ -44,8 +43,6 @@ class Zoom3DImageViewController: ParentViewController {
                 }
             }
         }
-
-       //vwPanorama.image = UIImage(named: "spherical.jpg")
     }
 }
 

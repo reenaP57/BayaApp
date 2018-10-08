@@ -42,7 +42,6 @@ class ResetPwdViewController: ParentViewController {
             _ = lblNote.setConstraintConstant(self.lblNote.CViewY + 10, edge: .top, ancestor: true)
         }
         
-      // txtCode.text = verifyCode
        strEmailMobile =  strEmailMobile.replacingOccurrences(of: "\"", with: "")
         
        lblNote.text = isEmail ? "\(CResetMessage) email address [\(strEmailMobile)]. Enter verification code in below." : "\(CResetMessage) mobile number [\(strEmailMobile)]. Enter verification code in below."
@@ -164,9 +163,6 @@ extension ResetPwdViewController {
 
                 self.showAlertView(self.isEmail ? "\(CResetCodeEmailMessage) [\(self.strEmailMobile)]." :"\(CResetCodeMobileMessage) [\(self.strEmailMobile)].", completion: { (result) in
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: self.isEmail ? "\(CResetCodeEmailMessage) \([self.strEmailMobile])." :"\(CResetCodeMobileMessage) \([self.strEmailMobile]).", btnOneTitle: CBtnOk) { (action) in
-//                }
             }
         }
     }
@@ -187,10 +183,6 @@ extension ResetPwdViewController {
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-//                    self.navigationController?.popToRootViewController(animated: true)
-//                })
             }
         }
     }

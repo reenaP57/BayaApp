@@ -54,6 +54,7 @@ class TimeLineSubscribeTblCell: UITableViewCell {
     
     func CropImage(image:UIImage , cropRect:CGRect) -> UIImage?
     {
+        //...Crop progress image as per percentage
         UIGraphicsBeginImageContextWithOptions(cropRect.size, false, 0);
         let context = UIGraphicsGetCurrentContext();
         
@@ -64,7 +65,6 @@ class TimeLineSubscribeTblCell: UITableViewCell {
         
         let croppedImage = UIGraphicsGetImageFromCurrentImageContext();
         UIGraphicsEndImageContext();
-        
         
         return croppedImage
     }
@@ -227,10 +227,9 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             }
             
             let imgVHeight = cell.imgVPjctCompletion.CViewHeight - CGFloat(space)
-            
-           // dict["CProjectProgress"] = 100 as AnyObject
             let percentage = imgVHeight * CGFloat((dict.valueForInt(key: CProjectProgress))!)/100
             
+            //...Crop image if Progress percentage != 100 or != 0
             if (dict.valueForInt(key: CProjectProgress)) != 100 || (dict.valueForInt(key: CProjectProgress)) != 0 {
                 if cell.imgVPjctCompletion.image != nil{
                     cell.imgVPjctCompletion.image = self.CropImage(image: cell.imgVPjctCompletion.image!, cropRect: CGRect(x: 0, y: imgVHeight - percentage , width: cell.imgVPjctCompletion.CViewWidth, height: percentage))
@@ -267,6 +266,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
     
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         
+        //...For pagination
         let pageWidth = IS_iPad ? CScreenWidth * 500/768 : CScreenWidth - space
         
         let currentOffset = Float(scrollView.contentOffset.x)

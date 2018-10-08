@@ -55,7 +55,6 @@ extension TutorialViewController {
     
         } else {
             collTutorial.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-
         }
     }
 }

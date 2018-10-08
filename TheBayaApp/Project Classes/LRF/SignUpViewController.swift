@@ -186,7 +186,6 @@ extension SignUpViewController {
                 self.vwContent.addSubview(self.txtConfirmPwd.showValidationMessage(15.0, CMisMatchPasswordMessage))
             } else if !self.btnTerms.isSelected {
                 self.showAlertView(CTermsConditionNotAcceptedMessage, completion: { (result) in })
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CTermsConditionNotAcceptedMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
             } else {
                 self.resignKeyboard()
                 self.signup()
@@ -253,22 +252,15 @@ extension SignUpViewController {
                 let status = metaData.valueForInt(key: CJsonStatus)
                 
                 if status == CStatusFour {
-                    
+                    //...Email not verified
                     self.showAlertView(message, completion: { (result) in
                         if result {
                             self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
                         }
                     })
-
-//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-//                       self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
-//                    })
-                    
                 } else {
                     self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
                 }
-                
-                print("Response :",response as Any)
             }
         }
     }

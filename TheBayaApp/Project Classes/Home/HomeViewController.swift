@@ -44,6 +44,8 @@ class HomeViewController: ParentViewController {
     }
     
     func userDetail() {
+        
+        //... Load user detail from server
         APIRequest.shared().userDetail { (response, error) in
             if response != nil && error == nil {
                 self.initialize()

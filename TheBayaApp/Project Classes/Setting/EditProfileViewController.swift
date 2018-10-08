@@ -40,12 +40,14 @@ class EditProfileViewController: ParentViewController {
     func initialize() {
         self.title = "Edit Profile"
         
+        //...Prefilled user details
         txtFName.text = appDelegate.loginUser?.firstName
         txtLName.text = appDelegate.loginUser?.lastName
         txtEmail.text = appDelegate.loginUser?.email
         txtMobileNumber.text = appDelegate.loginUser?.mobileNo
         txtCountryCode.text = appDelegate.loginUser?.country_code
 
+        //...Disable Field
         txtEmail.backgroundColor = ColorDisableTextField
         txtCountryCode.backgroundColor = ColorDisableTextField
         txtMobileNumber.backgroundColor = ColorDisableTextField
@@ -135,10 +137,6 @@ extension EditProfileViewController {
                         self.navigationController?.popViewController(animated: true)
                     }
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-//                    self.navigationController?.popViewController(animated: true)
-//                })
             }
         }
     }

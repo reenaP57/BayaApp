@@ -38,6 +38,7 @@ class SeeAllLocationAdvantagesViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblLocation.pullToRefreshControl = refreshControl
         
+        //...Load location advantages list from server
         self.loadLocationAdvantages(showLoader: true)
     }
 }

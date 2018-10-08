@@ -114,6 +114,7 @@ extension ChangePasswordViewController {
                 
                 if self.isFromLogin {
                     
+                    //...Come from login screen when user register from admin
                     if self.isRememberMe && (appDelegate.loginUser?.mobileVerify)! && (appDelegate.loginUser?.emailVerify)! {
                         CUserDefaults.set(true, forKey: UserDefaultRememberMe)
                         CUserDefaults.synchronize()
@@ -132,9 +133,6 @@ extension ChangePasswordViewController {
                             self.navigationController?.popViewController(animated: true)
                         }
                     })
-//                    self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: message, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-//                        self.navigationController?.popViewController(animated: true)
-//                    })
                 }
             }
         }

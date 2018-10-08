@@ -12,8 +12,8 @@ class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
 
-    let arrSetting = ["Edit Profile", "Change Password", "Push Notifications", "Email Notifications", "SMS Notifications", "Terms & Conditions", "Privacy Policy", "App Support", "About Us", "Rate App", "Logout"]
-    
+    let arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
+
    
     //MARK:-
     //MARK:- LyfeCycle Methods
@@ -24,10 +24,12 @@ class SettingViewController: ParentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CSettingScreenName)
         appDelegate.showTabBar()
         self.initialize()
+        
+        //...Load user detail from server
         self.userDetail()
-        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CSettingScreenName)
     }
     
     override func didReceiveMemoryWarning() {
@@ -42,7 +44,6 @@ class SettingViewController: ParentViewController {
         
         if IS_iPad {
             tblSettings.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
-           // tblSettings.isScrollEnabled = false
         }
     }
 
@@ -175,18 +176,18 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 
                 cell.lblTitle.text = arrSetting[indexPath.row]
                 
-                switch indexPath.row {
-                case 2:
+                switch arrSetting[indexPath.row] {
+                case CPushNotifications:
                     cell.imgVArrow.isHidden = true
                     cell.switchNotify.isHidden = false
                     cell.switchNotify.isOn = (appDelegate.loginUser?.pushNotify)!
                     
-                case 3:
+                case CEmailNotifications:
                     cell.imgVArrow.isHidden = true
                     cell.switchNotify.isHidden = false
                     cell.switchNotify.isOn = (appDelegate.loginUser?.emailNotify)!
                     
-                case 4:
+                case CSMSNotifications:
                     cell.imgVArrow.isHidden = true
                     cell.switchNotify.isHidden = false
                     cell.switchNotify.isOn = (appDelegate.loginUser?.smsNotify)!
@@ -216,9 +217,9 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        switch indexPath.row {
-        case 0:
+
+        switch arrSetting[indexPath.row] {
+        case CEditProfile:
             //...Edit Profile
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting EditProfile")
 
@@ -226,7 +227,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(editProfileVC, animated: true)
             }
       
-        case 1:
+        case CChangePassword:
             //...Change Password
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting ChangePassword")
 
@@ -234,15 +235,15 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(changePwdVC, animated: true)
             }
      
-        case 5,6,8:
-            //...Terms & Conditions
+        case CTermsConditions,CPrivacyPolicy,CAboutUs:
+            //...Terms & Conditions, PrivacyPolicy and About Us
             
             if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
                
-                if indexPath.row == 5 {
+                if arrSetting[indexPath.row] == CTermsConditions {
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting TermsCondition")
                     cmsVC.cmsEnum = .TermsCondition
-                } else if indexPath.row == 6 {
+                } else if arrSetting[indexPath.row] == CPrivacyPolicy {
                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting PrivacyPolicy")
                     cmsVC.cmsEnum = .PrivacyPolicy
                 } else {
@@ -253,7 +254,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(cmsVC, animated: true)
             }
             
-        case 7:
+        case CAppSupport:
             //...Support
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting Support")
 
@@ -261,13 +262,13 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 self.navigationController?.pushViewController(supportVC, animated: true)
             }
             
-        case 9:
+        case CRateApp:
             //...Rate App
             MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting RateApp")
             self.openInSafari(strUrl: "www.google.com")
             break
            
-        case 10:
+        case CLogout:
             //...Logout
             
             self.showAlertConfirmationView(CLogOutMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
@@ -289,6 +290,7 @@ extension SettingViewController {
     
     func changeNotificationStatus(email : String, push : String, sms : String) {
         
+        //...For change push, email and SMS notificatin status
         APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push, smsNotify:sms ) { (response, error) in
             
             if response != nil && error == nil {

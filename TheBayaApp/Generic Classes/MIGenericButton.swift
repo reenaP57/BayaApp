@@ -27,6 +27,7 @@ class MIGenericButton: UIButton {
         self.layer.masksToBounds = true
         
         if self.tag == 101 {
+            //...For set gradient bg
             self.setGradientBackground(color1: gradientColor1, color2: gradientColor2)
         }
     }
@@ -50,6 +51,5 @@ extension MIGenericButton {
         gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
         gradientLayer.endPoint = CGPoint(x: 0.9, y: 0.0)
         self.layer.insertSublayer(gradientLayer, below: self.titleLabel?.layer)
-        
     }
 }

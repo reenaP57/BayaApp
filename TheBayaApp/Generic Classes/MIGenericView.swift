@@ -49,6 +49,7 @@ class MIGenericView: UIView {
             self.layer.cornerRadius = cornerRadius
             
         } else {
+            //...Set only raduis
             self.layer.cornerRadius = cornerRadius
         }
     }

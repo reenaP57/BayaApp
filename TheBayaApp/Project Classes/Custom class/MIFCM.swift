@@ -34,7 +34,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
     }
     
     func didReceiveNotification(userInfo : [String : AnyObject], application : UIApplication) {
-        
+        //...Receive Notification
         print(userInfo)
         
         var message = ""
@@ -59,19 +59,19 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
             
             switch notifyType {
                 
-            case NotificationAdmin :
+            case NotificationAdmin : //...Admin notification
                 
                 if let notifyID = userInfo.valueForInt(key: "gcm.notification.adminNotifyId") {
                     appDelegate.getPushNotifyCountForAdminTypeNotification(adminNotifyID: notifyID)
                 }
                 
                 if application.applicationState == .inactive {
-                    
+                    //...In active
                     appDelegate.tabbarView?.btnNotification.isSelected = false
                     appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
                     
                 } else {
-                    
+                    //...Active
                     appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
@@ -88,26 +88,10 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                             }
                         }
                     })
-//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-//
-//                        if let topViewController = appDelegate.topViewController() {
-//
-//                            if topViewController is NotificationViewController {
-//
-//                                let notificationVC = topViewController as! NotificationViewController
-//                                notificationVC.loadNotificationList(isRefresh: false, isFromNotification : true)
-//                            } else {
-//                                appDelegate.tabbarView?.btnNotification.isSelected = false
-//                                appDelegate.tabbarView?.btnTabClicked(sender: (appDelegate.tabbarView?.btnNotification)!)
-//                            }
-//                        }
-//
-//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-//                    })
                 }
                 
                 
-            case NotificationNewProject, NotificationProjectComplete :
+            case NotificationNewProject, NotificationProjectComplete : //...New project and Project complete notification
                 
                 if application.applicationState == .inactive {
                     
@@ -134,29 +118,11 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                             }
                         }
                     })
-//
-//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-//
-//                        if let topViewController = appDelegate.topViewController() {
-//
-//                            if topViewController is ProjectDetailViewController {
-//                            } else {
-//
-//                                if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
-//                                    projectDetailVC.projectID =  (userInfo.valueForInt(key: "gcm.notification.projectId"))!
-//                                    appDelegate.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
-//                                }
-//                            }
-//                        }
-//
-//
-//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-//                    })
                 }
                 
                 break
                 
-            case NotificationPostUpdate :
+            case NotificationPostUpdate : //...Post Update Notification
                 
                 if application.applicationState == .inactive {
                     
@@ -192,35 +158,12 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                             }
                         }
                     })
-                    
-//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-//
-//                        if let topViewController = appDelegate.topViewController() {
-//
-//                            if topViewController is TimelineDetailViewController {
-//
-//                                let timelineVC  = topViewController as! TimelineDetailViewController
-//                                timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
-//                                timelineVC.isFromNotifition = true
-//                                timelineVC.loadSubscribedProjectList(isRefresh: false, isFromNotification: true)
-//
-//                            } else {
-//
-//                                if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
-//                                    timelineVC.projectID = (userInfo.valueForInt(key: "gcm.notification.projectId"))!
-//                                    timelineVC.isFromNotifition = true
-//                                    appDelegate.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
-//                                }
-//                            }
-//                        }
-//
-//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-//                    })
                 }
                 
                 break
                 
             case NotificationVisitUpdate, NotificationVisitReschedule, NotificationVisitCancel :
+                //Visit update, Visit reschedule and visit cancel Notification
                 
                 if application.applicationState == .inactive {
                     
@@ -250,32 +193,11 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                             }
                         }
                     })
-                    
-                    
-//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-//
-//                        if let topViewController = appDelegate.topViewController() {
-//
-//                            if topViewController is VisitDetailsViewController {
-//
-//                                let visitDetailVC  = topViewController as! VisitDetailsViewController
-//                                visitDetailVC.loadVisitList(isRefresh: false, isFromNotification : true)
-//
-//                            } else {
-//
-//                                if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
-//                                    appDelegate.topViewController()?.navigationController?.pushViewController(visitDetailVC, animated: true)
-//                                }
-//                            }
-//                        }
-//
-//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-//                    })
                 }
                 
                 break
                 
-            default :
+            default : // Rate Visit Notification
                 
                 if application.applicationState == .inactive {
                     
@@ -302,22 +224,6 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                             }
                         }
                     })
-                    
-//                    appDelegate.topViewController()?.presentAlertViewWithTwoButtons(alertTitle: projectName, alertMessage: message, btnOneTitle: "View", btnOneTapped: { (action) in
-//
-//                        if let topViewController = appDelegate.topViewController() {
-//
-//                            if topViewController is RateYoorVisitViewController {
-//                            } else {
-//                                if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-//                                    rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.visitId"))!
-//                                    appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
-//                                }
-//                            }
-//                        }
-//
-//                    }, btnTwoTitle: "cancel", btnTwoTapped: { (action) in
-//                    })
                 }
             }
         }

@@ -22,7 +22,7 @@ class MIGenericTextField: UITextField {
         self.addLeftImageAsLeftView(strImgName: nil, leftPadding: 15.0)
         
         if self.tag == 101 {
-            self.addRightImageAsRightView(strImgName: "dropdown", rightPadding: 15.0)
+            self.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
     

@@ -80,6 +80,8 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
     }
 
     func zoomImage(){
+        
+        //...Zoom images
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)
             zoomView.showImage(arrImg)

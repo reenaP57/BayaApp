@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,7 +30,7 @@
                                 <constraint firstAttribute="width" constant="100" id="qxd-9r-fmm"/>
                             </constraints>
                             <state key="normal" image="home"/>
-                            <state key="selected" image="home_selected"/>
+                            <state key="selected" image="ic_home_selected"/>
                             <connections>
                                 <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="d96-RT-zpl"/>
                             </connections>
@@ -38,15 +38,15 @@
                         <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGs-Ze-U2K">
                             <rect key="frame" x="100" y="0.0" width="100" height="49"/>
                             <state key="normal" image="notification"/>
-                            <state key="selected" image="notification_selected"/>
+                            <state key="selected" image="ic_notification_selected"/>
                             <connections>
                                 <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="IDL-Ft-0Wy"/>
                             </connections>
                         </button>
                         <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UX-ay-WSu">
                             <rect key="frame" x="200" y="0.0" width="100" height="49"/>
-                            <state key="normal" image="setting"/>
-                            <state key="selected" image="setting_selected"/>
+                            <state key="normal" image="ic_setting_unselect"/>
+                            <state key="selected" image="ic_setting_selected"/>
                             <connections>
                                 <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="p6N-eY-XAq"/>
                             </connections>
@@ -54,7 +54,7 @@
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wHu-vL-y8o">
                             <rect key="frame" x="300" y="0.0" width="100" height="49"/>
                             <state key="normal" image="profile"/>
-                            <state key="selected" image="profile_selected"/>
+                            <state key="selected" image="ic_profile_selected"/>
                             <connections>
                                 <action selector="btnTabClickedWithSender:" destination="x30-3p-dVA" eventType="touchUpInside" id="Unu-g6-LfO"/>
                             </connections>
@@ -114,12 +114,12 @@
     </objects>
     <resources>
         <image name="home" width="22" height="22"/>
-        <image name="home_selected" width="22" height="22"/>
+        <image name="ic_home_selected" width="22" height="22"/>
+        <image name="ic_notification_selected" width="20" height="22"/>
+        <image name="ic_profile_selected" width="22" height="22"/>
+        <image name="ic_setting_selected" width="22" height="22"/>
+        <image name="ic_setting_unselect" width="22" height="22"/>
         <image name="notification" width="20" height="22"/>
-        <image name="notification_selected" width="20" height="22"/>
         <image name="profile" width="22" height="22"/>
-        <image name="profile_selected" width="22" height="22"/>
-        <image name="setting" width="22" height="22"/>
-        <image name="setting_selected" width="22" height="22"/>
     </resources>
 </document>

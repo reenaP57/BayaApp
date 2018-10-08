@@ -31,14 +31,11 @@ class MIGoogleAnalytics: NSObject {
         gai.tracker(withTrackingId: CTrackingID)
         // Optional: automatically report uncaught exceptions.
         gai.trackUncaughtExceptions = true
-        
-        // Optional: set Logger to VERBOSE for debug information.
-        // Remove before app release.
-        gai.logger.logLevel = .verbose;
     }
     
     func trackScreenNameForGoogleAnalytics(screenName : String) {
-        
+      
+        //...For track particualr screen name
         guard let tracker = GAI.sharedInstance().defaultTracker else { return }
         tracker.set(kGAIScreenName, value: screenName)
         
@@ -48,6 +45,7 @@ class MIGoogleAnalytics: NSObject {
     
     func trackCustomEvent(buttonName : String) {
         
+        //...For track particular custom event
         let tracker = GAI.sharedInstance().defaultTracker
         
         tracker?.send(GAIDictionaryBuilder.createEvent(withCategory: "Button Interaction", action: "\(buttonName) is clicked", label: "Button Click", value: nil).build() as [NSObject : AnyObject])

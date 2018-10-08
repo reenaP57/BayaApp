@@ -70,7 +70,7 @@ class TimelineDetailViewController: ParentViewController {
             self.tblUpdates?.pullToRefreshControl = self.refreshControl
         }
 
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: #imageLiteral(resourceName: "filter_"), style: .plain, target: self, action: #selector(btnFilterClicked))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(image: UIImage(named: "ic_filter"), style: .plain, target: self, action: #selector(btnFilterClicked))
         
         tblUpdates.estimatedRowHeight = 100;
         tblUpdates.rowHeight = UITableViewAutomaticDimension;
@@ -86,11 +86,13 @@ class TimelineDetailViewController: ParentViewController {
     }
     
     @objc func refreshViewUpdateList() {
+        //...Update UpdateVisit List when subscribe project from projectList screen
         self.loadSubscribedProjectList(showLoader: true, isFromNotification: false)
     }
     
     func shareContent(text : String, mediaUrl : String) {
         
+        //...Share UpdateVisit detail
         let shareAll = [text, mediaUrl]
         let activityViewController = UIActivityViewController(activityItems: shareAll, applicationActivities: nil)
         activityViewController.popoverPresentationController?.sourceView = self.view
@@ -139,6 +141,7 @@ class TimelineDetailViewController: ParentViewController {
     
     func getDateTimeFromTimestamp(from interval : TimeInterval) -> String
     {
+        //...For show date and time in updateVisit List
         let calendar = NSCalendar.current
         let date = Date(timeIntervalSince1970: interval)
         if calendar.isDateInYesterday(date) {
@@ -168,6 +171,7 @@ class TimelineDetailViewController: ParentViewController {
     
     func zoomImage(_ image : UIImage?)
     {
+        //...For zoom single image
         if image != nil
         {
             DispatchQueue.main.async {
@@ -179,6 +183,8 @@ class TimelineDetailViewController: ParentViewController {
     }
     
     func zoomImageForIpad(arrImg : [String]){
+        
+        //...Zoom Image multiple image for Ipad
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)
             zoomView.showImage(arrImg)
@@ -198,6 +204,8 @@ class TimelineDetailViewController: ParentViewController {
 extension TimelineDetailViewController : subscribeProjectListDelegate {
    
     func reloadTimelineList(index: Int) {
+        
+        //...Reload UpdateList when scroll subscribed project
         currentIndex = index
         pageIndexForApi = 1
         
@@ -266,7 +274,6 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     GCDMainThread.asyncAfter(deadline: .now() + 0.5) {
                         if self.apiTask?.state != .running{
-                            print("Load more data ====== ")
                             self.loadTimeLineListFromServer(false, startDate: self.strFilterStartDate, endDate: self.strFilterEndDate)
                         }
                     }
@@ -522,7 +529,6 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                     let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
                                     assetImgGenerate.appliesPreferredTrackTransform = true
                                     
-                                    
 //                                    let lastFrameTime = Int64(CMTimeGetSeconds(asset.duration)*60.0)
 //                                    let time : CMTime = CMTimeMake(lastFrameTime, 2)
                                     
@@ -539,16 +545,6 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                     } catch let err {
                                         print(err)
                                     }
-                                    
-//                                    let time = CMTimeMake(1, 1)
-//                                    let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-//                                    if img != nil {
-//                                       // cell.imgVThumbNail.image = frameImg
-//                                        DispatchQueue.main.async(execute: {
-//                                            let frameImg  = UIImage(cgImage: img!)
-//                                            cell.imgVThumbNail.image = frameImg
-//                                        })
-//                                    }
                                 }
                             }
                         }
@@ -833,7 +829,6 @@ extension TimelineDetailViewController {
         APIRequest.shared().postVisitCount(postId: postID) { (response, error) in
             
             if response != nil && error == nil {
-                print("Post Visit Count response :", response as Any)
                 
                 if let arrData = response![CJsonData] as? [[String : Any]] {
                     
@@ -896,6 +891,8 @@ extension TimelineDetailViewController {
     }
     
     @objc func btnFilterClicked() {
+        
+        //...Open Filterview popup
         
         let vwFilter = FilterView.initFilterView()
         

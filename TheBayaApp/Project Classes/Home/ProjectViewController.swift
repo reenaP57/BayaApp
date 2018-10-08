@@ -50,6 +50,7 @@ class ProjectViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblProject?.pullToRefreshControl = refreshControl
         
+        //...Load project list from server
         self.loadProjectList(showLoader: true, isFromNotification :false)
 
         if IS_iPhone {
@@ -62,6 +63,7 @@ class ProjectViewController: ParentViewController {
     
     
     func refreshIsSubscribedStatus(projectId : Int, isSubscribed : Int) {
+        //...Refresh Particular project when change subscribe status from Project detail screen
         
         for (index, _) in self.arrProject.enumerated() {
             
@@ -157,41 +159,6 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-                
-                /*
-                self.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: sender.isSelected ? CUnsubscribeMessage : CSubscribeMessage, btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                  
-                    cell.btnSubscribe.isSelected ? cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg1"), for: .normal) : cell.btnSubscribe.setBackgroundImage(#imageLiteral(resourceName: "gradient_bg2"), for: .normal)
-                    
-                    cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
-                    
-                    if cell.btnSubscribe.isSelected {
-                        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project Subscribe")
-                    } else {
-                        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project Unsubscribe")
-                    }
-                    
-
-                    APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
-                        
-                        if response != nil && error == nil {
-                            
-                            let data = response?.value(forKey: CJsonData) as! [String : AnyObject]
-                            
-                            dict[CIsSubscribe] = data.valueForInt(key: CIsSubscribe) as AnyObject
-                            self.arrProject[indexPath.row] = dict
-                            self.tblProject.reloadRows(at: [indexPath], with: .none)
-                            
-                            appDelegate.loginUser?.postBadge = Int16(data.valueForInt(key: CFavoriteProjectBadge)!)
-                            appDelegate.loginUser?.projectProgress = Int16(data.valueForInt(key: CFavoriteProjectProgress)!)
-                            appDelegate.loginUser?.project_name = data.valueForString(key: CFavoriteProjectName)
-                            
-                            CoreData.saveContext()
-                        }
-                    }
-                    
-                }, btnTwoTitle: CBtnCancel, btnTwoTapped: { (action) in
-                }) */
             }
             
             

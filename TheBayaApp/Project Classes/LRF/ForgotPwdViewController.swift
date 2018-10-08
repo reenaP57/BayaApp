@@ -68,12 +68,15 @@ class ForgotPwdViewController: ParentViewController {
     
     func showValidation(isAdd : Bool){
         
+        //...Validation for Email and Country code
+        
         self.txtEmail.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
         self.txtEmail.layer.masksToBounds = true
         txtEmail.layer.cornerRadius = 5
         txtCountryCode.layer.cornerRadius = 5
         
         if isAdd {
+            //...Show validation
             txtCountryCode.backgroundColor = CRGB(r: 254, g: 242, b: 242)
             txtEmail.backgroundColor = CRGB(r: 254, g: 242, b: 242)
             vwEmail.shadow(color: UIColor.clear, shadowOffset: CGSize(width: 0, height: 0), shadowRadius: 0.0, shadowOpacity: 0.0)
@@ -81,6 +84,7 @@ class ForgotPwdViewController: ParentViewController {
             vwEmail.layer.borderColor = CRGB(r: 247, g: 51, b: 52).cgColor
             
         } else {
+            //...Hide validation
             vwEmail.layer.borderWidth = 0.0
             vwEmail.layer.borderColor = UIColor.white.cgColor
             txtCountryCode.backgroundColor = UIColor.white
