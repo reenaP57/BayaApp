@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 appDelegate.tabbarView?.CViewSetHeight(height: 49.0)
             } else {
                 GCDMainThread.async {
-                    appDelegate.tabbarView?.frame = CGRect(x: 0, y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0), width: CScreenWidth, height: 49.0)
+                    appDelegate.tabbarView?.frame = CGRect(x: 0, y: CScreenHeight - 49.0 - (IS_iPhone_X_Series ? 34.0 : 0.0), width: CScreenWidth, height: 49.0)
                 }
             }
         }
@@ -200,7 +200,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func showTabBar() {
         
-       appDelegate.tabbarView?.CViewSetY(y: CScreenHeight - 49.0 - (IS_iPhone_X ? 34.0 : 0.0))
+       appDelegate.tabbarView?.CViewSetY(y: CScreenHeight - 49.0 - (IS_iPhone_X_Series ? 34.0 : 0.0))
     }
     
     func logout(isForDeleteUser : Bool)
