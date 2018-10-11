@@ -14,6 +14,7 @@ class TimelineUpdateVideoTblCell: UITableViewCell {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var lblUrl : UILabel!
     @IBOutlet weak var lblDateTime : UILabel!
+
     @IBOutlet weak var btnShare : UIButton!
     @IBOutlet weak var btnPlay : UIButton!
     @IBOutlet weak var imgVThumbNail : UIImageView!

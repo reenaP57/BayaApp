@@ -139,20 +139,6 @@ class TimelineDetailViewController: ParentViewController {
         }
     }
     
-    func getDateTimeFromTimestamp(from interval : TimeInterval) -> String
-    {
-        //...For show date and time in updateVisit List
-        let calendar = NSCalendar.current
-        let date = Date(timeIntervalSince1970: interval)
-        if calendar.isDateInYesterday(date) {
-            return "Yesterday at \(DateFormatter.dateStringFrom(timestamp: interval, withFormate: "hh:mm a"))"
-        } else if calendar.isDateInToday(date) {
-            return "Today at \(DateFormatter.dateStringFrom(timestamp: interval, withFormate: "hh:mm a"))"
-        } else {
-            return DateFormatter.dateStringFrom(timestamp: interval, withFormate: "dd MMMM yyyy 'at' hh:mm a")
-        }
-    }
-    
     func hideScheduleVisit() {
         
         //...Hide schedule visit button If isVisit = 0
@@ -290,7 +276,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell_ipad") as? TimeLineUpdateTblCell_ipad {
                         cell.updateImageViewSize()
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             if arrImages.count > 0{
@@ -319,8 +305,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         cell.updateImageViewSize()
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
-
+                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
 
                         cell.btnShare.touchUpInside { (sender) in
                             
@@ -379,7 +364,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                                     cell.updateImageViewSize()
                                     
                                     cell.lblDesc.text = dict.valueForString(key: "description")
-                                    cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                                   cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                                     cell.lblUrl.text = dict.valueForString(key: "link")
                                     
                                     if let arrImages = dict.valueForJSON(key: "media") as? [String] {
@@ -428,7 +413,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                             }else{
                                 if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlWithoutImageTblCell_ipad") as? TimeLineUpdateUrlWithoutImageTblCell_ipad {
                                     cell.lblDesc.text = dict.valueForString(key: "description")
-                                    cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                                   cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                                     cell.lblUrl.text = dict.valueForString(key: "link")
                                     
                                     // Hide Image Title here....
@@ -470,7 +455,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell_ipad") as? TimeLineUpdateTextTblCell_ipad {
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                             
                         cell.btnShare.touchUpInside { (sender) in
                             self.shareContent(text: dict.valueForString(key: "description"), mediaUrl: "")
@@ -489,7 +474,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTblCell") as? TimeLineUpdateTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             cell.pageControlSlider.numberOfPages = arrImages.count
@@ -513,7 +498,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimelineUpdateVideoTblCell") as? TimelineUpdateVideoTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                         
                         cell.btnShare.touchUpInside { (sender) in
                             
@@ -569,7 +554,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateGIFTblCell") as? TimeLineUpdateGIFTblCell {
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             if arrImages.count > 0{
@@ -599,7 +584,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateUrlTblCell") as? TimeLineUpdateUrlTblCell {
                             
                             cell.lblDesc.text = dict.valueForString(key: "description")
-                            cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                            cell.lblDateTime.text = DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                             cell.lblUrl.text = dict.valueForString(key: "link")
 
                             cell.collImg.hide(byHeight: false)
@@ -647,7 +632,7 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                     if let cell = tableView.dequeueReusableCell(withIdentifier: "TimeLineUpdateTextTblCell") as? TimeLineUpdateTextTblCell {
                         
                         cell.lblDesc.text = dict.valueForString(key: "description")
-                        cell.lblDateTime.text =  self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "updatedAt")!)
+                        cell.lblDateTime.text =  DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "updatedAt")!, withFormate: "d MMM, yyyy")
                         
                         
                         cell.btnShare.touchUpInside { (sender) in
