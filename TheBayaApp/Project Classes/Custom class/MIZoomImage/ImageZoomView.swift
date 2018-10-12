@@ -74,16 +74,16 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
         if arrImgVideo.count > 0 {
             
             let dict = arrImgVideo[indexPath.row]
-            
+
             if dict.valueForInt(key: "type") == 1 {
                 //...Image
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageZoomCollCell", for: indexPath) as! ImageZoomCollCell
                 cell.scrollView.zoomScale = 1.0
                 cell.imgGallery.sd_setShowActivityIndicatorView(true)
                 cell.imgGallery.sd_setImage(with: URL(string: dict.valueForString(key: "url")), placeholderImage: nil, options: .retryFailed, completed: nil)
-                
+
                 return cell
-                
+
             } else {
                //...Video
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "VideoCollCell", for: indexPath) as! VideoCollCell
@@ -105,41 +105,43 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
                         })
                     }
                 }
+            
+//                let url = URL(string: dict.valueForString(key: "url"))
+//                let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
+//
+//                cell.player = AVPlayer(playerItem: playerItem)
+//
+//                let playerLayer = AVPlayerLayer(player: cell.player)
+//                playerLayer.frame = CGRect(x:0, y:0, width:CScreenWidth, height:CScreenHeight)
+//                cell.vwPlayer.layer.addSublayer(playerLayer)
+//
+//                cell.btnPlay.touchUpInside { (sender) in
+//                    if cell.btnPlay.isSelected {
+//                        cell.btnPlay.isSelected = false
+//                        cell.imgThumbnail.isHidden = false
+//                        cell.player.pause()
+//                    } else {
+//                        cell.btnPlay.isSelected = true
+//                        cell.imgThumbnail.isHidden = true
+//                        cell.player.play()
+//                    }
+//                }
+            
                 
-                let url = URL(string: dict.valueForString(key: "url"))
-                let playerItem:AVPlayerItem = AVPlayerItem(url: url!)
-
-                cell.player = AVPlayer(playerItem: playerItem)
-
-                let playerLayer = AVPlayerLayer(player: cell.player)
-                playerLayer.frame = CGRect(x:0, y:0, width:CScreenWidth, height:CScreenHeight)
-                cell.vwPlayer.layer.addSublayer(playerLayer)
-
-                cell.btnPlay.touchUpInside { (sender) in
-                    if cell.btnPlay.isSelected {
-                        cell.btnPlay.isSelected = false
-                        cell.imgThumbnail.isHidden = false
-                        cell.player.pause()
-                    } else {
-                        cell.btnPlay.isSelected = true
-                        cell.imgThumbnail.isHidden = true
-                        cell.player.play()
+                cell.btnPlay.touchUpInside { (action) in
+                    
+                    if let videoUrl = dict.valueForString(key: "url") as? String {
+                       
+                        let videoURL = URL(string: videoUrl)
+                        let player = AVPlayer(url: videoURL!)
+                        let playerController = AVPlayerViewController()
+                        playerController.player = player
+                        self.topMostController()!.present(playerController, animated: true) {
+                            player.play()
+                        }
                     }
                 }
-                
-                
-//                cell.btnPlay.touchUpInside { (action) in
-//                    if let videoUrl = dict.valueForString(key: "url") as? String {
-//                        let videoURL = URL(string: videoUrl)
-//                        let player = AVPlayer(url: videoURL!)
-//                        let playerViewController = AVPlayerViewController()
-//                        playerViewController.player = player
-//                        self.viewController?.present(playerViewController, animated: true) {
-//                            playerViewController.player!.play()
-//                        }
-//                    }
- //               }
-                
+            
                 return cell
             }
             
@@ -154,7 +156,7 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+   /* func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         if arrImgVideo.count > 0 {
 
@@ -169,7 +171,7 @@ extension ImageZoomView: UICollectionViewDelegate, UICollectionViewDataSource, U
                 }
             }
         }
-    }
+    } */
 }
 
 // MARK:- ------- UIScrollView Delegate

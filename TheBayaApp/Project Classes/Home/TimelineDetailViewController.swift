@@ -280,7 +280,10 @@ extension TimelineDetailViewController : UITableViewDelegate, UITableViewDataSou
                         
                         if let arrImages = dict.valueForJSON(key: "media") as? [String] {
                             if arrImages.count > 0{
+                                cell.collImg.isHidden = false
                                 cell.loadSliderImagesIpad(images: arrImages, isGif: mediaType == 1 ? false : true)
+                            } else {
+                                cell.collImg.isHidden = true
                             }
                         }
                         
@@ -776,7 +779,8 @@ extension TimelineDetailViewController {
         if arrProject.count - 1 >= currentIndex{
             let dic = arrProject[currentIndex]
             apiTask = APIRequest.shared().fetchTimelineList(dic.valueForInt(key: CProjectId), startDate: startDate, endDate: endDate, page : pageIndexForApi,shouldShowLoader : shouldShowLoader) { (response, error) in
-                self.apiTask?.cancel()
+                
+                MILoader.shared.hideLoader()
                 self.refreshControl.endRefreshing()
                 //self.activityLoader.stopAnimating()
                 

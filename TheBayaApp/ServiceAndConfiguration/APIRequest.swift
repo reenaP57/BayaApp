@@ -1515,7 +1515,6 @@ extension APIRequest {
         }
         
         return Networking.sharedInstance.POST(apiTag: CAPITagTimeline, param: para as [String : AnyObject], successBlock: { (task, response) in
-           MILoader.shared.hideLoader()
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagTimeline){
                 completion(response, nil)
             }

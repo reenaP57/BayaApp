@@ -40,7 +40,6 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
     
     func loadSliderImagesIpad(images : [String], isGif : Bool?) {
         isGifImages = isGif!
-        
         if isGifImages{
             imgVUpdate.sd_setImage(with: URL(string: images.first!), completed: nil)
             imgVUpdate.sd_cacheFLAnimatedImage = false
@@ -49,12 +48,13 @@ class TimeLineUpdateTblCell_ipad: UITableViewCell {
             imgVUpdate.sd_setImage(with: URL(string: images.first!), placeholderImage: nil, options: .retryFailed, completed: nil)
         }
         
+        arrImg.removeAll()
+        
         if images.count > 1{
             arrImg = images
             arrImg.remove(at: 0)    // Remove first object...
-            collImg.reloadData()
         }
-        
+        collImg.reloadData()
     }
 
 }

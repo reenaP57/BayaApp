@@ -455,7 +455,8 @@ class ProjectDetailViewController: ParentViewController {
         
         //...Zoom Image and video
         if let zoomView = ImageZoomView.initImageZoomView() {
-            appDelegate.window.addSubview(zoomView)
+            self.view.addSubview(zoomView)
+          //  appDelegate.window.addSubview(zoomView)
             zoomView.showImageAndVideo(arrProjectImg)
             zoomView.CViewSetY(y: CScreenHeight)
             UIView.animate(withDuration: 0.3) {

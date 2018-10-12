@@ -74,6 +74,7 @@
 		489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6B212293AA00080739 /* login_bg_ipad.jpg */; };
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
 		5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */; };
+		5C072084217064EC009EC492 /* SampleVideo_640x360_20mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */; };
 		5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4221479AEC00658633 /* NoInternetView.swift */; };
 		5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4521479B2000658633 /* NoInternetView.xib */; };
 		5C0CF76A215223FD009979FE /* LocationAdvantagesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */; };
@@ -245,6 +246,7 @@
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
 		5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHomeCollCell.swift; sourceTree = "<group>"; };
+		5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleVideo_640x360_20mb.mp4; sourceTree = "<group>"; };
 		5C0CBF4221479AEC00658633 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		5C0CBF4521479B2000658633 /* NoInternetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
 		5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAdvantagesLayout.swift; sourceTree = "<group>"; };
@@ -606,6 +608,7 @@
 		489A5F67212293AA00080739 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */,
 				489A5F68212293AA00080739 /* bg.jpg */,
 				489A5F69212293AA00080739 /* bg_ipad.jpg */,
 				489A5F6A212293AA00080739 /* login_bg.jpg */,
@@ -844,6 +847,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5C072084217064EC009EC492 /* SampleVideo_640x360_20mb.mp4 in Resources */,
 				489A5F6C212293AA00080739 /* bg.jpg in Resources */,
 				487E4E6C211C4CD8000CB32F /* AvenirLTStd-MediumOblique.otf in Resources */,
 				5C42C8C7211AB5AC00907DBB /* LRF_ipad.storyboard in Resources */,
