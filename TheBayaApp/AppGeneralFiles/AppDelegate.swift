@@ -189,6 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func initHomeViewController() {
         appDelegate.tabbarViewcontroller = TabbarViewController.initWithNibName() as? TabbarViewController
+        self.tabbarView?.lblCount.isHidden = true
         appDelegate.setWindowRootViewController(rootVC: appDelegate.tabbarViewcontroller, animated: true, completion: nil)
     }
     

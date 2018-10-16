@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gnZ-sy-4VW">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gnZ-sy-4VW">
     <device id="ipad9_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -107,7 +105,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="44C-7z-e8K" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="175.5" y="589.5" width="416" height="60"/>
+                                <rect key="frame" x="176" y="589.5" width="416" height="60"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="21"/>
                                 <state key="normal" title="Login">
@@ -129,7 +127,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1J1-op-8Vz">
-                                <rect key="frame" x="301.5" y="705" width="164" height="30"/>
+                                <rect key="frame" x="302" y="705" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="hrq-iL-Nlq"/>
                                     <constraint firstAttribute="width" constant="164" id="vcT-y6-gfH"/>
@@ -404,6 +402,7 @@
                     <connections>
                         <outlet property="btnRememberMe" destination="ClK-i9-hOL" id="bjK-UO-1Ps"/>
                         <outlet property="btnTerms" destination="AB8-Vw-Sqe" id="e8N-Sr-PfK"/>
+                        <outlet property="imgVBg" destination="llV-62-rWG" id="XKl-g4-vOG"/>
                         <outlet property="lblTerms" destination="OYE-aH-dbx" id="Ogz-Vr-qZo"/>
                         <outlet property="txtConfirmPwd" destination="SED-28-baf" id="ELA-wh-0fn"/>
                         <outlet property="txtCountryCode" destination="MWg-Tk-5vB" id="8mG-iT-yNa"/>
@@ -503,6 +502,7 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="eNO-gR-EAg" id="K9a-xU-Lzy"/>
                         <outlet property="lblNote" destination="hmp-Pa-mPx" id="jou-e2-uee"/>
                         <outlet property="txtCode" destination="ILE-fo-2mu" id="GuY-wj-etZ"/>
                         <outlet property="vwContent" destination="JsS-9z-3oR" id="bHF-qJ-NyD"/>
@@ -539,7 +539,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4bP-jn-rE9">
-                                <rect key="frame" x="177" y="285.5" width="74" height="58"/>
+                                <rect key="frame" x="177" y="285" width="74" height="58"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="74" id="2V5-Ea-T3T"/>
@@ -549,7 +549,7 @@
                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvO-bz-LNa">
-                                <rect key="frame" x="249" y="303.5" width="1" height="25"/>
+                                <rect key="frame" x="249" y="303" width="1" height="25"/>
                                 <color key="backgroundColor" red="0.62352941179999999" green="0.59607843140000005" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="5Hc-MR-rGI"/>
@@ -557,7 +557,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email/Mobile Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nYJ-rb-kyJ">
-                                <rect key="frame" x="251" y="285.5" width="339" height="58"/>
+                                <rect key="frame" x="251" y="285" width="339" height="58"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="18"/>
@@ -567,7 +567,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bWH-m7-Sdx" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="176" y="415.5" width="416" height="60"/>
+                                <rect key="frame" x="176" y="415" width="416" height="60"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="bWH-m7-Sdx" secondAttribute="height" multiplier="104:15" id="nb0-M2-zPm"/>
@@ -617,6 +617,7 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="n42-7j-gHM" id="3fx-4k-24n"/>
                         <outlet property="txtCountryCode" destination="4bP-jn-rE9" id="ca6-lI-l2C"/>
                         <outlet property="txtEmail" destination="nYJ-rb-kyJ" id="3jo-Ip-ca9"/>
                         <outlet property="vwContent" destination="ep1-eE-TtN" id="m9L-ZJ-HKM"/>
@@ -740,6 +741,7 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="YDo-3C-ztu" id="Rum-t9-Oea"/>
                         <outlet property="lblNote" destination="wbF-JI-Vw1" id="pZf-i7-mrQ"/>
                         <outlet property="txtCode" destination="Cx4-Gn-y5a" id="usL-dr-MTU"/>
                         <outlet property="txtConfirmPwd" destination="6Ch-2z-CIp" id="odu-sJ-xQS"/>
@@ -777,7 +779,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tutorial1" translatesAutoresizingMaskIntoConstraints="NO" id="Kqg-ZJ-Hyc">
-                                                    <rect key="frame" x="259" y="250" width="250" height="198"/>
+                                                    <rect key="frame" x="259" y="277" width="250" height="198"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Details" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i4J-M8-Jbu" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="508" width="738" height="34.5"/>
@@ -796,10 +798,9 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="HNS-pt-TvI" firstAttribute="trailing" secondItem="i4J-M8-Jbu" secondAttribute="trailing" id="O6E-f3-4r3"/>
+                                            <constraint firstItem="Kqg-ZJ-Hyc" firstAttribute="centerY" secondItem="zmP-kA-D5f" secondAttribute="centerY" multiplier="0.9" id="OTS-ck-Va9"/>
+                                            <constraint firstItem="i4J-M8-Jbu" firstAttribute="top" secondItem="Kqg-ZJ-Hyc" secondAttribute="bottom" constant="33" id="PpC-Si-myp"/>
                                             <constraint firstItem="i4J-M8-Jbu" firstAttribute="leading" secondItem="zmP-kA-D5f" secondAttribute="leading" constant="15" id="PqG-BR-Gup"/>
-                                            <constraint firstItem="i4J-M8-Jbu" firstAttribute="top" secondItem="Kqg-ZJ-Hyc" secondAttribute="bottom" constant="60" id="Qk1-u8-xIP"/>
-                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HNS-pt-TvI" secondAttribute="bottom" constant="10" id="XnW-5f-Y3m"/>
-                                            <constraint firstItem="Kqg-ZJ-Hyc" firstAttribute="top" secondItem="zmP-kA-D5f" secondAttribute="top" constant="250" id="Xsa-fx-FTp"/>
                                             <constraint firstItem="HNS-pt-TvI" firstAttribute="leading" secondItem="i4J-M8-Jbu" secondAttribute="leading" id="YOz-ZP-Kyu"/>
                                             <constraint firstItem="HNS-pt-TvI" firstAttribute="top" secondItem="i4J-M8-Jbu" secondAttribute="bottom" constant="30" id="c6J-0S-YAT"/>
                                             <constraint firstItem="Kqg-ZJ-Hyc" firstAttribute="centerX" secondItem="zmP-kA-D5f" secondAttribute="centerX" id="hZO-se-Ef5"/>

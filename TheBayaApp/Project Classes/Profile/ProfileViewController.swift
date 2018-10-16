@@ -64,7 +64,6 @@ class ProfileViewController: ParentViewController {
 extension ProfileViewController {
     
     @IBAction func btnEditProfileClicked (sender : UIButton) {
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Edit Profile")
 
         if  let editProfileVC = CStoryboardSetting.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
             self.navigationController?.pushViewController(editProfileVC, animated: true)
@@ -107,16 +106,12 @@ extension ProfileViewController: UITableViewDelegate,UITableViewDataSource {
         switch indexPath.row {
         case 0:
             //...Schedule a Visit
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Profile Schedule Visit")
-
             if  let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                 self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
             }
             
         case 1:
             //...My Subscribed Projects
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Profile ")
-
             if let subscribedVC = CStoryboardProfile.instantiateViewController(withIdentifier: "SubscribedProjectViewController") as? SubscribedProjectViewController {
                 self.navigationController?.pushViewController(subscribedVC, animated: true)
             }

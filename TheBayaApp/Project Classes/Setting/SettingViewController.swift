@@ -11,6 +11,7 @@ import UIKit
 class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
+    @IBOutlet fileprivate weak var imgVBg: UIImageView!
 
     let arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
 
@@ -221,7 +222,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
         switch arrSetting[indexPath.row] {
         case CEditProfile:
             //...Edit Profile
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting EditProfile")
 
             if  let editProfileVC = CStoryboardSetting.instantiateViewController(withIdentifier: "EditProfileViewController") as? EditProfileViewController {
                 self.navigationController?.pushViewController(editProfileVC, animated: true)
@@ -229,8 +229,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
       
         case CChangePassword:
             //...Change Password
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting ChangePassword")
-
             if let changePwdVC = CStoryboardSetting.instantiateViewController(withIdentifier: "ChangePasswordViewController") as? ChangePasswordViewController {
                 self.navigationController?.pushViewController(changePwdVC, animated: true)
             }
@@ -241,13 +239,10 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             if let cmsVC = CStoryboardSettingIphone.instantiateViewController(withIdentifier: "CMSViewController") as? CMSViewController {
                
                 if arrSetting[indexPath.row] == CTermsConditions {
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting TermsCondition")
                     cmsVC.cmsEnum = .TermsCondition
                 } else if arrSetting[indexPath.row] == CPrivacyPolicy {
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting PrivacyPolicy")
                     cmsVC.cmsEnum = .PrivacyPolicy
                 } else {
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting AboutUs")
                     cmsVC.cmsEnum = .AboutUs
                 }
    
@@ -256,7 +251,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
         case CAppSupport:
             //...Support
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting Support")
 
             if let supportVC = CStoryboardSetting.instantiateViewController(withIdentifier: "SupportViewController") as? SupportViewController {
                 self.navigationController?.pushViewController(supportVC, animated: true)
@@ -264,7 +258,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
         case CRateApp:
             //...Rate App
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Setting RateApp")
             self.openInSafari(strUrl: "www.google.com")
             break
            
@@ -294,7 +287,9 @@ extension SettingViewController {
         APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push, smsNotify:sms ) { (response, error) in
             
             if response != nil && error == nil {
-
+                self.imgVBg.isHidden = false
+            } else{
+                self.imgVBg.isHidden = true
             }
         }
     }
@@ -302,7 +297,10 @@ extension SettingViewController {
     func userDetail() {
         APIRequest.shared().userDetail { (response, error) in
             if response != nil && error == nil {
+                self.imgVBg.isHidden = false
                 self.tblSettings.reloadData()
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }

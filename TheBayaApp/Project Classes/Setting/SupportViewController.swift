@@ -18,7 +18,8 @@ class SupportViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var imgVUpload : UIImageView!
     @IBOutlet fileprivate weak var vwMsg : UIView!
-    
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
+
     var imgData = Data()
     
     override func viewDidLoad() {
@@ -173,12 +174,14 @@ extension SupportViewController {
         APIRequest.shared().support(dict: dict as [String : AnyObject], imgData: imgData) { (response, error) in
             
             if response != nil && error == nil {
-                
+                self.imgVBg.isHidden = false
                 self.showAlertView(CSuccessSupportMessage, completion: { (result) in
                     if result {
                         self.navigationController?.popViewController(animated: true)
                     }
                 })
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }

@@ -34,7 +34,8 @@ class RateYoorVisitViewController: ParentViewController {
             vwReview.layer.cornerRadius = 3
         }
     }
-    
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
+
     var visitId = 0
     
     override func viewDidLoad() {
@@ -133,7 +134,7 @@ extension RateYoorVisitViewController {
         APIRequest.shared().rateVisit(visitId: self.visitId, rating: Int(vwRating.rating), desc: txtVFeedback.text) { (response, error) in
             
             if response != nil && error == nil {
-                
+                self.imgVBg.isHidden = false
                 self.showAlertView(CSuccessRateVisitMessage, completion: { (result) in
                     
                     if result {
@@ -161,6 +162,8 @@ extension RateYoorVisitViewController {
                         }
                     }
                 })
+            } else{
+                self.imgVBg.isHidden = true
             }
         }
     }

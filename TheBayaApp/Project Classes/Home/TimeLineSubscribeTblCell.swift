@@ -104,7 +104,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             cell.btnSubscribe.isSelected = indexPath == favProjectIndexPath
            
             cell.btnSubscribe.touchUpInside { (sender) in
-                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine subscribe")
                 var isFavType = 0
                 if !cell.btnSubscribe.isSelected{
                     isFavType = 1
@@ -150,7 +149,7 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
             
             cell.btnCall.touchUpInside { (sender) in
                 
-                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine Call")
+                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "call_timeline")
                 
                 let arrMobileNo = dict.valueForJSON(key: "contactDetail") as! [[String : AnyObject]]
                 
@@ -187,8 +186,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 
                 cell.btnScheduleVisit.touchUpInside { (sender) in
                     
-                     MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine ScheduleVisit")
-                    
                     cell.btnScheduleVisit.alpha = 0.8
                     GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
                         cell.btnScheduleVisit.alpha = 1.0
@@ -200,7 +197,6 @@ extension TimeLineSubscribeTblCell : UICollectionViewDelegateFlowLayout, UIColle
                 }
                 
                 cell.btnProjectDetail.touchUpInside { (sender) in
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine ProjectDetail")
                     
                     cell.btnProjectDetail.alpha = 0.8
                     GCDMainThread.asyncAfter(deadline: .now() + 0.08) {

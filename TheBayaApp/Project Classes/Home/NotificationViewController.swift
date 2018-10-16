@@ -13,6 +13,7 @@ class NotificationViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblNotification : UITableView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     @IBOutlet fileprivate weak var lblNoData : UILabel!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
 
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
@@ -138,7 +139,6 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             }
             
             cell.btnRateVisit.touchUpInside { (sender) in
-                MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Notification RateVisit")
 
                 if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
                     rateVisitVC.visitId = dict.valueForInt(key: "visitId")!
@@ -232,6 +232,8 @@ extension NotificationViewController {
             
             if response != nil && error == nil {
                 
+                self.imgVBg.isHidden = false
+                
                 if self.currentPage == 1 {
                     self.arrNotification.removeAll()
                 }
@@ -253,6 +255,8 @@ extension NotificationViewController {
                 
                 self.lblNoData.isHidden = self.arrNotification.count != 0
                 self.tblNotification.reloadData()
+            } else {
+                self.imgVBg.isHidden = true
             }
         })
     }

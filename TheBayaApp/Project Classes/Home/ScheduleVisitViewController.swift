@@ -47,7 +47,7 @@ class ScheduleVisitViewController: ParentViewController {
         }
     }
     @IBOutlet fileprivate weak var vwPurpose : UIView!
-
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
     
     var dateSlot1 = Date()
     var dateSlot2 = Date()
@@ -248,7 +248,7 @@ extension ScheduleVisitViewController {
     
     @IBAction func btnSubmitClicked (sender : UIButton) {
 
-        GCDMainThread.asyncAfter(deadline: .now() + 1.0) {
+        GCDMainThread.asyncAfter(deadline: .now() + 0.5) {
             
             if (self.txtSlot1.text?.isBlank)! {
                 self.vwContent.addSubview(self.txtSlot1.showValidationMessage(Gap,CBlankTimeSlot1Message))
@@ -281,11 +281,16 @@ extension ScheduleVisitViewController {
                 self.txtNoOfGuest.hideValidationMessage(Gap)
                 self.txtSelectProject.hideValidationMessage(45)
                 
-                self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(Gap, CBlankPurposeOfVisitMessage,self.vwPurpose.CViewX, self.vwPurpose.CViewY))
-                self.txtVPurpose.textfiledAddRemoveShadow(true)
-                self.showValidation(isAdd: true)
-                _ = self.vwPurpose.setConstraintConstant(IS_iPad ? (30/2) + 30 + lblMessage.frame.size.height :(15/2) + 15 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
+                GCDMainThread.async {
+                    self.vwContent.addSubview(self.txtVPurpose.showValidationMessage(Gap, CBlankPurposeOfVisitMessage,self.vwPurpose.CViewX, self.vwPurpose.CViewY))
+                    self.txtVPurpose.textfiledAddRemoveShadow(true)
+                    self.showValidation(isAdd: true)
+                }
                 
+                
+               
+                _ = self.vwPurpose.setConstraintConstant(IS_iPad ? (20/2) + 20 + lblMessage.frame.size.height :(15/2) + 15 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
+ 
             } else if (self.txtNoOfGuest.text?.isBlank)! {
                
                 self.txtSlot1.hideValidationMessage(Gap)
@@ -313,20 +318,11 @@ extension ScheduleVisitViewController {
                 
                 self.showAlertView(CDuplicateTimeSlotMessage, completion: { (result) in
                 })
-                
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
-                
             }
-//            else if (self.txtSlot1.text == self.txtSlot2.text) ||  (self.txtSlot2.text == self.txtSlot3.text) || (self.txtSlot1.text == self.txtSlot3.text) {
-//
-//                self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: CDuplicateTimeSlotMessage, btnOneTitle: CBtnOk, btnOneTapped: nil)
-//
-//            }
             else {
                 self.scheduleVisit()
             }
         }
-     
     }
 }
 
@@ -369,7 +365,7 @@ extension ScheduleVisitViewController {
         _ = APIRequest.shared().getProjectList(1, false, completion: { (response, error) in
             
             if response != nil && error == nil {
-                
+                self.imgVBg.isHidden = false
                 let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
                 
                 if arrData.count > 0 {
@@ -390,6 +386,8 @@ extension ScheduleVisitViewController {
                     }
                     
                 }
+            } else {
+                self.imgVBg.isHidden = true
             }
         })
     }
@@ -414,13 +412,14 @@ extension ScheduleVisitViewController {
         APIRequest.shared().scheduleVisit(dict: dict as [String : AnyObject]) { (response, error) in
 
             if response != nil && error == nil {
-
+                self.imgVBg.isHidden = false
                 self.showAlertView(CSuccessScheduleVisitMessage, completion: { (result) in
                     if result {
-                        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ScheduleVisit Submit")
                         self.navigationController?.popViewController(animated: true)
                     }
                 })
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
         

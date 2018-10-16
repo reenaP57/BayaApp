@@ -13,6 +13,8 @@ class VisitDetailsViewController: ParentViewController {
     @IBOutlet weak var tblVVisitDetails: UITableView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     @IBOutlet fileprivate weak var lblNoData : UILabel!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
+    
     
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
@@ -50,11 +52,6 @@ class VisitDetailsViewController: ParentViewController {
         //...Load Visit detail list
         self.loadVisitList(showLoader: true, isFromNotification : false)
 
-        if IS_iPhone {
-            tblVVisitDetails.estimatedRowHeight = 125
-            tblVVisitDetails.rowHeight = UITableViewAutomaticDimension
-        }
-
     }
     
     func RefreshRatingVisit(visitId : Int, rating : Int) {
@@ -91,13 +88,30 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
 
         if IS_iPad {
             if dict.valueForInt(key: "visitStatus") == CScheduled || dict.valueForInt(key: "visitStatus") == CRescheduled {
-                return CScreenWidth * 250/768
-            } else {
+                return UITableViewAutomaticDimension
+            }
+            else {
                 return CScreenWidth * 155/768
             }
         }
 
         return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        let dict = arrVisitList[indexPath.row]
+        
+        if IS_iPad {
+            if dict.valueForInt(key: "visitStatus") == CScheduled || dict.valueForInt(key: "visitStatus") == CRescheduled {
+                return 125
+            }
+            else {
+                return CScreenWidth * 155/768
+            }
+        }
+        
+        return 125
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,6 +141,8 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                 cell.backgroundColor = UIColor.clear
                 
                 cell.btnCall.touchUpInside { (sender) in
+                    
+                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "call_sales_agent")
                     self.dialPhoneNumber(phoneNumber: (dict.valueForString(key: "salesMgrContact")))
                 }
                 
@@ -233,7 +249,7 @@ extension VisitDetailsViewController {
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
-
+                self.imgVBg.isHidden = false
                 if self.currentPage == 1{
                     self.arrVisitList.removeAll()
                 }
@@ -243,7 +259,7 @@ extension VisitDetailsViewController {
                         self.arrVisitList = arrData
                     }
                 }
-              
+                
                 if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
                     self.lastPage = metaData.valueForInt(key: CLastPage)!
                     
@@ -251,9 +267,11 @@ extension VisitDetailsViewController {
                         self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
                     }
                 }
-             
+                
                 self.lblNoData.isHidden = self.arrVisitList.count != 0
                 self.tblVVisitDetails.reloadData()
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }

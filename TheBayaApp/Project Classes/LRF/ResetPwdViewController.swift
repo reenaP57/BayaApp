@@ -15,6 +15,7 @@ class ResetPwdViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtConfirmPwd : UITextField!
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var lblNote : UILabel!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
 
     var isEmail : Bool = false
     var strEmailMobile = ""
@@ -161,8 +162,11 @@ extension ResetPwdViewController {
             
             if response != nil && error == nil {
 
+                self.imgVBg.isHidden = false
                 self.showAlertView(self.isEmail ? "\(CResetCodeEmailMessage) [\(self.strEmailMobile)]." :"\(CResetCodeMobileMessage) [\(self.strEmailMobile)].", completion: { (result) in
                 })
+            } else {
+                 self.imgVBg.isHidden = true
             }
         }
     }
@@ -174,7 +178,7 @@ extension ResetPwdViewController {
         APIRequest.shared().resetPassword(dict) { (response, error) in
             
             if response != nil && error == nil {
-                
+                 self.imgVBg.isHidden = false
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
@@ -183,6 +187,8 @@ extension ResetPwdViewController {
                         self.navigationController?.popToRootViewController(animated: true)
                     }
                 })
+            } else {
+                 self.imgVBg.isHidden = true
             }
         }
     }

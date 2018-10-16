@@ -134,6 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="8gZ-v3-dA4"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="znj-xC-gxY" id="gwF-qS-FeK"/>
                         <outlet property="tblSettings" destination="17e-D9-5nd" id="LtG-Sb-MuJ"/>
                     </connections>
                 </viewController>
@@ -239,6 +240,7 @@
                         <viewLayoutGuide key="safeArea" id="1Sd-O5-K9H"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="y3f-kH-Kbp" id="pvq-6A-ObI"/>
                         <outlet property="txtConfirmPwd" destination="25a-Rg-zcQ" id="HEy-UD-Rkp"/>
                         <outlet property="txtCurrentPwd" destination="GlZ-Fy-Zzr" id="Etv-q4-fig"/>
                         <outlet property="txtNewPwd" destination="Mow-u1-Awc" id="amD-6A-340"/>
@@ -373,6 +375,7 @@
                         <viewLayoutGuide key="safeArea" id="2No-TK-qyC"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="Whn-7y-oPd" id="4G6-ZO-gDh"/>
                         <outlet property="lblSupport" destination="4YP-gn-BEG" id="ddM-ic-wxr"/>
                         <outlet property="txtCountryCode" destination="M6K-aR-qGY" id="bOH-ik-0i6"/>
                         <outlet property="txtEmail" destination="Ne1-aV-5yo" id="Qw8-h0-her"/>
@@ -520,6 +523,7 @@
                         <viewLayoutGuide key="safeArea" id="yRJ-y8-viq"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="oZg-Xz-c79" id="IHF-Rx-FK3"/>
                         <outlet property="imgVUpload" destination="j5j-Ka-K9Y" id="Le4-BW-BH0"/>
                         <outlet property="txtVMsg" destination="cGs-w5-vFE" id="Uz1-C4-WOJ"/>
                         <outlet property="vwMsg" destination="eYT-yV-CLM" id="qF8-L6-gEX"/>

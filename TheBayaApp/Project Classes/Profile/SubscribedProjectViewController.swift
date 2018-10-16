@@ -13,6 +13,7 @@ class SubscribedProjectViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblSubscribedList : UITableView!
     @IBOutlet fileprivate weak var activityLoader : UIActivityIndicatorView!
     @IBOutlet fileprivate weak var lblNoData : UILabel!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
 
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
@@ -128,7 +129,7 @@ extension SubscribedProjectViewController {
             self.refreshControl.endRefreshing()
             
             if response != nil && error == nil {
-                
+                self.imgVBg.isHidden = false
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     if arrData.count > 0 {
                         if arrData.count != self.arrSubscribeList.count {
@@ -140,6 +141,8 @@ extension SubscribedProjectViewController {
                 
                 self.lblNoData.isHidden = self.arrSubscribeList.count != 0
                 self.tblSubscribedList.reloadData()
+            } else {
+                self.imgVBg.isHidden = true
             }
         })
     }

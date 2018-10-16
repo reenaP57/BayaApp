@@ -129,13 +129,6 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
                         
                         cell.btnSubscribe.isSelected = !cell.btnSubscribe.isSelected
                         
-                        if cell.btnSubscribe.isSelected {
-                            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project Subscribe")
-                        } else {
-                            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project Unsubscribe")
-                        }
-                        
-                        
                         APIRequest.shared().subcribedProject(dict.valueForInt(key: CProjectId)!, type: cell.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
                             
                             if response != nil && error == nil {

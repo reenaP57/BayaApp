@@ -7,6 +7,7 @@
 //
 
 import Foundation
+//import FirebaseAnalytics
 
 class MIGoogleAnalytics: NSObject {
     

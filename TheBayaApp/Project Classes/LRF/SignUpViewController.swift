@@ -21,6 +21,7 @@ class SignUpViewController: ParentViewController {
     @IBOutlet fileprivate weak var btnTerms : UIButton!
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var lblTerms : UILabel!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
 
     var countryID : Int = 356 //India country ID
 
@@ -245,6 +246,7 @@ extension SignUpViewController {
             
             if response != nil && error == nil {
                 
+                self.imgVBg.isHidden = false
                 let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
 
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
@@ -261,6 +263,8 @@ extension SignUpViewController {
                 } else {
                     self.navigateToVerification(code : dataResponse.valueForString(key: "verifyCode"))
                 }
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }

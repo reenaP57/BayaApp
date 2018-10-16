@@ -137,6 +137,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="AOl-pg-prH" id="ieQ-TF-a84"/>
                         <outlet property="tblSettings" destination="XzS-s2-wT2" id="lEh-aa-FPu"/>
                     </connections>
                 </viewController>
@@ -246,6 +247,7 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="ypz-QN-G9p" id="egV-aQ-nGP"/>
                         <outlet property="txtConfirmPwd" destination="T6V-vZ-4Jl" id="ZQa-nt-7ri"/>
                         <outlet property="txtCurrentPwd" destination="nlF-SW-MJL" id="1Ka-h7-WLo"/>
                         <outlet property="txtNewPwd" destination="Wzr-OO-1w4" id="bbu-nX-2Zp"/>
@@ -386,6 +388,7 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="bPc-Ek-inp" id="NnO-qI-77Z"/>
                         <outlet property="lblSupport" destination="1d9-cJ-CDH" id="8Rl-pc-E0j"/>
                         <outlet property="txtCountryCode" destination="A17-jj-N9V" id="ErN-Gg-ChW"/>
                         <outlet property="txtEmail" destination="2pB-bL-wZB" id="4BT-jD-oam"/>
@@ -535,6 +538,7 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="imgVBg" destination="3lG-7j-woX" id="Js9-fa-CZo"/>
                         <outlet property="imgVUpload" destination="EDI-4h-TsI" id="ll0-fj-d9L"/>
                         <outlet property="txtVMsg" destination="cEJ-fW-o5X" id="buU-cy-Raa"/>
                         <outlet property="vwMsg" destination="5Ap-Il-dgZ" id="aaS-Pw-yfv"/>

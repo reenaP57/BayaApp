@@ -14,6 +14,7 @@ class ChangePasswordViewController: ParentViewController {
     @IBOutlet weak var txtNewPwd: UITextField!
     @IBOutlet weak var txtConfirmPwd: UITextField!
     @IBOutlet weak var vwContent: UIView!
+    @IBOutlet weak var imgVBg: UIImageView!
 
     var isFromLogin : Bool = false
     var isRememberMe : Bool = false
@@ -108,7 +109,7 @@ extension ChangePasswordViewController {
         APIRequest.shared().changePassword(txtCurrentPwd.text, txtConfirmPwd.text) { (response, error) in
             
             if response != nil && error == nil {
-                
+                self.imgVBg.isHidden = false
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
@@ -134,6 +135,8 @@ extension ChangePasswordViewController {
                         }
                     })
                 }
+            } else{
+                self.imgVBg.isHidden = true
             }
         }
     }

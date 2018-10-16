@@ -784,7 +784,7 @@ extension TimelineDetailViewController {
                 self.refreshControl.endRefreshing()
                 //self.activityLoader.stopAnimating()
                 
-                if response != nil{
+                if response != nil && error == nil{
                     
                     if self.pageIndexForApi == 1{
                         self.arrUpdateList.removeAll()

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8e-d4-dSo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="U8e-d4-dSo">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -165,7 +163,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_baya_logo" translatesAutoresizingMaskIntoConstraints="NO" id="kOq-If-vap">
-                                <rect key="frame" x="104" y="85" width="166" height="103"/>
+                                <rect key="frame" x="104.5" y="85" width="166" height="103"/>
                             </imageView>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ZW-vh-Zf3" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                 <rect key="frame" x="15" y="240" width="345" height="50"/>
@@ -187,7 +185,7 @@
                                 </connections>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Qc-yh-A2f">
-                                <rect key="frame" x="80" y="253" width="1" height="25"/>
+                                <rect key="frame" x="80" y="252.5" width="1" height="25"/>
                                 <color key="backgroundColor" red="0.62352941179999999" green="0.59607843140000005" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="8gO-gy-yxI"/>
@@ -195,7 +193,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="+91" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="h3K-sF-8m1">
-                                <rect key="frame" x="16" y="241.5" width="64" height="47"/>
+                                <rect key="frame" x="16" y="241" width="64" height="47"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="64" id="UbG-e9-CdQ"/>
@@ -226,7 +224,7 @@
                                 <state key="selected" image="select_remember"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quI-8K-81s" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="45" y="378.5" width="87.5" height="18"/>
+                                <rect key="frame" x="45" y="378" width="87.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -273,13 +271,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New user? Sign Up" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hWF-wv-Hsh">
-                                <rect key="frame" x="131" y="542" width="112.5" height="18"/>
+                                <rect key="frame" x="131.5" y="542" width="112.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jMa-gz-wkL">
-                                <rect key="frame" x="105" y="536" width="164" height="30"/>
+                                <rect key="frame" x="105.5" y="536" width="164" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="9Qu-eO-aE3"/>
                                     <constraint firstAttribute="width" constant="164" id="Yg1-ff-dzL"/>
@@ -438,7 +436,7 @@
                                                 <state key="selected" image="select_remember"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Remember Me" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Taw-wD-QSb" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="45" y="457.5" width="87.5" height="18"/>
+                                                <rect key="frame" x="45" y="457" width="87.5" height="18"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -576,6 +574,7 @@
                     <connections>
                         <outlet property="btnRememberMe" destination="NC7-RY-XgJ" id="AmM-Gw-Lo8"/>
                         <outlet property="btnTerms" destination="Lm7-9E-cFi" id="phD-qP-l7w"/>
+                        <outlet property="imgVBg" destination="gw0-mq-iTm" id="2k7-e7-ulU"/>
                         <outlet property="lblTerms" destination="ENA-FZ-0lv" id="E3V-wM-5WP"/>
                         <outlet property="txtConfirmPwd" destination="r5W-hA-cdl" id="VeO-gm-7oM"/>
                         <outlet property="txtCountryCode" destination="hr8-8V-D3C" id="0Il-4J-we8"/>
@@ -674,6 +673,7 @@
                         <viewLayoutGuide key="safeArea" id="jNE-HN-sXt"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="HvJ-Dn-XbS" id="z9a-2J-TjL"/>
                         <outlet property="lblNote" destination="bl6-36-iU6" id="Aeq-gh-dpP"/>
                         <outlet property="txtCode" destination="DJX-7e-5Os" id="v8Q-9i-QV2"/>
                         <outlet property="vwContent" destination="avT-32-Vqs" id="h3d-KX-8K5"/>
@@ -794,6 +794,7 @@
                         <viewLayoutGuide key="safeArea" id="znH-KF-d7g"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="cTy-ev-B4j" id="6Id-Nk-61A"/>
                         <outlet property="lblNote" destination="513-4S-sKY" id="DHa-eY-Es6"/>
                         <outlet property="txtCountryCode" destination="emY-gZ-82i" id="65h-tZ-j8v"/>
                         <outlet property="txtEmail" destination="1IL-4z-Lrr" id="Xdg-5n-tcB"/>
@@ -917,6 +918,7 @@
                         <viewLayoutGuide key="safeArea" id="V6o-D2-DAD"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="SXO-Lz-PBm" id="PCU-2L-jpt"/>
                         <outlet property="lblNote" destination="Nqd-CP-i1L" id="ESX-J6-k6e"/>
                         <outlet property="txtCode" destination="bvK-1N-nXm" id="30Q-eT-W0y"/>
                         <outlet property="txtConfirmPwd" destination="nZn-LH-ItY" id="pqD-Rt-69D"/>

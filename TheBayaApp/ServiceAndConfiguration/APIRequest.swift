@@ -663,7 +663,7 @@ class APIRequest: NSObject {
 
         
         let noInternetVW = NoInternetView.viewFromNib(is_ipad: false) as? NoInternetView
-        noInternetVW?.frame = CGRect(x: 0, y: 64, width: CScreenWidth, height: CScreenHeight - 64)
+        noInternetVW?.frame = CGRect(x: 0, y: 0, width: CScreenWidth, height: CScreenHeight) //CGRect(x: 0, y: 64, width: CScreenWidth, height: CScreenHeight - 64)
         
         let net = NetworkReachabilityManager()
         net?.startListening()
@@ -950,7 +950,10 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                self.resendVerificationCode(dict, completion: completion)
+                self.checkInternetConnection {
+                    self.resendVerificationCode(dict, completion: completion)
+                }
+                
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResendVerification, error: error)
             }
@@ -977,7 +980,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.forgotPassword(dict: dict, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.forgotPassword(dict: dict, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagForgotPassword, error: error)
             }
@@ -1001,7 +1006,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.resetPassword(dict, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.resetPassword(dict, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagResetPassword, error: error)
             }
@@ -1030,7 +1037,10 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.userDetail(completion: completion)
+                self.checkInternetConnection {
+                    _ = self.userDetail(completion: completion)
+                }
+                
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagUserprofile, error: error)
             }
@@ -1057,7 +1067,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.editProfile(firstName, lastName, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.editProfile(firstName, lastName, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagEditProfile, error: error)
             }
@@ -1079,7 +1091,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, smsNotify: smsNotify, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, smsNotify: smsNotify, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotifyStatus, error: error)
             }
@@ -1105,7 +1119,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.changePassword(oldPwd, newPwd, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.changePassword(oldPwd, newPwd, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagChangePassword, error: error)
             }
@@ -1196,7 +1212,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.subcribedProject(projectId, type: type, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.subcribedProject(projectId, type: type, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagProjectSubscribe, error: error)
             }
@@ -1248,7 +1266,10 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.favouriteSubcribedProject(projectId, type: type, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.favouriteSubcribedProject(projectId, type: type, completion: completion)
+                }
+                
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagFavorite, error: error)
             }
@@ -1282,7 +1303,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.projectBrochure(projectId: projectId, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.projectBrochure(projectId: projectId, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagBrochure, error: error)
             }
@@ -1313,7 +1336,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.getAmenities(projectId: projectId, showLoader: showLoader, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.getAmenities(projectId: projectId, showLoader: showLoader, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagAmenities, error: error)
             }
@@ -1343,7 +1368,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.getLocationAdvantages(projectId: projectId, showLoader : showLoader, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.getLocationAdvantages(projectId: projectId, showLoader : showLoader, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagLocationAdvantages, error: error)
             }
@@ -1376,7 +1403,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.scheduleVisit(dict: dict, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.scheduleVisit(dict: dict, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagScheduleVisit, error: error)
             }
@@ -1407,7 +1436,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.getVisitList(page: page, showLoader : showLoader, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.getVisitList(page: page, showLoader : showLoader, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagVisitList, error: error)
             }
@@ -1432,7 +1463,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.rateVisit(visitId: visitId, rating: rating, desc: desc, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.rateVisit(visitId: visitId, rating: rating, desc: desc, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagRateVisit, error: error)
             }
@@ -1463,7 +1496,9 @@ extension APIRequest {
             completion(nil, error)
 
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.support(dict: dict, imgData: imgData, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.support(dict: dict, imgData: imgData, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSupport, error: error)
             }
@@ -1490,7 +1525,9 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.postVisitCount(postId: postId, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.postVisitCount(postId: postId, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagPostViewCount, error: error)
             }
@@ -1524,11 +1561,12 @@ extension APIRequest {
             completion(nil, error)
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
-                _ = self.fetchTimelineList(projectId, startDate: startDate, endDate: endDate, page: page, shouldShowLoader : shouldShowLoader, completion: completion)
+                self.checkInternetConnection {
+                    _ = self.fetchTimelineList(projectId, startDate: startDate, endDate: endDate, page: page, shouldShowLoader : shouldShowLoader, completion: completion)
+                }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
             }
-            
         })!
     }
     

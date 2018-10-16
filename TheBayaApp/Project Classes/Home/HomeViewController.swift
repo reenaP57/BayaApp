@@ -11,6 +11,8 @@ import UIKit
 class HomeViewController: ParentViewController {
 
     @IBOutlet fileprivate weak var collHome : UICollectionView!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
+
     var arrHome = [[String : AnyObject]]()
 
     override func viewDidLoad() {
@@ -48,8 +50,11 @@ class HomeViewController: ParentViewController {
         //... Load user detail from server
         APIRequest.shared().userDetail { (response, error) in
             if response != nil && error == nil {
+                self.imgVBg.isHidden = false
                 self.initialize()
                 self.collHome.reloadData()
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }
@@ -95,10 +100,19 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                 
                 if appDelegate.loginUser?.fav_project_id == 0 {
                     cell.vwProgress.isHidden = true
-                    _ = cell.imgVTitle.setConstraintConstant(50, edge: .top, ancestor: true)
+                    
+                    if IS_iPad {
+                        _ = cell.lblTitle.setConstraintConstant(40, edge: .centerY, ancestor: true)
+                    } else {
+                        _ = cell.imgVTitle.setConstraintConstant(50, edge: .top, ancestor: true)
+                    }
                 } else {
                     cell.vwProgress.isHidden = false
-                    _ = cell.imgVTitle.setConstraintConstant(30, edge: .top, ancestor: true)
+                    if IS_iPad {
+                        _ = cell.lblTitle.setConstraintConstant(0, edge: .centerY, ancestor: true)
+                    } else {
+                        _ = cell.imgVTitle.setConstraintConstant(30, edge: .top, ancestor: true)
+                    }
                 }
                 
                 return cell
@@ -134,21 +148,15 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
 
         switch indexPath.row {
         case 0: //...Timeline
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "TimeLine")
-            
             if let timeLineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
                 self.navigationController?.pushViewController(timeLineVC, animated: true)
             }
         case 1: //...Project
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Project")
-
             if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
                 self.navigationController?.pushViewController(projectVC, animated: true)
             }
             
         default: //...Schedule Visit
-            MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "Schedule Visit")
-
             if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                 self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
             }

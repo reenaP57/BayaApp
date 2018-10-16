@@ -514,12 +514,12 @@ extension ProjectDetailViewController {
     }
     
     @IBAction func btnLinkClicked (sender : UIButton) {
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "website_project_detail")
+
         self.openInSafari(strUrl: dictDetail.valueForString(key: "website"))
     }
     
     @IBAction func btnShareClicked (sender : UIButton) {
-        
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Share")
         
         //...Share project detail content
         let contactNo = (arrContactNo.mapValue(forKey: "mobileNo") as? [String])?.joined(separator: ",")
@@ -535,8 +535,6 @@ extension ProjectDetailViewController {
     
     @IBAction func btnScheduleVisitClicked (sender : UIButton) {
         
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail ScheduleVisit")
-        
         btnScheduleVisit.alpha = 0.8
         GCDMainThread.asyncAfter(deadline: .now() + 0.08) {
             self.btnScheduleVisit.alpha = 1.0
@@ -550,7 +548,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnProjectBrochureClicked (sender : UIButton) {
         
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Brochure")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "brochure_project_detail")
         
         //...For animation effect when clicked on button
         btnProjectBrochure.alpha = 0.8
@@ -576,12 +574,6 @@ extension ProjectDetailViewController {
               
                 self.btnSubscribe.isSelected ? self.btnSubscribe.setBackgroundImage(UIImage(named: "gradient_bg2"), for: .normal) : self.btnSubscribe.setBackgroundImage(UIImage(named: "gradient_bg1"), for: .normal)
                 self.btnSubscribe.isSelected = !sender.isSelected
-                
-                if self.btnSubscribe.isSelected {
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Subscribe")
-                } else {
-                    MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Unscubscribe")
-                }
                 
                 APIRequest.shared().subcribedProject(self.projectID, type: self.btnSubscribe.isSelected ? 1 : 0) { (response, error) in
                     
@@ -615,7 +607,7 @@ extension ProjectDetailViewController {
     
     @IBAction func btnCallClicked (sender : UIButton) {
         
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "ProjectDetail Call")
+        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "call_project_detail")
 
         if arrContactNo.count == 1 {
             //...For single contact no
@@ -709,8 +701,6 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSeeAllAmenitiesClicked (sender : UIButton) {
         
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "SeeAll Amenities")
-
         if let seeAllAmenitiesVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllAmenitiesViewController") as? SeeAllAmenitiesViewController {
             seeAllAmenitiesVC.projectId = self.projectID
             self.navigationController?.pushViewController(seeAllAmenitiesVC, animated: true)
@@ -719,8 +709,6 @@ extension ProjectDetailViewController {
     
     @IBAction func btnSeeAllLocationClicked (sender : UIButton) {
        
-        MIGoogleAnalytics.shared().trackCustomEvent(buttonName: "SeeAll Location Advantages")
-        
         if let seeAllLocVC = CStoryboardMain.instantiateViewController(withIdentifier: "SeeAllLocationAdvantagesViewController") as? SeeAllLocationAdvantagesViewController {
              seeAllLocVC.projectId = self.projectID
             self.navigationController?.pushViewController(seeAllLocVC, animated: true)

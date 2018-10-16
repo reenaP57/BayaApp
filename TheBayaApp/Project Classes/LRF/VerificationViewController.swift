@@ -13,6 +13,7 @@ class VerificationViewController: ParentViewController {
     @IBOutlet fileprivate weak var txtCode : UITextField!
     @IBOutlet fileprivate weak var lblNote : UILabel!
     @IBOutlet fileprivate weak var vwContent : UIView!
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
 
     var isEmailVerify : Bool = false
     var verifiyCode = ""
@@ -124,6 +125,8 @@ extension VerificationViewController {
             
             if response != nil && error == nil {
                 
+                self.imgVBg.isHidden = false
+                
                 let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
 
                 if self.isEmailVerify {
@@ -140,6 +143,8 @@ extension VerificationViewController {
                     }
                     appDelegate.initHomeViewController()
                 }
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }
@@ -149,9 +154,12 @@ extension VerificationViewController {
         APIRequest.shared().resendVerificationCode(dict) { (response, error) in
             
             if response != nil && error == nil {
+                self.imgVBg.isHidden = false
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 self.showAlertView(message, completion: { (result) in })
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }

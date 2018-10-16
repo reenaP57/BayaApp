@@ -296,6 +296,7 @@
                     </view>
                     <connections>
                         <outlet property="activityLoader" destination="YID-Yy-MPI" id="DRW-fn-loC"/>
+                        <outlet property="imgVBg" destination="zHL-O6-j5c" id="hyC-hk-qLb"/>
                         <outlet property="lblNoData" destination="E9a-OM-hJZ" id="ryJ-5o-LpZ"/>
                         <outlet property="tblSubscribedList" destination="mzF-uQ-c39" id="10h-aJ-lbf"/>
                     </connections>
@@ -662,6 +663,7 @@
                     </view>
                     <connections>
                         <outlet property="activityLoader" destination="LsI-Nv-y2E" id="4cv-sQ-r0t"/>
+                        <outlet property="imgVBg" destination="hHv-WM-69g" id="XXi-Yn-mHR"/>
                         <outlet property="lblNoData" destination="D8s-4b-ytR" id="Uvj-cC-TQy"/>
                         <outlet property="tblVVisitDetails" destination="ph9-KH-O6p" id="dwu-ZW-aMg"/>
                     </connections>
@@ -777,6 +779,7 @@
                         <viewLayoutGuide key="safeArea" id="E2w-ko-C1H"/>
                     </view>
                     <connections>
+                        <outlet property="imgVBg" destination="DRC-mn-as3" id="f0D-Ya-RII"/>
                         <outlet property="txtVFeedback" destination="rTZ-4t-UCM" id="zoP-LP-c5E"/>
                         <outlet property="vwContent" destination="EkN-82-gk1" id="4JA-v3-gkc"/>
                         <outlet property="vwRating" destination="sXu-pf-B6K" id="uBO-LI-MVv"/>

@@ -178,6 +178,17 @@ extension UITextView{
         self.textfiledAddRemoveShadow(false)
         //self.delegate = self
         
+//        DispatchQueue.main.asyncAfter(deadline: .now()+0.5) {
+//            lblMessage.tag = self.tag
+//            lblMessage.text = message
+//            lblMessage.frame = CGRect(x: xPoint + 8, y: yPoint + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+//            lblMessage.numberOfLines = 0
+//            lblMessage.textColor = CRGB(r: 247, g: 51, b: 52)
+//            lblMessage.font = CFontAvenir(size: 14, type: .roman).setUpAppropriateFont()
+//            lblMessage.sizeToFit()
+//            self.updateTextFiledBottomSpace((space/2) + space + lblMessage.frame.size.height)
+//        }
+        
         DispatchQueue.main.async {
             lblMessage.tag = self.tag
             lblMessage.text = message

@@ -26,7 +26,8 @@ class ForgotPwdViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var lblNote : UILabel!
     @IBOutlet fileprivate weak var vwSeprater : UIView!
-    
+    @IBOutlet fileprivate weak var imgVBg : UIImageView!
+
     var countryID : Int = 356 //India country ID
     
     override func viewDidLoad() {
@@ -226,6 +227,7 @@ extension ForgotPwdViewController {
             
             if response != nil && error == nil {
                 
+                self.imgVBg.isHidden = false
                 let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
 
                 if let resetPwdVC = CStoryboardLRF.instantiateViewController(withIdentifier: "ResetPwdViewController") as? ResetPwdViewController {
@@ -242,7 +244,8 @@ extension ForgotPwdViewController {
                     resetPwdVC.strEmailMobile = self.txtEmail.text!
                     self.navigationController?.pushViewController(resetPwdVC, animated: true)
                 }
-                
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }

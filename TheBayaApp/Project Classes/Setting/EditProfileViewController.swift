@@ -17,6 +17,7 @@ class EditProfileViewController: ParentViewController {
     @IBOutlet weak var txtMobileNumber: UITextField!
     @IBOutlet weak var vwContent: UIView!
     @IBOutlet weak var lblSupport: UILabel!
+    @IBOutlet weak var imgVBg: UIImageView!
 
 
     override func viewDidLoad() {
@@ -128,7 +129,7 @@ extension EditProfileViewController {
         APIRequest.shared().editProfile(txtFName.text, txtLName.text) { (response, error) in
             
             if response != nil && error == nil {
-                
+                self.imgVBg.isHidden = false
                 let metaData = response?.value(forKey: CJsonMeta) as! [String : AnyObject]
                 let message  = metaData.valueForString(key: CJsonMessage)
                 
@@ -137,6 +138,8 @@ extension EditProfileViewController {
                         self.navigationController?.popViewController(animated: true)
                     }
                 })
+            } else {
+                self.imgVBg.isHidden = true
             }
         }
     }
