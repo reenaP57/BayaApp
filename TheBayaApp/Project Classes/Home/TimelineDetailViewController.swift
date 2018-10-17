@@ -38,6 +38,7 @@ class TimelineDetailViewController: ParentViewController {
     
     var apiTask : URLSessionTask?
     var refreshControl = UIRefreshControl()
+    var isUpdatePost = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +50,16 @@ class TimelineDetailViewController: ParentViewController {
         appDelegate.hideTabBar()
         appDelegate.loginUser?.postBadge = 0
         CoreData.saveContext()
+        
+        //... For update post list when first time subscribe any project from project list
+        
+        GCDMainThread.asyncAfter(deadline: .now()+1.0) {
+            if self.arrProject.count != 0 && self.isUpdatePost {
+                self.showTimelineGuideLineView()
+                self.isUpdatePost = false
+            }
+        }
+      
     }
     
     override func didReceiveMemoryWarning() {
@@ -87,6 +98,7 @@ class TimelineDetailViewController: ParentViewController {
     
     @objc func refreshViewUpdateList() {
         //...Update UpdateVisit List when subscribe project from projectList screen
+        self.isUpdatePost = true
         self.loadSubscribedProjectList(showLoader: true, isFromNotification: false)
     }
     
@@ -736,7 +748,7 @@ extension TimelineDetailViewController {
                         }
                     }
                     
-                    if self.arrProject.count != 0 {
+                    if self.arrProject.count != 0 && !self.isUpdatePost {
                         self.showTimelineGuideLineView()
                     }
                     

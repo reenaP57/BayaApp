@@ -258,7 +258,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
             
         case CRateApp:
             //...Rate App
-            self.openInSafari(strUrl: "www.google.com")
+            self.openInSafari(strUrl: AppLink)
             break
            
         case CLogout:

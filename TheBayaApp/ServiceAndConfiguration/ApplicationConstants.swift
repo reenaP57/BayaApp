@@ -219,6 +219,4 @@ let CAmeniriesScreenName           =    "amenities_screen"
 let CSignupScreenName              =    "signup_screen"
 let CForgotPasswordScreenName      =    "forgot_password_screen"
 
-
-
-
+let AppLink = "https://itunes.apple.com/app/id1437137487"
