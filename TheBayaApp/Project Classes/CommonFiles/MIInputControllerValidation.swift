@@ -91,7 +91,8 @@ extension UITextField {
                 lblMessage.frame = CGRect(x: IS_iPad ? self.frame.origin.x - 75 + 8 : self.frame.origin.x - 65 + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
 
             } else {
-                lblMessage.frame = CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
+                lblMessage.frame =
+                CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + 15.0/2, width: self.frame.size.width - 16, height: 15.0)//CGRect(x: self.frame.origin.x + 8, y: self.frame.origin.y + self.frame.size.height + space/2, width: self.frame.size.width - 16, height: 15.0)
             }
             
             lblMessage.numberOfLines = 0

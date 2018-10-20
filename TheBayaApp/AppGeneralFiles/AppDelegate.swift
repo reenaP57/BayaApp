@@ -100,17 +100,36 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 
                 if title == "project_detail" {
                     //...Project detail
-                    if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                    
+                    if self.topViewController() is ProjectDetailViewController {
+                       
+                        let projectDetailVC  = self.topViewController() as! ProjectDetailViewController
                         projectDetailVC.projectID = Int(projectID)!
-                        self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                        
+                    } else {
+                        if let projectDetailVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectDetailViewController") as? ProjectDetailViewController {
+                            projectDetailVC.projectID = Int(projectID)!
+                            self.topViewController()?.navigationController?.pushViewController(projectDetailVC, animated: true)
+                        }
                     }
                     
                 } else {
                     //...Timeline
-                    if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+
+                    if self.topViewController() is TimelineDetailViewController {
+                        
+                        let timelineVC  = self.topViewController() as! TimelineDetailViewController
                         timelineVC.projectID = Int(projectID)!
                         timelineVC.isFromNotifition = true
-                        self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                        timelineVC.loadSubscribedProjectList(showLoader: false, isFromNotification: true)
+                        
+                    } else {
+                       
+                        if let timelineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
+                            timelineVC.projectID = Int(projectID)!
+                            timelineVC.isFromNotifition = true
+                            self.topViewController()?.navigationController?.pushViewController(timelineVC, animated: true)
+                        }
                     }
                 }
             }

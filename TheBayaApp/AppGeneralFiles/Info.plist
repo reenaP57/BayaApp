@@ -24,7 +24,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string></string>
+			<string>com.app.baya</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>bayacompany</string>

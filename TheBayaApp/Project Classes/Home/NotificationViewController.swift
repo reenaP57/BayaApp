@@ -99,32 +99,38 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             cell.lblProjectName.text = dict.valueForString(key: "title")
             cell.lblDateTime.text = self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false)
-            cell.btnRateVisit.hide(byWidth: true)
             
             cell.imgVProject.sd_setShowActivityIndicatorView(true)
             cell.imgVProject.sd_setImage(with: URL(string: (dict.valueForString(key: "thumbImage"))), placeholderImage: nil)
         
-            switch dict.valueForInt(key: "notifyType") {
-            case NotificationAdmin, NotificationNewProject,NotificationPostUpdate, NotificationVisitCancel  : //... Admin, New Project, Post Update, Visit Cancel
+            cell.lblMsg.text = dict.valueForString(key: "message")
+            if dict.valueForInt(key: "notifyType") == NotificationRateVisit {
+                 cell.btnRateVisit.hide(byWidth: false)
+            } else {
+                 cell.btnRateVisit.hide(byWidth: true)
+            }
+            
+            
+          /*  switch dict.valueForInt(key: "notifyType") {
+            case NotificationAdmin, NotificationNewProject, NotificationPostUpdate, NotificationProjectComplete : //... Admin, New Project, Post Update, Project Complete
                cell.lblMsg.text = dict.valueForString(key: "message")
                 
-            case NotificationProjectComplete: //... Project Complete
-                cell.lblMsg.text = "\(dict.valueForString(key: "title")) project is completed now, no further updates will be posted. You can view our other projects and subscribe if you are interested."
-                break
+            case  NotificationVisitCancel  : //...Visit Cancel
+                cell.lblMsg.text = "Your visit scheduled on \((DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "dateTime")!, withFormate: "dd MMMM yyyy hh:mm a"))) has been cancelled."
                 
             case NotificationVisitUpdate: //... Visit Update
                 cell.lblMsg.text = "Your visit \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "dateTime")!, withFormate: "'at' hh:mm a 'on' dd MMMM yyyy")) has been confirmed."
                 break
                 
             case NotificationVisitReschedule: //... Visit Reschedule
-                cell.lblMsg.text = "Your visit has been re-scheduled from \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true)) to \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true))"
+                cell.lblMsg.text = "Your visit has been re-scheduled from \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "oldDateTime")!,isReschedule : true)) to \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : true))"
                 break
              
             default : //... Rate Visit
                 cell.lblMsg.text = "Rate the visit scheduled on \(self.getDateTimeFromTimestamp(from: dict.valueForDouble(key: "dateTime")!,isReschedule : false))"
                 cell.btnRateVisit.hide(byWidth: false)
                 break
-            }
+            } */
             
             cell.contentView.backgroundColor = UIColor.clear
             cell.backgroundColor = UIColor.clear

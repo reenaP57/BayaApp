@@ -312,7 +312,8 @@ extension ScheduleVisitViewController {
                 self.txtVPurpose.hideValidationMessage(Gap)
                 self.showValidation(isAdd: false)
                 _ = self.vwPurpose.setConstraintConstant(Gap, edge: .bottom, ancestor: true)
-                self.vwContent.addSubview(self.txtSelectProject.showValidationMessage(45.0,CSelectProjectMessage))
+                self.vwContent.addSubview(self.txtSelectProject.showValidationMessage(30.0,CSelectProjectMessage))
+              
                 
             } else if !self.checkDifferenceBetweenTwoDate() {
                 

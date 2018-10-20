@@ -15,6 +15,7 @@ class VerificationViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
     @IBOutlet fileprivate weak var imgVBg : UIImageView!
 
+    var isSubmitCLK : Bool = false
     var isEmailVerify : Bool = false
     var verifiyCode = ""
 
@@ -25,6 +26,14 @@ class VerificationViewController: ParentViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+       
+        if !isSubmitCLK {
+            appDelegate.initLoginViewController()
+        }
     }
     
     //MARK:-
@@ -129,6 +138,8 @@ extension VerificationViewController {
                 
                 let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
 
+                self.isSubmitCLK = true
+                
                 if self.isEmailVerify {
                     
                     if let verifyMobileVC = CStoryboardLRF.instantiateViewController(withIdentifier: "VerificationViewController") as? VerificationViewController {
@@ -137,6 +148,8 @@ extension VerificationViewController {
                     }
                     
                 } else {
+                    
+                    self.isSubmitCLK = true
                     
                     if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
                         appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)

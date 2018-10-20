@@ -13,7 +13,19 @@ extension DateFormatter{
     static func dateStringFrom(timestamp: Double?, withFormate:String?) -> String {
         let fromDate:Date = Date(timeIntervalSince1970: timestamp!)
         DateFormatter.shared().locale = NSLocale.current
-        
+        /*
+         if Localization.sharedInstance.getLanguage() == CLanguageArabic {
+         DateFormatter.shared().locale = Locale(identifier: "ar_DZ")
+         } else {
+         DateFormatter.shared().locale = NSLocale.current
+         }
+         */
+        return DateFormatter.shared().string(fromDate: fromDate, dateFormat: withFormate!)
+    }
+    
+    static func dateStringForTwelveHourForamtFrom(timestamp: Double?, withFormate:String?) -> String {
+        let fromDate:Date = Date(timeIntervalSince1970: timestamp!)
+        DateFormatter.shared().locale = Locale(identifier: "en_US_POSIX")
         /*
          if Localization.sharedInstance.getLanguage() == CLanguageArabic {
          DateFormatter.shared().locale = Locale(identifier: "ar_DZ")

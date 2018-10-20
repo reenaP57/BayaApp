@@ -173,6 +173,14 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                 } else {
                     
+                  /*  if notifyType == NotificationVisitCancel {
+                       message = "Your visit scheduled on \((DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.dateTime")!, withFormate: "dd MMMM yyyy hh:mm a"))) has been cancelled."
+                    } else if  notifyType == NotificationVisitUpdate {
+                        message = "Your visit \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.dateTime")!, withFormate: "'at' hh:mm a 'on' dd MMMM yyyy")) has been confirmed."
+                    } else {
+                        message = "Your visit has been re-scheduled from \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.oldDateTime")!, withFormate: "dd MMMM yyyy hh:mm a")) to \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.dateTime")!, withFormate: "dd MMMM yyyy hh:mm a"))"
+                    } */
+                    
                     appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
@@ -207,6 +215,8 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     }
                     
                 } else {
+                    
+                  //  message = "Rate the visit scheduled on \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.dateTime")!, withFormate: "dd MMMM yyyy 'at' hh:mm a"))"
                     
                     appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
                         
