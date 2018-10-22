@@ -220,3 +220,13 @@ let CSignupScreenName              =    "signup_screen"
 let CForgotPasswordScreenName      =    "forgot_password_screen"
 
 let AppLink = "https://itunes.apple.com/app/id1437137487"
+
+
+//MARK:-
+//MARK:- Disable print for production.
+
+func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
+    #if DEBUG
+        //Swift.print(items[0], separator:separator, terminator: terminator)
+    #endif
+}

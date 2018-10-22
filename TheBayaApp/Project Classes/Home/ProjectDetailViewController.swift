@@ -137,7 +137,7 @@ class ProjectDetailViewController: ParentViewController {
             layout.delegate = self
         }
         
-        tblSpecification.estimatedRowHeight = IS_iPad ? 45.0 : 38.0
+        tblSpecification.estimatedRowHeight = IS_iPad ? 45.0 : IS_iPhone_6_Plus ? 40.0 : 38.0
         tblSpecification.rowHeight = UITableViewAutomaticDimension
         
         vwSoldOut.layer.borderWidth = 1
