@@ -35,7 +35,9 @@ class RateYoorVisitViewController: ParentViewController {
         }
     }
     @IBOutlet fileprivate weak var imgVBg : UIImageView!
+    @IBOutlet fileprivate weak var btnSkip : UIButton!
 
+    var isVisitRate : Bool = false
     var visitId = 0
     
     override func viewDidLoad() {
@@ -46,7 +48,10 @@ class RateYoorVisitViewController: ParentViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         appDelegate.hideTabBar()
-        MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CRateScreenName)
+        
+        if isVisitRate {
+            MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CRateScreenName)
+        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,7 +63,15 @@ class RateYoorVisitViewController: ParentViewController {
     //MARK:- General Methods
     
     func initialize() {
-        self.navigationItem.title = "Rate Your Visit"
+       
+        if isVisitRate {
+            //...Rate Visit
+            self.navigationItem.title = "Rate Your Visit"
+            btnSkip.isHidden = true
+        } else {
+            //...Rate Maintenance
+            self.navigationItem.title = "Rate Maintenance"
+        }
     }
 }
 
@@ -70,23 +83,29 @@ extension RateYoorVisitViewController {
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-        for objView in vwContent.subviews{
-            if  objView.isKind(of: UITextField.classForCoder()){
-                let txField = objView as? UITextField
-                txField?.hideValidationMessage(15.0)
-                txField?.resignFirstResponder()
+        if isVisitRate {
+            //...Rate Visit
+            for objView in vwContent.subviews{
+                if  objView.isKind(of: UITextField.classForCoder()){
+                    let txField = objView as? UITextField
+                    txField?.hideValidationMessage(15.0)
+                    txField?.resignFirstResponder()
+                }
             }
-        }
-        self.view.layoutIfNeeded()
-        DispatchQueue.main.async {
-            
-            if self.vwRating.rating < 1.0 {
-                self.showAlertView(CSelectRating, completion: { (result) in
-                })
-            } else {
-                self.rateVisit()
+            self.view.layoutIfNeeded()
+            DispatchQueue.main.async {
+                
+                if self.vwRating.rating < 1.0 {
+                    self.showAlertView(CSelectRating, completion: { (result) in
+                    })
+                } else {
+                    self.rateVisit()
+                }
             }
+        } else {
+           //...Rate Maintenance
         }
+
     }
 }
 

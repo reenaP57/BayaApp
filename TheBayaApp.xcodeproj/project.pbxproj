@@ -136,6 +136,8 @@
 		5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B972125941C0080193A /* LocationDescTblCell.swift */; };
 		5C93C7232158AD6600AFFAFD /* MIFCM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C93C7222158AD6600AFFAFD /* MIFCM.swift */; };
 		5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5C93C7242158D02600AFFAFD /* GoogleService-Info.plist */; };
+		5CA899BF21834EE30011227E /* Documents.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CA899BE21834EE30011227E /* Documents.storyboard */; };
+		5CA899C1218350310011227E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA899C0218350310011227E /* DocumentViewController.swift */; };
 		5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */; };
 		5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */; };
 		5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */; };
@@ -147,6 +149,18 @@
 		5CD763FF211DBF5700C267AB /* TimelineDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */; };
 		5CD76401211DC07E00C267AB /* ProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76400211DC07E00C267AB /* ProjectViewController.swift */; };
 		5CD76415211DC6F900C267AB /* ProjectTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CD76414211DC6F900C267AB /* ProjectTblCell.swift */; };
+		5CDAF5A22186D7CB00591F4E /* ProjectDocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5A12186D7CB00591F4E /* ProjectDocumentViewController.swift */; };
+		5CDAF5A42186D94500591F4E /* DocumentTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5A32186D94500591F4E /* DocumentTblCell.swift */; };
+		5CDAF5A62186E83400591F4E /* RequestDocumentListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5A52186E83400591F4E /* RequestDocumentListViewController.swift */; };
+		5CDAF5A82186E87400591F4E /* RequestDocTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5A72186E87400591F4E /* RequestDocTblCell.swift */; };
+		5CDAF5AA2186F4CF00591F4E /* AddRequestDocViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5A92186F4CF00591F4E /* AddRequestDocViewController.swift */; };
+		5CDAF5AE21871A7900591F4E /* ViewRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5AD21871A7900591F4E /* ViewRequestViewController.swift */; };
+		5CDAF5B0218720CF00591F4E /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CDAF5AF218720CF00591F4E /* InfoView.xib */; };
+		5CDAF5B2218720DC00591F4E /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5B1218720DC00591F4E /* InfoView.swift */; };
+		5CDAF5B521872BD300591F4E /* Maintenance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CDAF5B421872BD300591F4E /* Maintenance.storyboard */; };
+		5CDAF5B721872C2800591F4E /* MaintenanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5B621872C2800591F4E /* MaintenanceViewController.swift */; };
+		5CDAF5B92187307800591F4E /* ViewMaintenanceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDAF5B82187307800591F4E /* ViewMaintenanceRequestViewController.swift */; };
+		5CDAF5BB2187353100591F4E /* temp_img.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 5CDAF5BA2187352D00591F4E /* temp_img.jpeg */; };
 		5CDE13F02119B67E00B11AA5 /* LRF.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5CDE13EF2119B67E00B11AA5 /* LRF.storyboard */; };
 		5CDE13F62119B7BE00B11AA5 /* MIGenericButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F12119B7BD00B11AA5 /* MIGenericButton.swift */; };
 		5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */; };
@@ -310,6 +324,8 @@
 		5C8D5B972125941C0080193A /* LocationDescTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDescTblCell.swift; sourceTree = "<group>"; };
 		5C93C7222158AD6600AFFAFD /* MIFCM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIFCM.swift; sourceTree = "<group>"; };
 		5C93C7242158D02600AFFAFD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5CA899BE21834EE30011227E /* Documents.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Documents.storyboard; sourceTree = "<group>"; };
+		5CA899C0218350310011227E /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlTblCell.swift; sourceTree = "<group>"; };
 		5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTextTblCell.swift; sourceTree = "<group>"; };
 		5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView.xib; sourceTree = "<group>"; };
@@ -321,6 +337,18 @@
 		5CD763FE211DBF5700C267AB /* TimelineDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineDetailViewController.swift; sourceTree = "<group>"; };
 		5CD76400211DC07E00C267AB /* ProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectViewController.swift; sourceTree = "<group>"; };
 		5CD76414211DC6F900C267AB /* ProjectTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectTblCell.swift; sourceTree = "<group>"; };
+		5CDAF5A12186D7CB00591F4E /* ProjectDocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDocumentViewController.swift; sourceTree = "<group>"; };
+		5CDAF5A32186D94500591F4E /* DocumentTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentTblCell.swift; sourceTree = "<group>"; };
+		5CDAF5A52186E83400591F4E /* RequestDocumentListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDocumentListViewController.swift; sourceTree = "<group>"; };
+		5CDAF5A72186E87400591F4E /* RequestDocTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDocTblCell.swift; sourceTree = "<group>"; };
+		5CDAF5A92186F4CF00591F4E /* AddRequestDocViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRequestDocViewController.swift; sourceTree = "<group>"; };
+		5CDAF5AD21871A7900591F4E /* ViewRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewRequestViewController.swift; sourceTree = "<group>"; };
+		5CDAF5AF218720CF00591F4E /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
+		5CDAF5B1218720DC00591F4E /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
+		5CDAF5B421872BD300591F4E /* Maintenance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Maintenance.storyboard; sourceTree = "<group>"; };
+		5CDAF5B621872C2800591F4E /* MaintenanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MaintenanceViewController.swift; sourceTree = "<group>"; };
+		5CDAF5B82187307800591F4E /* ViewMaintenanceRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewMaintenanceRequestViewController.swift; sourceTree = "<group>"; };
+		5CDAF5BA2187352D00591F4E /* temp_img.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = temp_img.jpeg; sourceTree = "<group>"; };
 		5CDE13EF2119B67E00B11AA5 /* LRF.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LRF.storyboard; sourceTree = "<group>"; };
 		5CDE13F12119B7BD00B11AA5 /* MIGenericButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericButton.swift; sourceTree = "<group>"; };
 		5CDE13F22119B7BD00B11AA5 /* MIGenericView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIGenericView.swift; sourceTree = "<group>"; };
@@ -430,6 +458,8 @@
 				5C42C8CC211AC50D00907DBB /* Parent */,
 				5CDE14142119BFA000B11AA5 /* LRF */,
 				5CD763F7211D519100C267AB /* Home */,
+				5CA899BD21834EC70011227E /* Documents */,
+				5CDAF5B321872BC100591F4E /* Maintenance */,
 				5C1E614F2122D7650090308D /* Setting */,
 				5C1E615E2122F3330090308D /* Profile */,
 			);
@@ -608,6 +638,7 @@
 		489A5F67212293AA00080739 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				5CDAF5BA2187352D00591F4E /* temp_img.jpeg */,
 				5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */,
 				489A5F68212293AA00080739 /* bg.jpg */,
 				489A5F69212293AA00080739 /* bg_ipad.jpg */,
@@ -689,6 +720,21 @@
 			path = Parent;
 			sourceTree = "<group>";
 		};
+		5CA899BD21834EC70011227E /* Documents */ = {
+			isa = PBXGroup;
+			children = (
+				5CA899BE21834EE30011227E /* Documents.storyboard */,
+				5CA899C0218350310011227E /* DocumentViewController.swift */,
+				5CDAF5A12186D7CB00591F4E /* ProjectDocumentViewController.swift */,
+				5CDAF5A52186E83400591F4E /* RequestDocumentListViewController.swift */,
+				5CDAF5A92186F4CF00591F4E /* AddRequestDocViewController.swift */,
+				5CDAF5AD21871A7900591F4E /* ViewRequestViewController.swift */,
+				5CDAF5A32186D94500591F4E /* DocumentTblCell.swift */,
+				5CDAF5A72186E87400591F4E /* RequestDocTblCell.swift */,
+			);
+			path = Documents;
+			sourceTree = "<group>";
+		};
 		5CD763F7211D519100C267AB /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -737,6 +783,16 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		5CDAF5B321872BC100591F4E /* Maintenance */ = {
+			isa = PBXGroup;
+			children = (
+				5CDAF5B421872BD300591F4E /* Maintenance.storyboard */,
+				5CDAF5B621872C2800591F4E /* MaintenanceViewController.swift */,
+				5CDAF5B82187307800591F4E /* ViewMaintenanceRequestViewController.swift */,
+			);
+			path = Maintenance;
+			sourceTree = "<group>";
+		};
 		5CDE14142119BFA000B11AA5 /* LRF */ = {
 			isa = PBXGroup;
 			children = (
@@ -768,6 +824,8 @@
 				5CF1C343214D0F3700F60F26 /* CustomAlertView.swift */,
 				5CF1C345214D0F4000F60F26 /* CustomAlertView.xib */,
 				5CF1C347214D155B00F60F26 /* CustomAlertView_ipad.xib */,
+				5CDAF5B1218720DC00591F4E /* InfoView.swift */,
+				5CDAF5AF218720CF00591F4E /* InfoView.xib */,
 			);
 			path = CommonFiles;
 			sourceTree = "<group>";
@@ -863,16 +921,20 @@
 				486FDCF82119ADBD00EA0188 /* LaunchScreen.storyboard in Resources */,
 				487E4E67211C4CD8000CB32F /* AvenirLTStd-Heavy.otf in Resources */,
 				5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */,
+				5CDAF5BB2187353100591F4E /* temp_img.jpeg in Resources */,
 				487E4E6A211C4CD8000CB32F /* AvenirLTStd-LightOblique.otf in Resources */,
 				5CF1C348214D155B00F60F26 /* CustomAlertView_ipad.xib in Resources */,
 				5CF1C346214D0F4000F60F26 /* CustomAlertView.xib in Resources */,
+				5CDAF5B521872BD300591F4E /* Maintenance.storyboard in Resources */,
 				5C1E61552122DCAA0090308D /* Setting_ipad.storyboard in Resources */,
 				5C28C477213555AE00B18F37 /* FilterView_ipad.xib in Resources */,
 				5CFCAAAD212C1DC900717C10 /* TabBarView_ipad.xib in Resources */,
 				5C14CA88211C7A8000B06E29 /* TabBarView.xib in Resources */,
 				486FDD6F2119AEF500EA0188 /* Assets.xcassets in Resources */,
+				5CDAF5B0218720CF00591F4E /* InfoView.xib in Resources */,
 				489A5F6E212293AA00080739 /* login_bg.jpg in Resources */,
 				489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */,
+				5CA899BF21834EE30011227E /* Documents.storyboard in Resources */,
 				5CF50BB22121B024002FDAB8 /* FilterView.xib in Resources */,
 				487E4E6D211C4CD8000CB32F /* AvenirLTStd-Roman.otf in Resources */,
 				487E4E64211C4CD8000CB32F /* AvenirLTStd-BlackOblique.otf in Resources */,
@@ -979,12 +1041,15 @@
 				5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */,
 				5CD763F9211D51EA00C267AB /* HomeViewController.swift in Sources */,
 				486FDD582119AEF500EA0188 /* ExtensionDouble.swift in Sources */,
+				5CDAF5A62186E83400591F4E /* RequestDocumentListViewController.swift in Sources */,
 				486FDD6A2119AEF500EA0188 /* Localization.swift in Sources */,
 				5C14CA81211C079800B06E29 /* ResetPwdViewController.swift in Sources */,
 				4839F448214A9A2E00E5A325 /* ExtensionDateFormatter.swift in Sources */,
 				486FDD542119AEF500EA0188 /* ExetensionFloat.swift in Sources */,
 				486FDD562119AEF500EA0188 /* ExtensionDate.swift in Sources */,
+				5CA899C1218350310011227E /* DocumentViewController.swift in Sources */,
 				5C1E61592122E59F0090308D /* EditProfileViewController.swift in Sources */,
+				5CDAF5AE21871A7900591F4E /* ViewRequestViewController.swift in Sources */,
 				5CF50BAC212182AC002FDAB8 /* TimeLineImgCollCell.swift in Sources */,
 				5CDE13F72119B7BE00B11AA5 /* MIGenericView.swift in Sources */,
 				5CD76401211DC07E00C267AB /* ProjectViewController.swift in Sources */,
@@ -1000,13 +1065,16 @@
 				486FDD612119AEF500EA0188 /* ExtensionUIImageView.swift in Sources */,
 				486FDD552119AEF500EA0188 /* ExtensionArray.swift in Sources */,
 				5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */,
+				5CDAF5A82186E87400591F4E /* RequestDocTblCell.swift in Sources */,
 				486FDD692119AEF500EA0188 /* MIKeyboardManager.swift in Sources */,
 				5CF50BAA21218244002FDAB8 /* TimeLineUpdateTblCell.swift in Sources */,
 				5C1E616C212312920090308D /* VisitDetailTblCell.swift in Sources */,
 				5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */,
 				5C14CA8A211C7A9B00B06E29 /* TabbarViewController.swift in Sources */,
+				5CDAF5A42186D94500591F4E /* DocumentTblCell.swift in Sources */,
 				5C5325E2215A032900172B91 /* ProjectDetailVideoCollCell.swift in Sources */,
 				5C574D23215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift in Sources */,
+				5CDAF5AA2186F4CF00591F4E /* AddRequestDocViewController.swift in Sources */,
 				5C51A95B2133E40800998135 /* TimelineUpdateVideoTblCell.swift in Sources */,
 				5C51A95F2133F9F800998135 /* TimelineCompletedProjectTblCell.swift in Sources */,
 				5C1E616A21230EEC0090308D /* VisitDetailsViewController.swift in Sources */,
@@ -1032,12 +1100,14 @@
 				486FDD492119AEF500EA0188 /* ApplicationMessages.swift in Sources */,
 				486FDD592119AEF500EA0188 /* ExtensionInt.swift in Sources */,
 				486FDD6E2119AEF500EA0188 /* AppDelegate.swift in Sources */,
+				5CDAF5B721872C2800591F4E /* MaintenanceViewController.swift in Sources */,
 				5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */,
 				5C8D5B8A21258A8D0080193A /* LocationAdvantagesCollCell.swift in Sources */,
 				5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */,
 				5C8D5B9021258ADC0080193A /* OverViewCollCell.swift in Sources */,
 				5C574D28215CF80E001D59FE /* VideoCollCell.swift in Sources */,
 				5C42C8CE211AC53500907DBB /* ParentViewController.swift in Sources */,
+				5CDAF5B92187307800591F4E /* ViewMaintenanceRequestViewController.swift in Sources */,
 				5CF34BA3212D60C2001901B1 /* TimeLineUpdateTextTblCell_ipad.swift in Sources */,
 				483D21682159F700008EA16B /* TimeLineUpdateGIFTblCell.swift in Sources */,
 				5C1E61572122DED20090308D /* ChangePasswordViewController.swift in Sources */,
@@ -1068,6 +1138,7 @@
 				486FDD5F2119AEF500EA0188 /* ExtensionUIColor.swift in Sources */,
 				483460FB215B808F008FC320 /* ImageZoomView.swift in Sources */,
 				486FDD532119AEF500EA0188 /* FetchResultController+Extension.swift in Sources */,
+				5CDAF5B2218720DC00591F4E /* InfoView.swift in Sources */,
 				5CF34BA5212D6B85001901B1 /* TimeLineUpdateUrlTblCell_ipad.swift in Sources */,
 				5CD763FB211D62B200C267AB /* HomeCollCell.swift in Sources */,
 				5C8D5B9621258B380080193A /* ConfigurationTblCell.swift in Sources */,
@@ -1084,6 +1155,7 @@
 				5CD76415211DC6F900C267AB /* ProjectTblCell.swift in Sources */,
 				5C1E61492122BBD00090308D /* NotificationViewController.swift in Sources */,
 				5C189C0C21253911001B72C5 /* FloatRatingView.swift in Sources */,
+				5CDAF5A22186D7CB00591F4E /* ProjectDocumentViewController.swift in Sources */,
 				5CDE13F82119B7BE00B11AA5 /* MIGenericTextField.swift in Sources */,
 				486FDD572119AEF500EA0188 /* ExtensionDictionary.swift in Sources */,
 				486FDD5B2119AEF500EA0188 /* ExtensionString.swift in Sources */,

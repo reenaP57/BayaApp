@@ -197,7 +197,7 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                     
                     cell.vwTagLbl.isHidden = false
                     cell.lblTag.text = "CANCELLED"
-                    cell.vwTagLbl.backgroundColor = CRGB(r: 255, g: 69, b: 77)
+                    cell.vwTagLbl.backgroundColor = ColorRed
         
                     break
                 }

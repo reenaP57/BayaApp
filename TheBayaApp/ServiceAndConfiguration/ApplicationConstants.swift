@@ -101,6 +101,10 @@ let ColorProgressGradient2   =  CRGB(r: 170, g: 211, b: 94)
 let ColorUnreadNotification  =  CRGB(r: 222, g: 255, b: 220)
 let ColorDisableTextField    =  CRGB(r: 220, g: 220, b: 220)
 let ColorGreenSelected       =  CRGB(r: 66, g: 173, b: 62)
+let ColorRed                 =   CRGB(r: 255, g: 69, b: 77)
+let ColorOrange              =   CRGB(r: 255, g: 134, b: 38)
+let ColorParrotColor         =   CRGB(r: 200, g: 213, b: 73)
+
 
 //MARK:- UIStoryboard
 let CStoryboardMain = UIStoryboard(name: IS_iPad ? "Main_ipad" : "Main", bundle: nil)
@@ -108,6 +112,8 @@ let CStoryboardLRF  = UIStoryboard(name: IS_iPad ? "LRF_ipad" : "LRF", bundle: n
 let CStoryboardSetting  = UIStoryboard(name: IS_iPad ? "Setting_ipad" : "Setting", bundle: nil)
 let CStoryboardSettingIphone  = UIStoryboard(name:"Setting", bundle: nil)
 let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
+let CStoryboardDocument  = UIStoryboard(name: IS_iPad ? "Documents_ipad" : "Documents", bundle: nil)
+let CStoryboardMaintenance  = UIStoryboard(name: IS_iPad ? "Maintenance_ipad" : "Maintenance", bundle: nil)
 
 
 let PASSWORDALLOWCHAR = "!@#$%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
@@ -128,7 +134,6 @@ let CCancel       =  3
 let CCompleted    =  4
 let CRescheduled  =  5
 
-
 let NotificationAdmin            = 0
 let NotificationNewProject       = 1
 let NotificationPostUpdate       = 2
@@ -137,6 +142,11 @@ let NotificationVisitUpdate      = 4
 let NotificationVisitReschedule  = 5
 let NotificationRateVisit        = 6
 let NotificationVisitCancel      = 7
+
+let CRequestOpen = "OPEN"
+let CRequestCompleted = "COMPLETED"
+let CRequestInProgress = "IN PROGRESS"
+let CRequestRejected = "REJECTED"
 
 
 //MARK:- API Parameter
@@ -185,6 +195,19 @@ let CFavoriteProjectName            = "favoriteProjectName"
 let CIsVisit             = "isVisit"
 
 
+//MARK:- Home options
+
+let CTimeline         = "Timeline"
+let CProjects         = "Projects"
+let CScheduleVisit    = "Schedule a Visit"
+let CDocuments        = "Documents"
+let CMaintenance      = "Maintenance"
+let CPayments         = "Payments"
+let CReferFriend      = "Refer a Friend"
+
+
+//MARK:- Setting options
+
 let CEditProfile         = "Edit Profile"
 let CChangePassword      = "Change Password"
 let CPushNotifications   = "Push Notifications"
@@ -227,6 +250,6 @@ let AppLink = "https://itunes.apple.com/app/id1437137487"
 
 func print(_ items: Any..., separator: String = " ", terminator: String = "\n") {
     #if DEBUG
-        //Swift.print(items[0], separator:separator, terminator: terminator)
+        Swift.print(items[0], separator:separator, terminator: terminator)
     #endif
 }

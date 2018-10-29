@@ -286,9 +286,6 @@ extension ScheduleVisitViewController {
                     self.txtVPurpose.textfiledAddRemoveShadow(true)
                     self.showValidation(isAdd: true)
                 }
-                
-                
-               
                 _ = self.vwPurpose.setConstraintConstant(IS_iPad ? (20/2) + 20 + lblMessage.frame.size.height :(15/2) + 15 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
  
             } else if (self.txtNoOfGuest.text?.isBlank)! {

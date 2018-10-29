@@ -39,7 +39,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="M8v-R6-X2k">
-                                <rect key="frame" x="0.0" y="139" width="768" height="885"/>
+                                <rect key="frame" x="0.0" y="139" width="768" height="836"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="3Tp-me-L5O">
                                     <size key="itemSize" width="179" height="270"/>
@@ -250,7 +250,7 @@
                             <constraint firstItem="M8v-R6-X2k" firstAttribute="trailing" secondItem="eTP-7W-DZs" secondAttribute="trailing" id="M6V-6j-LKK"/>
                             <constraint firstItem="M8v-R6-X2k" firstAttribute="top" secondItem="zvf-Pg-cji" secondAttribute="bottom" constant="15" id="SKO-Hb-oxL"/>
                             <constraint firstItem="zvf-Pg-cji" firstAttribute="leading" secondItem="f86-9u-uD4" secondAttribute="leading" id="X1I-IA-Au4"/>
-                            <constraint firstItem="M8v-R6-X2k" firstAttribute="bottom" secondItem="eTP-7W-DZs" secondAttribute="bottom" id="Xpk-ge-zeQ"/>
+                            <constraint firstItem="eTP-7W-DZs" firstAttribute="bottom" secondItem="M8v-R6-X2k" secondAttribute="bottom" constant="49" id="l03-6i-SBQ"/>
                             <constraint firstItem="zvf-Pg-cji" firstAttribute="top" secondItem="f86-9u-uD4" secondAttribute="bottom" constant="15" id="ldf-YH-zO0"/>
                             <constraint firstItem="9yd-LO-Yvn" firstAttribute="leading" secondItem="eTP-7W-DZs" secondAttribute="leading" id="w3g-op-gCp"/>
                         </constraints>
@@ -264,7 +264,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jmy-2T-ab4" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="16"/>
+            <point key="canvasLocation" x="-278.39999999999998" y="15.292353823088456"/>
         </scene>
         <!--Timeline Detail View Controller-->
         <scene sceneID="PXa-0W-C3P">
@@ -622,7 +622,7 @@
                                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                                 <subviews>
                                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="+5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YUq-LN-Kgr" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                                        <rect key="frame" x="12" y="12" width="16.5" height="16.5"/>
+                                                                                        <rect key="frame" x="11" y="13" width="18" height="14"/>
                                                                                         <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="14"/>
                                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                         <nil key="highlightedColor"/>
@@ -2571,10 +2571,10 @@
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XAM-pE-ODk" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="590" y="25" width="98" height="43"/>
+                                                        <rect key="frame" x="588" y="25" width="100" height="40"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="3D TOUR" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QfT-FQ-6GL" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                                <rect key="frame" x="10.5" y="10.5" width="77.5" height="21"/>
+                                                                <rect key="frame" x="10.5" y="10.5" width="79.5" height="18"/>
                                                                 <fontDescription key="fontDescription" name="AvenirLTStd-Heavy" family="Avenir LT Std" pointSize="18"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>

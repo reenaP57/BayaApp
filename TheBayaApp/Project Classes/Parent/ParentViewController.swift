@@ -85,6 +85,9 @@ class ParentViewController: UIViewController {
         } else {
             //self.navigationController?.navigationBar.backgroundColor = ColorGreen
 
+            self.navigationItem.hidesBackButton = false
+            self.navigationController?.isNavigationBarHidden = false
+            
             if self.view.tag == 101 {
                 //...Transparent
                  self.navigationController?.navigationBar.isTranslucent = true
@@ -105,8 +108,7 @@ class ParentViewController: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = ColorBGColor
             }
             
-            self.navigationItem.hidesBackButton = false
-            self.navigationController?.isNavigationBarHidden = false
+            
         }
         
     }

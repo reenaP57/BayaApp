@@ -39,10 +39,14 @@ class HomeViewController: ParentViewController {
     
     
     func initialize() {
-       
-        arrHome = [["title": "Timeline" as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
-                   ["title": "Projects" as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
-                   ["title": "Schedule a Visit" as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject]] as [[String : AnyObject]]
+        
+        arrHome = [["title": CTimeline as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
+                   ["title": CProjects as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
+                   ["title": CScheduleVisit as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject],
+                   ["title": CDocuments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_documents_ipad" as AnyObject : "ic_documents" as AnyObject],
+                   ["title": CMaintenance as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_maintanance_ipad" as AnyObject : "ic_maintanance" as AnyObject],
+                   ["title": CPayments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_payment_ipad" as AnyObject : "ic_payment" as AnyObject],
+                   ["title": CReferFriend as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_refer-friend_ipad" as AnyObject : "ic_refer-friend" as AnyObject]] as [[String : AnyObject]]
     }
     
     func userDetail() {
@@ -81,7 +85,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
         
         let dict = arrHome[indexPath.row]
         
-        if indexPath.item == 0 {
+        if dict.valueForString(key: "title") == CTimeline {
             
             if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "TimelineHomeCollCell", for: indexPath) as? TimelineHomeCollCell {
                 
@@ -125,15 +129,20 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                 cell.lblTitle.text = dict.valueForString(key: "title")
                 cell.lblPrjctName.text = (dict.valueForString(key: "subtitle")).uppercased()
              
-                if indexPath.row == 1 {
+                if dict.valueForString(key: "title") == CProjects {
                     cell.lblPrjctName.isHidden = dict.valueForString(key: "subtitle") == "0"
                     if appDelegate.loginUser?.projectBadge == 0 || appDelegate.loginUser?.projectBadge == 1 {
                         cell.lblPrjctName.text = "\(dict.valueForString(key: "subtitle")) PROJECT"
                     } else {
                         cell.lblPrjctName.text = "\(dict.valueForString(key: "subtitle")) PROJECTS"
                     }
-                } else {
+                } else if dict.valueForString(key: "title") == CScheduleVisit {
                     cell.lblPrjctName.isHidden = false
+                } else {
+                    cell.lblPrjctName.isHidden = true
+                    if IS_iPhone {
+                        _ = cell.imgVTitle.setConstraintConstant(50, edge: .top, ancestor: true)
+                    }
                 }
                 
                 return cell
@@ -146,17 +155,37 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        switch indexPath.row {
-        case 0: //...Timeline
+        switch arrHome[indexPath.row].valueForString(key: "title") {
+        case CTimeline: //...Timeline
             if let timeLineVC = CStoryboardMain.instantiateViewController(withIdentifier: "TimelineDetailViewController") as? TimelineDetailViewController {
                 self.navigationController?.pushViewController(timeLineVC, animated: true)
             }
-        case 1: //...Project
+        case CProjects: //...Project
             if let projectVC = CStoryboardMain.instantiateViewController(withIdentifier: "ProjectViewController") as? ProjectViewController {
                 self.navigationController?.pushViewController(projectVC, animated: true)
             }
+         
+        case CScheduleVisit : //...Schedule Visit
+            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+            }
+          
+        case CDocuments : //... Documents
+            if let documentVC = CStoryboardDocument.instantiateViewController(withIdentifier: "DocumentViewController") as? DocumentViewController {
+                self.navigationController?.pushViewController(documentVC, animated: true)
+            }
             
-        default: //...Schedule Visit
+        case CMaintenance : //...Maintenance
+            if let maintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "MaintenanceViewController") as? MaintenanceViewController {
+                self.navigationController?.pushViewController(maintenanceVC, animated: true)
+            }
+            
+        case CPayments : //...Payment
+            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
+                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+            }
+            
+        default: //...Refer a Friend
             if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
                 self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
             }

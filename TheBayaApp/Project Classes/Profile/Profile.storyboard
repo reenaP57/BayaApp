@@ -757,6 +757,17 @@
                                     <action selector="btnSubmitClickedWithSender:" destination="ZaO-5E-1fh" eventType="touchUpInside" id="wDv-Ny-WJo"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K9D-cn-aNW">
+                                <rect key="frame" x="125" y="454" width="125" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="SMp-yR-gcR"/>
+                                    <constraint firstAttribute="width" constant="125" id="hqZ-Yx-9GK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -766,8 +777,10 @@
                             <constraint firstItem="X3w-27-jMq" firstAttribute="top" secondItem="sXu-pf-B6K" secondAttribute="bottom" constant="35" id="Ge6-iY-3aV"/>
                             <constraint firstItem="4rO-Fg-CmG" firstAttribute="leading" secondItem="X3w-27-jMq" secondAttribute="leading" id="UKw-I8-Ikh"/>
                             <constraint firstItem="pkz-SG-X7R" firstAttribute="top" secondItem="E2w-ko-C1H" secondAttribute="top" constant="40" id="cPc-yq-1RL"/>
+                            <constraint firstItem="K9D-cn-aNW" firstAttribute="centerX" secondItem="EkN-82-gk1" secondAttribute="centerX" id="cqi-tj-exV"/>
                             <constraint firstItem="DRC-mn-as3" firstAttribute="leading" secondItem="E2w-ko-C1H" secondAttribute="leading" id="dAx-Yh-Ylx"/>
                             <constraint firstItem="sXu-pf-B6K" firstAttribute="centerX" secondItem="EkN-82-gk1" secondAttribute="centerX" id="fJq-DZ-nmt"/>
+                            <constraint firstItem="K9D-cn-aNW" firstAttribute="top" secondItem="4rO-Fg-CmG" secondAttribute="bottom" constant="45" id="iZj-zX-s27"/>
                             <constraint firstItem="X3w-27-jMq" firstAttribute="leading" secondItem="E2w-ko-C1H" secondAttribute="leading" constant="15" id="im9-Dh-Qh3"/>
                             <constraint firstItem="4rO-Fg-CmG" firstAttribute="top" secondItem="X3w-27-jMq" secondAttribute="bottom" constant="40" id="kXS-9y-pHS"/>
                             <constraint firstItem="sXu-pf-B6K" firstAttribute="top" secondItem="pkz-SG-X7R" secondAttribute="bottom" constant="35" id="ovM-Bx-nP9"/>
@@ -779,6 +792,7 @@
                         <viewLayoutGuide key="safeArea" id="E2w-ko-C1H"/>
                     </view>
                     <connections>
+                        <outlet property="btnSkip" destination="K9D-cn-aNW" id="fBp-6i-N1V"/>
                         <outlet property="imgVBg" destination="DRC-mn-as3" id="f0D-Ya-RII"/>
                         <outlet property="txtVFeedback" destination="rTZ-4t-UCM" id="zoP-LP-c5E"/>
                         <outlet property="vwContent" destination="EkN-82-gk1" id="4JA-v3-gkc"/>

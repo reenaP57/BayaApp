@@ -118,3 +118,5 @@ var CMessageCompleted  = "You have visited this project on"
 var CMessageScheduled  = "Your visit has been scheduled for"
 var CMessageRescheduled  = "Your visit has been rescheduled for"
 
+var CBlankDocumentName  =  "Please enter the document name."
+var CBlankDocMsg        =  "Please enter your message."

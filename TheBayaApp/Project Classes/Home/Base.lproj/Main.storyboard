@@ -36,7 +36,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="4gi-bT-G8L">
-                                <rect key="frame" x="0.0" y="126" width="375" height="541"/>
+                                <rect key="frame" x="0.0" y="126" width="375" height="492"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Z3u-EZ-QY5">
@@ -248,8 +248,8 @@
                             <constraint firstItem="sfj-nr-4vQ" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Z2R-OL-XSY"/>
                             <constraint firstItem="gM1-Ju-QNu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="iDL-WV-YmO"/>
                             <constraint firstItem="gM1-Ju-QNu" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="q4X-AG-CZ8"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="4gi-bT-G8L" secondAttribute="bottom" constant="49" id="rJl-jt-D4v"/>
                             <constraint firstItem="sfj-nr-4vQ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="taz-dJ-UXF"/>
-                            <constraint firstItem="4gi-bT-G8L" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="xWg-7c-ofW"/>
                             <constraint firstItem="4gi-bT-G8L" firstAttribute="top" secondItem="ZSH-4N-cY8" secondAttribute="bottom" constant="15" id="xq0-ri-KcC"/>
                             <constraint firstItem="4gi-bT-G8L" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="yDe-N8-Hr1"/>
                             <constraint firstItem="ZSH-4N-cY8" firstAttribute="top" secondItem="gM1-Ju-QNu" secondAttribute="bottom" constant="15" id="zBG-OM-dwa"/>
@@ -263,7 +263,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-278" y="16"/>
+            <point key="canvasLocation" x="-279.19999999999999" y="15.742128935532236"/>
         </scene>
         <!--Timeline Detail View Controller-->
         <scene sceneID="YHQ-so-oev">
