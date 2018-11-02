@@ -67,7 +67,7 @@ extension RequestDocumentListViewController : UITableViewDelegate, UITableViewDa
             let dict = arrRequest[indexPath.row]
             cell.lblDocName.text = dict.valueForString(key: "docName")
             cell.lblStatus.text = dict.valueForString(key: "status")
-            cell.lblRequestedDate.text = "Requested on : \(dict.valueForString(key: "date"))"
+            cell.lblRequestedDate.text = "Requested on: \(dict.valueForString(key: "date"))"
             
             switch dict.valueForString(key: "status") {
             case CRequestOpen : //...Open

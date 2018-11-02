@@ -210,6 +210,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                 if application.applicationState == .inactive {
                     
                     if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                        rateVC.isVisitRate = true
                         rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.visitId"))!
                         appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
                     }
@@ -227,6 +228,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                                 if topViewController is RateYoorVisitViewController {
                                 } else {
                                     if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                                        rateVC.isVisitRate = true
                                         rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.visitId"))!
                                         appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
                                     }

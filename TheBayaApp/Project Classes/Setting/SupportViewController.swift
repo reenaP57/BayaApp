@@ -91,7 +91,7 @@ extension SupportViewController {
             let actionSheet = UIAlertController(title: "Please Select Camera or Photo Library", message: "", preferredStyle: .alert)
           
             actionSheet.addAction(UIAlertAction(title: "Take A Photo", style: .default, handler: { (UIAlertAction) in
-                self.presentImagePickerControllerWithCamera(allowEditing: false) { (image, data) in
+                self.presentImagePickerControllerWithCamera(allowEditing: false, allowMedia: false) { (image, data) in
                     
                     if let selectedImage = image {
                        self.setUploadedImg(img : selectedImage)
@@ -100,7 +100,7 @@ extension SupportViewController {
             }))
             
             actionSheet.addAction(UIAlertAction(title: "Choose From Phone", style: .default, handler: { (UIAlertAction) in
-                self.presentImagePickerControllerWithGallery(allowEditing: false) { (image, data) in
+                self.presentImagePickerControllerWithGallery(allowEditing: false, allowMedia: false) { (image, data) in
                     
                     if let selectedImage = image {
                          self.setUploadedImg(img : selectedImage)
@@ -113,7 +113,7 @@ extension SupportViewController {
             
         } else {
             
-            self.presentImagePickerController(allowEditing: true) { (image, info) in
+            self.presentImagePickerController(allowEditing: true, allowMedia: false) { (image, info) in
                 
                 if let selectedImage = image {
                     self.setUploadedImg(img : selectedImage)

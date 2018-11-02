@@ -36,6 +36,7 @@ class RateYoorVisitViewController: ParentViewController {
     }
     @IBOutlet fileprivate weak var imgVBg : UIImageView!
     @IBOutlet fileprivate weak var btnSkip : UIButton!
+    @IBOutlet fileprivate weak var lblNote : UILabel!
 
     var isVisitRate : Bool = false
     var visitId = 0
@@ -67,10 +68,14 @@ class RateYoorVisitViewController: ParentViewController {
         if isVisitRate {
             //...Rate Visit
             self.navigationItem.title = "Rate Your Visit"
+            txtVFeedback.placeholder = "Your feedback on visit"
+            lblNote.text = "Please spare few minutes to rate your visit. Your feedback is valuable to us."
             btnSkip.isHidden = true
         } else {
             //...Rate Maintenance
             self.navigationItem.title = "Rate Maintenance"
+            txtVFeedback.placeholder = "Your feedback on maintenance work"
+            lblNote.text = "Please spare few minutes to rate our service. Your feedback is valuable to us."
         }
     }
 }
@@ -81,31 +86,48 @@ class RateYoorVisitViewController: ParentViewController {
 
 extension RateYoorVisitViewController {
     
+    @IBAction fileprivate func btnSkipClicked (sender : UIButton) {
+        if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+            viewMaintenanceVC.isFromRate = true
+            
+            self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+        }
+    }
+    
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
         
-        if isVisitRate {
-            //...Rate Visit
-            for objView in vwContent.subviews{
-                if  objView.isKind(of: UITextField.classForCoder()){
-                    let txField = objView as? UITextField
-                    txField?.hideValidationMessage(15.0)
-                    txField?.resignFirstResponder()
-                }
+        for objView in vwContent.subviews{
+            if  objView.isKind(of: UITextField.classForCoder()){
+                let txField = objView as? UITextField
+                txField?.hideValidationMessage(15.0)
+                txField?.resignFirstResponder()
             }
-            self.view.layoutIfNeeded()
-            DispatchQueue.main.async {
-                
-                if self.vwRating.rating < 1.0 {
-                    self.showAlertView(CSelectRating, completion: { (result) in
-                    })
-                } else {
-                    self.rateVisit()
-                }
-            }
-        } else {
-           //...Rate Maintenance
         }
-
+        self.view.layoutIfNeeded()
+        DispatchQueue.main.async {
+            
+            if self.vwRating.rating < 1.0 {
+                self.showAlertView(CSelectRating, completion: { (result) in
+                })
+            } else {
+                
+                if self.isVisitRate {
+                    //...Rate Visit
+                    self.rateVisit()
+                } else {
+                    //...Rate Maintenance
+                    
+                    self.showAlertView(CSuccessRateVisitMessage) { (result) in
+                        
+                        if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                           
+                           viewMaintenanceVC.isFromRate = true
+                            self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -185,7 +185,7 @@ class TimelineDetailViewController: ParentViewController {
         //...Zoom Image multiple image for Ipad
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)
-            zoomView.showImage(arrImg)
+            zoomView.showImage(arrImg, 0)
             zoomView.CViewSetY(y: CScreenHeight)
             UIView.animate(withDuration: 0.3) {
                 zoomView.CViewSetY(y: 0)

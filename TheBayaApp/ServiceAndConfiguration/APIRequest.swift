@@ -14,8 +14,8 @@ import SDWebImage
 
 //MARK:- ---------BASEURL __ TAG
 
-//var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/" //Local
-var BASEURL:String          =   "https://api.thebayacompany.com/v1" //Live
+var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/" //Local
+//var BASEURL:String          =   "https://api.thebayacompany.com/v1" //Live
 
 let CAPITagCountry             =   "country"
 let CAPITagSignUp              =   "signup"

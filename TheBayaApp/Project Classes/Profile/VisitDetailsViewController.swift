@@ -149,6 +149,17 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                     self.dialPhoneNumber(phoneNumber: (dict.valueForString(key: "salesMgrContact")))
                 }
                 
+                if indexPath == tblVVisitDetails.lastIndexPath() {
+                    
+                    //...Load More
+                    if currentPage <= lastPage {
+                        
+                        if apiTask?.state != URLSessionTask.State.running {
+                            self.loadVisitList(showLoader: false, isFromNotification: false)
+                        }
+                    }
+                }
+                
                 return cell
             }
             
@@ -206,8 +217,20 @@ extension VisitDetailsViewController: UITableViewDelegate, UITableViewDataSource
                 cell.btnRateVisit.touchUpInside { (sender) in
                     
                     if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                        rateVisitVC.isVisitRate = true
                         rateVisitVC.visitId = dict.valueForInt(key: "visitId")!
                         self.navigationController?.pushViewController(rateVisitVC, animated: true)
+                    }
+                }
+                
+                if indexPath == tblVVisitDetails.lastIndexPath() {
+                    
+                    //...Load More
+                    if currentPage <= lastPage {
+                        
+                        if apiTask?.state != URLSessionTask.State.running {
+                            self.loadVisitList(showLoader: false, isFromNotification: false)
+                        }
                     }
                 }
                 
@@ -259,7 +282,7 @@ extension VisitDetailsViewController {
                 
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     if arrData.count > 0 {
-                        self.arrVisitList = arrData
+                        self.arrVisitList = self.arrVisitList + arrData
                     }
                 }
                 

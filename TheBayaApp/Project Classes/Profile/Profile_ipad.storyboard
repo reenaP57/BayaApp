@@ -693,16 +693,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Please spare few minutes to rate your visit. Your feedback is valuable to us." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9g-4c-F9r" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="176" y="80" width="416" height="17"/>
+                                <rect key="frame" x="176" y="80" width="416" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="17" id="tt6-G2-8ZB"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="tt6-G2-8ZB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view clipsSubviews="YES" tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8c-7S-4KO" customClass="FloatRatingView" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="279.5" y="127" width="209" height="31"/>
+                                <rect key="frame" x="279.5" y="151" width="209" height="31"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="209" id="v3J-tR-cjW"/>
@@ -722,8 +722,8 @@
                                     <userDefinedRuntimeAttribute type="image" keyPath="emptyImage" value="star"/>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                            <view clipsSubviews="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfk-Yz-7QO">
-                                <rect key="frame" x="176" y="192.5" width="416" height="140"/>
+                            <view clipsSubviews="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tfk-Yz-7QO" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="176" y="216.5" width="416" height="140"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" tag="3" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BoO-BC-aAI" customClass="MIGenericTextView" customModule="TheBayaApp" customModuleProvider="target">
                                         <rect key="frame" x="10" y="0.0" width="396" height="140"/>
@@ -751,12 +751,12 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wfZ-re-wNF" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="176" y="382.5" width="416" height="60"/>
+                                <rect key="frame" x="176" y="406.5" width="416" height="60"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="wfZ-re-wNF" secondAttribute="height" multiplier="208:25" constant="-83.200000000000045" id="FrR-SY-h9R"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="21"/>
                                 <state key="normal" title="Submit">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -769,10 +769,25 @@
                                     <action selector="btnSubmitClickedWithSender:" destination="jbN-ta-zFv" eventType="touchUpInside" id="ChF-oP-QtL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="omT-gp-ZMm">
+                                <rect key="frame" x="304" y="506" width="160" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="160" id="656-aB-siT"/>
+                                    <constraint firstAttribute="height" constant="60" id="Pvi-zQ-N60"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="21"/>
+                                <state key="normal" title="Skip">
+                                    <color key="titleColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSkipClickedWithSender:" destination="jbN-ta-zFv" eventType="touchUpInside" id="GkZ-md-uD6"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5iP-0H-Fs2" firstAttribute="leading" secondItem="rkC-EK-7iR" secondAttribute="leading" id="3Oc-IM-G7A"/>
+                            <constraint firstItem="omT-gp-ZMm" firstAttribute="top" secondItem="wfZ-re-wNF" secondAttribute="bottom" constant="39.5" id="6Os-JK-fNN"/>
                             <constraint firstItem="w9g-4c-F9r" firstAttribute="top" secondItem="rkC-EK-7iR" secondAttribute="top" constant="60" id="9ET-G9-5MT"/>
                             <constraint firstItem="5iP-0H-Fs2" firstAttribute="top" secondItem="Ck8-s7-DE3" secondAttribute="top" id="AsW-3f-BW2"/>
                             <constraint firstItem="wfZ-re-wNF" firstAttribute="leading" secondItem="Tfk-Yz-7QO" secondAttribute="leading" id="Kud-Gx-AQb"/>
@@ -784,6 +799,7 @@
                             <constraint firstItem="Tfk-Yz-7QO" firstAttribute="top" secondItem="c8c-7S-4KO" secondAttribute="bottom" constant="34.5" id="ZET-7H-gu1"/>
                             <constraint firstItem="w9g-4c-F9r" firstAttribute="trailing" secondItem="Tfk-Yz-7QO" secondAttribute="trailing" id="cS1-td-fgZ"/>
                             <constraint firstItem="Tfk-Yz-7QO" firstAttribute="centerX" secondItem="Ck8-s7-DE3" secondAttribute="centerX" id="fb3-jN-XDA"/>
+                            <constraint firstItem="omT-gp-ZMm" firstAttribute="centerX" secondItem="wfZ-re-wNF" secondAttribute="centerX" id="miH-Zw-h2k"/>
                             <constraint firstItem="5iP-0H-Fs2" firstAttribute="trailing" secondItem="rkC-EK-7iR" secondAttribute="trailing" id="ojf-Ow-NFR"/>
                             <constraint firstItem="w9g-4c-F9r" firstAttribute="leading" secondItem="Tfk-Yz-7QO" secondAttribute="leading" id="rfZ-ha-e5u"/>
                             <constraint firstItem="c8c-7S-4KO" firstAttribute="top" secondItem="w9g-4c-F9r" secondAttribute="bottom" constant="30" id="uhe-FF-A2Z"/>
@@ -792,7 +808,9 @@
                     </view>
                     <size key="freeformSize" width="768" height="1024"/>
                     <connections>
+                        <outlet property="btnSkip" destination="omT-gp-ZMm" id="qWr-q1-9UH"/>
                         <outlet property="imgVBg" destination="5iP-0H-Fs2" id="asm-Sh-HXS"/>
+                        <outlet property="lblNote" destination="w9g-4c-F9r" id="G6A-Wu-FsB"/>
                         <outlet property="txtVFeedback" destination="BoO-BC-aAI" id="pik-nz-Pn1"/>
                         <outlet property="vwContent" destination="Ck8-s7-DE3" id="S8f-jN-wiB"/>
                         <outlet property="vwRating" destination="c8c-7S-4KO" id="GVa-zW-DMn"/>

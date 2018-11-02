@@ -29,7 +29,7 @@ class ViewRequestViewController: ParentViewController {
         self.title = "View Request"
         
         lblDocName.text = dictRequest.valueForString(key: "docName")
-        lblRequesetedDate.text = "Requested on : \(dictRequest.valueForString(key: "date"))"
+        lblRequesetedDate.text = "Requested on: \(dictRequest.valueForString(key: "date"))"
         lblDesc.text = dictRequest.valueForString(key: "desc")
         
         if dictRequest.valueForString(key: "status") == CRequestRejected {

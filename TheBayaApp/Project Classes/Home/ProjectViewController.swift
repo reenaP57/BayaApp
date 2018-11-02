@@ -158,9 +158,9 @@ extension ProjectViewController : UITableViewDelegate, UITableViewDataSource {
             if indexPath == tblProject.lastIndexPath() {
                 
                 //...Load More
-                if currentPage < lastPage {
+                if currentPage <= lastPage {
                     
-                    if apiTask?.state == URLSessionTask.State.running {
+                    if apiTask?.state != URLSessionTask.State.running {
                         self.loadProjectList(showLoader: false, isFromNotification :false)
                     }
                 }
@@ -220,7 +220,7 @@ extension ProjectViewController {
                 
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     if arrData.count > 0 {
-                        self.arrProject = arrData
+                        self.arrProject = self.arrProject + arrData
                     }
                 }
     

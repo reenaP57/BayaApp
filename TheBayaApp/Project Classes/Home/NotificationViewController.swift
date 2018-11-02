@@ -147,6 +147,7 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             cell.btnRateVisit.touchUpInside { (sender) in
 
                 if let rateVisitVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                    rateVisitVC.isVisitRate = true
                     rateVisitVC.visitId = dict.valueForInt(key: "visitId")!
                     self.navigationController?.pushViewController(rateVisitVC, animated: true)
                 }
@@ -155,9 +156,9 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             if indexPath == tblNotification.lastIndexPath() {
                 
                 //...Load More
-                if currentPage < lastPage {
+                if currentPage <= lastPage {
                     
-                    if apiTask?.state == URLSessionTask.State.running {
+                    if apiTask?.state != URLSessionTask.State.running {
                         self.loadNotificationList(showLoader: false, isFromNotification :false)
                     }
                 }
@@ -246,7 +247,11 @@ extension NotificationViewController {
                 
                 if  let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     if arrData.count > 0 {
-                        self.arrNotification = arrData
+                        
+                        self.arrNotification = self.arrNotification + arrData
+//                        for item in arrData {
+//                            self.arrNotification.append(item)
+//                        }
                     }
                 }
                 

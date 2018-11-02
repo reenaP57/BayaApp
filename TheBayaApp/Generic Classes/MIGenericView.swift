@@ -47,6 +47,23 @@ class MIGenericView: UIView {
             self.shadow(color: UIColor.black, shadowOffset: CGSize(width: 0, height: 2), shadowRadius: 3.0, shadowOpacity: 0.5)
             self.layer.cornerRadius = cornerRadius
             
+        } else if self.tag == 105 {
+            
+            //...Shadow and border for Payment schedule screen
+            
+            self.layer.borderWidth = 2
+            self.layer.borderColor = CRGB(r: 185, g: 200, b: 207).cgColor
+            self.shadow(color: ColorShadow, shadowOffset: CGSize(width: 7, height: 5), shadowRadius: 5.0, shadowOpacity: 0.7)
+            self.layer.cornerRadius = cornerRadius
+            
+        } else if self.tag == 106 {
+            
+            //... Border for Payment schedule screen
+            
+            self.layer.borderWidth = 1
+            self.layer.borderColor = CRGB(r: 185, g: 200, b: 207).cgColor
+            self.layer.cornerRadius = cornerRadius
+            
         } else {
             //...Set only raduis
             self.layer.cornerRadius = cornerRadius

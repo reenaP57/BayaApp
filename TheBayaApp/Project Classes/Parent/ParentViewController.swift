@@ -107,10 +107,7 @@ class ParentViewController: UIViewController {
                 
                 self.navigationController?.navigationBar.barTintColor = ColorBGColor
             }
-            
-            
         }
-        
     }
     
     @objc func backButtonClicked(){

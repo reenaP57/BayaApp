@@ -114,6 +114,7 @@ let CStoryboardSettingIphone  = UIStoryboard(name:"Setting", bundle: nil)
 let CStoryboardProfile  = UIStoryboard(name: IS_iPad ? "Profile_ipad" : "Profile", bundle: nil)
 let CStoryboardDocument  = UIStoryboard(name: IS_iPad ? "Documents_ipad" : "Documents", bundle: nil)
 let CStoryboardMaintenance  = UIStoryboard(name: IS_iPad ? "Maintenance_ipad" : "Maintenance", bundle: nil)
+let CStoryboardPayment  = UIStoryboard(name: IS_iPad ? "Payment_ipad" : "Payment", bundle: nil)
 
 
 let PASSWORDALLOWCHAR = "!@#$%ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"

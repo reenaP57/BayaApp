@@ -75,6 +75,7 @@
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
 		5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */; };
 		5C072084217064EC009EC492 /* SampleVideo_640x360_20mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */; };
+		5C0B7437218B1E3A0007FC2E /* InfoView_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0B7436218B1E3A0007FC2E /* InfoView_ipad.xib */; };
 		5C0CBF4321479AEC00658633 /* NoInternetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4221479AEC00658633 /* NoInternetView.swift */; };
 		5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0CBF4521479B2000658633 /* NoInternetView.xib */; };
 		5C0CF76A215223FD009979FE /* LocationAdvantagesLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */; };
@@ -85,6 +86,9 @@
 		5C14CA88211C7A8000B06E29 /* TabBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C14CA87211C7A8000B06E29 /* TabBarView.xib */; };
 		5C14CA8A211C7A9B00B06E29 /* TabbarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C14CA89211C7A9B00B06E29 /* TabbarViewController.swift */; };
 		5C189C0C21253911001B72C5 /* FloatRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C189C0B21253911001B72C5 /* FloatRatingView.swift */; };
+		5C1B20BB21881D6F00A7B80D /* NewMaintenanceRequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B20BA21881D6F00A7B80D /* NewMaintenanceRequestViewController.swift */; };
+		5C1B20BE2188435F00A7B80D /* Payment.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1B20BD2188435F00A7B80D /* Payment.storyboard */; };
+		5C1B20C02188464C00A7B80D /* PayementViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1B20BF2188464C00A7B80D /* PayementViewController.swift */; };
 		5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E614621229D210090308D /* ScheduleVisitViewController.swift */; };
 		5C1E61492122BBD00090308D /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E61482122BBD00090308D /* NotificationViewController.swift */; };
 		5C1E614C2122BCFE0090308D /* MIGenericPageControlView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C1E614B2122BCFE0090308D /* MIGenericPageControlView.swift */; };
@@ -120,11 +124,15 @@
 		5C51A95D2133E67700998135 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C51A95C2133E67700998135 /* AVFoundation.framework */; };
 		5C51A95F2133F9F800998135 /* TimelineCompletedProjectTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C51A95E2133F9F800998135 /* TimelineCompletedProjectTblCell.swift */; };
 		5C5325E2215A032900172B91 /* ProjectDetailVideoCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */; };
+		5C54DC5C218ABDBA002979EF /* Payment_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C54DC5B218ABDBA002979EF /* Payment_ipad.storyboard */; };
 		5C574D21215C8F48001D59FE /* VisitConfirmTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C574D20215C8F48001D59FE /* VisitConfirmTblCell.swift */; };
 		5C574D23215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */; };
 		5C574D28215CF80E001D59FE /* VideoCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C574D26215CF80E001D59FE /* VideoCollCell.swift */; };
 		5C574D29215CF80E001D59FE /* VideoCollCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C574D27215CF80E001D59FE /* VideoCollCell.xib */; };
 		5C73A13F211B26320056FC65 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C73A13E211B26320056FC65 /* VerificationViewController.swift */; };
+		5C7A823821898B6C001F7313 /* ReferFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C7A823721898B6C001F7313 /* ReferFriendViewController.swift */; };
+		5C7A823A2189BF9B001F7313 /* Documents_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A82392189BF9B001F7313 /* Documents_ipad.storyboard */; };
+		5C7A823C2189DF06001F7313 /* Maintenance_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C7A823B2189DF06001F7313 /* Maintenance_ipad.storyboard */; };
 		5C8D5B7C212582030080193A /* ProjectDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */; };
 		5C8D5B8A21258A8D0080193A /* LocationAdvantagesCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B8921258A8D0080193A /* LocationAdvantagesCollCell.swift */; };
 		5C8D5B8C21258AA90080193A /* PlanTypeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C8D5B8B21258AA90080193A /* PlanTypeCollCell.swift */; };
@@ -140,6 +148,8 @@
 		5CA899C1218350310011227E /* DocumentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA899C0218350310011227E /* DocumentViewController.swift */; };
 		5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */; };
 		5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */; };
+		5CBBC00D218880CD0083F777 /* PaymentScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBBC00C218880CD0083F777 /* PaymentScheduleViewController.swift */; };
+		5CBBC00F2188813D0083F777 /* PaymentMilestoneTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CBBC00E2188813D0083F777 /* PaymentMilestoneTblCell.swift */; };
 		5CC46D8021366DEC00A4A0B7 /* TimelineGuideLineView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */; };
 		5CC46D8221366DFD00A4A0B7 /* TimelineGuideLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */; };
 		5CC46D842136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */; };
@@ -170,6 +180,9 @@
 		5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */; };
 		5CDE14162119BFBD00B11AA5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */; };
 		5CDE141C2119C7C400B11AA5 /* MIInputControllerValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */; };
+		5CE8D7B121897C2A002819CD /* PaymentDoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8D7B021897C2A002819CD /* PaymentDoneViewController.swift */; };
+		5CE8D7B32189808E002819CD /* TransactionHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8D7B22189808E002819CD /* TransactionHistoryViewController.swift */; };
+		5CE8D7B521898578002819CD /* TransactionTblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CE8D7B421898578002819CD /* TransactionTblCell.swift */; };
 		5CEE6A4D212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */; };
 		5CF1C344214D0F3700F60F26 /* CustomAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CF1C343214D0F3700F60F26 /* CustomAlertView.swift */; };
 		5CF1C346214D0F4000F60F26 /* CustomAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5CF1C345214D0F4000F60F26 /* CustomAlertView.xib */; };
@@ -261,6 +274,7 @@
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
 		5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHomeCollCell.swift; sourceTree = "<group>"; };
 		5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleVideo_640x360_20mb.mp4; sourceTree = "<group>"; };
+		5C0B7436218B1E3A0007FC2E /* InfoView_ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView_ipad.xib; sourceTree = "<group>"; };
 		5C0CBF4221479AEC00658633 /* NoInternetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoInternetView.swift; sourceTree = "<group>"; };
 		5C0CBF4521479B2000658633 /* NoInternetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoInternetView.xib; sourceTree = "<group>"; };
 		5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAdvantagesLayout.swift; sourceTree = "<group>"; };
@@ -271,6 +285,9 @@
 		5C14CA87211C7A8000B06E29 /* TabBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TabBarView.xib; sourceTree = "<group>"; };
 		5C14CA89211C7A9B00B06E29 /* TabbarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabbarViewController.swift; sourceTree = "<group>"; };
 		5C189C0B21253911001B72C5 /* FloatRatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FloatRatingView.swift; sourceTree = "<group>"; };
+		5C1B20BA21881D6F00A7B80D /* NewMaintenanceRequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMaintenanceRequestViewController.swift; sourceTree = "<group>"; };
+		5C1B20BD2188435F00A7B80D /* Payment.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment.storyboard; sourceTree = "<group>"; };
+		5C1B20BF2188464C00A7B80D /* PayementViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayementViewController.swift; sourceTree = "<group>"; };
 		5C1E614621229D210090308D /* ScheduleVisitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleVisitViewController.swift; sourceTree = "<group>"; };
 		5C1E61482122BBD00090308D /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		5C1E614B2122BCFE0090308D /* MIGenericPageControlView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIGenericPageControlView.swift; sourceTree = "<group>"; };
@@ -308,11 +325,15 @@
 		5C51A95E2133F9F800998135 /* TimelineCompletedProjectTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineCompletedProjectTblCell.swift; sourceTree = "<group>"; };
 		5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailVideoCollCell.swift; sourceTree = "<group>"; };
 		5C5325E3215A16D100172B91 /* BridgingHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BridgingHeader.h; sourceTree = "<group>"; };
+		5C54DC5B218ABDBA002979EF /* Payment_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Payment_ipad.storyboard; sourceTree = "<group>"; };
 		5C574D20215C8F48001D59FE /* VisitConfirmTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisitConfirmTblCell.swift; sourceTree = "<group>"; };
 		5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationHeaderTblCell.swift; sourceTree = "<group>"; };
 		5C574D26215CF80E001D59FE /* VideoCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoCollCell.swift; sourceTree = "<group>"; };
 		5C574D27215CF80E001D59FE /* VideoCollCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VideoCollCell.xib; sourceTree = "<group>"; };
 		5C73A13E211B26320056FC65 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
+		5C7A823721898B6C001F7313 /* ReferFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReferFriendViewController.swift; sourceTree = "<group>"; };
+		5C7A82392189BF9B001F7313 /* Documents_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Documents_ipad.storyboard; sourceTree = "<group>"; };
+		5C7A823B2189DF06001F7313 /* Maintenance_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Maintenance_ipad.storyboard; sourceTree = "<group>"; };
 		5C8D5B7B212582030080193A /* ProjectDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailViewController.swift; sourceTree = "<group>"; };
 		5C8D5B8921258A8D0080193A /* LocationAdvantagesCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationAdvantagesCollCell.swift; sourceTree = "<group>"; };
 		5C8D5B8B21258AA90080193A /* PlanTypeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlanTypeCollCell.swift; sourceTree = "<group>"; };
@@ -328,6 +349,8 @@
 		5CA899C0218350310011227E /* DocumentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DocumentViewController.swift; sourceTree = "<group>"; };
 		5CA9D5EB21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateUrlTblCell.swift; sourceTree = "<group>"; };
 		5CA9D5ED21425075000C1BBD /* TimeLineUpdateTextTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineUpdateTextTblCell.swift; sourceTree = "<group>"; };
+		5CBBC00C218880CD0083F777 /* PaymentScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentScheduleViewController.swift; sourceTree = "<group>"; };
+		5CBBC00E2188813D0083F777 /* PaymentMilestoneTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMilestoneTblCell.swift; sourceTree = "<group>"; };
 		5CC46D7F21366DEC00A4A0B7 /* TimelineGuideLineView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView.xib; sourceTree = "<group>"; };
 		5CC46D8121366DFD00A4A0B7 /* TimelineGuideLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineGuideLineView.swift; sourceTree = "<group>"; };
 		5CC46D832136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TimelineGuideLineView_ipad.xib; sourceTree = "<group>"; };
@@ -358,6 +381,9 @@
 		5CDE13FB2119B89900B11AA5 /* ExtensionUIFont.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionUIFont.swift; sourceTree = "<group>"; };
 		5CDE14152119BFBD00B11AA5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5CDE141B2119C7C400B11AA5 /* MIInputControllerValidation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MIInputControllerValidation.swift; sourceTree = "<group>"; };
+		5CE8D7B021897C2A002819CD /* PaymentDoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDoneViewController.swift; sourceTree = "<group>"; };
+		5CE8D7B22189808E002819CD /* TransactionHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryViewController.swift; sourceTree = "<group>"; };
+		5CE8D7B421898578002819CD /* TransactionTblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTblCell.swift; sourceTree = "<group>"; };
 		5CEE6A4C212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeLineZoomImgCollCell_ipad.swift; sourceTree = "<group>"; };
 		5CF1C343214D0F3700F60F26 /* CustomAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertView.swift; sourceTree = "<group>"; };
 		5CF1C345214D0F4000F60F26 /* CustomAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertView.xib; sourceTree = "<group>"; };
@@ -460,6 +486,7 @@
 				5CD763F7211D519100C267AB /* Home */,
 				5CA899BD21834EC70011227E /* Documents */,
 				5CDAF5B321872BC100591F4E /* Maintenance */,
+				5C1B20BC2188434D00A7B80D /* Payment */,
 				5C1E614F2122D7650090308D /* Setting */,
 				5C1E615E2122F3330090308D /* Profile */,
 			);
@@ -679,6 +706,21 @@
 			path = FloatRatingView;
 			sourceTree = "<group>";
 		};
+		5C1B20BC2188434D00A7B80D /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				5C1B20BD2188435F00A7B80D /* Payment.storyboard */,
+				5C54DC5B218ABDBA002979EF /* Payment_ipad.storyboard */,
+				5C1B20BF2188464C00A7B80D /* PayementViewController.swift */,
+				5CBBC00C218880CD0083F777 /* PaymentScheduleViewController.swift */,
+				5CBBC00E2188813D0083F777 /* PaymentMilestoneTblCell.swift */,
+				5CE8D7B021897C2A002819CD /* PaymentDoneViewController.swift */,
+				5CE8D7B22189808E002819CD /* TransactionHistoryViewController.swift */,
+				5CE8D7B421898578002819CD /* TransactionTblCell.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
 		5C1E614F2122D7650090308D /* Setting */ = {
 			isa = PBXGroup;
 			children = (
@@ -724,6 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				5CA899BE21834EE30011227E /* Documents.storyboard */,
+				5C7A82392189BF9B001F7313 /* Documents_ipad.storyboard */,
 				5CA899C0218350310011227E /* DocumentViewController.swift */,
 				5CDAF5A12186D7CB00591F4E /* ProjectDocumentViewController.swift */,
 				5CDAF5A52186E83400591F4E /* RequestDocumentListViewController.swift */,
@@ -779,6 +822,7 @@
 				5C5325E1215A032900172B91 /* ProjectDetailVideoCollCell.swift */,
 				5C574D22215CA0DA001D59FE /* ConfigurationHeaderTblCell.swift */,
 				5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */,
+				5C7A823721898B6C001F7313 /* ReferFriendViewController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -787,8 +831,10 @@
 			isa = PBXGroup;
 			children = (
 				5CDAF5B421872BD300591F4E /* Maintenance.storyboard */,
+				5C7A823B2189DF06001F7313 /* Maintenance_ipad.storyboard */,
 				5CDAF5B621872C2800591F4E /* MaintenanceViewController.swift */,
 				5CDAF5B82187307800591F4E /* ViewMaintenanceRequestViewController.swift */,
+				5C1B20BA21881D6F00A7B80D /* NewMaintenanceRequestViewController.swift */,
 			);
 			path = Maintenance;
 			sourceTree = "<group>";
@@ -826,6 +872,7 @@
 				5CF1C347214D155B00F60F26 /* CustomAlertView_ipad.xib */,
 				5CDAF5B1218720DC00591F4E /* InfoView.swift */,
 				5CDAF5AF218720CF00591F4E /* InfoView.xib */,
+				5C0B7436218B1E3A0007FC2E /* InfoView_ipad.xib */,
 			);
 			path = CommonFiles;
 			sourceTree = "<group>";
@@ -914,12 +961,14 @@
 				489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */,
 				486FDD4D2119AEF500EA0188 /* MIPopUpOverlay.xib in Resources */,
 				5CC46D842136826D00A4A0B7 /* TimelineGuideLineView_ipad.xib in Resources */,
+				5C54DC5C218ABDBA002979EF /* Payment_ipad.storyboard in Resources */,
 				487E4E66211C4CD8000CB32F /* AvenirLTStd-BookOblique.otf in Resources */,
 				5CDE13F02119B67E00B11AA5 /* LRF.storyboard in Resources */,
 				487E4E68211C4CD8000CB32F /* AvenirLTStd-HeavyOblique.otf in Resources */,
 				487E4E65211C4CD8000CB32F /* AvenirLTStd-Book.otf in Resources */,
 				486FDCF82119ADBD00EA0188 /* LaunchScreen.storyboard in Resources */,
 				487E4E67211C4CD8000CB32F /* AvenirLTStd-Heavy.otf in Resources */,
+				5C7A823C2189DF06001F7313 /* Maintenance_ipad.storyboard in Resources */,
 				5C0CBF4621479B2000658633 /* NoInternetView.xib in Resources */,
 				5CDAF5BB2187353100591F4E /* temp_img.jpeg in Resources */,
 				487E4E6A211C4CD8000CB32F /* AvenirLTStd-LightOblique.otf in Resources */,
@@ -936,11 +985,14 @@
 				489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */,
 				5CA899BF21834EE30011227E /* Documents.storyboard in Resources */,
 				5CF50BB22121B024002FDAB8 /* FilterView.xib in Resources */,
+				5C7A823A2189BF9B001F7313 /* Documents_ipad.storyboard in Resources */,
+				5C0B7437218B1E3A0007FC2E /* InfoView_ipad.xib in Resources */,
 				487E4E6D211C4CD8000CB32F /* AvenirLTStd-Roman.otf in Resources */,
 				487E4E64211C4CD8000CB32F /* AvenirLTStd-BlackOblique.otf in Resources */,
 				48346100215B80A7008FC320 /* ImageZoomCollCell.xib in Resources */,
 				5C574D29215CF80E001D59FE /* VideoCollCell.xib in Resources */,
 				487E4E6B211C4CD8000CB32F /* AvenirLTStd-Medium.otf in Resources */,
+				5C1B20BE2188435F00A7B80D /* Payment.storyboard in Resources */,
 				486FDCF02119ADBC00EA0188 /* Main.storyboard in Resources */,
 				5C93C7252158D02700AFFAFD /* GoogleService-Info.plist in Resources */,
 				487E4E63211C4CD8000CB32F /* AvenirLTStd-Black.otf in Resources */,
@@ -1007,6 +1059,7 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${PODS_ROOT}/razorpay-pod/Pod/Razorpay.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1023,6 +1076,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Razorpay.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1038,8 +1092,10 @@
 			files = (
 				486FDD672119AEF500EA0188 /* ExtensionUIViewController.swift in Sources */,
 				486F3BD22159020900D5143C /* TimeLineUpdateUrlWithoutImageTblCell_ipad.swift in Sources */,
+				5CE8D7B521898578002819CD /* TransactionTblCell.swift in Sources */,
 				5CDE13FC2119B89A00B11AA5 /* ExtensionUIFont.swift in Sources */,
 				5CD763F9211D51EA00C267AB /* HomeViewController.swift in Sources */,
+				5C7A823821898B6C001F7313 /* ReferFriendViewController.swift in Sources */,
 				486FDD582119AEF500EA0188 /* ExtensionDouble.swift in Sources */,
 				5CDAF5A62186E83400591F4E /* RequestDocumentListViewController.swift in Sources */,
 				486FDD6A2119AEF500EA0188 /* Localization.swift in Sources */,
@@ -1061,6 +1117,7 @@
 				486FDD462119AEF500EA0188 /* APIRequest.swift in Sources */,
 				486FDD4F2119AEF500EA0188 /* AutoLayout.swift in Sources */,
 				5C4DC5372127E43200C69ACF /* RateYoorVisitViewController.swift in Sources */,
+				5C1B20C02188464C00A7B80D /* PayementViewController.swift in Sources */,
 				5C1E61642122F7C40090308D /* ProfileTblCell.swift in Sources */,
 				486FDD612119AEF500EA0188 /* ExtensionUIImageView.swift in Sources */,
 				486FDD552119AEF500EA0188 /* ExtensionArray.swift in Sources */,
@@ -1079,10 +1136,13 @@
 				5C51A95F2133F9F800998135 /* TimelineCompletedProjectTblCell.swift in Sources */,
 				5C1E616A21230EEC0090308D /* VisitDetailsViewController.swift in Sources */,
 				486FDD4B2119AEF500EA0188 /* MILoader.swift in Sources */,
+				5CBBC00F2188813D0083F777 /* PaymentMilestoneTblCell.swift in Sources */,
 				486FDD5A2119AEF500EA0188 /* ExtensionNSObject.swift in Sources */,
+				5CBBC00D218880CD0083F777 /* PaymentScheduleViewController.swift in Sources */,
 				5C1E615D2122EE6C0090308D /* CMSViewController.swift in Sources */,
 				486FDD5C2119AEF500EA0188 /* ExtensionUIApplication.swift in Sources */,
 				5CEE6A4D212D8AFF0066017A /* TimeLineZoomImgCollCell_ipad.swift in Sources */,
+				5CE8D7B121897C2A002819CD /* PaymentDoneViewController.swift in Sources */,
 				486FDD5E2119AEF500EA0188 /* ExtensionUIButton.swift in Sources */,
 				5C8D5B8C21258AA90080193A /* PlanTypeCollCell.swift in Sources */,
 				5C4DC5392127EC1F00C69ACF /* TutorialCollCell.swift in Sources */,
@@ -1091,6 +1151,7 @@
 				5C8D5B982125941C0080193A /* LocationDescTblCell.swift in Sources */,
 				5CDE13FA2119B7BE00B11AA5 /* MIGenericTextView.swift in Sources */,
 				486FDD4E2119AEF500EA0188 /* MIToastAlert.swift in Sources */,
+				5C1B20BB21881D6F00A7B80D /* NewMaintenanceRequestViewController.swift in Sources */,
 				5C14CA86211C7A7700B06E29 /* TabBarView.swift in Sources */,
 				5CA9D5EE21425075000C1BBD /* TimeLineUpdateTextTblCell.swift in Sources */,
 				5CA9D5EC21424EA2000C1BBD /* TimeLineUpdateUrlTblCell.swift in Sources */,
@@ -1127,6 +1188,7 @@
 				5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */,
 				5C8D5B9421258B190080193A /* SpecificationTblCell.swift in Sources */,
 				5CFCAAA7212BF00B00717C10 /* TimeLineSubscribeTblCell.swift in Sources */,
+				5CE8D7B32189808E002819CD /* TransactionHistoryViewController.swift in Sources */,
 				5C48FB672128588D00B0D6CB /* SeeAllLocationAdvantagesViewController.swift in Sources */,
 				5C4DC53D2127F79200C69ACF /* ExtensionUITableView.swift in Sources */,
 				486FDD622119AEF500EA0188 /* ExtensionUINavigationController.swift in Sources */,
@@ -1320,10 +1382,7 @@
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
@@ -1345,10 +1404,7 @@
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";

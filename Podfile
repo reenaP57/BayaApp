@@ -20,5 +20,6 @@ target 'TheBayaApp' do
   pod 'Firebase/Core'
   pod 'Firebase/Messaging'
   pod 'SDWebImage/GIF'
+  pod 'razorpay-pod', '1.0.24'
 
 end

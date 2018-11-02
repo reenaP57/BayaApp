@@ -67,7 +67,7 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
         
         if cell.imgVSlider.image != nil
         {
-            self.zoomImage()
+            self.zoomImage(imgIndex: indexPath.row)
         }
     }
     
@@ -79,12 +79,12 @@ extension TimeLineUpdateTblCell : UICollectionViewDelegateFlowLayout, UICollecti
 
     }
 
-    func zoomImage(){
+    func zoomImage(imgIndex : Int){
         
         //...Zoom images
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)
-            zoomView.showImage(arrImg)
+            zoomView.showImage(arrImg,imgIndex)
             zoomView.CViewSetY(y: CScreenHeight)
             UIView.animate(withDuration: 0.3) {
                 zoomView.CViewSetY(y: 0)

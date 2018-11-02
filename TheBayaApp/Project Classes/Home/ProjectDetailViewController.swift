@@ -451,13 +451,13 @@ class ProjectDetailViewController: ParentViewController {
         }
     }
     
-    func zoomImageAndVideo(){
+    func zoomImageAndVideo(imgIndex : Int){
         
         //...Zoom Image and video
         if let zoomView = ImageZoomView.initImageZoomView() {
             self.view.addSubview(zoomView)
           //  appDelegate.window.addSubview(zoomView)
-            zoomView.showImageAndVideo(arrProjectImg)
+            zoomView.showImageAndVideo(arrProjectImg, imgIndex)
             zoomView.CViewSetY(y: CScreenHeight)
             UIView.animate(withDuration: 0.3) {
                 zoomView.CViewSetY(y: 0)
@@ -1019,7 +1019,7 @@ extension ProjectDetailViewController : UICollectionViewDelegateFlowLayout, UICo
                 self.zoomImage(cell.imgVPlan.image)
             }
         case collProject:
-            self.zoomImageAndVideo()
+            self.zoomImageAndVideo(imgIndex: indexPath.row)
             
         default:
             break

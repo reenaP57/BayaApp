@@ -25,7 +25,7 @@ class AddRequestDocViewController: ParentViewController {
     
     func initialize() {
         
-        self.title = "Request a Document"
+        self.title = "Request Document"
         GCDMainThread.async {
             self.vwMsg.layer.masksToBounds = true
             self.vwMsg.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor

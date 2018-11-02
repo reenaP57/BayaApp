@@ -48,8 +48,8 @@ class MaintenanceViewController: ParentViewController {
 extension MaintenanceViewController {
     
     @IBAction func btnAddMaintenanceRequestClicked() {
-        if let addRequestVC = CStoryboardDocument.instantiateViewController(withIdentifier: "AddRequestDocViewController") as? AddRequestDocViewController {
-            self.navigationController?.pushViewController(addRequestVC, animated: true)
+        if let newMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "NewMaintenanceRequestViewController") as? NewMaintenanceRequestViewController {
+            self.navigationController?.pushViewController(newMaintenanceVC, animated: true)
         }
     }
 }
@@ -71,7 +71,7 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
             let dict = arrRequest[indexPath.row]
             cell.lblDocName.text = dict.valueForString(key: "docName")
             cell.lblStatus.text = dict.valueForString(key: "status")
-            cell.lblRequestedDate.text = "Requested on : \(dict.valueForString(key: "date"))"
+            cell.lblRequestedDate.text = "Requested on: \(dict.valueForString(key: "date"))"
             
             switch dict.valueForString(key: "status") {
             case CRequestOpen : //...Open
@@ -92,9 +92,16 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-            viewMaintenanceVC.status = arrRequest[indexPath.row].valueForString(key: "status")
-            self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+        if arrRequest[indexPath.row].valueForString(key: "status") == CRequestCompleted {
+            if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                rateVC.isVisitRate = false
+                self.navigationController?.pushViewController(rateVC, animated: true)
+            }
+        } else {
+            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                viewMaintenanceVC.status = arrRequest[indexPath.row].valueForString(key: "status")
+                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+            }
         }
     }
 }

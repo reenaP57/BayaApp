@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="qEI-Pu-W06" customClass="InfoView" customModule="TheBayaApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oBq-e7-33Z" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                    <rect key="frame" x="125" y="449" width="500" height="126.5"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="swp-qb-Aur">
+                            <rect key="frame" x="440" y="0.0" width="60" height="60"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="60" id="Cvm-Kg-2lf"/>
+                                <constraint firstAttribute="height" constant="60" id="sl0-5H-Hk9"/>
+                            </constraints>
+                            <state key="normal" image="ic_close"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requested on : 10 Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tHM-pT-JXV" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                            <rect key="frame" x="25" y="60" width="450" height="16.5"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="12"/>
+                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="swp-qb-Aur" firstAttribute="top" secondItem="oBq-e7-33Z" secondAttribute="top" id="Iey-vJ-Vqr"/>
+                        <constraint firstAttribute="trailing" secondItem="swp-qb-Aur" secondAttribute="trailing" id="Pqr-GI-kPs"/>
+                        <constraint firstItem="tHM-pT-JXV" firstAttribute="top" secondItem="swp-qb-Aur" secondAttribute="bottom" id="X74-si-MCe"/>
+                        <constraint firstAttribute="bottom" secondItem="tHM-pT-JXV" secondAttribute="bottom" constant="50" id="djH-N5-Fhv"/>
+                        <constraint firstItem="tHM-pT-JXV" firstAttribute="leading" secondItem="oBq-e7-33Z" secondAttribute="leading" constant="25" id="kR4-3h-olk"/>
+                        <constraint firstAttribute="trailing" secondItem="tHM-pT-JXV" secondAttribute="trailing" constant="25" id="oug-bO-hse"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="oBq-e7-33Z" firstAttribute="leading" secondItem="3PY-eM-yU8" secondAttribute="leading" constant="125" id="8N1-qN-ium"/>
+                <constraint firstItem="oBq-e7-33Z" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3PY-eM-yU8" secondAttribute="top" constant="50" id="MBS-0a-xjO"/>
+                <constraint firstItem="oBq-e7-33Z" firstAttribute="centerY" secondItem="qEI-Pu-W06" secondAttribute="centerY" id="bbY-6e-4QK"/>
+                <constraint firstItem="3PY-eM-yU8" firstAttribute="trailing" secondItem="oBq-e7-33Z" secondAttribute="trailing" constant="125" id="wON-gw-TMH"/>
+                <constraint firstItem="3PY-eM-yU8" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="oBq-e7-33Z" secondAttribute="bottom" constant="50" id="z2s-Kb-6XB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="3PY-eM-yU8"/>
+            <connections>
+                <outlet property="btnClose" destination="swp-qb-Aur" id="hN9-Rz-wqq"/>
+                <outlet property="lblInfo" destination="tHM-pT-JXV" id="y5W-CJ-QcI"/>
+                <outlet property="vwContent" destination="oBq-e7-33Z" id="Aur-OV-8wI"/>
+            </connections>
+            <point key="canvasLocation" x="39.200000000000003" y="46.326836581709152"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_close" width="19" height="19"/>
+    </resources>
+</document>

@@ -26,7 +26,7 @@ class ImageZoomView: UIView {
         return zoomView
     }
     
-    func showImageAndVideo(_ arr : [[String :AnyObject]]?){
+    func showImageAndVideo(_ arr : [[String :AnyObject]]?, _ imgIndex : Int?){
         arrImgVideo = arr!
         clImage.register(UINib(nibName: "ImageZoomCollCell", bundle: nil), forCellWithReuseIdentifier: "ImageZoomCollCell")
         clImage.register(UINib(nibName: "VideoCollCell", bundle: nil), forCellWithReuseIdentifier: "VideoCollCell")
@@ -34,21 +34,21 @@ class ImageZoomView: UIView {
         GCDMainThread.async {
             self.pageController.numberOfPages = self.arrImgVideo.count
             self.clImage.reloadData()
-            self.imageIndex = 0
+            self.imageIndex = imgIndex!  //0
             self.clImage.setContentOffset(CGPoint(x: CScreenWidth * CGFloat(self.imageIndex), y: 0), animated: false)
             self.updatePageController()
             
         }
     }
     
-    func showImage(_ arr : [String]?){
+    func showImage(_ arr : [String]?, _ imgIndex : Int?){
         arrImages = arr!
         clImage.register(UINib(nibName: "ImageZoomCollCell", bundle: nil), forCellWithReuseIdentifier: "ImageZoomCollCell")
         
         GCDMainThread.async {
             self.pageController.numberOfPages = self.arrImages.count
             self.clImage.reloadData()
-            self.imageIndex = 0
+            self.imageIndex = imgIndex! //0
             self.clImage.setContentOffset(CGPoint(x: CScreenWidth * CGFloat(self.imageIndex), y: 0), animated: false)
             self.updatePageController()
             

@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import IQKeyboardManagerSwift
+import MobileCoreServices
 
 import ObjectiveC
 
@@ -336,6 +337,7 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
         self.imagePickerController?.sourceType = sourceType
     }
     
+    
     /// A Private method used to set the Bool value for allowEditing OR Not on UIImagePickerController.
     ///
     /// - Parameter allowEditing: Bool value for allowEditing OR Not on UIImagePickerController.
@@ -348,28 +350,33 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
     /// - Parameters:
     ///   - allowEditing: Pass the Bool value for allowEditing OR Not on UIImagePickerController.
     ///   - imagePickerControllerCompletionHandler: This completionHandler contain selected image AND info Dictionary to let you help in CurrentController. Both image AND info Dictionary might be nil , in this case to prevent the crash please use if let OR guard let.
-    func presentImagePickerController(allowEditing:Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
+    func presentImagePickerController(allowEditing:Bool , allowMedia:Bool, imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
         
         self.presentActionsheetWithTwoButtons(actionSheetTitle: nil, actionSheetMessage: nil, btnOneTitle: CLocalize(text: "Take A Photo"), btnOneStyle: .default, btnOneTapped: { (action) in
             
-            self.takeAPhoto()
+            self.takeAPhoto(allowMedia : allowMedia)
             
         }, btnTwoTitle: CLocalize(text: "Choose From Phone"), btnTwoStyle: .default) { (action) in
             
-            self.chooseFromPhone(allowEditing:allowEditing)
+            self.chooseFromPhone(allowEditing:allowEditing, allowMedia : allowMedia)
         }
         
         objc_setAssociatedObject(self, &AssociatedObjectKey.imagePickerControllerCompletionHandler, imagePickerControllerCompletionHandler, .OBJC_ASSOCIATION_RETAIN)
     }
     
     /// A private method used to select the image from camera.
-    private func takeAPhoto() {
+    private func takeAPhoto(allowMedia : Bool) {
         
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             
             self.setImagePickerControllerSourceType(sourceType: .camera)
-            self.setAllowEditing(allowEditing: false)
             
+            if allowMedia {
+                self.imagePickerController?.mediaTypes = [kUTTypeMovie as String]
+            } else {
+                self.imagePickerController?.mediaTypes = [kUTTypeImage as String]
+            }
+            self.setAllowEditing(allowEditing: false)
             self.present(self.imagePickerController!, animated: true, completion: nil)
             
         } else {
@@ -381,11 +388,16 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
     /// A private method used to select the image from photoLibrary.
     ///
     /// - Parameter allowEditing: Bool value for allowEditing OR Not on UIImagePickerController.
-    private func chooseFromPhone(allowEditing:Bool) {
+    private func chooseFromPhone(allowEditing:Bool, allowMedia : Bool) {
         
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             
             self.setImagePickerControllerSourceType(sourceType: .photoLibrary)
+            if allowMedia {
+                self.imagePickerController?.mediaTypes = [kUTTypeMovie as String]
+            } else {
+                self.imagePickerController?.mediaTypes = [kUTTypeImage as String]
+            }
             self.setAllowEditing(allowEditing: allowEditing)
             
             self.present(self.imagePickerController!, animated: true, completion: nil)
@@ -394,17 +406,17 @@ extension UIViewController : UIImagePickerControllerDelegate , UINavigationContr
     }
     
     // Open picker in gallery mode
-    func presentImagePickerControllerWithGallery(allowEditing:Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
+    func presentImagePickerControllerWithGallery(allowEditing:Bool ,allowMedia: Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
         
-        self.chooseFromPhone(allowEditing:allowEditing)
+        self.chooseFromPhone(allowEditing:allowEditing, allowMedia: allowMedia)
         
         objc_setAssociatedObject(self, &AssociatedObjectKey.imagePickerControllerCompletionHandler, imagePickerControllerCompletionHandler, .OBJC_ASSOCIATION_RETAIN)
     }
     
     // Open picker in Camera mode
-    func presentImagePickerControllerWithCamera(allowEditing:Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
+    func presentImagePickerControllerWithCamera(allowEditing:Bool ,allowMedia: Bool , imagePickerControllerCompletionHandler:@escaping imagePickerControllerCompletionHandler) {
         
-        self.takeAPhoto()
+        self.takeAPhoto(allowMedia: allowMedia)
         
         objc_setAssociatedObject(self, &AssociatedObjectKey.imagePickerControllerCompletionHandler, imagePickerControllerCompletionHandler, .OBJC_ASSOCIATION_RETAIN)
     }

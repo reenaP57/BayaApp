@@ -129,6 +129,8 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                 cell.lblTitle.text = dict.valueForString(key: "title")
                 cell.lblPrjctName.text = (dict.valueForString(key: "subtitle")).uppercased()
              
+                _ = cell.imgVTitle.setConstraintConstant(0, edge: .centerY, ancestor: true)
+                
                 if dict.valueForString(key: "title") == CProjects {
                     cell.lblPrjctName.isHidden = dict.valueForString(key: "subtitle") == "0"
                     if appDelegate.loginUser?.projectBadge == 0 || appDelegate.loginUser?.projectBadge == 1 {
@@ -140,9 +142,7 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
                     cell.lblPrjctName.isHidden = false
                 } else {
                     cell.lblPrjctName.isHidden = true
-                    if IS_iPhone {
-                        _ = cell.imgVTitle.setConstraintConstant(50, edge: .top, ancestor: true)
-                    }
+                    _ = cell.imgVTitle.setConstraintConstant( IS_iPad ? 15.0 : IS_iPhone_5||IS_iPhone_6 || IS_iPhone_X_Series ? 10.0 : 13.0, edge: .centerY, ancestor: true)
                 }
                 
                 return cell
@@ -181,13 +181,13 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             }
             
         case CPayments : //...Payment
-            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
-                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+            if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PayementViewController") as? PayementViewController {
+                self.navigationController?.pushViewController(paymentVC, animated: true)
             }
             
         default: //...Refer a Friend
-            if let scheduleVisitVC = CStoryboardMain.instantiateViewController(withIdentifier: "ScheduleVisitViewController") as? ScheduleVisitViewController {
-                self.navigationController?.pushViewController(scheduleVisitVC, animated: true)
+            if let referFriendVC = CStoryboardMain.instantiateViewController(withIdentifier: "ReferFriendViewController") as? ReferFriendViewController {
+                self.navigationController?.pushViewController(referFriendVC, animated: true)
             }
         }
     }

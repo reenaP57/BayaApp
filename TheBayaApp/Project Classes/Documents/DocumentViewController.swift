@@ -12,7 +12,7 @@ class DocumentViewController: ParentViewController {
 
     @IBOutlet weak var tblDocument : UITableView!
     
-    var arrDocument = [["img" : IS_iPad ? "ic_my-documents" : "ic_my-documents", "title" : "My Documents"],
+    var arrDocument = [["img" : IS_iPad ? "ic_my-documents_ipad" : "ic_my-documents", "title" : "My Documents"],
                        ["img" : IS_iPad ? "my_projects_profile_ipad" : "my_projects_profile", "title" : "Project Documents"],
                        ["img" : IS_iPad ? "visit_details_profile_ipad" : "visit_details_profile", "title" : "Request a Document"]]
     

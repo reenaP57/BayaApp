@@ -110,13 +110,13 @@ extension TimeLineUpdateTblCell_ipad : UICollectionViewDelegateFlowLayout, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        self.zoomImage()
+        self.zoomImage(imgIndex: indexPath.row)
     }
     
-    func zoomImage(){
+    func zoomImage(imgIndex : Int){
         if let zoomView = ImageZoomView.initImageZoomView() {
             appDelegate.window.addSubview(zoomView)
-            zoomView.showImage(arrImg)
+            zoomView.showImage(arrImg, imgIndex)
             zoomView.CViewSetY(y: CScreenHeight)
             UIView.animate(withDuration: 0.3) {
             zoomView.CViewSetY(y: 0)
