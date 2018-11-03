@@ -21,14 +21,15 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-pC-idT">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a confidential section and need to keep protected. Please enter your password to get an access to it." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiC-6J-c6Q" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="167" y="70" width="416" height="41"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiC-6J-c6Q" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="167" y="70" width="416" height="61.5"/>
+                                <string key="text">This section is password protected due to the confidential nature on the information. Please enter your password to access your payment information.</string>
                                 <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pasword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D1n-8r-wd6" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="167" y="151" width="416" height="60"/>
+                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="D1n-8r-wd6" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="167" y="171.5" width="416" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="D1n-8r-wd6" secondAttribute="height" multiplier="104:15" id="kEQ-Ij-nsD"/>
@@ -46,7 +47,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yPn-e5-4a0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="167" y="271" width="416" height="60"/>
+                                <rect key="frame" x="167" y="291.5" width="416" height="60"/>
                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="21"/>
                                 <state key="normal" title="Enter">
@@ -59,6 +60,20 @@
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnEnterPasswordClickedWithSender:" destination="c84-hT-rBr" eventType="touchUpInside" id="YGo-Pk-GGJ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3ao-Ka-4va">
+                                <rect key="frame" x="250" y="382" width="250" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="V2D-mu-V6j"/>
+                                    <constraint firstAttribute="height" constant="50" id="ngY-be-ToD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Forgot Password?">
+                                    <color key="titleColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnForgotPasswordClickedWithSender:" destination="c84-hT-rBr" eventType="touchUpInside" id="gs7-Q1-gT4"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -75,9 +90,11 @@
                             <constraint firstItem="dEu-pC-idT" firstAttribute="bottom" secondItem="LBG-Y7-4nz" secondAttribute="bottom" id="VBp-rJ-uqy"/>
                             <constraint firstItem="yPn-e5-4a0" firstAttribute="height" secondItem="D1n-8r-wd6" secondAttribute="height" id="fYs-85-QKu"/>
                             <constraint firstItem="D1n-8r-wd6" firstAttribute="width" secondItem="aI3-cm-isT" secondAttribute="width" multiplier="0.554667" id="fj2-Dg-SPU"/>
+                            <constraint firstItem="3ao-Ka-4va" firstAttribute="top" secondItem="yPn-e5-4a0" secondAttribute="bottom" constant="30.5" id="lRt-4n-mTn"/>
                             <constraint firstItem="D1n-8r-wd6" firstAttribute="centerX" secondItem="aI3-cm-isT" secondAttribute="centerX" id="mre-qa-yx4"/>
                             <constraint firstItem="IiC-6J-c6Q" firstAttribute="leading" secondItem="D1n-8r-wd6" secondAttribute="leading" id="tdF-Bw-T79"/>
                             <constraint firstItem="D1n-8r-wd6" firstAttribute="top" secondItem="IiC-6J-c6Q" secondAttribute="bottom" constant="40" id="xat-5n-WgR"/>
+                            <constraint firstItem="3ao-Ka-4va" firstAttribute="centerX" secondItem="yPn-e5-4a0" secondAttribute="centerX" id="xqs-Ua-6Zq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LBG-Y7-4nz"/>
                     </view>
@@ -941,7 +958,7 @@
                                 <rect key="frame" x="125" y="20" width="500" height="1004"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTblCell" rowHeight="178" id="qc7-ur-fr5" customClass="TransactionTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="TransactionTblCell" rowHeight="178" id="qc7-ur-fr5" customClass="TransactionTblCell" customModule="TheBayaApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="500" height="178"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qc7-ur-fr5" id="BdD-Po-acz">
@@ -949,7 +966,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VcI-Qp-yTF" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="10" y="7" width="480" height="164"/>
+                                                    <rect key="frame" x="10" y="7" width="855" height="164"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MILESTONE 16" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0LU-Gt-UzQ" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="20" y="17" width="102.5" height="19.5"/>

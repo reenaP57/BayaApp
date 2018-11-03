@@ -29,8 +29,20 @@ class PayementViewController: ParentViewController {
 
 extension PayementViewController {
     
+    @IBAction fileprivate func btnForgotPasswordClicked (sender : UIButton) {
+        
+        self.resignKeyboard()
+        self.showAlertConfirmationView("The password for this section is the same as your app login password. In order to reset the password, you will have to sign out of the app, and select the forgot password option at the login screen. If you wish to proceed, you can click on the sign out button below.", okTitle: "Logout", cancleTitle: CBtnCancel, type: .confirmationView) { (result) in
+            
+            if result {
+                appDelegate.logout(isForDeleteUser: false)
+            }
+        }
+    }
+    
     @IBAction fileprivate func btnEnterPasswordClicked (sender : UIButton) {
         
+        self.resignKeyboard()
         if (txtPwd.text?.isBlank)! {
             self.view.addSubview(self.txtPwd.showValidationMessage(30.0, CBlankPassword))
         } else if !(self.txtPwd.text?.isValidPassword)! || (self.txtPwd.text?.count)! < 6 {

@@ -13,7 +13,7 @@ class SettingViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblSettings: UITableView!
     @IBOutlet fileprivate weak var imgVBg: UIImageView!
 
-    let arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
+    let arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CPaymentPassword, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
 
    
     //MARK:-
@@ -193,6 +193,10 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                     cell.imgVArrow.isHidden = true
                     cell.switchNotify.isHidden = false
                     cell.switchNotify.isOn = (appDelegate.loginUser?.smsNotify)!
+                    
+                case CPaymentPassword:
+                    cell.imgVArrow.isHidden = true
+                    cell.switchNotify.isHidden = false
                     
                 default :
                     if indexPath.row == arrSetting.count-1 {

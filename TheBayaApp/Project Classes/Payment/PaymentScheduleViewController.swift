@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Razorpay
 
 class PaymentScheduleViewController: ParentViewController {
-
+   
     @IBOutlet fileprivate weak var vwNoOutstandingPayment : UIView!
     @IBOutlet fileprivate weak var vwPayment : UIView!
     @IBOutlet fileprivate weak var tblMilestone : UITableView!
@@ -32,7 +33,8 @@ class PaymentScheduleViewController: ParentViewController {
         }
     }
     var arrMilestone = [[String : AnyObject]]()
-
+    var razorpay: Razorpay!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -53,6 +55,9 @@ class PaymentScheduleViewController: ParentViewController {
     func initialize() {
         
         self.title = "Payment Schedule"
+        
+        //...RazorPay configuration
+        razorpay = Razorpay.initWithKey("rzp_test_2CsIylqZj3kniC", andDelegate: self)
         
         vwNoOutstandingPayment.isHidden = true
         //vwPayment.hide(byHeight: true)
@@ -87,6 +92,11 @@ extension PaymentScheduleViewController {
  
     @IBAction func btnMakePaymentOnlineClicked (sender : UIButton) {
         
+        let options: [String:Any] = [
+            "amount" : "100", //mandatory in paise
+            "description": "Test payment"]
+        
+        razorpay.open(options, displayController: self)
     }
     
     @IBAction func btnTransactionHistoryClicked (sender : UIButton) {
@@ -154,5 +164,27 @@ extension PaymentScheduleViewController : UITableViewDataSource, UITableViewDele
             return cell
         }
         return UITableViewCell()
+    }
+}
+
+
+extension PaymentScheduleViewController : RazorpayPaymentCompletionProtocolWithData, RazorpayPaymentCompletionProtocol {
+    
+    func onPaymentError(_ code: Int32, description str: String, andData response: [AnyHashable : Any]?) {
+        print("Response : ",response as Any)
+    }
+    
+    func onPaymentSuccess(_ payment_id: String, andData response: [AnyHashable : Any]?) {
+        
+        print("Response : ",response as Any)
+    }
+    
+    func onPaymentError(_ code: Int32, description str: String) {
+        self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: "Description :\(str)", btnOneTitle: CBtnOk, btnOneTapped: nil)
+    }
+    
+    func onPaymentSuccess(_ payment_id: String) {
+        
+        self.presentAlertViewWithOneButton(alertTitle: "", alertMessage: "Payment id :\(payment_id)", btnOneTitle: CBtnOk, btnOneTapped: nil)
     }
 }

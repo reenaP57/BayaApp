@@ -220,7 +220,7 @@ let CAppSupport          = "App Support"
 let CAboutUs             = "About Us"
 let CRateApp             = "Rate App"
 let CLogout              = "Logout"
-
+let CPaymentPassword     = "Payment Password"
 
 
 //MARK:- Screen Name
