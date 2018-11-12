@@ -22,18 +22,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fs7-Dm-bfC">
-                                <rect key="frame" x="150" y="20" width="468" height="1004"/>
+                                <rect key="frame" x="35" y="20" width="698" height="1004"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProfileTblCell" rowHeight="74" id="knu-fz-4hG" customClass="ProfileTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="468" height="74"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProfileTblCell" rowHeight="74" id="knu-fz-4hG" customClass="ProfileTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="698" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="knu-fz-4hG" id="TsS-kj-fro">
-                                            <rect key="frame" x="0.0" y="0.0" width="468" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="698" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOw-nk-rBm" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="438" height="60"/>
+                                                    <rect key="frame" x="15" y="7" width="831" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="visit_details_profile" translatesAutoresizingMaskIntoConstraints="NO" id="SvY-YB-VzN">
                                                             <rect key="frame" x="20" y="19" width="22" height="22"/>
@@ -45,7 +45,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-hX-8bN">
-                                                            <rect key="frame" x="417" y="0.0" width="8" height="60"/>
+                                                            <rect key="frame" x="810" y="0.0" width="8" height="60"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,13 +88,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fs7-Dm-bfC" firstAttribute="leading" secondItem="O5f-hq-Pnl" secondAttribute="leading" constant="150" id="0jD-5y-d59"/>
+                            <constraint firstItem="fs7-Dm-bfC" firstAttribute="leading" secondItem="O5f-hq-Pnl" secondAttribute="leading" constant="35" id="0jD-5y-d59"/>
                             <constraint firstItem="fs7-Dm-bfC" firstAttribute="bottom" secondItem="O5f-hq-Pnl" secondAttribute="bottom" id="8M8-LX-xvx"/>
                             <constraint firstItem="hda-TX-6D5" firstAttribute="leading" secondItem="O5f-hq-Pnl" secondAttribute="leading" id="DXM-Rh-EO0"/>
                             <constraint firstItem="fs7-Dm-bfC" firstAttribute="top" secondItem="O5f-hq-Pnl" secondAttribute="top" id="EPk-U1-mKH"/>
                             <constraint firstItem="hda-TX-6D5" firstAttribute="top" secondItem="psU-Ey-bYu" secondAttribute="top" id="MYb-N7-B7Z"/>
                             <constraint firstItem="O5f-hq-Pnl" firstAttribute="bottom" secondItem="hda-TX-6D5" secondAttribute="bottom" id="R0A-m0-UHh"/>
-                            <constraint firstItem="O5f-hq-Pnl" firstAttribute="trailing" secondItem="fs7-Dm-bfC" secondAttribute="trailing" constant="150" id="VYi-tY-GdF"/>
+                            <constraint firstItem="O5f-hq-Pnl" firstAttribute="trailing" secondItem="fs7-Dm-bfC" secondAttribute="trailing" constant="35" id="VYi-tY-GdF"/>
                             <constraint firstItem="O5f-hq-Pnl" firstAttribute="trailing" secondItem="hda-TX-6D5" secondAttribute="trailing" id="sSo-a2-4UR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O5f-hq-Pnl"/>
@@ -121,18 +121,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="CzL-1a-j69">
-                                <rect key="frame" x="150" y="20" width="468" height="1004"/>
+                                <rect key="frame" x="35" y="20" width="698" height="1004"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DocumentTblCell" rowHeight="74" id="8vK-dH-uFf" customClass="DocumentTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="468" height="74"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="DocumentTblCell" rowHeight="74" id="8vK-dH-uFf" customClass="DocumentTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="698" height="74"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8vK-dH-uFf" id="xRy-In-H1Q">
-                                            <rect key="frame" x="0.0" y="0.0" width="468" height="74"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="698" height="74"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XN0-cH-zjm" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="438" height="60"/>
+                                                    <rect key="frame" x="15" y="7" width="831" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaV-pc-Rqe" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="17.5" width="81" height="25"/>
@@ -141,7 +141,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="98y-63-0qu">
-                                                            <rect key="frame" x="417" y="0.0" width="8" height="60"/>
+                                                            <rect key="frame" x="810" y="0.0" width="8" height="60"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -192,11 +192,11 @@
                             <constraint firstItem="CzL-1a-j69" firstAttribute="top" secondItem="viQ-fw-77a" secondAttribute="top" id="LP4-ur-EMk"/>
                             <constraint firstItem="Ldc-QG-x0a" firstAttribute="trailing" secondItem="viQ-fw-77a" secondAttribute="trailing" id="S7C-rA-u4v"/>
                             <constraint firstItem="Ldc-QG-x0a" firstAttribute="leading" secondItem="viQ-fw-77a" secondAttribute="leading" id="TXV-bQ-UVq"/>
-                            <constraint firstItem="viQ-fw-77a" firstAttribute="trailing" secondItem="CzL-1a-j69" secondAttribute="trailing" constant="150" id="hOw-DB-lev"/>
+                            <constraint firstItem="viQ-fw-77a" firstAttribute="trailing" secondItem="CzL-1a-j69" secondAttribute="trailing" constant="35" id="hOw-DB-lev"/>
                             <constraint firstItem="CzL-1a-j69" firstAttribute="bottom" secondItem="viQ-fw-77a" secondAttribute="bottom" id="kNR-vl-0Gy"/>
                             <constraint firstItem="WQt-Ku-kwZ" firstAttribute="centerX" secondItem="3qR-iC-NDB" secondAttribute="centerX" id="luD-Za-12z"/>
                             <constraint firstItem="WQt-Ku-kwZ" firstAttribute="centerY" secondItem="3qR-iC-NDB" secondAttribute="centerY" id="ofV-up-QIf"/>
-                            <constraint firstItem="CzL-1a-j69" firstAttribute="leading" secondItem="viQ-fw-77a" secondAttribute="leading" constant="150" id="szP-3U-NZD"/>
+                            <constraint firstItem="CzL-1a-j69" firstAttribute="leading" secondItem="viQ-fw-77a" secondAttribute="leading" constant="35" id="szP-3U-NZD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="viQ-fw-77a"/>
                     </view>
@@ -222,18 +222,18 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="GFz-fQ-wqt">
-                                <rect key="frame" x="125" y="20" width="518" height="1004"/>
+                                <rect key="frame" x="35" y="20" width="698" height="1004"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RequestDocTblCell" rowHeight="124" id="33c-xj-uPw" customClass="RequestDocTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="518" height="124"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="RequestDocTblCell" rowHeight="124" id="33c-xj-uPw" customClass="RequestDocTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="698" height="124"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="33c-xj-uPw" id="ker-7x-RqR">
-                                            <rect key="frame" x="0.0" y="0.0" width="518" height="124"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="698" height="124"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMJ-ez-q5s" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="488" height="110"/>
+                                                    <rect key="frame" x="15" y="7" width="881" height="110"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOC Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPy-2W-Z9U" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="15" width="63" height="19.5"/>
@@ -248,7 +248,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="cSG-hv-sAS">
-                                                            <rect key="frame" x="467" y="28.5" width="8" height="13"/>
+                                                            <rect key="frame" x="860" y="28.5" width="8" height="13"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KsX-Rh-IS6" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="72.5" width="54.5" height="22.5"/>
@@ -339,10 +339,10 @@
                             <constraint firstItem="GFz-fQ-wqt" firstAttribute="top" secondItem="CEV-QY-ejn" secondAttribute="top" id="Yvg-dH-7CT"/>
                             <constraint firstItem="CEV-QY-ejn" firstAttribute="bottom" secondItem="QTa-Eg-nRJ" secondAttribute="bottom" constant="45" id="bSm-bB-EmP"/>
                             <constraint firstItem="dQO-Ni-u5C" firstAttribute="trailing" secondItem="CEV-QY-ejn" secondAttribute="trailing" id="ggz-rG-hem"/>
-                            <constraint firstItem="CEV-QY-ejn" firstAttribute="trailing" secondItem="GFz-fQ-wqt" secondAttribute="trailing" constant="125" id="iJZ-fO-12e"/>
+                            <constraint firstItem="CEV-QY-ejn" firstAttribute="trailing" secondItem="GFz-fQ-wqt" secondAttribute="trailing" constant="35" id="iJZ-fO-12e"/>
                             <constraint firstItem="dQO-Ni-u5C" firstAttribute="top" secondItem="I7B-Jb-Hrj" secondAttribute="top" id="ryt-ta-0D2"/>
                             <constraint firstItem="dQO-Ni-u5C" firstAttribute="bottom" secondItem="CEV-QY-ejn" secondAttribute="bottom" id="vbb-Fl-ve2"/>
-                            <constraint firstItem="GFz-fQ-wqt" firstAttribute="leading" secondItem="CEV-QY-ejn" secondAttribute="leading" constant="125" id="xhM-ot-Usv"/>
+                            <constraint firstItem="GFz-fQ-wqt" firstAttribute="leading" secondItem="CEV-QY-ejn" secondAttribute="leading" constant="35" id="xhM-ot-Usv"/>
                             <constraint firstItem="dQO-Ni-u5C" firstAttribute="leading" secondItem="CEV-QY-ejn" secondAttribute="leading" id="yO7-zt-LUG"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CEV-QY-ejn"/>
@@ -486,7 +486,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                             </imageView>
                             <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8q-RJ-DWY" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="131" y="30" width="488" height="166.5"/>
+                                <rect key="frame" x="50" y="30" width="650" height="166.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOC Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-Qb-XrN" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                         <rect key="frame" x="15" y="15" width="67.5" height="20.5"/>
@@ -564,7 +564,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requested on : 10 Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23T-5C-6Bx" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="108.5" width="458" height="18"/>
+                                        <rect key="frame" x="15" y="108.5" width="620" height="18"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -598,11 +598,11 @@
                         <constraints>
                             <constraint firstItem="nBK-VL-OPe" firstAttribute="top" secondItem="L77-oN-ObN" secondAttribute="top" id="YeY-6x-X3D"/>
                             <constraint firstItem="nBK-VL-OPe" firstAttribute="trailing" secondItem="nfj-Ze-AJZ" secondAttribute="trailing" id="cYZ-Lf-JbE"/>
-                            <constraint firstItem="nfj-Ze-AJZ" firstAttribute="trailing" secondItem="D8q-RJ-DWY" secondAttribute="trailing" constant="131" id="dJV-nE-r60"/>
+                            <constraint firstItem="nfj-Ze-AJZ" firstAttribute="trailing" secondItem="D8q-RJ-DWY" secondAttribute="trailing" constant="50" id="dJV-nE-r60"/>
                             <constraint firstItem="nBK-VL-OPe" firstAttribute="leading" secondItem="nfj-Ze-AJZ" secondAttribute="leading" id="fqt-Qp-fIO"/>
                             <constraint firstItem="D8q-RJ-DWY" firstAttribute="top" secondItem="nfj-Ze-AJZ" secondAttribute="top" constant="10" id="o1N-Ki-neb"/>
                             <constraint firstItem="nBK-VL-OPe" firstAttribute="bottom" secondItem="nfj-Ze-AJZ" secondAttribute="bottom" id="y9x-Oq-fAA"/>
-                            <constraint firstItem="D8q-RJ-DWY" firstAttribute="leading" secondItem="nfj-Ze-AJZ" secondAttribute="leading" constant="131" id="yHd-SG-cRR"/>
+                            <constraint firstItem="D8q-RJ-DWY" firstAttribute="leading" secondItem="nfj-Ze-AJZ" secondAttribute="leading" constant="50" id="yHd-SG-cRR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="nfj-Ze-AJZ"/>
                     </view>

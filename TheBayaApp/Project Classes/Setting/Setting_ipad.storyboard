@@ -27,44 +27,44 @@
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XzS-s2-wT2">
-                                <rect key="frame" x="150" y="20" width="468" height="955"/>
+                                <rect key="frame" x="35" y="20" width="698" height="955"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="15" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingTblCell" rowHeight="60" id="WV1-MY-6ZR" customClass="SettingTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="468" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingTblCell" rowHeight="60" id="WV1-MY-6ZR" customClass="SettingTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="698" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="WV1-MY-6ZR" id="bE0-jt-TyF">
-                                            <rect key="frame" x="0.0" y="0.0" width="468" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="698" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WMD-eM-fDs" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="90" y="5" width="681" height="50"/>
+                                                    <rect key="frame" x="15" y="5" width="668" height="50"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te4-RX-zQh" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="5" width="585" height="40"/>
+                                                            <rect key="frame" x="16" y="5" width="45.5" height="40"/>
                                                             <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" tag="103" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="n0n-IE-VIX">
-                                                            <rect key="frame" x="658" y="0.0" width="8" height="50"/>
+                                                            <rect key="frame" x="645" y="0.0" width="8" height="50"/>
                                                         </imageView>
                                                         <switch opaque="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="75Z-y6-Wtx">
-                                                            <rect key="frame" x="617" y="9.5" width="51" height="31"/>
+                                                            <rect key="frame" x="604" y="9.5" width="51" height="31"/>
                                                         </switch>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="bottom" secondItem="n0n-IE-VIX" secondAttribute="bottom" id="2Ii-yD-PVs"/>
-                                                        <constraint firstItem="75Z-y6-Wtx" firstAttribute="leading" secondItem="te4-RX-zQh" secondAttribute="trailing" constant="16" id="IAg-tl-lmb"/>
-                                                        <constraint firstItem="te4-RX-zQh" firstAttribute="top" secondItem="WMD-eM-fDs" secondAttribute="top" constant="5" id="Row-lE-Tkj"/>
-                                                        <constraint firstItem="n0n-IE-VIX" firstAttribute="top" secondItem="WMD-eM-fDs" secondAttribute="top" id="W9i-bW-FQy"/>
-                                                        <constraint firstItem="te4-RX-zQh" firstAttribute="leading" secondItem="WMD-eM-fDs" secondAttribute="leading" constant="16" id="d5d-2J-GFd"/>
-                                                        <constraint firstAttribute="trailing" secondItem="n0n-IE-VIX" secondAttribute="trailing" constant="15" id="erm-NP-O7A"/>
-                                                        <constraint firstAttribute="trailing" secondItem="75Z-y6-Wtx" secondAttribute="trailing" constant="15" id="lFv-zR-C3P"/>
-                                                        <constraint firstItem="75Z-y6-Wtx" firstAttribute="centerY" secondItem="WMD-eM-fDs" secondAttribute="centerY" id="nx0-kv-HGV"/>
-                                                        <constraint firstAttribute="bottom" secondItem="te4-RX-zQh" secondAttribute="bottom" constant="5" id="vVh-T2-y7d"/>
+                                                        <constraint firstAttribute="trailing" secondItem="75Z-y6-Wtx" secondAttribute="trailing" constant="15" id="0eh-S6-Nth"/>
+                                                        <constraint firstAttribute="bottom" secondItem="n0n-IE-VIX" secondAttribute="bottom" id="7Ks-Zy-3xh"/>
+                                                        <constraint firstItem="te4-RX-zQh" firstAttribute="top" secondItem="WMD-eM-fDs" secondAttribute="top" constant="5" id="ETR-Lr-YfK"/>
+                                                        <constraint firstItem="75Z-y6-Wtx" firstAttribute="centerY" secondItem="WMD-eM-fDs" secondAttribute="centerY" id="LT2-Bi-spb"/>
+                                                        <constraint firstAttribute="trailing" secondItem="n0n-IE-VIX" secondAttribute="trailing" constant="15" id="hP7-ap-ahO"/>
+                                                        <constraint firstItem="te4-RX-zQh" firstAttribute="leading" secondItem="WMD-eM-fDs" secondAttribute="leading" constant="16" id="hbg-HM-0lh"/>
+                                                        <constraint firstAttribute="bottom" secondItem="te4-RX-zQh" secondAttribute="bottom" constant="5" id="pbJ-aG-vkf"/>
+                                                        <constraint firstItem="n0n-IE-VIX" firstAttribute="top" secondItem="WMD-eM-fDs" secondAttribute="top" id="uvC-5R-v2t"/>
+                                                        <constraint firstItem="75Z-y6-Wtx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="te4-RX-zQh" secondAttribute="trailing" constant="15" id="xwQ-Au-P6l"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -75,10 +75,10 @@
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="top" secondItem="bE0-jt-TyF" secondAttribute="top" constant="5" id="43r-jH-ayS"/>
-                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="width" secondItem="bE0-jt-TyF" secondAttribute="width" multiplier="0.541667" constant="214.499844" id="Irf-x6-Pbz"/>
-                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="centerX" secondItem="bE0-jt-TyF" secondAttribute="centerX" id="JiJ-Rc-fa3"/>
-                                                <constraint firstAttribute="bottom" secondItem="WMD-eM-fDs" secondAttribute="bottom" constant="5" id="Xv5-7I-KeB"/>
+                                                <constraint firstAttribute="bottom" secondItem="WMD-eM-fDs" secondAttribute="bottom" constant="5" id="hPq-UK-a4i"/>
+                                                <constraint firstAttribute="trailing" secondItem="WMD-eM-fDs" secondAttribute="trailing" constant="15" id="ibw-2N-eQW"/>
+                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="leading" secondItem="bE0-jt-TyF" secondAttribute="leading" constant="15" id="mom-f4-yHP"/>
+                                                <constraint firstItem="WMD-eM-fDs" firstAttribute="top" secondItem="bE0-jt-TyF" secondAttribute="top" constant="5" id="zdb-gf-KVj"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -88,15 +88,15 @@
                                             <outlet property="switchNotify" destination="75Z-y6-Wtx" id="Q4J-d4-RzD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingVersionTblCell" rowHeight="60" id="G4K-Wc-UjQ" customClass="SettingVersionTblCell" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="88" width="468" height="60"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="SettingVersionTblCell" rowHeight="60" id="G4K-Wc-UjQ" customClass="SettingVersionTblCell" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="88" width="698" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="G4K-Wc-UjQ" id="NFS-Xg-itK">
-                                            <rect key="frame" x="0.0" y="0.0" width="468" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="698" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Am-iX-LQ6" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="408" y="10" width="45.5" height="40"/>
+                                                    <rect key="frame" x="326.5" y="10" width="45.5" height="40"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="18"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="0Am-iX-LQ6" secondAttribute="bottom" constant="10" id="F8q-OK-t02"/>
                                                 <constraint firstItem="0Am-iX-LQ6" firstAttribute="top" secondItem="NFS-Xg-itK" secondAttribute="top" constant="10" id="Fty-uv-rKC"/>
-                                                <constraint firstItem="0Am-iX-LQ6" firstAttribute="centerX" secondItem="NFS-Xg-itK" secondAttribute="centerX" id="bSS-jD-PbM"/>
+                                                <constraint firstItem="0Am-iX-LQ6" firstAttribute="centerX" secondItem="NFS-Xg-itK" secondAttribute="centerX" id="Uaa-aB-zqs"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -127,8 +127,8 @@
                             <constraint firstItem="YdU-Fw-ReR" firstAttribute="bottom" secondItem="AOl-pg-prH" secondAttribute="bottom" id="PJ9-bz-XTt"/>
                             <constraint firstItem="AOl-pg-prH" firstAttribute="leading" secondItem="YdU-Fw-ReR" secondAttribute="leading" id="SlF-oK-w6B"/>
                             <constraint firstItem="YdU-Fw-ReR" firstAttribute="bottom" secondItem="XzS-s2-wT2" secondAttribute="bottom" constant="49" id="aes-2R-0kw"/>
-                            <constraint firstItem="XzS-s2-wT2" firstAttribute="leading" secondItem="YdU-Fw-ReR" secondAttribute="leading" constant="150" id="do5-dW-8kN"/>
-                            <constraint firstItem="YdU-Fw-ReR" firstAttribute="trailing" secondItem="XzS-s2-wT2" secondAttribute="trailing" constant="150" id="lVj-np-pg6"/>
+                            <constraint firstItem="XzS-s2-wT2" firstAttribute="leading" secondItem="YdU-Fw-ReR" secondAttribute="leading" constant="35" id="do5-dW-8kN"/>
+                            <constraint firstItem="YdU-Fw-ReR" firstAttribute="trailing" secondItem="XzS-s2-wT2" secondAttribute="trailing" constant="35" id="lVj-np-pg6"/>
                             <constraint firstItem="YdU-Fw-ReR" firstAttribute="trailing" secondItem="AOl-pg-prH" secondAttribute="trailing" id="vwH-yX-9le"/>
                             <constraint firstItem="XzS-s2-wT2" firstAttribute="top" secondItem="YdU-Fw-ReR" secondAttribute="top" id="z87-PD-xpI"/>
                         </constraints>
