@@ -3785,8 +3785,14 @@
                                     <action selector="btnSendClickedWithSender:" destination="vaY-fn-L6u" eventType="touchUpInside" id="TME-zt-YU4"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Terms &amp; Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lNW-2x-OzY" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="167" y="574" width="157" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSU-Sk-SkS" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="167" y="571" width="416" height="38.5"/>
+                                <rect key="frame" x="167" y="608" width="416" height="38.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -3801,11 +3807,13 @@
                             <constraint firstItem="McP-SL-wjQ" firstAttribute="leading" secondItem="Wpe-ZM-0kX" secondAttribute="leading" id="9L5-YV-BEB"/>
                             <constraint firstItem="Wmb-SX-1gg" firstAttribute="height" secondItem="8gH-aW-GzI" secondAttribute="height" id="9Sz-Ti-vtI"/>
                             <constraint firstItem="Wpe-ZM-0kX" firstAttribute="centerX" secondItem="Wmb-SX-1gg" secondAttribute="centerX" id="Av2-tC-nOX"/>
+                            <constraint firstItem="lNW-2x-OzY" firstAttribute="leading" secondItem="Wpe-ZM-0kX" secondAttribute="leading" id="CEp-X3-EWM"/>
                             <constraint firstItem="xoU-aH-cJn" firstAttribute="trailing" secondItem="2vZ-uw-enr" secondAttribute="trailing" id="DIG-hk-0de"/>
                             <constraint firstItem="V0P-62-M5w" firstAttribute="width" secondItem="AXd-AA-wpv" secondAttribute="width" multiplier="0.554667" id="GSA-xf-SQt"/>
                             <constraint firstItem="V0P-62-M5w" firstAttribute="centerX" secondItem="AXd-AA-wpv" secondAttribute="centerX" id="GU6-qK-n4X"/>
                             <constraint firstItem="w1w-by-UBn" firstAttribute="leading" secondItem="McP-SL-wjQ" secondAttribute="trailing" constant="10" id="Gt5-vs-uIv"/>
                             <constraint firstItem="xoU-aH-cJn" firstAttribute="leading" secondItem="2vZ-uw-enr" secondAttribute="leading" id="HVU-C2-aMD"/>
+                            <constraint firstItem="lNW-2x-OzY" firstAttribute="top" secondItem="Wpe-ZM-0kX" secondAttribute="bottom" constant="30" id="Han-7z-Vux"/>
                             <constraint firstItem="8gH-aW-GzI" firstAttribute="top" secondItem="j6v-aO-C2C" secondAttribute="bottom" constant="15" id="IA1-sI-8Be"/>
                             <constraint firstItem="8gH-aW-GzI" firstAttribute="width" secondItem="j6v-aO-C2C" secondAttribute="width" id="Itv-Dx-qZ6"/>
                             <constraint firstItem="3bJ-od-8Cd" firstAttribute="leading" secondItem="McP-SL-wjQ" secondAttribute="leading" id="JmH-S9-ewq"/>
@@ -3821,7 +3829,6 @@
                             <constraint firstItem="w1w-by-UBn" firstAttribute="top" secondItem="McP-SL-wjQ" secondAttribute="top" id="ZCH-Oh-ym5"/>
                             <constraint firstItem="nUC-Za-twi" firstAttribute="bottom" secondItem="wZt-G9-mJn" secondAttribute="bottom" constant="-10" id="Zcm-1I-o5G"/>
                             <constraint firstItem="j6v-aO-C2C" firstAttribute="height" secondItem="V0P-62-M5w" secondAttribute="height" id="Zr2-By-wgn"/>
-                            <constraint firstItem="pSU-Sk-SkS" firstAttribute="top" secondItem="Wpe-ZM-0kX" secondAttribute="bottom" constant="27" id="aBH-7f-xyg"/>
                             <constraint firstItem="Wpe-ZM-0kX" firstAttribute="width" secondItem="Wmb-SX-1gg" secondAttribute="width" id="bjv-eA-evR"/>
                             <constraint firstItem="pSU-Sk-SkS" firstAttribute="leading" secondItem="Wpe-ZM-0kX" secondAttribute="leading" id="ece-Sd-a8d"/>
                             <constraint firstItem="V0P-62-M5w" firstAttribute="top" secondItem="2vZ-uw-enr" secondAttribute="top" constant="25" id="gJC-9R-P4w"/>
@@ -3830,6 +3837,7 @@
                             <constraint firstItem="nUC-Za-twi" firstAttribute="top" secondItem="wZt-G9-mJn" secondAttribute="top" constant="10" id="iWW-oT-Xg5"/>
                             <constraint firstItem="xoU-aH-cJn" firstAttribute="bottom" secondItem="2vZ-uw-enr" secondAttribute="bottom" id="iYX-EZ-DDt"/>
                             <constraint firstItem="Wpe-ZM-0kX" firstAttribute="height" secondItem="Wmb-SX-1gg" secondAttribute="height" id="nQG-nV-oZa"/>
+                            <constraint firstItem="pSU-Sk-SkS" firstAttribute="top" secondItem="lNW-2x-OzY" secondAttribute="bottom" constant="10.5" id="o01-Zq-emI"/>
                             <constraint firstItem="8gH-aW-GzI" firstAttribute="height" secondItem="j6v-aO-C2C" secondAttribute="height" id="o4l-zy-zfF"/>
                             <constraint firstItem="w1w-by-UBn" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Wpe-ZM-0kX" secondAttribute="trailing" id="snp-UM-dUs"/>
                             <constraint firstItem="McP-SL-wjQ" firstAttribute="top" secondItem="wZt-G9-mJn" secondAttribute="bottom" constant="25.5" id="u5a-rt-Bz6"/>
