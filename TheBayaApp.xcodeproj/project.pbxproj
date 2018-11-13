@@ -73,6 +73,7 @@
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
 		489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6B212293AA00080739 /* login_bg_ipad.jpg */; };
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
+		5C03978D219ACF1C00005351 /* OnlinePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03978C219ACF1C00005351 /* OnlinePaymentViewController.swift */; };
 		5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */; };
 		5C072084217064EC009EC492 /* SampleVideo_640x360_20mb.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */; };
 		5C0B7437218B1E3A0007FC2E /* InfoView_ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C0B7436218B1E3A0007FC2E /* InfoView_ipad.xib */; };
@@ -272,6 +273,7 @@
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
+		5C03978C219ACF1C00005351 /* OnlinePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlinePaymentViewController.swift; sourceTree = "<group>"; };
 		5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHomeCollCell.swift; sourceTree = "<group>"; };
 		5C072083217064DA009EC492 /* SampleVideo_640x360_20mb.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = SampleVideo_640x360_20mb.mp4; sourceTree = "<group>"; };
 		5C0B7436218B1E3A0007FC2E /* InfoView_ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView_ipad.xib; sourceTree = "<group>"; };
@@ -717,6 +719,7 @@
 				5CE8D7B021897C2A002819CD /* PaymentDoneViewController.swift */,
 				5CE8D7B22189808E002819CD /* TransactionHistoryViewController.swift */,
 				5CE8D7B421898578002819CD /* TransactionTblCell.swift */,
+				5C03978C219ACF1C00005351 /* OnlinePaymentViewController.swift */,
 			);
 			path = Payment;
 			sourceTree = "<group>";
@@ -1198,6 +1201,7 @@
 				486FDD502119AEF500EA0188 /* CoreData.swift in Sources */,
 				483460FF215B80A7008FC320 /* ImageZoomCollCell.swift in Sources */,
 				486FDD5F2119AEF500EA0188 /* ExtensionUIColor.swift in Sources */,
+				5C03978D219ACF1C00005351 /* OnlinePaymentViewController.swift in Sources */,
 				483460FB215B808F008FC320 /* ImageZoomView.swift in Sources */,
 				486FDD532119AEF500EA0188 /* FetchResultController+Extension.swift in Sources */,
 				5CDAF5B2218720DC00591F4E /* InfoView.swift in Sources */,

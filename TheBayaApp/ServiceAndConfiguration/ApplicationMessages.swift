@@ -125,6 +125,9 @@ var CBlankSubject           =  "Subject can't be blank."
 
 var CBlankPassword        =  "Password can't be blank."
 var CInvalidPassword      =  "Password is invalid."
+var CBlankAmountToPay     =  "Amount to pay can’t be blank."
+
+
 
 var CBlankReferredName    =  "Name can't be blank."
 var CBlankReferEmail      =  "Email Address can't be blank."

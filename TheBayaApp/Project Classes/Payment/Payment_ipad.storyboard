@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-pC-idT">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_ipad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dEu-pC-idT">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IiC-6J-c6Q" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
@@ -865,7 +865,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RkS-yc-hM9">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_ipad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="RkS-yc-hM9">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPm-fk-Vgq" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -951,7 +951,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qWN-0H-v2a">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_ipad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="qWN-0H-v2a">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="162" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hy4-Q4-z2H">
@@ -1107,9 +1107,327 @@
             </objects>
             <point key="canvasLocation" x="4273" y="108"/>
         </scene>
+        <!--Online Payment View Controller-->
+        <scene sceneID="t17-PL-Jtw">
+            <objects>
+                <viewController storyboardIdentifier="OnlinePaymentViewController" id="X5V-hd-EnQ" customClass="OnlinePaymentViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" tag="101" contentMode="scaleToFill" id="6B5-D8-GGF">
+                        <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg_ipad.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dcJ-45-XIP">
+                                <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Amount" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S7K-RU-fz0" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="50" width="93.5" height="19.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLb-Y6-ITh" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="79.5" width="500" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Outstanding:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wrm-eL-JLu" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15.5" width="134.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,00,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWq-JB-rvn" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="426.5" y="15.5" width="58.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDJ-1L-HRl">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                        <connections>
+                                            <action selector="selectAmountTypeWithSender:" destination="X5V-hd-EnQ" eventType="touchUpInside" id="LRO-zu-0m1"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="TDJ-1L-HRl" firstAttribute="leading" secondItem="hLb-Y6-ITh" secondAttribute="leading" id="AF5-ps-Kbg"/>
+                                    <constraint firstAttribute="trailing" secondItem="TDJ-1L-HRl" secondAttribute="trailing" id="LpV-tk-btR"/>
+                                    <constraint firstAttribute="width" secondItem="hLb-Y6-ITh" secondAttribute="height" multiplier="10:1" id="MVZ-Q5-9Wy"/>
+                                    <constraint firstAttribute="trailing" secondItem="aWq-JB-rvn" secondAttribute="trailing" constant="15" id="dVw-3h-mc0"/>
+                                    <constraint firstItem="Wrm-eL-JLu" firstAttribute="leading" secondItem="hLb-Y6-ITh" secondAttribute="leading" constant="15" id="dbC-EI-LMP"/>
+                                    <constraint firstAttribute="bottom" secondItem="TDJ-1L-HRl" secondAttribute="bottom" id="jct-Wb-zF3"/>
+                                    <constraint firstItem="TDJ-1L-HRl" firstAttribute="top" secondItem="hLb-Y6-ITh" secondAttribute="top" id="m8o-Lb-g9b"/>
+                                    <constraint firstItem="aWq-JB-rvn" firstAttribute="centerY" secondItem="hLb-Y6-ITh" secondAttribute="centerY" id="poc-R4-E08"/>
+                                    <constraint firstItem="Wrm-eL-JLu" firstAttribute="centerY" secondItem="hLb-Y6-ITh" secondAttribute="centerY" id="xR0-O8-3pp"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hGr-mS-zql" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="134.5" width="500" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current + Previous Outstanding:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcC-BF-Cpk" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15.5" width="204.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,50,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BPd-Wy-X4d" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="426.5" y="15.5" width="58.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4XX-2X-RxP">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                        <connections>
+                                            <action selector="selectAmountTypeWithSender:" destination="X5V-hd-EnQ" eventType="touchUpInside" id="Z3U-HS-tHF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="4XX-2X-RxP" secondAttribute="bottom" id="3UG-u0-FG5"/>
+                                    <constraint firstItem="4XX-2X-RxP" firstAttribute="top" secondItem="hGr-mS-zql" secondAttribute="top" id="AMX-af-IYc"/>
+                                    <constraint firstItem="rcC-BF-Cpk" firstAttribute="leading" secondItem="hGr-mS-zql" secondAttribute="leading" constant="15" id="GF9-4F-s4o"/>
+                                    <constraint firstAttribute="trailing" secondItem="BPd-Wy-X4d" secondAttribute="trailing" constant="15" id="HHz-ck-z8T"/>
+                                    <constraint firstItem="rcC-BF-Cpk" firstAttribute="centerY" secondItem="hGr-mS-zql" secondAttribute="centerY" id="XFh-qJ-Pgt"/>
+                                    <constraint firstAttribute="trailing" secondItem="4XX-2X-RxP" secondAttribute="trailing" id="aG0-Ig-50L"/>
+                                    <constraint firstItem="BPd-Wy-X4d" firstAttribute="centerY" secondItem="hGr-mS-zql" secondAttribute="centerY" id="cTN-kp-ljL"/>
+                                    <constraint firstItem="4XX-2X-RxP" firstAttribute="leading" secondItem="hGr-mS-zql" secondAttribute="leading" id="rG5-AA-e5M"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0NN-Ph-319" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="189.5" width="500" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Previous Outstanding:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKE-jb-hwo" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15.5" width="139.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XAf-Ye-Dfi" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="439" y="15.5" width="46" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x25-bx-tRb">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                        <connections>
+                                            <action selector="selectAmountTypeWithSender:" destination="X5V-hd-EnQ" eventType="touchUpInside" id="gbe-IF-qE7"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="x25-bx-tRb" firstAttribute="leading" secondItem="0NN-Ph-319" secondAttribute="leading" id="1CE-RN-yYT"/>
+                                    <constraint firstItem="JKE-jb-hwo" firstAttribute="leading" secondItem="0NN-Ph-319" secondAttribute="leading" constant="15" id="4Nc-PP-E95"/>
+                                    <constraint firstItem="x25-bx-tRb" firstAttribute="top" secondItem="0NN-Ph-319" secondAttribute="top" id="5P5-dV-UwA"/>
+                                    <constraint firstItem="XAf-Ye-Dfi" firstAttribute="centerY" secondItem="0NN-Ph-319" secondAttribute="centerY" id="blB-QP-Wgp"/>
+                                    <constraint firstAttribute="trailing" secondItem="XAf-Ye-Dfi" secondAttribute="trailing" constant="15" id="qRn-QT-to6"/>
+                                    <constraint firstAttribute="trailing" secondItem="x25-bx-tRb" secondAttribute="trailing" id="qwX-DG-vKc"/>
+                                    <constraint firstItem="JKE-jb-hwo" firstAttribute="centerY" secondItem="0NN-Ph-319" secondAttribute="centerY" id="vPL-T9-M7D"/>
+                                    <constraint firstAttribute="bottom" secondItem="x25-bx-tRb" secondAttribute="bottom" id="zWP-hR-yw4"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eqb-3b-v6D" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="244.5" width="500" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Next Milestone Amount:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtV-CL-GGB" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15.5" width="155" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2,00,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A0l-Ya-qmc" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="426.5" y="15.5" width="58.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="S7Q-3f-fjD">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="50"/>
+                                        <connections>
+                                            <action selector="selectAmountTypeWithSender:" destination="X5V-hd-EnQ" eventType="touchUpInside" id="CRe-J5-OJe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="S7Q-3f-fjD" secondAttribute="bottom" id="6y9-wb-bq5"/>
+                                    <constraint firstAttribute="trailing" secondItem="S7Q-3f-fjD" secondAttribute="trailing" id="PhP-N7-3eV"/>
+                                    <constraint firstItem="rtV-CL-GGB" firstAttribute="leading" secondItem="eqb-3b-v6D" secondAttribute="leading" constant="15" id="RIH-Df-P4v"/>
+                                    <constraint firstItem="rtV-CL-GGB" firstAttribute="centerY" secondItem="eqb-3b-v6D" secondAttribute="centerY" id="WqH-On-dzf"/>
+                                    <constraint firstItem="A0l-Ya-qmc" firstAttribute="centerY" secondItem="eqb-3b-v6D" secondAttribute="centerY" id="XwI-Dw-67k"/>
+                                    <constraint firstItem="S7Q-3f-fjD" firstAttribute="top" secondItem="eqb-3b-v6D" secondAttribute="top" id="bxv-Ec-OWi"/>
+                                    <constraint firstAttribute="trailing" secondItem="A0l-Ya-qmc" secondAttribute="trailing" constant="15" id="ddX-y6-2TM"/>
+                                    <constraint firstItem="S7Q-3f-fjD" firstAttribute="leading" secondItem="eqb-3b-v6D" secondAttribute="leading" id="u3L-le-vx9"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount to pay" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IVJ-kh-vmW" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="314.5" width="500" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="X5V-hd-EnQ" id="m1L-1A-eFo"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r4U-mo-wYz" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="384.5" width="500" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Pay">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnAmountToPayClickedWithSender:" destination="X5V-hd-EnQ" eventType="touchUpInside" id="r5I-0e-g9e"/>
+                                </connections>
+                            </button>
+                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PpJ-x7-vm5" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="459.5" width="500" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tax:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WSC-gz-vBK" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15.5" width="25" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Roman" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ab-f8-4Qc" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="447.5" y="15.5" width="37.5" height="19.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="4Ab-f8-4Qc" secondAttribute="trailing" constant="15" id="Fc0-HF-pSZ"/>
+                                    <constraint firstItem="WSC-gz-vBK" firstAttribute="leading" secondItem="PpJ-x7-vm5" secondAttribute="leading" constant="15" id="J9Z-w8-zSY"/>
+                                    <constraint firstItem="4Ab-f8-4Qc" firstAttribute="centerY" secondItem="PpJ-x7-vm5" secondAttribute="centerY" id="TCK-uQ-rch"/>
+                                    <constraint firstItem="WSC-gz-vBK" firstAttribute="centerY" secondItem="PpJ-x7-vm5" secondAttribute="centerY" id="UpD-iI-IDy"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lyl-Ok-wFu" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="125" y="529.5" width="500" height="50"/>
+                                <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="18"/>
+                                <state key="normal" title="Pay">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnTaxPayClickedWithSender:" destination="X5V-hd-EnQ" eventType="touchUpInside" id="6kh-Mr-FX7"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="0NN-Ph-319" firstAttribute="width" secondItem="hGr-mS-zql" secondAttribute="width" id="2SH-Wh-Hxn"/>
+                            <constraint firstItem="r4U-mo-wYz" firstAttribute="height" secondItem="IVJ-kh-vmW" secondAttribute="height" id="3f7-yN-aMO"/>
+                            <constraint firstItem="S7K-RU-fz0" firstAttribute="top" secondItem="nFV-hp-fhf" secondAttribute="top" constant="30" id="5CY-NG-Utc"/>
+                            <constraint firstItem="0NN-Ph-319" firstAttribute="height" secondItem="hGr-mS-zql" secondAttribute="height" id="9Hg-fn-jxO"/>
+                            <constraint firstItem="Lyl-Ok-wFu" firstAttribute="width" secondItem="PpJ-x7-vm5" secondAttribute="width" id="CuA-ED-8pZ"/>
+                            <constraint firstItem="Lyl-Ok-wFu" firstAttribute="centerX" secondItem="PpJ-x7-vm5" secondAttribute="centerX" id="Efg-Fv-IBf"/>
+                            <constraint firstItem="r4U-mo-wYz" firstAttribute="width" secondItem="IVJ-kh-vmW" secondAttribute="width" id="FYp-X0-rvn"/>
+                            <constraint firstItem="hLb-Y6-ITh" firstAttribute="top" secondItem="S7K-RU-fz0" secondAttribute="bottom" constant="10" id="Fdu-Xe-EA3"/>
+                            <constraint firstItem="hGr-mS-zql" firstAttribute="top" secondItem="hLb-Y6-ITh" secondAttribute="bottom" constant="5" id="JFe-f0-5yd"/>
+                            <constraint firstItem="nFV-hp-fhf" firstAttribute="trailing" secondItem="hLb-Y6-ITh" secondAttribute="trailing" constant="125" id="Jwm-hq-ZJS"/>
+                            <constraint firstItem="dcJ-45-XIP" firstAttribute="trailing" secondItem="nFV-hp-fhf" secondAttribute="trailing" id="KSd-Lq-7R1"/>
+                            <constraint firstItem="IVJ-kh-vmW" firstAttribute="centerX" secondItem="eqb-3b-v6D" secondAttribute="centerX" id="NB0-LL-Z4A"/>
+                            <constraint firstItem="eqb-3b-v6D" firstAttribute="height" secondItem="0NN-Ph-319" secondAttribute="height" id="Qqy-bK-ORD"/>
+                            <constraint firstItem="hLb-Y6-ITh" firstAttribute="leading" secondItem="nFV-hp-fhf" secondAttribute="leading" constant="125" id="V8O-nD-1es"/>
+                            <constraint firstItem="IVJ-kh-vmW" firstAttribute="height" secondItem="eqb-3b-v6D" secondAttribute="height" id="Vbp-Nq-I17"/>
+                            <constraint firstItem="dcJ-45-XIP" firstAttribute="bottom" secondItem="nFV-hp-fhf" secondAttribute="bottom" id="YQ3-5k-Hm0"/>
+                            <constraint firstItem="hGr-mS-zql" firstAttribute="height" secondItem="hLb-Y6-ITh" secondAttribute="height" id="aKT-qp-wic"/>
+                            <constraint firstItem="eqb-3b-v6D" firstAttribute="top" secondItem="0NN-Ph-319" secondAttribute="bottom" constant="5" id="add-wq-tg8"/>
+                            <constraint firstItem="S7K-RU-fz0" firstAttribute="leading" secondItem="nFV-hp-fhf" secondAttribute="leading" constant="125" id="cq5-jr-x6E"/>
+                            <constraint firstItem="r4U-mo-wYz" firstAttribute="centerX" secondItem="IVJ-kh-vmW" secondAttribute="centerX" id="do4-xE-uif"/>
+                            <constraint firstItem="PpJ-x7-vm5" firstAttribute="top" secondItem="r4U-mo-wYz" secondAttribute="bottom" constant="25" id="e2Q-cp-kgc"/>
+                            <constraint firstItem="0NN-Ph-319" firstAttribute="top" secondItem="hGr-mS-zql" secondAttribute="bottom" constant="5" id="eXf-bt-zhJ"/>
+                            <constraint firstItem="dcJ-45-XIP" firstAttribute="leading" secondItem="nFV-hp-fhf" secondAttribute="leading" id="gEV-5r-7yR"/>
+                            <constraint firstItem="IVJ-kh-vmW" firstAttribute="top" secondItem="eqb-3b-v6D" secondAttribute="bottom" constant="20" id="hku-W6-aVU"/>
+                            <constraint firstItem="PpJ-x7-vm5" firstAttribute="height" secondItem="r4U-mo-wYz" secondAttribute="height" id="hnw-Qc-80R"/>
+                            <constraint firstItem="Lyl-Ok-wFu" firstAttribute="height" secondItem="PpJ-x7-vm5" secondAttribute="height" id="lfa-v3-SMG"/>
+                            <constraint firstItem="PpJ-x7-vm5" firstAttribute="centerX" secondItem="r4U-mo-wYz" secondAttribute="centerX" id="m1U-lh-m09"/>
+                            <constraint firstItem="eqb-3b-v6D" firstAttribute="width" secondItem="0NN-Ph-319" secondAttribute="width" id="nT6-ud-Hff"/>
+                            <constraint firstItem="0NN-Ph-319" firstAttribute="centerX" secondItem="hGr-mS-zql" secondAttribute="centerX" id="pP5-Xw-2Kk"/>
+                            <constraint firstItem="Lyl-Ok-wFu" firstAttribute="top" secondItem="PpJ-x7-vm5" secondAttribute="bottom" constant="20" id="pPv-Kt-SsB"/>
+                            <constraint firstItem="hGr-mS-zql" firstAttribute="width" secondItem="hLb-Y6-ITh" secondAttribute="width" id="qLw-UM-QL2"/>
+                            <constraint firstItem="IVJ-kh-vmW" firstAttribute="width" secondItem="eqb-3b-v6D" secondAttribute="width" id="rJ0-l0-xzy"/>
+                            <constraint firstItem="dcJ-45-XIP" firstAttribute="top" secondItem="6B5-D8-GGF" secondAttribute="top" id="rPK-qj-A4S"/>
+                            <constraint firstItem="hGr-mS-zql" firstAttribute="centerX" secondItem="hLb-Y6-ITh" secondAttribute="centerX" id="ry4-S3-7vX"/>
+                            <constraint firstItem="PpJ-x7-vm5" firstAttribute="width" secondItem="r4U-mo-wYz" secondAttribute="width" id="vSK-P7-ROc"/>
+                            <constraint firstItem="eqb-3b-v6D" firstAttribute="centerX" secondItem="0NN-Ph-319" secondAttribute="centerX" id="vtI-6p-0jb"/>
+                            <constraint firstItem="r4U-mo-wYz" firstAttribute="top" secondItem="IVJ-kh-vmW" secondAttribute="bottom" constant="20" id="y9i-6K-nhg"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nFV-hp-fhf"/>
+                    </view>
+                    <size key="freeformSize" width="750" height="1024"/>
+                    <connections>
+                        <outlet property="lblCurrentOutstanding" destination="aWq-JB-rvn" id="wxn-Qr-0fZ"/>
+                        <outlet property="lblCurrentPreviousOutstanding" destination="BPd-Wy-X4d" id="NZZ-vr-sfK"/>
+                        <outlet property="lblNextMilestoneOutstanding" destination="A0l-Ya-qmc" id="O18-j6-7xK"/>
+                        <outlet property="lblPreviousOutstanding" destination="XAf-Ye-Dfi" id="xRD-L8-yBj"/>
+                        <outlet property="txtAmountToPay" destination="IVJ-kh-vmW" id="Cvl-rA-6mf"/>
+                        <outlet property="vwContent" destination="6B5-D8-GGF" id="2nA-7r-Agn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9tu-C7-Sgu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5558" y="-19"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="bg.jpg" width="1242" height="2208"/>
+        <image name="bg_ipad.jpg" width="1536" height="2048"/>
         <image name="ic_success" width="83" height="80"/>
         <image name="next" width="8" height="13"/>
     </resources>
