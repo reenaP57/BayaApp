@@ -16,36 +16,54 @@ class ViewRequestViewController: ParentViewController {
     @IBOutlet weak var lblDesc : UILabel!
     @IBOutlet weak var vwStatus : UIView!
     @IBOutlet weak var vwRejected : UIView!
-    
-    var dictRequest = [String : AnyObject]()
+    @IBOutlet weak var vwContent : UIView!
+
+    var docID : Int = 0
+    var strRejectMsg = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
     }
     
+    //MARK:-
+    //MARK:- General Method
+    
     func initialize() {
         
         self.title = "View Request"
+        self.loadDocumentDetail()
+    }
+    
+    func setDocumentDetail(dict : [String : AnyObject]) {
+       
+        vwContent.isHidden = false 
+        lblDocName.text = dict.valueForString(key: "documentName")
+        lblRequesetedDate.text = "Requested on: \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "createdAt")!, withFormate: "dd MMM yyyy"))"
+        lblDesc.text = dict.valueForString(key: "message")
+        strRejectMsg = dict.valueForString(key: "rejectReason")
         
-        lblDocName.text = dictRequest.valueForString(key: "docName")
-        lblRequesetedDate.text = "Requested on: \(dictRequest.valueForString(key: "date"))"
-        lblDesc.text = dictRequest.valueForString(key: "desc")
-        
-        if dictRequest.valueForString(key: "status") == CRequestRejected {
-            vwStatus.isHidden = true
+        if dict.valueForInt(key: "requestStatus") == CRequestRejected {
+            vwRejected.isHidden = false
         } else {
-            vwRejected.isHidden = true
-            lblStatus.text = dictRequest.valueForString(key: "status")
-            
-            switch dictRequest.valueForString(key: "status") {
-            case CRequestOpen : //...Open
-                vwStatus.backgroundColor = ColorParrotColor
-            case CRequestCompleted : //...Completed
-                vwStatus.backgroundColor = ColorGreenSelected
-            default : //...In Progress
-                vwStatus.backgroundColor = ColorOrange
-            }
+            vwStatus.isHidden = false
+        }
+        
+        switch dict.valueForInt(key: "requestStatus") {
+        case CRequestOpen : //...Open
+            vwStatus.backgroundColor = ColorParrotColor
+            lblStatus.text = CDocRequestOpen
+        case CRequestCompleted : //...Completed
+            vwStatus.backgroundColor = ColorGreenSelected
+            lblStatus.text = CDocRequestCompleted
+        case CRequestInProgress : //...In Progress
+            vwStatus.backgroundColor = ColorOrange
+            lblStatus.text = CDocRequestInProgress
+        case CRequestRejected : //...Rejected
+            vwStatus.backgroundColor = ColorRed
+            lblStatus.text = CDocRequestRejected
+        default :
+            break
         }
     }
 }
@@ -60,8 +78,7 @@ extension ViewRequestViewController {
         
         let infoView = InfoView.initInfoView()
         
-        infoView.lblInfo.text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-        
+        infoView.lblInfo.text = strRejectMsg
         infoView.alpha = 0.0
         infoView.vwContent.alpha = 0.0
         
@@ -85,6 +102,22 @@ extension ViewRequestViewController {
                     infoView.removeFromSuperview()
                 })
             })
+        }
+    }
+}
+
+
+//MARK:-
+//MARk:- API Method
+
+extension ViewRequestViewController {
+    
+    func loadDocumentDetail() {
+        
+        APIRequest.shared().viewDocumentRequest(docID: self.docID) { (response, error) in
+            if response != nil {
+                self.setDocumentDetail(dict: (response?.value(forKey: CJsonData) as! [String : AnyObject]))
+            }
         }
     }
 }

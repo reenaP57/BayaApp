@@ -73,16 +73,16 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
             cell.lblStatus.text = dict.valueForString(key: "status")
             cell.lblRequestedDate.text = "Requested on: \(dict.valueForString(key: "date"))"
             
-            switch dict.valueForString(key: "status") {
-            case CRequestOpen : //...Open
-                cell.vwStatus.backgroundColor = ColorParrotColor
-            case CRequestCompleted : //...Completed
-                cell.vwStatus.backgroundColor = ColorGreenSelected
-            case CRequestInProgress : //...In Progress
-                cell.vwStatus.backgroundColor = ColorOrange
-            default : //...Rejected
-                cell.vwStatus.backgroundColor = ColorRed
-            }
+//            switch dict.valueForString(key: "status") {
+//            case CRequestOpen : //...Open
+//                cell.vwStatus.backgroundColor = ColorParrotColor
+//            case CRequestCompleted : //...Completed
+//                cell.vwStatus.backgroundColor = ColorGreenSelected
+//            case CRequestInProgress : //...In Progress
+//                cell.vwStatus.backgroundColor = ColorOrange
+//            default : //...Rejected
+//                cell.vwStatus.backgroundColor = ColorRed
+//            }
             
             return cell
         }
@@ -92,16 +92,16 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if arrRequest[indexPath.row].valueForString(key: "status") == CRequestCompleted {
-            if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-                rateVC.isVisitRate = false
-                self.navigationController?.pushViewController(rateVC, animated: true)
-            }
-        } else {
-            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-                viewMaintenanceVC.status = arrRequest[indexPath.row].valueForString(key: "status")
-                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
-            }
-        }
+//        if arrRequest[indexPath.row].valueForString(key: "status") == CRequestCompleted {
+//            if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+//                rateVC.isVisitRate = false
+//                self.navigationController?.pushViewController(rateVC, animated: true)
+//            }
+//        } else {
+//            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+//                viewMaintenanceVC.status = arrRequest[indexPath.row].valueForString(key: "status")
+//                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+//            }
+//        }
     }
 }

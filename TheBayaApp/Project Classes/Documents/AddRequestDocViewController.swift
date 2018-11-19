@@ -118,9 +118,28 @@ extension AddRequestDocViewController {
             _ = self.vwMsg.setConstraintConstant((30/2) + 30 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
         
         } else {
-            self.navigationController?.popViewController(animated: true)
-          //  self.showAlertView("Your request sent successfully.", completion: ni)
+           self.postDocumentRequestOnServer()
         }
       
+    }
+}
+
+//MARK
+//MARk:- API Method
+
+extension AddRequestDocViewController {
+    
+    func postDocumentRequestOnServer() {
+        
+        APIRequest.shared().postDocumentRequest(docName: txtDocName.text ?? "", msg: txtVMsg.text ?? "") { (response, error) in
+            
+            if response != nil {
+                
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.showAlertView(metaData.valueForString(key: "message"), completion: nil)
+                }
+                self.navigationController?.popViewController(animated: true)
+            }
+        }
     }
 }

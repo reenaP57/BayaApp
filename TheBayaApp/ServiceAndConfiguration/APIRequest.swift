@@ -14,7 +14,7 @@ import SDWebImage
 
 //MARK:- ---------BASEURL __ TAG
 
-var BASEURL:String        =   "http://itrainacademy.in/baya-app/api/v1/" //Local
+var BASEURL:String          =   "http://itrainacademy.in/baya-app/api/v2/" //Local
 //var BASEURL:String          =   "https://api.thebayacompany.com/v1" //Live
 
 let CAPITagCountry             =   "country"
@@ -47,6 +47,15 @@ let CAPITagBadgeCount          =   "badge-count"
 let CAPITagPushNotifyCount     =   "push-notify-count"
 let CAPITagPostViewCount       =   "post-view-count"
 let CAPITagUserprofile         =   "userprofile"
+
+let CAPITagDocuments             =   "documents"
+let CAPITagDocumentRequest       =   "document-request"
+let CAPITagPostDocumentRequest   =   "post-document-request"
+let CAPITagViewDocumentRequest   =   "view-document-request"
+let CAPITagPostMaintenance       =   "post-maintenance"
+let CAPITagMaintenance             =   "maintenance"
+let CAPITagViewMaintenanceRequest  =   "view-maintenance-request"
+let CAPITagRateMaintenanceRequest  =   "rate-maintenance-request"
 
 
 let CJsonResponse           = "response"
@@ -1567,6 +1576,118 @@ extension APIRequest {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagTimeline, error: error)
             }
         })!
+    }
+    
+    
+    //TODO:
+    //TODO: --------------DOCUMENT RELATED API--------------
+    //TODO:
+    
+    func getDocumentList(type : Int, page : Int?, shouldShowLoader : Bool?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+    
+        if shouldShowLoader! {
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagDocuments, param: [CPerPage : CLimit as AnyObject, CPage : page as AnyObject, "type" : type as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagDocuments){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.getDocumentList(type: type, page: page, shouldShowLoader: shouldShowLoader, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagDocuments, error: error)
+            }
+     
+        })!
+        
+    }
+    
+    func postDocumentRequest(docName : String, msg : String, completion :@escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+ 
+       _ = Networking.sharedInstance.POST(apiTag: CAPITagPostDocumentRequest, param: ["documentName" : docName as AnyObject, "message" : msg as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagPostDocumentRequest) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.postDocumentRequest(docName: docName, msg: msg, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagPostDocumentRequest, error: error)
+            }
+        })
+    }
+    
+    func getDocumentRequest(page : Int, shouldShowLoader : Bool?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+    
+        if shouldShowLoader! {
+            MILoader.shared.showLoader(type: .circularRing, message: "")
+        }
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagDocumentRequest, param: [CPerPage : CLimit as AnyObject, CPage : page as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagDocumentRequest) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.getDocumentRequest(page: page, shouldShowLoader: shouldShowLoader, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagDocumentRequest, error: error)
+            }
+        })!
+    }
+    
+    
+    func viewDocumentRequest(docID : Int?, completion : @escaping ClosureCompletion) {
+    
+        MILoader.shared.showLoader(type: .circularRing, message: "")
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagViewDocumentRequest, param: ["id" : docID as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagViewDocumentRequest){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.viewDocumentRequest(docID: docID, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagViewDocumentRequest, error: error)
+            }
+        })
     }
     
     

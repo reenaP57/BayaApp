@@ -49,14 +49,14 @@ class ViewMaintenanceRequestViewController: ParentViewController {
         
         self.title = "View Maintenance Request"
         
-        switch status {
-        case CRequestOpen : //...Open
-            vwStatus.backgroundColor = ColorParrotColor
-        case CRequestCompleted : //...Completed
-            vwStatus.backgroundColor = ColorGreenSelected
-        default : //...In Progress
-            vwStatus.backgroundColor = ColorOrange
-        }
+//        switch status {
+//        case CRequestOpen : //...Open
+//            vwStatus.backgroundColor = ColorParrotColor
+//        case CRequestCompleted : //...Completed
+//            vwStatus.backgroundColor = ColorGreenSelected
+//        default : //...In Progress
+//            vwStatus.backgroundColor = ColorOrange
+//        }
         
         lblStatus.text = status
         

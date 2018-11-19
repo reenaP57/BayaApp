@@ -14,8 +14,12 @@ class RequestDocumentListViewController: ParentViewController {
     @IBOutlet weak var lblNoData : UILabel!
     @IBOutlet weak var btnAddRequest : UIButton!
 
+    var refreshControl = UIRefreshControl()
+    var apiTask : URLSessionTask?
     var arrRequest = [[String : AnyObject]]()
+    fileprivate var currentPage : Int = 1
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -29,10 +33,10 @@ class RequestDocumentListViewController: ParentViewController {
         
         btnAddRequest.shadow(color: ColorGreenSelected, shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
         
-        arrRequest = [["docName" : "NOC Doc", "status" : CRequestOpen, "date" : "10 Sep 2018", "desc" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."],
-        ["docName" : "RERA Doc", "status" : CRequestCompleted, "date" : "10 Sep 2018", "desc" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry."],
-        ["docName" : "RERA Doc", "status" : CRequestInProgress, "date" : "10 Sep 2018", "desc" : "when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages"],
-        ["docName" : "RERA Doc", "status" : CRequestRejected, "date" : "10 Sep 2018", "desc" : "when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged."]] as [[String : AnyObject]]
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        refreshControl.tintColor = ColorGreenSelected
+        tblRequestDoc.pullToRefreshControl = refreshControl
+        self.loadDocumentRequestFromServer(showLoader: true)
         
         tblRequestDoc.rowHeight = UITableViewAutomaticDimension
         tblRequestDoc.estimatedRowHeight = 110
@@ -65,19 +69,29 @@ extension RequestDocumentListViewController : UITableViewDelegate, UITableViewDa
         if let cell = tableView.dequeueReusableCell(withIdentifier: "RequestDocTblCell") as? RequestDocTblCell {
             
             let dict = arrRequest[indexPath.row]
-            cell.lblDocName.text = dict.valueForString(key: "docName")
-            cell.lblStatus.text = dict.valueForString(key: "status")
-            cell.lblRequestedDate.text = "Requested on: \(dict.valueForString(key: "date"))"
+            cell.lblDocName.text = dict.valueForString(key: "documentName")
+            cell.lblRequestedDate.text = "Requested on: \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "createdAt")!, withFormate: "dd MMM yyyy"))"
             
-            switch dict.valueForString(key: "status") {
+            switch dict.valueForInt(key: "requestStatus") {
             case CRequestOpen : //...Open
                 cell.vwStatus.backgroundColor = ColorParrotColor
+                cell.lblStatus.text = CDocRequestOpen
             case CRequestCompleted : //...Completed
                 cell.vwStatus.backgroundColor = ColorGreenSelected
+                cell.lblStatus.text = CDocRequestCompleted
             case CRequestInProgress : //...In Progress
                 cell.vwStatus.backgroundColor = ColorOrange
-            default : //...Rejected
+                cell.lblStatus.text = CDocRequestInProgress
+            case CRequestRejected : //...Rejected
                 cell.vwStatus.backgroundColor = ColorRed
+                cell.lblStatus.text = CDocRequestRejected
+            default :
+                break
+            }
+            
+            //...Load More
+            if indexPath == tblRequestDoc.lastIndexPath() {
+                self.loadDocumentRequestFromServer(showLoader: false)
             }
             
             return cell
@@ -89,8 +103,50 @@ extension RequestDocumentListViewController : UITableViewDelegate, UITableViewDa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if let viewRequestVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ViewRequestViewController") as? ViewRequestViewController {
-            viewRequestVC.dictRequest = arrRequest[indexPath.row]
+            viewRequestVC.docID = arrRequest[indexPath.row].valueForInt(key: "id") ?? 0
             self.navigationController?.pushViewController(viewRequestVC, animated: true)
         }
+    }
+}
+
+//MARK:-
+//MARK:- API Method
+
+extension RequestDocumentListViewController {
+ 
+    @objc func pullToRefresh() {
+        currentPage = 1
+        refreshControl.beginRefreshing()
+        self.loadDocumentRequestFromServer(showLoader: false)
+    }
+    
+    func loadDocumentRequestFromServer(showLoader : Bool) {
+        
+        if apiTask?.state == URLSessionTask.State.running {
+            return
+        }
+        
+        apiTask = APIRequest.shared().getDocumentRequest(page: currentPage, shouldShowLoader: showLoader, completion: { (response, error) in
+            
+            self.refreshControl.endRefreshing()
+            self.apiTask?.cancel()
+            
+            if response != nil {
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    
+                    if self.currentPage == 1 {
+                        self.arrRequest.removeAll()
+                    }
+                    
+                    if arrData.count > 0 {
+                        self.arrRequest = self.arrRequest+arrData
+                        self.tblRequestDoc.reloadData()
+                        self.currentPage += 1
+                    }
+                    
+                    self.lblNoData.isHidden = self.arrRequest.count != 0
+                }
+            }
+        })
     }
 }

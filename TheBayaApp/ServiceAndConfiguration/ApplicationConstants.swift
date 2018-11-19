@@ -144,10 +144,16 @@ let NotificationVisitReschedule  = 5
 let NotificationRateVisit        = 6
 let NotificationVisitCancel      = 7
 
-let CRequestOpen = "OPEN"
-let CRequestCompleted = "COMPLETED"
-let CRequestInProgress = "IN PROGRESS"
-let CRequestRejected = "REJECTED"
+let CRequestOpen = 1  //"OPEN"
+let CRequestCompleted = 3//"COMPLETED"
+let CRequestInProgress =  2 //"IN PROGRESS"
+let CRequestRejected = 4 //"REJECTED"
+
+let CDocRequestRejected = "REJECTED"
+let CDocRequestOpen = "OPEN"
+let CDocRequestInProgress =  "IN PROGRESS"
+let CDocRequestCompleted = "COMPLETED"
+
 
 
 //MARK:- API Parameter

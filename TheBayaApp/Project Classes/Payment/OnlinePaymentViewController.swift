@@ -75,8 +75,8 @@ extension OnlinePaymentViewController {
         }
    
         
-       /*  let options: [String:Any] = [
-         "amount" : "100", //mandatory in paise
+        /* let options: [String:Any] = [
+         "amount" : "1", //mandatory in paise
          "description": "Test payment"]
          
          razorpay.open(options, displayController: self) */

@@ -33,7 +33,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AOw-nk-rBm" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="831" height="60"/>
+                                                    <rect key="frame" x="15" y="7" width="1061" height="60"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="visit_details_profile" translatesAutoresizingMaskIntoConstraints="NO" id="SvY-YB-VzN">
                                                             <rect key="frame" x="20" y="19" width="22" height="22"/>
@@ -45,7 +45,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="sLx-hX-8bN">
-                                                            <rect key="frame" x="810" y="0.0" width="8" height="60"/>
+                                                            <rect key="frame" x="1040" y="0.0" width="8" height="60"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -132,7 +132,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XN0-cH-zjm" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="831" height="60"/>
+                                                    <rect key="frame" x="15" y="7" width="1061" height="60"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Doe" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JaV-pc-Rqe" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="17.5" width="81" height="25"/>
@@ -141,7 +141,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="98y-63-0qu">
-                                                            <rect key="frame" x="810" y="0.0" width="8" height="60"/>
+                                                            <rect key="frame" x="1040" y="0.0" width="8" height="60"/>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -233,7 +233,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QMJ-ez-q5s" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="881" height="110"/>
+                                                    <rect key="frame" x="15" y="7" width="1061" height="110"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOC Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPy-2W-Z9U" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="15" width="63" height="19.5"/>
@@ -248,7 +248,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="cSG-hv-sAS">
-                                                            <rect key="frame" x="860" y="28.5" width="8" height="13"/>
+                                                            <rect key="frame" x="1040" y="28.5" width="8" height="13"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KsX-Rh-IS6" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="72.5" width="54.5" height="22.5"/>
@@ -323,7 +323,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QTa-Eg-nRJ">
-                                <rect key="frame" x="698" y="924" width="55" height="55"/>
+                                <rect key="frame" x="670" y="897" width="83" height="82"/>
                                 <state key="normal" image="ic_plus"/>
                                 <connections>
                                     <action selector="btnAddRequestClicked" destination="NMt-sf-kDk" eventType="touchUpInside" id="x9E-cl-r8p"/>
@@ -485,23 +485,23 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="nBK-VL-OPe">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="1024"/>
                             </imageView>
-                            <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8q-RJ-DWY" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                <rect key="frame" x="50" y="30" width="650" height="166.5"/>
+                            <view hidden="YES" tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D8q-RJ-DWY" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="50" y="30" width="650" height="110"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOC Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-Qb-XrN" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="15" width="67.5" height="20.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pgz-Qb-XrN" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="15" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requested on : 10 Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-92-jSU" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="44.5" width="166" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jcq-92-jSU" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="24" width="0.0" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3JC-fh-QmR" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="72.5" width="51.5" height="25.5"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3JC-fh-QmR" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="34" width="51.5" height="25.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OPEN" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tky-Fi-HIE" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="5" width="31.5" height="15.5"/>
@@ -523,8 +523,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmx-qo-yNZ" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="72.5" width="95" height="25.5"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pmx-qo-yNZ" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="34" width="95" height="25.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REJECTED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VHb-Q6-sM5" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="10" y="5" width="55" height="15.5"/>
@@ -533,7 +533,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_info" translatesAutoresizingMaskIntoConstraints="NO" id="Oe4-lD-Sfx">
-                                                <rect key="frame" x="74" y="6.5" width="13" height="13"/>
+                                                <rect key="frame" x="67" y="3" width="20" height="20"/>
                                             </imageView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sW4-hd-ym6">
                                                 <rect key="frame" x="65" y="0.0" width="30" height="25.5"/>
@@ -563,8 +563,8 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Requested on : 10 Sep 2018" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23T-5C-6Bx" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="15" y="108.5" width="620" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="23T-5C-6Bx" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="15" y="70" width="620" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -612,6 +612,7 @@
                         <outlet property="lblDocName" destination="Pgz-Qb-XrN" id="OHV-kf-lxj"/>
                         <outlet property="lblRequesetedDate" destination="Jcq-92-jSU" id="wZN-Wb-ugt"/>
                         <outlet property="lblStatus" destination="Tky-Fi-HIE" id="4Zt-Nd-K75"/>
+                        <outlet property="vwContent" destination="D8q-RJ-DWY" id="BAv-7c-gsb"/>
                         <outlet property="vwRejected" destination="Pmx-qo-yNZ" id="1jD-53-c3Z"/>
                         <outlet property="vwStatus" destination="3JC-fh-QmR" id="dKc-2t-aEb"/>
                     </connections>
@@ -624,9 +625,9 @@
     <resources>
         <image name="bg.jpg" width="1242" height="2208"/>
         <image name="bg_ipad.jpg" width="1536" height="2048"/>
-        <image name="ic_info" width="13" height="13"/>
-        <image name="ic_plus" width="55" height="55"/>
-        <image name="next" width="8" height="13"/>
+        <image name="ic_info" width="20.25" height="20.25"/>
+        <image name="ic_plus" width="83.25" height="82.5"/>
+        <image name="next" width="8" height="13.5"/>
         <image name="visit_details_profile" width="22" height="22"/>
     </resources>
 </document>
