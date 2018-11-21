@@ -17,13 +17,15 @@ class RequestDocumentListViewController: ParentViewController {
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
     var arrRequest = [[String : AnyObject]]()
-    fileprivate var currentPage : Int = 1
-    
+    var currentPage : Int = 1
+    fileprivate var lastPage : Int = 0
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
     }
+
     
     //MARK:-
     //MARK:- General Methods
@@ -89,9 +91,13 @@ extension RequestDocumentListViewController : UITableViewDelegate, UITableViewDa
                 break
             }
             
-            //...Load More
             if indexPath == tblRequestDoc.lastIndexPath() {
-                self.loadDocumentRequestFromServer(showLoader: false)
+                //...Load More
+                if currentPage <= lastPage {
+                    if apiTask?.state != URLSessionTask.State.running {
+                        self.loadDocumentRequestFromServer(showLoader: false)
+                    }
+                }
             }
             
             return cell
@@ -132,20 +138,27 @@ extension RequestDocumentListViewController {
             self.apiTask?.cancel()
             
             if response != nil {
+                
+                if self.currentPage == 1 {
+                    self.arrRequest.removeAll()
+                }
+                
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
-                    
-                    if self.currentPage == 1 {
-                        self.arrRequest.removeAll()
-                    }
-                    
                     if arrData.count > 0 {
                         self.arrRequest = self.arrRequest+arrData
-                        self.tblRequestDoc.reloadData()
-                        self.currentPage += 1
                     }
-                    
-                    self.lblNoData.isHidden = self.arrRequest.count != 0
                 }
+                
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.lastPage = metaData.valueForInt(key: CLastPage)!
+                    
+                    if metaData.valueForInt(key: CCurrentPage)! <= self.lastPage {
+                        self.currentPage = metaData.valueForInt(key: CCurrentPage)! + 1
+                    }
+                }
+                
+                self.lblNoData.isHidden = self.arrRequest.count != 0
+                self.tblRequestDoc.reloadData()
             }
         })
     }

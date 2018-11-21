@@ -374,7 +374,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                                         <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -621,6 +621,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nU7-lY-3dJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1820" y="127.28635682158921"/>
+        </scene>
+        <!--LoadPDF View Controller-->
+        <scene sceneID="dVR-n8-gtF">
+            <objects>
+                <viewController storyboardIdentifier="LoadPDFViewController" id="n3U-fz-yv0" customClass="LoadPDFViewController" customModule="TheBayaApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vhq-85-LFR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rfE-F4-7KL">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="delegate" destination="n3U-fz-yv0" id="dlV-TI-c9o"/>
+                                </connections>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.94901960784313721" green="0.97254901960784312" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="rfE-F4-7KL" firstAttribute="top" secondItem="Vhq-85-LFR" secondAttribute="top" id="ALg-NY-fVo"/>
+                            <constraint firstItem="rfE-F4-7KL" firstAttribute="leading" secondItem="Kk7-nl-zEO" secondAttribute="leading" id="Bha-1S-lwa"/>
+                            <constraint firstItem="rfE-F4-7KL" firstAttribute="trailing" secondItem="Kk7-nl-zEO" secondAttribute="trailing" id="TRK-Pz-hPz"/>
+                            <constraint firstItem="rfE-F4-7KL" firstAttribute="bottom" secondItem="Kk7-nl-zEO" secondAttribute="bottom" id="Tca-A7-I1r"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Kk7-nl-zEO"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="rfE-F4-7KL" id="hPG-2h-Dyd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="CPA-Vd-14l" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2771" y="101"/>
         </scene>
     </scenes>
     <resources>

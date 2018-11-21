@@ -138,7 +138,16 @@ extension AddRequestDocViewController {
                 if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
                     self.showAlertView(metaData.valueForString(key: "message"), completion: nil)
                 }
-                self.navigationController?.popViewController(animated: true)
+                
+                for vwController in (self.navigationController?.viewControllers)! {
+                    if vwController.isKind(of: RequestDocumentListViewController .classForCoder()){
+                        let requectDocVC = vwController as? RequestDocumentListViewController
+                        requectDocVC?.currentPage = 1
+                        requectDocVC?.loadDocumentRequestFromServer(showLoader: false)
+                        self.navigationController?.popViewController(animated: true)
+                        break
+                    }
+                }
             }
         }
     }

@@ -87,11 +87,7 @@ class RateYoorVisitViewController: ParentViewController {
 extension RateYoorVisitViewController {
     
     @IBAction fileprivate func btnSkipClicked (sender : UIButton) {
-        if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-            viewMaintenanceVC.isFromRate = true
-            
-            self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
-        }
+        self.skipRating()
     }
     
     @IBAction fileprivate func btnSubmitClicked (sender : UIButton) {
@@ -116,15 +112,7 @@ extension RateYoorVisitViewController {
                     self.rateVisit()
                 } else {
                     //...Rate Maintenance
-                    
-                    self.showAlertView(CSuccessRateVisitMessage) { (result) in
-                        
-                        if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-                           
-                           viewMaintenanceVC.isFromRate = true
-                            self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
-                        }
-                    }
+                    self.rateOnMaintenanceRequest()
                 }
             }
         }
@@ -205,6 +193,38 @@ extension RateYoorVisitViewController {
                 })
             } else{
                 self.imgVBg.isHidden = true
+            }
+        }
+    }
+    
+    func rateOnMaintenanceRequest() {
+        
+        APIRequest.shared().rateMaintenanceRequest(maintenanceID: self.visitId, rating: Int(vwRating.rating), comment: txtVFeedback.text) { (response, error) in
+            
+            if response != nil {
+                
+                self.showAlertView(CSuccessRateVisitMessage) { (result) in
+                    
+                    if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                        viewMaintenanceVC.requestID = self.visitId
+                        viewMaintenanceVC.isFromRate = true
+                        self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                    }
+                }
+            }
+        }
+    }
+    
+    func skipRating() {
+        
+        APIRequest.shared().skipRatingForMaintenance(maintenanceID: self.visitId) { (response, error) in
+            
+            if response != nil {
+                if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                    viewMaintenanceVC.isFromRate = true
+                    viewMaintenanceVC.requestID = self.visitId
+                    self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                }
             }
         }
     }

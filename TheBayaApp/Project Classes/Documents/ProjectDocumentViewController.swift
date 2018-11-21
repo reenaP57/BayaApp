@@ -18,7 +18,7 @@ class ProjectDocumentViewController: ParentViewController {
     var arrDocument = [[String : AnyObject]]()
     var isFromMyDoc : Bool = false
     fileprivate var currentPage : Int = 1
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -63,8 +63,8 @@ extension ProjectDocumentViewController : UITableViewDelegate, UITableViewDataSo
             cell.lblTitle.text = arrDocument[indexPath.row].valueForString(key: "documentName")
             
             //...Load More
-            if indexPath == tblMyDoc.lastIndexPath(){
-                self.loadDocumentListFromServer(showLoader: false)
+            if indexPath == tblMyDoc.lastIndexPath() {
+              self.loadDocumentListFromServer(showLoader: false)
             }
             
             return cell
@@ -74,7 +74,12 @@ extension ProjectDocumentViewController : UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.openInSafari(strUrl: arrDocument[indexPath.row].valueForString(key: "documentFile"))
+        
+        if let pdfLoaderVC = CStoryboardDocument.instantiateViewController(withIdentifier: "LoadPDFViewController") as? LoadPDFViewController {
+            pdfLoaderVC.pdfUrl = arrDocument[indexPath.row].valueForString(key: "documentFile")
+            self.navigationController?.pushViewController(pdfLoaderVC, animated: false)
+        }
+        //self.openInSafari(strUrl: arrDocument[indexPath.row].valueForString(key: "documentFile"))
     }
 }
 
@@ -103,10 +108,12 @@ extension ProjectDocumentViewController {
             self.apiTask?.cancel()
             
             if response != nil {
+                
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     
                     if self.currentPage == 1 {
                         self.arrDocument.removeAll()
+                        self.tblMyDoc.reloadData()
                     }
                     
                     if (arrData.count) > 0 {
@@ -114,9 +121,9 @@ extension ProjectDocumentViewController {
                         self.tblMyDoc.reloadData()
                         self.currentPage += 1
                     }
-                    
-                    self.lblNoData.isHidden = self.arrDocument.count != 0
                 }
+                
+                self.lblNoData.isHidden = self.arrDocument.count != 0
             }
         })
     }

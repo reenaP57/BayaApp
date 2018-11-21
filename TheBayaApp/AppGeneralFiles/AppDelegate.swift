@@ -51,7 +51,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         deviceName = "\(deviceGuru.hardware())"
         
         self.initRootViewController()
-        self.loadCountryList()
+        MIGeneralsAPI.shared().fetchAllGeneralDataFromServer()
 
         return true
     }
@@ -181,7 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil && (CUserDefaults.string(forKey: UserDefaultLoginUserToken)) != "" && (CUserDefaults.value(forKey: UserDefaultRememberMe)) != nil  {
                 
                 loginUser =  TblUser.findOrCreate(dictionary: ["user_id" : CUserDefaults.object(forKey: UserDefaultLoginUserID) as Any]) as? TblUser
-                self.unreadCount()
+                MIGeneralsAPI.shared().unreadCount()
                 self.initHomeViewController()
             } else {
                 self.initLoginViewController()
@@ -239,7 +239,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         } else {
             if CUserDefaults.value(forKey: UserDefaultFCMToken) != nil {
                 let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as! String
-                appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
+                MIGeneralsAPI.shared().registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 0)
             }
         }
     }
@@ -264,84 +264,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }) { (finished) in
             if let handler = completion {
                 handler(true)
-            }
-        }
-    }
-    
-    
-    // MARK:-
-    // MARK:- API
-    
-    func registerDeviceToken(fcmToken : String, isLoggedIn : Int?) {
-        
-        APIRequest.shared().registerDeviceToken(isLoggedIn: isLoggedIn, token: fcmToken) { (response, error) in
-            
-            if response != nil && error == nil {
-                
-                if isLoggedIn == 0 {
-                    //...Log out
-                    
-                    self.tabbarViewcontroller = nil
-                    self.tabbarView = nil
-                    
-                    appDelegate.loginUser = nil
-                    CUserDefaults.removeObject(forKey: UserDefaultLoginUserToken)
-                    CUserDefaults.removeObject(forKey: UserDefaultLoginUserID)
-                    CUserDefaults.synchronize()
-                    
-                    self.initLoginViewController()
-                }
-                print("Response :",response as Any)
-            }
-        }
-    }
-    
-    func getPushNotifyCountForAdminTypeNotification(adminNotifyID : Int) {
-        
-        APIRequest.shared().pushNotifiyCount(adminNotifyId: adminNotifyID) { (response, error) in
-            if response != nil && error == nil {
-            }
-        }
-    }
-    
-    
-    func loadCountryList(){
-        
-        //...Load country list from server
-        var timestamp : TimeInterval = 0
-        
-        if CUserDefaults.value(forKey: UserDefaultTimestamp) != nil {
-            timestamp = CUserDefaults.value(forKey: UserDefaultTimestamp) as! TimeInterval
-        }
-        
-        APIRequest.shared().getCountryList(_timestamp: timestamp as AnyObject, completion: { (response, error) in
-            
-            if response != nil && error == nil {
-                
-                let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject]
-                
-                CUserDefaults.setValue(metaData?["new_timestamp"], forKey: UserDefaultTimestamp)
-                CUserDefaults.synchronize()
-            }
-        })
-    }
-    
-    func unreadCount(){
-        //...Get unread notification count
-        APIRequest.shared().unreadCount { (response, error) in
-            
-            if response != nil && error == nil {
-                
-                let dataResponse = response?.value(forKey: CJsonData) as! [String : AnyObject]
-                
-                appDelegate.loginUser?.postBadge = Int16(dataResponse.valueForInt(key: CFavoriteProjectBadge)!)
-                CoreData.saveContext()
-                
-                if dataResponse.valueForInt(key: "unreadCount") == 0 {
-                    self.tabbarView?.lblCount.isHidden = true
-                } else {
-                    self.tabbarView?.lblCount.isHidden = false
-                }
             }
         }
     }

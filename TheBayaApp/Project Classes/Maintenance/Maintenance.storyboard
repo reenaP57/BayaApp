@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="GIg-MG-6m1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bDm-4P-wQo">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bDm-4P-wQo">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -35,8 +35,11 @@
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AeI-ZB-n3j" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                     <rect key="frame" x="15" y="7" width="345" height="98"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOC Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-ZF-uZi" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="15" y="13" width="54" height="16.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-ZF-uZi" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                            <rect key="frame" x="15" y="13" width="0.0" height="16.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16.5" id="ejs-ME-niC"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -123,7 +126,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iJY-kD-3vQ">
-                                <rect key="frame" x="305" y="567" width="55" height="55"/>
+                                <rect key="frame" x="277" y="540" width="83" height="82"/>
                                 <state key="normal" image="ic_plus"/>
                                 <connections>
                                     <action selector="btnAddMaintenanceRequestClicked" destination="B7e-JI-dHT" eventType="touchUpInside" id="hGJ-tB-T9N"/>
@@ -172,7 +175,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5n6-4c-0rC">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y09-SP-LSV">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y09-SP-LSV">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                         <subviews>
                                             <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mpl-Y8-Esz" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -184,8 +187,8 @@
                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Plumbing Issue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-gi-6j3" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="75" y="15" width="92.5" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QV1-gi-6j3" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="75" y="24" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -196,8 +199,8 @@
                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pipe is Broken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n18-42-MjY" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="75" y="43" width="88" height="18"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n18-42-MjY" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="75" y="52" width="0.0" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -273,15 +276,26 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FrD-Fv-RL7" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="345" height="175"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_img.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="1Wv-Yr-R4D">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Wv-Yr-R4D">
                                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="175"/>
                                                             </imageView>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5o-AR-zwF">
+                                                                <rect key="frame" x="0.0" y="0.0" width="345" height="175"/>
+                                                                <state key="normal" image="play"/>
+                                                                <connections>
+                                                                    <action selector="btnPlayVideoClicked:" destination="2pw-AI-wZu" eventType="touchUpInside" id="9xF-OL-dTG"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
+                                                            <constraint firstItem="G5o-AR-zwF" firstAttribute="leading" secondItem="FrD-Fv-RL7" secondAttribute="leading" id="05j-O7-A4r"/>
+                                                            <constraint firstAttribute="bottom" secondItem="G5o-AR-zwF" secondAttribute="bottom" id="7Ek-dR-9G4"/>
+                                                            <constraint firstItem="G5o-AR-zwF" firstAttribute="top" secondItem="FrD-Fv-RL7" secondAttribute="top" id="7ts-xm-NX0"/>
                                                             <constraint firstAttribute="trailing" secondItem="1Wv-Yr-R4D" secondAttribute="trailing" id="GAz-r5-9at"/>
                                                             <constraint firstItem="1Wv-Yr-R4D" firstAttribute="leading" secondItem="FrD-Fv-RL7" secondAttribute="leading" id="Tce-xZ-UEM"/>
                                                             <constraint firstAttribute="bottom" secondItem="1Wv-Yr-R4D" secondAttribute="bottom" id="W4l-Du-OWJ"/>
+                                                            <constraint firstAttribute="trailing" secondItem="G5o-AR-zwF" secondAttribute="trailing" id="j7r-Dx-uHg"/>
                                                             <constraint firstItem="1Wv-Yr-R4D" firstAttribute="top" secondItem="FrD-Fv-RL7" secondAttribute="top" id="ljM-yZ-ufJ"/>
                                                             <constraint firstAttribute="width" secondItem="FrD-Fv-RL7" secondAttribute="height" multiplier="69:35" id="pWD-Gy-leM"/>
                                                         </constraints>
@@ -343,11 +357,14 @@
                         <viewLayoutGuide key="safeArea" id="sw9-J9-fAn"/>
                     </view>
                     <connections>
+                        <outlet property="btnPlay" destination="G5o-AR-zwF" id="NC8-2W-FMY"/>
+                        <outlet property="imgVMedia" destination="1Wv-Yr-R4D" id="sTT-6d-BcY"/>
                         <outlet property="lblDesc" destination="wlQ-JV-EgS" id="YyI-bf-mc3"/>
                         <outlet property="lblRequesetedDate" destination="fCl-N3-jU8" id="ACd-Co-Qz0"/>
                         <outlet property="lblStatus" destination="QAM-05-7fD" id="cE9-WU-gzF"/>
                         <outlet property="lblSubject" destination="n18-42-MjY" id="8TB-c6-Gzp"/>
                         <outlet property="lblType" destination="QV1-gi-6j3" id="N8u-I8-VQH"/>
+                        <outlet property="vwContent" destination="y09-SP-LSV" id="F1W-kh-4Ip"/>
                         <outlet property="vwImg" destination="J2q-Ec-dX6" id="3hZ-hM-Ji5"/>
                         <outlet property="vwStatus" destination="vSj-Pe-qq6" id="RNr-eU-3zZ"/>
                     </connections>
@@ -577,10 +594,9 @@
     </scenes>
     <resources>
         <image name="bg.jpg" width="1242" height="2208"/>
-        <image name="ic_plus" width="55" height="55"/>
+        <image name="ic_plus" width="83.25" height="82.5"/>
         <image name="image" width="42" height="33"/>
-        <image name="next" width="8" height="13"/>
-        <image name="play" width="28" height="27"/>
-        <image name="temp_img.jpeg" width="272" height="186"/>
+        <image name="next" width="8" height="13.5"/>
+        <image name="play" width="28" height="27.5"/>
     </resources>
 </document>

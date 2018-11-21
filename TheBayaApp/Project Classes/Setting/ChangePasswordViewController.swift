@@ -122,7 +122,7 @@ extension ChangePasswordViewController {
                     }
                     
                     if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
-                        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
+                        MIGeneralsAPI.shared().registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
                     }
                     
                     appDelegate.initHomeViewController()

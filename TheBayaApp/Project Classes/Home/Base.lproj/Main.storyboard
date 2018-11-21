@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -532,10 +532,10 @@
                                                     <rect key="frame" x="0.0" y="7" width="375" height="315"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="vcE-Wg-dtG">
-                                                            <rect key="frame" x="15" y="7" width="16" height="16"/>
+                                                            <rect key="frame" x="15" y="2.5" width="25" height="25"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zzR-CH-RHC" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="39" y="10" width="20" height="10"/>
+                                                            <rect key="frame" x="48" y="10" width="20" height="10"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jzi-DX-2pb" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="5" width="0.0" height="0.0"/>
@@ -684,10 +684,10 @@
                                                     <rect key="frame" x="0.0" y="7" width="375" height="320"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="8uN-Yo-E6z">
-                                                            <rect key="frame" x="15" y="7" width="16" height="16"/>
+                                                            <rect key="frame" x="15" y="2.5" width="25" height="25"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9ob-vn-HAA" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="39" y="10" width="20" height="10"/>
+                                                            <rect key="frame" x="48" y="10" width="20" height="10"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tU2-9h-3Iq" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="5" width="0.0" height="0.0"/>
@@ -799,10 +799,10 @@
                                                     <rect key="frame" x="0.0" y="7" width="375" height="408"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="hZZ-2m-oQu">
-                                                            <rect key="frame" x="15" y="7" width="16" height="16"/>
+                                                            <rect key="frame" x="15" y="2.5" width="25" height="25"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KtB-t6-8ql" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="39" y="10" width="20" height="10"/>
+                                                            <rect key="frame" x="48" y="10" width="20" height="10"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SFu-Ue-uWq" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="5" width="0.0" height="0.0"/>
@@ -1003,10 +1003,10 @@
                                                     <rect key="frame" x="0.0" y="7" width="375" height="106"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="Wo1-za-y0a">
-                                                            <rect key="frame" x="15" y="7.5" width="16" height="16"/>
+                                                            <rect key="frame" x="15" y="3" width="25" height="25"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBV-RV-jay" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="39" y="10" width="20" height="10.5"/>
+                                                            <rect key="frame" x="48" y="10" width="20" height="10.5"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zf8-aa-h4I" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="5" width="0.0" height="0.0"/>
@@ -1132,10 +1132,10 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="253" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="mzW-D9-Shr">
-                                                            <rect key="frame" x="15" y="17.5" width="16" height="16"/>
+                                                            <rect key="frame" x="15" y="13" width="25" height="25"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cD5-u9-iX1" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                            <rect key="frame" x="39" y="10" width="20" height="31"/>
+                                                            <rect key="frame" x="48" y="10" width="20" height="31"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWo-bp-Z3F" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                                     <rect key="frame" x="10" y="5" width="0.0" height="21"/>
@@ -3729,7 +3729,7 @@ reach for you.</string>
                                 <rect key="frame" x="0.0" y="20" width="375" height="631"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="okP-cK-reo">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="638.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="644"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Referred Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="V32-pD-THY" customClass="MIGenericTextField" customModule="TheBayaApp" customModuleProvider="target">
                                                 <rect key="frame" x="15" y="30" width="345" height="50"/>
@@ -3775,34 +3775,26 @@ reach for you.</string>
                                                 </connections>
                                             </textField>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_dotted_line" translatesAutoresizingMaskIntoConstraints="NO" id="CFa-Gw-Me6">
-                                                <rect key="frame" x="15" y="295" width="140" height="39.5"/>
+                                                <rect key="frame" x="15" y="295" width="140" height="45"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" constant="45" id="Qwj-Lg-GAY"/>
                                                     <constraint firstAttribute="width" constant="140" id="weo-El-Xeh"/>
                                                 </constraints>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQQ-yc-inZ">
-                                                <rect key="frame" x="25" y="305" width="120" height="19.5"/>
-                                                <attributedString key="attributedText">
-                                                    <fragment content="20%">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="14" name="Avenir-Heavy"/>
-                                                            <font key="NSOriginalFont" size="14" name="Avenir-Heavy"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                    <fragment content=" off on referral">
-                                                        <attributes>
-                                                            <color key="NSColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                            <font key="NSFont" size="14" name="Avenir-Book"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                        </attributes>
-                                                    </fragment>
-                                                </attributedString>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" text="20%" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQQ-yc-inZ">
+                                                <rect key="frame" x="25" y="308" width="29.5" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
+                                                <color key="textColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" ambiguous="YES" text="off on referral" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olv-oS-awi">
+                                                <rect key="frame" x="57" y="308" width="89" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                <color key="textColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1EU-Sj-Ey0" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="423" width="345" height="50"/>
+                                                <rect key="frame" x="15" y="428.5" width="345" height="50"/>
                                                 <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="16"/>
                                                 <state key="normal" title="Send">
@@ -3818,18 +3810,18 @@ reach for you.</string>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7k-P7-Fea">
-                                                <rect key="frame" x="15" y="368.5" width="22" height="22"/>
+                                                <rect key="frame" x="15" y="374" width="22" height="22"/>
                                                 <state key="normal" image="remember"/>
                                                 <state key="selected" image="select_remember"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="I agree with the terms &amp; conditions of the referral system mentioned below." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rTC-fU-rSn" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="45" y="361.5" width="296" height="36"/>
+                                                <rect key="frame" x="45" y="367" width="296" height="36"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wdy-n9-JIj">
-                                                <rect key="frame" x="15" y="364.5" width="80" height="30"/>
+                                                <rect key="frame" x="15" y="370" width="80" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="80" id="2Z2-Uo-NyL"/>
                                                 </constraints>
@@ -3838,7 +3830,7 @@ reach for you.</string>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQU-P9-opu" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="533.5" width="345" height="53.5"/>
+                                                <rect key="frame" x="15" y="539" width="345" height="53.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" id="9aP-Td-8rH"/>
                                                 </constraints>
@@ -3847,7 +3839,7 @@ reach for you.</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Terms &amp; Conditions" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iso-jN-szB" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                <rect key="frame" x="15" y="503" width="138.5" height="20.5"/>
+                                                <rect key="frame" x="15" y="508.5" width="138.5" height="20.5"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
                                                 <color key="textColor" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -3870,28 +3862,29 @@ reach for you.</string>
                                             <constraint firstItem="IIS-Le-yqM" firstAttribute="height" secondItem="V32-pD-THY" secondAttribute="height" id="AOB-UU-ydh"/>
                                             <constraint firstItem="QFk-2K-WS3" firstAttribute="centerX" secondItem="IIS-Le-yqM" secondAttribute="centerX" id="CgB-R2-jPZ"/>
                                             <constraint firstItem="g7k-P7-Fea" firstAttribute="leading" secondItem="1EU-Sj-Ey0" secondAttribute="leading" id="I8t-MX-6Wi"/>
+                                            <constraint firstItem="QQQ-yc-inZ" firstAttribute="centerY" secondItem="CFa-Gw-Me6" secondAttribute="centerY" id="Jyk-7M-eUw"/>
                                             <constraint firstAttribute="trailing" secondItem="MQU-P9-opu" secondAttribute="trailing" constant="15" id="KV8-yP-Eb9"/>
                                             <constraint firstItem="CFa-Gw-Me6" firstAttribute="leading" secondItem="xSh-MS-UkM" secondAttribute="leading" id="LTv-hR-ZMH"/>
                                             <constraint firstItem="QFk-2K-WS3" firstAttribute="width" secondItem="IIS-Le-yqM" secondAttribute="width" id="MjY-dg-OmN"/>
                                             <constraint firstItem="QFk-2K-WS3" firstAttribute="height" secondItem="IIS-Le-yqM" secondAttribute="height" id="MmC-h6-zqo"/>
                                             <constraint firstItem="MQU-P9-opu" firstAttribute="leading" secondItem="okP-cK-reo" secondAttribute="leading" constant="15" id="Vtj-ai-3qW"/>
                                             <constraint firstItem="Wdy-n9-JIj" firstAttribute="leading" secondItem="g7k-P7-Fea" secondAttribute="leading" id="a0K-10-LOk"/>
+                                            <constraint firstItem="Olv-oS-awi" firstAttribute="leading" secondItem="QQQ-yc-inZ" secondAttribute="trailing" constant="2.5" id="aRL-PU-C1D"/>
                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rTC-fU-rSn" secondAttribute="trailing" constant="15" id="b51-va-ZcV"/>
                                             <constraint firstItem="xSh-MS-UkM" firstAttribute="centerX" secondItem="QFk-2K-WS3" secondAttribute="centerX" id="cwu-SP-AAm"/>
                                             <constraint firstItem="xSh-MS-UkM" firstAttribute="top" secondItem="QFk-2K-WS3" secondAttribute="bottom" constant="15" id="enQ-MG-2Xb"/>
                                             <constraint firstItem="CFa-Gw-Me6" firstAttribute="top" secondItem="xSh-MS-UkM" secondAttribute="bottom" constant="20" id="fH2-Ii-RUt"/>
                                             <constraint firstItem="V32-pD-THY" firstAttribute="top" secondItem="okP-cK-reo" secondAttribute="top" constant="30" id="fXQ-tX-Ovb"/>
                                             <constraint firstItem="QFk-2K-WS3" firstAttribute="top" secondItem="IIS-Le-yqM" secondAttribute="bottom" constant="15" id="gto-C3-Pqo"/>
-                                            <constraint firstItem="QQQ-yc-inZ" firstAttribute="top" secondItem="CFa-Gw-Me6" secondAttribute="top" constant="10" id="iJi-ht-odA"/>
                                             <constraint firstItem="IIS-Le-yqM" firstAttribute="width" secondItem="V32-pD-THY" secondAttribute="width" id="kGS-KT-fbw"/>
-                                            <constraint firstItem="QQQ-yc-inZ" firstAttribute="bottom" secondItem="CFa-Gw-Me6" secondAttribute="bottom" constant="-10" id="m1a-oh-aMt"/>
                                             <constraint firstItem="V32-pD-THY" firstAttribute="leading" secondItem="okP-cK-reo" secondAttribute="leading" constant="15" id="m3x-Hg-fbz"/>
                                             <constraint firstItem="g7k-P7-Fea" firstAttribute="top" secondItem="CFa-Gw-Me6" secondAttribute="bottom" constant="34" id="mJ6-is-hSq"/>
                                             <constraint firstItem="IIS-Le-yqM" firstAttribute="top" secondItem="V32-pD-THY" secondAttribute="bottom" constant="15" id="oy0-e1-pMU"/>
                                             <constraint firstAttribute="bottom" secondItem="MQU-P9-opu" secondAttribute="bottom" constant="51.5" id="pbf-J5-VRg"/>
-                                            <constraint firstItem="QQQ-yc-inZ" firstAttribute="trailing" secondItem="CFa-Gw-Me6" secondAttribute="trailing" constant="-10" id="soH-oX-mmf"/>
                                             <constraint firstItem="rTC-fU-rSn" firstAttribute="centerY" secondItem="g7k-P7-Fea" secondAttribute="centerY" id="spS-nB-XCF"/>
                                             <constraint firstItem="IIS-Le-yqM" firstAttribute="centerX" secondItem="V32-pD-THY" secondAttribute="centerX" id="stP-pF-ITt"/>
+                                            <constraint firstItem="Olv-oS-awi" firstAttribute="trailing" secondItem="CFa-Gw-Me6" secondAttribute="trailing" constant="9" id="vyn-DA-hhY"/>
+                                            <constraint firstItem="Olv-oS-awi" firstAttribute="centerY" secondItem="QQQ-yc-inZ" secondAttribute="centerY" id="wR8-Rs-ZWP"/>
                                             <constraint firstItem="Iso-jN-szB" firstAttribute="top" secondItem="1EU-Sj-Ey0" secondAttribute="bottom" constant="30" id="zw4-SN-X1Q"/>
                                         </constraints>
                                     </view>
@@ -3938,44 +3931,44 @@ reach for you.</string>
     <resources>
         <image name="Layer_7" width="29" height="33"/>
         <image name="bg.jpg" width="1242" height="2208"/>
-        <image name="gradient_bg2" width="77" height="27"/>
+        <image name="gradient_bg2" width="77" height="27.5"/>
         <image name="ic_back_white" width="13" height="22"/>
-        <image name="ic_baya_logo_home" width="49" height="29"/>
+        <image name="ic_baya_logo_home" width="49.5" height="29"/>
         <image name="ic_black_close" width="32" height="32"/>
-        <image name="ic_calendar" width="16" height="16"/>
-        <image name="ic_call" width="15" height="16"/>
-        <image name="ic_dotted_line" width="176" height="39"/>
-        <image name="ic_dottedline" width="158" height="1"/>
+        <image name="ic_calendar" width="25.600000381469727" height="25.600000381469727"/>
+        <image name="ic_call" width="15.5" height="16"/>
+        <image name="ic_dotted_line" width="264" height="58.5"/>
+        <image name="ic_dottedline" width="316" height="2"/>
         <image name="img1.jpeg" width="285" height="177"/>
         <image name="img4.jpeg" width="318" height="159"/>
-        <image name="location_projects" width="9" height="13"/>
+        <image name="location_projects" width="9.5" height="13"/>
         <image name="metro" width="22" height="28"/>
         <image name="my_projects_profile" width="22" height="22"/>
         <image name="nav_back" width="13" height="22"/>
-        <image name="no_project" width="177" height="110"/>
-        <image name="page_select" width="11" height="2"/>
-        <image name="page_unselect" width="11" height="2"/>
+        <image name="no_project" width="177" height="110.5"/>
+        <image name="page_select" width="11" height="2.5"/>
+        <image name="page_unselect" width="11" height="2.5"/>
         <image name="pause" width="27" height="27"/>
-        <image name="play" width="28" height="27"/>
-        <image name="progress" width="259" height="5"/>
-        <image name="project_completion" width="85" height="115"/>
+        <image name="play" width="28" height="27.5"/>
+        <image name="progress" width="259.5" height="5.5"/>
+        <image name="project_completion" width="85.5" height="115.5"/>
         <image name="project_details" width="27" height="22"/>
-        <image name="project_progress" width="85" height="115"/>
-        <image name="rectangle" width="36" height="20"/>
+        <image name="project_progress" width="85.5" height="115.5"/>
+        <image name="rectangle" width="36.5" height="20"/>
         <image name="remember" width="22" height="22"/>
-        <image name="round" width="22" height="22"/>
+        <image name="round" width="22" height="22.5"/>
         <image name="schedule" width="22" height="22"/>
-        <image name="select_circle" width="23" height="23"/>
+        <image name="select_circle" width="23.5" height="23.5"/>
         <image name="select_remember" width="22" height="22"/>
         <image name="shadow" width="381" height="99"/>
-        <image name="shadow1" width="414" height="134"/>
+        <image name="shadow1" width="414" height="134.5"/>
         <image name="share" width="15" height="17"/>
         <image name="share_white" width="20" height="22"/>
         <image name="time" width="15" height="15"/>
-        <image name="timeline" width="38" height="50"/>
-        <image name="unselect_circle" width="23" height="23"/>
-        <image name="white_select_line" width="11" height="2"/>
-        <image name="white_unselect_line" width="11" height="2"/>
-        <image name="zoom" width="26" height="26"/>
+        <image name="timeline" width="38.5" height="50"/>
+        <image name="unselect_circle" width="23.5" height="23.5"/>
+        <image name="white_select_line" width="11" height="2.5"/>
+        <image name="white_unselect_line" width="11" height="2.5"/>
+        <image name="zoom" width="26.5" height="26.5"/>
     </resources>
 </document>

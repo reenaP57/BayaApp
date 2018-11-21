@@ -72,6 +72,8 @@
 		489A5F6D212293AA00080739 /* bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F69212293AA00080739 /* bg_ipad.jpg */; };
 		489A5F6E212293AA00080739 /* login_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6A212293AA00080739 /* login_bg.jpg */; };
 		489A5F6F212293AA00080739 /* login_bg_ipad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 489A5F6B212293AA00080739 /* login_bg_ipad.jpg */; };
+		5B2EDCFC21A2D719006E080F /* LoadPDFViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B2EDCFB21A2D719006E080F /* LoadPDFViewController.swift */; };
+		5B75209421A55C0F005CB239 /* MIGeneralsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B75209321A55C0F005CB239 /* MIGeneralsAPI.swift */; };
 		5C008E1C212E8B6300650E71 /* Profile_ipad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */; };
 		5C03978D219ACF1C00005351 /* OnlinePaymentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C03978C219ACF1C00005351 /* OnlinePaymentViewController.swift */; };
 		5C053D9E21661B8D00686FB2 /* TimelineHomeCollCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */; };
@@ -272,6 +274,8 @@
 		489A5F69212293AA00080739 /* bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = bg_ipad.jpg; sourceTree = "<group>"; };
 		489A5F6A212293AA00080739 /* login_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg.jpg; sourceTree = "<group>"; };
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
+		5B2EDCFB21A2D719006E080F /* LoadPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPDFViewController.swift; sourceTree = "<group>"; };
+		5B75209321A55C0F005CB239 /* MIGeneralsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIGeneralsAPI.swift; sourceTree = "<group>"; };
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
 		5C03978C219ACF1C00005351 /* OnlinePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlinePaymentViewController.swift; sourceTree = "<group>"; };
 		5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHomeCollCell.swift; sourceTree = "<group>"; };
@@ -696,6 +700,7 @@
 				5C0CF769215223FD009979FE /* LocationAdvantagesLayout.swift */,
 				5C93C7222158AD6600AFFAFD /* MIFCM.swift */,
 				5C23DCD9215B4D7B00A7C56A /* MIGoogleAnalytics.swift */,
+				5B75209321A55C0F005CB239 /* MIGeneralsAPI.swift */,
 			);
 			path = "Custom class";
 			sourceTree = "<group>";
@@ -777,6 +782,7 @@
 				5CDAF5AD21871A7900591F4E /* ViewRequestViewController.swift */,
 				5CDAF5A32186D94500591F4E /* DocumentTblCell.swift */,
 				5CDAF5A72186E87400591F4E /* RequestDocTblCell.swift */,
+				5B2EDCFB21A2D719006E080F /* LoadPDFViewController.swift */,
 			);
 			path = Documents;
 			sourceTree = "<group>";
@@ -1188,6 +1194,7 @@
 				5CC46D8221366DFD00A4A0B7 /* TimelineGuideLineView.swift in Sources */,
 				5C475D7A212ADFA800125A19 /* Zoom3DImageViewController.swift in Sources */,
 				5C48FB652128585800B0D6CB /* SellAllLocationTblCell.swift in Sources */,
+				5B75209421A55C0F005CB239 /* MIGeneralsAPI.swift in Sources */,
 				5C1E614721229D210090308D /* ScheduleVisitViewController.swift in Sources */,
 				5C8D5B9421258B190080193A /* SpecificationTblCell.swift in Sources */,
 				5CFCAAA7212BF00B00717C10 /* TimeLineSubscribeTblCell.swift in Sources */,
@@ -1220,6 +1227,7 @@
 				486FDD5D2119AEF500EA0188 /* ExtensionUIBarButtonItem.swift in Sources */,
 				5CD76415211DC6F900C267AB /* ProjectTblCell.swift in Sources */,
 				5C1E61492122BBD00090308D /* NotificationViewController.swift in Sources */,
+				5B2EDCFC21A2D719006E080F /* LoadPDFViewController.swift in Sources */,
 				5C189C0C21253911001B72C5 /* FloatRatingView.swift in Sources */,
 				5CDAF5A22186D7CB00591F4E /* ProjectDocumentViewController.swift in Sources */,
 				5CDE13F82119B7BE00B11AA5 /* MIGenericTextField.swift in Sources */,
@@ -1381,7 +1389,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1393,7 +1401,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_16_Oct_2018;
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1406,7 +1414,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Kunal Agarwal (74NAH42LNW)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1418,7 +1426,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_16_Oct_2018;
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

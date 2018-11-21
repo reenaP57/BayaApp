@@ -109,3 +109,17 @@ extension ReferFriendViewController: UITextFieldDelegate {
         return true
     }
 }
+
+
+// MARK:- -------- API
+extension ReferFriendViewController {
+    
+    func getReferralPoint() {
+        
+        APIRequest.shared().getReferralPoint { (response, error) in
+            if response != nil {
+                
+            }
+        }
+    }
+}

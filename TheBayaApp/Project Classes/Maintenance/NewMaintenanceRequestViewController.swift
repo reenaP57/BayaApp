@@ -29,6 +29,8 @@ class NewMaintenanceRequestViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwMsg : UIView!
     @IBOutlet fileprivate weak var vwContent : UIView!
     var imgData = Data()
+    var maintenanceID : Int = 0
+    var mediaType : Int = 0
     let cameraSession = AVCaptureSession()
 
     override func viewDidLoad() {
@@ -39,7 +41,8 @@ class NewMaintenanceRequestViewController: ParentViewController {
     func initialize() {
         self.title = "New Maintenance Request"
         
-        txtMaintenanceType.setPickerData(arrPickerData: ["Plumbing Issue", "Flooring Issue", "Pipe is Broken"], selectedPickerDataHandler: { (title, row, component) in
+        txtMaintenanceType.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrMaintenance.mapValue(forKey: "name") as! [Any], selectedPickerDataHandler: { (title, index, component) in
+            self.maintenanceID = MIGeneralsAPI.shared().arrMaintenance[index].valueForInt(key: CId) ?? 0
             self.txtMaintenanceType.hideValidationMessage(15.0)
         }, defaultPlaceholder: "")
         
@@ -108,7 +111,7 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
             self.showValidation(isAdd: true)
             _ = self.vwMsg.setConstraintConstant((30/2) + 30 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
         } else {
-            self.navigationController?.popViewController(animated: true)
+            self.postMaintenanceRequest()
         }
     }
     
@@ -141,6 +144,7 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
                 if let selectedImage = image {
                     self.setUploadedImg(img : selectedImage)
                     self.imgVPlay.isHidden = true
+                    self.mediaType = 1
                 }
             }
         }))
@@ -160,6 +164,7 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
                         let thumbnail = UIImage(cgImage: cgImage)
                         self.setUploadedImg(img: thumbnail)
                         self.imgVPlay.isHidden = false
+                        self.mediaType = 2
                     } catch let error {
                         print("*** Error generating thumbnail: \(error.localizedDescription)")
                     }
@@ -174,6 +179,7 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
                 if let selectedImage = image {
                     self.setUploadedImg(img : selectedImage)
                     self.imgVPlay.isHidden = true
+                    self.mediaType = 1
                 }
             }
         }))
@@ -182,17 +188,21 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
             self.presentImagePickerControllerWithGallery(allowEditing: false, allowMedia: true) { (image, info) in
                 print(info as Any)
                 
-                do {
-                    let urlOfVideo = (info![UIImagePickerControllerMediaURL] as? NSURL)!
-                    let asset = AVURLAsset(url: urlOfVideo as URL , options: nil)
-                    let imgGenerator = AVAssetImageGenerator(asset: asset)
-                    imgGenerator.appliesPreferredTrackTransform = true
-                    let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
-                    let thumbnail = UIImage(cgImage: cgImage)
-                    self.setUploadedImg(img: thumbnail)
-                    self.imgVPlay.isHidden = false
-                } catch let error {
-                    print("*** Error generating thumbnail: \(error.localizedDescription)")
+                if info != nil {
+                    do {
+                        let urlOfVideo = (info![UIImagePickerControllerMediaURL] as? NSURL)!
+                        let asset = AVURLAsset(url: urlOfVideo as URL , options: nil)
+                        let imgGenerator = AVAssetImageGenerator(asset: asset)
+                        imgGenerator.appliesPreferredTrackTransform = true
+                        let cgImage = try imgGenerator.copyCGImage(at: CMTimeMake(0, 1), actualTime: nil)
+                        let thumbnail = UIImage(cgImage: cgImage)
+                        self.setUploadedImg(img: thumbnail)
+                        self.imgVPlay.isHidden = false
+                        self.imgData = try! Data(contentsOf: urlOfVideo as URL)
+                        self.mediaType = 2
+                    } catch let error {
+                        print("*** Error generating thumbnail: \(error.localizedDescription)")
+                    }
                 }
             }
         }))
@@ -237,6 +247,41 @@ extension NewMaintenanceRequestViewController : UITextViewDelegate {
             textView.placeholderColor = UIColor.clear
         } else {
             textView.placeholderColor = ColorGray
+        }
+    }
+}
+
+
+//MARK:-
+//MARK:- API Method
+
+extension NewMaintenanceRequestViewController {
+    
+    func postMaintenanceRequest() {
+        
+        let dict = ["maintenanceType" : maintenanceID,
+                    "subject" : txtSubject.text as Any,
+                    "message" : txtVMsg.text,
+                    "mediaType" : mediaType]
+        
+        APIRequest.shared().postNewMaintenanceRequest(dict: dict as [String : AnyObject], mediaFile: imgData) { (response, error) in
+            
+            if response != nil {
+                
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.showAlertView(metaData.valueForString(key: "message"), completion: nil)
+                }
+                
+                for vwController in (self.navigationController?.viewControllers)! {
+                    if vwController.isKind(of: MaintenanceViewController .classForCoder()){
+                        let requestVC = vwController as? MaintenanceViewController
+                        requestVC?.currentPage = 1
+                        requestVC?.loadMaintenanceRequestList(showLoader : false)
+                        self.navigationController?.popViewController(animated: true)
+                        break
+                    }
+                }
+            }
         }
     }
 }

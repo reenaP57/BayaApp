@@ -14,7 +14,10 @@ class MaintenanceViewController: ParentViewController {
     @IBOutlet weak var lblNoData : UILabel!
     @IBOutlet weak var btnAddRequest : UIButton!
     
+    var apiTask : URLSessionTask?
+    var refreshControl = UIRefreshControl()
     var arrRequest = [[String : AnyObject]]()
+    var currentPage = 1
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +36,15 @@ class MaintenanceViewController: ParentViewController {
         self.title = "Maintenance"
         
         btnAddRequest.shadow(color: ColorGreenSelected, shadowOffset: CGSize(width: 0, height: 3), shadowRadius: 7, shadowOpacity: 5)
-        
-        arrRequest = [["docName" : "Pipe is Broken", "status" : CRequestOpen, "date" : "10 Sep 2018", "desc" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s."],
-                      ["docName" : "Flooring issue", "status" : CRequestCompleted, "date" : "10 Sep 2018", "desc" : "Lorem Ipsum is simply dummy text of the printing and typesetting industry."]] as [[String : AnyObject]]
+
+        refreshControl.tintColor = ColorGreenSelected
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        tblMaintenance.pullToRefreshControl = refreshControl
         
         tblMaintenance.rowHeight = UITableViewAutomaticDimension
         tblMaintenance.estimatedRowHeight = 110
+        
+        self.loadMaintenanceRequestList(showLoader: true)
     }
 }
 
@@ -69,20 +75,31 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
         if let cell = tableView.dequeueReusableCell(withIdentifier: "RequestDocTblCell") as? RequestDocTblCell {
             
             let dict = arrRequest[indexPath.row]
-            cell.lblDocName.text = dict.valueForString(key: "docName")
-            cell.lblStatus.text = dict.valueForString(key: "status")
-            cell.lblRequestedDate.text = "Requested on: \(dict.valueForString(key: "date"))"
+            cell.lblDocName.text = dict.valueForString(key: "subject")
+            cell.lblRequestedDate.text = "Requested on: \(DateFormatter.dateStringFrom(timestamp: dict.valueForDouble(key: "createdAt")!, withFormate: "dd MMM yyyy"))"
             
-//            switch dict.valueForString(key: "status") {
-//            case CRequestOpen : //...Open
-//                cell.vwStatus.backgroundColor = ColorParrotColor
-//            case CRequestCompleted : //...Completed
-//                cell.vwStatus.backgroundColor = ColorGreenSelected
-//            case CRequestInProgress : //...In Progress
-//                cell.vwStatus.backgroundColor = ColorOrange
-//            default : //...Rejected
-//                cell.vwStatus.backgroundColor = ColorRed
-//            }
+            switch dict.valueForInt(key: "requestStatus") {
+            case CRequestOpen : //...Open
+                cell.vwStatus.backgroundColor = ColorParrotColor
+                cell.lblStatus.text = CDocRequestOpen
+            case CRequestCompleted : //...Completed
+                cell.vwStatus.backgroundColor = ColorGreenSelected
+                cell.lblStatus.text = CDocRequestCompleted
+            case CRequestInProgress : //...In Progress
+                cell.vwStatus.backgroundColor = ColorOrange
+                cell.lblStatus.text = CDocRequestInProgress
+            case CRequestRejected : //...Rejected
+                cell.vwStatus.backgroundColor = ColorRed
+                cell.lblStatus.text = CDocRequestRejected
+            default :
+                break
+            }
+
+            
+            //...Load More
+            if indexPath == tblMaintenance.lastIndexPath() {
+                self.loadMaintenanceRequestList(showLoader: false)
+            }
             
             return cell
         }
@@ -92,16 +109,65 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if arrRequest[indexPath.row].valueForString(key: "status") == CRequestCompleted {
-//            if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
-//                rateVC.isVisitRate = false
-//                self.navigationController?.pushViewController(rateVC, animated: true)
-//            }
-//        } else {
-//            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-//                viewMaintenanceVC.status = arrRequest[indexPath.row].valueForString(key: "status")
-//                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
-//            }
-//        }
+        
+        // if arrRequest[indexPath.row].valueForInt(key: "requestStatus") == CRequestCompleted && (!arrRequest[indexPath.row].valueForBool(key: "isRatingSkip") || arrRequest[indexPath.row].valueForInt(key: "rating") == 0) {
+        
+        if arrRequest[indexPath.row].valueForInt(key: "requestStatus") == CRequestCompleted && (!arrRequest[indexPath.row].valueForBool(key: "isRatingSkip") && arrRequest[indexPath.row].valueForInt(key: "rating") == 0) {
+            //...Redirect on Rating screen If Request status is completed and user has not skiped rating or not given yet rating
+            
+            if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                rateVC.isVisitRate = false
+                rateVC.visitId = arrRequest[indexPath.row].valueForInt(key: CId) ?? 0
+                self.navigationController?.pushViewController(rateVC, animated: true)
+            }
+        } else {
+            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                viewMaintenanceVC.requestID = arrRequest[indexPath.row].valueForInt(key: CId) ?? 0
+                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+            }
+        }
+    }
+}
+
+//MARK:-
+//MARK:- API
+
+extension MaintenanceViewController {
+    
+    @objc func pullToRefresh() {
+        currentPage = 1
+        refreshControl.beginRefreshing()
+        self.loadMaintenanceRequestList(showLoader: false)
+    }
+    
+    func loadMaintenanceRequestList(showLoader : Bool) {
+        
+        if apiTask?.state == URLSessionTask.State.running {
+            return
+        }
+        
+        apiTask = APIRequest.shared().getMaintenanceRequestList(page: currentPage, shouldShowLoader: showLoader, completion: { (response, error) in
+            
+            self.refreshControl.endRefreshing()
+            self.apiTask?.cancel()
+            if response != nil {
+
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    
+                    if self.currentPage == 1{
+                        self.arrRequest.removeAll()
+                        self.tblMaintenance.reloadData()
+                    }
+                    
+                    if arrData.count > 0 {
+                        self.arrRequest = self.arrRequest + arrData
+                        self.tblMaintenance.reloadData()
+                        self.currentPage += 1
+                    }
+                }
+                
+                self.lblNoData.isHidden = self.arrRequest.count != 0
+            }
+        })
     }
 }

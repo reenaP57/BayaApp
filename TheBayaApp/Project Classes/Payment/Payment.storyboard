@@ -1511,7 +1511,7 @@
     </scenes>
     <resources>
         <image name="bg.jpg" width="1242" height="2208"/>
-        <image name="ic_success" width="83" height="80"/>
-        <image name="next" width="8" height="13"/>
+        <image name="ic_success" width="124.5" height="120"/>
+        <image name="next" width="8" height="13.5"/>
     </resources>
 </document>

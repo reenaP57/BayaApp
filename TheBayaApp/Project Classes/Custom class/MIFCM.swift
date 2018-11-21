@@ -62,7 +62,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
             case NotificationAdmin : //...Admin notification
                 
                 if let notifyID = userInfo.valueForInt(key: "gcm.notification.adminNotifyId") {
-                    appDelegate.getPushNotifyCountForAdminTypeNotification(adminNotifyID: notifyID)
+                    MIGeneralsAPI.shared().getPushNotifyCountForAdminTypeNotification(adminNotifyID: notifyID)
                 }
                 
                 if application.applicationState == .inactive {

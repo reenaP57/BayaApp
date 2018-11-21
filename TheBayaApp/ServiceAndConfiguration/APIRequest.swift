@@ -53,9 +53,13 @@ let CAPITagDocumentRequest       =   "document-request"
 let CAPITagPostDocumentRequest   =   "post-document-request"
 let CAPITagViewDocumentRequest   =   "view-document-request"
 let CAPITagPostMaintenance       =   "post-maintenance"
-let CAPITagMaintenance             =   "maintenance"
+let CAPITagMaintenance           =   "maintenance"
+let CAPITagMaintenanceRequest    =   "maintenance-request"
 let CAPITagViewMaintenanceRequest  =   "view-maintenance-request"
 let CAPITagRateMaintenanceRequest  =   "rate-maintenance-request"
+let CAPITagSkipRating              =  "skip-rating"
+let CAPITagReferralFriend          =  "referral-friend"
+let CAPITagReferralPoint           =  "referral-point"
 
 
 let CJsonResponse           = "response"
@@ -889,7 +893,7 @@ extension APIRequest {
                 if metaData?.valueForInt(key: "status") == CStatusZero {
                     
                     if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
-                        appDelegate.registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
+                        MIGeneralsAPI.shared().registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
                     }
                     
                 }
@@ -1686,6 +1690,218 @@ extension APIRequest {
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagViewDocumentRequest, error: error)
+            }
+        })
+    }
+    
+  
+    //TODO:
+    //TODO: -------------- MAINTENANCE RELATED API --------------
+    //TODO:
+    
+    
+    func getMaintenanceList(completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagMaintenance, param: [:], successBlock: { (task, response) in
+            
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagMaintenance){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection {
+                    _ = self.getMaintenanceList(completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagMaintenance, error: error)
+            }
+        })
+    }
+    
+    func postNewMaintenanceRequest(dict : [String : AnyObject], mediaFile : Data?, completion : @escaping ClosureCompletion) {
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+        
+        _ = Networking.sharedInstance.POST(param: dict, tag: CAPITagPostMaintenance, multipartFormData: { (formData) in
+     
+            if mediaFile?.count != 0 {
+                
+                if dict.valueForInt(key: "mediaType") == 1  {
+                    formData.append(mediaFile!, withName: "mediaFile", fileName: String(format: "%.0f.jpg", Date().timeIntervalSince1970 * 1000), mimeType: "image/jpeg")
+
+                } else {
+                    formData.append(mediaFile!, withName: "mediaFile", fileName: String(format: "%.0f.mp4", Date().timeIntervalSince1970 * 1000), mimeType: ".mp4")
+                }
+            }
+            
+        }, success: { (task, response) in
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagPostMaintenance){
+                completion(response, nil)
+            }
+            
+        }, failure: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection(complete: {
+                    _ = self.postNewMaintenanceRequest(dict: dict, mediaFile: mediaFile, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagPostMaintenance, error: error)
+            }
+        })
+    }
+    
+    func getMaintenanceRequestList(page : Int?, shouldShowLoader : Bool?, completion : @escaping ClosureCompletion) -> URLSessionTask {
+
+        if shouldShowLoader! {
+            MILoader.shared.showLoader(type: .circularRing, message: nil)
+        }
+        
+        return Networking.sharedInstance.POST(apiTag: CAPITagMaintenanceRequest, param: [CPage : page as AnyObject, CPerPage : CLimit as AnyObject], successBlock: { (task, response) in
+            MILoader.shared.hideLoader()
+           
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagMaintenanceRequest) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection(complete: {
+                    _ = self.getMaintenanceRequestList(page: page, shouldShowLoader: shouldShowLoader, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagMaintenanceRequest, error: error)
+            }
+        })!
+    }
+    
+    func loadViewMaintenanceRequest(maintenanceID : Int?, completion : @escaping ClosureCompletion) {
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagViewMaintenanceRequest, param: [CId : maintenanceID as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagViewMaintenanceRequest) {
+                completion(response, nil)
+            }
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
+                self.checkInternetConnection(complete: {
+                    _ = self.loadViewMaintenanceRequest(maintenanceID: maintenanceID, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagViewMaintenanceRequest, error: error)
+            }
+        })
+    }
+    
+    func rateMaintenanceRequest(maintenanceID : Int?, rating : Int?, comment : String?, completion : @escaping ClosureCompletion) {
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagRateMaintenanceRequest, param: [CId : maintenanceID as AnyObject, "rating" : rating as AnyObject, "comment" : comment as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagRateMaintenanceRequest){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == 1005 || error?.code == 1009 {
+                self.checkInternetConnection(complete: {
+                    _ = self.rateMaintenanceRequest(maintenanceID: maintenanceID, rating: rating, comment: comment, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagRateMaintenanceRequest, error: error)
+            }
+        })
+    }
+    
+    func skipRatingForMaintenance(maintenanceID : Int?, completion : @escaping ClosureCompletion) {
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagSkipRating, param: [CId : maintenanceID as AnyObject], successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSkipRating) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, messgae, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == 1005 || error?.code == 1009 {
+                self.checkInternetConnection(complete: {
+                    _ = self.skipRatingForMaintenance(maintenanceID: maintenanceID, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: messgae, showAlert: true, strApiTag: CAPITagSkipRating, error: error)
+            }
+        })
+        
+    }
+    
+    //TODO:
+    //TODO: -------------- REFER FRIEND RELATED API --------------
+    //TODO:
+    
+    func getReferralPoint(completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.GET(apiTag: CAPITagReferralPoint, param: [:], successBlock: { (task, response) in
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagReferralPoint){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            
+            completion(nil, error)
+            
+            if error?.code == 1005 || error?.code == 1009 {
+                self.checkInternetConnection {
+                    _ = self.getReferralPoint(completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagReferralPoint, error: error)
+            }
+        })
+    }
+    
+    func referralFriend(dict : [String : AnyObject], completion : @escaping ClosureCompletion) {
+        
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagReferralFriend, param: dict, successBlock: { (task, response) in
+            
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagReferralFriend) {
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == 1005 || error?.code == 1009 {
+                self.checkInternetConnection {
+                    _ = self.referralFriend(dict: dict, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagReferralFriend, error: error)
             }
         })
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bg.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="0XG-9h-1xA">
                                 <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hWR-05-8wu">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hWR-05-8wu">
                                 <rect key="frame" x="35" y="20" width="698" height="1004"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -33,7 +33,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ws5-jN-1IA" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
-                                                    <rect key="frame" x="15" y="7" width="881" height="110"/>
+                                                    <rect key="frame" x="15" y="7" width="1061" height="110"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NOC Doc" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZs-G6-eFi" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="15" width="63" height="19.5"/>
@@ -48,7 +48,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="next" translatesAutoresizingMaskIntoConstraints="NO" id="jdP-dX-7sJ">
-                                                            <rect key="frame" x="860" y="28.5" width="8" height="13"/>
+                                                            <rect key="frame" x="1040" y="28.5" width="8" height="13"/>
                                                         </imageView>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uOU-1W-FRP" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="72.5" width="54.5" height="22.5"/>
@@ -123,7 +123,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rn1-8N-U9z">
-                                <rect key="frame" x="698" y="924" width="55" height="55"/>
+                                <rect key="frame" x="670" y="897" width="83" height="82"/>
                                 <state key="normal" image="ic_plus"/>
                                 <connections>
                                     <action selector="btnAddMaintenanceRequestClicked" destination="R2i-ld-6bO" eventType="touchUpInside" id="9IV-9k-JQG"/>
@@ -172,7 +172,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwW-tO-XSg">
                                 <rect key="frame" x="0.0" y="20" width="750" height="1004"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klo-dK-pae">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klo-dK-pae">
                                         <rect key="frame" x="0.0" y="0.0" width="750" height="1003"/>
                                         <subviews>
                                             <view tag="101" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Job-c8-WC5" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -276,12 +276,23 @@
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_img.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="wI3-22-bAi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="650" height="329"/>
                                                             </imageView>
+                                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CY-M7-ZME">
+                                                                <rect key="frame" x="0.0" y="0.0" width="650" height="329"/>
+                                                                <state key="normal" image="play"/>
+                                                                <connections>
+                                                                    <action selector="btnPlayVideoClicked:" destination="Omc-uF-cER" eventType="touchUpInside" id="kL5-Ll-atf"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="wI3-22-bAi" firstAttribute="top" secondItem="qxf-fV-XZv" secondAttribute="top" id="5W1-O0-rSo"/>
+                                                            <constraint firstAttribute="trailing" secondItem="0CY-M7-ZME" secondAttribute="trailing" id="Aw1-bL-UZi"/>
+                                                            <constraint firstAttribute="bottom" secondItem="0CY-M7-ZME" secondAttribute="bottom" id="DCa-bk-tzI"/>
                                                             <constraint firstItem="wI3-22-bAi" firstAttribute="leading" secondItem="qxf-fV-XZv" secondAttribute="leading" id="GYH-Am-GFa"/>
+                                                            <constraint firstItem="0CY-M7-ZME" firstAttribute="leading" secondItem="qxf-fV-XZv" secondAttribute="leading" id="M2V-Mt-rcm"/>
                                                             <constraint firstAttribute="bottom" secondItem="wI3-22-bAi" secondAttribute="bottom" id="bTl-W1-6mw"/>
+                                                            <constraint firstItem="0CY-M7-ZME" firstAttribute="top" secondItem="qxf-fV-XZv" secondAttribute="top" id="opn-lM-Nvg"/>
                                                             <constraint firstAttribute="trailing" secondItem="wI3-22-bAi" secondAttribute="trailing" id="u5R-L3-RRU"/>
                                                         </constraints>
                                                         <userDefinedRuntimeAttributes>
@@ -343,11 +354,14 @@
                     </view>
                     <size key="freeformSize" width="750" height="1024"/>
                     <connections>
+                        <outlet property="btnPlay" destination="0CY-M7-ZME" id="fbQ-Tx-Lhb"/>
+                        <outlet property="imgVMedia" destination="wI3-22-bAi" id="eP3-13-H8w"/>
                         <outlet property="lblDesc" destination="Iuz-YI-5vc" id="aOU-Wo-yTB"/>
                         <outlet property="lblRequesetedDate" destination="owc-my-AdT" id="RI9-Cx-qTh"/>
                         <outlet property="lblStatus" destination="AlW-mM-hcU" id="O0J-Lx-a63"/>
                         <outlet property="lblSubject" destination="o14-AY-Vbm" id="bGZ-AY-e9C"/>
                         <outlet property="lblType" destination="EMG-LC-a79" id="hPL-LG-7HH"/>
+                        <outlet property="vwContent" destination="klo-dK-pae" id="A1v-BE-3cM"/>
                         <outlet property="vwImg" destination="N9n-bl-5Kv" id="JBf-hp-B5i"/>
                         <outlet property="vwStatus" destination="pDb-tT-ilc" id="eMX-9U-Vbi"/>
                     </connections>
@@ -551,10 +565,10 @@
     </scenes>
     <resources>
         <image name="bg.jpg" width="1242" height="2208"/>
-        <image name="ic_plus" width="55" height="55"/>
+        <image name="ic_plus" width="83.25" height="82.5"/>
         <image name="image" width="42" height="33"/>
-        <image name="next" width="8" height="13"/>
-        <image name="play" width="28" height="27"/>
+        <image name="next" width="8" height="13.5"/>
+        <image name="play" width="28" height="27.5"/>
         <image name="temp_img.jpeg" width="272" height="186"/>
     </resources>
 </document>
