@@ -60,7 +60,7 @@ let CAPITagRateMaintenanceRequest  =   "rate-maintenance-request"
 let CAPITagSkipRating              =  "skip-rating"
 let CAPITagReferralFriend          =  "referral-friend"
 let CAPITagReferralPoint           =  "referral-point"
-
+let CAPITagCheckPassword           =  "check-password"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -889,7 +889,9 @@ extension APIRequest {
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagLogin) {
             
                 self.saveLoginUserDetail(response : response as! [String : AnyObject])
-             
+                MIGeneralsAPI.shared().loadMaintenanceListFromServer()
+                MIGeneralsAPI.shared().loadProjectListFromServer()
+                
                 if metaData?.valueForInt(key: "status") == CStatusZero {
                     
                     if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
@@ -1902,6 +1904,34 @@ extension APIRequest {
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagReferralFriend, error: error)
+            }
+        })
+    }
+    
+    
+    //TODO:
+    //TODO: -------------- PAYMENT RELATED API --------------
+    //TODO:
+    
+    func checkPasswordForPayment(password : String?, completion : @escaping ClosureCompletion) {
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+      
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagCheckPassword, param: ["password" : password as AnyObject], successBlock: { (task, response) in
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagCheckPassword){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+        completion(nil, error)
+            
+            if error?.code == 1005 || error?.code == 1009 {
+                self.checkInternetConnection {
+                    _ = self.checkPasswordForPayment(password: password, completion: completion)
+                }
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagCheckPassword, error: error)
             }
         })
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -66,11 +66,20 @@
                                 <constraint firstAttribute="width" constant="1" id="VhV-vX-sJF"/>
                             </constraints>
                         </view>
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4ad-WW-c3U" customClass="MIGenericButton" customModule="TheBayaApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="90" width="468" height="60"/>
+                            <color key="backgroundColor" red="0.25882352939999997" green="0.67843137249999996" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                            <state key="normal" title="Ok">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="tHU-pV-i2g" firstAttribute="top" secondItem="PK5-do-5mJ" secondAttribute="bottom" constant="10" id="0WZ-1D-ylC"/>
                         <constraint firstAttribute="bottom" secondItem="EEP-b7-OrR" secondAttribute="bottom" id="5T8-1N-fhR"/>
+                        <constraint firstAttribute="bottom" secondItem="4ad-WW-c3U" secondAttribute="bottom" id="61T-4d-id5"/>
                         <constraint firstItem="WEe-cn-1hV" firstAttribute="width" secondItem="tHU-pV-i2g" secondAttribute="width" id="8XA-Pr-XYJ"/>
                         <constraint firstAttribute="trailing" secondItem="WEe-cn-1hV" secondAttribute="trailing" id="KN7-I2-PJr"/>
                         <constraint firstItem="PK5-do-5mJ" firstAttribute="top" secondItem="eHd-UK-FG7" secondAttribute="top" constant="10" id="N1e-aw-3cb"/>
@@ -83,8 +92,11 @@
                         <constraint firstItem="CKR-bk-Khx" firstAttribute="centerX" secondItem="PK5-do-5mJ" secondAttribute="centerX" id="kYf-dS-ddL"/>
                         <constraint firstItem="PK5-do-5mJ" firstAttribute="leading" secondItem="eHd-UK-FG7" secondAttribute="leading" constant="10" id="lHC-1q-2v3"/>
                         <constraint firstAttribute="bottom" secondItem="WEe-cn-1hV" secondAttribute="bottom" id="mFY-al-11E"/>
+                        <constraint firstAttribute="trailing" secondItem="4ad-WW-c3U" secondAttribute="trailing" id="mli-ej-lBJ"/>
                         <constraint firstItem="EEP-b7-OrR" firstAttribute="leading" secondItem="tHU-pV-i2g" secondAttribute="trailing" id="oFZ-BJ-yJ8"/>
                         <constraint firstAttribute="bottom" secondItem="tHU-pV-i2g" secondAttribute="bottom" id="oZa-iH-BFS"/>
+                        <constraint firstItem="4ad-WW-c3U" firstAttribute="leading" secondItem="eHd-UK-FG7" secondAttribute="leading" id="uM3-EA-g9P"/>
+                        <constraint firstItem="4ad-WW-c3U" firstAttribute="height" secondItem="WEe-cn-1hV" secondAttribute="height" id="x0k-fC-1tG"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -102,6 +114,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="IiF-ac-upO"/>
             <connections>
+                <outlet property="btnAlertOk" destination="4ad-WW-c3U" id="13s-u0-02B"/>
                 <outlet property="btnCancel" destination="tHU-pV-i2g" id="ncC-kK-GNb"/>
                 <outlet property="btnOk" destination="WEe-cn-1hV" id="9Pg-Zk-jTh"/>
                 <outlet property="lblMsg" destination="PK5-do-5mJ" id="bzt-1i-QEt"/>
@@ -111,6 +124,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_baya_logo_home" width="49" height="29"/>
+        <image name="ic_baya_logo_home" width="49.5" height="29"/>
     </resources>
 </document>

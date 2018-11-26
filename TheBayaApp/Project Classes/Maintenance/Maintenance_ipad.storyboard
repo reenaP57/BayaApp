@@ -196,7 +196,7 @@
                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pipe is Broken" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o14-AY-Vbm" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pipe is Broken" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o14-AY-Vbm" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="79" y="44.5" width="95" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="14"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -241,25 +241,25 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="owc-my-AdT" firstAttribute="top" secondItem="K6a-sr-UuM" secondAttribute="bottom" constant="10" id="7Uf-I4-y8f"/>
                                                     <constraint firstAttribute="trailing" secondItem="Iuz-YI-5vc" secondAttribute="trailing" constant="15" id="8Mq-ZQ-PtQ"/>
                                                     <constraint firstItem="o14-AY-Vbm" firstAttribute="centerY" secondItem="K6a-sr-UuM" secondAttribute="centerY" id="8iP-bK-bBV"/>
                                                     <constraint firstItem="o14-AY-Vbm" firstAttribute="leading" secondItem="K6a-sr-UuM" secondAttribute="trailing" constant="12.5" id="H9M-I8-HG4"/>
                                                     <constraint firstItem="EMG-LC-a79" firstAttribute="centerY" secondItem="cOl-yT-yRV" secondAttribute="centerY" id="OKV-Nw-xbH"/>
                                                     <constraint firstItem="pDb-tT-ilc" firstAttribute="top" secondItem="owc-my-AdT" secondAttribute="bottom" constant="9" id="RTV-1t-mve"/>
                                                     <constraint firstItem="owc-my-AdT" firstAttribute="leading" secondItem="K6a-sr-UuM" secondAttribute="leading" id="TWl-ip-ybT"/>
-                                                    <constraint firstItem="K6a-sr-UuM" firstAttribute="top" secondItem="cOl-yT-yRV" secondAttribute="bottom" constant="10" id="UqO-Cu-0h4"/>
                                                     <constraint firstItem="K6a-sr-UuM" firstAttribute="leading" secondItem="cOl-yT-yRV" secondAttribute="leading" id="VCL-SB-cOe"/>
                                                     <constraint firstItem="Iuz-YI-5vc" firstAttribute="leading" secondItem="Job-c8-WC5" secondAttribute="leading" constant="15" id="W3S-I3-O24"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EMG-LC-a79" secondAttribute="trailing" constant="10" id="ZfT-1v-4Ay"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="o14-AY-Vbm" secondAttribute="trailing" constant="10" id="cUV-Sp-9L2"/>
                                                     <constraint firstItem="cOl-yT-yRV" firstAttribute="leading" secondItem="Job-c8-WC5" secondAttribute="leading" constant="15" id="dOY-Cy-kei"/>
+                                                    <constraint firstItem="owc-my-AdT" firstAttribute="top" secondItem="o14-AY-Vbm" secondAttribute="bottom" constant="10" id="eHU-vD-2JP"/>
                                                     <constraint firstItem="Iuz-YI-5vc" firstAttribute="top" secondItem="pDb-tT-ilc" secondAttribute="bottom" constant="10" id="edz-Wv-4vt"/>
                                                     <constraint firstItem="cOl-yT-yRV" firstAttribute="top" secondItem="Job-c8-WC5" secondAttribute="top" constant="15" id="kJp-p2-OBR"/>
                                                     <constraint firstItem="pDb-tT-ilc" firstAttribute="leading" secondItem="Job-c8-WC5" secondAttribute="leading" constant="15" id="pla-uO-fOB"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="owc-my-AdT" secondAttribute="trailing" constant="10" id="tc4-BR-Lfy"/>
                                                     <constraint firstAttribute="bottom" secondItem="Iuz-YI-5vc" secondAttribute="bottom" constant="40" id="vLv-YB-zT0"/>
                                                     <constraint firstItem="o14-AY-Vbm" firstAttribute="leading" secondItem="EMG-LC-a79" secondAttribute="leading" id="yfZ-KX-by9"/>
+                                                    <constraint firstItem="o14-AY-Vbm" firstAttribute="top" secondItem="EMG-LC-a79" secondAttribute="bottom" constant="10" id="zAw-ve-Eqc"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -273,7 +273,7 @@
                                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qxf-fV-XZv" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="650" height="329"/>
                                                         <subviews>
-                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="temp_img.jpeg" translatesAutoresizingMaskIntoConstraints="NO" id="wI3-22-bAi">
+                                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wI3-22-bAi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="650" height="329"/>
                                                             </imageView>
                                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0CY-M7-ZME">
@@ -411,6 +411,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
+                                    <action selector="textDidChange:" destination="scZ-82-CEB" eventType="editingChanged" id="hfJ-zQ-9ZZ"/>
                                     <outlet property="delegate" destination="scZ-82-CEB" id="8MT-QW-QXe"/>
                                 </connections>
                             </textField>
@@ -569,6 +570,5 @@
         <image name="image" width="42" height="33"/>
         <image name="next" width="8" height="13.5"/>
         <image name="play" width="28" height="27.5"/>
-        <image name="temp_img.jpeg" width="272" height="186"/>
     </resources>
 </document>

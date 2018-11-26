@@ -10,7 +10,8 @@ import UIKit
 
 class MIGeneralsAPI: NSObject {
 
-    var arrMaintenance = [[String : AnyObject]]()
+    var arrMaintenanceType = [[String : AnyObject]]()
+    var arrProjectList = [[String : AnyObject]]()
     
     private override init() {
         super.init()
@@ -33,7 +34,10 @@ extension MIGeneralsAPI {
     
     func fetchAllGeneralDataFromServer() {
         self.loadCountryList()
-        self.loadMaintenanceListFromServer()
+        if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil {
+            self.loadMaintenanceListFromServer()
+            self.loadProjectListFromServer()
+        }
     }
     
     func registerDeviceToken(fcmToken : String, isLoggedIn : Int?) {
@@ -118,10 +122,30 @@ extension MIGeneralsAPI {
             if response != nil {
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     if arrData.count > 0 {
-                        self.arrMaintenance = arrData
+                        self.arrMaintenanceType = arrData
                     }
                 }
             }
         }
+    }
+    
+    
+    func loadProjectListFromServer() {
+        
+        //...Load project list from server for show list on project field
+        _ = APIRequest.shared().getProjectList(1, false, completion: { (response, error) in
+            
+            if response != nil && error == nil {
+                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
+                
+                if arrData.count > 0 {
+                    for item in arrData {
+                        if item.valueForInt(key: CIsVisit) == 1 {
+                            self.arrProjectList.append(item)
+                        }
+                    }
+                }
+            }
+        })
     }
 }

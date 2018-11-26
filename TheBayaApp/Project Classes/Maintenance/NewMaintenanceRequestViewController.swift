@@ -41,8 +41,8 @@ class NewMaintenanceRequestViewController: ParentViewController {
     func initialize() {
         self.title = "New Maintenance Request"
         
-        txtMaintenanceType.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrMaintenance.mapValue(forKey: "name") as! [Any], selectedPickerDataHandler: { (title, index, component) in
-            self.maintenanceID = MIGeneralsAPI.shared().arrMaintenance[index].valueForInt(key: CId) ?? 0
+        txtMaintenanceType.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrMaintenanceType.mapValue(forKey: "name") as! [Any], selectedPickerDataHandler: { (title, index, component) in
+            self.maintenanceID = MIGeneralsAPI.shared().arrMaintenanceType[index].valueForInt(key: CId) ?? 0
             self.txtMaintenanceType.hideValidationMessage(15.0)
         }, defaultPlaceholder: "")
         
@@ -125,6 +125,14 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
     
     func captureOutput(_ captureOutput: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         
+    }
+    
+    @IBAction func textDidChange(_ sender: Any) {
+       
+        if (txtSubject.text?.count)! > 75 {
+            let currentText = txtSubject.text! as NSString
+            txtSubject.text = currentText.substring(to: currentText.length - 1)
+        }
     }
     
     @IBAction func btnUploadImage (sender : UIButton) {

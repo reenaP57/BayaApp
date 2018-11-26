@@ -38,7 +38,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zbw-ZF-uZi" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
                                                             <rect key="frame" x="15" y="13" width="0.0" height="16.5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="height" constant="16.5" id="ejs-ME-niC"/>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="16.5" id="ejs-ME-niC"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="12"/>
                                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -199,8 +199,8 @@
                                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n18-42-MjY" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                                        <rect key="frame" x="75" y="52" width="0.0" height="0.0"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="wrewr" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="n18-42-MjY" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                                        <rect key="frame" x="75" y="43" width="39.5" height="18"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="13"/>
                                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -248,15 +248,15 @@
                                                     <constraint firstItem="QV1-gi-6j3" firstAttribute="centerY" secondItem="xKK-BS-Lbt" secondAttribute="centerY" id="3f7-af-Z1I"/>
                                                     <constraint firstItem="n18-42-MjY" firstAttribute="leading" secondItem="QV1-gi-6j3" secondAttribute="leading" id="7Dc-Wk-DMZ"/>
                                                     <constraint firstItem="wlQ-JV-EgS" firstAttribute="leading" secondItem="Mpl-Y8-Esz" secondAttribute="leading" constant="15" id="GET-Oc-pTc"/>
+                                                    <constraint firstItem="fCl-N3-jU8" firstAttribute="top" secondItem="n18-42-MjY" secondAttribute="bottom" constant="10" id="INY-lH-AmX"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fCl-N3-jU8" secondAttribute="trailing" constant="10" id="JWz-pP-0KO"/>
-                                                    <constraint firstItem="Uyv-TJ-cRa" firstAttribute="top" secondItem="xKK-BS-Lbt" secondAttribute="bottom" constant="10" id="KDm-QY-Ggd"/>
-                                                    <constraint firstItem="n18-42-MjY" firstAttribute="centerY" secondItem="Uyv-TJ-cRa" secondAttribute="centerY" id="Kk8-QL-sek"/>
+                                                    <constraint firstItem="n18-42-MjY" firstAttribute="top" secondItem="xKK-BS-Lbt" secondAttribute="bottom" constant="10" id="Lpf-kg-QYu"/>
                                                     <constraint firstItem="xKK-BS-Lbt" firstAttribute="leading" secondItem="Mpl-Y8-Esz" secondAttribute="leading" constant="15" id="N3d-c2-JQK"/>
                                                     <constraint firstItem="xKK-BS-Lbt" firstAttribute="top" secondItem="Mpl-Y8-Esz" secondAttribute="top" constant="15" id="N4n-jD-LVB"/>
                                                     <constraint firstItem="Uyv-TJ-cRa" firstAttribute="leading" secondItem="xKK-BS-Lbt" secondAttribute="leading" id="RCK-vP-tve"/>
                                                     <constraint firstAttribute="trailing" secondItem="wlQ-JV-EgS" secondAttribute="trailing" constant="15" id="RFz-W6-ndE"/>
+                                                    <constraint firstItem="Uyv-TJ-cRa" firstAttribute="centerY" secondItem="n18-42-MjY" secondAttribute="centerY" id="U3A-iX-mjB"/>
                                                     <constraint firstAttribute="bottom" secondItem="wlQ-JV-EgS" secondAttribute="bottom" constant="10.5" id="VCS-oN-DwB"/>
-                                                    <constraint firstItem="fCl-N3-jU8" firstAttribute="top" secondItem="Uyv-TJ-cRa" secondAttribute="bottom" constant="10" id="Xys-H7-0Bk"/>
                                                     <constraint firstItem="vSj-Pe-qq6" firstAttribute="top" secondItem="fCl-N3-jU8" secondAttribute="bottom" constant="9" id="cyM-Nm-vT7"/>
                                                     <constraint firstItem="fCl-N3-jU8" firstAttribute="leading" secondItem="Uyv-TJ-cRa" secondAttribute="leading" id="k3N-ah-Tdm"/>
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="QV1-gi-6j3" secondAttribute="trailing" constant="10" id="rwj-cW-K0w"/>
@@ -420,6 +420,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
+                                                    <action selector="textDidChange:" destination="UTw-J0-yKg" eventType="editingChanged" id="5Hj-JU-Bth"/>
                                                     <outlet property="delegate" destination="UTw-J0-yKg" id="dhh-TH-oav"/>
                                                 </connections>
                                             </textField>

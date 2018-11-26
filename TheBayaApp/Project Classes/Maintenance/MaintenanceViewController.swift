@@ -41,8 +41,8 @@ class MaintenanceViewController: ParentViewController {
         refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
         tblMaintenance.pullToRefreshControl = refreshControl
         
-        tblMaintenance.rowHeight = UITableViewAutomaticDimension
         tblMaintenance.estimatedRowHeight = 110
+        tblMaintenance.rowHeight = UITableViewAutomaticDimension
         
         self.loadMaintenanceRequestList(showLoader: true)
     }
@@ -108,9 +108,6 @@ extension MaintenanceViewController : UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        
-        // if arrRequest[indexPath.row].valueForInt(key: "requestStatus") == CRequestCompleted && (!arrRequest[indexPath.row].valueForBool(key: "isRatingSkip") || arrRequest[indexPath.row].valueForInt(key: "rating") == 0) {
         
         if arrRequest[indexPath.row].valueForInt(key: "requestStatus") == CRequestCompleted && (!arrRequest[indexPath.row].valueForBool(key: "isRatingSkip") && arrRequest[indexPath.row].valueForInt(key: "rating") == 0) {
             //...Redirect on Rating screen If Request status is completed and user has not skiped rating or not given yet rating

@@ -18,8 +18,17 @@ class LoadPDFViewController: ParentViewController {
         
         webView.isOpaque = false;
         webView.backgroundColor = UIColor.clear
-        
-       // self.openInSafari(strUrl: <#T##String#>)
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
         webView.loadRequest(URLRequest(url: URL(string: pdfUrl)!))
+    }
+}
+
+//MARK:-
+//MARK:- UIWebview Delegate
+
+extension LoadPDFViewController : UIWebViewDelegate {
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        MILoader.shared.hideLoader()
     }
 }

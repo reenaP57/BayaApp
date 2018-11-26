@@ -21,7 +21,8 @@ class ReferFriendViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblOffer : UILabel!
     @IBOutlet fileprivate weak var btnTermsCondition : UIButton!
     @IBOutlet fileprivate weak var vwContent : UIView!
-
+    var projectId : Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -38,9 +39,11 @@ class ReferFriendViewController: ParentViewController {
     func initialize() {
         
         self.title = "Refer a Friend"
+        self.getReferralPoint()
         
-        txtSelectProject.setPickerData(arrPickerData: ["Project1","Project2","Project3"], selectedPickerDataHandler: { (title, row, component) in
-            self.txtSelectProject.hideValidationMessage(15.0)
+        self.txtSelectProject.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrProjectList.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
+            self.txtSelectProject.hideValidationMessage(45)
+            self.projectId = MIGeneralsAPI.shared().arrProjectList[row].valueForInt(key: CProjectId)!
         }, defaultPlaceholder: "")
     }
 }
@@ -71,7 +74,7 @@ extension ReferFriendViewController {
             
         } else if (self.txtPhone.text?.isBlank)!{
             self.txtSelectProject.hideValidationMessage(15.0)
-            self.vwContent.addSubview(self.txtPhone.showValidationMessage(15.0, CBlankReferPhone))
+            self.vwContent.addSubview(self.txtPhone.showValidationMessage(15.0, CBlankMobileMessage))
             
         } else if (txtPhone.text?.count)! > 10 || (txtPhone.text?.count)! < 10 {
             self.txtSelectProject.hideValidationMessage(15.0)
@@ -81,7 +84,7 @@ extension ReferFriendViewController {
             self.showAlertView(CAcceptTermsCondition, completion: nil)
             
         } else {
-            self.navigationController?.popViewController(animated: true)
+           self.postReferralFriendDetail()
         }
     }
     
@@ -91,7 +94,9 @@ extension ReferFriendViewController {
 }
 
 
-// MARK:- -------- UITextFieldDelegate
+//MARK:-
+//MARK:- UITextFieldDelegate
+
 extension ReferFriendViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
@@ -111,14 +116,40 @@ extension ReferFriendViewController: UITextFieldDelegate {
 }
 
 
-// MARK:- -------- API
+//MARK:-
+//MARK:- API Methods
+
 extension ReferFriendViewController {
     
     func getReferralPoint() {
         
         APIRequest.shared().getReferralPoint { (response, error) in
             if response != nil {
+                if let responseData = response?.value(forKey: CJsonData) as? [String : AnyObject] {
+                    self.lblOffer.text = "\(responseData.valueForString(key: "referralPoint"))%"
+                }
+            }
+        }
+    }
+    
+    func postReferralFriendDetail() {
+        
+        let dict = ["name" : txtReferredName.text as Any,
+                    "email" : txtEmail.text as Any,
+                    "phone" : txtPhone.text as Any,
+                    "projectId" : projectId] as [String : AnyObject]
+        
+        APIRequest.shared().referralFriend(dict: dict) { (response, error) in
+            
+            if  response != nil {
                 
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.showAlertView(metaData.valueForString(key: CJsonMessage), completion: { (result) in
+                        if result {
+                            self.navigationController?.popViewController(animated: true)
+                        }
+                    })
+                }
             }
         }
     }

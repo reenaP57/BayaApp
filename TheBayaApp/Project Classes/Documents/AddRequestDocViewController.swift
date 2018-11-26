@@ -98,6 +98,15 @@ extension AddRequestDocViewController {
         }
     }
     
+    
+    @IBAction func textDidChange(_ sender: Any) {
+        
+        if (txtDocName.text?.count)! > 40 {
+            let currentText = txtDocName.text! as NSString
+            txtDocName.text = currentText.substring(to: currentText.length - 1)
+        }
+    }
+    
     @IBAction func btnSubmitClicked(sender : UIButton) {
         
         if (self.txtDocName.text?.isBlank)! {

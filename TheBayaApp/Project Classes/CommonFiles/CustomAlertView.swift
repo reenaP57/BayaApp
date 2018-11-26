@@ -17,6 +17,7 @@ class CustomAlertView: UIView {
 
     @IBOutlet weak var lblMsg : UILabel!
     @IBOutlet weak var btnOk : UIButton!
+    @IBOutlet weak var btnAlertOk : UIButton!
     @IBOutlet weak var btnCancel : UIButton!
     @IBOutlet weak var vwLine : UIView!
 
@@ -30,10 +31,7 @@ class CustomAlertView: UIView {
     func showAlert(_ message : String?, okTitle: String?, cancleTitle: String?, type : AlertType, completion: ((Bool) -> Void)?) {
         
         if type == .alertView {
-            self.btnCancel.hide(byWidth: true)
-            self.vwLine.isHidden = true
-            _ = self.btnOk.setConstraintConstant(-(self.btnOk.CViewX + self.btnOk.CViewWidth), edge: .leading, ancestor: true)
-        
+            self.btnAlertOk.isHidden = false
         }
         
         self.lblMsg.text = message

@@ -141,8 +141,10 @@ class ScheduleVisitViewController: ParentViewController {
             self.vwPurpose.layer.cornerRadius = 3
         }
         
-        
-        self.loadProjectList()
+        self.txtSelectProject.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrProjectList.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
+            self.txtSelectProject.hideValidationMessage(45)
+            self.projectId = MIGeneralsAPI.shared().arrProjectList[row].valueForInt(key: CProjectId)!
+        }, defaultPlaceholder: "")
         
         txtSlot1.setMinimumDate(minDate:Date().tomorrow)
         txtSlot2.setMinimumDate(minDate:Date().tomorrow)
@@ -355,41 +357,6 @@ extension ScheduleVisitViewController : UITextViewDelegate {
 //MARK:- API
 
 extension ScheduleVisitViewController {
-    
-    func loadProjectList() {
-
-        //...Load project list from server for show list on project field
-        
-        _ = APIRequest.shared().getProjectList(1, false, completion: { (response, error) in
-            
-            if response != nil && error == nil {
-                self.imgVBg.isHidden = false
-                let arrData = response?.value(forKey: CJsonData) as! [[String : AnyObject]]
-                
-                if arrData.count > 0 {
-                    
-                    for item in arrData {
-                        if item.valueForInt(key: CIsVisit) == 1 {
-                             self.arrProject.append(item)
-                        }
-                    }
-                    
-                    if self.arrProject.count > 0 {
-                        
-                        self.txtSelectProject.setPickerData(arrPickerData: self.arrProject.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
-                            self.txtSelectProject.hideValidationMessage(45)
-                            self.projectId = self.arrProject[row].valueForInt(key: CProjectId)!
-                            
-                        }, defaultPlaceholder: "")
-                    }
-                    
-                }
-            } else {
-                self.imgVBg.isHidden = true
-            }
-        })
-    }
-    
     
     func scheduleVisit() {
         

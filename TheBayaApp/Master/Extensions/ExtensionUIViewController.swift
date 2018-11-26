@@ -611,22 +611,16 @@ extension UIViewController {
         if let alertView = CustomAlertView.initAlertView() as? CustomAlertView {
             
             GCDMainThread.async {
-                alertView.btnOk.setTitle(CBtnOk, for: .normal)
+               // alertView.btnOk.setTitle(CBtnOk, for: .normal)
             }
             
             alertView.showAlert(message, okTitle:CBtnOk , cancleTitle: nil, type: .alertView, completion: completion)
             appDelegate.window.addSubview(alertView)
             
-            alertView.btnOk.touchUpInside { (sender) in
+            alertView.btnAlertOk.touchUpInside { (sender) in
                 alertView.removeFromSuperview()
                 if let handler = completion {
                     handler(true)
-                }
-            }
-            alertView.btnCancel.touchUpInside { (sender) in
-                alertView.removeFromSuperview()
-                if let handler = completion {
-                    handler(false)
                 }
             }
         }

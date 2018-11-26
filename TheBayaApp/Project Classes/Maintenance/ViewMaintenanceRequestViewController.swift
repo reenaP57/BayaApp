@@ -109,34 +109,38 @@ extension ViewMaintenanceRequestViewController {
                     self.lblDesc.text = responseData.valueForString(key: "message")
                     self.urlMedia =  responseData.valueForString(key: "mediaFile")
                     
-                    if responseData.valueForInt(key: "mediaType") == 1 {
-                        //...Image
-                        self.btnPlay.isHidden = true
-                        self.imgVMedia.sd_setShowActivityIndicatorView(true)
-                        self.imgVMedia.sd_setImage(with: URL(string: self.urlMedia), placeholderImage: nil)
-
-                    } else {
-                        //...Video
+                    if self.urlMedia != "" {
                         
-                        //...Get thumbnail image from video url
-                        DispatchQueue.global().async {
-                            let videoURL = URL(string: self.urlMedia)
-                            let asset = AVAsset(url: videoURL!)
-                            let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
-                            assetImgGenerate.appliesPreferredTrackTransform = true
-                            let time = CMTimeMake(1, 2)
-                            let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
-                            if img != nil {
-                                let frameImg  = UIImage(cgImage: img!)
-                                DispatchQueue.main.async(execute: {
-                                    if self.imgVMedia != nil {
-                                        self.imgVMedia.image = frameImg
-                                        self.btnPlay.isHidden = false
-                                    }
-                                })
+                        if responseData.valueForInt(key: "mediaType") == 1 {
+                            //...Image
+                            self.btnPlay.isHidden = true
+                            self.imgVMedia.sd_setShowActivityIndicatorView(true)
+                            self.imgVMedia.sd_setImage(with: URL(string: self.urlMedia), placeholderImage: nil)
+                            
+                        } else {
+                            //...Video
+                            
+                            //...Get thumbnail image from video url
+                            DispatchQueue.global().async {
+                                let videoURL = URL(string: self.urlMedia)
+                                let asset = AVAsset(url: videoURL!)
+                                let assetImgGenerate : AVAssetImageGenerator = AVAssetImageGenerator(asset: asset)
+                                assetImgGenerate.appliesPreferredTrackTransform = true
+                                let time = CMTimeMake(1, 2)
+                                let img = try? assetImgGenerate.copyCGImage(at: time, actualTime: nil)
+                                if img != nil {
+                                    let frameImg  = UIImage(cgImage: img!)
+                                    DispatchQueue.main.async(execute: {
+                                        if self.imgVMedia != nil {
+                                            self.imgVMedia.image = frameImg
+                                            self.btnPlay.isHidden = false
+                                        }
+                                    })
+                                }
                             }
                         }
                     }
+       
                     
                     switch responseData.valueForInt(key: "requestStatus") {
                     case CRequestOpen : //...Open
