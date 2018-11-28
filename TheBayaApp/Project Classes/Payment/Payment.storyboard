@@ -895,6 +895,7 @@
                         <outlet property="btnNextPayment" destination="Iwa-nu-XqE" id="eSL-Zm-YpB"/>
                         <outlet property="cnTblMilestoneHeight" destination="oTD-16-dcU" id="H0t-h3-SIl"/>
                         <outlet property="lblDateTxt" destination="8RP-FA-wtv" id="M2R-x1-EBV"/>
+                        <outlet property="lblInterestTxt" destination="okt-fl-Ua7" id="jlH-HS-7dd"/>
                         <outlet property="lblMilestoneAmount" destination="ca5-Oh-swg" id="q2c-Tn-4We"/>
                         <outlet property="lblMilestoneDate" destination="lhn-OA-NlO" id="Tiz-UK-EY3"/>
                         <outlet property="lblMilestoneInterest" destination="jLA-2d-thk" id="Z96-mi-bI7"/>

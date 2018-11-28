@@ -25,6 +25,7 @@ class PaymentScheduleViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblMilestoneDate : UILabel!
     @IBOutlet fileprivate weak var lblDateTxt : UILabel!
     @IBOutlet fileprivate weak var lblMilestoneInterest : UILabel!
+    @IBOutlet fileprivate weak var lblInterestTxt : UILabel!
     @IBOutlet fileprivate weak var lblTotalAmount : UILabel!
     @IBOutlet fileprivate weak var lblPaid : UILabel!
     @IBOutlet fileprivate weak var lblToBePaid : UILabel!
