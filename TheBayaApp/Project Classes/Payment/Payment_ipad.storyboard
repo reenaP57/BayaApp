@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -118,7 +118,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ee4-QB-rCS">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="857"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="386-Mg-4P3">
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="386-Mg-4P3">
                                         <rect key="frame" x="0.0" y="0.0" width="750" height="860"/>
                                         <subviews>
                                             <view tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUn-Rt-cCy" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -397,6 +397,9 @@
                                                                     </label>
                                                                 </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" priority="750" constant="67" id="wXh-Mq-bwh"/>
+                                                                </constraints>
                                                             </view>
                                                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rn6-HU-RnX">
                                                                 <rect key="frame" x="0.0" y="50" width="650" height="187"/>
@@ -482,6 +485,7 @@
                                                                     <constraint firstItem="rfw-yc-aP8" firstAttribute="trailing" secondItem="n14-62-cYq" secondAttribute="trailing" id="6uE-QX-L4x"/>
                                                                     <constraint firstItem="69S-hm-Vwm" firstAttribute="top" secondItem="oLz-cb-QEM" secondAttribute="bottom" constant="10.5" id="8c3-yb-xTl"/>
                                                                     <constraint firstItem="oLz-cb-QEM" firstAttribute="top" secondItem="NMi-68-Kcg" secondAttribute="bottom" constant="10.5" id="F5z-zu-OTM"/>
+                                                                    <constraint firstAttribute="height" priority="749" constant="187" id="GVq-Gg-t3n"/>
                                                                     <constraint firstItem="69S-hm-Vwm" firstAttribute="leading" secondItem="oLz-cb-QEM" secondAttribute="leading" id="I7v-aM-wB3"/>
                                                                     <constraint firstItem="rfw-yc-aP8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="oLz-cb-QEM" secondAttribute="trailing" constant="25" id="Iwz-4z-Dg5"/>
                                                                     <constraint firstItem="chF-ax-bSN" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="69S-hm-Vwm" secondAttribute="trailing" constant="25" id="KWj-nz-lVR"/>
@@ -530,6 +534,7 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="height" priority="750" constant="237" id="1UD-HE-Srp"/>
                                                     <constraint firstItem="P45-ef-SRA" firstAttribute="top" secondItem="qa9-Fw-8xF" secondAttribute="top" id="4dE-oq-fdw"/>
                                                     <constraint firstAttribute="trailing" secondItem="P45-ef-SRA" secondAttribute="trailing" id="fAl-Du-rJI"/>
                                                     <constraint firstAttribute="bottom" secondItem="P45-ef-SRA" secondAttribute="bottom" id="kWa-6S-h2a"/>
@@ -793,7 +798,6 @@
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="qa9-Fw-8xF" firstAttribute="top" secondItem="uUn-Rt-cCy" secondAttribute="bottom" constant="10" id="1of-T4-2UR"/>
-                                            <constraint firstAttribute="height" priority="750" constant="857" id="2Bk-3j-p3O"/>
                                             <constraint firstItem="xB0-Y9-yTp" firstAttribute="leading" secondItem="386-Mg-4P3" secondAttribute="leading" constant="50" id="7o7-pG-RrB"/>
                                             <constraint firstItem="qAL-J0-jRv" firstAttribute="leading" secondItem="386-Mg-4P3" secondAttribute="leading" constant="50" id="8cf-jC-0UL"/>
                                             <constraint firstAttribute="trailing" secondItem="qAL-J0-jRv" secondAttribute="trailing" constant="50" id="9ba-gM-ZTm"/>
@@ -820,6 +824,9 @@
                                     <constraint firstItem="386-Mg-4P3" firstAttribute="top" secondItem="Ee4-QB-rCS" secondAttribute="top" id="l66-Ui-7L1"/>
                                     <constraint firstItem="386-Mg-4P3" firstAttribute="width" secondItem="Ee4-QB-rCS" secondAttribute="width" id="tdi-Bt-STf"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="b2Q-cN-gxq" id="kXQ-19-ZrN"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -844,11 +851,15 @@
                         <outlet property="lblMilestoneInterest" destination="chF-ax-bSN" id="vB7-5Y-T3J"/>
                         <outlet property="lblMilestoneName" destination="obW-ea-W60" id="Qcb-KB-f2M"/>
                         <outlet property="lblMilestonePercent" destination="n14-62-cYq" id="shF-iy-0Rd"/>
+                        <outlet property="lblNoDemandMsg" destination="HKY-B0-adl" id="TYA-kQ-EP4"/>
                         <outlet property="lblPaid" destination="Ygg-s2-ah2" id="B7D-FT-Qqc"/>
                         <outlet property="lblToBePaid" destination="kdI-nV-Df9" id="SGM-05-q9J"/>
                         <outlet property="lblTotalAmount" destination="fBi-Ws-Sfg" id="grO-IA-9PM"/>
+                        <outlet property="scrollVw" destination="Ee4-QB-rCS" id="TdG-In-3Cl"/>
                         <outlet property="tblMilestone" destination="tIz-H7-peq" id="ZTV-Tk-hDy"/>
                         <outlet property="txtUTRNo" destination="z1q-Om-rgg" id="vcu-Wy-i3g"/>
+                        <outlet property="vwContent" destination="386-Mg-4P3" id="kEf-G1-Fc5"/>
+                        <outlet property="vwMileStoneDetail" destination="qa9-Fw-8xF" id="91d-v1-olV"/>
                         <outlet property="vwNoOutstandingPayment" destination="T6k-T0-eRg" id="0OI-UJ-23U"/>
                         <outlet property="vwPayment" destination="Rn6-HU-RnX" id="xWw-s4-qcI"/>
                     </connections>
@@ -1428,7 +1439,7 @@
     </scenes>
     <resources>
         <image name="bg_ipad.jpg" width="1536" height="2048"/>
-        <image name="ic_success" width="83" height="80"/>
-        <image name="next" width="8" height="13"/>
+        <image name="ic_success" width="124.5" height="120"/>
+        <image name="next" width="8" height="13.5"/>
     </resources>
 </document>

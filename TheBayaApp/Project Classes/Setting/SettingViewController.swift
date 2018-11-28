@@ -60,12 +60,12 @@ extension SettingViewController {
         let point = sender.convert(sender.bounds.origin, to: tblSettings)
         let indexPath = tblSettings.indexPathForRow(at: point)
         
-        //...Push Notification switch
-        if indexPath?.row == 2 {
-       
+        
+        switch arrSetting[(indexPath?.row)!] {
+        case CPushNotifications:  //...Push Notification Switch
             if sender.isOn {
                 //...switch is in on
-            
+                
                 self.showAlertConfirmationView(CEnablePushNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = true
@@ -77,7 +77,7 @@ extension SettingViewController {
                 
             } else {
                 //...switch is in off
-               
+                
                 self.showAlertConfirmationView(CDisablePushNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = false
@@ -87,11 +87,8 @@ extension SettingViewController {
                     }
                 }
             }
-        }
-        
-        //...Email Notification switch
-        if indexPath?.row == 3 {
-            
+          
+        case CEmailNotifications: //...Email Notification Switch
             if sender.isOn {
                 //...switch is in on
                 
@@ -116,11 +113,8 @@ extension SettingViewController {
                     }
                 }
             }
-        }
-        
-        //...SMS Notification switch
-        if indexPath?.row == 4 {
             
+        case CSMSNotifications: //...SMS Notification Switch
             if sender.isOn {
                 //...switch is in on
                 self.showAlertConfirmationView(CEnableSMSNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
@@ -143,6 +137,21 @@ extension SettingViewController {
                     }
                 }
             }
+            
+        case CPaymentPassword: //...Payment Password Switch
+            
+            if sender.isOn {
+                //...switch is in on
+                sender.isOn = true
+                self.changePaymentPasswordStatus(status: 1)
+            } else {
+                //...switch is in off
+                sender.isOn = false
+                self.changePaymentPasswordStatus(status: 0)
+            }
+            break
+        default:
+            break
         }
     }
 }
@@ -197,6 +206,7 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                 case CPaymentPassword:
                     cell.imgVArrow.isHidden = true
                     cell.switchNotify.isHidden = false
+                    cell.switchNotify.isOn = (appDelegate.loginUser?.isCheckPassword)!
                     
                 default :
                     if indexPath.row == arrSetting.count-1 {
@@ -295,6 +305,19 @@ extension SettingViewController {
                 self.imgVBg.isHidden = false
             } else{
                 self.imgVBg.isHidden = true
+            }
+        }
+    }
+    
+    func changePaymentPasswordStatus(status : Int) {
+       
+        //...For change payment password status
+        APIRequest.shared().checkPaymentPasswordStatus(status: status) { (response, error) in
+            if response != nil {
+                if let responseData = response?.value(forKey: CJsonData) as? [String : AnyObject] {
+                    appDelegate.loginUser?.isCheckPassword = responseData.valueForBool(key: "isCheckPassword")
+                    CoreData.saveContext()
+                }
             }
         }
     }

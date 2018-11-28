@@ -18,7 +18,7 @@ class NotificationViewController: ParentViewController {
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
     fileprivate var lastPage : Int = 0
-    fileprivate var currentPage : Int = 1
+    var currentPage : Int = 1
     
     var arrNotification = [[String : AnyObject]]()
     var isFromOtherScreen = false
@@ -35,7 +35,7 @@ class NotificationViewController: ParentViewController {
         appDelegate.tabbarView?.lblCount.isHidden = true
         
         //...Load notification list from server
-        self.loadNotificationList(showLoader: true, isFromNotification :isFromOtherScreen)
+        self.loadNotificationList(showLoader: false, isFromNotification :isFromOtherScreen)
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,6 +54,8 @@ class NotificationViewController: ParentViewController {
         refreshControl.tintColor = ColorGreenSelected
         tblNotification?.pullToRefreshControl = refreshControl
         
+        //...Load notification list from server
+        self.loadNotificationList(showLoader: true, isFromNotification :isFromOtherScreen)
         
         if IS_iPhone {
             tblNotification.estimatedRowHeight = 105
@@ -197,6 +199,44 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
             
             if let visitDetailVC = CStoryboardProfile.instantiateViewController(withIdentifier: "VisitDetailsViewController") as? VisitDetailsViewController {
                 self.navigationController?.pushViewController(visitDetailVC, animated: true)
+            }
+           
+        case NotificationDocumentUploaded :
+            //...My Document uploaded
+            
+            if let docVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
+                docVC.isFromMyDoc = true
+                self.navigationController?.pushViewController(docVC, animated: true)
+            }
+            
+        case NotificationProjectDocumentUploaded :
+            //...Project Document uploaded
+
+            if let docVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
+                docVC.isFromMyDoc = false
+                self.navigationController?.pushViewController(docVC, animated: true)
+            }
+
+        case NotificationDemandRequestRaised :
+            //...Demand Request Raised
+            
+            if (appDelegate.loginUser?.isCheckPassword)! {
+                if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PayementViewController") as? PayementViewController {
+                    self.navigationController?.pushViewController(paymentVC, animated: true)
+                }
+            } else {
+                if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentScheduleViewController") as? PaymentScheduleViewController {
+                    self.navigationController?.pushViewController(paymentVC, animated: true)
+                }
+            }
+            
+        case NotificationMaintenanceRequestStatusChange :
+            //...Change Maintenance Request Status
+            
+            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                viewMaintenanceVC.isFromRate = false
+                viewMaintenanceVC.requestID = dict.valueForInt(key: "maintenanceRequestId") ?? 0
+                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
             }
             
         default:

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A391" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="TblCountryList" representedClassName="TblCountryList" syncable="YES" codeGenerationType="class">
         <attribute name="country_code" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="country_id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -15,6 +15,7 @@
         <attribute name="emailVerify" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="fav_project_id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isCheckPassword" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mobileNo" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="mobileVerify" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
@@ -29,6 +30,6 @@
     </entity>
     <elements>
         <element name="TblCountryList" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="TblUser" positionX="-54" positionY="27" width="128" height="315"/>
+        <element name="TblUser" positionX="-54" positionY="27" width="128" height="330"/>
     </elements>
 </model>

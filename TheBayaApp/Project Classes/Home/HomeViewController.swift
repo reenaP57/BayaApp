@@ -181,10 +181,17 @@ extension HomeViewController : UICollectionViewDelegateFlowLayout, UICollectionV
             }
             
         case CPayments : //...Payment
-            if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PayementViewController") as? PayementViewController {
-                self.navigationController?.pushViewController(paymentVC, animated: true)
-            }
             
+            if (appDelegate.loginUser?.isCheckPassword)! {
+                if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PayementViewController") as? PayementViewController {
+                    self.navigationController?.pushViewController(paymentVC, animated: true)
+                }
+            } else {
+                if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentScheduleViewController") as? PaymentScheduleViewController {
+                    self.navigationController?.pushViewController(paymentVC, animated: true)
+                }
+            }
+          
         default: //...Refer a Friend
             if let referFriendVC = CStoryboardMain.instantiateViewController(withIdentifier: "ReferFriendViewController") as? ReferFriendViewController {
                 self.navigationController?.pushViewController(referFriendVC, animated: true)

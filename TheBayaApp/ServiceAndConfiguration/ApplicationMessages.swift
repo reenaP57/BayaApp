@@ -128,9 +128,11 @@ var CInvalidPassword      =  "Password is invalid."
 var CBlankAmountToPay     =  "Amount to pay can’t be blank."
 
 
-
 var CBlankReferredName    =  "Name can't be blank."
 var CBlankReferEmail      =  "Email Address can't be blank."
 var CValidEmailForRefer   =  "Email Address is invalid."
 var CValidPhone           =  "Mobile Number should only be in 10 digit numeric format."
 var CAcceptTermsCondition = "Please accept the Terms & Conditions of the referral system."
+
+var CNoOutstandingPayment  =  "There are no outstanding payments at this time."
+var CNoNextPayment  =  "There are no next payments at this time."

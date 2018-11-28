@@ -34,7 +34,8 @@ class ViewMaintenanceRequestViewController: ParentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        appDelegate.hideTabBar()
+        
         if isFromRate {
              //...If user come from rate screen that time it will be redirect on maintenance list screen
             

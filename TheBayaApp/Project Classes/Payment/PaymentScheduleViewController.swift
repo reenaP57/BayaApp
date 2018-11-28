@@ -10,11 +10,15 @@ import UIKit
 
 class PaymentScheduleViewController: ParentViewController {
    
+    @IBOutlet fileprivate weak var scrollVw : UIScrollView!
     @IBOutlet fileprivate weak var vwNoOutstandingPayment : UIView!
     @IBOutlet fileprivate weak var vwPayment : UIView!
+    @IBOutlet fileprivate weak var vwContent : UIView!
+    @IBOutlet fileprivate weak var vwMileStoneDetail : UIView!
     @IBOutlet fileprivate weak var tblMilestone : UITableView!
     @IBOutlet fileprivate weak var btnCurrentDemand : UIButton!
     @IBOutlet fileprivate weak var btnNextPayment : UIButton!
+    @IBOutlet fileprivate weak var lblNoDemandMsg : UILabel!
     @IBOutlet fileprivate weak var lblMilestoneName : UILabel!
     @IBOutlet fileprivate weak var lblMilestonePercent : UILabel!
     @IBOutlet fileprivate weak var lblMilestoneAmount : UILabel!
@@ -32,6 +36,7 @@ class PaymentScheduleViewController: ParentViewController {
         }
     }
     var arrMilestone = [[String : AnyObject]]()
+    var refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +45,7 @@ class PaymentScheduleViewController: ParentViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        appDelegate.hideTabBar()
         
         //...Redirect on home screen
         self.navigationItem.hidesBackButton = true
@@ -54,28 +60,32 @@ class PaymentScheduleViewController: ParentViewController {
         
         self.title = "Payment Schedule"
         
-        vwNoOutstandingPayment.isHidden = true
-        //vwPayment.hide(byHeight: true)
-       // _ = vwNoOutstandingPayment.setConstraintConstant(0, edge: .bottom, ancestor: true)
-        
-        arrMilestone = [["name" : "MILESTONE 1", "date" : "10/12/2018", "percent" : "20", "amount" : "10,000"],
-        ["name" : "MILESTONE 2", "date" : "10/12/2018", "percent" : "30", "amount" : "10,00,000"],
-        ["name" : "MILESTONE 3", "date" : "10/12/2018", "percent" : "50", "amount" : "10,000,000"],
-        ["name" : "MILESTONE 4", "date" : "10/12/2018", "percent" : "80", "amount" : "10,000"],
-        ["name" : "MILESTON E 5", "date" : "10/12/2018", "percent" : "100", "amount" : "1000"],
-        ["name" : "MILESTONE 6", "date" : "10/12/2018", "percent" : "100", "amount" : "1000"]] as [[String : AnyObject]]
-        
-        //...For set select by default button current demand
-        self.btnPaymentModeClicked(sender: btnCurrentDemand)
-        
         GCDMainThread.async {
-            self.cnTblMilestoneHeight.constant = self.tblMilestone.contentSize.height
-            self.view.layoutIfNeeded()
+            self.refreshControl.addTarget(self, action: #selector(self.pullToRefresh), for: .valueChanged)
+            self.refreshControl.tintColor = ColorGreenSelected
+            self.scrollVw.refreshControl = self.refreshControl
         }
+        
+        vwNoOutstandingPayment.isHidden = true
+        self.loadMilestoneList(showLoader: true)
+
     }
     
     @objc func btnBackClicked() {
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    func showNoOutstandingView(message : String) {
+        lblNoDemandMsg.text = message
+        vwPayment.hide(byHeight: true)
+        vwNoOutstandingPayment.isHidden = false
+        _ = vwNoOutstandingPayment.setConstraintConstant(0, edge: .bottom, ancestor: true)
+    }
+    
+    func hideNoOutstandingView() {
+        vwPayment.hide(byHeight: false)
+        vwNoOutstandingPayment.isHidden = true
+        _ = vwNoOutstandingPayment.setConstraintConstant(167, edge: .bottom, ancestor: true)
     }
 }
 
@@ -121,11 +131,55 @@ extension PaymentScheduleViewController {
             return
         }
         
-        
-        lblDateTxt.text = sender.tag == 0 ? "Due Date" : "Milestone Date"
         sender.isSelected = true
         sender.backgroundColor = ColorGreenSelected
         sender.layer.borderColor = ColorGreenSelected.cgColor
+        
+        //...Get payment status from milestone list
+        let arrData = arrMilestone.mapValue(forKey: CPaymentStatus) as? [Int]
+        var demandDetail = [String : AnyObject]()
+        
+        if sender.tag == 0 {
+            //...Current demand
+            lblDateTxt.text = "Due Date"
+            
+            //...Get first paymentstatus = 2 milestone from milestone list for current demand
+            if (arrData?.count)! > 0 {
+                if let index = arrData!.index(where: {$0 == CPaymentDemand}) {
+                    demandDetail = arrMilestone[index]
+                    self.hideNoOutstandingView()
+                } else {
+                    self.showNoOutstandingView(message: CNoOutstandingPayment)
+                    return
+                }
+            } else {
+                self.showNoOutstandingView(message: CNoOutstandingPayment)
+                return
+            }
+            
+        } else {
+            //...Next Payment
+            lblDateTxt.text = "Milestone Date"
+
+            //...Get first paymentstatus = 1 milestone from milestone list for Next Payment
+            if (arrData?.count)! > 0 {
+                if let index = arrData!.index(where: {$0 == CPaymentUnPaid}) {
+                    demandDetail = arrMilestone[index]
+                    self.hideNoOutstandingView()
+                } else {
+                    self.showNoOutstandingView(message: CNoNextPayment)
+                    return
+                }
+            } else {
+                self.showNoOutstandingView(message: CNoNextPayment)
+                return
+            }
+        }
+        
+        self.lblMilestoneName.text = demandDetail.valueForString(key: CName)
+        self.lblMilestoneDate.text = DateFormatter.dateStringFrom(timestamp: demandDetail.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
+        self.lblMilestonePercent.text = demandDetail.valueForString(key: CPercent)
+        self.lblMilestoneAmount.text = demandDetail.valueForString(key: CAmount)
     }
 }
 
@@ -147,10 +201,10 @@ extension PaymentScheduleViewController : UITableViewDataSource, UITableViewDele
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "PaymentMilestoneTblCell") as? PaymentMilestoneTblCell {
             
-            cell.lblName.text = arrMilestone[indexPath.row].valueForString(key: "name")
-            cell.lblDate.text = arrMilestone[indexPath.row].valueForString(key: "date")
-            cell.lblPercent.text = arrMilestone[indexPath.row].valueForString(key: "percent")
-            cell.lblAmount.text = arrMilestone[indexPath.row].valueForString(key: "amount")
+            cell.lblName.text = arrMilestone[indexPath.row].valueForString(key: CName)
+            cell.lblDate.text = DateFormatter.dateStringFrom(timestamp: arrMilestone[indexPath.row].valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
+            cell.lblPercent.text = arrMilestone[indexPath.row].valueForString(key: CPercent)
+            cell.lblAmount.text = arrMilestone[indexPath.row].valueForString(key: CAmount)
             
             cell.vwSeparater.isHidden = indexPath.row == self.arrMilestone.count-1
           
@@ -160,5 +214,57 @@ extension PaymentScheduleViewController : UITableViewDataSource, UITableViewDele
     }
 }
 
+//MARK:-
+//MARK:- API
 
+extension PaymentScheduleViewController {
+    
+    @objc func pullToRefresh() {
+        refreshControl.beginRefreshing()
+        self.loadMilestoneList(showLoader: false)
+    }
+    
+    func loadMilestoneList(showLoader : Bool) {
+        
+        _ = APIRequest.shared().getMilestoneList(showLoader:showLoader) { (response, error) in
+            
+            self.refreshControl.endRefreshing()
+            if response != nil {
+                
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    self.arrMilestone.removeAll()
+                    
+                    var BalanceToBePaid = 0
+                    var totalAmount = 0
+                    
+                    if arrData.count > 0 {
+                        self.arrMilestone = arrData
+                        
+                        for item in arrData {
+                            totalAmount += item.valueForInt(key: CAmount)!
+                            if item.valueForInt(key: CPaymentStatus) != CPaymentPaid {
+                                BalanceToBePaid += item.valueForInt(key: CAmount)!
+                            }
+                        }
+                    }
+                
+                    self.tblMilestone.reloadData()
+                    self.vwContent.isHidden = false
+                    GCDMainThread.async {
+                        self.cnTblMilestoneHeight.constant = self.tblMilestone.contentSize.height
+                        self.view.layoutIfNeeded()
+                    }
+                    
+                    //...Set amount detail here
+                    self.lblTotalAmount.text = "\(totalAmount)"
+                    self.lblToBePaid.text = "\(BalanceToBePaid)"
+                    self.lblPaid.text = "\(totalAmount - BalanceToBePaid)"
+                    
+                    //...For set select by default button current demand
+                    self.btnPaymentModeClicked(sender: self.btnCurrentDemand)
+                }
+            }
+        }
+    }
+}
 

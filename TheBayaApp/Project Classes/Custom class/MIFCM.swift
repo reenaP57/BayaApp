@@ -72,7 +72,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                 } else {
                     //...Active
-                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
                             if let topViewController = appDelegate.topViewController() {
@@ -80,6 +80,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                                 if topViewController is NotificationViewController {
                                     
                                     let notificationVC = topViewController as! NotificationViewController
+                                    notificationVC.currentPage = 1
                                     notificationVC.loadNotificationList(showLoader: false, isFromNotification : true)
                                 } else {
                                     appDelegate.tabbarView?.btnNotification.isSelected = false
@@ -102,7 +103,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                 } else {
                     
-                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
                             if let topViewController = appDelegate.topViewController() {
@@ -134,7 +135,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                 } else {
                     
-                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
                             
@@ -181,7 +182,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                         message = "Your visit has been re-scheduled from \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.oldDateTime")!, withFormate: "dd MMMM yyyy hh:mm a")) to \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.dateTime")!, withFormate: "dd MMMM yyyy hh:mm a"))"
                     } */
                     
-                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
                             
@@ -205,7 +206,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                 
                 break
                 
-            default : // Rate Visit Notification
+            case NotificationRateVisit : // Rate Visit Notification
                 
                 if application.applicationState == .inactive {
                     
@@ -219,7 +220,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     
                   //  message = "Rate the visit scheduled on \(DateFormatter.dateStringFrom(timestamp: userInfo.valueForDouble(key: "gcm.notification.dateTime")!, withFormate: "dd MMMM yyyy 'at' hh:mm a"))"
                     
-                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "cancel", type: .confirmationView, completion: { (result) in
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
                         
                         if result {
                             
@@ -237,6 +238,134 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                         }
                     })
                 }
+                
+            case NotificationDocumentUploaded : //...My Document Uploaded Notification
+                
+                if application.applicationState == .inactive {
+                    
+                    if let myDocVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
+                        myDocVC.isFromMyDoc = true
+                        appDelegate.topViewController()?.navigationController?.pushViewController(myDocVC, animated: true)
+                    }
+                } else {
+                    appDelegate.topViewController()?.showAlertConfirmationView(message, okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+                        if result {
+                            
+                            if let topViewController = appDelegate.topViewController() {
+                               
+                                if topViewController is ProjectDocumentViewController {
+                                    let documentVC =  topViewController as! ProjectDocumentViewController
+                                    documentVC.currentPage = 1
+                                    documentVC.loadDocumentListFromServer(showLoader: false)
+                                } else {
+                                    if let myDocVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
+                                        myDocVC.isFromMyDoc = true
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(myDocVC, animated: true)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                
+            case NotificationProjectDocumentUploaded : //...Project Document Uploaded Notification
+                
+                if application.applicationState == .inactive {
+                    
+                    if let myDocVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
+                        myDocVC.isFromMyDoc = false
+                        appDelegate.topViewController()?.navigationController?.pushViewController(myDocVC, animated: true)
+                    }
+                } else {
+                    appDelegate.topViewController()?.showAlertConfirmationView(message, okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+                        if result {
+                            
+                            if let topViewController = appDelegate.topViewController() {
+                                
+                                if topViewController is ProjectDocumentViewController {
+                                    let documentVC =  topViewController as! ProjectDocumentViewController
+                                    documentVC.currentPage = 1
+                                    documentVC.loadDocumentListFromServer(showLoader: false)
+                                } else {
+                                    if let myDocVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
+                                        myDocVC.isFromMyDoc = false
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(myDocVC, animated: true)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                
+            case NotificationDemandRequestRaised : //...Demand Request Raised Notification
+                
+                if application.applicationState == .inactive {
+                   
+                    if (appDelegate.loginUser?.isCheckPassword)! {
+                        if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PayementViewController") as? PayementViewController {
+                            appDelegate.topViewController()?.navigationController?.pushViewController(paymentVC, animated: true)
+                        }
+                    } else {
+                        if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentScheduleViewController") as? PaymentScheduleViewController {
+                            appDelegate.topViewController()?.navigationController?.pushViewController(paymentVC, animated: true)
+                        }
+                    }
+           
+                } else {
+                    appDelegate.topViewController()?.showAlertConfirmationView(message, okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+                        if result {
+                            
+                            if let topViewController = appDelegate.topViewController() {
+                                
+                                if topViewController is PaymentScheduleViewController {
+                                    let paymentVC =  topViewController as! PaymentScheduleViewController
+                                    paymentVC.loadMilestoneList(showLoader: true)
+                                } else {
+                                    if (appDelegate.loginUser?.isCheckPassword)! {
+                                        if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PayementViewController") as? PayementViewController {
+                                            appDelegate.topViewController()?.navigationController?.pushViewController(paymentVC, animated: true)
+                                        }
+                                    } else {
+                                        if let paymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentScheduleViewController") as? PaymentScheduleViewController {
+                                            appDelegate.topViewController()?.navigationController?.pushViewController(paymentVC, animated: true)
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                
+            case NotificationMaintenanceRequestStatusChange : //...Maintenance Request status change Notification
+                
+                if application.applicationState == .inactive {
+                    
+                    if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                        viewMaintenanceVC.isFromRate = false
+                        viewMaintenanceVC.requestID = userInfo.valueForInt(key: "gcm.notification.maintenanceRequestId") ?? 0
+                        appDelegate.topViewController()?.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                    }
+                } else {
+                    appDelegate.topViewController()?.showAlertConfirmationView(message, okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+                        if result {
+                            
+                            if let topViewController = appDelegate.topViewController() {
+                                
+                                if topViewController is ViewMaintenanceRequestViewController {
+                                } else {
+                                    if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                                        viewMaintenanceVC.isFromRate = false
+                                        viewMaintenanceVC.requestID = userInfo.valueForInt(key: "gcm.notification.maintenanceRequestId") ?? 0
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                                    }
+                                }
+                            }
+                        }
+                    })
+                }
+                
+            default :
+                break
             }
         }
     }

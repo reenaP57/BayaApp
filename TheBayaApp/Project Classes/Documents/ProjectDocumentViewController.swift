@@ -17,7 +17,7 @@ class ProjectDocumentViewController: ParentViewController {
     var apiTask : URLSessionTask?
     var arrDocument = [[String : AnyObject]]()
     var isFromMyDoc : Bool = false
-    fileprivate var currentPage : Int = 1
+    var currentPage : Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()

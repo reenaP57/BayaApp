@@ -12,7 +12,10 @@ class TransactionHistoryViewController: ParentViewController {
 
     @IBOutlet weak var tblTransaction : UITableView!
     var arrTransaction = [[String : AnyObject]]()
-    
+    var refreshControl = UIRefreshControl()
+    var apiTask : URLSessionTask?
+    var currentPage : Int = 1
+    var totalPayableAmount = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,12 +25,11 @@ class TransactionHistoryViewController: ParentViewController {
     func initialize() {
         self.title = "Transaction History"
         
-        arrTransaction = [["name" : "MILESTONE 1", "payment_date" : "10/12/2018", "due_date" : "12/01/2019", "amount_paid" : "12000", "amount_payable" : "1,00,000"],
-        ["name" : "MILESTONE 2", "payment_date" : "10/12/2018", "due_date" : "12/01/2019", "amount_paid" : "12000", "amount_payable" : "1,00,000"],
-        ["name" : "MILESTONE 3", "payment_date" : "10/12/2018", "due_date" : "12/01/2019", "amount_paid" : "12000", "amount_payable" : "1,00,000"],
-        ["name" : "MILESTONE 4", "payment_date" : "10/12/2018", "due_date" : "12/01/2019", "amount_paid" : "12000", "amount_payable" : "1,00,000"],
-        ["name" : "MILESTONE 5", "payment_date" : "10/12/2018", "due_date" : "12/01/2019", "amount_paid" : "12000", "amount_payable" : "1,00,000"]] as [[String : AnyObject]]
+        refreshControl.tintColor = ColorGreenSelected
+        refreshControl.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        tblTransaction.pullToRefreshControl = refreshControl
         
+        self.loadMilestoneList(showLoader: true)
         tblTransaction.estimatedRowHeight = 160
         tblTransaction.rowHeight = UITableViewAutomaticDimension
     }
@@ -47,15 +49,68 @@ extension TransactionHistoryViewController : UITableViewDelegate, UITableViewDat
         if let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionTblCell") as? TransactionTblCell {
             
             let dict = arrTransaction[indexPath.row]
-            cell.lblMilestoneName.text = dict.valueForString(key: "name")
-            cell.lblPaymentDate.text = dict.valueForString(key: "payment_date")
-            cell.lblDueDate.text = dict.valueForString(key: "due_date")
-            cell.lblAmountPaid.text = dict.valueForString(key: "amount_paid")
-            cell.lblAmountPayable.text = dict.valueForString(key: "amount_payable")
+            cell.lblMilestoneName.text = dict.valueForString(key: CName)
+            cell.lblPaymentDate.text = DateFormatter.dateStringFrom(timestamp:  dict.valueForDouble(key: CPaymentDate), withFormate: "dd/MM/yyyy")
+            cell.lblDueDate.text =  DateFormatter.dateStringFrom(timestamp:  dict.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
+            cell.lblAmountPaid.text = dict.valueForString(key: CAmount)
+            cell.lblAmountPayable.text = "\(self.totalPayableAmount)"
+            
+            //...Load More
+            if indexPath == tblTransaction.lastIndexPath(){
+                self.loadMilestoneList(showLoader: false)
+            }
             
             return cell
         }
         
         return UITableViewCell()
+    }
+}
+
+//MARK:-
+//MARK:- API
+
+extension TransactionHistoryViewController {
+    
+    @objc func pullToRefresh() {
+        currentPage = 1
+        refreshControl.beginRefreshing()
+        self.loadMilestoneList(showLoader: false)
+    }
+    
+    func loadMilestoneList(showLoader : Bool) {
+        
+        if apiTask?.state == URLSessionTask.State.running {
+            return
+        }
+        
+        apiTask = APIRequest.shared().getTranscationHistory(page: currentPage, showLoader: showLoader, completion: { (response, error) in
+            
+            self.refreshControl.endRefreshing()
+            self.apiTask?.cancel()
+            
+            if response != nil {
+                
+                if self.currentPage == 1{
+                    self.arrTransaction.removeAll()
+                    self.tblTransaction.reloadData()
+                }
+                
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    
+                    if arrData.count > 0 {
+                        self.arrTransaction = self.arrTransaction + arrData
+                        self.tblTransaction.reloadData()
+                        self.currentPage += 1
+                        
+                        for item in arrData {
+                            if item.valueForInt(key: CPaymentStatus) == CPaymentPaid {
+                                self.totalPayableAmount += item.valueForInt(key: CAmount)!
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
 }

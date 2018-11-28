@@ -135,14 +135,19 @@ let CCancel       =  3
 let CCompleted    =  4
 let CRescheduled  =  5
 
-let NotificationAdmin            = 0
-let NotificationNewProject       = 1
-let NotificationPostUpdate       = 2
-let NotificationProjectComplete  = 3
-let NotificationVisitUpdate      = 4
-let NotificationVisitReschedule  = 5
-let NotificationRateVisit        = 6
-let NotificationVisitCancel      = 7
+let NotificationAdmin                               = 0
+let NotificationNewProject                          = 1
+let NotificationPostUpdate                          = 2
+let NotificationProjectComplete                     = 3
+let NotificationVisitUpdate                         = 4
+let NotificationVisitReschedule                     = 5
+let NotificationRateVisit                           = 6
+let NotificationVisitCancel                         = 7
+let NotificationDocumentUploaded                    = 8
+let NotificationProjectDocumentUploaded             = 9
+let NotificationDemandRequestRaised                 = 10
+let NotificationMaintenanceRequestStatusChange      = 11
+
 
 let CRequestOpen = 1  //"OPEN"
 let CRequestCompleted = 3//"COMPLETED"
@@ -154,7 +159,10 @@ let CDocRequestOpen = "OPEN"
 let CDocRequestInProgress =  "IN PROGRESS"
 let CDocRequestCompleted = "COMPLETED"
 
-
+let CPaymentUnPaid = 1
+let CPaymentDemand = 2
+let CPaymentProcess = 3
+let CPaymentPaid = 4
 
 //MARK:- API Parameter
 
@@ -200,6 +208,13 @@ let CFavoriteProjectBadge           = "favoriteProjectBadge"
 let CFavoriteProjectProgress        = "favoriteProjectProgress"
 let CFavoriteProjectName            = "favoriteProjectName"
 let CIsVisit             = "isVisit"
+let CPaymentStatus       = "paymentStatus"
+let CPercent             = "percent"
+let CPaymentDate         = "paymentDate"
+let CAmount              = "amount"
+let CDueDate             = "date"
+let CName                = "name"
+
 
 
 //MARK:- Home options
