@@ -72,10 +72,6 @@ class PaymentScheduleViewController: ParentViewController {
 
     }
     
-    @objc func btnBackClicked() {
-        self.navigationController?.popToRootViewController(animated: true)
-    }
-    
     func showNoOutstandingView(message : String) {
         lblNoDemandMsg.text = message
         vwPayment.hide(byHeight: true)
@@ -87,100 +83,6 @@ class PaymentScheduleViewController: ParentViewController {
         vwPayment.hide(byHeight: false)
         vwNoOutstandingPayment.isHidden = true
         _ = vwNoOutstandingPayment.setConstraintConstant(167, edge: .bottom, ancestor: true)
-    }
-}
-
-
-//MARK:-
-//MARK:- Action
-
-extension PaymentScheduleViewController {
- 
-    @IBAction func btnMakePaymentOnlineClicked (sender : UIButton) {
-   
-        if let onlinePaymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as? OnlinePaymentViewController {
-            self.navigationController?.pushViewController(onlinePaymentVC, animated: true)
-        }
-    }
-    
-    @IBAction func btnTransactionHistoryClicked (sender : UIButton) {
-      
-        if let transactionVC = CStoryboardPayment.instantiateViewController(withIdentifier: "TransactionHistoryViewController") as? TransactionHistoryViewController {
-            self.navigationController?.pushViewController(transactionVC, animated: true)
-        }
-    }
-    
-    @IBAction func btnSubmitUTRClicked (sender : UIButton) {
-    
-        if let paymentDoneVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentDoneViewController") as? PaymentDoneViewController {
-            self.navigationController?.pushViewController(paymentDoneVC, animated: true)
-        }
-    }
-    
-    @IBAction func btnPaymentModeClicked (sender : UIButton) {
-        
-        btnCurrentDemand.isSelected = false
-        btnNextPayment.isSelected = false
-        btnCurrentDemand.backgroundColor = UIColor.clear
-        btnNextPayment.backgroundColor = UIColor.clear
-        btnNextPayment.layer.borderWidth = 1
-        btnCurrentDemand.layer.borderWidth = 1
-        btnNextPayment.layer.borderColor = ColorGray.cgColor
-        btnCurrentDemand.layer.borderColor = ColorGray.cgColor
-        
-        if sender.isSelected {
-            return
-        }
-        
-        sender.isSelected = true
-        sender.backgroundColor = ColorGreenSelected
-        sender.layer.borderColor = ColorGreenSelected.cgColor
-        
-        //...Get payment status from milestone list
-        let arrData = arrMilestone.mapValue(forKey: CPaymentStatus) as? [Int]
-        var demandDetail = [String : AnyObject]()
-        
-        if sender.tag == 0 {
-            //...Current demand
-            lblDateTxt.text = "Due Date"
-            
-            //...Get first paymentstatus = 2 milestone from milestone list for current demand
-            if (arrData?.count)! > 0 {
-                if let index = arrData!.index(where: {$0 == CPaymentDemand}) {
-                    demandDetail = arrMilestone[index]
-                    self.hideNoOutstandingView()
-                } else {
-                    self.showNoOutstandingView(message: CNoOutstandingPayment)
-                    return
-                }
-            } else {
-                self.showNoOutstandingView(message: CNoOutstandingPayment)
-                return
-            }
-            
-        } else {
-            //...Next Payment
-            lblDateTxt.text = "Milestone Date"
-
-            //...Get first paymentstatus = 1 milestone from milestone list for Next Payment
-            if (arrData?.count)! > 0 {
-                if let index = arrData!.index(where: {$0 == CPaymentUnPaid}) {
-                    demandDetail = arrMilestone[index]
-                    self.hideNoOutstandingView()
-                } else {
-                    self.showNoOutstandingView(message: CNoNextPayment)
-                    return
-                }
-            } else {
-                self.showNoOutstandingView(message: CNoNextPayment)
-                return
-            }
-        }
-        
-        self.lblMilestoneName.text = demandDetail.valueForString(key: CName)
-        self.lblMilestoneDate.text = DateFormatter.dateStringFrom(timestamp: demandDetail.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
-        self.lblMilestonePercent.text = demandDetail.valueForString(key: CPercent)
-        self.lblMilestoneAmount.text = demandDetail.valueForString(key: CAmount)
     }
 }
 
@@ -269,3 +171,99 @@ extension PaymentScheduleViewController {
     }
 }
 
+//MARK:-
+//MARK:- Action
+
+extension PaymentScheduleViewController {
+    
+    @IBAction func btnMakePaymentOnlineClicked (sender : UIButton) {
+        
+        if let onlinePaymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as? OnlinePaymentViewController {
+            self.navigationController?.pushViewController(onlinePaymentVC, animated: true)
+        }
+    }
+    
+    @IBAction func btnTransactionHistoryClicked (sender : UIButton) {
+        
+        if let transactionVC = CStoryboardPayment.instantiateViewController(withIdentifier: "TransactionHistoryViewController") as? TransactionHistoryViewController {
+            self.navigationController?.pushViewController(transactionVC, animated: true)
+        }
+    }
+    
+    @IBAction func btnSubmitUTRClicked (sender : UIButton) {
+        
+        if let paymentDoneVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentDoneViewController") as? PaymentDoneViewController {
+            self.navigationController?.pushViewController(paymentDoneVC, animated: true)
+        }
+    }
+    
+    @IBAction func btnPaymentModeClicked (sender : UIButton) {
+        
+        btnCurrentDemand.isSelected = false
+        btnNextPayment.isSelected = false
+        btnCurrentDemand.backgroundColor = UIColor.clear
+        btnNextPayment.backgroundColor = UIColor.clear
+        btnNextPayment.layer.borderWidth = 1
+        btnCurrentDemand.layer.borderWidth = 1
+        btnNextPayment.layer.borderColor = ColorGray.cgColor
+        btnCurrentDemand.layer.borderColor = ColorGray.cgColor
+        
+        if sender.isSelected {
+            return
+        }
+        
+        sender.isSelected = true
+        sender.backgroundColor = ColorGreenSelected
+        sender.layer.borderColor = ColorGreenSelected.cgColor
+        
+        //...Get payment status from milestone list
+        let arrData = arrMilestone.mapValue(forKey: CPaymentStatus) as? [Int]
+        var demandDetail = [String : AnyObject]()
+        
+        if sender.tag == 0 {
+            //...Current demand
+            lblDateTxt.text = "Due Date"
+            
+            //...Get first paymentstatus = 2 milestone from milestone list for current demand
+            if (arrData?.count)! > 0 {
+                if let index = arrData!.index(where: {$0 == CPaymentDemand}) {
+                    demandDetail = arrMilestone[index]
+                    self.hideNoOutstandingView()
+                } else {
+                    self.showNoOutstandingView(message: CNoOutstandingPayment)
+                    return
+                }
+            } else {
+                self.showNoOutstandingView(message: CNoOutstandingPayment)
+                return
+            }
+            
+        } else {
+            //...Next Payment
+            lblDateTxt.text = "Milestone Date"
+            
+            //...Get first paymentstatus = 1 milestone from milestone list for Next Payment
+            if (arrData?.count)! > 0 {
+                if let index = arrData!.index(where: {$0 == CPaymentUnPaid}) {
+                    demandDetail = arrMilestone[index]
+                    self.hideNoOutstandingView()
+                } else {
+                    self.showNoOutstandingView(message: CNoNextPayment)
+                    return
+                }
+            } else {
+                self.showNoOutstandingView(message: CNoNextPayment)
+                return
+            }
+        }
+        
+        self.lblMilestoneName.text = demandDetail.valueForString(key: CName)
+        self.lblMilestoneDate.text = DateFormatter.dateStringFrom(timestamp: demandDetail.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
+        self.lblMilestonePercent.text = demandDetail.valueForString(key: CPercent)
+        self.lblMilestoneAmount.text = demandDetail.valueForString(key: CAmount)
+    }
+    
+    @objc func btnBackClicked() {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+}
