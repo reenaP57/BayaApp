@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ParentViewController: UIViewController {
+class ParentViewController: UIViewController, UIGestureRecognizerDelegate {
     
     
     //MARK:-
@@ -58,7 +58,7 @@ class ParentViewController: UIViewController {
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-   
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         /*   self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_back_white")
         self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "nav_back")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil) */
@@ -108,6 +108,13 @@ class ParentViewController: UIViewController {
                 self.navigationController?.navigationBar.barTintColor = ColorBGColor
             }
         }
+    }
+    
+    fileprivate func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        if(self.navigationController!.viewControllers.count > 1){
+            return true
+        }
+        return false
     }
     
     @objc func backButtonClicked(){
