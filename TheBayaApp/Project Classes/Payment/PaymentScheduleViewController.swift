@@ -137,35 +137,39 @@ extension PaymentScheduleViewController {
                 if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
                     self.arrMilestone.removeAll()
                     
-                    var BalanceToBePaid = 0
+                    var paidAmount = 0
                     var totalAmount = 0
                     
                     if arrData.count > 0 {
                         self.arrMilestone = arrData
                         
-                        for item in arrData {
-                            totalAmount += item.valueForInt(key: CAmount)!
-                            if item.valueForInt(key: CPaymentStatus) != CPaymentPaid {
-                                BalanceToBePaid += item.valueForInt(key: CAmount)!
-                            }
+                        //...Calculate Total Amount
+                        let arrTotal = self.arrMilestone.mapValue(forKey: CAmount) as? [Int]
+                        totalAmount = arrTotal?.reduce(0, +) ?? 0
+                        
+                        //...Calculate Paid Amount
+                        let arrPaidAmount = self.arrMilestone.filter({ $0.valueForInt(key: CPaymentStatus) == CPaymentPaid})
+                        if arrPaidAmount.count > 0 {
+                            let arrTotal = arrPaidAmount.mapValue(forKey: CAmount) as? [Int]
+                            paidAmount = arrTotal?.reduce(0, +) ?? 0
                         }
                     }
-                
-                    self.tblMilestone.reloadData()
-                    self.vwContent.isHidden = false
-                    GCDMainThread.async {
-                        self.cnTblMilestoneHeight.constant = self.tblMilestone.contentSize.height
-                        self.view.layoutIfNeeded()
-                    }
-                    
+        
                     //...Set amount detail here
                     self.lblTotalAmount.text = "\(totalAmount)"
-                    self.lblToBePaid.text = "\(BalanceToBePaid)"
-                    self.lblPaid.text = "\(totalAmount - BalanceToBePaid)"
-                    
-                    //...For set select by default button current demand
-                    self.btnPaymentModeClicked(sender: self.btnCurrentDemand)
+                    self.lblPaid.text = "\(paidAmount)"
+                    self.lblToBePaid.text = "\(totalAmount - paidAmount)"
                 }
+                
+                self.tblMilestone.reloadData()
+                self.vwContent.isHidden = false
+                GCDMainThread.async {
+                    self.cnTblMilestoneHeight.constant = self.tblMilestone.contentSize.height
+                    self.view.layoutIfNeeded()
+                }
+                
+                //...For set select by default button current demand
+                self.btnPaymentModeClicked(sender: self.btnCurrentDemand)
             }
         }
     }
