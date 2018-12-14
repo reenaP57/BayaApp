@@ -10,7 +10,8 @@ import Foundation
 
 let CAppStoreURI            = "https://itunes.apple.com/us/genre/ios/id007?mt=8"
 let CTrackingID             = "UA-126227500-1"
-let CRazorPayKey            = "mvMAyJ5OKn3aMLYlswtzAuka"
+let CRazorPayKey            = "rzp_test_WjsG258z3k3Bn9"
 
-//key_id,key_secret
-//rzp_test_2CsIylqZj3kniC,mvMAyJ5OKn3aMLYlswtzAuka
+//Key Id: rzp_test_WjsG258z3k3Bn9
+//Key Secret: xhoVM0z08UIBva0GMVVUtCUy
+

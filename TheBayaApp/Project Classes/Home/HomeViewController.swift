@@ -40,13 +40,22 @@ class HomeViewController: ParentViewController {
     
     func initialize() {
         
-        arrHome = [["title": CTimeline as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
-                   ["title": CProjects as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
-                   ["title": CScheduleVisit as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject],
-                   ["title": CDocuments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_documents_ipad" as AnyObject : "ic_documents" as AnyObject],
-                   ["title": CMaintenance as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_maintanance_ipad" as AnyObject : "ic_maintanance" as AnyObject],
-                   ["title": CPayments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_payment_ipad" as AnyObject : "ic_payment" as AnyObject],
-                   ["title": CReferFriend as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_refer-friend_ipad" as AnyObject : "ic_refer-friend" as AnyObject]] as [[String : AnyObject]]
+        //...If visiblePaymentSection == 1 that time will be show payment option and hide maintenance option else hide payment option and show maintenance option
+        if (appDelegate.loginUser?.visiblePaymentSection)! {
+            arrHome = [["title": CTimeline as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
+                       ["title": CProjects as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
+                       ["title": CScheduleVisit as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject],
+                       ["title": CDocuments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_documents_ipad" as AnyObject : "ic_documents" as AnyObject],
+                       ["title": CPayments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_payment_ipad" as AnyObject : "ic_payment" as AnyObject],
+                       ["title": CReferFriend as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_refer-friend_ipad" as AnyObject : "ic_refer-friend" as AnyObject]] as [[String : AnyObject]]
+        } else {
+            arrHome = [["title": CTimeline as AnyObject, "subtitle":  appDelegate.loginUser?.project_name as AnyObject, "img": IS_iPad ? "timeline_ipad" as AnyObject : "timeline" as AnyObject],
+                       ["title": CProjects as AnyObject, "subtitle": "\(appDelegate.loginUser?.projectBadge as AnyObject)", "img": IS_iPad ? "projects_ipad" as AnyObject : "projects" as AnyObject],
+                       ["title": CScheduleVisit as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "schedule_visit_ipad" as AnyObject : "schedule_visit" as AnyObject],
+                       ["title": CDocuments as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_documents_ipad" as AnyObject : "ic_documents" as AnyObject],
+                       ["title": CMaintenance as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_maintanance_ipad" as AnyObject : "ic_maintanance" as AnyObject],
+                       ["title": CReferFriend as AnyObject, "subtitle": "CHOOSE TIME OF VISIT" as AnyObject, "img": IS_iPad ? "ic_refer-friend_ipad" as AnyObject : "ic_refer-friend" as AnyObject]] as [[String : AnyObject]]
+        }
     }
     
     func userDetail() {

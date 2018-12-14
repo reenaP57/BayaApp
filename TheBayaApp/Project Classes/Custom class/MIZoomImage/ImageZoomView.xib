@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -31,7 +31,7 @@
                     </connections>
                 </collectionView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5hQ-QK-TzH">
-                    <rect key="frame" x="20" y="55" width="50" height="50"/>
+                    <rect key="frame" x="10" y="25" width="50" height="50"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="50" id="EWs-4W-zFt"/>
                         <constraint firstAttribute="width" constant="50" id="hXe-xW-aPL"/>
@@ -53,10 +53,10 @@
             </subviews>
             <color key="backgroundColor" red="0.87450980389999999" green="0.90980392160000001" blue="0.81568627449999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="5hQ-QK-TzH" firstAttribute="top" secondItem="gUR-LR-HUu" secondAttribute="top" constant="35" id="5J3-rt-dKb"/>
+                <constraint firstItem="5hQ-QK-TzH" firstAttribute="top" secondItem="gUR-LR-HUu" secondAttribute="top" constant="5" id="5J3-rt-dKb"/>
                 <constraint firstItem="7rj-j0-Ukn" firstAttribute="leading" secondItem="gUR-LR-HUu" secondAttribute="leading" id="YNL-hn-eWY"/>
                 <constraint firstItem="gUR-LR-HUu" firstAttribute="bottom" secondItem="E2K-fp-GOU" secondAttribute="bottom" constant="13" id="atZ-Vt-EWQ"/>
-                <constraint firstItem="5hQ-QK-TzH" firstAttribute="leading" secondItem="gUR-LR-HUu" secondAttribute="leading" constant="20" id="gl1-sD-q3O"/>
+                <constraint firstItem="5hQ-QK-TzH" firstAttribute="leading" secondItem="gUR-LR-HUu" secondAttribute="leading" constant="10" id="gl1-sD-q3O"/>
                 <constraint firstItem="E2K-fp-GOU" firstAttribute="centerX" secondItem="I3k-X4-o74" secondAttribute="centerX" id="mOI-Is-k90"/>
                 <constraint firstItem="7rj-j0-Ukn" firstAttribute="trailing" secondItem="gUR-LR-HUu" secondAttribute="trailing" id="oAG-Da-p68"/>
                 <constraint firstItem="7rj-j0-Ukn" firstAttribute="top" secondItem="I3k-X4-o74" secondAttribute="top" id="vME-IC-EqR"/>
@@ -73,7 +73,7 @@
     </objects>
     <resources>
         <image name="ic_black_close" width="32" height="32"/>
-        <image name="page_select" width="11" height="2"/>
-        <image name="page_unselect" width="11" height="2"/>
+        <image name="page_select" width="11" height="2.5"/>
+        <image name="page_unselect" width="11" height="2.5"/>
     </resources>
 </document>

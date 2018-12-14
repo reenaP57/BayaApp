@@ -14,8 +14,8 @@ class TransactionTblCell: UITableViewCell {
     @IBOutlet weak var lblPaymentDate : UILabel!
     @IBOutlet weak var lblDueDate : UILabel!
     @IBOutlet weak var lblAmountPaid : UILabel!
-    @IBOutlet weak var lblAmountPayable : UILabel!
-    
+    @IBOutlet weak var lblGSTPaid : UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

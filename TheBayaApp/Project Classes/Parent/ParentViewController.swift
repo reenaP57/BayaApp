@@ -8,14 +8,15 @@
 
 import UIKit
 
-class ParentViewController: UIViewController, UIGestureRecognizerDelegate {
+class ParentViewController: UIViewController //, UIGestureRecognizerDelegate
+{
     
     
     //MARK:-
     //MARK:- LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        MIKeyboardManager.shared.delegate = self
+       // MIKeyboardManager.shared.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,7 +59,7 @@ class ParentViewController: UIViewController, UIGestureRecognizerDelegate {
         self.navigationController?.navigationBar.barStyle = .default
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = self
+      //  self.navigationController?.interactivePopGestureRecognizer?.delegate = self
         /*   self.navigationController?.navigationBar.backIndicatorTransitionMaskImage = #imageLiteral(resourceName: "ic_back_white")
         self.navigationController?.navigationBar.backIndicatorImage = #imageLiteral(resourceName: "nav_back")
         self.navigationItem.backBarButtonItem = UIBarButtonItem(title:"", style:.plain, target:nil, action:nil) */
@@ -110,12 +111,12 @@ class ParentViewController: UIViewController, UIGestureRecognizerDelegate {
         }
     }
     
-    fileprivate func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        if(self.navigationController!.viewControllers.count > 1){
-            return true
-        }
-        return false
-    }
+//    fileprivate func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+//        if(self.navigationController!.viewControllers.count > 1){
+//            return true
+//        }
+//        return false
+//    }
     
     @objc func backButtonClicked(){
         self.navigationController?.popViewController(animated: true)
@@ -137,5 +138,19 @@ extension ParentViewController : MIKeyboardManagerDelegate {
     
     func keyboardDidHide(notification: Notification) {
         self.miKeyboardDidHide(notification: notification)
+    }
+}
+
+//MARK:-
+//MARK:-
+
+extension ParentViewController {
+    
+    func setCurrencyFormat(amount : Float) -> String {
+        
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
+        return formatter.string(from: NSNumber(value: amount))!
     }
 }

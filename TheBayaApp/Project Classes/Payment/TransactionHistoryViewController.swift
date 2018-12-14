@@ -11,6 +11,7 @@ import UIKit
 class TransactionHistoryViewController: ParentViewController {
 
     @IBOutlet weak var tblTransaction : UITableView!
+    @IBOutlet weak var lblNoData : UILabel!
     var arrTransaction = [[String : AnyObject]]()
     var refreshControl = UIRefreshControl()
     var apiTask : URLSessionTask?
@@ -52,9 +53,9 @@ extension TransactionHistoryViewController : UITableViewDelegate, UITableViewDat
             cell.lblMilestoneName.text = dict.valueForString(key: CName)
             cell.lblPaymentDate.text = DateFormatter.dateStringFrom(timestamp:  dict.valueForDouble(key: CPaymentDate), withFormate: "dd/MM/yyyy")
             cell.lblDueDate.text =  DateFormatter.dateStringFrom(timestamp:  dict.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
-            cell.lblAmountPaid.text = dict.valueForString(key: CAmount)
-            cell.lblAmountPayable.text = "\(self.totalPayableAmount)"
-            
+            cell.lblAmountPaid.text =  self.setCurrencyFormat(amount: Float(dict.valueForString(key: CPaidAmount))!)
+            cell.lblGSTPaid.text = self.setCurrencyFormat(amount: Float((dict.valueForFloat(key: CPaidAmount)! * dict.valueForFloat(key: CGST)!/100)))
+
             //...Load More
             if indexPath == tblTransaction.lastIndexPath(){
                 self.loadMilestoneList(showLoader: false)
@@ -103,12 +104,14 @@ extension TransactionHistoryViewController {
                         self.tblTransaction.reloadData()
                         self.currentPage += 1
                         
-                        for item in arrData {
-                            if item.valueForInt(key: CPaymentStatus) == CPaymentPaid {
-                                self.totalPayableAmount += item.valueForInt(key: CAmount)!
-                            }
-                        }
+//                        for item in arrData {
+//                            if item.valueForInt(key: CPaymentStatus) == CPaymentPaid {
+//                                self.totalPayableAmount += item.valueForInt(key: CAmount)!
+//                            }
+//                        }
                     }
+                    
+                    self.lblNoData.isHidden = self.arrTransaction.count != 0
                 }
             }
         })

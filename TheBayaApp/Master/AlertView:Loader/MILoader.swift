@@ -213,7 +213,6 @@ extension MILoader {
     func setCircularRingAnimationDuration(duration:Double) {
         MILoader.animationDuration = duration
     }
-    
 }
 
 extension MILoader {

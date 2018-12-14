@@ -65,6 +65,8 @@ let CAPITagMilestone               =  "milestone"
 let CAPITagMilestoneDetail         =  "milestone/detail"
 let CAPITagHistoryTransaction      = "history-transaction"
 let CAPITagCheckPasswordStatus     = "check-password-status"
+let CAPITagPayment                 = "payment"
+let CAPITagSaveUTR                 = "payment/utr/save"
 
 let CJsonResponse           = "response"
 let CJsonMessage            = "message"
@@ -153,23 +155,14 @@ class Networking: NSObject
             } else {
                 
                 let data = res?.result.value as? [String : AnyObject]
-                if res?.response!.statusCode == CStatus400
-                {
-                    CTopMostViewController.presentAlertViewWithTwoButtons(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk, btnOneTapped: { (action) in
-                    }, btnTwoTitle:CBtnCancel) { (action) in
-                    }
-                    
-                }else if res?.response!.statusCode == CStatus401 || res?.response!.statusCode == CStatus405
-                {
+                if res?.response!.statusCode == CStatus400 {
+                   // CTopMostViewController.showAlertView((data?.valueForString(key: CJsonMessage)), completion: nil)
+                } else if res?.response!.statusCode == CStatus401 || res?.response!.statusCode == CStatus405 {
                     CTopMostViewController.showAlertView((data?.valueForString(key: CJsonMessage))) { (result) in
                         if result {
                             appDelegate.logout(isForDeleteUser: true)
                         }
                     }
-                    
-//                    CTopMostViewController.presentAlertViewWithOneButton(alertTitle: "", alertMessage: (data?.valueForString(key: CJsonMessage)), btnOneTitle: CBtnOk) { (action) in
-//                        appDelegate.logout(isForDeleteUser: true)
-//                    }
                 }
                 
                 print("API Response: (\(String(describing: res?.response!.statusCode))) [\(String(describing: res?.timeline.totalDuration))s] Response:\(String(describing: res?.result.value))")
@@ -1827,7 +1820,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.rateMaintenanceRequest(maintenanceID: maintenanceID, rating: rating, comment: comment, completion: completion)
                 })
@@ -1851,7 +1844,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.skipRatingForMaintenance(maintenanceID: maintenanceID, completion: completion)
                 })
@@ -1877,7 +1870,7 @@ extension APIRequest {
             
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.getReferralPoint(completion: completion)
                 })
@@ -1902,7 +1895,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.referralFriend(dict: dict, completion: completion)
                 })
@@ -1930,7 +1923,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
           completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.checkPasswordForPayment(password: password, completion: completion)
                 })
@@ -1956,7 +1949,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.getMilestoneList(showLoader: showLoader, completion: completion)
                 })
@@ -1964,6 +1957,25 @@ extension APIRequest {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagMilestone, error: error)
             }
         })!
+    }
+    
+    func makePayment(milestoneID : Int?, amountTransactionID : String?, taxTransactionID : String?, completion : @escaping ClosureCompletion) {
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagPayment, param: ["milestoneId" : milestoneID as AnyObject, "amountTransactionId" : amountTransactionID as AnyObject, "taxTransactionId" : taxTransactionID as AnyObject], successBlock: { (task, response) in
+            
+            completion(response, nil)
+
+        }, failureBlock: { (task, message, error) in
+            completion(nil, error)
+            
+            if error?.code == CStatus1009 || error?.code == CStatus1005{
+                self.checkInternetConnection(complete: {
+                    _ = self.makePayment(milestoneID: milestoneID, amountTransactionID: amountTransactionID, taxTransactionID: taxTransactionID, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagPayment, error: error)
+            }
+        })
     }
     
     func getTranscationHistory(page : Int?, showLoader : Bool, completion : @escaping ClosureCompletion) -> URLSessionTask {
@@ -1982,7 +1994,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     _ = self.getTranscationHistory(page: page, showLoader: showLoader, completion: completion)
                 })
@@ -1991,6 +2003,31 @@ extension APIRequest {
             }
         })!
     }
+    
+    func savePaymentUTR(milestoneID : Int?, utr : String?, completion : @escaping ClosureCompletion){
+    
+        MILoader.shared.showLoader(type: .circularRing, message: nil)
+        
+        _ = Networking.sharedInstance.POST(apiTag: CAPITagSaveUTR, param: ["milestoneId" : milestoneID as AnyObject, "utrNumber" : utr as AnyObject], successBlock: { (task, response) in
+            MILoader.shared.hideLoader()
+            if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagSaveUTR){
+                completion(response, nil)
+            }
+            
+        }, failureBlock: { (task, message, error) in
+            MILoader.shared.hideLoader()
+            completion(nil, error)
+            
+            if error?.code == CStatus1005 || error?.code == CStatus1009 {
+                 self.checkInternetConnection(complete: {
+                    _ = self.savePaymentUTR(milestoneID: milestoneID, utr: utr, completion: completion)
+                })
+            } else {
+                self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagSaveUTR, error: error)
+            }
+        })
+    }
+    
     
     func checkPaymentPasswordStatus(status : Int?, completion : @escaping ClosureCompletion){
         MILoader.shared.showLoader(type: .circularRing, message: "")
@@ -2004,7 +2041,7 @@ extension APIRequest {
             MILoader.shared.hideLoader()
             completion(nil, error)
             
-            if error?.code == 1005 || error?.code == 1009 {
+            if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection(complete: {
                     self.checkPaymentPasswordStatus(status: status, completion: completion)
                 })
@@ -2044,6 +2081,7 @@ extension APIRequest {
         tblUser.smsNotify = dict!.valueForBool(key: CMobileNotify)
         tblUser.fav_project_id = Int64(dict!.valueForInt(key: "favoriteProjectId")!)
         tblUser.isCheckPassword = dict!.valueForBool(key: "isCheckPassword")
+        tblUser.visiblePaymentSection = dict!.valueForBool(key: "visiblePaymentSection")
 
         let arrCountry = TblCountryList.fetch(predicate: NSPredicate(format:"%K == %d", CCountry_id, Int16(dict!.valueForInt(key: CCountryId)!)))
         

@@ -123,9 +123,12 @@ var CBlankDocMsg            =  "Message can't be blank."
 var CSelectMaintenanceType  =  "Select the maintenance type."
 var CBlankSubject           =  "Subject can't be blank."
 
+var CBlankUTR             =  "UTR number can't be blank."
 var CBlankPassword        =  "Password can't be blank."
 var CInvalidPassword      =  "Password is invalid."
 var CBlankAmountToPay     =  "Amount to pay can’t be blank."
+var CAmountNotBeMoreThanCurrentDemand     =  "Amount can not be more than current demand."
+var CAmountMinimumPayable     = "Minimum amount payable is 50,000."
 
 
 var CBlankReferredName    =  "Name can't be blank."
@@ -136,3 +139,9 @@ var CAcceptTermsCondition = "Please accept the Terms & Conditions of the referra
 
 var CNoOutstandingPayment  =  "There are no outstanding payments at this time."
 var CNoNextPayment  =  "There are no next payments at this time."
+var CPaymentInProcessing = "We are processing your payment. Contact our team if you need any information."
+var CMessagePaymentInProcessing = "Please do not refresh or back click while we are performing payment."
+var CPaymentProcessing = "Processing Payment"
+var CPaymentDone = "Payment Done Successfully"
+var CPaymentFail = "Payment Failed"
+

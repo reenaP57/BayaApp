@@ -18,14 +18,14 @@ class PaymentScheduleViewController: ParentViewController {
     @IBOutlet fileprivate weak var tblMilestone : UITableView!
     @IBOutlet fileprivate weak var btnCurrentDemand : UIButton!
     @IBOutlet fileprivate weak var btnNextPayment : UIButton!
+    @IBOutlet fileprivate weak var btnMakeOnlinePayment : UIButton!
+    @IBOutlet fileprivate weak var btnUTRSubmit : UIButton!
     @IBOutlet fileprivate weak var lblNoDemandMsg : UILabel!
     @IBOutlet fileprivate weak var lblMilestoneName : UILabel!
     @IBOutlet fileprivate weak var lblMilestonePercent : UILabel!
     @IBOutlet fileprivate weak var lblMilestoneAmount : UILabel!
     @IBOutlet fileprivate weak var lblMilestoneDate : UILabel!
     @IBOutlet fileprivate weak var lblDateTxt : UILabel!
-    @IBOutlet fileprivate weak var lblMilestoneInterest : UILabel!
-    @IBOutlet fileprivate weak var lblInterestTxt : UILabel!
     @IBOutlet fileprivate weak var lblTotalAmount : UILabel!
     @IBOutlet fileprivate weak var lblPaid : UILabel!
     @IBOutlet fileprivate weak var lblToBePaid : UILabel!
@@ -37,8 +37,9 @@ class PaymentScheduleViewController: ParentViewController {
         }
     }
     var arrMilestone = [[String : AnyObject]]()
+    var currentDemandDetail = [String : AnyObject]()
     var refreshControl = UIRefreshControl()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initialize()
@@ -72,17 +73,41 @@ class PaymentScheduleViewController: ParentViewController {
 
     }
     
-    func showNoOutstandingView(message : String) {
+    fileprivate func showNoOutstandingView(message : String) {
         lblNoDemandMsg.text = message
         vwPayment.hide(byHeight: true)
         vwNoOutstandingPayment.isHidden = false
         _ = vwNoOutstandingPayment.setConstraintConstant(0, edge: .bottom, ancestor: true)
     }
     
-    func hideNoOutstandingView() {
+    fileprivate func hideNoOutstandingView() {
         vwPayment.hide(byHeight: false)
         vwNoOutstandingPayment.isHidden = true
-        _ = vwNoOutstandingPayment.setConstraintConstant(167, edge: .bottom, ancestor: true)
+        _ = vwNoOutstandingPayment.setConstraintConstant(87, edge: .bottom, ancestor: true)
+    }
+    
+    fileprivate func disablePaymentOption(isEnable : Bool) {
+        
+        if isEnable {
+            //...Current Demand available
+            
+            btnUTRSubmit.isEnabled = true
+            btnUTRSubmit.backgroundColor = ColorGreenSelected
+            btnUTRSubmit.setTitleColor(ColorWhite, for: .normal)
+            btnMakeOnlinePayment.isEnabled = true
+            btnMakeOnlinePayment.setTitleColor(ColorLightBlack, for: .normal)
+            txtUTRNo.isUserInteractionEnabled = true
+        } else {
+            //...Current Demand not available
+
+            btnUTRSubmit.isEnabled = false
+            btnUTRSubmit.backgroundColor = ColorGray
+            btnUTRSubmit.setTitleColor(ColorLightBlack, for: .normal)
+            btnMakeOnlinePayment.isEnabled = false
+            btnMakeOnlinePayment.setTitleColor(ColorGray, for: .normal)
+            txtUTRNo.isUserInteractionEnabled = false
+        }
+
     }
 }
 
@@ -107,7 +132,7 @@ extension PaymentScheduleViewController : UITableViewDataSource, UITableViewDele
             cell.lblName.text = arrMilestone[indexPath.row].valueForString(key: CName)
             cell.lblDate.text = DateFormatter.dateStringFrom(timestamp: arrMilestone[indexPath.row].valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
             cell.lblPercent.text = arrMilestone[indexPath.row].valueForString(key: CPercent)
-            cell.lblAmount.text = arrMilestone[indexPath.row].valueForString(key: CAmount)
+            cell.lblAmount.text = arrMilestone[indexPath.row].valueForString(key: CMilestoneAmount)
             
             cell.vwSeparater.isHidden = indexPath.row == self.arrMilestone.count-1
           
@@ -144,21 +169,23 @@ extension PaymentScheduleViewController {
                         self.arrMilestone = arrData
                         
                         //...Calculate Total Amount
-                        let arrTotal = self.arrMilestone.mapValue(forKey: CAmount) as? [Int]
+                        let arrTotal = self.arrMilestone.mapValue(forKey: CMilestoneAmount) as? [Int]
                         totalAmount = arrTotal?.reduce(0, +) ?? 0
                         
                         //...Calculate Paid Amount
                         let arrPaidAmount = self.arrMilestone.filter({ $0.valueForInt(key: CPaymentStatus) == CPaymentPaid})
                         if arrPaidAmount.count > 0 {
-                            let arrTotal = arrPaidAmount.mapValue(forKey: CAmount) as? [Int]
+                            let arrTotal = arrPaidAmount.mapValue(forKey: CMilestoneAmount) as? [Int]
                             paidAmount = arrTotal?.reduce(0, +) ?? 0
                         }
                     }
         
                     //...Set amount detail here
-                    self.lblTotalAmount.text = "\(totalAmount)"
-                    self.lblPaid.text = "\(paidAmount)"
-                    self.lblToBePaid.text = "\(totalAmount - paidAmount)"
+                    self.lblTotalAmount.text = self.setCurrencyFormat(amount: Float(totalAmount))
+                    self.lblPaid.text = self.setCurrencyFormat(amount: Float(paidAmount))
+                    //"\(paidAmount)"
+                    self.lblToBePaid.text = self.setCurrencyFormat(amount: Float(totalAmount - paidAmount))
+                    //"\(totalAmount - paidAmount)"
                 }
                 
                 self.tblMilestone.reloadData()
@@ -173,6 +200,18 @@ extension PaymentScheduleViewController {
             }
         }
     }
+    
+    func savePaymentUTR() {
+        //...Offline Payment By UTR Number
+        
+        APIRequest.shared().savePaymentUTR(milestoneID: currentDemandDetail.valueForInt(key: "id"), utr: txtUTRNo.text!) { (response, error) in
+            if response != nil {
+                if let paymentDoneVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentDoneViewController") as? PaymentDoneViewController {
+                    self.navigationController?.pushViewController(paymentDoneVC, animated: true)
+                }
+            }
+        }
+    }
 }
 
 //MARK:-
@@ -181,8 +220,9 @@ extension PaymentScheduleViewController {
 extension PaymentScheduleViewController {
     
     @IBAction func btnMakePaymentOnlineClicked (sender : UIButton) {
-        
+
         if let onlinePaymentVC = CStoryboardPayment.instantiateViewController(withIdentifier: "OnlinePaymentViewController") as? OnlinePaymentViewController {
+            onlinePaymentVC.demandDetail = currentDemandDetail
             self.navigationController?.pushViewController(onlinePaymentVC, animated: true)
         }
     }
@@ -196,9 +236,12 @@ extension PaymentScheduleViewController {
     
     @IBAction func btnSubmitUTRClicked (sender : UIButton) {
         
-        if let paymentDoneVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentDoneViewController") as? PaymentDoneViewController {
-            self.navigationController?.pushViewController(paymentDoneVC, animated: true)
+        if (txtUTRNo.text?.isBlank)! {
+            self.showAlertView(CBlankUTR, completion: nil)
+            return
         }
+        
+        self.savePaymentUTR()
     }
     
     @IBAction func btnPaymentModeClicked (sender : UIButton) {
@@ -222,34 +265,43 @@ extension PaymentScheduleViewController {
         
         //...Get payment status from milestone list
         let arrData = arrMilestone.mapValue(forKey: CPaymentStatus) as? [Int]
-        var demandDetail = [String : AnyObject]()
         
-        if sender.tag == 0 {
-            //...Current demand
+        if sender.tag == 0 {    //...Current demand
+           
             lblDateTxt.text = "Due Date"
             
             //...Get first paymentstatus = 2 milestone from milestone list for current demand
             if (arrData?.count)! > 0 {
                 if let index = arrData!.index(where: {$0 == CPaymentDemand}) {
-                    demandDetail = arrMilestone[index]
+                    currentDemandDetail = arrMilestone[index]
                     self.hideNoOutstandingView()
+                    self.disablePaymentOption(isEnable: true)
                 } else {
-                    self.showNoOutstandingView(message: CNoOutstandingPayment)
+                    self.disablePaymentOption(isEnable: false)
+
+                    //...Check if any milestone in process mode
+                    if (arrData?.contains(CPaymentProcess))! {
+                        self.showNoOutstandingView(message: CPaymentInProcessing)
+                    } else {
+                        self.showNoOutstandingView(message: CNoOutstandingPayment)
+                    }
+                    
                     return
                 }
             } else {
+                self.disablePaymentOption(isEnable: false)
                 self.showNoOutstandingView(message: CNoOutstandingPayment)
                 return
             }
             
-        } else {
-            //...Next Payment
+        } else {    //...Next Payment
+            
             lblDateTxt.text = "Milestone Date"
             
             //...Get first paymentstatus = 1 milestone from milestone list for Next Payment
             if (arrData?.count)! > 0 {
                 if let index = arrData!.index(where: {$0 == CPaymentUnPaid}) {
-                    demandDetail = arrMilestone[index]
+                    currentDemandDetail = arrMilestone[index]
                     self.hideNoOutstandingView()
                 } else {
                     self.showNoOutstandingView(message: CNoNextPayment)
@@ -261,13 +313,14 @@ extension PaymentScheduleViewController {
             }
         }
         
-        self.lblMilestoneName.text = demandDetail.valueForString(key: CName)
-        self.lblMilestoneDate.text = DateFormatter.dateStringFrom(timestamp: demandDetail.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
-        self.lblMilestonePercent.text = demandDetail.valueForString(key: CPercent)
-        self.lblMilestoneAmount.text = demandDetail.valueForString(key: CAmount)
+        self.lblMilestoneName.text = currentDemandDetail.valueForString(key: CName)
+        self.lblMilestoneDate.text = DateFormatter.dateStringFrom(timestamp: currentDemandDetail.valueForDouble(key: CDueDate), withFormate: "dd/MM/yyyy")
+        self.lblMilestonePercent.text = currentDemandDetail.valueForString(key: CPercent)
+        self.lblMilestoneAmount.text = self.setCurrencyFormat(amount: Float(currentDemandDetail.valueForString(key: CMilestoneAmount))!)
     }
     
     @objc func btnBackClicked() {
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
+

@@ -239,7 +239,7 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                     })
                 }
                 
-            case NotificationDocumentUploaded : //...My Document Uploaded Notification
+            case NotificationDocumentUploaded, NotificationDocumentStatusUpdate : //...My Document Uploaded Notification, Document Status update Notification
                 
                 if application.applicationState == .inactive {
                     

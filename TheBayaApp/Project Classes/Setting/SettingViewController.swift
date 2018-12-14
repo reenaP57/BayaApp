@@ -12,9 +12,7 @@ class SettingViewController: ParentViewController {
     
     @IBOutlet fileprivate weak var tblSettings: UITableView!
     @IBOutlet fileprivate weak var imgVBg: UIImageView!
-
-    let arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CPaymentPassword, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
-
+    var arrSetting =  [String]()
    
     //MARK:-
     //MARK:- LyfeCycle Methods
@@ -27,10 +25,11 @@ class SettingViewController: ParentViewController {
         super.viewWillAppear(animated)
         MIGoogleAnalytics.shared().trackScreenNameForGoogleAnalytics(screenName: CSettingScreenName)
         appDelegate.showTabBar()
-        self.initialize()
         
         //...Load user detail from server
         self.userDetail()
+        self.initialize()
+        self.tblSettings.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,6 +44,13 @@ class SettingViewController: ParentViewController {
         
         if IS_iPad {
             tblSettings.contentInset = UIEdgeInsetsMake(15, 0, 0, 0)
+        }
+        
+        //...If visiblePaymentSection=1 that time payment password will be show otherwise it will be hide
+        if (appDelegate.loginUser?.visiblePaymentSection)! {
+           arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CPaymentPassword, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
+        } else {
+           arrSetting = [CEditProfile, CChangePassword, CPushNotifications, CEmailNotifications, CSMSNotifications, CTermsConditions, CPrivacyPolicy, CAppSupport, CAboutUs, CRateApp, CLogout]
         }
     }
 
@@ -216,7 +222,6 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
                         cell.imgVArrow.isHidden = false
                         cell.switchNotify.isHidden = true
                     }
-                    
                 }
                 
                 
@@ -326,6 +331,7 @@ extension SettingViewController {
         APIRequest.shared().userDetail { (response, error) in
             if response != nil && error == nil {
                 self.imgVBg.isHidden = false
+                self.initialize()
                 self.tblSettings.reloadData()
             } else {
                 self.imgVBg.isHidden = true

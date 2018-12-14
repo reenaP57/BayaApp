@@ -201,8 +201,8 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
                 self.navigationController?.pushViewController(visitDetailVC, animated: true)
             }
            
-        case NotificationDocumentUploaded :
-            //...My Document uploaded
+        case NotificationDocumentUploaded, NotificationDocumentStatusUpdate :
+            //...My Document uploaded, Document status update
             
             if let docVC = CStoryboardDocument.instantiateViewController(withIdentifier: "ProjectDocumentViewController") as? ProjectDocumentViewController {
                 docVC.isFromMyDoc = true

@@ -147,6 +147,7 @@ let NotificationDocumentUploaded                    = 8
 let NotificationProjectDocumentUploaded             = 9
 let NotificationDemandRequestRaised                 = 10
 let NotificationMaintenanceRequestStatusChange      = 11
+let NotificationDocumentStatusUpdate                = 12
 
 
 let CRequestOpen = 1  //"OPEN"
@@ -214,8 +215,9 @@ let CPaymentDate         = "paymentDate"
 let CAmount              = "amount"
 let CDueDate             = "date"
 let CName                = "name"
-
-
+let CGST                 = "gst"
+let CMilestoneAmount     = "milestoneAmount"
+let CPaidAmount          = "paidAmount"
 
 //MARK:- Home options
 
