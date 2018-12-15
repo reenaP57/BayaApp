@@ -53,9 +53,15 @@ extension OnlinePaymentViewController {
         txtAmountToPay.text = lblCurrentOutstanding.text
         txtAmountToPay.hideValidationMessage(20.0)
 
-        let payAmount = Int(txtAmountToPay.text ?? "")
-        lblGST.text = "\(payAmount! * (demandDetail.valueForInt(key: CGST)!)/100)"
-        lblAmountToBePaid.text = "\(Int(txtAmountToPay.text ?? "")! + payAmount! * (demandDetail.valueForInt(key: CGST)!)/100)"
+        if let payAmount = Float(demandDetail.valueForString(key: CMilestoneAmount)) {
+            let gstAmount = demandDetail.valueForFloat(key: CGST)!/100
+            lblGST.text = self.setCurrencyFormat(amount: payAmount * gstAmount)
+            lblAmountToBePaid.text = self.setCurrencyFormat(amount: payAmount + (payAmount * gstAmount))
+        }
+        
+//        let payAmount = Int(lblCurrentOutstanding.text ?? "")
+//        lblGST.text = "\(payAmount! * (demandDetail.valueForInt(key: CGST)!)/100)"
+//        lblAmountToBePaid.text = "\(Int(txtAmountToPay.text ?? "")! + payAmount! * (demandDetail.valueForInt(key: CGST)!)/100)"
     }
     
     @IBAction func btnAmountToPayClicked (sender : UIButton) {
@@ -63,7 +69,7 @@ extension OnlinePaymentViewController {
         self.resignKeyboard()
         
         var amount : Int = 0
-        if let payAmount = Int(txtAmountToPay.text ?? "") {
+        if let payAmount = Int(txtAmountToPay.text?.replacingOccurrences(of: ",", with: "") ?? "") {
              amount = payAmount
         }
         
@@ -76,7 +82,7 @@ extension OnlinePaymentViewController {
         } else {
             //...Make payment for amount here
             let options: [String:Any] = [
-                "amount" : "\(Int(txtAmountToPay.text!)! * 100)" ,//mandatory in paise
+                "amount" : "\(amount * 100)" ,//mandatory in paise
                 "description": demandDetail.valueForString(key: CName),
                 "name" : "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"]
             
@@ -96,9 +102,8 @@ extension OnlinePaymentViewController: UITextFieldDelegate {
     }
     
     @IBAction func textFieldDidChange(_ textField : UITextField){
-        if let payAmount = Float(txtAmountToPay.text ?? "") {
+        if let payAmount = Float(txtAmountToPay.text?.replacingOccurrences(of: ",", with: "") ?? "") {
             let gstAmount = demandDetail.valueForFloat(key: CGST)!/100
-            
             lblGST.text = self.setCurrencyFormat(amount: payAmount * gstAmount)
             lblAmountToBePaid.text = self.setCurrencyFormat(amount: payAmount + (payAmount * gstAmount))
         }
@@ -138,7 +143,7 @@ extension OnlinePaymentViewController : RazorpayPaymentCompletionProtocolWithDat
             amountPaymentID = payment_id
             
             //(amount * gst/100)*100
-            let amount = (Float(txtAmountToPay.text ?? "")! * demandDetail.valueForFloat(key: CGST)!/100)*100
+            let amount = (Float(txtAmountToPay.text!.replacingOccurrences(of: ",", with: ""))! * demandDetail.valueForFloat(key: CGST)!/100)*100
 
             //...Make payment for GST Tax
             let options: [String:Any] = [

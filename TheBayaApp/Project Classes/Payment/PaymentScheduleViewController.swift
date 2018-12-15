@@ -101,8 +101,8 @@ class PaymentScheduleViewController: ParentViewController {
             //...Current Demand not available
 
             btnUTRSubmit.isEnabled = false
-            btnUTRSubmit.backgroundColor = ColorGray
-            btnUTRSubmit.setTitleColor(ColorLightBlack, for: .normal)
+            btnUTRSubmit.backgroundColor = UIColor.lightGray
+            btnUTRSubmit.setTitleColor(ColorWhite, for: .normal)
             btnMakeOnlinePayment.isEnabled = false
             btnMakeOnlinePayment.setTitleColor(ColorGray, for: .normal)
             txtUTRNo.isUserInteractionEnabled = false
@@ -206,9 +206,12 @@ extension PaymentScheduleViewController {
         
         APIRequest.shared().savePaymentUTR(milestoneID: currentDemandDetail.valueForInt(key: "id"), utr: txtUTRNo.text!) { (response, error) in
             if response != nil {
-                if let paymentDoneVC = CStoryboardPayment.instantiateViewController(withIdentifier: "PaymentDoneViewController") as? PaymentDoneViewController {
-                    self.navigationController?.pushViewController(paymentDoneVC, animated: true)
+                
+                if let metaData = response?.value(forKey: CJsonMeta) as? [String : AnyObject] {
+                    self.showAlertView(metaData.valueForString(key: CJsonMessage), completion: nil)
                 }
+                self.txtUTRNo.text = ""
+                self.loadMilestoneList(showLoader: false)
             }
         }
     }
