@@ -17,6 +17,12 @@ class NewMaintenanceRequestViewController: ParentViewController {
             txtMaintenanceType.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
         }
     }
+    @IBOutlet fileprivate weak var txtSubMaintenanceType : UITextField!{
+        didSet {
+            txtSubMaintenanceType.addRightImageAsRightView(strImgName: "ic_dropdown", rightPadding: 15.0)
+        }
+    }
+
     @IBOutlet fileprivate weak var txtVMsg : UITextView!
         {
         didSet {
@@ -30,6 +36,7 @@ class NewMaintenanceRequestViewController: ParentViewController {
     @IBOutlet fileprivate weak var vwContent : UIView!
     var imgData = Data()
     var maintenanceID : Int = 0
+    var subMaintenanceID : Int = 0
     var mediaType : Int = 0
     let cameraSession = AVCaptureSession()
 
@@ -41,11 +48,38 @@ class NewMaintenanceRequestViewController: ParentViewController {
     func initialize() {
         self.title = "New Maintenance Request"
         
-        txtMaintenanceType.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrMaintenanceType.mapValue(forKey: "name") as! [Any], selectedPickerDataHandler: { (title, index, component) in
+        //...By default hide sub category field
+        _ = self.txtSubMaintenanceType.setConstraintConstant(0, edge: .bottom, ancestor: true)
+        self.txtSubMaintenanceType.hide(byHeight: true)
+
+        //...Set Maintenance Main Category
+        txtMaintenanceType.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrMaintenanceType.mapValue(forKey: "type") as! [Any], selectedPickerDataHandler: { (title, index, component) in
             self.maintenanceID = MIGeneralsAPI.shared().arrMaintenanceType[index].valueForInt(key: CId) ?? 0
             self.txtMaintenanceType.hideValidationMessage(15.0)
+            self.txtSubMaintenanceType.text = ""
+            
+            if let arrSubCategory = MIGeneralsAPI.shared().arrMaintenanceType[index].valueForJSON(key: "subType") as? [[String : AnyObject]]{
+                
+                //...If not available any subcategory for selected category then hide sub maintenancetype field
+                if arrSubCategory.count == 0 {
+                    self.subMaintenanceID = 0
+                    _ = self.txtSubMaintenanceType.setConstraintConstant(0, edge: .bottom, ancestor: true)
+                    self.txtSubMaintenanceType.hide(byHeight: true)
+                
+                } else {
+                    _ = self.txtSubMaintenanceType.setConstraintConstant(15, edge: .bottom, ancestor: true)
+                    self.txtSubMaintenanceType.hide(byHeight: false)
+
+                    //...Set Maintenance Sub Category
+                    self.txtSubMaintenanceType.setPickerData(arrPickerData: arrSubCategory.mapValue(forKey: "subType") as! [Any], selectedPickerDataHandler: { (title, index, component) in
+                        self.subMaintenanceID = arrSubCategory[index].valueForInt(key: CId) ?? 0
+                        self.txtSubMaintenanceType.hideValidationMessage(15.0)
+                    }, defaultPlaceholder: "")
+                }
+            }
+            
         }, defaultPlaceholder: "")
-        
+
         GCDMainThread.async {
             self.vwMsg.layer.masksToBounds = true
             self.vwMsg.layer.shadowColor = CRGB(r: 230, g: 235, b: 239).cgColor
@@ -91,25 +125,35 @@ extension NewMaintenanceRequestViewController : AVCaptureVideoDataOutputSampleBu
         
         if (self.txtMaintenanceType.text?.isBlank)! {
             
+            self.txtSubMaintenanceType.hideValidationMessage(15.0)
             self.txtSubject.hideValidationMessage(15.0)
             self.txtVMsg.textfiledAddRemoveShadow(true)
             self.showValidation(isAdd: false)
-            _ = self.vwMsg.setConstraintConstant((30/2) + 30 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
+            _ = self.vwMsg.setConstraintConstant(15.0, edge: .bottom, ancestor: true) //(15.0/2) + 15.0 + lblMessage.frame.size.height
             
             self.vwContent.addSubview(self.txtMaintenanceType.showValidationMessage(15.0, CSelectMaintenanceType))
+            
+        } else if (!self.txtSubMaintenanceType.isHidden && ((self.txtSubMaintenanceType.text?.isBlank)!)) {
+            
+            self.txtSubject.hideValidationMessage(15.0)
+            self.txtVMsg.textfiledAddRemoveShadow(true)
+            self.showValidation(isAdd: false)
+            _ = self.vwMsg.setConstraintConstant(15.0, edge: .bottom, ancestor: true)
+            
+            self.vwContent.addSubview(self.txtSubMaintenanceType.showValidationMessage(15.0, CSelectSubMaintenanceType))
             
         } else if (self.txtSubject.text?.isBlank)! {
             self.txtVMsg.textfiledAddRemoveShadow(true)
             self.showValidation(isAdd: false)
-            _ = self.vwMsg.setConstraintConstant((30/2) + 30 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
+            _ = self.vwMsg.setConstraintConstant(15.0, edge: .bottom, ancestor: true)
             self.vwContent.addSubview(self.txtSubject.showValidationMessage(15.0, CBlankSubject))
             
         } else if (self.txtVMsg.text?.isBlank)! {
-        self.vwContent.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankDocMsg,vwMsg.CViewX, vwMsg.CViewY))
+            self.vwContent.addSubview(self.txtVMsg.showValidationMessage(15.0,CBlankDocMsg,vwMsg.CViewX, vwMsg.CViewY))
             
             self.txtVMsg.textfiledAddRemoveShadow(true)
             self.showValidation(isAdd: true)
-            _ = self.vwMsg.setConstraintConstant((30/2) + 30 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
+            _ = self.vwMsg.setConstraintConstant((15.0/2) + 15.0 + lblMessage.frame.size.height, edge: .bottom, ancestor: true)
         } else {
             self.postMaintenanceRequest()
         }
@@ -268,6 +312,7 @@ extension NewMaintenanceRequestViewController {
     func postMaintenanceRequest() {
         
         let dict = ["maintenanceType" : maintenanceID,
+                    "maintenanceSubType" : subMaintenanceID,
                     "subject" : txtSubject.text as Any,
                     "message" : txtVMsg.text,
                     "mediaType" : mediaType]

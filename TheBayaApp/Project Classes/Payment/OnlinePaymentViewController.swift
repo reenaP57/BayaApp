@@ -35,7 +35,8 @@ class OnlinePaymentViewController: ParentViewController {
         
         //...Set payment detail
         lblCurrentOutstanding.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForString(key: CMilestoneAmount))!)
-        lblAmountToBePaid.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForString(key: CMilestoneAmount))!)
+       // lblAmountToBePaid.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForString(key: CMilestoneAmount))!)
+   //     lblGST.text = self.setCurrencyFormat(amount: demandDetail.valueForFloat(key: CMilestoneAmount)! * demandDetail.valueForFloat(key: CGST)!/100)
         lblGST.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForInt(key: CMilestoneAmount)! * demandDetail.valueForInt(key: CGST)!/100))
         lblGSTPercentage.text = "GST(\(demandDetail.valueForInt(key: CGST) ?? 0)%):"
       

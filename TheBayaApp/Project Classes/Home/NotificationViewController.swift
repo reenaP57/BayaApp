@@ -233,10 +233,18 @@ extension NotificationViewController : UITableViewDelegate, UITableViewDataSourc
         case NotificationMaintenanceRequestStatusChange :
             //...Change Maintenance Request Status
             
-            if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-                viewMaintenanceVC.isFromRate = false
-                viewMaintenanceVC.requestID = dict.valueForInt(key: "maintenanceRequestId") ?? 0
-                self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+            if !dict.valueForBool(key: "isRatingSkip"){
+                //...Redirect on Rating screen If Request status is completed and user has not skiped rating or not given yet rating
+                if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                    rateVC.isVisitRate = false
+                    rateVC.visitId = dict.valueForInt(key: "maintenanceRequestId") ?? 0
+                    self.navigationController?.pushViewController(rateVC, animated: true)
+                }
+            } else {
+                if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
+                    viewMaintenanceVC.requestID = dict.valueForInt(key: "maintenanceRequestId") ?? 0
+                    self.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                }
             }
             
         default:

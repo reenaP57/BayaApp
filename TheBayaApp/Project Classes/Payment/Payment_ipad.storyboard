@@ -115,10 +115,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="750" height="857"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ee4-QB-rCS">
+                            <scrollView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ee4-QB-rCS">
                                 <rect key="frame" x="0.0" y="0.0" width="750" height="857"/>
                                 <subviews>
-                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="386-Mg-4P3">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="386-Mg-4P3">
                                         <rect key="frame" x="0.0" y="0.0" width="750" height="830"/>
                                         <subviews>
                                             <view tag="105" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uUn-Rt-cCy" customClass="MIGenericView" customModule="TheBayaApp" customModuleProvider="target">
@@ -808,12 +808,20 @@
                                     <outlet property="delegate" destination="b2Q-cN-gxq" id="kXQ-19-ZrN"/>
                                 </connections>
                             </scrollView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No payment schedule yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ccx-Pg-UrC" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="274" y="417" width="202.5" height="23.5"/>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="17"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.94901960780000005" green="0.97254901959999995" blue="0.98823529409999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ee4-QB-rCS" firstAttribute="trailing" secondItem="JHU-hN-i7S" secondAttribute="trailing" id="Gix-sz-Dyb"/>
                             <constraint firstItem="6hS-Ok-tnq" firstAttribute="width" secondItem="wyG-gE-ydL" secondAttribute="width" multiplier="0.186667" id="MXX-Rd-Uvb"/>
+                            <constraint firstItem="ccx-Pg-UrC" firstAttribute="centerX" secondItem="wyG-gE-ydL" secondAttribute="centerX" id="TES-8M-oaN"/>
                             <constraint firstItem="Ee4-QB-rCS" firstAttribute="top" secondItem="wyG-gE-ydL" secondAttribute="top" id="Vkh-rU-q6x"/>
+                            <constraint firstItem="ccx-Pg-UrC" firstAttribute="centerY" secondItem="wyG-gE-ydL" secondAttribute="centerY" id="atU-0g-pqO"/>
                             <constraint firstItem="Ee4-QB-rCS" firstAttribute="leading" secondItem="JHU-hN-i7S" secondAttribute="leading" id="c7N-qV-VFw"/>
                             <constraint firstItem="z1q-Om-rgg" firstAttribute="width" secondItem="wyG-gE-ydL" secondAttribute="width" multiplier="0.266667" id="jwX-5A-NQa"/>
                             <constraint firstItem="Ee4-QB-rCS" firstAttribute="bottom" secondItem="JHU-hN-i7S" secondAttribute="bottom" id="v4s-tz-gaB"/>
@@ -832,6 +840,7 @@
                         <outlet property="lblMilestoneDate" destination="rfw-yc-aP8" id="7t8-Th-enN"/>
                         <outlet property="lblMilestoneName" destination="obW-ea-W60" id="Qcb-KB-f2M"/>
                         <outlet property="lblMilestonePercent" destination="n14-62-cYq" id="shF-iy-0Rd"/>
+                        <outlet property="lblNoData" destination="ccx-Pg-UrC" id="LKf-3q-Riu"/>
                         <outlet property="lblNoDemandMsg" destination="HKY-B0-adl" id="TYA-kQ-EP4"/>
                         <outlet property="lblPaid" destination="Ygg-s2-ah2" id="B7D-FT-Qqc"/>
                         <outlet property="lblToBePaid" destination="kdI-nV-Df9" id="SGM-05-q9J"/>
@@ -1117,8 +1126,8 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,00,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWq-JB-rvn" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="426.5" y="15.5" width="58.5" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWq-JB-rvn" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="485" y="25" width="0.0" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1175,8 +1184,8 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ab-f8-4Qc" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="447.5" y="15.5" width="37.5" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ab-f8-4Qc" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="485" y="25" width="0.0" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1206,8 +1215,8 @@
                                         <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5,000" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYV-Gt-8JZ" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
-                                        <rect key="frame" x="447.5" y="15.5" width="37.5" height="19.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xYV-Gt-8JZ" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                        <rect key="frame" x="485" y="25" width="0.0" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
                                         <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

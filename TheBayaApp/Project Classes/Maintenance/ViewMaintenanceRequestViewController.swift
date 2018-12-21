@@ -12,6 +12,8 @@ import AVKit
 class ViewMaintenanceRequestViewController: ParentViewController {
 
     @IBOutlet weak var lblType : UILabel!
+    @IBOutlet weak var lblSubTypeTxt : UILabel!
+    @IBOutlet weak var lblSubTypeValue : UILabel!
     @IBOutlet weak var lblSubject : UILabel!
     @IBOutlet weak var lblRequesetedDate : UILabel!
     @IBOutlet weak var lblDesc : UILabel!
@@ -68,6 +70,8 @@ class ViewMaintenanceRequestViewController: ParentViewController {
                     self.navigationController?.popToViewController(maintenanceVC, animated: true)
                 }
                 break
+            } else {
+                self.navigationController?.popToRootViewController(animated: true)
             }
         }
     }
@@ -106,9 +110,16 @@ extension ViewMaintenanceRequestViewController {
                     self.vwContent.isHidden = false
                     self.lblSubject.text = responseData.valueForString(key: "subject")
                     self.lblType.text = responseData.valueForString(key: "maintenanceType")
+                    self.lblSubTypeValue.text = responseData.valueForString(key: "maintenanceSubType")
                     self.lblRequesetedDate.text = "Requested on: \(DateFormatter.dateStringFrom(timestamp: responseData.valueForDouble(key: "createdAt")!, withFormate: "dd MMM yyyy"))"
                     self.lblDesc.text = responseData.valueForString(key: "message")
                     self.urlMedia =  responseData.valueForString(key: "mediaFile")
+                    
+                    if responseData.valueForString(key: "maintenanceSubType") == "" {
+                        _ = self.lblSubTypeValue.setConstraintConstant(0, edge: .top, ancestor: true)
+                        self.lblSubTypeTxt.hide(byHeight: true)
+                        self.lblSubTypeValue.hide(byHeight: true)
+                    }
                     
                     if self.urlMedia != "" {
                         

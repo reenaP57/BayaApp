@@ -29,6 +29,7 @@ class PaymentScheduleViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblTotalAmount : UILabel!
     @IBOutlet fileprivate weak var lblPaid : UILabel!
     @IBOutlet fileprivate weak var lblToBePaid : UILabel!
+    @IBOutlet fileprivate weak var lblNoData : UILabel!
     @IBOutlet fileprivate weak var cnTblMilestoneHeight : NSLayoutConstraint!
     @IBOutlet fileprivate weak var txtUTRNo : UITextField! {
         didSet{
@@ -189,7 +190,6 @@ extension PaymentScheduleViewController {
                 }
                 
                 self.tblMilestone.reloadData()
-                self.vwContent.isHidden = false
                 GCDMainThread.async {
                     self.cnTblMilestoneHeight.constant = self.tblMilestone.contentSize.height
                     self.view.layoutIfNeeded()
@@ -197,6 +197,9 @@ extension PaymentScheduleViewController {
                 
                 //...For set select by default button current demand
                 self.btnPaymentModeClicked(sender: self.btnCurrentDemand)
+                
+                self.lblNoData.isHidden = self.arrMilestone.count != 0
+                self.scrollVw.isHidden = self.arrMilestone.count == 0
             }
         }
     }

@@ -122,6 +122,7 @@ var CBlankDocumentName      =  "Document name can’t be blank."
 var CBlankDocMsg            =  "Message can't be blank."
 var CSelectMaintenanceType  =  "Select the maintenance type."
 var CBlankSubject           =  "Subject can't be blank."
+var CSelectSubMaintenanceType =  "Select the maintenance sub-type."
 
 var CBlankUTR             =  "UTR number can't be blank."
 var CBlankPassword        =  "Password can't be blank."

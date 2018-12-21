@@ -340,28 +340,50 @@ class MIFCM: NSObject, UNUserNotificationCenterDelegate {
                 
                 if application.applicationState == .inactive {
                     
-                    if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-                        viewMaintenanceVC.isFromRate = false
-                        viewMaintenanceVC.requestID = userInfo.valueForInt(key: "gcm.notification.maintenanceRequestId") ?? 0
-                        appDelegate.topViewController()?.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                    if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                        rateVC.isVisitRate = false
+                        rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.maintenanceRequestId"))!
+                        appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
                     }
+              
                 } else {
-                    appDelegate.topViewController()?.showAlertConfirmationView(message, okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+                    
+                    appDelegate.topViewController()?.showAlertConfirmationView("\(projectName)\n\(message)", okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+                        
                         if result {
                             
                             if let topViewController = appDelegate.topViewController() {
-                                
-                                if topViewController is ViewMaintenanceRequestViewController {
+                                if topViewController is RateYoorVisitViewController {
                                 } else {
-                                    if let viewMaintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "ViewMaintenanceRequestViewController") as? ViewMaintenanceRequestViewController {
-                                        viewMaintenanceVC.isFromRate = false
-                                        viewMaintenanceVC.requestID = userInfo.valueForInt(key: "gcm.notification.maintenanceRequestId") ?? 0
-                                        appDelegate.topViewController()?.navigationController?.pushViewController(viewMaintenanceVC, animated: true)
+                                    if let rateVC = CStoryboardProfile.instantiateViewController(withIdentifier: "RateYoorVisitViewController") as? RateYoorVisitViewController {
+                                        rateVC.isVisitRate = false
+                                        rateVC.visitId = (userInfo.valueForInt(key: "gcm.notification.maintenanceRequestId"))!
+                                        appDelegate.topViewController()?.navigationController?.pushViewController(rateVC, animated: true)
                                     }
                                 }
                             }
                         }
                     })
+                    
+                    
+//                    appDelegate.topViewController()?.showAlertConfirmationView(message, okTitle: "View", cancleTitle: "Cancel", type: .confirmationView, completion: { (result) in
+//                        if result {
+//
+//                            if let topViewController = appDelegate.topViewController() {
+//
+//                                if topViewController is ViewMaintenanceRequestViewController {
+//
+//                                    let maintenanceVC = topViewController as? MaintenanceViewController
+//                                    maintenanceVC?.currentPage = 1
+//                                    maintenanceVC?.loadMaintenanceRequestList(showLoader: false)
+//                                } else {
+//                                    if let maintenanceVC = CStoryboardMaintenance.instantiateViewController(withIdentifier: "MaintenanceViewController") as? MaintenanceViewController {
+//                                        appDelegate.topViewController()?.navigationController?.pushViewController(maintenanceVC, animated: true)
+//                                    }
+//                                }
+//                            }
+//                        }
+//                    })
                 }
                 
             default :
