@@ -36,8 +36,8 @@ class OnlinePaymentViewController: ParentViewController {
         //...Set payment detail
         lblCurrentOutstanding.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForString(key: CMilestoneAmount))!)
        // lblAmountToBePaid.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForString(key: CMilestoneAmount))!)
-   //     lblGST.text = self.setCurrencyFormat(amount: demandDetail.valueForFloat(key: CMilestoneAmount)! * demandDetail.valueForFloat(key: CGST)!/100)
-        lblGST.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForInt(key: CMilestoneAmount)! * demandDetail.valueForInt(key: CGST)!/100))
+        lblGST.text = self.setCurrencyFormat(amount: demandDetail.valueForFloat(key: CMilestoneAmount)! * demandDetail.valueForFloat(key: CGST)!/100)
+//        lblGST.text = self.setCurrencyFormat(amount: Float(demandDetail.valueForInt(key: CMilestoneAmount)! * demandDetail.valueForInt(key: CGST)!/100))
         lblGSTPercentage.text = "GST(\(demandDetail.valueForInt(key: CGST) ?? 0)%):"
       
         //...RazorPay configuration
@@ -69,26 +69,67 @@ extension OnlinePaymentViewController {
 
         self.resignKeyboard()
         
-        var amount : Int = 0
-        if let payAmount = Int(txtAmountToPay.text?.replacingOccurrences(of: ",", with: "") ?? "") {
-             amount = payAmount
-        }
-        
         if (txtAmountToPay.text?.isBlank)! {
             self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CBlankAmountToPay))
-        } else if (amount > demandDetail.valueForInt(key: CMilestoneAmount)!){
-            self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountNotBeMoreThanCurrentDemand))
-        } else if (amount < 50000){
-            self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountMinimumPayable))
-        } else {
-            //...Make payment for amount here
-            let options: [String:Any] = [
-                "amount" : "\(amount * 100)" ,//mandatory in paise
-                "description": demandDetail.valueForString(key: CName),
-                "name" : "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"]
-            
-            self.razorpay.open(options, displayController: self)
+            return
         }
+        
+        if let amount = demandDetail.valueForInt(key: CMilestoneAmount) {
+            
+            if let payAmount = Int(txtAmountToPay.text?.replacingOccurrences(of: ",", with: "") ?? "") {
+                
+                if (payAmount > amount){
+                    self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountNotBeMoreThanCurrentDemand))
+                    return
+                } else if (payAmount < 50000){
+                    self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountMinimumPayable))
+                    return
+                }
+                
+                //...Make payment for amount here
+                let options: [String:Any] = [
+                    "amount" : "\(payAmount * 100)" ,//mandatory in paise
+                    "description": demandDetail.valueForString(key: CName),
+                    "name" : "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"]
+                
+                self.razorpay.open(options, displayController: self)
+            }
+       
+        } else {
+            
+            if let payAmount = Float(txtAmountToPay.text?.replacingOccurrences(of: ",", with: "") ?? "") {
+                
+                if (payAmount > demandDetail.valueForFloat(key: CMilestoneAmount)!){
+                    self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountNotBeMoreThanCurrentDemand))
+                    return
+                } else if (payAmount < 50000){
+                    self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountMinimumPayable))
+                    return
+                }
+                
+                //...Make payment for amount here
+                let options: [String:Any] = [
+                    "amount" : "\((payAmount) * 100)" ,//mandatory in paise
+                    "description": demandDetail.valueForString(key: CName),
+                    "name" : "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"]
+                
+                self.razorpay.open(options, displayController: self)
+            }
+        }
+        
+//         if (Float(amount) > demandDetail.valueForFloat(key: CMilestoneAmount)!){
+//            self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountNotBeMoreThanCurrentDemand))
+//        } else if (amount < 50000){
+//            self.view.addSubview(self.txtAmountToPay.showValidationMessage(20.0, CAmountMinimumPayable))
+//        } else {
+//            //...Make payment for amount here
+//            let options: [String:Any] = [
+//                "amount" : "\(amount * 100)" ,//mandatory in paise
+//                "description": demandDetail.valueForString(key: CName),
+//                "name" : "\(appDelegate.loginUser?.firstName ?? "") \(appDelegate.loginUser?.lastName ?? "")"]
+//
+//            self.razorpay.open(options, displayController: self)
+//        }
     }
     
 }
@@ -125,7 +166,6 @@ extension OnlinePaymentViewController : RazorpayPaymentCompletionProtocolWithDat
     }
     
     func onPaymentSuccess(_ payment_id: String, andData response: [AnyHashable : Any]?) {
-        
         print("Response : ",response as Any)
     }
     
@@ -134,7 +174,7 @@ extension OnlinePaymentViewController : RazorpayPaymentCompletionProtocolWithDat
             amountPaymentID = ""
             gstPaymentID = ""
         }
-        self.showAlertView(str, completion: nil)
+        self.showAlertView(CMessagePaymentFail, completion: nil)
     }
     
     func onPaymentSuccess(_ payment_id: String) {

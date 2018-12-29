@@ -276,6 +276,8 @@
 		489A5F6B212293AA00080739 /* login_bg_ipad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = login_bg_ipad.jpg; sourceTree = "<group>"; };
 		5B2EDCFB21A2D719006E080F /* LoadPDFViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPDFViewController.swift; sourceTree = "<group>"; };
 		5B75209321A55C0F005CB239 /* MIGeneralsAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIGeneralsAPI.swift; sourceTree = "<group>"; };
+		5BB75BA521B90D3A0072DBA6 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		5BB75BA721B90DC80072DBA6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5C008E1B212E8B6300650E71 /* Profile_ipad.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile_ipad.storyboard; sourceTree = "<group>"; };
 		5C03978C219ACF1C00005351 /* OnlinePaymentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnlinePaymentViewController.swift; sourceTree = "<group>"; };
 		5C053D9D21661B8D00686FB2 /* TimelineHomeCollCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimelineHomeCollCell.swift; sourceTree = "<group>"; };
@@ -889,6 +891,8 @@
 		C360606CACEC8EFD9DD62C26 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5BB75BA721B90DC80072DBA6 /* SystemConfiguration.framework */,
+				5BB75BA521B90D3A0072DBA6 /* CoreTelephony.framework */,
 				5C51A95C2133E67700998135 /* AVFoundation.framework */,
 				775C24B430F439213956B3D8 /* Pods_TheBayaApp.framework */,
 			);
@@ -1389,7 +1393,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1401,7 +1405,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1414,7 +1418,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = TheBayaApp/TheBayaApp.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Catapult Realty Consultants (8TSB2ZGB8U)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 8TSB2ZGB8U;
 				INFOPLIST_FILE = /Volumes/Project/XCODEPROJECTS/TheBayaApp/TheBayaApp/AppGeneralFiles/Info.plist;
@@ -1426,7 +1430,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.app.baya;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "3c8d1f82-2c3a-477a-ba76-c217f6803d38";
-				PROVISIONING_PROFILE_SPECIFIER = TheBaya_AppStore_24_Sep_2018;
+				PROVISIONING_PROFILE_SPECIFIER = TheBaya_Development_24_Sep_2018;
 				SWIFT_OBJC_BRIDGING_HEADER = BridgingHeader.h;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

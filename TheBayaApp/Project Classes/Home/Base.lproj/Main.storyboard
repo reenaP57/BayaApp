@@ -3775,31 +3775,24 @@ reach for you.</string>
                                                 </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y4I-sB-xKQ">
-                                                <rect key="frame" x="15" y="295" width="143" height="45"/>
+                                                <rect key="frame" x="15" y="295" width="160" height="45"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="ic_dotted_line" translatesAutoresizingMaskIntoConstraints="NO" id="CFa-Gw-Me6">
-                                                        <rect key="frame" x="0.0" y="0.0" width="143" height="45"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="160" height="45"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="20%" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQQ-yc-inZ">
-                                                        <rect key="frame" x="10" y="12" width="29.5" height="19.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="20%" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QQQ-yc-inZ">
+                                                        <rect key="frame" x="10" y="12" width="140" height="19.5"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="14"/>
-                                                        <color key="textColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="off on referral" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Olv-oS-awi">
-                                                        <rect key="frame" x="45.5" y="13" width="84.5" height="19.5"/>
-                                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                                         <color key="textColor" red="0.25882352941176467" green="0.67843137254901964" blue="0.24313725490196078" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstItem="QQQ-yc-inZ" firstAttribute="leading" secondItem="Y4I-sB-xKQ" secondAttribute="leading" constant="10" id="6V3-LZ-MxN"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Olv-oS-awi" secondAttribute="trailing" constant="13" id="CIw-eO-SLl"/>
-                                                    <constraint firstItem="Olv-oS-awi" firstAttribute="leading" secondItem="QQQ-yc-inZ" secondAttribute="trailing" constant="6" id="JdY-VV-BNI"/>
-                                                    <constraint firstItem="Olv-oS-awi" firstAttribute="centerY" secondItem="Y4I-sB-xKQ" secondAttribute="centerY" id="i4N-pB-gxi"/>
+                                                    <constraint firstItem="QQQ-yc-inZ" firstAttribute="leading" secondItem="Y4I-sB-xKQ" secondAttribute="leading" constant="10" id="6bx-hB-rFu"/>
+                                                    <constraint firstAttribute="width" constant="160" id="TNF-uF-swZ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="QQQ-yc-inZ" secondAttribute="trailing" constant="10" id="m3X-NO-weU"/>
                                                     <constraint firstAttribute="bottom" secondItem="QQQ-yc-inZ" secondAttribute="bottom" constant="13.5" id="mmI-x8-xSR"/>
                                                     <constraint firstItem="QQQ-yc-inZ" firstAttribute="top" secondItem="Y4I-sB-xKQ" secondAttribute="top" constant="12" id="sBX-y9-0nh"/>
                                                 </constraints>
@@ -3922,6 +3915,7 @@ reach for you.</string>
                     <connections>
                         <outlet property="btnTermsCondition" destination="g7k-P7-Fea" id="MjZ-xz-uX5"/>
                         <outlet property="lblOffer" destination="QQQ-yc-inZ" id="CPU-64-b1f"/>
+                        <outlet property="lblTermsCondtion" destination="MQU-P9-opu" id="PsV-Nx-Iu7"/>
                         <outlet property="txtEmail" destination="IIS-Le-yqM" id="Wq4-qM-Nr8"/>
                         <outlet property="txtPhone" destination="QFk-2K-WS3" id="wpV-QA-4WK"/>
                         <outlet property="txtReferredName" destination="V32-pD-THY" id="kTT-3A-H9P"/>

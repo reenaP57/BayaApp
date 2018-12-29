@@ -145,4 +145,4 @@ var CMessagePaymentInProcessing = "Please do not refresh or back click while we 
 var CPaymentProcessing = "Processing Payment"
 var CPaymentDone = "Payment Done Successfully"
 var CPaymentFail = "Payment Failed"
-
+var CMessagePaymentFail = "Unfortunately your payment could not go through. Please call your representative to discuss alternate payment methods."

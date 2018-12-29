@@ -7,31 +7,31 @@ PODS:
   - CTPanoramaView (1.0)
   - DeviceGuru (5.0.0)
   - Fabric (1.9.0)
-  - Firebase/Core (5.13.0):
+  - Firebase/Core (5.14.0):
     - Firebase/CoreOnly
-    - FirebaseAnalytics (= 5.3.0)
-  - Firebase/CoreOnly (5.13.0):
-    - FirebaseCore (= 5.1.8)
-  - Firebase/Messaging (5.13.0):
+    - FirebaseAnalytics (= 5.4.0)
+  - Firebase/CoreOnly (5.14.0):
+    - FirebaseCore (= 5.1.9)
+  - Firebase/Messaging (5.14.0):
     - Firebase/CoreOnly
-    - FirebaseMessaging (= 3.2.1)
-  - FirebaseAnalytics (5.3.0):
+    - FirebaseMessaging (= 3.2.2)
+  - FirebaseAnalytics (5.4.0):
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.3)
-    - GoogleAppMeasurement (~> 5.3)
+    - GoogleAppMeasurement (= 5.4.0)
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
     - "GoogleUtilities/NSData+zlib (~> 5.2)"
     - nanopb (~> 0.3)
   - FirebaseAnalyticsInterop (1.1.0)
-  - FirebaseCore (5.1.8):
+  - FirebaseCore (5.1.9):
     - GoogleUtilities/Logger (~> 5.2)
   - FirebaseInstanceID (3.3.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.3)
     - GoogleUtilities/UserDefaults (~> 5.3)
-  - FirebaseMessaging (3.2.1):
+  - FirebaseMessaging (3.2.2):
     - FirebaseAnalyticsInterop (~> 1.1)
     - FirebaseCore (~> 5.1)
     - FirebaseInstanceID (~> 3.0)
@@ -40,7 +40,7 @@ PODS:
     - Protobuf (~> 3.1)
   - FLAnimatedImage (1.0.12)
   - GoogleAnalytics (3.17.0)
-  - GoogleAppMeasurement (5.3.0):
+  - GoogleAppMeasurement (5.4.0):
     - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
     - GoogleUtilities/MethodSwizzler (~> 5.2)
     - GoogleUtilities/Network (~> 5.2)
@@ -90,11 +90,11 @@ PODS:
     - PINCache (= 3.0.1-beta.6)
     - PINRemoteImage/Core
   - Protobuf (3.6.1)
-  - razorpay-pod (1.0.24)
-  - SDWebImage (4.4.2):
-    - SDWebImage/Core (= 4.4.2)
-  - SDWebImage/Core (4.4.2)
-  - SDWebImage/GIF (4.4.2):
+  - razorpay-pod (1.0.26)
+  - SDWebImage (4.4.3):
+    - SDWebImage/Core (= 4.4.3)
+  - SDWebImage/Core (4.4.3)
+  - SDWebImage/GIF (4.4.3):
     - FLAnimatedImage (~> 1.0)
     - SDWebImage/Core
 
@@ -109,12 +109,12 @@ DEPENDENCIES:
   - Firebase/Messaging
   - GoogleAnalytics
   - IQKeyboardManagerSwift
-  - razorpay-pod (= 1.0.24)
+  - razorpay-pod (= 1.0.26)
   - SDWebImage
   - SDWebImage/GIF
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - Alamofire
     - BFRImageViewer
     - Crashlytics
@@ -147,15 +147,15 @@ SPEC CHECKSUMS:
   CTPanoramaView: 26a11a330ff606ea5d059ffe86b7e34eb902023e
   DeviceGuru: 13a60290a29142261c9924714ea2c57c3f48d16b
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
-  Firebase: 6df9a6114bc9f106a98fe83d5438d4d9833c2019
-  FirebaseAnalytics: 63202d2665de4e6adcbdce189135255d8b5962ba
+  Firebase: 963d5685fae888a56d6d4d9cfce6b9c976958798
+  FirebaseAnalytics: c06f9d70577d79074214700a71fd5d39de5550fb
   FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
-  FirebaseCore: fba2bfaa691c49028309b92e4dd37cc4b5512fbe
+  FirebaseCore: 8f49b70f57ab5cbb032ef41d64992ded21606459
   FirebaseInstanceID: e2fa4cb35ef5558c200f7f0ad8a53e212215f93e
-  FirebaseMessaging: 0f14a264b0d7f867e8eff5d3556bc5d0d4e57888
+  FirebaseMessaging: b412996f6a09337d232bb3a6676ce4d1f353d024
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
-  GoogleAppMeasurement: 5029d78f2b438bd30ffb44e6c558b57c21622727
+  GoogleAppMeasurement: 98b71f5e04142793729a5ef23e5b96651ff4b70f
   GoogleUtilities: 95996bea7c7d9b8fb811b7507669a4a8762f80c7
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
@@ -163,9 +163,9 @@ SPEC CHECKSUMS:
   PINOperation: a6219e6fc9db9c269eb7a7b871ac193bcf400aac
   PINRemoteImage: d6d51c5d2adda55f1ce30c96e850b6c4ebd2856a
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
-  razorpay-pod: ab27cca436a494540730aa2e9ce70529175e24e0
-  SDWebImage: 624d6e296c69b244bcede364c72ae0430ac14681
+  razorpay-pod: 6f1eeb10e473b4a88baee1cd054eed76b926c923
+  SDWebImage: c5594f1a19c48d526d321e548902b56b479cd508
 
-PODFILE CHECKSUM: 8c0c345463b2537a2ee5be140f6d5b0c5ad77ea4
+PODFILE CHECKSUM: ba6779abcced6771d9facc7f9e9defb28463e028
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

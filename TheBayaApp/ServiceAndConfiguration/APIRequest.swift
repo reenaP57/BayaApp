@@ -886,8 +886,7 @@ extension APIRequest {
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagLogin) {
             
                 self.saveLoginUserDetail(response : response as! [String : AnyObject])
-                MIGeneralsAPI.shared().loadMaintenanceListFromServer()
-                MIGeneralsAPI.shared().loadProjectListFromServer()
+                MIGeneralsAPI.shared().fetchAllGeneralDataFromServer()
                 
                 if metaData?.valueForInt(key: "status") == CStatusZero {
                     
@@ -1087,9 +1086,9 @@ extension APIRequest {
         })
     }
     
-    func changeNotificationStatus(emailNotify: String?, pushNotify: String?, smsNotify: String?, completion: @escaping ClosureCompletion) {
+    func changeNotificationStatus(emailNotify: String?, pushNotify: String?, smsNotify: String?, paymentpassword : String?, completion: @escaping ClosureCompletion) {
     
-        _  = Networking.sharedInstance.POST(apiTag: CAPITagNotifyStatus, param: ["emailNotify" : emailNotify as AnyObject, "pushNotify": pushNotify as AnyObject, "mobileNotify": smsNotify as AnyObject], successBlock: { (task, response) in
+        _  = Networking.sharedInstance.POST(apiTag: CAPITagNotifyStatus, param: ["emailNotify" : emailNotify as AnyObject, "pushNotify": pushNotify as AnyObject, "mobileNotify": smsNotify as AnyObject, "checkPassword" : paymentpassword as AnyObject], successBlock: { (task, response) in
             
             if self.checkResponseStatusAndShowAlert(showAlert: true, responseobject: response, strApiTag: CAPITagNotifyStatus) {
                 self.saveLoginUserDetail(response : response as! [String : AnyObject])
@@ -1103,7 +1102,7 @@ extension APIRequest {
             
             if error?.code == CStatus1009 || error?.code == CStatus1005 {
                 self.checkInternetConnection {
-                    _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, smsNotify: smsNotify, completion: completion)
+                    _ = self.changeNotificationStatus(emailNotify: emailNotify, pushNotify: pushNotify, smsNotify: smsNotify, paymentpassword: paymentpassword, completion: completion)
                 }
             } else {
                 self.actionOnAPIFailure(errorMessage: message, showAlert: true, strApiTag: CAPITagNotifyStatus, error: error)

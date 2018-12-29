@@ -12,7 +12,9 @@ class MIGeneralsAPI: NSObject {
 
     var arrMaintenanceType = [[String : AnyObject]]()
     var arrProjectList = [[String : AnyObject]]()
-    
+    var strRefferalPoint = ""
+    var strTermsConditionReferral = ""
+
     private override init() {
         super.init()
     }
@@ -37,6 +39,7 @@ extension MIGeneralsAPI {
         if (CUserDefaults.value(forKey: UserDefaultLoginUserToken)) != nil {
             self.loadMaintenanceListFromServer()
             self.loadProjectListFromServer()
+            self.loadCMSData()
         }
     }
     
@@ -109,6 +112,29 @@ extension MIGeneralsAPI {
                     appDelegate.tabbarView?.lblCount.isHidden = true
                 } else {
                     appDelegate.tabbarView?.lblCount.isHidden = false
+                }
+            }
+        }
+    }
+    
+    func loadCMSData() {
+        
+        //...Load CMS Data
+        APIRequest.shared().cms { (response, error) in
+            if response != nil {
+                
+                if let arrData = response?.value(forKey: CJsonData) as? [[String : AnyObject]] {
+                    
+                    let arrTermsCondition = arrData.filter({$0.valueForString(key: "metaKeyword") == "Terms & Conditions For Referral"})
+                    let arrReferralPoint = arrData.filter({$0.valueForString(key: "metaKeyword") == "Referral Point"})
+                    
+                    if arrReferralPoint.count > 0{
+                        self.strRefferalPoint = arrReferralPoint[0].valueForString(key: "cmsDesc")
+                    }
+                    
+                    if arrTermsCondition.count > 0{
+                        self.strTermsConditionReferral = arrTermsCondition[0].valueForString(key: "cmsDesc")
+                    }
                 }
             }
         }

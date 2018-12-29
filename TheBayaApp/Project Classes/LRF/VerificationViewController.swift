@@ -154,8 +154,7 @@ extension VerificationViewController {
                     if let fcmToken = CUserDefaults.value(forKey: UserDefaultFCMToken) as? String{
                         MIGeneralsAPI.shared().registerDeviceToken(fcmToken: fcmToken, isLoggedIn: 1)
                     }
-                    MIGeneralsAPI.shared().loadMaintenanceListFromServer()
-                    MIGeneralsAPI.shared().loadProjectListFromServer()
+                    MIGeneralsAPI.shared().fetchAllGeneralDataFromServer()
                     appDelegate.initHomeViewController()
                 }
             } else {

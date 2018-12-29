@@ -75,7 +75,7 @@ extension SettingViewController {
                 self.showAlertConfirmationView(CEnablePushNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = true
-                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: "1", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: "1", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0", password: (appDelegate.loginUser?.isCheckPassword)! ? "1" : "0")
                     } else {
                         sender.isOn = false
                     }
@@ -87,7 +87,7 @@ extension SettingViewController {
                 self.showAlertConfirmationView(CDisablePushNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = false
-                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0", password: (appDelegate.loginUser?.isCheckPassword)! ? "1" : "0")
                     } else {
                         sender.isOn = true
                     }
@@ -101,7 +101,7 @@ extension SettingViewController {
                 self.showAlertConfirmationView(CEnableEmailNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = true
-                        self.changeNotificationStatus(email: "1", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                        self.changeNotificationStatus(email: "1", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0", password: (appDelegate.loginUser?.isCheckPassword)! ? "1" : "0")
                     } else {
                         sender.isOn = false
                     }
@@ -113,7 +113,7 @@ extension SettingViewController {
                 self.showAlertConfirmationView(CDisableEmailNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = false
-                        self.changeNotificationStatus(email: "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0")
+                        self.changeNotificationStatus(email: "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0", password: (appDelegate.loginUser?.isCheckPassword)! ? "1" : "0")
                     } else {
                         sender.isOn = true
                     }
@@ -126,7 +126,7 @@ extension SettingViewController {
                 self.showAlertConfirmationView(CEnableSMSNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = true
-                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: "1")
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: "1", password: (appDelegate.loginUser?.isCheckPassword)! ? "1" : "0")
                     } else {
                         sender.isOn = false
                     }
@@ -137,7 +137,7 @@ extension SettingViewController {
                 self.showAlertConfirmationView(CDisableSMSNotificationMessage, okTitle: CBtnYes, cancleTitle: CBtnNo, type: .confirmationView) { (result) in
                     if result {
                         sender.isOn = false
-                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: "0")
+                        self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: "0", password: (appDelegate.loginUser?.isCheckPassword)! ? "1" : "0")
                     } else {
                         sender.isOn = true
                     }
@@ -149,11 +149,13 @@ extension SettingViewController {
             if sender.isOn {
                 //...switch is in on
                 sender.isOn = true
-                self.changePaymentPasswordStatus(status: 1)
+                self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0", password: "1")
+                //  self.changePaymentPasswordStatus(status: 1)
             } else {
                 //...switch is in off
                 sender.isOn = false
-                self.changePaymentPasswordStatus(status: 0)
+                self.changeNotificationStatus(email: (appDelegate.loginUser?.emailNotify)! ? "1" : "0", push: (appDelegate.loginUser?.pushNotify)! ? "1" : "0", sms: (appDelegate.loginUser?.smsNotify)! ? "1" : "0", password: "0")
+                // self.changePaymentPasswordStatus(status: 0)
             }
             break
         default:
@@ -301,10 +303,10 @@ extension SettingViewController: UITableViewDelegate,UITableViewDataSource {
 
 extension SettingViewController {
     
-    func changeNotificationStatus(email : String, push : String, sms : String) {
+    func changeNotificationStatus(email : String, push : String, sms : String, password : String) {
         
         //...For change push, email and SMS notificatin status
-        APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push, smsNotify:sms ) { (response, error) in
+        APIRequest.shared().changeNotificationStatus(emailNotify: email, pushNotify: push, smsNotify:sms, paymentpassword: password ) { (response, error) in
             
             if response != nil && error == nil {
                 self.imgVBg.isHidden = false

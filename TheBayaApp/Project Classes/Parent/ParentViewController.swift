@@ -151,6 +151,25 @@ extension ParentViewController {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
         formatter.maximumFractionDigits = 2
+        
+        let numberString = "\(amount)" //"\(NSNumber(value: amount))"
+        let numberComponent = numberString.components(separatedBy :".")
+        
+        //...Check here if value after point is greter than 50 than amount will be increase 1 other wise amount will be as it is and remove value after point.
+        if numberComponent.count != 0 {
+            if let integerNumber = Int(numberComponent [0]) {
+                if numberComponent.count > 1 {
+                    if let fractionalNumber = Int(numberComponent [1]) {
+                        if fractionalNumber > 50 {
+                            return formatter.string(from: NSNumber(value: integerNumber+1))!
+                        } else {
+                            return formatter.string(from: NSNumber(value: integerNumber))!
+                        }
+                    }
+                }
+            }
+        }
+        
         return formatter.string(from: NSNumber(value: amount))!
     }
 }

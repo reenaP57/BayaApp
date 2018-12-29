@@ -628,7 +628,7 @@
                                                                         </constraints>
                                                                         <nil key="textColor"/>
                                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
-                                                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                                        <textInputTraits key="textInputTraits"/>
                                                                         <userDefinedRuntimeAttributes>
                                                                             <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
                                                                                 <color key="value" red="0.66666666669999997" green="0.66666666669999997" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1305,6 +1305,21 @@
                                     <action selector="btnAmountToPayClickedWithSender:" destination="brf-qc-RD9" eventType="touchUpInside" id="7qh-Ts-pDK"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lXP-TG-7ih" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="417" width="41" height="20.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Avenir-Black" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7tO-4U-lYK" customClass="MIGenericLabel" customModule="TheBayaApp" customModuleProvider="target">
+                                <rect key="frame" x="15" y="442.5" width="345" height="53.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">After successful payment of the amount, you will be required to make another payment for the tax. Kindly ensure that both payments are made one after the other.</string>
+                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
+                                <color key="textColor" red="0.66666666666666663" green="0.66666666666666663" blue="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -1315,19 +1330,24 @@
                             <constraint firstItem="Eqi-fk-oaJ" firstAttribute="top" secondItem="GjU-ft-OtS" secondAttribute="top" constant="30" id="DPn-RN-xa4"/>
                             <constraint firstItem="KmA-be-jan" firstAttribute="width" secondItem="cjs-3N-NCa" secondAttribute="width" id="FEl-Na-xaJ"/>
                             <constraint firstItem="KmA-be-jan" firstAttribute="top" secondItem="hhd-cd-C4Z" secondAttribute="bottom" constant="25" id="FSX-Ag-ed0"/>
+                            <constraint firstItem="7tO-4U-lYK" firstAttribute="top" secondItem="lXP-TG-7ih" secondAttribute="bottom" constant="5" id="H7v-5i-M9s"/>
                             <constraint firstItem="hhd-cd-C4Z" firstAttribute="top" secondItem="cjs-3N-NCa" secondAttribute="bottom" constant="10" id="HzF-jf-1VC"/>
                             <constraint firstItem="ru4-yQ-K6X" firstAttribute="leading" secondItem="GjU-ft-OtS" secondAttribute="leading" constant="15" id="Lcs-mY-qFE"/>
                             <constraint firstItem="O6w-NN-OyM" firstAttribute="height" secondItem="ru4-yQ-K6X" secondAttribute="height" id="TAg-Qu-3FG"/>
                             <constraint firstItem="cjs-3N-NCa" firstAttribute="width" secondItem="O6w-NN-OyM" secondAttribute="width" id="cf5-FM-hQ2"/>
+                            <constraint firstItem="lXP-TG-7ih" firstAttribute="leading" secondItem="GjU-ft-OtS" secondAttribute="leading" constant="15" id="cke-5P-RiV"/>
                             <constraint firstItem="Eqi-fk-oaJ" firstAttribute="leading" secondItem="GjU-ft-OtS" secondAttribute="leading" constant="15" id="ddh-w5-5ii"/>
                             <constraint firstItem="L6A-a4-XN2" firstAttribute="top" secondItem="WRr-y2-Phy" secondAttribute="top" id="gJG-tB-2Ru"/>
                             <constraint firstItem="L6A-a4-XN2" firstAttribute="leading" secondItem="GjU-ft-OtS" secondAttribute="leading" id="hNs-Hj-ol5"/>
                             <constraint firstItem="L6A-a4-XN2" firstAttribute="trailing" secondItem="GjU-ft-OtS" secondAttribute="trailing" id="ls2-uJ-ufD"/>
+                            <constraint firstItem="lXP-TG-7ih" firstAttribute="top" secondItem="KmA-be-jan" secondAttribute="bottom" constant="35" id="nTZ-3d-Nv7"/>
                             <constraint firstItem="cjs-3N-NCa" firstAttribute="top" secondItem="O6w-NN-OyM" secondAttribute="bottom" constant="10" id="oRG-A0-vZV"/>
+                            <constraint firstItem="7tO-4U-lYK" firstAttribute="leading" secondItem="GjU-ft-OtS" secondAttribute="leading" constant="15" id="okW-3n-MZU"/>
                             <constraint firstItem="KmA-be-jan" firstAttribute="height" secondItem="cjs-3N-NCa" secondAttribute="height" id="p39-TS-nHJ"/>
                             <constraint firstItem="GjU-ft-OtS" firstAttribute="trailing" secondItem="ru4-yQ-K6X" secondAttribute="trailing" constant="15" id="q5h-Dm-3pi"/>
                             <constraint firstItem="L6A-a4-XN2" firstAttribute="bottom" secondItem="GjU-ft-OtS" secondAttribute="bottom" id="qqG-Mi-aNL"/>
                             <constraint firstItem="ru4-yQ-K6X" firstAttribute="top" secondItem="Eqi-fk-oaJ" secondAttribute="bottom" constant="10" id="rsS-T1-aDR"/>
+                            <constraint firstItem="GjU-ft-OtS" firstAttribute="trailing" secondItem="7tO-4U-lYK" secondAttribute="trailing" constant="15" id="sTX-19-9Zg"/>
                             <constraint firstItem="O6w-NN-OyM" firstAttribute="top" secondItem="ru4-yQ-K6X" secondAttribute="bottom" constant="10" id="tht-RR-I73"/>
                             <constraint firstItem="O6w-NN-OyM" firstAttribute="width" secondItem="ru4-yQ-K6X" secondAttribute="width" id="v3e-Ob-2Qu"/>
                             <constraint firstItem="hhd-cd-C4Z" firstAttribute="width" secondItem="cjs-3N-NCa" secondAttribute="width" id="w5p-qW-ehz"/>

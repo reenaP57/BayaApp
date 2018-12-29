@@ -21,6 +21,8 @@ class ReferFriendViewController: ParentViewController {
     @IBOutlet fileprivate weak var lblOffer : UILabel!
     @IBOutlet fileprivate weak var btnTermsCondition : UIButton!
     @IBOutlet fileprivate weak var vwContent : UIView!
+    @IBOutlet fileprivate weak var lblTermsCondtion : UILabel!
+
     var projectId : Int = 0
     
     override func viewDidLoad() {
@@ -39,7 +41,9 @@ class ReferFriendViewController: ParentViewController {
     func initialize() {
         
         self.title = "Refer a Friend"
-        self.getReferralPoint()
+        lblOffer.text = MIGeneralsAPI.shared().strRefferalPoint
+        lblTermsCondtion.text = MIGeneralsAPI.shared().strTermsConditionReferral
+       // self.getReferralPoint()
         
         self.txtSelectProject.setPickerData(arrPickerData: MIGeneralsAPI.shared().arrProjectList.map({$0[CProjectName]! as! String}), selectedPickerDataHandler: { (string, row, index) in
             self.txtSelectProject.hideValidationMessage(45)
